@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>iOS SDK 1.1 Introduction | Boxcar Push Service</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Boxcar Developer Blog Feed" />
+    
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/pygments.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/docs.style.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="api  ">
+
+<div id="header-wrapper">
+    <div id="header" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <a id="logo" href="/">ejabberd Docs</a>
+                
+                <menu>
+                    <li><a href="#">Forums</a></li>
+                    <li><a href="/">Documentation</a></li>
+                </menu>
+            </div>
+        </div>
+    </div><!-- #header -->
+</div><!-- #header-wrapper -->
+
+<div id="wrapper" class="container-fluid">
+    <div class="row">
+        <div id="sidebar" class="col-md-4">
+            
+            <div id="js-sidebar" class="sidebar-shell">
+                 <div class="js-toggle-list sidebar-module expandable">
+                     <ul>
+                         <li class="js-topic"><a href="/">Home</a></li>
+                         <li class="js-topic">
+                             <a href="/sdk/">SDK</a>
+                             <ul class="js-guides">
+                                 <li>
+                                     <a href="/sdk/android/">Android</a>
+                                     <ul>
+                                       <li><a href="/sdk/android/2.0/">SDK v2.*</a></li>
+                                       <li><a href="/sdk/android/1.0/">SDK v1.*</a></li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="/sdk/ios/">iOS</a>
+                                     <ul>
+                                         <li><a href="/sdk/ios/1.x/">SDK v1.1 (stable)</a></li>
+                                         <li><a href="/sdk/ios/2.x/">SDK v2.0 beta (experimental)</a></li>
+                                         <li><a href="/sdk/ios/apple-push-certificates/">Apple Push Certificates</a></li>
+                                     </ul>
+                                 </li>
+                                 <li><a href="/sdk/amazon/">Kindle Fire</a></li>
+                                 <li><a href="/sdk/nokia/">Nokia X</a></li>
+                                 <li><a href="/sdk/phonegap/">Phonegap</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/console/">Console</a>
+                             <ul class="js-guides">
+                                 <li><a href="/console/project_settings/">Project Settings</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/api/">API</a>
+                             <ul class="js-guides">
+                                 <li><a href="/api/publisher/">Publisher</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div> <!-- /sidebar-module -->
+             </div><!-- /sidebar-shell -->
+            
+        </div>
+        <div id="content" class="col-md-8">
+        
+            
+        
+            
+<h1 id="ios-sdk-introduction">iOS SDK Introduction</h1>
+
+<p>Latest SDK Version: 1.1.0</p>
+
+<ul id="markdown-toc">
+  <li><a href="#pre-requisites">Pre-requisites</a></li>
+  <li><a href="#prepare-your-xcode-project-to-use-the-boxcar-ios-sdk">Prepare your XCode project to use the Boxcar iOS SDK</a></li>
+  <li><a href="#advanced-topics">Advanced topics</a></li>
+  <li><a href="#boxcar-push-ios-demo">Boxcar Push iOS Demo</a></li>
+</ul>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+
+<p>Creating push environment using Apple tools is not easy and is full of pitfalls.
+In case of trouble, do not hesitate to contact ProcessOne support for Boxcar Push Service by sending a mail to <a href="mailto:support@boxcar.uservoice.com">support@boxcar.uservoice.com</a>.</p>
+
+<p>You need to prepare the following before you can get started with the code part:</p>
+
+<ol>
+  <li><a href="apple-push-certificates/">Apple Push Certificate Creation</a></li>
+  <li><a href="/console/managing-mobile-clients/">Boxcar Push Console Client Registration</a></li>
+  <li>
+<a href="https://console.boxcar.io/downloads">Download Boxcar iOS SDK from Boxcar Developer Console</a> (login required)</li>
+</ol>
+
+<p>After you have completed those steps, you should have the following elements:</p>
+
+<ul>
+  <li>Apple <em>Push Certificates</em> for your application, likely Sandbox and production certificate.</li>
+  <li>Boxcar <em>ClientKey</em> and <em>ClientSecret</em>: This is two strings embedded in your client application. They allow your application to register a device, notify the server about opened notifications. They are use to sign your request and “authenticate” your application.</li>
+  <li>Boxcar <em>APIURL</em>: This is the endpoint to use for your organisation for all API calls.</li>
+</ul>
+
+<h2 id="prepare-your-xcode-project-to-use-the-boxcar-ios-sdk">Prepare your XCode project to use the Boxcar iOS SDK</h2>
+
+<h3 id="add-the-frameworks">Add the frameworks</h3>
+
+<p>To use the Boxcar SDK in your project, you need to drag and drop the provided <code>Boxcar.framework</code> directory in your <em>Frameworks</em> group in your XCode project:</p>
+
+<p><img src="/images/ios/xcode1_drag_boxcar_framework.png" alt=""></p>
+
+<h3 id="update-your-infoplist">Update your Info.plist</h3>
+
+<p>Starting from iOS 7, you can configure your application to support ability to be wake up by notifications. This is the
+most flexible way to do background fetch, as it is controlled by your server. It offers a very fluid user experience,
+allowing to display the right up to date content immediately when user opens the notification.</p>
+
+<p>Remote notification background more is an iOS 7 feature, but the parameter is simply ignored on iOS 6, so it is safe to add.
+In you project <em>*info.plist</em> file, add the key <em>UIBackgroundModes</em> (XCode name: Required background modes).
+This is an array, so add a new sub-item and give it the value <em>remote-notification</em> (XCode name: App downloads content in
+response to push notifications).</p>
+
+<p>Thanks to this value, your application will be allowed 30 seconds running time when a notification with <code>content-available</code>
+flag is set to <code>true</code>. Typically, this time is used to download the new content in background. Thanks to that, when your user will
+open the notification, the content will be already there, providing a very smooth user experience.</p>
+
+<p>Here is how UIBackgroundModes addition should look in your <em>*info.plist</em> file:</p>
+
+<p><img src="/images/ios/xcode3_infoplist_uibackgroundmodes.png" alt=""></p>
+
+<h3 id="step-by-step-integration-guide">Step by step integration guide</h3>
+
+<h4 id="import-boxcar-framework">Import Boxcar Framework</h4>
+
+<p>Make sure you import the Boxcar framework header where you need to use it. For example, add this line at the top of your
+`AppDelegate.h file:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="cp">#import &lt;Boxcar/Boxcar.h&gt;</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h4 id="appdelegate---boolapplicationuiapplication-application-didfinishlaunchingwithoptionsnsdictionarylaunchoptions">AppDelegate: - (BOOL)application:(UIApplication <em>)application didFinishLaunchingWithOptions:(NSDictionary </em>)launchOptions</h4>
+
+<h5 id="configure-and-start-the-boxcar-framework">Configure and start the Boxcar framework</h5>
+
+<p>You can prepare a NSDictionary, that contains the relevant options:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">boxcarOptions</span> <span class="o">=</span> <span class="l">@{</span>
+     <span class="nl">kBXC_CLIENT_KEY</span><span class="p">:</span> <span class="s">@"rqet2tBuxHXzzrJmhyAfwPIyxHX6_e7lkRysPj7MXBzEfVmI"</span><span class="p">,</span>
+     <span class="nl">kBXC_CLIENT_SECRET</span><span class="p">:</span> <span class="s">@"t5DWCxESkq_F6bVgpTxEroy7fs4XT4SS1pjXIeH5zhifRs4B"</span><span class="p">,</span>
+     <span class="nl">kBXC_API_URL</span><span class="p">:</span>       <span class="s">@"https://console.boxcar.io"</span><span class="p">,</span>
+     <span class="nl">kBXC_LOGGING</span><span class="p">:</span>       <span class="m">@YES</span>
+  <span class="l">}</span><span class="p">;</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>And pass it to Boxcar instance <em>startWithOptions:error: method</em>:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">startWithOptions</span><span class="p">:</span><span class="n">boxcarOptions</span> <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>Mandatory parameters are:</p>
+
+<ul>
+  <li>
+<strong>kBXC_CLIENT_KEY</strong>: Your application client key on Boxcar Push console.</li>
+  <li>
+<strong>kBXC_CLIENT_SECRET</strong>: Your application client sevret on Boxcar Push console.</li>
+  <li>
+<strong>kBXC_API_URL</strong>: API endpoint URL.</li>
+</ul>
+
+<p>Logging can be enable / disabled with the boolean parameter:</p>
+
+<ul>
+  <li>
+<strong>kBXC_LOGGING</strong>: This is a boolean. We recommend you set it to <em>YES</em> while you develop and to <em>NO</em> in your Apple AppStore build (This is important to avoid you client key appearing in the logs).</li>
+</ul>
+
+<h5 id="define-your-push-mode">Define your push mode</h5>
+
+<p>If you upload your application to your device through your cable during development phase, you will have to use the sandbox push certificate to receive push notifications. This is done by using <strong>“development”</strong> mode.
+If you are distributing your application (through adhoc mode, App Store or enterprise), then you have to set you application in <strong>“production”</strong> mode.</p>
+
+<p>If your application configuration define DEBUG only in development, then a typical pattern to use is:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="cp"># ifdef DEBUG</span>
+<span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setMode</span><span class="p">:</span><span class="s">@"development"</span><span class="p">];</span>  <span class="c1">// = sandbox</span>
+<span class="cp"># else</span>
+<span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setMode</span><span class="p">:</span><span class="s">@"production"</span><span class="p">];</span>
+<span class="cp"># endif</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h5 id="optional-enable-the-use-of-vendoridentifier-or-advertiseridentifier">(Optional) Enable the use of vendorIdentifier or advertiserIdentifier</h5>
+
+<p>Device identifier can be use to link a device to you own database. On iOS you have two types of identifier available as default.
+VendorIdenfier can be used, especially if you have several apps available and would like to offer synergy for the user between all your applications.
+AdvertisingIdentifier can be use as the identifier only if your application is displaying ads. You will have a link your iOS application against Apple AdSupport.framework if you want to use it.</p>
+
+<p>The use of that identifier is disabled as a default. If you want to associate that vendorIdentifier on device registration on the server, you have to enable it explicitly:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">useVendorIdentifier</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>Here, is the alternative line to enable use of advertisingIdentifier: </p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">useAdvertisingIdentifier</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>With that identifier you can know that the same device is used by several of your applications and can use that information for marketing purpose.</p>
+
+<p>Note that alternativle you can also use any custom identifier you wish:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setIdentifier</span><span class="p">:</span><span class="n">myNSStringIdentifier</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h5 id="perform-launch-step-house-keeping-tasks">Perform launch step house keeping tasks</h5>
+
+<p>When launching the app, you have to:</p>
+
+<ul>
+  <li>Extract notification from AppDelegate launchOptions to see if your application was started by opening a push notifcation:</li>
+</ul>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">remoteNotif</span> <span class="o">=</span>
+    <span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span>
+        <span class="nl">extractRemoteNotificationFromLaunchOptions</span><span class="p">:</span><span class="n">launchOptions</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<ul>
+  <li>Make sure you gather accurate statistics on opened notifications on the server, by calling the trackNotification: method:</li>
+</ul>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">trackNotification</span><span class="p">:</span><span class="n">remoteNotif</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<ul>
+  <li>Clean and reset badge and notification center on appliation launch:</li>
+</ul>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">cleanNotificationsAndBadge</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<ul>
+  <li>If there is actually a notification, you might want to pass it to a central method in your code that will process it:</li>
+</ul>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="k">if</span> <span class="p">(</span><span class="n">remoteNotif</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nb">self</span> <span class="nl">myProcessNotification</span><span class="p">:</span><span class="n">remoteNotif</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h4 id="appdelegate---voidapplicationwillenterforegrounduiapplication-application">AppDelegate: - (void)applicationWillEnterForeground:(UIApplication <em>)application </em>
+</h4>
+
+<h5 id="house-keeping">House keeping</h5>
+
+<p>It is usually a good idea to clean / reset notification and badge here:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">cleanNotificationsAndBadge</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h4 id="appdelegate---voidapplicationdidbecomeactiveuiapplication-application">AppDelegate: - (void)applicationDidBecomeActive:(UIApplication <em>)application </em>
+</h4>
+
+<h5 id="restart-paused-process">Restart paused process</h5>
+
+<p>You need to restart any tasks that were paused (or not yet started) while the application was inactive:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">applicationDidBecomeActive</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h4 id="appdelegate---voidapplicationuiapplication-application-didregisterforremotenotificationswithdevicetokennsdatadevicetoken">AppDelegate: - (void)application:(UIApplication <em>)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData </em>)deviceToken</h4>
+
+<p>This method is called when the device successfully registered on the Apple Push Service. You have to pass that information to Boxcar SDK with the following command:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span>
+    <span class="nl">didRegisterForRemoteNotificationsWithDeviceToken</span><span class="p">:</span><span class="n">deviceToken</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h4 id="appdelegate---voidapplicationuiapplication-app-didfailtoregisterforremotenotificationswitherrornserrorerror">AppDelegate: - (void)application:(UIApplication <em>)app didFailToRegisterForRemoteNotificationsWithError:(NSError </em>)error</h4>
+
+<p>This method is called when the application could not get a push token from Apple. You need to pass that info as well to Boxcar SDK:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span>
+    <span class="nl">didFailToRegisterForRemoteNotificationsWithError</span><span class="p">:</span><span class="n">error</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h4 id="appdelegate---voidapplicationuiapplication-app-didreceiveremotenotificationnsdictionaryremotenotif">AppDelegate: - (void)application:(UIApplication <em>)app didReceiveRemoteNotification:(NSDictionary </em>)remoteNotif</h4>
+
+<p>This is the second way an application can receive a notification.</p>
+
+<h5 id="house-keeping-1">House keeping</h5>
+<p>You have to do some house keeping as well:</p>
+
+<ul>
+  <li>Generate proper server-side open rate statistics:</li>
+</ul>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">trackNotification</span><span class="p">:</span><span class="n">remoteNotif</span> <span class="nl">forApplication</span><span class="p">:</span><span class="n">app</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<ul>
+  <li>Reset the badge and notification list in notification center:</li>
+</ul>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">cleanNotificationsAndBadge</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>You can choose to do all your house keeping in your central push processing method if you prefer. We like to make it explicit in both paths that a notification can take, but you can adapt our approach to your own way.</p>
+
+<h5 id="call-your-central-processing-method">Call your central processing method:</h5>
+
+<p>You should call your central processing method:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[</span><span class="nb">self</span> <span class="nl">myProcessNotification</span><span class="p">:</span><span class="n">remoteNotif</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h5 id="appdelegate-custom-processing-method">AppDelegate: Custom processing method</h5>
+
+<p>As a notification can take two different paths in the appDelegate code, it is a good idea to process it in a common method. Here is an example of what you could do with the notification dictionary in your code. This is a good example on how to manipulate and extract content from the notification.</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">myProcessNotification:</span><span class="p">(</span><span class="bp">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">remoteNotif</span> <span class="p">{</span>
+    <span class="c1">// aps is second level structure</span>
+    <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">APS</span> <span class="o">=</span> <span class="p">[</span><span class="n">remoteNotif</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@"aps"</span><span class="p">];</span>
+    <span class="p">[</span><span class="nb">self</span> <span class="nl">myNotifLog</span><span class="p">:</span><span class="n">APS</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@"alert"</span><span class="p">];</span>
+    <span class="p">[</span><span class="nb">self</span> <span class="nl">myNotifLog</span><span class="p">:</span><span class="n">APS</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@"sound"</span><span class="p">];</span>
+
+    <span class="c1">// Custom fields</span>
+    <span class="c1">// For example the id can be used to open the proper place</span>
+    <span class="c1">// inside the application</span>
+    <span class="p">[</span><span class="nb">self</span> <span class="nl">myNotifLog</span><span class="p">:</span><span class="n">remoteNotif</span> <span class="nl">forKey</span><span class="p">:</span><span class="s">@"mymetadata"</span><span class="p">];</span>
+
+    <span class="c1">// Example on how to process notification somewhere else</span>
+    <span class="p">[[</span><span class="bp">NSNotificationCenter</span> <span class="n">defaultCenter</span><span class="p">]</span>
+        <span class="nl">postNotificationName</span><span class="p">:</span><span class="s">@"pushNotification"</span>
+                      <span class="nl">object</span><span class="p">:</span><span class="nb">nil</span>
+                    <span class="nl">userInfo</span><span class="p">:</span><span class="n">remoteNotif</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>See Push Application demo for details.</p>
+
+<h4 id="other-needed-calls">Other needed calls</h4>
+
+<p>To support Apple Push Notifications you need a few more Boxcar SDK method call to place in your application.</p>
+
+<h5 id="setalias">setAlias</h5>
+
+<p>Aliases are used in Boxcar Push Service to notify the users without knowing their device tokens <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. To target a given user from the Boxcar Push Console, you need to use an alternative id that is known by developer backend system. This is the alias.</p>
+
+<p>You can set the alias with the following command:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setAlias</span><span class="p">:</span><span class="n">aliasString</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>This method call has to be placed in a code path where you know that the alias has been certified in a given way. If you use a userid, email, login, it has to have been validated as it is considered trusted by Boxcar Push Service<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. If you cannot trust that ID in your application, then consider using advertisingIdentifier.</p>
+
+<h5 id="advertisingidentifier">advertisingIdentifier</h5>
+
+<p>If you have no trusted identifier to use, you can alternatively use AdvertiserIdentifier. This is a random id that you can pass to your backend, that will allow you to target a given user without having to manage device tokens.</p>
+
+<p>If you enabled use of AdvertisingIdentifier with the following call:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">useAdvertisingIdentifier</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>you can retrieve it when you need it with the following method:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">advertisingIdentifier</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h5 id="senddeviceparameters-method">sendDeviceParameters method</h5>
+
+<p>To make sure we do not make a request on every change of parameters, you have to explicitely tell the framework that you are done changing parameters (like <em>setAlias</em> or <em>setTags</em>, for example).
+So, after change to parameters, do not forget to call <em>sendDeviceParameters</em> when you are done with all the changes:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">sendDeviceParameters</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>It means you set up all your parameters and are ready to send the data to the server. You can call it during app startup or in another place (for example in your settings controller) as update is only performed, if data have changed since the last update.</p>
+
+<h5 id="registerdevice-method">registerDevice method</h5>
+
+<p>When you have everything in place and think it is a good moment to enable push. Here is the method call:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">registerDevice</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>You need to call it only once when you think the user is ready to enable the push, understand the benefit and is likely to accept it when iOS will ask for authorization. It thus thus not a good idea to ask right on application launch. Do not forget that if user reject the push request, changing his mind can be quite complex: It will have to go into iOS notification settings directly and will manually configure the notifications for the application.</p>
+
+<p>Note that the SDK takes care of refreshing / updating the tokens and the server automatically for you.</p>
+
+<h5 id="optional-retrieveprojecttags">(optional) retrieveProjectTags</h5>
+
+<p>When you want to set up the channels that are available for subscription for a given project, you can call the method retrieveProjectTags.</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">retrieveProjectTags</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>It returns an NSArray of NSString objects, containing all the available tag names (all lowercase).
+If you want to present those tags in a multilingual interface, we expect that you will pass those tags name as key for your application translation file.</p>
+
+<p>Note: you can embed the list of tags directly on the device. Retrieving the list of project tags is optional, as tags will even be created on the fly if they do not exist yet on your project.</p>
+
+<h5 id="settagserror">setTags:error:</h5>
+
+<p>If you want to update your tag subscriptions, you can call the setTags method with an NSArray of NSString.</p>
+
+<p>Tags are expected to contains only alphabetical characters and numbers. The method returns NO and an error if the passed NSArray is incorrect.</p>
+
+<h5 id="clean-badge-and-notification-methods">Clean Badge and notification methods</h5>
+
+<p>You have three clean methods available:</p>
+
+<ul>
+  <li>- (void) cleanNotifications;</li>
+  <li>- (void) cleanNotificationsAndBadge;</li>
+  <li>- (void) cleanBadge;</li>
+</ul>
+
+<p>When the badge are cleaned, the value is also reset to 0 on the Boxcar Push Service as well.</p>
+
+<h5 id="unregister">unregister</h5>
+
+<p>In case you want to completely and permanently stop using the push on that device, you can call the unregister method:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="n">unregisterDevice</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>Note: This is not to use to temporarily disable push. Device unregistration destroy all reference to the device on Boxcar Push Service.</p>
+
+<h2 id="advanced-topics">Advanced topics</h2>
+
+<h3 id="inapp-push-notification">InApp Push Notification</h3>
+
+<p>Boxcar Push Service implements a way to receive realtime notification from the server while the application is running or while it is still in the 10 minutes allowed for staying in background.</p>
+
+<p>This allows to support a wider range of use case where Apple Push Notification only are not adequate.</p>
+
+<p>For example, you can:</p>
+
+<ul>
+  <li>Send much frequent notification through that mode (for realtime geolocation for example) while the application is running.</li>
+  <li>You can send events to device that are triggered by server calculation, while the user is using the application (Sending badges for games for example).</li>
+  <li>You can implement board games.</li>
+  <li>And many more use cases …</li>
+</ul>
+
+<p>Received events are simple NSString that can contains any type of JSON data structure.</p>
+
+<h4 id="boxcardelegate">BoxcarDelegate</h4>
+
+<p>To receive the events you need to implement BoxcarDelegate protocol with on method:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">didReceiveEvent:</span><span class="p">(</span><span class="bp">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">event</span><span class="p">;</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>Then, all you need is to call the two following method:</p>
+
+<pre><code class="language-objectivec"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">setDelegate</span><span class="p">:</span><span class="nb">self</span><span class="p">];</span>
+<span class="p">[[</span><span class="n">Boxcar</span> <span class="n">sharedInstance</span><span class="p">]</span> <span class="nl">connectToEventStreamWithId</span><span class="p">:[</span><span class="nb">self</span> <span class="n">makeUniqueString</span><span class="p">]</span>
+                                              <span class="nl">error</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>The Id is any “alias”, uniqueID, etc known by your server. If this is not an unguessable value, then you have to validate that value in some way in your mobile application, before passing it to the server.</p>
+
+<p>You are done and you can start receiving inApp events send by the server, while the application is being using or running.</p>
+
+<h2 id="boxcar-push-ios-demo">Boxcar Push iOS Demo</h2>
+
+<p>You can learn how to integrate the Boxcar iOS SDK by studying the boxcar-ios-demo XCode project is an example on how to
+integrate with Boxcar Push Service. It put the step by step element into practice.</p>
+
+<p>The XCode project for this demo application is provided with the SDK, on <a href="https://console.boxcar.io/downloads">Boxcar SDK download page</a>.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Device tokens are stored on Boxcar Push Service and are not expected to be used by developer to send push notifications throught our service. <a href="#fnref:1" class="reversefootnote">↩</a></p>
+    </li>
+    <li id="fn:2">
+      <p>If the alias you pass to Boxcar Push Service has not been validated by your app and cannot be trusted, consider the risk of hijack of notifications by someone using an illegitimate alias. <a href="#fnref:2" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+            
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
+</div><!-- #wrapper -->
+
+<div id="footer-wrapper">
+    <div id="footer" class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+            </div>
+            <div class="col-md-5 text-right">
+                <a href="http://ejabberd.im" id="logo-footer">ejabberd.im</a>
+                <br /><br />
+                &copy; 2014-2015 <a href="#">ProcessOne</a>
+            </div>
+        </div>
+    </div>
+</div><!-- /#footer -->
+
+<script src="/shared/js/jquery.js" type="text/javascript"></script>
+<script src="/shared/js/documentation.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  if (!$('body').hasClass('nocomment')) {
+    var disqus_shortname = 'developerboxcario';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  }
+</script>
+
+<script>
+  // Include the UserVoice JavaScript SDK (only needed once on a page)
+  UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/Z2g8b0cwtaG7oeunGhyDHw.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+  
+  UserVoice.push(['set', {
+    accent_color: '#e23a39',
+    trigger_color: 'white',
+    trigger_background_color: '#e23a39'
+  }]);
+  
+  // Add default trigger to the bottom-right corner of the window:
+  UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-137362-14', 'boxcar.io');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

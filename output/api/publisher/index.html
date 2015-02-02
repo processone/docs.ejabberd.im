@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Publisher API Introduction | Boxcar Push Service</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Boxcar Developer Blog Feed" />
+    
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/pygments.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/docs.style.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="api  ">
+
+<div id="header-wrapper">
+    <div id="header" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <a id="logo" href="/">ejabberd Docs</a>
+                
+                <menu>
+                    <li><a href="#">Forums</a></li>
+                    <li><a href="/">Documentation</a></li>
+                </menu>
+            </div>
+        </div>
+    </div><!-- #header -->
+</div><!-- #header-wrapper -->
+
+<div id="wrapper" class="container-fluid">
+    <div class="row">
+        <div id="sidebar" class="col-md-4">
+            
+            <div id="js-sidebar" class="sidebar-shell">
+                 <div class="js-toggle-list sidebar-module expandable">
+                     <ul>
+                         <li class="js-topic"><a href="/">Home</a></li>
+                         <li class="js-topic">
+                             <a href="/sdk/">SDK</a>
+                             <ul class="js-guides">
+                                 <li>
+                                     <a href="/sdk/android/">Android</a>
+                                     <ul>
+                                       <li><a href="/sdk/android/2.0/">SDK v2.*</a></li>
+                                       <li><a href="/sdk/android/1.0/">SDK v1.*</a></li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="/sdk/ios/">iOS</a>
+                                     <ul>
+                                         <li><a href="/sdk/ios/1.x/">SDK v1.1 (stable)</a></li>
+                                         <li><a href="/sdk/ios/2.x/">SDK v2.0 beta (experimental)</a></li>
+                                         <li><a href="/sdk/ios/apple-push-certificates/">Apple Push Certificates</a></li>
+                                     </ul>
+                                 </li>
+                                 <li><a href="/sdk/amazon/">Kindle Fire</a></li>
+                                 <li><a href="/sdk/nokia/">Nokia X</a></li>
+                                 <li><a href="/sdk/phonegap/">Phonegap</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/console/">Console</a>
+                             <ul class="js-guides">
+                                 <li><a href="/console/project_settings/">Project Settings</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/api/">API</a>
+                             <ul class="js-guides">
+                                 <li><a href="/api/publisher/">Publisher</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div> <!-- /sidebar-module -->
+             </div><!-- /sidebar-shell -->
+            
+        </div>
+        <div id="content" class="col-md-8">
+        
+            
+        
+            
+<h1 id="publisher-api-introduction">Publisher API Introduction</h1>
+
+<p>Latest API Version: 1.0.11</p>
+
+<ul id="markdown-toc">
+  <li><a href="#pre-requisites">Pre-requisites</a></li>
+  <li><a href="#goal-of-this-document">Goal of this document</a></li>
+  <li><a href="#general-api-requirements">General API requirements</a></li>
+  <li><a href="#publisher-methods">Publisher methods</a></li>
+  <li><a href="#url-signature">URL Signature</a></li>
+  <li><a href="#working-examples">Working examples</a></li>
+</ul>
+
+<h2 id="pre-requisites">Pre-requisites</h2>
+
+<p>Before you can send pushes through Boxcar Push API to reach your devices, you need to obtain from Boxcar Push Console the following information:</p>
+
+<ul>
+  <li>
+<strong>HOST</strong>: This is the server to use to send HTTPS API calls.</li>
+  <li>
+<strong>PUBLISH_KEY</strong> and <strong>PUBLISH_SECRET</strong>: This is needed to either sign API calls or to use basic HTTP authentication to verify the application publishers rights. Note: The publisher need to be allowed to use basic authentication over HTTPS as an alternative method to URL signature over HTTPS, to be allowed to call URL without implementing signature algorithm.</li>
+</ul>
+
+<h2 id="goal-of-this-document">Goal of this document</h2>
+
+<p>This documents presents the basic set of feature to allow to integrate with back-end most common needs.</p>
+
+<p>It is not a reference document presenting all the features of the API but should get you up and running quickly on using Boxcar Push API.</p>
+
+<h2 id="general-api-requirements">General API requirements</h2>
+
+<p>Data are send using JSON format.</p>
+
+<p>It means the “Content-Type” must be “application/json”.</p>
+
+<h3 id="curl-url-example">CURL URL example:</h3>
+
+<pre><code>curl -X POST -u "&lt;publish_key&gt;:&lt;publish_secret&gt;" \
+     -H "Content-Type: application/json" \
+     --data '&lt;JSON formatted payload&gt;' \
+     https://HOST/api/push/ 
+</code></pre>
+
+<p>The above example uses Basic Authentication.  For description of the authentication methods supported,
+refer to the  “URL Signature” section on this document.</p>
+
+<h2 id="publisher-methods">Publisher methods</h2>
+
+<h3 id="sending-push-notifications--post-apipush">Sending push notifications ― POST /api/push</h3>
+
+<p>Notifications are send by sending a POST HTTP requests on <em>/api/push</em> on the proper HOST.</p>
+
+<p>Here is a basic push notification example to send data to all subscribers in the ‘football’ channel:</p>
+
+<pre><code>curl -X POST -u "PuGjDgxlYfpAxOIkn:ewPljwerrjx" \
+     -H "Content-Type: application/json" \
+     --data @push.json \
+     https://HOST/api/push/ 
+</code></pre>
+
+<p>And here is the associated payload in the push.json file:</p>
+
+<pre><code>{
+ "aps":{
+     "badge":"auto",
+     "alert":"Beckham in first training session with Paris-St-Germain",
+     "sound":"sport.caf"},
+ "tags":["football"],
+ "id":"WEAXPVRK"
+}
+</code></pre>
+
+<p>Sending an HTTP request with a JSON formatted payload is all is needed to get started sending pushes from a publisher.</p>
+
+<p>After successfully accepting the request,  the server will return a 201 (Created) response.  The body of the response is a simple json document that contains the
+ID of the created push:</p>
+
+<pre><code>{"ok":"141"}
+</code></pre>
+
+<p>As per HTTP specs,  the full url of the created push is also returned in the “Location” header.</p>
+
+<p>Here are some of the first level keys you can you in your JSON data. Except <strong>aps</strong> (Apple Push Service), which hold the basic content to support push, all others values are optional. It means you can start simple and build more and more complex behavior.</p>
+
+<h4 id="aps-ios-and-android-with-some-reserves">aps (iOS and Android, with some reserves)</h4>
+
+<p>This is the standard Apple Push Notification content. It is a mandatory object, that need to contain at least one of its optional subkeys, among badge, alert, sound.</p>
+
+<p>In its most basic form, this is a JSON object itself containing three optional keys:</p>
+
+<ul>
+  <li>
+    <p><strong>badge</strong> (optional, iOS only, ignored on Android): Its value can be either an integer, but the most common practice on Boxcar Push Service is to use “auto” to let Boxcar platform handle automatically the counter. The platform will automatically reset that badge when the user open the target application. If omitted, the badge on the application will stay unchanged.</p>
+  </li>
+  <li>
+    <p><strong>alert</strong> (optional, iOS and Android): This is the text of the message that will be send as content for notification alert message (popup and notification center). If omitted, no popup nor alert text will be displayed.</p>
+  </li>
+  <li>
+    <p><strong>sound</strong> (optional, iOS and Android, with some restrictions): This is the sound file to play on the device when the notification is received. If omitted, no sound will be played. To play the default sound, you can simply use the value “default” or any non existing shorter name to save space.</p>
+  </li>
+  <li>
+    <p><strong>category</strong> (optional):  This corresponds to the  “category” field on APNS notifications. It is used to add notification actions, allowing the user to interact with the received notification.  If omitted, no category will be included.</p>
+  </li>
+</ul>
+
+<p>More complex values of the <strong>aps</strong> object are supported. The platform supports the variations in the payload, as described in <a href="http://developer.apple.com/library/ios/%23documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction/Introduction.html">Apple Push Notification Programming Guide</a>. However, they should be used with care to support cross platform notifications.</p>
+
+<p>Example:</p>
+
+<pre><code>{
+ "aps":{
+  "badge":"auto",
+  "alert":"Beckham in first training session with Paris-St-Germain",
+  "sound":"sport.caf"}
+}
+</code></pre>
+
+<p>This info is passed to third-party push service (reformatted for correct behaviour on each platform).</p>
+
+<h4 id="device-selection-criteria">Device selection criteria</h4>
+
+<p>You have to use one and only one criterium among the following to describe to which devices set you wish your push notification to be send.</p>
+
+<h5 id="aliases-ios-and-android">aliases (iOS and Android)</h5>
+
+<p>The <strong>aliases</strong> value is an array of string, defining the list of devices to send the notification to, identified by their assigned identifier. It is usually the numeric id of the user as known by the mobile device or the email address.
+This allows to send notification to individuals instead of device tokens. The various publishers can thus send notification with the identifier they use in their system and Boxcar Push Service is in charge of making the matching.</p>
+
+<p>This info is not passed to third-party push service and is used by our push platform to select the list of devices to push to, but is not passed to devices.</p>
+
+<h5 id="tags-ios-and-android">tags (iOS and Android)</h5>
+
+<p>The <strong>tags</strong> value is an array of string, defining the list of tagged devices that the notification need to be send to.
+You can imagine tags as channels to which the devices subscribe to.</p>
+
+<p>Tags cannot start with an at sign (@) as this is a reserved prefix for Boxcar system tags. We have list of predefined tags that can be used directly but the platform, for example:</p>
+
+<ul>
+  <li>
+<strong>@all</strong>: to send to all devices in the project (no matter which type / OS they are).</li>
+  <li>
+<strong>@anonymous</strong>: Send a notification to all devices that have no defined alias.</li>
+  <li>
+<strong>@registered</strong>: Send a notification to all devices that have a defined alias.</li>
+</ul>
+
+<p>For custom tags, expected naming is lower case string containing only alphanumeric chars, dash, dot and underscore). When languages are used, it is common to append it to tag.
+Example:</p>
+
+<ul>
+  <li>breaking-news_en</li>
+  <li>breaking-news_fr</li>
+  <li>sport</li>
+  <li>my-news-category-1</li>
+  <li>my-news.category-1</li>
+</ul>
+
+<p>This info is not passed to third-party push service and is only used by our push platform to select the list of devices to push to. As such is not passed to devices.</p>
+
+<p>Important note: When register a device with an incorrect tag, tags parameter is ignored a warning is returned, but device registration succeeds.</p>
+
+<h5 id="devicetokens-ios-and-android">device_tokens (iOS and Android)</h5>
+
+<p>The <strong>device_tokens</strong> value is an array of device identifiers for iOS or Android (as string). It is very rare to use it directly outside of the development phase as it requires the sender to have access to that information.
+More commonly, the publishers prefers aliases of tags to address a set of devices managed by Boxcar Push Service.</p>
+
+<p>For iOS, this is the device token. For Android, this is the device registration ID.</p>
+
+<p>This info is not passed in the payload of the push to third-party push service. It is used to define the list of devices to send the notification to, but is not passed to devices.</p>
+
+<h4 id="application-filter-criteria">Application filter criteria</h4>
+
+<p>There is no limit on usage of application filter criteria. You can combine any or all of them with with any device filter criterium.</p>
+
+<h5 id="targetos-ios-and-android">target_os (iOS and Android)</h5>
+
+<p>This is an array of string containing the list of platform to push to:</p>
+
+<ul>
+  <li>
+<strong>ios</strong>: Send a notification to all iOS devices.</li>
+  <li>
+<strong>android</strong>: Send a notification to all Android devices.</li>
+  <li>
+<strong>kindle</strong>: Send a notification to all Kindle Fire devices.</li>
+</ul>
+
+<p>No value or an empty array means: “push to all available platforms”.</p>
+
+<p>This info is not passed to third-party push service and is used by our push platform to select the list of devices to push to, but is not passed to devices.</p>
+
+<h5 id="clientids-ios-and-android">client_ids (iOS and Android)</h5>
+
+<p>We have a parameter in the API that can limit to which clients in the project the notification will be limited to. The <em>client_ids</em> key contain a list of integer, which is the id of the client, as created in the push platform.</p>
+
+<p>Example:</p>
+
+<pre><code>{
+ "client_ids":[1,2],
+ "aps":{"badge":"auto",
+        "alert":"alert message",
+        "sound":"default.caf"},
+ "id":"JHQRKHEE"
+}
+</code></pre>
+
+<p>This fields can be combined with <em>tags</em> filter.</p>
+
+<h4 id="example-combination-of-filters">Example combination of filters</h4>
+
+<p>Here is a more complex push payload mixing target\os and tags. Please, note that if a device appears more that once through the various parameters, the platform will take care of sending only one push notifications:</p>
+
+<pre><code>{
+ "tags":["politics","sports"],
+ "target_os":"ios",
+ "aps":{"badge":"auto",
+        "alert":"alert message",
+        "sound":"default.caf"},
+ "id":"JHQRKHEE"
+}
+</code></pre>
+
+<h4 id="other-fields">Other fields</h4>
+
+<h5 id="id-ios-and-android">id (iOS and Android)</h5>
+
+<p>The <strong>id</strong> value is a string.
+This is the id of the push in the publisher system. If no id is provided, Boxcar Push Service will generate one automatically.</p>
+
+<p>This info is passed to third-party push service in the push payload.</p>
+
+<h5 id="richcontent-ios-and-android">rich_content (iOS and Android)</h5>
+
+<p>The <strong>rich_content</strong> value is extended HTML content to display on the device once the application is opened. This is the associated content to download to provide the real content matching the alert for the users.</p>
+
+<p>This info is not passed in push payload to third-party push service but can be used by mobile devices to retrieve additionnal payload on our Push Service. This allows to bypass limitations of the third-party push services.</p>
+
+<h5 id="expiresafter-ios-and-android">expires_after (iOS and Android)</h5>
+<p>Set the time to live, in seconds,  time for this push.  The push is droped if the device is not able to receive it the next T seconds after the push was sent. This
+could be because the device is out of reception,  turned off, or some other circumstance that make GCM/APNS not delivering it immediately.  Refer to the official GCM/APNS docs for specific
+conditions. Example, expire after 30 minutes:</p>
+
+<pre><code>{
+ "tags":["politics","sports"],
+ "target_os":"ios",
+ "aps":{"badge":"auto",
+        "alert":"alert message",
+        "sound":"default.caf"},
+ "id":"JHQRKHEE",
+ "expires_after": 1800
+}
+</code></pre>
+
+<h5 id="img-android-only">@img (Android only)</h5>
+<p>Set the URL for an image to be displayed as a big background picture when the notification is expanded. The image will be center-cropped. When the push arrives, the device establishes an HTTP connection, reads the image from the remote site and sets it as the background picture for the notification widget. Source picture should be ≤ <em>450 DP wide</em>, <em>~2:1 aspect</em>. Bitmaps outside these bounds will just be wasting RAM (and possibly exceeding Binder IPC limits).</p>
+
+<p>As a reference, <em>450 DP</em> is equivalent to the following amount of pixels, depending on the density type of the hardware:</p>
+
+<ul>
+  <li>LDPI devices: 337,5 pixels</li>
+  <li>MDPI devices: 450 pixels</li>
+  <li>HDPI devices: 675 pixels</li>
+  <li>XHDPI devices: 900 pixels</li>
+  <li>XXHDPI devices: 1350 pixels</li>
+  <li>XXXHDPI devices: 1800 pixels</li>
+</ul>
+
+<p>Example:</p>
+
+<pre><code>{
+ "tags":["sports", "tennis"],
+ "target_os":"android",
+ "aps":{"badge":"auto",
+        "alert":"Petkovic wins Tournament of Champions final",
+        "sound":"default.caf"},
+ "id":"JHQRKHEE",
+ "@img":"http://mysite/news/res/petkovic.jpg"
+}
+</code></pre>
+
+<p>This feature is available only on Android devices with API level &gt;= 16. </p>
+
+<h4 id="custom-fields">Custom fields</h4>
+
+<p>Custom fields can be used. All value, not reversed by the platform is transparently passed in the push payload to the device.
+Example, to pass a custom object_id you can add a custom field “oid”:</p>
+
+<pre><code>{
+ "tags":["@all"],
+ "aps":{"badge":"auto",
+        "alert":"alert message",
+        "sound":"default.caf"},
+ "oid": 12,
+ "id":"JHQRKHEE"
+}
+</code></pre>
+
+<h4 id="other">Other</h4>
+
+<p>Other values are available for specific needs, like selecting set of devices based on the event of some actions (created, registered, last seen, for example).</p>
+
+<h3 id="cancelling-a-push-notifications-being-sent--delete-apipushpushid">Cancelling a push notifications being sent ― DELETE /api/push/$PUSH_ID</h3>
+<p>A notification being sent can be cancelled. </p>
+
+<p>Note: the push must exists.  If the push has already finished, this call has no effect.</p>
+
+<p>Return code is 202 “Accepted”. The actual cancellation is performed asynchronously, depending on your subscription plan delivery speed, it migh take a few seconds to completely stop.</p>
+
+<h3 id="getting-info-about-an-existing-push---get-apipushpushid">Getting info about an existing push - GET /api/push/$PUSH_ID</h3>
+
+<p>Returns a json struct with information about the given push. 
+Current returned fields are:</p>
+
+<pre><code>{
+	"state":"delivered",
+	"created_at":"2014-08-11T17:33:08Z",
+	"last_delivered_at":"2014-08-11T17:35:36Z",
+	"sent":3507600,
+	"errors":0,
+	"opened":401462
+}
+</code></pre>
+
+<table>
+  <tbody>
+    <tr>
+      <td>state can be one of “queued”</td>
+      <td>“delivering”</td>
+      <td>“delivered”</td>
+      <td>“cancelled”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Warning: 
+	don’t rely too much on the structure of this response.  Fields other than “state” are susceptible to changes in future versions.</p>
+
+<h2 id="url-signature">URL Signature</h2>
+
+<p>If “Basic Authentication” is allowed for the publisher, implementation of the signature algorithm is optional. Basic authentication can thus be used. While being a bit less secure, it will simplify development and deployment in some complex environment.</p>
+
+<p>Clients can never bypass URL signature, but the algorithm is always implemented in the provided libraries.</p>
+
+<p>So, if you want to add an extra security layer to your publisher code or want to reimplement the client algorithm yourself, you can implement the signature algorithm.</p>
+
+<p>The signature algorithm is already implemented in the provided <em>bx_signature.rb</em> script. You can use it as an example for implemented the optional signature algorithm in another programming language. The value of the signature is the result of HMAC SHA1 operation with PUBLISH_SECRET of the URL path and payload concatenated as:</p>
+
+<pre><code>method\nhost\nabsolute_path\nbody
+</code></pre>
+
+<ul>
+  <li>method is the HTTP method (uppercase), usually “POST”</li>
+  <li>host is the hostname (lowercase). Does not include port.</li>
+  <li>absolute_path is the full query path without parameters</li>
+  <li>body is the content of the POST.</li>
+</ul>
+
+<p>If you need to use URL signature, you will add two extra parameters in your HTTP query:</p>
+
+<ul>
+  <li>publish_key=&lt;publish_key&gt;</li>
+  <li>signature=&lt;generated_signature&gt;</li>
+</ul>
+
+<p>and it adds a validity duration in JSON payload:</p>
+
+<ul>
+  <li>an “expires” key is added to JSON. This is the timestamp (<a href="http://www.epochconverter.com">epoch date</a>) of the query. It defines at which time the query will expire and be rejected. This is define for security reason to avoid replay of the same signed identical query at a later time.</li>
+</ul>
+
+<p>For example:</p>
+
+<pre><code>POST /api/push?publishkey=PuGjDgxlYfpAxOIkn!hCaX5jo&amp;signature=1ea79daec692258278c2d3d5e88ae5f5a906c7f5 HTTP/1.1
+Content-Type: application/json
+Accept: */*
+User-Agent: Ruby
+Host: localhost:8001
+Content-Length: 217
+
+{"expires":1360790596,
+"device_tokens":["67944d0694d688a67a7dd4d0e7cbc961eb5d5c7f3b7de761406ad3778101506e"],
+"aliases":["my_username"],
+"aps":{"badge":1,"alert":"alert message","sound":"default.caf"},
+"id":"WEAXPVRK"}
+</code></pre>
+
+<h2 id="working-examples">Working examples</h2>
+
+<p>You can find a publish tool implementation written in Java and ready for use at our <a href="https://github.com/boxcar/boxcar-developer-push-examples">GitHub repository</a>:</p>
+
+<pre><code>https://github.com/boxcar/boxcar-developer-push-examples/tree/master/java-publisher-client
+</code></pre>
+
+
+            
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
+</div><!-- #wrapper -->
+
+<div id="footer-wrapper">
+    <div id="footer" class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+            </div>
+            <div class="col-md-5 text-right">
+                <a href="http://ejabberd.im" id="logo-footer">ejabberd.im</a>
+                <br /><br />
+                &copy; 2014-2015 <a href="#">ProcessOne</a>
+            </div>
+        </div>
+    </div>
+</div><!-- /#footer -->
+
+<script src="/shared/js/jquery.js" type="text/javascript"></script>
+<script src="/shared/js/documentation.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  if (!$('body').hasClass('nocomment')) {
+    var disqus_shortname = 'developerboxcario';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  }
+</script>
+
+<script>
+  // Include the UserVoice JavaScript SDK (only needed once on a page)
+  UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/Z2g8b0cwtaG7oeunGhyDHw.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+  
+  UserVoice.push(['set', {
+    accent_color: '#e23a39',
+    trigger_color: 'white',
+    trigger_background_color: '#e23a39'
+  }]);
+  
+  // Add default trigger to the bottom-right corner of the window:
+  UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-137362-14', 'boxcar.io');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

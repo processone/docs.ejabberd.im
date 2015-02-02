@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>New Boxcar Android SDK 2</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Boxcar Developer Blog Feed" />
+    
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/pygments.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/docs.style.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="api  blog single">
+
+<div id="header-wrapper">
+    <div id="header" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <a id="logo" href="/">ejabberd Docs</a>
+                
+                <menu>
+                    <li><a href="#">Forums</a></li>
+                    <li><a href="/">Documentation</a></li>
+                </menu>
+            </div>
+        </div>
+    </div><!-- #header -->
+</div><!-- #header-wrapper -->
+
+<div id="wrapper" class="container-fluid">
+    <div class="row">
+        <div id="sidebar" class="col-md-4">
+            
+            <div id="js-sidebar" class="sidebar-shell">
+                 <div class="js-toggle-list sidebar-module expandable">
+                     <ul>
+                         <li class="js-topic"><a href="/">Home</a></li>
+                         <li class="js-topic">
+                             <a href="/sdk/">SDK</a>
+                             <ul class="js-guides">
+                                 <li>
+                                     <a href="/sdk/android/">Android</a>
+                                     <ul>
+                                       <li><a href="/sdk/android/2.0/">SDK v2.*</a></li>
+                                       <li><a href="/sdk/android/1.0/">SDK v1.*</a></li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="/sdk/ios/">iOS</a>
+                                     <ul>
+                                         <li><a href="/sdk/ios/1.x/">SDK v1.1 (stable)</a></li>
+                                         <li><a href="/sdk/ios/2.x/">SDK v2.0 beta (experimental)</a></li>
+                                         <li><a href="/sdk/ios/apple-push-certificates/">Apple Push Certificates</a></li>
+                                     </ul>
+                                 </li>
+                                 <li><a href="/sdk/amazon/">Kindle Fire</a></li>
+                                 <li><a href="/sdk/nokia/">Nokia X</a></li>
+                                 <li><a href="/sdk/phonegap/">Phonegap</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/console/">Console</a>
+                             <ul class="js-guides">
+                                 <li><a href="/console/project_settings/">Project Settings</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/api/">API</a>
+                             <ul class="js-guides">
+                                 <li><a href="/api/publisher/">Publisher</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div> <!-- /sidebar-module -->
+             </div><!-- /sidebar-shell -->
+            
+        </div>
+        <div id="content" class="col-md-8">
+        
+            
+            <div class="read-more"><a href="/blog/">&lsaquo; Blog</a></div>
+            
+            <br /><br />
+            
+            <ul class="meta on-blog">
+              <li class="published">
+                <span class="octicon octicon-calendar"></span>
+                October 9, 2014
+                
+              </li>
+              <li class="who_when">
+                <img height="20" width="20" src="https://secure.gravatar.com/avatar/?s=20&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" />
+                  <a href="https://github.com/jpcarlino">jpcarlino</a>
+              </li>
+            </ul>
+           
+            <h2 class="title on-blog">New Boxcar Android SDK 2</h2>
+            
+        
+            
+<p>We have just released a new version of the Boxcar SDK for Android devices. More documentation about how to use it can be found <a href="http://developer.boxcar.io/sdk/android/2.0/">here</a>. </p>
+
+<!-- more -->
+
+<p>Boxcar Framework v2.0.0 includes the following changes:</p>
+
+<h3 id="sdk-and-demos-are-now-available-at-boxcar-maven-repository">SDK and demos are now available at Boxcar Maven repository</h3>
+<ul>
+  <li>Android SDK library, javadoc and demos are hosted in our Boxcar Maven Repository at http://developer.boxcar.io/maven. Now your Maven and Gradle projects can just refer to our library without the need to manually installing it.</li>
+  <li>There are two available flavours of the SDK library. One is for debugging, the other is for production. They behave indentically, except that the development version outputs debug information into the android log system.
+    <ul>
+      <li>
+        <p>Debug version:</p>
+
+        <pre><code>  io.boxcar.universalpush:android-push-sdk-debug:2.0.0
+</code></pre>
+      </li>
+      <li>
+        <p>Production version:</p>
+
+        <pre><code>  io.boxcar.universalpush:android-push-sdk:2.0.0
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="latest-google-cloud-messaging-implementation">Latest Google Cloud Messaging implementation</h3>
+<ul>
+  <li>SDK 2 uses new <a href="https://developer.android.com/google/gcm/index.html">Google Cloud Messaging</a> SDK, provided by Google Play Services APK.</li>
+</ul>
+
+<h3 id="api-changes">API changes</h3>
+<ul>
+  <li>push library now replaces POJO callback classes by <a href="https://github.com/greenrobot/EventBus">EventBus</a> to loosely couple your artifacts with the library. Your artifacts do not need to listen to all events, just those they are really interested in.</li>
+  <li>now SDK uses a delegate class to get parameters from your application. You should implement it in order to provide your configuration.</li>
+  <li>most API methods now require <em>Context</em> instance.</li>
+  <li>if SDK wasn’t initialized and any further method is called, do throw a runtime exception, so there is no need to use <em>try - catch</em> on code. This makes code much more clear and short.</li>
+  <li>allow developer to set username on each registration.</li>
+  <li>offer ways to inform user when Google Play APK is not installed but the error is recoverable, as documented on <a href="https://developer.android.com/google/gcm/client.html#sample-play">GCM docs</a>.</li>
+</ul>
+
+<h3 id="demo-changes">Demo changes</h3>
+<ul>
+  <li>single demo project for all variants.</li>
+  <li>demo project now managed entirely by <a href="http://www.gradle.org/downloads">Gradle</a>.</li>
+  <li>demo doesn’t register on startup, just initializes the framework.</li>
+  <li>removes InboxActivity.</li>
+  <li>cleans AndroidManifest.xml content.</li>
+  <li>display an alert dialog to install or enable Google Play Services if it is not available.</li>
+</ul>
+
+<h3 id="other-improvements">Other improvements</h3>
+<ul>
+  <li>SDK is now packaged in <a href="http://tools.android.com/tech-docs/new-build-system/aar-format">AAR format</a>.</li>
+  <li>add more retries for UDID service query.</li>
+  <li>fixes and updates SDK Javadoc documentation.</li>
+  <li>fix lint warnings from SDK and demos.</li>
+  <li>removes useless resource files, reducing library size.</li>
+</ul>
+
+<p>The new SDK is available in our Boxcar Maven Repository at http://developer.boxcar.io/maven and also on the developer <a href="https://console.boxcar.io/downloads">download area</a>.</p>
+
+            
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
+</div><!-- #wrapper -->
+
+<div id="footer-wrapper">
+    <div id="footer" class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+            </div>
+            <div class="col-md-5 text-right">
+                <a href="http://ejabberd.im" id="logo-footer">ejabberd.im</a>
+                <br /><br />
+                &copy; 2014-2015 <a href="#">ProcessOne</a>
+            </div>
+        </div>
+    </div>
+</div><!-- /#footer -->
+
+<script src="/shared/js/jquery.js" type="text/javascript"></script>
+<script src="/shared/js/documentation.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  if (!$('body').hasClass('nocomment')) {
+    var disqus_shortname = 'developerboxcario';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  }
+</script>
+
+<script>
+  // Include the UserVoice JavaScript SDK (only needed once on a page)
+  UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/Z2g8b0cwtaG7oeunGhyDHw.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+  
+  UserVoice.push(['set', {
+    accent_color: '#e23a39',
+    trigger_color: 'white',
+    trigger_background_color: '#e23a39'
+  }]);
+  
+  // Add default trigger to the bottom-right corner of the window:
+  UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-137362-14', 'boxcar.io');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

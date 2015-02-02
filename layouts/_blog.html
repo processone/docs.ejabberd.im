@@ -1,0 +1,10 @@
+<% @entries.each do |article| %>
+<div class="entry" id="<%= article.path %>">
+  <%= render '_meta', :item => article %>
+    <%= get_post_start(article) %>
+</div>
+
+<br />
+<hr />
+<br />
+<% end %>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Phonegap SDK Introduction | Boxcar Push Service</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Boxcar Developer Blog Feed" />
+    
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/pygments.css" rel="stylesheet" type="text/css" />
+    <link href="/shared/css/docs.style.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="api  ">
+
+<div id="header-wrapper">
+    <div id="header" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <a id="logo" href="/">ejabberd Docs</a>
+                
+                <menu>
+                    <li><a href="#">Forums</a></li>
+                    <li><a href="/">Documentation</a></li>
+                </menu>
+            </div>
+        </div>
+    </div><!-- #header -->
+</div><!-- #header-wrapper -->
+
+<div id="wrapper" class="container-fluid">
+    <div class="row">
+        <div id="sidebar" class="col-md-4">
+            
+            <div id="js-sidebar" class="sidebar-shell">
+                 <div class="js-toggle-list sidebar-module expandable">
+                     <ul>
+                         <li class="js-topic"><a href="/">Home</a></li>
+                         <li class="js-topic">
+                             <a href="/sdk/">SDK</a>
+                             <ul class="js-guides">
+                                 <li>
+                                     <a href="/sdk/android/">Android</a>
+                                     <ul>
+                                       <li><a href="/sdk/android/2.0/">SDK v2.*</a></li>
+                                       <li><a href="/sdk/android/1.0/">SDK v1.*</a></li>
+                                     </ul>
+                                 </li>
+                                 <li>
+                                     <a href="/sdk/ios/">iOS</a>
+                                     <ul>
+                                         <li><a href="/sdk/ios/1.x/">SDK v1.1 (stable)</a></li>
+                                         <li><a href="/sdk/ios/2.x/">SDK v2.0 beta (experimental)</a></li>
+                                         <li><a href="/sdk/ios/apple-push-certificates/">Apple Push Certificates</a></li>
+                                     </ul>
+                                 </li>
+                                 <li><a href="/sdk/amazon/">Kindle Fire</a></li>
+                                 <li><a href="/sdk/nokia/">Nokia X</a></li>
+                                 <li><a href="/sdk/phonegap/">Phonegap</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/console/">Console</a>
+                             <ul class="js-guides">
+                                 <li><a href="/console/project_settings/">Project Settings</a></li>
+                             </ul>
+                         </li>
+                         <li class="js-topic">
+                             <a href="/api/">API</a>
+                             <ul class="js-guides">
+                                 <li><a href="/api/publisher/">Publisher</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div> <!-- /sidebar-module -->
+             </div><!-- /sidebar-shell -->
+            
+        </div>
+        <div id="content" class="col-md-8">
+        
+            
+        
+            
+<h1 id="phonegap-sdk-introduction">Phonegap SDK Introduction</h1>
+
+<p>Latest SDK Version: 1.0.2</p>
+
+<ul id="markdown-toc">
+  <li><a href="#scope">Scope</a></li>
+  <li><a href="#general-information-about-api">General information about API</a></li>
+  <li><a href="#application-life-cycle">Application life cycle</a></li>
+  <li><a href="#starting-new-project-using-api">Starting new project using API</a></li>
+  <li><a href="#how-to-update-your-plugins">How to update your plugins</a></li>
+  <li><a href="#api-calls">API calls</a></li>
+</ul>
+
+<h2 id="scope">Scope</h2>
+
+<p>If you mobile application is developed with Phonegap HTML5 crossplatform development tool, we provide a Phonegap - Cordova
+SDK that will allow you to use Boxcar Push Service.</p>
+
+<p>Boxcar Phonegap SDK currently supports the following mobile operating systems:</p>
+
+<ul>
+  <li>Android: Google Cloud Messaging (GCM).</li>
+  <li>iOS: Apple Push Notification Service (APNS).</li>
+</ul>
+
+<h2 id="general-information-about-api">General information about API</h2>
+
+<p>All functions take single argument, object with properties recognized by
+each individual API point entry. Those functions will throw error when
+one or more of required parameters are missing. All result will be delivered
+asynchronously, by executing callback functions passed as arguments to API calls.</p>
+
+<p>Arguments to all API calls can have <code>ios: {...}</code> or <code>android: {...}</code> sections, values
+specified that way would overwrite general data from adequate platform section.</p>
+
+<h2 id="application-life-cycle">Application life cycle</h2>
+
+<p>Before any other operation can be performed, Boxcar API must be
+initialized, this is performed by calling <code>Boxcar.init()</code>.</p>
+
+<p>After that application can register retrieve list of tags by using <code>Boxcar.getTags()</code>
+or skip that step if interesting tags are already known.</p>
+
+<p>To make device receive push notificaitons <code>Boxcar.registerDevice()</code> must be called, after
+that all new notifications are delivered to applications by executing <code>onalert</code> callback
+provided in that API call</p>
+
+<h2 id="starting-new-project-using-api">Starting new project using API</h2>
+
+<p>Make sure that on machine where build will be performed [Apache Cordova][http://cordova.apache.org/], and
+Android or/and IOS SDK installed.</p>
+
+<p>As first step, we need to create new cordova project using:</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova create /path/to/our-project our.domain.testapp1 <span class="s2">"Test Application"</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>After that we need to switch to app directory:</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="nb">cd</span> /path/to/our-project
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>Next we need to declare for what platforms we want build our application:</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova platform add android
+cordova platform add ios
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>Then we need to download plugins required by Boxcar SDK</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova plugin add org.apache.cordova.device
+cordova plugin add https://github.com/boxcar/PushPlugin
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>On android Storage API used by SDK needs to be enabled manually in one of config files.
+To do that XML file <code>platform/android/res/xml/config.xml</code> must have additional clause</p>
+
+<pre><code class="language-xml"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="nt">&lt;plugin</span> <span class="na">name=</span><span class="s">"Storage"</span> <span class="na">value=</span><span class="s">"org.apache.cordova.Storage"</span> <span class="nt">/&gt;</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>directly in <code>&lt;widget&gt;</code> element.</p>
+
+<p>After that we need put our program files together with <code>Boxcar.js</code> file in www/ directory.
+We also need to include <code>Boxcar.js</code> and <code>PushNotification.js</code> file in our <code>index.html</code> file.</p>
+
+<pre><code class="language-html"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td>
+<td class="code">
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="na">src=</span><span class="s">"PushNotification.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="na">src=</span><span class="s">"Boxcar.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>Packages for iOS platform can be only build with Xcode IDE, executing</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova prepare ios
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>will fill <code>platform/ios</code> directory which can be opened in Xcode.</p>
+
+<p>Developing for Android can also be done using IDE environment, first by preparing build directory:</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova prepare android
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>and then creating IDE project from <code>platform/android</code> directory, but this can also be performed from
+CLI by executing</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova build android
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>to build APK file, and calling</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova run android
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<p>to install and start application on Android device.</p>
+
+<h2 id="how-to-update-your-plugins">How to update your plugins</h2>
+
+<p>To update the plugin to new version, you can type the following commands:</p>
+
+<pre><code class="language-bash"><table class="highlighttable"><tr>
+<td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td>
+<td class="code">
+<div class="highlight"><pre>cordova plugin rm net.process-one.boxcar-phonegap
+cordova plugin rm com.phonegap.plugins.PushPlugin
+cordova plugin add https://github.com/boxcar/boxcar-cordova-plugin
+</pre></div>
+</td>
+</tr></table></code></pre>
+
+<h2 id="api-calls">API calls</h2>
+
+<h3 id="boxcarinit"><code>Boxcar.init()</code></h3>
+
+<p>This method initializes internal structures, and archived notifications database</p>
+
+<p>Arguments:</p>
+
+<ul>
+  <li>
+<code>clientKey</code> (required) - Key used to access service,</li>
+  <li>
+<code>secret</code> - (required) - Secret value needed to access service</li>
+  <li>
+<code>server</code> - (required) - Url of push bridge server</li>
+  <li>
+<code>androidSenderID</code> - (required, android only) - Google project id used to register for push notification</li>
+  <li>
+<code>richUrlBase</code> - (required) - Url of server where html content of received pushes are available</li>
+</ul>
+
+<h3 id="boxcarregisterdevice"><code>Boxcar.registerDevice()</code></h3>
+
+<p>This method register device in push service, making it be able to receive new pushes</p>
+
+<p>Arguments:</p>
+
+<ul>
+  <li>
+<code>mode</code> (required) - String with “production” or “development” telling push service if
+production or development delivery channel should be used to register this device</li>
+  <li>
+<code>onsuccess</code> (required) - Calback function called when device was successfully registered
+in push service</li>
+  <li>
+<code>onerror</code> (required) - Callback function called when device registration was unsuccessful,
+it receives single String value is error description</li>
+  <li>
+<code>onalert</code> (required) - Callback function called when new push message was received, it receive object
+with properties initialized from notificaiton content</li>
+  <li>
+<code>onnotificationclick</code> (required) - Callback function called when user clicked on notification ui
+generated from push. This event can be dispatched only for pushes received when app was in background,
+as for pushes received when app was active notification is not displayed. This function is called with
+single object argument with properties initialized from notificaiton content</li>
+  <li>
+<code>tags</code> - List of strings with tags used to filter which notifications should be delivered</li>
+  <li>
+<code>udid</code> - Unique identifier of device where application is run</li>
+  <li>
+<code>alias</code> - Friendly name of device where application is run</li>
+</ul>
+
+<p>Objects passed to <code>onalert</code> and <code>onnotificationclick</code> callbacks have those fields:</p>
+
+<ul>
+  <li>
+<code>id</code> - unique identifier of push notification</li>
+  <li>
+<code>time</code> - time in miliseconds since epoch of when this message was received, this value can be
+converted to Date object by calling <code>new Date(msg.time)</code>
+</li>
+  <li>
+<code>sound</code> - string identifer of sound which should be played with notification</li>
+  <li>
+<code>badge</code> - number of unread messages on server</li>
+  <li>
+<code>body</code> - body of push notification</li>
+  <li>
+<code>richPush</code> - boolean value telling if this push includes html formated content</li>
+  <li>
+<code>url</code> - url to html content include in this push</li>
+  <li>
+<code>seen</code> - boolean value telling if <code>markAsReceived</code> was used for this push notification id</li>
+  <li>
+<code>extras</code> - object containing values defined as “Extra Variables” in push console</li>
+</ul>
+
+<h3 id="boxcarunregisterdevice"><code>Boxcar.unregisterDevice()</code></h3>
+
+<p>Unregister device from push notifications</p>
+
+<p>Arguments:</p>
+
+<ul>
+  <li>
+<code>onsuccess</code> (required) - Callback function called when operation was successfully completed</li>
+  <li>
+<code>onerror</code> (required) - Callback function, it’s called when error happen, receivessingle String with error message</li>
+</ul>
+
+<h3 id="boxcargettags"><code>Boxcar.getTags()</code></h3>
+
+<p>This method retrieves list of tags assigned to push notification channel from server</p>
+
+<p>Arguments:</p>
+
+<ul>
+  <li>
+<code>onsuccess</code> (required) - Callback function called when list of tags was retrieved, it receives
+one argument, list of strings with all tags assigned on server</li>
+  <li>
+<code>onerror</code> (required) - Callback function, it’s called on error with single String with error message</li>
+</ul>
+
+<h3 id="boxcarmarkasreceived"><code>Boxcar.markAsReceived()</code></h3>
+
+<p>Inform push service that push message was seen by user. This also makes message info returned
+for further <code>Boxcar.getReceivedMessages()</code> to have <code>seen</code> attribute set to true</p>
+
+<p>Arguments:</p>
+
+<ul>
+  <li>
+<code>onsuccess</code> (required) - Callback function called when operation was successfully completed</li>
+  <li>
+<code>onerror</code> (required) - Callback function, it’s called when error happen, receivessingle String with error message</li>
+  <li>
+<code>id</code> (required) - String identifier of push notification to mark as received</li>
+</ul>
+
+<h3 id="boxcarresetbadge"><code>Boxcar.resetBadge()</code></h3>
+
+<p>Reset count of notificaitons to zero</p>
+
+<p>Arguments:</p>
+
+<ul>
+  <li>
+<code>onsuccess</code> (required) - Callback function called when operation was successfully completed</li>
+  <li>
+<code>onerror</code> (required) - Callback function, it’s called when error happen, receivessingle String with error message</li>
+</ul>
+
+<h3 id="boxcargetreceivedmessages"><code>Boxcar.getReceivedMessages()</code></h3>
+
+<p>Retrieves list of received messages from device storage. Messages are delivered from newest to oldest.</p>
+
+<p>Arguments:</p>
+
+<ul>
+  <li>
+<code>onsuccess</code> (required) - Callback function called when operation was successfully completed, this function receives
+single argument with list of notifications object described in <code>Boxcar.registerDevice()</code>
+</li>
+  <li>
+<code>onerror</code> (required) - Callback function, it’s called when error happen, receivessingle String with error message</li>
+  <li>
+<code>before</code> - Number with timestamp, it will make this function return only messages newer than date from timestamp</li>
+  <li>
+<code>limit</code> - Maximum number of messages which should be returned</li>
+</ul>
+
+            
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
+</div><!-- #wrapper -->
+
+<div id="footer-wrapper">
+    <div id="footer" class="container-fluid">
+        <div class="row">
+            <div class="col-md-7">
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+                
+                <ul class="sitemap">
+                    <li><a href="#">Section</a></li>
+                    <li><a href="#">Element</a></li>
+                    <li><a href="#">Element</a></li>
+                </ul>
+            </div>
+            <div class="col-md-5 text-right">
+                <a href="http://ejabberd.im" id="logo-footer">ejabberd.im</a>
+                <br /><br />
+                &copy; 2014-2015 <a href="#">ProcessOne</a>
+            </div>
+        </div>
+    </div>
+</div><!-- /#footer -->
+
+<script src="/shared/js/jquery.js" type="text/javascript"></script>
+<script src="/shared/js/documentation.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  if (!$('body').hasClass('nocomment')) {
+    var disqus_shortname = 'developerboxcario';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  }
+</script>
+
+<script>
+  // Include the UserVoice JavaScript SDK (only needed once on a page)
+  UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/Z2g8b0cwtaG7oeunGhyDHw.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+  
+  UserVoice.push(['set', {
+    accent_color: '#e23a39',
+    trigger_color: 'white',
+    trigger_background_color: '#e23a39'
+  }]);
+  
+  // Add default trigger to the bottom-right corner of the window:
+  UserVoice.push(['addTrigger', { mode: 'contact', trigger_position: 'bottom-right' }]);
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-137362-14', 'boxcar.io');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>

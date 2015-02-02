@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://developer.boxcar.io/</id>
+  <title>Boxcar Developer Blog</title>
+  <updated>2015-01-27T23:00:00Z</updated>
+  <link rel="alternate" href="http://developer.boxcar.io/" />
+  <link rel="self" href="http://developer.boxcar.io/feed.xml" />
+  <author>
+    <name>Mickaël Rémond</name>
+    <uri>https://github.com/mremond</uri>
+  </author>
+  <entry>
+    <id>tag:developer.boxcar.io,2015-01-28:/blog/2015-01-28-seabeyond_2014_push_based_mobile_chat/</id>
+    <title type="html">Push Based Mobile Support Chat – SeaBeyond 2014 Video</title>
+    <published>2015-01-27T23:00:00Z</published>
+    <updated>2015-01-27T23:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2015-01-28-seabeyond_2014_push_based_mobile_chat/" />
+    <content type="html">
+&lt;p&gt;Mickaël Rémond introduces how push and XMPP chat can work together to
+build a seamless mobile only chat support service.&lt;/p&gt;
+
+&lt;p&gt;This platform leverages two core skills of ProcessOne: XMPP and Push
+expertise.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;iframe width="560" height="315" src="//www.youtube.com/embed/TYGSvv2l7P0" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2015-01-26:/blog/2015-01-26-seabeyond_2014_boxcar_workshop/</id>
+    <title type="html">Boxcar Developer Push Workshops – SeaBeyond 2014 Video</title>
+    <published>2015-01-25T23:00:00Z</published>
+    <updated>2015-01-25T23:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2015-01-26-seabeyond_2014_boxcar_workshop/" />
+    <content type="html">
+&lt;p&gt;In this Boxcar Developer Push Workshop, Mickaël Rémond explains how to
+integrate mobile push notifications using Boxcar Developer Platform.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;Boxcar Platform covers Apple, Google and Amazon push.&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="//www.youtube.com/embed/0W_dUbZO-J8" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2015-01-19:/blog/2015-01-19-seabeyond_2014_websockets/</id>
+    <title type="html">Web Push Notifications with Websockets – SeaBeyond 2014 Video</title>
+    <published>2015-01-18T23:00:00Z</published>
+    <updated>2015-01-18T23:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2015-01-19-seabeyond_2014_websockets/" />
+    <content type="html">
+&lt;p&gt;Here is the recording of Christophe Romain’s talk on the WebSockets feature we are adding in our Boxcar Developer Push platform.&lt;/p&gt;
+
+&lt;p&gt;We add web push to our push service and are compliant with all pubnub libraries.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;iframe width="560" height="315" src="//www.youtube.com/embed/Gc4ynl_P0rk" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-12-29:/blog/2014-12-29-boxcar-android-sdk-2/</id>
+    <title type="html">Boxcar Android SDK 1.1.0.14</title>
+    <published>2014-12-28T23:00:00Z</published>
+    <updated>2014-12-28T23:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-12-29-boxcar-android-sdk-2/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.1.0.14 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Implement local tag subscription clean-up: On device registration, we now get the list of tags that are valid and list of tags that are deprecated. The SDK process the reply and only stores the tags that were reported as
+valid. On the other hand, the registration event informs which tags were signaled as ‘deprecated’ and ‘valid’ by the server.&lt;/li&gt;
+  &lt;li&gt;PROGUARD processing: disable code optimization as this could case problems on ART devices&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-12-29:/blog/2014-12-29-boxcar-android-sdk-1/</id>
+    <title type="html">Boxcar Android SDK 2.0.2</title>
+    <published>2014-12-28T23:00:00Z</published>
+    <updated>2014-12-28T23:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-12-29-boxcar-android-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.2.0.2 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Implement local tag subscription clean-up: On device registration, we now get the list of tags that are valid and list of tags that are deprecated. The SDK process the reply and only stores the tags that were reported as
+valid. On the other hand, the registration event informs which tags were signaled as ‘deprecated’ and ‘valid’ by the server.&lt;/li&gt;
+  &lt;li&gt;PROGUARD processing: disable code optimization as this could case problems on ART devices&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-11-06:/blog/2014-11-06-boxcar-phonegap-ios-8/</id>
+    <title type="html">Boxcar Phonegap - Cordova Push plugin updated</title>
+    <published>2014-11-05T23:00:00Z</published>
+    <updated>2014-11-05T23:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-11-06-boxcar-phonegap-ios-8/" />
+    <content type="html">
+&lt;p&gt;Boxcar Phonegap - Cordova Push plugin has been updated.&lt;/p&gt;
+
+&lt;p&gt;This is an update to support iOS 8 API changes for push notifications.&lt;/p&gt;
+
+&lt;p&gt;The SDK is also improved to support latest Boxcar API features, like sound notification handling and support for silent
+notifications.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;You can upgrade your project to the latest version by issuing the following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cordova plugin rm net.process-one.boxcar-phonegap
+cordova plugin rm com.phonegap.plugins.PushPlugin
+cordova plugin add https://github.com/boxcar/boxcar-cordova-plugin
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-11-06:/blog/2014-11-06-boxcar-android-sdk-2/</id>
+    <title type="html">Boxcar Android SDK 2.0.1</title>
+    <published>2014-11-05T23:00:00Z</published>
+    <updated>2014-11-05T23:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-11-06-boxcar-android-sdk-2/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.2.0.1 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Support for notification actions&lt;/li&gt;
+  &lt;li&gt;Fix problem losing previous state after app upgrade when version doesn’t change&lt;/li&gt;
+  &lt;li&gt;Support for BigImage notifications&lt;/li&gt;
+  &lt;li&gt;Use ping only to track application activity&lt;/li&gt;
+  &lt;li&gt;Minor bugfixes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-11-06:/blog/2014-11-06-boxcar-android-sdk-1/</id>
+    <title type="html">Boxcar Android SDK 1.1.0.13</title>
+    <published>2014-11-05T23:00:00Z</published>
+    <updated>2014-11-05T23:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-11-06-boxcar-android-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.1.0.13 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Update and fix javadoc references&lt;/li&gt;
+  &lt;li&gt;Fix SecurityExceptions thrown by com.drippler.android.updates/.utils.openudid.OpenUDIDService on  Samsung Galaxy S4 devices.&lt;/li&gt;
+  &lt;li&gt;Support for notification actions&lt;/li&gt;
+  &lt;li&gt;Fix problem losing previous state after app upgrade when version doesn’t change&lt;/li&gt;
+  &lt;li&gt;Support for BigImage notifications&lt;/li&gt;
+  &lt;li&gt;Use ping only to track application activity&lt;/li&gt;
+  &lt;li&gt;Minor bugfixes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-10-23:/blog/2014-10-23-boxcar-phonegap-1/</id>
+    <title type="html">Boxcar Phonegap 1.0.3</title>
+    <published>2014-10-22T22:00:00Z</published>
+    <updated>2014-10-22T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-10-23-boxcar-phonegap-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Phonegap - Cordova SDK 1.0.3 has been released.&lt;/p&gt;
+
+&lt;p&gt;This is a minor improvement that grant easy access to the &lt;em&gt;extra&lt;/em&gt; variables (metadata) you can pass in push notifications.&lt;/p&gt;
+
+&lt;p&gt;You can download that version from &lt;a href="https://console.boxcar.io/downloads"&gt;Boxcar Developer Download Area&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-10-23:/blog/2014-10-23-apns-infra-changes/</id>
+    <title type="html">APNS infrastructure changes</title>
+    <published>2014-10-22T22:00:00Z</published>
+    <updated>2014-10-22T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-10-23-apns-infra-changes/" />
+    <content type="html">
+&lt;p&gt;Apple announced yesterday that they are going to perform changes on their push notification service on October, 29th.
+Here is what you need to know about the upgrade operation.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;The change is related to &lt;a href="http://googleonlinesecurity.blogspot.co.uk/2014/10/this-poodle-bites-exploiting-ssl-30.html"&gt;recent security issues found by Google&lt;/a&gt; relating to how browser negociate encryption protocol.
+They found that there is some way to force browsers downgrading to less secure SSLv3 (under some special circumstances).&lt;/p&gt;
+
+&lt;p&gt;The issues is mostly targeting browser encryption negotiation and should not have any impact on other type of connections.
+As such Apple Push Notification Service is likely not hit by any related security issue.&lt;/p&gt;
+
+&lt;p&gt;However, SSLv3 is obsolete since a long time. It is actually a 18 years old protocol. As a safety measure, Apple, like
+many other services, have decided to disable SSLv3 support. It will be effective on October, 29th, as announced on Apple
+developer site: &lt;a href="https://developer.apple.com/news/?id=10222014a"&gt;Update to the Apple Push Notification Service&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;For Boxcar Push Developers, we already got you covered and you have nothing to do. Since the announcement of the vulnerability,
+we completely disabled SSLv3 on all our servers. Boxcar Push infrastructure have been running since October, 14th with SSLv3
+disabled. It means that the change performed by Apple will have no impact on our infrastructure.&lt;/p&gt;
+
+&lt;p&gt;In case you have more questions on platform security, feel free to &lt;a href="https://boxcar-api.uservoice.com"&gt;get in touch&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-10-20:/blog/2014-10-20-whats_new_in_push/</id>
+    <title type="html">What's new in push - October 2014</title>
+    <published>2014-10-19T22:00:00Z</published>
+    <updated>2014-10-19T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-10-20-whats_new_in_push/" />
+    <content type="html">
+&lt;p&gt;This is our first newsletter on push notifications technologies and we hope to bring you high-value content.
+Do no hesitate to send us &lt;a href="https://boxcar-api.uservoice.com"&gt;your feedback&lt;/a&gt; to let us know what topics you are interested in.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id="whats-new-for-push-notifications-with-ios-8"&gt;What’s new for push notifications with iOS 8&lt;/h2&gt;
+
+&lt;p&gt;iOS 8 has been released in September 2014 and includes many new features and improvements that are making notifications
+cleaner and much more useful for both users and developers.&lt;/p&gt;
+
+&lt;h3 id="larger-data-and-metadata-in-push-notifications"&gt;Larger data and metadata in push notifications&lt;/h3&gt;
+
+&lt;p&gt;In a typical Apple push notification payload, you have two kinds of data embedded: A part of the notification is exposed to 
+end-user: The text alert, the sound, the badge, the rest is for the application itself.&lt;/p&gt;
+
+&lt;p&gt;That’s where he power of push notifications lies: extra information you can embed, the metadata allow developer servers to pass date for
+direct processing in their application.&lt;/p&gt;
+
+&lt;p&gt;Prior to iOS 8 release, the total size of a notification payload was very limited (256 bytes). Thus, developers had to choose
+between using the power of metadata at the risk of truncating the alert or focus on the alert content, making the
+notification system much less useful for preloading content.&lt;/p&gt;
+
+&lt;p&gt;Since mid-september 2014, this is not the case anymore. Apple Push Notification Service (APNS) allows sending
+notifications with a 2048-bytes long payload.
+It opens a whole new way to architecture mobile - server interactions for developers and make push a key component in overall
+solution design.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/posts/2014-10-20-long_push.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Read more: &lt;a href="http://blog.boxcar.io/post/97673556502/ios-devices-can-enjoy-larger-push-notifications-now"&gt;iOS devices can enjoy larger push notifications now&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="interactive-notifications-adding-user-triggered-actions-to-your-notifications"&gt;Interactive notifications: adding user-triggered actions to your notifications&lt;/h3&gt;
+
+&lt;p&gt;Apple now let you add custom actions to user displayed notifications.&lt;/p&gt;
+
+&lt;p&gt;In iOS 7, user only possible actions on notifications were open or dismiss.&lt;/p&gt;
+
+&lt;p&gt;With iOS 8, developers can now customize the action the user can perform on an action directly from the notification
+center. This means the notification center become a triage tool for your application events. Users can now very
+conveniently act easily upon receiving them, leading to more interactions and valuable engagement.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/posts/2014-10-20-notif_actions.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;Read more on Interactive notifications on Apple iOS 8 website: &lt;a href="https://www.apple.com/ios/whats-new/design/"&gt;iOS 8 design&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;From a developer perspective, you can use actions by:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Registering “User Notification Actions” to define every action property, like  identifier, title, destructive or not.
+See: &lt;a href="https://developer.apple.com/library/ios/documentation/UIKit/reference/UIMutableUserNotificationAction_class/index.html"&gt;UIMutableUserNotificationAction&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Grouping actions into categories. The category identifier is what developers need to add to your notification metadata
+to trigger displaying the group of actions.
+See: &lt;a href="https://developer.apple.com/library/ios/documentation/UIKit/reference/UIMutableUserNotificationCategory_class/index.html"&gt;UIMutableUserNotificationCategory&lt;/a&gt;
+&lt;/li&gt;
+  &lt;li&gt;Registering app delegate callback to process the notification action when user triggers it.
+See: &lt;a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/#//apple_ref/occ/intfm/UIApplicationDelegate/application:handleActionWithIdentifier:forRemoteNotification:completionHandler:"&gt;callback handleActionWithIdentifier:forRemoteNotification:completionHandler:&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For more technical details, you should watch Apple WWDC 2014 talk: &lt;a href="https://developer.apple.com/videos/wwdc/2014/#713"&gt;What’s new in notification&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="users-get-in-control-of-all-type-of-notifications"&gt;Users get in control of all type of notifications&lt;/h3&gt;
+
+&lt;p&gt;Push notifications had sometimes bad reputation due to the fact it was easy to abuse. You could prompt the user
+with an alert or pop-up even if they had not granted your application the right to display remote push notifications.&lt;/p&gt;
+
+&lt;p&gt;Indeed, many app developers (often for free to play games) were cheating. Instead of using push notifications, they would
+schedule a local notification, for which users could not opt-out. It gaves users the impression that credential access
+model for push notification was broken.&lt;/p&gt;
+
+&lt;p&gt;That’s the reason why Apple changed the behaviour and now the new credential is not for only for remote push notification,
+but for user notifications more largely. It means it now also cover local notifications and badge updates.&lt;/p&gt;
+
+&lt;p&gt;And the good added benefit is that even if user do not allow your app to use notifications, you will still be able to
+use silent notification to trigger background update for example. So, the new behaviour benefits to everyone, users and
+developers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/posts/2014-10-20-user_notif_prompt.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;For more technical details, and what you need to change in your application on iOS 8,
+you should watch Apple WWDC talk: &lt;a href="https://developer.apple.com/videos/wwdc/2014/#713"&gt;What’s new in notification&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="no-quick-reply-"&gt;No quick reply ?&lt;/h3&gt;
+
+&lt;p&gt;If you expected to be able to let user reply to a notification from the notification center, you are going to be
+disappointed. The “quick reply” feature shown by Apple is not available as a public iOS API. It means that it is
+restricted to Apple and their partners (Messages, Facebook, Twitter) for the moment.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/posts/2014-10-20-quick_reply.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;As a developer, you can use actions to let user reply to a message. Actions can open your app and present a sheet
+letting the user reply input a reply to the notification.&lt;/p&gt;
+
+&lt;p&gt;We all hope that “quick reply” API will be opened to all developer at Apple WordWide Developer Conference in june 2015.&lt;/p&gt;
+
+&lt;h2 id="android-50-lollipop---what-is-coming"&gt;Android 5.0 Lollipop - What is coming&lt;/h2&gt;
+
+&lt;p&gt;Android 5.0 Lollipop is coming soon with its share of improvements to the push and notification system (I make a specific
+distinction as push and notification are two different features on Android).&lt;/p&gt;
+
+&lt;p&gt;Android 5.0 adds the following features:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;do not disturb time with priority support: Your phone will automatically switch to do not disturb mode, but high
+priority notifications will still be able to get through during those time.&lt;/li&gt;
+  &lt;li&gt;privacy settings: Developer can define some notification as private: It means that only a placeholder text can be
+displayed on the lock screen when the phone is locked. The full notification will be displayed when you unlock the phone.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src="/images/posts/2014-10-20-lollipop.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;As a developer, you have new metadata to provide to the notification service: priority and privacy level.&lt;/p&gt;
+
+&lt;p&gt;Learn More: &lt;a href="http://developer.android.com/about/versions/lollipop.html#Notifications"&gt;Android Lollipop changes on notifications&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="report-how-effective-are-push-notifications-"&gt;Report: How effective are push notifications ?&lt;/h2&gt;
+
+&lt;p&gt;GigaOM released a report on the role of notifications and in-app communication in mobile user engagement.&lt;/p&gt;
+
+&lt;p&gt;You can download it from Boxcar Push Service website: &lt;a href="https://www.boxcar.io/report/building-brand-engagement-through-in-app-communication"&gt;Building brand engagement through in-app communication&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="whats-new-in-boxcar-push-console"&gt;What’s new in Boxcar Push Console&lt;/h2&gt;
+
+&lt;p&gt;Boxcar team added many new features to the Developer Push Console recently:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You now have the ability to cancel a running push. This is especially handy as an emergency action, in case of mistake. The
+feature is available in console and also from Boxcar publisher API.
+Please, read: &lt;a href="http://developer.boxcar.io/blog/2014-09-11-push_cancel_api/"&gt;Publisher API endpoint to cancel running pushes&lt;/a&gt; &lt;/li&gt;
+  &lt;li&gt;You can list and configure sounds that are embedded in your application.
+Please read: &lt;a href="http://developer.boxcar.io/blog/2014-10-08-notification_sounds/"&gt;Using notification sounds on iOS and Android&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="boxcar-ios-sdk-update"&gt;Boxcar iOS SDK update&lt;/h2&gt;
+
+&lt;p&gt;Boxcar iOS SDK 1.1 has been released, adding support for iOS 8.&lt;/p&gt;
+
+&lt;p&gt;For more details, please read: &lt;a href="http://developer.boxcar.io/blog/2014-10-05-boxcar-ios-sdk-1/"&gt;Boxcar iOS SDK 1.1.0 released with iOS 8 support&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="boxcar-android-sdk-update"&gt;Boxcar Android SDK update&lt;/h2&gt;
+
+&lt;p&gt;Boxcar Android team released a version 2 of Android SDK that includes major refinement of Boxcar Android SDK API.&lt;/p&gt;
+
+&lt;p&gt;We hope that you will find our mobile SDK more pleasant to use.&lt;/p&gt;
+
+&lt;p&gt;For more details please read: &lt;a href="http://developer.boxcar.io/blog/2014-10-09-boxcar-android-sdk-2/"&gt;New Boxcar Android SDK 2&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="whats-next-"&gt;What’s Next ?&lt;/h2&gt;
+
+&lt;p&gt;You’ve got a topic on push notifications you would like us to cover ?
+Please, &lt;a href="https://boxcar-api.uservoice.com"&gt;get in touch to give us your feedback&lt;/a&gt; ! &lt;/p&gt;
+
+&lt;p&gt;And meet us at SeaBeyond in Paris, on the 4th of December. Learn more from &lt;a href="http://www.process-one.net/seabeyond/"&gt;SeaBeyond page&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="subscribing-to-this-newsletter"&gt;Subscribing to this newsletter&lt;/h2&gt;
+
+&lt;p&gt;If you want to receive Boxcar Developer Push Newsletter (low traffic, high value),
+please enter your email address on our &lt;a href="http://eepurl.com/5VoST"&gt;subscription form&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-10-09:/blog/2014-10-09-boxcar-android-sdk-2/</id>
+    <title type="html">New Boxcar Android SDK 2</title>
+    <published>2014-10-08T22:00:00Z</published>
+    <updated>2014-10-08T22:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-10-09-boxcar-android-sdk-2/" />
+    <content type="html">
+&lt;p&gt;We have just released a new version of the Boxcar SDK for Android devices. More documentation about how to use it can be found &lt;a href="http://developer.boxcar.io/sdk/android/2.0/"&gt;here&lt;/a&gt;. &lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;Boxcar Framework v2.0.0 includes the following changes:&lt;/p&gt;
+
+&lt;h3 id="sdk-and-demos-are-now-available-at-boxcar-maven-repository"&gt;SDK and demos are now available at Boxcar Maven repository&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Android SDK library, javadoc and demos are hosted in our Boxcar Maven Repository at http://developer.boxcar.io/maven. Now your Maven and Gradle projects can just refer to our library without the need to manually installing it.&lt;/li&gt;
+  &lt;li&gt;There are two available flavours of the SDK library. One is for debugging, the other is for production. They behave indentically, except that the development version outputs debug information into the android log system.
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Debug version:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  io.boxcar.universalpush:android-push-sdk-debug:2.0.0
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Production version:&lt;/p&gt;
+
+        &lt;pre&gt;&lt;code&gt;  io.boxcar.universalpush:android-push-sdk:2.0.0
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="latest-google-cloud-messaging-implementation"&gt;Latest Google Cloud Messaging implementation&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;SDK 2 uses new &lt;a href="https://developer.android.com/google/gcm/index.html"&gt;Google Cloud Messaging&lt;/a&gt; SDK, provided by Google Play Services APK.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="api-changes"&gt;API changes&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;push library now replaces POJO callback classes by &lt;a href="https://github.com/greenrobot/EventBus"&gt;EventBus&lt;/a&gt; to loosely couple your artifacts with the library. Your artifacts do not need to listen to all events, just those they are really interested in.&lt;/li&gt;
+  &lt;li&gt;now SDK uses a delegate class to get parameters from your application. You should implement it in order to provide your configuration.&lt;/li&gt;
+  &lt;li&gt;most API methods now require &lt;em&gt;Context&lt;/em&gt; instance.&lt;/li&gt;
+  &lt;li&gt;if SDK wasn’t initialized and any further method is called, do throw a runtime exception, so there is no need to use &lt;em&gt;try - catch&lt;/em&gt; on code. This makes code much more clear and short.&lt;/li&gt;
+  &lt;li&gt;allow developer to set username on each registration.&lt;/li&gt;
+  &lt;li&gt;offer ways to inform user when Google Play APK is not installed but the error is recoverable, as documented on &lt;a href="https://developer.android.com/google/gcm/client.html#sample-play"&gt;GCM docs&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="demo-changes"&gt;Demo changes&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;single demo project for all variants.&lt;/li&gt;
+  &lt;li&gt;demo project now managed entirely by &lt;a href="http://www.gradle.org/downloads"&gt;Gradle&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;demo doesn’t register on startup, just initializes the framework.&lt;/li&gt;
+  &lt;li&gt;removes InboxActivity.&lt;/li&gt;
+  &lt;li&gt;cleans AndroidManifest.xml content.&lt;/li&gt;
+  &lt;li&gt;display an alert dialog to install or enable Google Play Services if it is not available.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="other-improvements"&gt;Other improvements&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;SDK is now packaged in &lt;a href="http://tools.android.com/tech-docs/new-build-system/aar-format"&gt;AAR format&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;add more retries for UDID service query.&lt;/li&gt;
+  &lt;li&gt;fixes and updates SDK Javadoc documentation.&lt;/li&gt;
+  &lt;li&gt;fix lint warnings from SDK and demos.&lt;/li&gt;
+  &lt;li&gt;removes useless resource files, reducing library size.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in our Boxcar Maven Repository at http://developer.boxcar.io/maven and also on the developer &lt;a href="https://console.boxcar.io/downloads"&gt;download area&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-10-08:/blog/2014-10-08-notification_sounds/</id>
+    <title type="html">Using notification sounds on iOS and Android</title>
+    <published>2014-10-07T22:00:00Z</published>
+    <updated>2014-10-07T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-10-08-notification_sounds/" />
+    <content type="html">
+&lt;p&gt;When implementing a push solution it is critical to think about all the small details that will make your app be more
+usable and stand out.&lt;/p&gt;
+
+&lt;p&gt;We have often seen that customizing notification sound for iOS or Android apps is often simply ignored.
+When this happen, the application will use the default sound, which is often the same than the sound of SMS received.&lt;/p&gt;
+
+&lt;p&gt;For your users, this is a great cause of confusion that lead to action to solve their issue:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;They may disable sound just because they cannot know if this the alert they just had is a
+sound coming from your app or is a new message.&lt;/li&gt;
+  &lt;li&gt;They may disable push totally, removing potentially important features to your application.&lt;/li&gt;
+  &lt;li&gt;They may also decide that your app is annoying and uninstall the application.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This article will help you implement custom sound for push notification in your application.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id="implementing-custom-push-notification-sounds-on-ios"&gt;Implementing custom push notification sounds on iOS&lt;/h2&gt;
+
+&lt;p&gt;Implementing custom sound on iOS is often documented, but it is always good to remember the basics. &lt;/p&gt;
+
+&lt;h3 id="preparing-the-sound-file"&gt;Preparing the sound file&lt;/h3&gt;
+
+&lt;p&gt;Remember that the default sound is played when:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The sound file is not found&lt;/li&gt;
+  &lt;li&gt;The sound file is invalid. This is the case for example if the sound you are trying to play is longer than 30 seconds.&lt;br&gt;
+ The file is also invalid if it is not in one of the expected extension: aiff, caf or wav.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It means you need to prepare a sound valid file to be able to play a sound different from the default.&lt;/p&gt;
+
+&lt;p&gt;For more details on how to prepare a custom sound for iOS, you can read Apple documentation: &lt;a href="https://developer.apple.com/library/IOs/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW6"&gt;Preparing Custom Alert Sounds&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="adding-the-sound-in-ios-application-bundle"&gt;Adding the sound in iOS application bundle&lt;/h3&gt;
+
+&lt;p&gt;iOS can only play a sound that is packaged and delivered in the App Store build. There is no way to download a sound from
+the network at runtime or to update the sound list after the app has been released. You cannot download a sound from your app to play it when receiving a notification.&lt;/p&gt;
+
+&lt;p&gt;This makes it another good reason to address the sound question from the beginning, as it cannot be added without getting
+a new version of the application approved by Apple.&lt;/p&gt;
+
+&lt;p&gt;To implement push in you application:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add the sound file to your project, for example by dragging it to your resource folder. Make sure you check the box to copy it there to
+ commit it in your repository. Here, adding &lt;em&gt;pulses.wav&lt;/em&gt;:
+&lt;img src="/images/ios/xcode_sound_1.png" alt=""&gt;
+&lt;/li&gt;
+  &lt;li&gt;Check that the sound file is properly added to your bundle resources during build phase. Here &lt;em&gt;pulses.wav&lt;/em&gt;:
+&lt;img src="/images/ios/xcode_sound_2.png" alt=""&gt;
+&lt;/li&gt;
+  &lt;li&gt;Rebuild you application&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That should be enough to allow you to play a custom sound on a notification.&lt;/p&gt;
+
+&lt;h2 id="implementing-custom-push-notification-sounds-on-android"&gt;Implementing custom push notification sounds on Android&lt;/h2&gt;
+
+&lt;h3 id="preparing-sound-file"&gt;Preparing sound file&lt;/h3&gt;
+
+&lt;p&gt;As for iOS, you need to embed the sound file in the Android application package to be able to play that sound when receiving a notification.&lt;/p&gt;
+
+&lt;p&gt;Here are a few things to be careful about when preparing Android sound file:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Android does not support sound files that are not valid Java identifier. It means that your sound file cannot be named ‘1.caf’ for example.
+ Android build process map resources to class properties in the Resource class (&lt;em&gt;R.class&lt;/em&gt;) or any of its inner classes, like &lt;em&gt;R.color&lt;/em&gt;, &lt;em&gt;R.layout&lt;/em&gt;, &lt;em&gt;R.string&lt;/em&gt;, &lt;em&gt;R.raw&lt;/em&gt;, etc. As &lt;em&gt;R.raw.1&lt;/em&gt; is not not a valid property 1.caf will not be a valid
+ name for sound file.&lt;/li&gt;
+  &lt;li&gt;Android supports different formats than iOS. We recommend for example, you use linear PCM Wave file with .wav extension.
+ It should then work fine on both systems.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="packaging-the-sound-and-playing-it-with-boxcar-android-sdk"&gt;Packaging the sound and playing it with Boxcar Android SDK&lt;/h3&gt;
+
+&lt;p&gt;On Android, Google Cloud Message (GCM) is used to deliver the alert to the device. Then, as a developer, it is up to you
+to prepare the notification to display, play sound, etc.&lt;/p&gt;
+
+&lt;p&gt;That’s where the Boxcar SDK play an important role. We offer the option to do the right thing on your behalf, making push
+notification a pleasure on Android. &lt;/p&gt;
+
+&lt;p&gt;In Boxcar Android SDK, we made the default behaviour work the same as iOS so that regarding push sound, you can offer a consistent
+behaviour to your users, no matter which version they use.&lt;/p&gt;
+
+&lt;p&gt;When a push arrives, the SDK checks the payload content to know if it should play a sound when the notification is sent
+to the Android Notification center. The following rule is followed by the SDK:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;if the payload doesn’t define a sound file to play, it doesn’t play any sound (silent push)&lt;/li&gt;
+  &lt;li&gt;if the payload defines a sound file that can’t be found on the application, it plays the default system sound&lt;/li&gt;
+  &lt;li&gt;otherwise, it plays the sound defined in the payload&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As we will see further, the push data can contain a reference to a sound file to play.
+The idea is that you application can have multiple sounds, one for urgent notifications, another for normal content, etc.
+In that case, the person that publishes the push just tells what is the sound that should be played when the message arrives at the user’s device.&lt;/p&gt;
+
+&lt;p&gt;Every custom sound file needed (any other than the system’s default) should be packaged along with the mobile application.
+You should simply put the sound file under &lt;em&gt;res/raw&lt;/em&gt; folder of your project. If an incoming push tells to play ‘beep’ sound,
+then the SDK will locate a sound resource with that name in the generated &lt;em&gt;R.raw&lt;/em&gt; inner class, which maps to a file on res/raw folder (for example &lt;em&gt;R.raw.beep&lt;/em&gt; resource identifier refers to &lt;em&gt;‘res/raw/beep.wav’&lt;/em&gt; file) and plays it.
+If the file can’t be located, the system’s default is played instead.&lt;/p&gt;
+
+&lt;p&gt;That should be it !&lt;/p&gt;
+
+&lt;p&gt;Please, refer to our Boxcar Android SDK documentation for more details: &lt;a href="http://developer.boxcar.io/sdk/android/#configuring-the-sound-to-play-on-incoming-notifications"&gt;Configuring the sound to play on incoming notifications&lt;/a&gt; &lt;/p&gt;
+
+&lt;h2 id="sending-push-notification-with-custom-sound-with-boxcar-developer-push"&gt;Sending push notification with custom sound with Boxcar Developer Push&lt;/h2&gt;
+
+&lt;h3 id="defining-sound-to-play-from-boxcar-push-console"&gt;Defining sound to play from Boxcar Push Console&lt;/h3&gt;
+
+&lt;p&gt;All you have to do is put the file name of the sound you want to play in the form:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/console/console_sound_1.png" alt=""&gt;&lt;/p&gt;
+
+&lt;p&gt;This will work both on iOS and Android devices.&lt;/p&gt;
+
+&lt;h3 id="defining-sound-to-play-from-boxcar-publisher-api"&gt;Defining sound to play from Boxcar Publisher API&lt;/h3&gt;
+
+&lt;p&gt;When sending a JSON payload to trigger a push through the publisher API, all you have to do is to include a sound name in
+in the aps section:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+{
+ "aps":{"badge":"auto",
+        "alert":"alert message",
+        "sound":"pulses.wav"},
+ "id":"JHQRKHEE"
+}
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will work on iOS and Android devices and trigger a sound on both platform. &lt;/p&gt;
+
+&lt;h2 id="questions-"&gt;Questions ?&lt;/h2&gt;
+
+&lt;p&gt;We are just scratching the surface of what you can do with Boxcar Developer Push and Boxcar SDK.
+We will keep on writing new articles that show and compare how to implement the same feature on both iOS and Android.&lt;/p&gt;
+
+&lt;p&gt;If you have questions on this article or on other push notification topics, feel free to get in touch on
+&lt;a href="https://boxcar-api.uservoice.com"&gt;Boxcar API Uservoice&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Enjoy !&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-10-05:/blog/2014-10-05-boxcar-ios-sdk-1/</id>
+    <title type="html">Boxcar iOS SDK 1.1.0 released with iOS 8 support</title>
+    <published>2014-10-04T22:00:00Z</published>
+    <updated>2014-10-04T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-10-05-boxcar-ios-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.1.0 has been released.&lt;/p&gt;
+
+&lt;p&gt;It is now compliant with iOS 8 (as well as previous iOS version from 6.1) and XCode 6.0. The new SDK fix the deprecation
+and message log errors related to push notification approval on iOS 8.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;We are in the process of releasing new iOS and Android feature in the coming weeks, including Action button support.
+Please, get in touch with our development team if you would like to participate to the next SDK beta testing.&lt;/p&gt;
+
+&lt;p&gt;The new SDK is available in &lt;a href="https://console.boxcar.io/downloads"&gt;Push Console Developer&lt;/a&gt; download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-09-17:/blog/2014-09-17-phonegap_cordova_doc_update/</id>
+    <title type="html">Phonegap - Cordova SDK documentation update</title>
+    <published>2014-09-16T22:00:00Z</published>
+    <updated>2014-09-16T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-09-17-phonegap_cordova_doc_update/" />
+    <content type="html">
+&lt;p&gt;We just release Boxcar Phonegap Cordova plugin in version 1.0.2. The main change are related to improvements in documentation.
+We also added an example project that could help you get up and running quicker.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;Updated documentation is also available from our developer site: &lt;a href="/sdk/phonegap/"&gt;Phonegap Boxcar SDK&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Ths SDK can be downloaded from &lt;a href="https://console.boxcar.io/downloads"&gt;Boxcar Push Developer console&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;Do not hesitate to &lt;a href="http://boxcar-api.uservoice.com" data-uv-trigger=""&gt;get in touch&lt;/a&gt; if you have questions.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-09-11:/blog/2014-09-11-push_cancel_api/</id>
+    <title type="html">Publisher API endpoint to cancel running pushes</title>
+    <published>2014-09-10T22:00:00Z</published>
+    <updated>2014-09-10T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-09-11-push_cancel_api/" />
+    <content type="html">
+&lt;p&gt;The publisher API allows you send push notifications and send you back the &lt;strong&gt;push_id&lt;/strong&gt; of the push being processed.&lt;/p&gt;
+
+&lt;p&gt;For long running pushes, it was frustrating that you could not cancel it while it was running. It was specially relevant 
+if you made a mistake or typo in the push being send to million of devices.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;That’s why we introduced two new publisher API calls:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cancelling a push notifications being sent, by its push id&lt;/li&gt;
+  &lt;li&gt;Getting info about an existing push: While we were at it, we implemented a way to retrieve information about a push notification. It can be called while it is running or much later, to retrieve status information.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We are also working on adding a way to cancel a running push in the Boxcar Developer Push Console itself. It will be deployed later in september 2014.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-09-04:/blog/2014-09-04-boxcar-ios-sdk-1/</id>
+    <title type="html">Boxcar iOS SDK 1.0.17</title>
+    <published>2014-09-03T22:00:00Z</published>
+    <updated>2014-09-03T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-09-04-boxcar-ios-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.0.17 make the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Renamed Boxcar ‘advertisingIdentifier’ attribute to the more generic value ‘deviceIdentifier’. It was previously called udid.
+This also make the difference with alias more obvious (alias is for user id, deviceIdentifier is for the device id).&lt;/li&gt;
+  &lt;li&gt;Fix integration and build in iOS XCode Simulator with latest Xcode version.&lt;/li&gt;
+  &lt;li&gt;Switch SDK headers to use of modules import (more modern).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-07-24:/blog/2014-07-24-boxcar-android-demo-1/</id>
+    <title type="html">Boxcar Android Demo 1.1.0.11</title>
+    <published>2014-07-23T22:00:00Z</published>
+    <updated>2014-07-23T22:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-07-24-boxcar-android-demo-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Demo v.1.1.0.11 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Do use the new &lt;em&gt;start()&lt;/em&gt; method, without passing the username; set username on each registration attempt&lt;/li&gt;
+  &lt;li&gt;Use MultipleUINotificationStrategy to show a single notification per push (do not group)&lt;/li&gt;
+  &lt;li&gt;Rename MainActivity to NormalNotificationActivity&lt;/li&gt;
+  &lt;li&gt;Set a custom default sound for pushes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new set of demos is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-07-24:/blog/2014-07-24-boxcar-android-sdk-1/</id>
+    <title type="html">Boxcar Android SDK 1.1.0.11</title>
+    <published>2014-07-23T22:00:00Z</published>
+    <updated>2014-07-23T22:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-07-24-boxcar-android-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.1.0.11 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apache commons-codec removed as a dependency (isn’t needed anymore)&lt;/li&gt;
+  &lt;li&gt;Add more retries for UDID service query&lt;/li&gt;
+  &lt;li&gt;Allow developer to set username on each registration: do also discourage setting the username on framework initialization&lt;/li&gt;
+  &lt;li&gt;Wake-lock protect ‘start’ method from boxcar api&lt;/li&gt;
+  &lt;li&gt;Wake-lock for push callback from 3rd party application: ensure device can’t go to sleep while application callback is being executed to notify about an incoming push&lt;/li&gt;
+  &lt;li&gt;Do use WakefulBroadcastReceiver for GCM: bypass GCMBroadcastReceiver class to replace it for a wakeful receiver. Use a custom implementation for GCMBaseIntentService that relies on the wake lock from the receiver instance instead of doing its own locking. This ensures the CPU from device can’t go to sleep while receiver is being executed.&lt;/li&gt;
+  &lt;li&gt;Play no sound if file name is unknown or blank in payload&lt;/li&gt;
+  &lt;li&gt;Allow developer to set a custom default sound&lt;/li&gt;
+  &lt;li&gt;Use the sound file defined on payload: if filename is present on payload and the resource is available on ‘res/raw’ folder, then we play it instead of the default notification sound&lt;/li&gt;
+  &lt;li&gt;Add 10.0.2.2 to the list of known hosts: this is the IP used by Android Emulator to access localhost&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-05-15:/blog/2014-05-15-boxcar-android-sdk-1/</id>
+    <title type="html">Boxcar Android SDK 1.1.0.8</title>
+    <published>2014-05-14T22:00:00Z</published>
+    <updated>2014-05-14T22:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-05-15-boxcar-android-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.1.0.8 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Replaces BXCFacade class for Boxcar as the main SDK API&lt;/li&gt;
+  &lt;li&gt;Marks ping as failed if device is unregistered&lt;/li&gt;
+  &lt;li&gt;Updates Volley library version to 1.0-SNAPSHOT-04884d34&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-05-15:/blog/2014-05-15-boxcar-android-demo-1/</id>
+    <title type="html">Boxcar Android Demo 1.1.0.8</title>
+    <published>2014-05-14T22:00:00Z</published>
+    <updated>2014-05-14T22:00:00Z</updated>
+    <author>
+      <name>jpcarlino</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-05-15-boxcar-android-demo-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Demo v.1.1.0.8 makes the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Uses new Boxcar API class&lt;/li&gt;
+  &lt;li&gt;Code clean up&lt;/li&gt;
+  &lt;li&gt;New demo project for Nokia X devices&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new set of demos is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-04-02:/blog/2014-04-02-boxcar-ios-sdk-1/</id>
+    <title type="html">Boxcar iOS SDK 1.0.16</title>
+    <published>2014-04-01T22:00:00Z</published>
+    <updated>2014-04-01T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-04-02-boxcar-ios-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.0.16 make the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Support background task completion for running network operations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-03-12:/blog/2014-03-12-boxcar-ios-sdk-1/</id>
+    <title type="html">Boxcar iOS SDK 1.0.15</title>
+    <published>2014-03-11T23:00:00Z</published>
+    <updated>2014-03-11T23:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-03-12-boxcar-ios-sdk-1/" />
+    <content type="html">
+&lt;p&gt;Boxcar Framework v.1.0.15 make the following changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Support for XCode 5.1: Removed deprecation.&lt;/li&gt;
+  &lt;li&gt;Rename a few symbol that could conflict with AFNetworking.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2014-02-17:/blog/2014-02-17-boxcar-ios-sdk-1/</id>
+    <title type="html">Boxcar iOS SDK 1.0.14</title>
+    <published>2014-02-16T23:00:00Z</published>
+    <updated>2014-02-16T23:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2014-02-17-boxcar-ios-sdk-1/" />
+    <content type="html">
+&lt;p&gt;We released Boxcar iOS SDK 1.0.14 to remove any dependancy on Apple AdSupport.framework.
+The new SDK is available in developer download area.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <id>tag:developer.boxcar.io,2013-09-16:/blog/2013-09-16-new-documentation-site/</id>
+    <title type="html">New Documentation Site</title>
+    <published>2013-09-15T22:00:00Z</published>
+    <updated>2013-09-15T22:00:00Z</updated>
+    <author>
+      <name>mremond</name>
+      <uri>https://github.com/mremond</uri>
+    </author>
+    <link rel="alternate" href="http://developer.boxcar.io/blog/2013-09-16-new-documentation-site/" />
+    <content type="html">
+&lt;p&gt;In preparation of the overhaul of our push service for the upcoming release of iOS 7 to the public,
+we have reworked our documentation packaging to make it easier to browse.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;If you find errors, typos and inaccuracy, you can contribute to it by sending us a pull request. The documentation repository is available on &lt;a href="https://github.com/processone/developer.boxcar.io/"&gt;Github developer.boxcar.io Repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next step is to share our API example code if various languages and demo application on &lt;a href="http://github.com"&gt;Github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Technical notes: The documentation is based on &lt;a href="http://developer.github.com"&gt;Github Developer&lt;/a&gt; site and is build using &lt;a href="http://nanoc.ws"&gt;nanoc&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+</feed>
+
