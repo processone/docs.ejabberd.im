@@ -27,6 +27,7 @@ This includes:
 
 ## Voice and video messaging
 
+* Nimbuzz
 * oovoo
 
 ## Internet of Things
@@ -46,6 +47,8 @@ This includes:
 
 ## Social media
 
+* StudiVZ
+* Nasza Klasa (NKTalk messenger)
 * Facebook
 
 ## Education
