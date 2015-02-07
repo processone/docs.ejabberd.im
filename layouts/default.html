@@ -7,7 +7,6 @@
 
     <title><%= @item[:title] %></title>
     <link rel="shortcut icon" href="/favicon.png">
-    <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Boxcar Developer Blog Feed" />
     
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/shared/css/pygments.css" rel="stylesheet" type="text/css" />
@@ -79,28 +78,6 @@
             
         </div>
         <div id="content" class="col-md-8">
-        
-            <% if @item[:kind] == 'article' %>
-            <div class="read-more"><a href="/blog/">&lsaquo; Blog</a></div>
-            
-            <br /><br />
-            
-            <ul class="meta on-blog">
-              <li class="published">
-                <span class="octicon octicon-calendar"></span>
-                <%= post_date @item %>
-                <% if version = @item[:api_version] %>
-                  / Version: <a href="/blog/<%= version %>"><%= version %></a>
-                <% end %>
-              </li>
-              <li class="who_when">
-                <%= gravatar_for(@item[:author_name]) %>
-                  <a href="https://github.com/<%= @item[:author_name] %>"><%= @item[:author_name] %></a>
-              </li>
-            </ul>
-           
-            <h2 class="title on-blog"><%= @item[:title] %></h2>
-            <% end %>
         
             <%= yield %>
             

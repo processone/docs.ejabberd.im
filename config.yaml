@@ -45,4 +45,4 @@ data_sources:
     items_root: /static
 
 # For the atom feed.
-base_url: http://developer.boxcar.io
+base_url: http://docs.ejabberd.im

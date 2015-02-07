@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# coding: utf-8
 
 # A few helpful tips about the Rules file:
 #
@@ -14,23 +15,6 @@ compile '/static/*' do
 end
 
 compile '/CNAME/' do
-end
-
-compile '/feed/' do
-  filter :erb
-  filter :kramdown, :toc_levels => [2]
-  
-  layout 'empty'
-end
-
-compile "/blog/*" do
-  filter :erb
-  filter :kramdown, :toc_levels => [2]
-  filter :colorize_syntax,
-         :default_colorizer => :pygmentsrb,
-         :pygmentsrb => {:options => {:nowrap => 'False', :linenos => 'table'}}
-
-  layout 'default'
 end
 
 compile '*' do
@@ -50,10 +34,6 @@ end
 
 route '/CNAME/' do
   '/CNAME'
-end
-
-route '/feed/' do
-  '/feed.xml'
 end
 
 route '*' do
