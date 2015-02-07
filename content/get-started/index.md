@@ -1,6 +1,5 @@
 ---
 title: Getting started with ejabberd | ejabberd documentation
-bodyclass: nocomment
 ---
 
 # Getting started with ejabberd
