@@ -25,7 +25,7 @@ was supported only by a kind of HTTP polling call BOSH (), the project
 managed to adapt to the recent changes, introducing Websockets
 support, Bosh improvements and a solid mobile stack.
 
-It was development at a time where XMPP protocol was still known as
+It was developed at a time where XMPP protocol was still known as
 "Jabber", but fastly adopted the protocol evolution to support the
 various version of the XMPP RFCs. It also encourages innovation and
 experimentation by supporting most, if not all, extensions produced by
@@ -63,6 +63,10 @@ different features, including:
 * Last activity
 * Metrics and full command-line administration
 * and many many more.
+
+The full list of supported protocol and extensions is available on
+[Protocols Supported by ejabberd](http://www.process-one.net/en/ejabberd/protocols/)
+page
 
 This modular architecture allows high customisability and easy access
 to the required features.
@@ -144,6 +148,30 @@ the tricky situation and even update and reload codem without stopping
 the service. This is a life saver for your uptime.
 
 Welcome to the benefit of Erlang hot-code swapping !
+
+## ejabberd is more than XMPP
+
+Thanks to the modular architecture of ejabberd, the platform is
+becoming a core component for messaging applications.
+
+Messaging applications require to transfer more than text
+messages. ejabberd has grow a full set of media related features that
+makes ejabberd a great choice to support voice and video applications,
+but also to proxy various kind of media transfer (images, audio and
+video files for example).
+
+As such, ejabberd support:
+
+* Jingle, XMPP based voice protocol
+* SIP (Session Initiation Protocol): Yes, you can pass SIP calls using ejabberd :)
+* ICE (Interactive Connectivity Establishment: A Protocol for Network
+Address Translator (NAT) Traversal)
+* STUN
+* TURN
+* Proxy65 media relay
+
+This makes ejabberd the best XMPP server to support SIP and WebRTC
+based communication tools.
 
 ## Helping us in the development process
 
