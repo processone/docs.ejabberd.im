@@ -30,60 +30,45 @@
 </div><!-- #header-wrapper -->
 
 <div id="wrapper" class="container-fluid">
-    <div class="row">
-        <div id="sidebar" class="col-md-4">
-            
-            <div id="js-sidebar" class="sidebar-shell">
-                 <div class="js-toggle-list sidebar-module expandable">
-                     <ul>
-                         <li class="js-topic"><a href="/">Home</a></li>
-                         <li class="js-topic">
-                             <a href="/sdk/">SDK</a>
-                             <ul class="js-guides">
-                                 <li>
-                                     <a href="/sdk/android/">Android</a>
-                                     <ul>
-                                       <li><a href="/sdk/android/2.0/">SDK v2.*</a></li>
-                                       <li><a href="/sdk/android/1.0/">SDK v1.*</a></li>
-                                     </ul>
-                                 </li>
-                                 <li>
-                                     <a href="/sdk/ios/">iOS</a>
-                                     <ul>
-                                         <li><a href="/sdk/ios/1.x/">SDK v1.1 (stable)</a></li>
-                                         <li><a href="/sdk/ios/2.x/">SDK v2.0 beta (experimental)</a></li>
-                                         <li><a href="/sdk/ios/apple-push-certificates/">Apple Push Certificates</a></li>
-                                     </ul>
-                                 </li>
-                                 <li><a href="/sdk/amazon/">Kindle Fire</a></li>
-                                 <li><a href="/sdk/nokia/">Nokia X</a></li>
-                                 <li><a href="/sdk/phonegap/">Phonegap</a></li>
-                             </ul>
-                         </li>
-                         <li class="js-topic">
-                             <a href="/console/">Console</a>
-                             <ul class="js-guides">
-                                 <li><a href="/console/project_settings/">Project Settings</a></li>
-                             </ul>
-                         </li>
-                         <li class="js-topic">
-                             <a href="/api/">API</a>
-                             <ul class="js-guides">
-                                 <li><a href="/api/publisher/">Publisher</a></li>
-                             </ul>
-                         </li>
-                     </ul>
-                 </div> <!-- /sidebar-module -->
-             </div><!-- /sidebar-shell -->
-            
-        </div>
-        <div id="content" class="col-md-8">
-        
-            <%= yield %>
-            
-            <div id="disqus_thread"></div>
-        </div>
+  <div class="row">
+    <div id="sidebar" class="col-md-4">
+      
+      <div id="js-sidebar" class="sidebar-shell">
+        <div class="js-toggle-list sidebar-module expandable">
+          <ul>
+            <li class="js-topic"><a href="/">Home</a></li>
+            <li class="js-topic">
+              <a href="/admin/">ejabberd for Administrators</a>
+              <ul class="js-guides">
+                <li>
+                  <a href="/admin/guide/">Guide</a>
+                </li>
+                <li>
+                  <a href="/admin/faq/">FAQ</a>
+                </li>
+              </ul>
+            </li>
+            <li class="js-topic">
+              <a href="/architect/">ejabberd for Architects</a>
+            </li>
+            <li class="js-topic">
+              <a href="/developer/">ejabberd for Developers</a>
+            </li>
+            <li class="js-topic">
+              <a href="/user/">ejabberd for Users</a>
+            </li>
+          </ul>
+        </div> <!-- /sidebar-module -->
+      </div><!-- /sidebar-shell -->
+      
     </div>
+    <div id="content" class="col-md-8">
+      
+      <%= yield %>
+      
+      <div id="disqus_thread"></div>
+    </div>
+  </div>
 </div><!-- #wrapper -->
 
 <div id="footer-wrapper">
@@ -111,7 +96,7 @@
             <div class="col-md-5 text-right">
                 <a href="http://ejabberd.im" id="logo-footer">ejabberd.im</a>
                 <br /><br />
-                &copy; 2014-2015 <a href="https://www.process-one.net">ProcessOne</a>
+                &copy; 2002-2015 <a href="https://www.process-one.net">ProcessOne</a>
             </div>
         </div>
     </div>
