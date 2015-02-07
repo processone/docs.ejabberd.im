@@ -1,12 +1,22 @@
 ---
-title: Boxcar SDK and API
+title: ejabberd XMPP messaging
 bodyclass: nocomment homepage
 ---
 
-# Integrate push notifications to your applications
+# Welcome to ejabberd, your superpowerful messaging framework
 
-Boxcar is a push service that allows developers to integrate push notifications to their applications. It can be integrated in developer's applications through the use of a [SDK](/sdk/), available for [Android](/sdk/android), [Kindle Fire](/sdk/amazon), [Nokia X](/sdk/nokia) and [iOS](/sdk/ios).
+This web site is dedicated to help you use and develop for ejabberd
+XMPP messaging server.
 
-Push notifications are typically sent to mobile users when some events occurs on the developer servers / back-end. An HTTPS [publisher API](/api/publisher) is available to allow developer to send notification to either a single device, a single user or a group of users.
+ejabberd has been in development since 2002 and is used all over the
+world to power the largest XMPP deployments. This project is so
+versatile that you can deploy it and customize it for very large
+scale, no matter what is your use case.
 
-<a href="/console/" type="button" class="btn btn-danger">Get Started</a>
+This incredible power comes with a price. You need to learn how to
+leverage it. The goal of this website is to get you started on your
+path to mastery. Whether you are a sysadmin, an architect, a developer
+planning to extend it, or even a simple XMPP user, we have something
+for you here.
+
+<a href="/get-started/" type="button" class="btn btn-danger">Get Started</a>
