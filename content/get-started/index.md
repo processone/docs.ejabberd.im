@@ -60,6 +60,8 @@ different features, including:
 * Privacy settings, through privacy list and simple blocking extensions
 * User profile with vCards
 * Full feature web support, with BOSH and websockets
+* Stream management for message reliability on mobile (aka XEP-0198)
+* Message Delivery Receipts (aka XEP-184)
 * Last activity
 * Metrics and full command-line administration
 * and many many more.
