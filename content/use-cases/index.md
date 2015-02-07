@@ -48,6 +48,10 @@ This includes:
 
 * Facebook
 
+## Education
+
+* Apollo group
+
 ## Push alerting
 
 * Nokia push notifications
