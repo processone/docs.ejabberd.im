@@ -1,0 +1,289 @@
+body {
+  background: #24282d;
+  
+  font-family: "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+  body.homepage {
+    background: #24282d;
+  }
+  body.blog {
+    background: #fff;
+  }
+
+/* Overrides */
+  
+  body .on-blog,
+  body.blog #sidebar,
+  body.blog .off-blog {
+    display: none;
+  }
+  
+  body.blog .on-blog {
+    display: block;
+  }
+
+a {
+  color: #3daefb;
+}
+  a:hover,
+  a:active {
+    color: #3daefb;
+  }
+
+ul {
+  padding-left: 1.25em;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: bold;
+}
+h2,h3,h4 {
+  margin-top: 1.5em;
+}
+h5,h5 {
+  margin-top: 20px;
+}
+
+.btn {
+  border-radius: 3px;
+  border: none;
+  
+  text-transform: uppercase;
+  font-weight: normal !important;
+}
+  .btn-danger,
+  .btn-danger:hover {
+    background-color: #3daefb;
+  }
+  
+/* Core styles */
+  
+.container-fluid .row > div:first-child {
+  padding-left: 10%;
+}
+.container-fluid .row > div:last-child {
+  padding-right: 10%;
+}
+
+#header-wrapper {
+  padding: 10px 0 5px 0;
+  background-color: #3daefb;
+}
+
+#logo {
+  display: inline-block;
+  
+  font-size: 34px;
+  color: #fff;
+}
+
+#logo-footer {
+  display: inline-block;
+  
+  font-size: 34px;
+}
+
+menu {
+  margin: 15px 0 0 0;
+  padding: 0;
+  
+  list-style: none;
+  float: right;
+} 
+  menu li a {
+    padding-left: 20px;
+    
+    background: url(/shared/images/v2/arrow_header@2x.png) left center no-repeat transparent;
+    background-size: 9px 13px;
+  
+    text-transform: uppercase;
+    color: #fff;
+  }
+  menu li a:hover,
+  menu li a:active {
+    color: #fff;
+  }
+
+#sidebar,
+#content {
+  min-height: 600px;
+}
+
+#sidebar {
+  padding-top: 60px;
+  
+  line-height: 2em;
+  font-size: 18px;
+}
+  body.homepage #sidebar {
+    background: rgba(29,32,35,0.66);
+  }
+
+  #sidebar a {
+    text-decoration: none;
+    color: #999;
+  }
+    #sidebar a.current-item {
+      margin-left: -10px;
+      padding-left: 8px;
+      
+      border-left: 2px solid #3daefb;
+      color: #fff;
+    }
+  
+  #sidebar a:hover,
+  #sidebar a:active {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  #sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+    #sidebar ul ul {
+      margin-left: 10px;
+      
+      line-height: 1.9em;
+      font-size: 13px;
+    }
+
+#content {
+  padding-top: 60px;
+  padding-left: 10%;
+  
+  background: #fff;
+  
+  line-height: 1.75em;
+  font-size: 15px;
+  color: #666;
+}
+  body.homepage #content {
+    background: transparent;
+    color: #fff;
+  }
+  body.blog #content {
+    padding-left: 10%;
+    background: transparent;
+  }
+
+  body.homepage #content h1 {
+    margin-top: 0;
+  }
+  body.homepage #content h1,
+  body.homepage #content p {
+    margin-bottom: 40px;
+  }
+  
+  body.homepage #content a {
+    font-weight: bold;
+    color: inherit;
+  }
+
+#footer-wrapper {
+  background-color: #111;
+  padding: 30px 0 60px 0;
+}
+  #footer a {
+    color: #333;
+  }
+
+  #footer a:hover,
+  #footer a:active {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  #footer .sitemap {
+    display: inline-block;
+    vertical-align: top;
+    
+    margin: 0 100px 40px 0;
+    padding: 0;
+    list-style: none;
+    
+    line-height: 1.75em;
+    font-size: 13px;
+  }
+    #footer .sitemap li a {
+      text-transform: uppercase;
+      color: #999;
+    }
+    #footer .sitemap li:first-child a {
+      text-transform: none;
+      color: #3daefb;
+    }
+    #footer .sitemap li a:hover,
+    #footer .sitemap li a:active {
+      text-decoration: none;
+      color: #fff;
+    }
+    
+#disqus_thread {
+  margin-top: 40px;
+}
+    
+/* Content specific styles */
+#content img {
+  max-width: 100%;
+}
+
+.line-numbers {
+  margin-right: 1em;
+}
+  .line-numbers a {
+    color: #bbb;
+  }
+  .line-numbers a:hover,
+  .line-numbers a:active {
+    color: #666;
+  }
+
+/* Blog specific styles */
+
+body.blog .meta {
+  margin: 0;
+  padding: 0;
+  
+  list-style: none;
+  font-size: 11px;
+}
+  body.blog .meta li {
+    margin-right: 10px;
+    display: inline-block;
+  }
+    body.blog .meta .who_when img {
+      margin-right: 3px;
+      border-radius: 10px;
+      vertical-align: middle;
+    }
+    
+  body.blog h2.title {
+    margin: 10px 0 20px 0;
+  }
+  
+  body.blog .read-more {
+    display: inline-block;
+    padding: 0.1em 1em 0.2em 1em;
+    
+    border: 1px solid #ccc;
+    border-radius: 2em;
+  }
+
+/* Mobile styles */
+
+@media only screen and (max-width: 990px) {
+    
+  #sidebar,
+  #content {
+    min-height: inherit;
+  }
+  
+  #sidebar,
+  #content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
