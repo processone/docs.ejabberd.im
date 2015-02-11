@@ -1,5 +1,5 @@
 ---
-title: ejabberd XMPP messaging
+title: ejabberd XMPP Messaging Framework Documentation
 bodyclass: nocomment homepage
 ---
 

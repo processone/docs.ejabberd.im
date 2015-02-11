@@ -74,9 +74,22 @@ h5,h5 {
 #logo {
   display: inline-block;
   
-  font-size: 34px;
+  text-decoration: none;
+  font-size: 20px;
   color: #fff;
 }
+  #logo > * {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  #logo img {
+    margin-right: 10px;
+  }
+  #logo span {
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
 
 #logo-footer {
   display: inline-block;
