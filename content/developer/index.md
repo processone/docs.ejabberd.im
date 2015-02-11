@@ -13,3 +13,7 @@ both the core XMPP protocol itself and its extensions.
 
 From that, once you understand well XMPP, you can tame ejabberd to
 build your dream messaging system.
+
+# Customizing ejabberd
+
+* [ejabberd modules development](modules/)

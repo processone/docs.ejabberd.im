@@ -11,4 +11,4 @@
     	echo "Error compiling, not sending site..."
 	    exit 1
     fi
-    rsync --omit-dir-times -rltvz output/ mremond@webcorp.vpn.p1:/opt/www/developer.boxcar.io/
+    rsync --omit-dir-times -rltvz output/ webcorp.vpn.p1:/opt/www/docs.ejabberd.im/

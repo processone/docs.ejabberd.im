@@ -1,8 +1,8 @@
 ---
-title: Module development | ejabberd documentation
+title: ejabberd Modules Development | ejabberd documentation
 ---
 
-# Module development
+# ejabberd Modules development
 
 ## Introduction
 
@@ -69,6 +69,7 @@ Or you can start / stop it manually by typind the following commands
 from an Erlang shell running ejabberd:
 
 TODO
+
 
 [image-1]:	/images/architect/ejabberd_internals.png
 
