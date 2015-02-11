@@ -5,7 +5,6 @@ version: 14.12
 
 # Installation and Operation Guide
 
-ejabberd <%= @item[:version] %>
-
-* TOC
-{:toc}
+Read
+[Installation and operation Guide for ejabberd <%= @item[:version]
+%>](http://www.process-one.net/docs/ejabberd/guide_en.html).
