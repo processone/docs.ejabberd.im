@@ -10,7 +10,9 @@ title: ejabberd operation FAQ | ejabberd documentation
 
 Thanks to contributed module 'mod_muc_admin', you can get a better control on the rooms on your server:
 
-1. Install 'mod_muc_admin' module from the 'ejabberd-contrib' repository
+1. Install
+   '[mod_muc_admin](https://github.com/processone/ejabberd-contrib/tree/master/mod_muc_admin)'
+   module from the 'ejabberd-contrib' repository
 2. Run the following command:
 
     ```
