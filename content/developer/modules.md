@@ -13,7 +13,7 @@ Here is an overview of ejabberd internal architecture:
 
 [![][image-1]](/images/architect/ejabberd_internals.pdf)
 
-*Click for large size PDF*
+[*Click for large size PDF*](/images/architect/ejabberd_internals.pdf)
 
 ## What is a module ?
 
@@ -70,7 +70,4 @@ from an Erlang shell running ejabberd:
 
 TODO
 
-
 [image-1]:	/images/architect/ejabberd_internals.png
-
-

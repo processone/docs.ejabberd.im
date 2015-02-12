@@ -29,7 +29,7 @@ Here is a high level diagram of ejabberd internal architecture:
 
 [![][image-1]](/images/architect/ejabberd_internals.pdf)
 
-*Click for large size PDF*
+[*Click for large size PDF*](/images/architect/ejabberd_internals.pdf)
 
 ## Typical large scale deployments
 
@@ -38,7 +38,7 @@ can scale massively and rely on several back-ends.
 
 [![][image-2]](/images/architect/ejabberd_large_scale.pdf)
 
-*Click for large size PDF*
+[*Click for large size PDF*](/images/architect/ejabberd_large_scale.pdf)
 
 Note that ejabberd ejabberd support a core concept of XMPP:
 Federation. Federation is a mechanism allowing different independing
