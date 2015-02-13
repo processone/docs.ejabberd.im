@@ -64,6 +64,7 @@ This includes:
 ## Education
 
 * Apollo group
+* Laureate
 
 ## Push alerts
 
