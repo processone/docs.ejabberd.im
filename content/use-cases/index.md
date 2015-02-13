@@ -24,6 +24,7 @@ This includes:
 
 * [Electronic Arts](http://www.ea.com)
 * [Kixeye](http://www.kixeye.com)
+* Machine Zone (Game of War)
 * [Nokia nGage](http://en.wikipedia.org/wiki/N-Gage_(service))
 * [Riot Games (League of Legends)](http://highscalability.com/blog/2014/10/13/how-league-of-legends-scaled-chat-to-70-million-players-it-t.html)
 
