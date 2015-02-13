@@ -180,8 +180,6 @@ service settings and set ejabberd to be automatically started. Note that
 the Windows service is a feature still in development, and for example
 it doesn’t read the file ejabberdctl.cfg.
 
-The OSX binary installer works on OSX 10.6 and newer.
-
 On a \*nix system, if you want ejabberd to be started as daemon at boot
 time, copy `ejabberd.init` from the ’bin’ directory to something like
 `/etc/init.d/ejabberd` (depending on your distribution). Create a system
@@ -259,11 +257,9 @@ To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 
 -   Libexpat 1.95 or higher
 
--   Libyaml 1.4 or higher
+-   Erlang/OTP R15B or higher.
 
--   Erlang/OTP R10B-9 or higher. The recommended versions are R13B04 and
-    R14B04. Don’t use R14A or R14B because
-    [`they have a bug`](http://www.erlang.org/cgi-bin/ezmlm-cgi/4/54598).
+-   Libyaml 0.1.4 or higher
 
 -   OpenSSL 0.9.8 or higher, for STARTTLS, SASL and SSL encryption.
 
@@ -279,9 +275,6 @@ To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 -   ImageMagick’s Convert program. Optional. For CAPTCHA challenges. See
     section [captcha].
 
--   exmpp 0.9.6 or higher. Optional. For import/export user data with
-    [`XEP-0227`](http://xmpp.org/extensions/xep-0227.html) XML files.
-
 ### Download Source Code [download]
 
 Released versions of `ejabberd` are available in the ProcessOne
@@ -291,7 +284,7 @@ Released versions of `ejabberd` are available in the ProcessOne
 Alternatively, the latest development source code can be retrieved from
 the Git repository using the commands:
 
-    git clone git://git.process-one.net/ejabberd/mainline.git ejabberd
+    git clone git://github.com/processone/ejabberd.git ejabberd
     cd ejabberd
     ./autogen.sh
 
@@ -327,7 +320,7 @@ Some options that you may be interested in modifying:
 
 :   Enable the PAM authentication method (see section [pam]).
 
-`–enable-odbc or –enable-mssql`
+`–enable-mssql`
 
 :   Required if you want to use an external database. See
     section [database] for more information.
@@ -347,10 +340,6 @@ Some options that you may be interested in modifying:
 `–enable-zlib`
 
 :   Enable Stream Compression (XEP-0138) using zlib.
-
-`–enable-riak`
-
-:   Enable Riak support.
 
 `–enable-iconv`
 
@@ -375,13 +364,7 @@ Some options that you may be interested in modifying:
 `–enable-nif`
 
 :   Replaces some critical Erlang functions with equivalents written in
-    C to improve performance. This feature requires Erlang/OTP R13B04 or
-    higher.
-
-`–enable-flash-hack`
-
-:   Enable support for non-standard XML socket clients of Adobe Flash 8
-    and lower.
+    C to improve performance.
 
 ### Install
 
@@ -412,7 +395,7 @@ The files and directories created are, by default:
 
 `/lib/ejabberd/`
 
-:
+:   
 
     `ebin/`
 
@@ -601,9 +584,7 @@ enter the `ejabberd` Web Admin:
     `admin1@example.org`. There are two ways to register an XMPP
     account:
 
-    1.  Using `ejabberdctl`
-
-        (see section [ejabberdctl]):
+    1.  Using `ejabberdctl` (see section [ejabberdctl]):
 
             ejabberdctl register admin1 example.org FgT5bk3
 
@@ -702,6 +683,29 @@ recommended to convert it to the new YAML format using `convert_to_yaml`
 command from `ejabberdctl` (see [ejabberdctl] and [list-eja-commands]
 for details).
 
+If you want to specify some options using the old Erlang format, you can
+set them in an additional cfg file, and include it using the
+`include_config_file` option, see [includeconfigfile] for the option
+description and a related example in [accesscommands].
+
+If you just want to provide an erlang term inside an option, you can use
+the `> erlangterm.` syntax for embedding erlang terms in a YAML file,
+for example:
+
+    modules:
+      mod_cron:
+        tasks:
+          - time: 10
+            units: seconds
+            module: mnesia
+            function: info
+            arguments: "> []."
+          - time: 3
+            units: seconds
+            module: ejabberd_auth
+            function: try_register
+            arguments: "> [\"user1\", \"localhost\", \"pass\"]."
+
 ### Host Names [hostnames]
 
 The option `hosts` defines a list containing one or more domains that
@@ -711,7 +715,7 @@ The syntax is:
 
 `[HostName]`
 
-:
+:   
 
 Examples:
 
@@ -735,15 +739,13 @@ The syntax is:
 
 `{HostName: [Option, ...]}`
 
-:
+:   
 
 Examples:
 
 -   Domain `example.net` is using the internal authentication method
-    while domain `example.com` is using the
-
-    LDAP server running on the domain `localhost` to perform
-    authentication:
+    while domain `example.com` is using the LDAP server running on the
+    domain `localhost` to perform authentication:
 
         host_config:
           "example.net"
@@ -758,10 +760,9 @@ Examples:
             ldap_rootdn: "dc=example,dc=com"
             ldap_password: ""
 
--   Domain `example.net` is using
-
-    ODBC to perform authentication while domain `example.com` is using
-    the LDAP servers running on the domains `localhost` and `otherhost`:
+-   Domain `example.net` is using ODBC to perform authentication while
+    domain `example.com` is using the LDAP servers running on the
+    domains `localhost` and `otherhost`:
 
         host_config:
           "example.net":
@@ -838,7 +839,7 @@ The option syntax is:
 
 `[Listener, ...]`
 
-:
+:   
 
 Example:
 
@@ -885,8 +886,8 @@ are:
 
 `ejabberd_c2s`
 
-:   Handles c2s connections.
-    Options: `access`, `certfile`, `ciphers`, `protocol_options`,
+:   Handles c2s connections.  
+    Options: `access`, `certfile`, `ciphers`, `protocol_options`
     `max_ack_queue`, `max_fsm_queue`, `max_stanza_size`,
     `resend_on_timeout`, `resume_timeout`, `shaper`, `starttls`,
     `starttls_required`, `stream_management`, `tls`, `zlib`,
@@ -894,7 +895,7 @@ are:
 
 `ejabberd_s2s_in`
 
-:   Handles incoming s2s connections.
+:   Handles incoming s2s connections.  
     Options: `max_stanza_size`, `shaper`, `tls_compression`
 
 `ejabberd_service`
@@ -902,37 +903,37 @@ are:
 :   Interacts with an
     [`external component`](http://www.ejabberd.im/tutorials-transports)
     (as defined in the Jabber Component Protocol
-    ([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).
+    ([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).  
     Options: `access`, `hosts`, `max_fsm_queue`, `service_check_from`,
-    `shaper`
+    `shaper_rule`
 
 `ejabberd_sip`
 
 :   Handles SIP requests as defined in
-    [`RFC 3261`](http://tools.ietf.org/html/rfc3261).
+    [`RFC 3261`](http://tools.ietf.org/html/rfc3261).  
     Options: `certfile`, `tls`
 
 `ejabberd_stun`
 
 :   Handles STUN/TURN requests as defined in
     [`RFC 5389`](http://tools.ietf.org/html/rfc5389) and
-    [`RFC 5766`](http://tools.ietf.org/html/rfc5766).
+    [`RFC 5766`](http://tools.ietf.org/html/rfc5766).  
     Options: `certfile`, `tls`, `use_turn`, `turn_ip`,
     `turn_port_range`, `turn_max_allocations`, `turn_max_permissions`,
     `shaper`, `server_name`, `auth_realm`, `auth_type`
 
 `ejabberd_http`
 
-:   Handles incoming HTTP connections.
+:   Handles incoming HTTP connections.  
     Options: `captcha`, `certfile`, `default_host`, `http_bind`,
     `http_poll`, `request_handlers`, `tls`, `tls_compression`,
-    `trusted_proxies`, `web_admin`
+    `trusted_proxies`, `web_admin`  
 
 `ejabberd_xmlrpc`
 
-:   Handles incoming XML-RPC requests to execute ejabberd commands (see
-    [eja-commands]).
-    Options: `access_commands`, `maxsessions`, `timeout`.
+:   Handles XML-RPC requests to execute ejabberd commands
+    ([eja-commands]).  
+    Options: `access_commands`, `maxsessions`, `timeout`.  
     You can find option explanations, example configuration in old and
     new format, and example calls in several languages in the old
     [`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
@@ -945,20 +946,6 @@ modules:
 `access: AccessName`
 
 :   This option defines access to the port. The default value is `all`.
-
-`access_commands: AccessCommands`
-
-:   This option allows to define a list of access restrictions (see
-    [accesscommands]). If this option is present, then XML-RPC calls
-    must include as first argument a struct with a user, server and
-    password of an account in ejabberd that has privileges in Access. If
-    the option is not present, such struct must not be provided. The
-    default value is to not define any restriction: `` When one or
-    several access restrictions are defined and the XML-RPC call
-    provides authentication for an account, each restriction is verified
-    until one matches completely: the account matches the Access rule,
-    the command name is listed in CommandNames, and the provided
-    arguments do not contradict Arguments.
 
 `backlog: Value`
 
@@ -987,9 +974,9 @@ modules:
 `protocol_options: ProtocolOpts`
 
 :   List of general options relating to SSL/TLS. These map to
-    `<a href="https://www.openssl.org/docs/ssl/SSL_CTX_set_options.html">OpenSSL's set_options()</a>`.
+    [`OpenSSL’s set_options()`](https://www.openssl.org/docs/ssl/SSL_CTX_set_options.html).
     For a full list of options available in ejabberd,
-    `<a href="https://github.com/processone/tls/blob/master/c_src/options.h">see the source</a>`.
+    [`see the source`](https://github.com/processone/tls/blob/master/c_src/options.h).
     The default entry is: `"no_sslv2"`
 
 `default_host: undefined|HostName}`
@@ -1054,10 +1041,10 @@ modules:
 
 :   This option specifies the maximum number of unacknowledged stanzas
     queued for possible retransmission if `stream_management` is
-    enabled. When the limit is reached, the first stanza is dropped from
-    the queue before adding the next one. This option can be specified
-    for `ejabberd_c2s` listeners. The allowed values are positive
-    integers and `infinity`. Default value: `500`.
+    enabled. When the limit is exceeded, the client session is
+    terminated. This option can be specified for `ejabberd_c2s`
+    listeners. The allowed values are positive integers and `infinity`.
+    Default value: `500`.
 
 `max_fsm_queue: Size`
 
@@ -1098,7 +1085,7 @@ modules:
           /"a"/"b": mod_foo
           /"http-bind": mod_http_bind
 
-`resend_on_timeout: true|false`
+`resend_on_timeout: true|false|if_offline`
 
 :   If `stream_management` is enabled and this option is set to `true`,
     any stanzas that weren’t acknowledged by the client will be resent
@@ -1107,8 +1094,11 @@ modules:
     message that was sent to two resources might get resent to one of
     them if the other one timed out. Therefore, the default value for
     this option is `false`, which tells ejabberd to generate an error
-    message instead. The option can be specified for `ejabberd_c2s`
-    listeners.
+    message instead. As an alternative, the option may be set to
+    `if_offline`. In this case, unacknowledged stanzas are resent only
+    if no other resource is online when the session times out.
+    Otherwise, error messages are generated. The option can be specified
+    for `ejabberd_c2s` listeners.
 
 `resume_timeout: Seconds`
 
@@ -1134,6 +1124,11 @@ modules:
 
 :   This option defines a shaper for the port (see section [shapers]).
     The default value is `none`.
+
+`shaper_rule: none|ShaperRule`
+
+:   This option defines a shaper rule for the `ejabberd_service` (see
+    section [shapers]). The recommended value is `fast`.
 
 `starttls: true|false`
 
@@ -1227,9 +1222,9 @@ ejabberd configuration file (outside `listen`):
 `s2s_protocol_options: ProtocolOpts`
 
 :   List of general options relating to SSL/TLS. These map to
-    `<a href="https://www.openssl.org/docs/ssl/SSL_CTX_set_options.html">OpenSSL's set_options()</a>`.
+    [`OpenSSL’s set_options()`](https://www.openssl.org/docs/ssl/SSL_CTX_set_options.html).
     For a full list of options available in ejabberd,
-    `<a href="https://github.com/processone/tls/blob/protocol_options/c_src/options.h">see the source</a>`.
+    [`see the source`](https://github.com/processone/tls/blob/master/c_src/options.h).
     The default entry is: `"no_sslv2"`
 
 `outgoing_s2s_families: [Family, ...]`
@@ -1323,7 +1318,7 @@ For example, the following simple configuration defines:
       - "example.net"
 
     listen:
-      -
+      - 
         port: 5222
         module: ejabberd_c2s
         access: c2s
@@ -1331,7 +1326,7 @@ For example, the following simple configuration defines:
         starttls: true
         certfile: "/etc/ejabberd/server.pem"
         max_stanza_size: 65536
-      -
+      - 
         port: 5223
         module: ejabberd_c2s
         access: c2s
@@ -1339,21 +1334,21 @@ For example, the following simple configuration defines:
         tls: true
         certfile: "/etc/ejabberd/server.pem"
         max_stanza_size: 65536
-      -
+      - 
         port: 5269
         ip: "::"
         module: ejabberd_s2s_in
         shaper: s2s_shaper
         max_stanza_size: 131072
-      -
+      - 
         port: 3478
         transport: udp
         module: ejabberd_stun
-      -
+      - 
         port: 5280
         module: ejabberd_http
         http_poll: true
-      -
+      - 
         port: 5281
         ip: "127.0.0.1"
         module: ejabberd_http
@@ -1392,10 +1387,6 @@ In this example, the following configuration defines that:
 -   All users except for the administrators have a traffic of limit
     1,000Bytes/second
 
--   The XML-RPC service listens in port 4560 and allows only a specific
-    account, to request registrations and unregistrations in a specific
-    host.
-
 -   The [`AIM transport`](http://www.ejabberd.im/pyaimt)
     `aim.example.org` is connected to port 5233 on localhost IP
     addresses (127.0.0.1 and ::1) with password ‘`aimsecret`’.
@@ -1427,26 +1418,26 @@ In this example, the following configuration defines that:
 
 <!-- -->
 
-    acl:
-      blocked:
+    acl: 
+      blocked: 
         user: "bad"
-      trusted_servers:
+      trusted_servers: 
         server:
           - "example.com"
           - "jabber.example.org"
-      xmlrpc_bot:
-        user:
+      xmlrpc_bot: 
+        user: 
           - "xmlrpc-robot": "example.org"
-    shaper:
+    shaper: 
       normal: 1000
-    access:
-      c2s:
+    access: 
+      c2s: 
         blocked: deny
         all: allow
-      c2s_shaper:
+      c2s_shaper: 
         admin: none
         all: normal
-      xmlrpc_access:
+      xmlrpc_access: 
         xmlrpc_bot: allow
       s2s:
         trusted_servers: allow
@@ -1454,98 +1445,93 @@ In this example, the following configuration defines that:
     s2s_certfile: "/path/to/ssl.pem"
     s2s_access: s2s
     s2s_use_starttls: required_trusted
-    listen:
-      -
+    listen: 
+      - 
         port: 5222
         module: ejabberd_c2s
         shaper: c2s_shaper
         access: c2s
-      -
+      - 
         ip: "192.168.0.1"
         port: 5223
         module: ejabberd_c2s
         certfile: "/path/to/ssl.pem"
         tls: true
         access: c2s
-      -
+      - 
         ip: "FDCA:8AB6:A243:75EF::1"
         port: 5223
         module: ejabberd_c2s
         certfile: "/path/to/ssl.pem"
         tls: true
         access: c2s
-      -
+      - 
         port: 5269
         module: ejabberd_s2s_in
-      -
+      - 
         port: 5280
         module: ejabberd_http
         web_admin: true
         http_poll: true
-      -
+      - 
         port: 4560
         module: ejabberd_xmlrpc
-      -
+      - 
         ip: "127.0.0.1"
         port: 5233
         module: ejabberd_service
-        hosts:
-          "aim.example.org":
+        hosts: 
+          "aim.example.org": 
             password: "aimsecret"
-      -
+      - 
         ip: "::1"
         port: 5233
         module: ejabberd_service
-        hosts:
-          "aim.example.org":
+        hosts: 
+          "aim.example.org": 
             password: "aimsecret"
-      -
+      - 
         port: 5234
         module: ejabberd_service
-        hosts:
-          "icq.example.org":
+        hosts: 
+          "icq.example.org": 
             password: "jitsecret"
-          "sms.example.org":
+          "sms.example.org": 
             password: "jitsecret"
-      -
+      - 
         port: 5235
         module: ejabberd_service
-        hosts:
-          "msn.example.org":
+        hosts: 
+          "msn.example.org": 
             password: "msnsecret"
-      -
+      - 
         port: 5236
         module: ejabberd_service
-        hosts:
-          "yahoo.example.org":
+        hosts: 
+          "yahoo.example.org": 
             password: "yahoosecret"
-      -
+      - 
         port: 5237
         module: ejabberd_service
-        hosts:
-          "gg.example.org":
+        hosts: 
+          "gg.example.org": 
             password: "ggsecret"
-      -
+      - 
         port: 5238
         module: ejabberd_service
-        hosts:
-          "jmc.example.org":
+        hosts: 
+          "jmc.example.org": 
             password: "jmcsecret"
-      -
+      - 
         port: 5239
         module: ejabberd_service
         service_check_from: false
-        hosts:
-          "custom.example.org":
+        hosts: 
+          "custom.example.org": 
             password: "customsecret"
 
-Note, that for services based in
-
-jabberd14 or
-
-WPJabber you have to make the transports log and do
-
-XDB by themselves:
+Note, that for services based in jabberd14 or WPJabber you have to make
+the transports log and do XDB by themselves:
 
       <!--
          You have to add elogger and rlogger entries here when using ejabberd.
@@ -1583,7 +1569,7 @@ used for user authentication. The syntax is:
 
 `[Method, ...]`
 
-:
+:   
 
 The following authentication methods are supported by `ejabberd`:
 
@@ -1599,8 +1585,6 @@ The following authentication methods are supported by `ejabberd`:
 
 -   pam — See section [pam].
 
--   riak — See section [riak].
-
 Account creation is only supported by internal, external and odbc
 methods.
 
@@ -1610,7 +1594,7 @@ option syntax is:
 
 `resource_conflict: setresource|closenew|closeold`
 
-:
+:   
 
 The possible values match exactly the three possibilities described in
 [`XMPP Core: section 7.7.2.2`](http://tools.ietf.org/html/rfc6120#section-7.7.2.2).
@@ -1626,7 +1610,7 @@ mechanism. The option syntax is:
 
 `fqdn: undefined|FqdnString|[FqdnString]`
 
-:
+:   
 
 The option `disable_sasl_mechanisms` specifies a list of SASL mechanisms
 that should *not* be offered to the client. The mechanisms can be listed
@@ -1634,7 +1618,7 @@ as lowercase or uppercase strings. The option syntax is:
 
 `disable_sasl_mechanisms: [Mechanism, ...]`
 
-:
+:   
 
 #### Internal [internalauth]
 
@@ -1725,15 +1709,34 @@ each virtual host defined in ejabberd:
     extauth_cache: 600
     extauth_instances: 3
 
-#### SASL Anonymous and Anonymous Login [saslanonymous]
+#### Anonymous Login and SASL Anonymous [saslanonymous]
 
-The value `anonymous` will enable the internal authentication method.
+The `anonymous` authentication method enables two modes for anonymous
+authentication:
+
+`Anonymous login:`
+
+:   This is a standard login, that use the classical login and password
+    mechanisms, but where password is accepted or preconfigured for all
+    anonymous users. This login is compliant with SASL authentication,
+    password and digest non-SASL authentication, so this option will
+    work with almost all XMPP clients
+
+`SASL Anonymous:`
+
+:   This is a special SASL authentication mechanism that allows to login
+    without providing username or password (see
+    [`XEP-0175`](http://xmpp.org/extensions/xep-0175.html)). The main
+    advantage of SASL Anonymous is that the protocol was designed to
+    give the user a login. This is useful to avoid in some case, where
+    the server has many users already logged or registered and when it
+    is hard to find a free username. The main disavantage is that you
+    need a client that specifically supports the SASL Anonymous
+    protocol.
 
 The anonymous authentication method can be configured with the following
 options. Remember that you can use the `host_config` option to set
-virtual host specific options (see section [virtualhost]). Note that
-there also is a detailed tutorial regarding
-[`SASL Anonymous and anonymous login configuration`](http://support.process-one.net/doc/display/MESSENGER/Anonymous+users+support).
+virtual host specific options (see section [virtualhost]).
 
 `allow_multiple_connections: false|true`
 
@@ -1743,10 +1746,10 @@ there also is a detailed tutorial regarding
     connect. This option is only useful in very special occasions. The
     default value is `false`.
 
-`anonymous_protocol: sasl_anon | login_anon | both`
+`anonymous_protocol: login_anon | sasl_anon | both`
 
-:   `sasl_anon` means that the SASL Anonymous method will be used.
-    `login_anon` means that the anonymous login method will be used.
+:   `login_anon` means that the anonymous login method will be used.
+    `sasl_anon` means that the SASL Anonymous method will be used.
     `both` means that SASL Anonymous and login anonymous are both
     enabled.
 
@@ -1800,6 +1803,9 @@ Examples:
               - internal
               - anonymous
             anonymous_protocol: both
+
+There are more configuration examples and XMPP client example stanzas in
+[`Anonymous users support`](http://www.ejabberd.im/Anonymous-users-support).
 
 #### PAM Authentication [pam]
 
@@ -1883,7 +1889,7 @@ following syntax:
 
 `acl: { ACLName: { ACLType: ACLValue } }`
 
-:
+:   
 
 `ACLType: ACLValue` can be one of the following:
 
@@ -2005,19 +2011,19 @@ following syntax:
 
 `user_glob: Glob}`
 
-:
+:   
 
 `user_glob: {Glob: Server}`
 
-:
+:   
 
 `server_glob: Glob`
 
-:
+:   
 
 `resource_glob: Glob`
 
-:
+:   
 
 `node_glob: {UserGlob: ServerGlob}`
 
@@ -2057,7 +2063,7 @@ is:
 
 `access: { AccessName: { ACLName: allow|deny } }`
 
-:
+:   
 
 When a JID is checked to have access to `Accessname`, the server
 sequentially checks if that JID matches any of the ACLs that are named
@@ -2103,7 +2109,7 @@ The syntax is:
 
 `{ max_user_sessions: { ACLName: MaxNumber } }`
 
-:
+:   
 
 This example limits the number of sessions per user to 5 for all users,
 and to 10 for admins:
@@ -2117,17 +2123,14 @@ and to 10 for admins:
 
 The special access `max_s2s_connections` specifies how many simultaneous
 S2S connections can be established to a specific remote XMPP server. The
-default value is `1`. Note that this option doesn’t take into
-consideration the number of all connections with a specific remote
-server on all nodes in a cluster. That is, for example, if there is no
-S2S connection with the server on local node, the one will be created
-even if such S2S connections already exist on another nodes.
+default value is `1`. There’s also available the access
+`max_s2s_connections_per_node`.
 
 The syntax is:
 
 `{ max_s2s_connections: { ACLName: MaxNumber } }`
 
-:
+:   
 
 Examples:
 
@@ -2143,7 +2146,7 @@ Shapers enable you to limit connection traffic. The syntax is:
 
 `shaper: { ShaperName: Rate }`
 
-:
+:   
 
 where `Rate` stands for the maximum allowed incoming rate in bytes per
 second. When a connection exceeds this limit, `ejabberd` stops reading
@@ -2174,7 +2177,7 @@ The option syntax is:
 
 `language: Language`
 
-:
+:   
 
 The default value is `en`. In order to take effect there must be a
 translation file `Language.msg` in `ejabberd`’s `msgs` directory.
@@ -2316,11 +2319,11 @@ Example configuration with disabled TURN functionality (STUN only):
 
     listen:
       ...
-      -
+      - 
         port: 3478
         transport: udp
         module: ejabberd_stun
-      -
+      - 
         port: 3478
         module: ejabberd_stun
       -
@@ -2334,7 +2337,7 @@ enabled if TURN is enabled. Here, only UDP section is shown:
 
     listen:
       ...
-      -
+      - 
         port: 3478
         transport: udp
         use_turn: true
@@ -2378,11 +2381,11 @@ Example configuration with standard ports (as per
 
     listen:
       ...
-      -
+      - 
         port: 5060
         transport: udp
         module: ejabberd_sip
-      -
+      - 
         port: 5060
         module: ejabberd_sip
       -
@@ -2427,13 +2430,13 @@ The basic syntax is:
 
 `include_config_file: [Filename]`
 
-:
+:   
 
 It is possible to specify suboptions using the full syntax:
 
 `include_config_file: { Filename: [Suboption, ...] }`
 
-:
+:   
 
 The filename can be indicated either as an absolute path, or relative to
 the main `ejabberd` configuration file. It isn’t possible to use
@@ -2498,7 +2501,7 @@ A macro is defined with this syntax:
 
 `define_macro: { ’MACRO’: Value }`
 
-:
+:   
 
 The `MACRO` must be surrounded by single quotation marks, and all
 letters in uppercase; check the examples bellow. The `value` can be any
@@ -2543,20 +2546,20 @@ This complex example:
       'NUMBER_PORT_C2S': 5222
       'NUMBER_PORT_HTTP': 5280
     listen:
-      -
+      - 
         port: 'NUMBER_PORT_C2S'
         module: ejabberd_c2s
-      -
+      - 
         port: 'NUMBER_PORT_HTTP'
         module: ejabberd_http
 
 produces this result after being interpreted:
 
     listen:
-      -
+      - 
         port: 5222
         module: ejabberd_c2s
-      -
+      - 
         port: 5280
         module: ejabberd_http
 
@@ -2931,10 +2934,10 @@ sample configuration is shown below:
     ldap_uids: ["sAMAccountName"]
     ldap_filter: "(memberOf=*)"
 
-    modules:
+    modules: 
       ...
-      mod_vcard_ldap:
-        ldap_vcard_map:
+      mod_vcard_ldap: 
+        ldap_vcard_map: 
           "NICKNAME": {"%u", []}
           "GIVEN": {"%s", ["givenName"]}
           "MIDDLE": {"%s", ["initials"]}
@@ -2952,7 +2955,7 @@ sample configuration is shown below:
           "URL": {"%s", ["wWWHomePage"]}
           "DESC": {"%s", ["description"]}
           "TEL": {"%s", ["telephoneNumber"]}]}
-        ldap_search_fields:
+        ldap_search_fields: 
           "User": "%u"
           "Name": "givenName"
           "Family Name": "sn"
@@ -2962,7 +2965,7 @@ sample configuration is shown below:
           "Role": "title"
           "Description": "description"
           "Phone": "telephoneNumber"
-        ldap_search_reported:
+        ldap_search_reported: 
           "Full Name": "FN"
           "Nickname": "NICKNAME"
           "Email": "EMAIL"
@@ -3057,7 +3060,7 @@ The syntax is:
 
 `modules: { ModuleName: ModuleOptions }`
 
-:
+:   
 
 Examples:
 
@@ -3081,16 +3084,12 @@ The following table lists all modules included in `ejabberd`.
 
 | <span>**Module**</span> | <span>**Feature**</span>                                                                                                       | <span>**Dependencies**</span>    |
 |:------------------------|:-------------------------------------------------------------------------------------------------------------------------------|:---------------------------------|
-|                         | Reliable message delivery                                                                                                      |                                  |
 | `mod_adhoc`             | Ad-Hoc Commands ([`XEP-0050`](http://xmpp.org/extensions/xep-0050.html))                                                       |                                  |
-| `mod_admin_p1`          | Extended administration commands                                                                                               |                                  |
 |                         | Manage announcements                                                                                                           | recommends `mod_adhoc`           |
-|                         |                                                                                                                                | supported DB (\*)                |
-|                         | Apple Push Notification Service support                                                                                        | `mod_applepush_service`          |
-|                         | Manage connections to APNS servers                                                                                             |                                  |
 | `mod_blocking`          | Simple Communications Blocking ([`XEP-0191`](http://xmpp.org/extensions/xep-0191.html))                                        | `mod_privacy`                    |
 | `mod_caps`              | Entity Capabilities ([`XEP-0115`](http://xmpp.org/extensions/xep-0115.html))                                                   |                                  |
 | `mod_carboncopy`        | Message Carbons ([`XEP-0280`](http://xmpp.org/extensions/xep-0280.html))                                                       |                                  |
+|                         | Filter stanzas for inactive clients                                                                                            |                                  |
 | `mod_configure`         | Server configuration using Ad-Hoc                                                                                              | `mod_adhoc`                      |
 |                         | Service Discovery ([`XEP-0030`](http://xmpp.org/extensions/xep-0030.html))                                                     |                                  |
 |                         | Echoes XMPP stanzas                                                                                                            |                                  |
@@ -3100,7 +3099,6 @@ The following table lists all modules included in `ejabberd`.
 |                         | IRC transport                                                                                                                  |                                  |
 |                         | Last Activity ([`XEP-0012`](http://xmpp.org/extensions/xep-0012.html))                                                         |                                  |
 |                         | Multi-User Chat ([`XEP-0045`](http://xmpp.org/extensions/xep-0045.html))                                                       |                                  |
-|                         | Multicast service ([`XEP-0033`](http://xmpp.org/extensions/xep-0033.html))                                                     |                                  |
 |                         | Multi-User Chat room logging                                                                                                   | `mod_muc`                        |
 |                         | Offline message storage ([`XEP-0160`](http://xmpp.org/extensions/xep-0160.html))                                               |                                  |
 |                         | XMPP Ping and periodic keepalives ([`XEP-0199`](http://xmpp.org/extensions/xep-0199.html))                                     |                                  |
@@ -3160,7 +3158,7 @@ The syntax is:
 
 `iqdisc: Value`
 
-:
+:   
 
 Possible `Value` are:
 
@@ -3210,15 +3208,13 @@ The syntax is:
 
 `host: HostName`
 
-:
+:   
 
 If you include the keyword “@HOST@” in the HostName, it is replaced at
 start time with the real virtual host string.
 
-This example configures the
-
-echo module to provide its echoing service in the Jabber ID
-`mirror.example.org`:
+This example configures the echo module to provide its echoing service
+in the Jabber ID `mirror.example.org`:
 
     modules:
       ...
@@ -3234,45 +3230,6 @@ in all of them, the “@HOST@” keyword must be used:
       mod_echo:
         host: "mirror.@HOST@"
       ...
-
-### `mod_ack` [modack]
-
-This module takes care about reliable message delivery. The server sends
-acknowledgement messages to a sender reporting the status of a message
-being sent. The acknowledgement message is a message possessing element
-qualified by the ’urn:xmpp:receipts’ namespace
-([`XEP-0184`](http://xmpp.org/extensions/xep-0184.html)). If a sender
-chooses to include `<request/>` element qualified by this namespace it
-should be prepared to receive the following acknowledgement messages:
-
--   `<on-sender-server/>` A message has been received by the sender’s
-    server.
-
--   `<offline/>` A message has been stored in offline storage.
-
--   `<delayed/>` A message is queued for futher delivery.
-
--   `<received/>` A message has been successfully received by the
-    recipient.
-
--   `<unreliable/>` A message has been sent to the recipient and it’s
-    status is unknown.
-
-In the case when a message recipient doesn’t support
-[`XEP-0184`](http://xmpp.org/extensions/xep-0184.html) (this is checked
-using it’s capabilities
-([`XEP-0115`](http://xmpp.org/extensions/xep-0115.html))), XMPP pings
-([`XEP-0199`](http://xmpp.org/extensions/xep-0199.html)) are used to
-check the connection status of the recipient after every sent message.
-Since the latter procedure is not very effective, clients are encouraged
-to support [`XEP-0184`](http://xmpp.org/extensions/xep-0184.html).
-
-### `mod_admin_p1` [modadminp]
-
-This module provides additional administration commands. Use
-`ejabberdctl help` to get the detailed information about the commands.
-
-Currently available commands:
 
 ### `mod_announce` [modannounce]
 
@@ -3295,7 +3252,6 @@ hosts in ejabberd.
     and connected to several resources, only the resource with the
     highest priority will receive the message. If the registered user is
     not connected, the message will be stored offline in assumption that
-
     offline storage (see section [modoffline]) is enabled.
 
 `example.org/announce/online (example.org/announce/all-hosts/online)`
@@ -3377,126 +3333,36 @@ Note that `mod_announce` can be resource intensive on large deployments
 as it can broadcast lot of messages. This module should be disabled for
 instances of `ejabberd` with hundreds of thousands users.
 
-### `mod_applepush` [modapplepush]
+###  [modclientstate]
 
-This module allows user connected using Apple devices to receive badges,
-sounds or custom text alerts via
-[` `](http://en.wikipedia.org/wiki/Apple_Push_Notification_Service)<span>Apple
-Push Notification Service</span>. The module partially depends on
-`mod_applepush_service` module and should know where it resides.
+This module allows for queueing or dropping certain types of stanzas
+when a client indicates that the user is not actively using the client
+at the moment (see
+[`XEP-0352`](http://xmpp.org/extensions/xep-0352.html)). This can save
+bandwidth and resources.
 
 Options:
 
-`iqdisc: Discipline`
+`drop_chat_states: true|false`
 
-:   This specifies the processing discipline for Push Packet (`p1:push`)
-    IQ queries (see section [modiqdiscoption]).
+:   Drop most “standalone” Chat State Notifications (as defined in
+    [`XEP-0085`](http://xmpp.org/extensions/xep-0085.html)) while a
+    client indicates inactivity. The default value is `false`.
 
-`push_services: { AppID: ServiceName}`
+`queue_presence: true|false`
 
-:   Specifies an application identifier and an XMPP service route of
-    `mod_applepush_service` module.
-
-`default_services: { Host: ServiceName}`
-
-:   Specifies a list of default XMPP service routes of
-    `mod_applepush_service` module per virtual host. This list is used
-    when an application identifier doesn’t match any routes.
-
-`default_service: ServiceName`
-
-:   Specifies the default service route of `mod_applepush_service`
-    module. This option is used as a last resort. The default is
-    “applepush.localhost”.
-
-`db_type: mnesia|odbc|riak`
-
-:   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
-    have defined the database, see [database].
+:   While a client is inactive, queue presence stanzas that indicate
+    (un)availability. The latest queued stanza of each contact is
+    delivered as soon as the client becomes active again. The default
+    value is `false`.
 
 Example:
 
     modules:
       ...
-      mod_applepush:
-        db_type: odbc
-        default_service: "applepush.localhost"
-        default_services:
-          "gmail.com": "applepush.localhost"
-          "example.org": "applepush.example.org"
-        push_services:
-          "applepush": "applepush.localhost"
-          "applepushdev": "applepushdev.localhost"
-      ...
-
-### `mod_applepush_service` [modapplepushservice]
-
-This module maintains connections to
-[`APNS`](http://en.wikipedia.org/wiki/Apple_Push_Notification_Service)
-server and is used by `mod_applepush` module.
-
-Options:
-
-`hosts: { Host: Options}`
-
-:   Specifies a list of virtual hosts and the corresponding options. The
-    available options are:
-
-    `gateway: Name`
-
-    :   Specifies a domain name of the APNS server. The default is
-        “gateway.push.apple.com”.
-
-    `port: Integer`
-
-    :   Specifies a TCP port of the gateway (APNS server, see above).
-        The default is 2195.
-
-    `certfile: Path`
-
-    :   Specifies a path to file containing PEM-encoded SSL certificate.
-
-    `sound_file: Name`
-
-    :   Specifies a name of a sound file a client will use for push
-        notification alerts. The default is “pushalert.wav”. Note that
-        this name is used by a client only and there are no sound files
-        stored in a server.
-
-    `feedback: Name`
-
-    :   Specifies a domain name of the feedback server. The feedback
-        server is used to receive a reason of failed push notifications.
-
-    `feedback_port: Integer`
-
-    :   Specifies a TCP port of the feedback server (see above). The
-        default is 2196.
-
-    `failure_script: Path`
-
-    :   Specifies a script (shell-executed command) which is triggered
-        when an SSL connection to APNS server failed. The script should
-        accept a single variable - a name of the APNS server.
-
-Example:
-
-    modules:
-      ...
-      mod_applepush_service:
-        hosts:
-          "applepush.localhost":
-            certfile: "ssl.pem"
-            gateway: "localhost"
-            port: 5555
-            sound_file: "alert.wav"
-            failure_script: "/tmp/sript"
-          "applepushdev.localhost":
-            certfile: "ssl.pem"
-            gateway: "localhost"
-            port: 5556
+      mod_client_state:
+        drop_chat_states: true
+        queue_presence: true
       ...
 
 ### `mod_disco` [moddisco]
@@ -3575,22 +3441,22 @@ Examples:
           ...
           mod_disco:
             server_info:
-              -
+              - 
                 modules: all
                 name: "abuse-addresses"
                 urls: ["mailto:abuse@shakespeare.lit"]
-              -
+              - 
                 modules: [mod_muc]
                 name: "Web chatroom logs"
                 urls: ["http://www.example.org/muc-logs"]
-              -
+              - 
                 modules: [mod_disco]
                 name: "feedback-addresses"
                 urls:
                   - "http://shakespeare.lit/feedback.php"
                   - "mailto:feedback@shakespeare.lit"
                   - "xmpp:feedback@shakespeare.lit"
-              -
+              - 
                 modules:
                   - mod_disco
                   - mod_vcard
@@ -3668,7 +3534,7 @@ and add `http_bind` in the HTTP service. For example:
 
     listen:
       ...
-      -
+      - 
         port: 5280
         module: ejabberd_http
         http_bind: true
@@ -3687,7 +3553,7 @@ different module, you can configure it manually using the option
 
     listen:
       ...
-      -
+      - 
         port: 5280
         module: ejabberd_http
         request_handlers:
@@ -3775,7 +3641,7 @@ And define it as a handler in the HTTP service:
 
     listen:
       ...
-      -
+      - 
         port: 5280
         module: ejabberd_http
         request_handlers:
@@ -3801,11 +3667,11 @@ End user information:
     server hosting ‘channel’. And of course the host should point to the
     IRC transport instead of the Multi-User Chat service.
 
--   You can register your nickame by sending ‘IDENTIFY password’ to
+-   You can register your nickame by sending ‘IDENTIFY password’ to  
     `nickserver!irc.example.org@irc.jabberserver.org`.
 
 -   Entering your password is possible by sending ‘LOGIN nick
-    password’
+    password’  
     to `nickserver!irc.example.org@irc.jabberserver.org`.
 
 -   The IRC transport provides Ad-Hoc Commands
@@ -3931,13 +3797,6 @@ but the rooms themselves are not clustered nor fault-tolerant: if the
 node managing a set of rooms goes down, the rooms disappear and they
 will be recreated on an available node on first connection attempt.
 
-If the global option `domain_balancing` is set to `broadcast` (see
-section [domainlb]), then the rooms exist on all nodes of the cluster at
-the same time. It means that all messages published on one instance of a
-room are broadcasted to the instances of the same rooms on all clusters.
-To avoid useless traffic, this broadcast is limited to non empty room
-instances.
-
 Module options:
 
 `host: HostName`
@@ -3990,17 +3849,6 @@ Module options:
     feature and, as a result, nothing is kept in memory. The default
     value is `20`. This value is global and thus affects all rooms on
     the service.
-
-`persistent_history: false|true`
-
-:   Store recent messages of persistent MUC rooms in the ODBC table
-    ’room\_history’ when ejabberd or the MUC service is stopping. Later,
-    when ejabberd is started again, those messages are loaded from the
-    database, and provided as room history when the room occupants join
-    the room. The messages are stored on server shutdown, but if the
-    server crashes the recent history is lost. It is also possible to
-    force the storage immediately by calling the ejabberd command
-    ’persist\_recent\_messages’, using ejabberdctl or other method.
 
 `max_users: Number`
 
@@ -4115,11 +3963,6 @@ Module options:
         (not owner, admin or member), the room requires him to fill a
         CAPTCHA challenge (see section [captcha]) in order to accept her
         join in the room.
-
-    `hibernate_timeout: Seconds`
-
-    :   Remove empty rooms from RAM. The feature is disabled by default.
-        Note that hibernated room is not available in service discovery.
 
     `logging: false|true`
 
@@ -4351,6 +4194,12 @@ Options:
 :   Define the format of the log files: `html` stores in HTML format,
     `plaintext` stores in plain text. The default value is `html`.
 
+`file_permissions: {mode: Mode, group: Group}`
+
+:   Define the permissions that must be used when creating the log
+    files: the number of the mode, and the numeric id of the group that
+    will own the files. The default value is `{644, 33}`.
+
 `outdir: Path`
 
 :   This option sets the full path to the directory in which the HTML
@@ -4386,13 +4235,13 @@ Examples:
     and the time zone will be GMT/UTC. Finally, the top link will be
     `<a href="http://www.jabber.ru/">Jabber.ru</a>`.
 
-        access:
-          muc:
+        access: 
+          muc: 
             all: allow
 
-        modules:
+        modules: 
           ...
-          mod_muc_log:
+          mod_muc_log: 
             access_log: muc
             cssfile: "http://example.com/my.css"
             dirtype: plain
@@ -4400,7 +4249,7 @@ Examples:
             outdir: "/var/www/muclogs"
             timezone: universal
             spam_prevention: true
-            top_link:
+            top_link: 
               "http://www.jabber.ru/": "Jabber.ru"
           ...
 
@@ -4412,83 +4261,28 @@ Examples:
     will be used. Finally, the top link will be the default
     `<a href="/">Home</a>`.
 
-        acl:
-          admin:
-            user:
+        acl: 
+          admin: 
+            user: 
               - "admin1": "example.org"
               - "admin2": "example.net"
-        access:
-          muc_log:
+        access: 
+          muc_log: 
             admin: allow
             all: deny
 
-        modules:
+        modules: 
           ...
-          mod_muc_log:
+          mod_muc_log: 
             access_log: muc_log
             cssfile: false
             dirtype: subdirs
+            file_permissions:
+              mode: 644
+              group: 33
             outdir: "/var/www/muclogs"
             timezone: local
           ...
-
-### `mod_multicast` [modmulticast]
-
-This module implements Extended Stanza Addressing
-([`XEP-0033`](http://xmpp.org/extensions/xep-0033.html)).
-
-`host: HostName`
-
-:   This option defines the Jabber ID of the service. If the `host`
-    option is not specified, the Jabber ID will be the hostname of the
-    virtual host with the prefix ‘`multicast.`’. The keyword “@HOST@” is
-    replaced at start time with the real virtual host name.
-
-`{access, AccessName}`
-
-:   This option specifies the access rule that defines who can send
-    packets to the multicast service. The default value is `all`.
-
-`{limits, [{SenderType, StanzaType, Number}]}`
-
-:   Specify a list of custom limits which override the default ones
-    defined in ([`XEP-0033`](http://xmpp.org/extensions/xep-0033.html)).
-    Where:
-
-    -   SenderType can have values: local or remote.
-
-    -   StanzaType can have values: message or presence.
-
-    -   Number can be a positive integer or the key word infinite.
-
-    The default value is `[]`.
-
-Example configuration:
-
-    %% Only admins can send packets to multicast service
-    {access, multicast, [{allow, admin}, {deny, all}]}.
-
-    %% If you want to allow all your users:
-    %%{access, multicast, [{allow, all}]}.
-
-    %% This allows both admins and remote users to send packets,
-    %% but does not allow local users
-    %%{acl, allservers, {server_glob, "*"}}.
-    %%{access, multicast, [{allow, admin}, {deny, local}, {allow, allservers}]}.
-
-    {modules, [
-      ...
-      {mod_multicast, [
-         %%{host, "multicast.@HOST@"},
-         {access, multicast},
-         {limits, [
-           {local, message, 40},
-           {local, presence, infinite},
-           {remote, message, 150}
-         ]}
-      ]},
-      ...
-    ]}.
 
 ### `mod_offline` [modoffline]
 
@@ -4496,9 +4290,8 @@ This module implements offline message storage
 ([`XEP-0160`](http://xmpp.org/extensions/xep-0160.html)). This means
 that all messages sent to an offline user will be stored on the server
 until that user comes online again. Thus it is very similar to how email
-works. Note that `ejabberdctl`
-
-has a command to delete expired messages (see section [ejabberdctl]).
+works. Note that `ejabberdctl` has a command to delete expired messages
+(see section [ejabberdctl]).
 
 `db_type: mnesia|odbc|riak`
 
@@ -4525,25 +4318,25 @@ has a command to delete expired messages (see section [ejabberdctl]).
 This example allows power users to have as much as 5000 offline
 messages, administrators up to 2000, and all the other users up to 100.
 
-    acl:
-      admin:
-        user:
+    acl: 
+      admin: 
+        user: 
           - "admin1": "localhost"
           - "admin2": "example.org"
-      poweruser:
-        user:
+      poweruser: 
+        user: 
           - "bob": "example.org"
           - "jane": "example.org"
 
-    access:
-      max_user_offline_messages:
+    access: 
+      max_user_offline_messages: 
         poweruser: 5000
         admin: 2000
         all: 100
 
-    modules:
+    modules: 
       ...
-      mod_offline:
+      mod_offline: 
         access_max_user_messages: max_user_offline_messages
       ...
 
@@ -4762,28 +4555,28 @@ Examples:
 
 -   More complicated configuration.
 
-        acl:
-          admin:
-            user:
+        acl: 
+          admin: 
+            user: 
               - "admin": "example.org"
-          proxy_users:
-            server:
+          proxy_users: 
+            server: 
               - "example.org"
 
-        access:
-          proxy65_access:
+        access: 
+          proxy65_access: 
             proxy_users: allow
             all: deny
-          proxy65_shaper:
+          proxy65_shaper: 
             admin: none
             proxy_users: proxyrate
 
-        shaper:
+        shaper: 
           proxyrate: 10240
 
-        modules:
+        modules: 
           ...
-          mod_proxy65:
+          mod_proxy65: 
             host: "proxy1.example.org"
             name: "File Transfer Proxy"
             ip: "200.150.100.1"
@@ -4971,44 +4764,42 @@ Options:
     (`jabber:iq:register`) IQ queries (see section [modiqdiscoption]).
 
 This module reads also another option defined globally for the server:
-`registration_timeout: Timeout`.
-
-This option limits the frequency of registration from a given IP or
-username. So, a user that tries to register a new account from the same
-IP address or JID during this number of seconds after his previous
-registration will receive an error `resource-constraint` with the
-explanation: “Users are not allowed to register accounts so quickly”.
-The timeout is expressed in seconds, and it must be an integer. To
-disable this limitation, instead of an integer put a word like:
-`infinity`. Default value: 600 seconds.
+`registration_timeout: Timeout`. This option limits the frequency of
+registration from a given IP or username. So, a user that tries to
+register a new account from the same IP address or JID during this
+number of seconds after his previous registration will receive an error
+`resource-constraint` with the explanation: “Users are not allowed to
+register accounts so quickly”. The timeout is expressed in seconds, and
+it must be an integer. To disable this limitation, instead of an integer
+put a word like: `infinity`. Default value: 600 seconds.
 
 Examples:
 
 -   Next example prohibits the registration of too short account names,
     and allows to create accounts only to clients of the local network:
 
-        acl:
+        acl: 
           loopback:
             ip:
               - "127.0.0.0/8"
               - "::"
-          shortname:
-            user_glob:
+          shortname: 
+            user_glob: 
               - "?"
               - "??"
             ## The same using regexp:
             ##user_regexp: "^..?$"
 
-        access:
-          mynetworks:
+        access: 
+          mynetworks: 
             loopback: allow
             all: deny
-          register:
+          register: 
             shortname: deny
             all: allow
 
-        modules:
-          mod_register:
+        modules: 
+          mod_register: 
             ip_access: mynetworks
             access: register
 
@@ -5048,7 +4839,7 @@ Examples:
                 Hi.
                 Welcome to this Jabber server.
                 Check http://www.jabber.org
-
+                
                 Bye
             registration_watchers:
               - "admin1@example.org"
@@ -5078,13 +4869,13 @@ Options:
 This example configuration shows how to enable the module and the web
 handler:
 
-    hosts:
+    hosts: 
       - "localhost"
       - "example.org"
       - "example.com"
-    listen:
+    listen: 
       ...
-      -
+      - 
         port: 5281
         module: ejabberd_http
         register: true
@@ -5092,7 +4883,7 @@ handler:
         tls: true
       ...
 
-    modules:
+    modules: 
       ...
       mod_register_web: {}
       ...
@@ -5136,29 +4927,6 @@ Options:
     This option is disabled by default. Important: if you use
     `mod_shared_roster` or `mod_shared_roster_ldap`, you must disable
     this option.
-
-`use_cache: false|true`
-
-:   Enables caching of users rosters in RAM. The option is only
-    available when `db_type` is set to `odbc`. This option is disabled
-    by default. Use this option with extreme care in clustered
-    environment: if the same user is connected to several nodes then
-    roster modifications won’t be propagated to other nodes’ caches. You
-    can use small `cache_life_time` values to minimize probability of
-    such situation though.
-
-`cache_life_time: Seconds`
-
-:   Sets cache life time in seconds. Implies that caching is enabled.
-    The default is 5 seconds. Such small default value reflects the
-    common usage: repeatable roster reads on user login.
-
-`cache_size: Integer|unlimited`
-
-:   This option limits the maximum number of users rosters kept in the
-    cache. Big cache size leads to RAM consumption. Small cache size
-    leads to disc/network consumption. The option implies that caching
-    is enabled. The default is 1000.
 
 `access`
 
@@ -5302,24 +5070,18 @@ Examples:
     each other in their rosters. To achieve this, they need to create a
     shared roster group similar to next table:
 
-    Identification:
-    : Group ‘`club_members`’
+    <span>|l|l|</span> Identification& Group ‘`club_members`’  
+    Name& Club Members  
+    Description& Members from the computer club  
+    Members&
 
-    Name:
-    : Club Members
+    |:----------------------|
+    | `member1@example.org` |
+    | `member2@example.org` |
+    | `member3@example.org` |
 
-    Description:
-    : Members from the computer club
-
-    Members:
-    : * `member1@example.org`
-      * `member2@example.org`
-      * `member3@example.org`
-      * `member4@example.org`
-
-    Displayed groups:
-    : * `club_members`
-
+      
+    Displayed groups& `club_members`  
 
 -   In another case we have a company which has three divisions:
     Management, Marketing and Sales. All group members should see all
@@ -5329,68 +5091,55 @@ Examples:
     This scenario can be achieved by creating shared roster groups as
     shown in the following table:
 
-    #### Management
+    <span>|l|l|l|l|</span> Identification& Group ‘`management`’& Group
+    ‘`marketing`’& Group ‘`sales`’  
+    Name& Management& Marketing& Sales  
+    Description&  
+    Members&
 
-    Identification:
-    : Group ‘`management`’
+    |:-----------------------|
+    | `manager1@example.org` |
+    | `manager2@example.org` |
+    | `manager3@example.org` |
+    | `manager4@example.org` |
 
-    Name:
-    : Management
+    &
 
-    Description:
-    : Members from the management
+    |:-------------------------|
+    | `marketeer1@example.org` |
+    | `marketeer2@example.org` |
+    | `marketeer3@example.org` |
+    | `marketeer4@example.org` |
 
-    Members:
-    : * `manager1@example.org`
-      * `manager2@example.org`
-      * `manager3@example.org`
-      * `manager4@example.org`
+    &
 
-    Displayed groups:
-    : * `management`
-      * `marketing`
-      * `sales`
+    |:--------------------------|
+    | `saleswoman1@example.org` |
+    | `salesman1@example.org`   |
+    | `saleswoman2@example.org` |
+    | `salesman2@example.org`   |
 
-    #### Marketing
+      
+    Displayed groups&
 
-    Identification:
-    : Group ‘`marketing`’
+    |:-------------|
+    | `management` |
+    | `marketing`  |
+    | `sales`      |
 
-    Name:
-    : Marketing
+    &
 
-    Description:
-    : Members from the marketing team
+    |:-------------|
+    | `management` |
+    | `marketing`  |
 
-    Members:
-    : * `marketer1@example.org`
-      * `marketer2@example.org`
-      * `marketer3@example.org`
+    &
 
-    Displayed groups:
-    : * `management`
-      * `marketing`
+    |:-------------|
+    | `management` |
+    | `sales`      |
 
-    #### Sales
-
-    Identification:
-    : Group ‘`sales`’
-
-    Name:
-    : Sales
-
-    Description:
-    : Members from the sales team
-
-    Members:
-    : * `saleswoman1@example.org`
-      * `saleswoman2@example.org`
-      * `salesman1@example.org`
-      * `salesman2@example.org`
-
-    Displayed groups:
-    : * `sales`
-      * `marketing`
+      
 
 ### `mod_shared_roster_ldap` [modsharedrosterldap]
 
@@ -5709,9 +5458,9 @@ different subtrees, but it’s not a requirement.
 
 If you use the following example module configuration with it:
 
-    modules:
+    modules: 
       ...
-      mod_shared_roster_ldap:
+      mod_shared_roster_ldap: 
         ldap_base: "ou=deep,dc=nodomain"
         ldap_rfilter: "(objectClass=groupOfUniqueNames)"
         ldap_filter: ""
@@ -5806,15 +5555,15 @@ Example complex configuration:
         flow_timeout_udp: 30
         flow_timeout_tcp: 130
         via:
-          -
+          - 
             type: tls
             host: "sip-tls.example.com"
             port: 5061
-          -
+          - 
             type: tcp
             host: "sip-tcp.example.com"
             port: 5060
-          -
+          - 
             type: udp
             host: "sip-udp.example.com"
             port: 5060
@@ -5846,11 +5595,10 @@ Options:
     (`http://jabber.org/protocol/stats`) IQ queries (see
     section [modiqdiscoption]).
 
-As there are only a small amount of clients (for
-
-example [`Tkabber`](http://tkabber.jabber.ru/)) and software libraries
-with support for this XEP, a few examples are given of the XML you need
-to send in order to get the statistics. Here they are:
+As there are only a small amount of clients (for example
+[`Tkabber`](http://tkabber.jabber.ru/)) and software libraries with
+support for this XEP, a few examples are given of the XML you need to
+send in order to get the statistics. Here they are:
 
 -   You can request the number of online users on the current virtual
     host (`example.org`) by sending:
@@ -6019,9 +5767,7 @@ The second group of parameters consists of the following
 `{ldap_vcard_map, [ {Name, Pattern, LDAPattributes}, ...]}`
 
 :   With this option you can set the table that maps LDAP attributes to
-    vCard fields.
-
-    `Name` is the type name of the vCard as defined in
+    vCard fields. `Name` is the type name of the vCard as defined in
     [`RFC 2426`](http://tools.ietf.org/html/rfc2426). `Pattern` is a
     string which contains pattern variables `%u`, `%d` or `%s`.
     `LDAPattributes` is the list containing LDAP attributes. The pattern
@@ -6258,6 +6004,10 @@ used for specific results. This can be used by other scripts to
 determine automatically if a command succeeded or failed, for example
 using: `echo $?`
 
+If you use Bash, you can get Bash completion by copying the file
+`tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
+Debian, Ubuntu, Fedora and maybe others).
+
 ### ejabberdctl Commands [ectl-commands]
 
 When `ejabberdctl` is executed without any parameter, it displays the
@@ -6323,7 +6073,7 @@ then you can do this in the shell:
 
     $ ejabberdctl registered_users example.org
     Error: no_auth_provided
-    $ ejabberdctl --auth robot1 example.org E8B501798950FC58AAD83C8C14978E registered_users example.org
+    $ ejabberdctl --auth robot1 example.org abcdef registered_users example.org
     robot1
     testuser1
     testuser2
@@ -6490,8 +6240,9 @@ service), `mod_shcommands` (ejabberd WebAdmin page).
 
 ### List of ejabberd Commands [list-eja-commands]
 
-`ejabberd` includes a few ejabberd Commands by default. When more
-modules are installed, new commands may be available in the frontends.
+`ejabberd` includes a few ejabberd Commands by default as listed below.
+When more modules are installed, new commands may be available in the
+frontends.
 
 The easiest way to get a list of the available commands, and get help
 for them is to use the ejabberdctl script:
@@ -6505,7 +6256,16 @@ for them is to use the ejabberdctl script:
       connected_users_number       Get the number of established sessions
       ...
 
-The most interesting ones are:
+The commands included in ejabberd by default are:
+
+`stop_kindly delay announcement`
+
+:   Inform users and rooms, wait, and stop the server. Provide the delay
+    in seconds, and the announcement quoted.
+
+`registered_vhosts`
+
+:   List all registered vhosts in SERVER
 
 `reopen_log`
 
@@ -6560,9 +6320,30 @@ The most interesting ones are:
     tutorials to
     [`migrate from other software to ejabberd`](http://www.ejabberd.im/migrate-to-ejabberd).
 
-`export_odbc virtualhost filename`
+`set_master nodename`
 
-:   Export virtual host information from Mnesia tables to a SQL file.
+:   Set master node of the clustered Mnesia tables. If you provide as
+    nodename “self”, this node will be set as its own master.
+
+`mnesia_change_nodename oldnodename newnodename oldbackup newbackup`
+
+:   Change the erlang node name in a backup file
+
+`export2odbc virtualhost directory`
+
+:   Export virtual host information from Mnesia tables to SQL files.
+
+`update_list`
+
+:   List modified modules that can be updated
+
+`update module`
+
+:   Update the given module, or use the keyword: all
+
+`reload_config`
+
+:   Reload ejabberd configuration file into memory
 
 `delete_expired_messages`
 
@@ -6574,6 +6355,14 @@ The most interesting ones are:
 
 :   Delete offline messages older than the given days.
 
+`incoming_s2s_number`
+
+:   Number of incoming s2s connections on the node
+
+`outgoing_s2s_number`
+
+:   Number of outgoing s2s connections on the node
+
 `register user host password`
 
 :   Register an account in that domain with the given password.
@@ -6581,6 +6370,26 @@ The most interesting ones are:
 `unregister user host`
 
 :   Unregister the given account.
+
+`registered_users host`
+
+:   List all registered users in HOST
+
+`connected_users`
+
+:   List all established sessions
+
+`connected_users_number`
+
+:   Get the number of established sessions
+
+`user_resources user host`
+
+:   List user’s connected resources
+
+`kick_user user host`
+
+:   Disconnect user’s active sessions
 
 ### Restrict Execution with AccessCommands [accesscommands]
 
@@ -6610,8 +6419,7 @@ authentication information is provided when executing a command, and is
 Username, Hostname and Password of a local XMPP account that has
 permission to execute the corresponding command. This means that the
 account must be registered in the local ejabberd, because the
-information will be verified. It is possible to provide the plaintext
-password or its MD5 sum.
+information will be verified.
 
 When one or several access restrictions are defined and the
 authentication information is provided, each restriction is verified
@@ -6702,49 +6510,47 @@ access.
 
 Example configurations:
 
--   You can serve the Web Admin on the same port as the
-
-    HTTP Polling interface. In this example you should point your web
-    browser to `http://example.org:5280/admin/` to administer all
-    virtual hosts or to
-    `http://example.org:5280/admin/server/example.com/` to administer
+-   You can serve the Web Admin on the same port as the HTTP Polling
+    interface. In this example you should point your web browser to
+    `http://example.org:5280/admin/` to administer all virtual hosts or
+    to `http://example.org:5280/admin/server/example.com/` to administer
     only the virtual host `example.com`. Before you get access to the
     Web Admin you need to enter as username, the JID and password from a
     registered user that is allowed to configure `ejabberd`. In this
     example you can enter as username ‘`admin@example.net`’ to
     administer all virtual hosts (first URL). If you log in with
-    ‘`admin@example.com`’ on
+    ‘`admin@example.com`’ on  
     `http://example.org:5280/admin/server/example.com/` you can only
     administer the virtual host `example.com`. The account
     ‘`reviewer@example.com`’ can browse that vhost in read-only mode.
 
-        acl:
-          admin:
-            user:
+        acl: 
+          admin: 
+            user: 
               - "admin": "example.net"
 
-        host_config:
-          "example.com":
-            acl:
-              admin:
-                user:
+        host_config: 
+          "example.com": 
+            acl: 
+              admin: 
+                user: 
                   - "admin": "example.com"
-              viewers:
-                user:
+              viewers: 
+                user: 
                   - "reviewer": "example.com"
 
-        access:
-          configure:
+        access: 
+          configure: 
             admin: allow
-          webadmin_view:
+          webadmin_view: 
             viewers: allow
 
-        hosts:
+        hosts: 
           - "example.org"
 
-        listen:
+        listen: 
           ...
-          -
+          - 
             port: 5280
             module: ejabberd_http
             web_admin: true
@@ -6756,15 +6562,15 @@ Example configurations:
     bind it to the internal LAN IP. The Web Admin will be accessible by
     pointing your web browser to `https://192.168.1.1:5282/admin/`:
 
-        hosts:
+        hosts: 
           - "example.org"
-        listen:
+        listen: 
           ...
-          -
+          - 
             port: 5280
             module: ejabberd_http
             http_poll: true
-          -
+          - 
             ip: "192.168.1.1"
             port: 5282
             module: ejabberd_http
@@ -6877,7 +6683,7 @@ Firewall Settings [firewall]
 You need to take the following TCP ports in mind when configuring your
 firewall:
 
-| **Port**              | **Description**                                                                             |
+| <span>**Port**</span> | <span>**Description**</span>                                                                |
 |:----------------------|:--------------------------------------------------------------------------------------------|
 | 5222                  | Standard port for Jabber/XMPP client connections, plain or STARTTLS.                        |
 | 5223                  | Standard port for Jabber client connections using the old SSL method.                       |
@@ -6903,8 +6709,7 @@ Erlang node that holds `ejabberd`. In order for this communication to
 work, `epmd` must be running and listening for name requests in the port
 4369. You should block the port 4369 in the firewall in such a way that
 only the programs in your machine can access it. or configure the option
-`ERL_EPMD_ADDRESS` in the file `ejabberdctl.cfg` (this option works only
-in Erlang/OTP R14B03 or higher).
+`ERL_EPMD_ADDRESS` in the file `ejabberdctl.cfg`.
 
 If you build a cluster of several `ejabberd` instances, each `ejabberd`
 instance is called an `ejabberd` node. Those `ejabberd` nodes use a
@@ -6927,25 +6732,6 @@ interface where the Erlang node will listen and accept connections. The
 Erlang command-line parameter used internally is, for example:
 
     erl ... -kernel inet_dist_use_interface "{127,0,0,1}"
-
-Secure internode connections [ssldist]
-----------------------------
-
-It is possible to protect internode connections using SSL. You need to
-create a “boot” file for doing that. The script `tools/start_ssl.sh` can
-do that for you:
-
-    $ tools/start_ssl.sh
-
-The script will create `start_ssl.boot` file in the current directory.
-Now you should use this file and your SSL certificate to run the
-emulator:
-
-    $ erl -boot start_ssl \
-          -proto_dist inet_tls \
-          -ssl_dist_opt server_certfile /path/to/certfile.pem \
-          -ssl_dist_opt server_secure_renegotiate true \
-          -ssl_dist_opt client_secure_renegotiate true
 
 Erlang Cookie [cookie]
 -------------
@@ -7028,44 +6814,47 @@ must have the ability to connect to port 4369 of all another nodes, and
 must have the same magic cookie (see Erlang/OTP documentation, in other
 words the file `~ejabberd/.erlang.cookie` must be the same on all
 nodes). This is needed because all nodes exchange information about
-connected users, MUC rooms, registered services, etc…
+connected users, s2s connections, registered services, etc…
 
-`ejabberd` uses
-[`consistent hashing`](http://en.wikipedia.org/wiki/Consistent_hashing)
-approach to store data across the nodes in the cluster. For instance,
-when a C2S session or a MUC room is created, the corresponding Erlang
-process is created and a reference pointing to this process is stored in
-the corresponding node. When another process wishes to send a message to
-this process, it routes the message to the node holding it’s reference.
-This node performs a lookup for the reference and, if found, routes the
-message torwards the referenced process. Note that in general the
-referenced process might not reside on the same node. Thus, another
-internode round-trip is needed to reach the referenced process.
+Each `ejabberd` node has the following modules:
 
-Such approach allows `ejabberd` to get rid of data replication and thus
-to be more effective in internode communications. Node (dis)connects are
-handled in the following manner:
+-   router,
 
--   When some node goes down, it gets removed from the hashing on other
-    nodes. Due to nature of consistent hasing, no further procedures are
-    needed to be done.
+-   local router,
 
--   When some node goes up, a rebalancing procedure is performed on
-    other nodes.
+-   session manager,
 
-    -   References are duplicated to other nodes according to the new
-        hash values. This process is limited in time and is controlled
-        by `rehash_timeout` option. The default value is 30 seconds.
+-   s2s manager.
 
-    -   As the second phase, some processes are copied (migrated) to
-        other nodes according to the new hash value. This is limited as
-        well and can be configured by `migrate_timeout` option. The
-        default is 120 seconds. The smaller timeout forces the processes
-        to migrate faster. So, it is not recommended to set it to very
-        small values in order to avoid an avalanche effect.
+### Router
 
-Note however that some of these techniques can be changed in the future
-releases.
+This module is the main router of XMPP packets on each node. It routes
+them based on their destination’s domains. It uses a global routing
+table. The domain of the packet’s destination is searched in the routing
+table, and if it is found, the packet is routed to the appropriate
+process. If not, it is sent to the s2s manager.
+
+### Local Router [localrouter]
+
+This module routes packets which have a destination domain equal to one
+of this server’s host names. If the destination JID has a non-empty user
+part, it is routed to the session manager, otherwise it is processed
+depending on its content.
+
+### Session Manager [sessionmanager]
+
+This module routes packets to local users. It looks up to which user
+resource a packet must be sent via a presence table. Then the packet is
+either routed to the appropriate c2s process, or stored in offline
+storage, or bounced back.
+
+### s2s Manager [s2smanager]
+
+This module routes packets to other XMPP servers. First, it checks if an
+opened s2s connection from the domain of the packet’s source to the
+domain of the packet’s destination exists. If that is the case, the s2s
+manager routes the packet to the process serving this connection,
+otherwise a new connection is opened.
 
 Clustering Setup [cluster]
 ----------------
@@ -7162,11 +6951,9 @@ is the following:
 
 `domain_balancing: BalancingCriteria`
 
-:
+:   
 
 Several balancing criteria are available:
-
--   `broadcast`: ???
 
 -   `destination`: the full JID of the packet `to` attribute is used.
 
@@ -7197,7 +6984,7 @@ The syntax is:
 
 `domain_balancing_component_number: Number`
 
-:
+:   
 
 Debugging
 =========
@@ -7271,23 +7058,23 @@ When the limit is reached the similar warning message is logged:
 
     lager_error_logger_h dropped 800 messages in the last second that exceeded the limit of 100 messages/sec
 
-By default `ejabberd` rotates the log files every day at midnight. The
-exact value is controlled by `log_rotate_date` option. The syntax is:
-
-`log_rotate_date: D`
-
-:   Where D is a string with syntax is taken from the syntax newsyslog
-    uses in newsyslog.conf. The default value is `$D0` (every day at
-    midnight).
-
-`ejabberd` can also rotates the log files when they get grown above a
+By default `ejabberd` rotates the log files when they get grown above a
 certain size. The exact value is controlled by `log_rotate_size` option.
 The syntax is:
 
 `log_rotate_size: N`
 
 :   Where N is the maximum size of a log file in bytes. The default
-    value is 0 (no rotation given log size).
+    value is 10485760 (10Mb).
+
+`ejabberd` can also rotates the log files at given date interval. The
+exact value is controlled by `log_rotate_date` option. The syntax is:
+
+`log_rotate_date: D`
+
+:   Where D is a string with syntax is taken from the syntax newsyslog
+    uses in newsyslog.conf. The default value is `` (no rotation
+    triggered by date).
 
 However, you can rotate the log files manually. For doing this, set
 `log_rotate_size` option to 0 and `log_rotate_date` to empty list, then,
@@ -7327,15 +7114,13 @@ Watchdog Alerts [watchdog]
 developers when troubleshooting a problem related to memory usage. If a
 process in the `ejabberd` server consumes more memory than the
 configured threshold, a message is sent to the XMPP accounts defined
-with the option `watchdog_admins`
-
-in the `ejabberd` configuration file.
+with the option `watchdog_admins` in the `ejabberd` configuration file.
 
 The syntax is:
 
 `watchdog_admins: [JID, ...]`
 
-:
+:   
 
 The memory consumed is measured in `words`: a word on 32-bit
 architecture is 4 bytes, and a word on 64-bit architecture is 8 bytes.
@@ -7347,7 +7132,7 @@ The syntax is:
 
 `watchdog_large_heap: Number`
 
-:
+:   
 
 Example configuration:
 
@@ -7432,7 +7217,7 @@ Thanks to all people who contributed to this guide:
 Copyright Information [copyright]
 =====================
 
-Ejabberd Installation and Operation Guide.
+Ejabberd Installation and Operation Guide.  
 Copyright © 2003 — 2015 ProcessOne
 
 This document is free software; you can redistribute it and/or modify it
