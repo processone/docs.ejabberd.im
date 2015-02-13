@@ -1,5 +1,5 @@
-Introduction [intro]
-============
+# Introduction
+
 
 `ejabberd` is a *free and open source* instant messaging server written
 in [`Erlang/OTP`](http://www.erlang.org/).
@@ -13,8 +13,7 @@ server.
 `ejabberd` is suitable for small deployments, whether they need to be
 *scalable* or not, as well as extremely big deployments.
 
-Key Features [keyfeatures]
-------------
+## Key Features
 
 `ejabberd` is:
 
@@ -69,8 +68,7 @@ Key Features [keyfeatures]
 
     -   [`Many protocols supported`](http://www.ejabberd.im/protocols).
 
-Additional Features [addfeatures]
--------------------
+## Additional Features
 
 Moreover, `ejabberd` comes with a wide range of other state-of-the-art
 features:
@@ -144,11 +142,9 @@ features:
     -   Component support: interface with networks such as AIM, ICQ and
         MSN installing special tranports.
 
-Installing `ejabberd` [installing]
-=====================
+# Installing `ejabberd`
 
-Installing `ejabberd` with Binary Installer [install.binary]
--------------------------------------------
+## Installing `ejabberd` with Binary Installer
 
 Probably the easiest way to install an `ejabberd` instant messaging
 server is using the binary installer published by ProcessOne. The binary
@@ -212,8 +208,7 @@ directory. Please refer to the section [ejabberdctl] for details about
 `ejabberdctl`, and configurable options to fine tune the Erlang runtime
 system.
 
-Installing `ejabberd` with Operating System Specific Packages [install.os]
--------------------------------------------------------------
+## Installing `ejabberd` with Operating System Specific Packages
 
 Some Operating Systems provide a specific `ejabberd` package adapted to
 the system architecture and libraries. It usually also checks
@@ -225,8 +220,7 @@ information.
 Usually those packages create a script like `/etc/init.d/ejabberd` to
 start and stop `ejabberd` as a service at boot time.
 
-Installing `ejabberd` with CEAN [install.cean]
--------------------------------
+## Installing `ejabberd` with CEAN
 
 [`CEAN`](http://cean.process-one.net/) (Comprehensive Erlang Archive
 Network) is a repository that hosts binary packages from many Erlang
@@ -240,14 +234,13 @@ how you handle your CEAN installation. The default `ejabberdctl` script
 is located into `ejabberd`’s priv directory and can be used as an
 example.
 
-Installing `ejabberd` from Source Code [installation]
---------------------------------------
+## Installing `ejabberd` from Source Code
 
 The canonical form for distribution of `ejabberd` stable releases is the
 source code package. Compiling `ejabberd` from source code is quite easy
 in \*nix systems, as long as your system have all the dependencies.
 
-### Requirements [installreq]
+### Requirements
 
 To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 
@@ -275,7 +268,7 @@ To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 -   ImageMagick’s Convert program. Optional. For CAPTCHA challenges. See
     section [captcha].
 
-### Download Source Code [download]
+### Download Source Code
 
 Released versions of `ejabberd` are available in the ProcessOne
 `ejabberd` downloads page:
@@ -485,13 +478,13 @@ your distribution). Create a system user called `ejabberd`; it will be
 used by the script to start the server. Then you can call
 `/etc/inid.d/ejabberd start` as root to start the server.
 
-### Specific Notes for BSD [bsd]
+### Specific Notes for BSD
 
 The command to compile `ejabberd` in BSD systems is:
 
     gmake
 
-### Specific Notes for Sun Solaris [solaris]
+### Specific Notes for Sun Solaris
 
 You need to have `GNU install`, but it isn’t included in Solaris. It can
 be easily installed if your Solaris system is set up for
@@ -509,9 +502,9 @@ And finally install `ejabberd` with:
 
     gmake -f Makefile.gi ginstall
 
-### Specific Notes for Microsoft Windows [windows]
+### Specific Notes for Microsoft Windows
 
-#### Requirements [windowsreq]
+#### Requirements
 
 To compile `ejabberd` on a Microsoft Windows system, you need:
 
@@ -529,7 +522,7 @@ To compile `ejabberd` on a Microsoft Windows system, you need:
 
 -   [`Zlib 1.2.3 or higher`](http://www.zlib.net/)
 
-#### Compilation [windowscom]
+#### Compilation
 
 We assume that we will try to put as much library as possible into
 `C:\sdk\` to make it easier to track what is install for `ejabberd`.
@@ -574,8 +567,7 @@ We assume that we will try to put as much library as possible into
 
         werl -s ejabberd -name ejabberd
 
-Create an XMPP Account for Administration [initialadmin]
------------------------------------------
+## Create an XMPP Account for Administration
 
 You need an XMPP account and grant him administrative privileges to
 enter the `ejabberd` Web Admin:
@@ -612,8 +604,7 @@ enter the `ejabberd` Web Admin:
     example: `admin1@example.org`. The reason that you also need to
     enter the suffix, is because `ejabberd`’s virtual hosting support.
 
-Upgrading `ejabberd` [upgrade]
---------------------
+## Upgrading `ejabberd`
 
 To upgrade an ejabberd installation to a new version, simply uninstall
 the old version, and then install the new one. Of course, it is
@@ -625,11 +616,9 @@ when needed. If you also use an external database for storage of some
 modules, check if the release notes of the new ejabberd version
 indicates you need to also update those tables.
 
-Configuring `ejabberd` [configure]
-======================
+# Configuring `ejabberd`
 
-Basic Configuration [basicconfig]
--------------------
+## Basic Configuration
 
 The configuration file will be loaded the first time you start
 `ejabberd`. The configuration file name MUST have “.yml” extension. This
@@ -675,7 +664,7 @@ are treated as different types:
 
     Note that both styles are used in this document.
 
-### Legacy Configuration File [oldconfig]
+### Legacy Configuration File
 
 In previous `ejabberd` version the configuration file should be written
 in Erlang terms. The format is still supported, but it is highly
@@ -706,7 +695,7 @@ for example:
             function: try_register
             arguments: "> [\"user1\", \"localhost\", \"pass\"]."
 
-### Host Names [hostnames]
+### Host Names
 
 The option `hosts` defines a list containing one or more domains that
 `ejabberd` will serve.
@@ -730,7 +719,7 @@ Examples:
           - "example.com"
           - "jabber.somesite.org"
 
-### Virtual Hosting [virtualhost]
+### Virtual Hosting
 
 Options can be defined separately for every virtual host using the
 `host_config` option.
@@ -821,7 +810,7 @@ are also other different modules for some specific virtual hosts:
           mod_echo:
             host: "mirror.two.example.org"
 
-### Listening Ports [listened]
+### Listening Ports
 
 The option `listen` defines for which ports, addresses and network
 protocols `ejabberd` will listen and what services will be run on them.
@@ -854,7 +843,7 @@ Example:
         module: ejabberd_s2s_in
         transport: tcp
 
-#### Port Number, IP Address and Transport Protocol [listened-port]
+#### Port Number, IP Address and Transport Protocol
 
 The port number defines which port to listen for incoming connections.
 It can be a Jabber/XMPP standard port (see section [firewall]) or any
@@ -879,7 +868,7 @@ Some example values for IP address:
 
 The transport protocol can be `tcp` or `udp`. Default is `tcp`.
 
-#### Listening Module [listened-module]
+#### Listening Module
 
 The available modules, their purpose and the options allowed by each one
 are:
@@ -938,7 +927,7 @@ are:
     new format, and example calls in several languages in the old
     [`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
 
-#### Options [listened-options]
+#### Options
 
 This is a detailed description of each option allowed by the listening
 modules:
@@ -1285,7 +1274,7 @@ ejabberd configuration file (outside `listen`):
     or to foreign server using S2S (compliant with
     [`RFC 3920 bis`](http://tools.ietf.org/html/draft-saintandre-rfc3920bis-09#section-11.3)).
 
-#### Examples [listened-examples]
+#### Examples
 
 For example, the following simple configuration defines:
 
@@ -1562,7 +1551,7 @@ the transports log and do XDB by themselves:
         </xdb_file>
       </xdb>
 
-### Authentication [auth]
+### Authentication
 
 The option `auth_method` defines the authentication methods that are
 used for user authentication. The syntax is:
@@ -1620,7 +1609,7 @@ as lowercase or uppercase strings. The option syntax is:
 
 :   
 
-#### Internal [internalauth]
+#### Internal
 
 `ejabberd` uses its internal Mnesia database as the default
 authentication method. The value `internal` will enable the internal
@@ -1664,7 +1653,7 @@ Examples:
         auth_method: internal
         auth_password_format: scram
 
-#### External Script [extauth]
+#### External Script
 
 In this authentication method, when `ejabberd` starts, it start a
 script, and calls it to perform authentication tasks.
@@ -1709,7 +1698,7 @@ each virtual host defined in ejabberd:
     extauth_cache: 600
     extauth_instances: 3
 
-#### Anonymous Login and SASL Anonymous [saslanonymous]
+#### Anonymous Login and SASL Anonymous
 
 The `anonymous` authentication method enables two modes for anonymous
 authentication:
@@ -1807,7 +1796,7 @@ Examples:
 There are more configuration examples and XMPP client example stanzas in
 [`Anonymous users support`](http://www.ejabberd.im/Anonymous-users-support).
 
-#### PAM Authentication [pam]
+#### PAM Authentication
 
 `ejabberd` supports authentication via Pluggable Authentication Modules
 (PAM). PAM is currently supported in AIX, FreeBSD, HP-UX, Linux, Mac OS
@@ -1879,9 +1868,9 @@ introduces some security issues:
     Directory, then `/etc/nsswitch.conf` must be configured to use
     `winbind` as well.
 
-### Access Rules [accessrules]
+### Access Rules
 
-#### ACL Definition [ACLDefinition]
+#### ACL Definition
 
 Access control in `ejabberd` is performed via Access Control Lists
 (ACLs). The declarations of ACLs in the configuration file have the
@@ -2056,7 +2045,7 @@ The following `ACLName` are pre-defined:
 
 :   Matches no JID.
 
-#### Access Rights [AccessRights]
+#### Access Rights
 
 An entry allowing or denying access to different services. The syntax
 is:
@@ -2096,7 +2085,7 @@ The following `AccessName` are pre-defined:
 
 :   Always returns the value ‘`deny`’.
 
-#### Limiting Opened Sessions with ACL [configmaxsessions]
+#### Limiting Opened Sessions with ACL
 
 The special access `max_user_sessions` specifies the maximum number of
 sessions (authenticated connections) per user. If a user tries to open
@@ -2119,7 +2108,7 @@ and to 10 for admins:
         admin: 10
         all: 5
 
-#### Several connections to a remote XMPP server with ACL [configmaxs2sconns]
+#### Several connections to a remote XMPP server with ACL
 
 The special access `max_s2s_connections` specifies how many simultaneous
 S2S connections can be established to a specific remote XMPP server. The
@@ -2167,7 +2156,7 @@ Examples:
         shaper:
           fast: 50000
 
-### Default Language [language]
+### Default Language
 
 The option `language` defines the default language of server strings
 that can be seen by XMPP clients. If a XMPP client does not support
@@ -2238,7 +2227,7 @@ Example configuration:
         captcha: true
       ...
 
-### STUN and TURN [stun]
+### STUN and TURN
 
 `ejabberd` is able to act as a stand-alone STUN/TURN server
 ([`RFC 5389`](http://tools.ietf.org/html/rfc5389)/[`RFC 5766`](http://tools.ietf.org/html/rfc5766)).
@@ -2421,7 +2410,7 @@ Example configuration of SRV records with standard ports (as per
     _sip._tcp   IN SRV  0 0 5060 sip.example.com.
     _sips._tcp  IN SRV  0 0 5061 sip.example.com.
 
-### Include Additional Configuration Files [includeconfigfile]
+### Include Additional Configuration Files
 
 The option `include_config_file` in a configuration file instructs
 `ejabberd` to include other configuration files immediately.
@@ -2492,7 +2481,7 @@ and content of the file `acl_and_access.yml` can be, for example:
           - "bob": "localhost"
           - "jan": "localhost"
 
-### Option Macros in Configuration File [optionmacros]
+### Option Macros in Configuration File
 
 In the `ejabberd` configuration file, it is possible to define a macro
 for a value and later use this macro when defining an option.
@@ -2563,8 +2552,7 @@ produces this result after being interpreted:
         port: 5280
         module: ejabberd_http
 
-Database and LDAP Configuration [database]
--------------------------------
+## Database and LDAP Configuration
 
 `ejabberd` uses its internal Mnesia database by default. However, it is
 possible to use a relational database, key-value storage or an LDAP
@@ -2683,7 +2671,7 @@ Example of MySQL connection:
     odbc_password: "**********"
     odbc_pool_size: 5
 
-#### Storage [odbcstorage]
+#### Storage
 
 An ODBC compatible database also can be used to store information into
 from several `ejabberd` modules. See section [modoverview] to see which
@@ -2702,7 +2690,7 @@ stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
 [`RFC 3062`](http://tools.ietf.org/html/rfc3062).
 
-#### Connection [ldapconnection]
+#### Connection
 
 Two connections are established to the LDAP server per vhost, one for
 authentication and other for regular calls.
@@ -2774,7 +2762,7 @@ Example:
     ldap_rootdn: "cn=Manager,dc=domain,dc=org"
     ldap_password: "**********"
 
-#### Authentication [ldapauth]
+#### Authentication
 
 You can authenticate users against an LDAP directory. Note that current
 LDAP implementation does not support SASL authentication.
@@ -2847,9 +2835,9 @@ Available options are:
         {ldap_local_filter, {equal, {"accountStatus",["enabled"]}}}.
         {ldap_local_filter, undefined}.
 
-#### Examples [ldapexamples]
+#### Examples
 
-##### Common example [ldapcommonexample]
+##### Common example
 
 Let’s say `ldap.example.org` is the name of our LDAP server. We have
 users with their passwords in `ou=Users,dc=example,dc=org` directory.
@@ -2921,7 +2909,7 @@ Also we want users to search each other. Let’s see how we can set it up:
 Note that `mod_vcard_ldap` module checks for the existence of the user
 before searching in his information in LDAP.
 
-##### Active Directory [ad]
+##### Active Directory
 
 Active Directory is just an LDAP-server with predefined attributes. A
 sample configuration is shown below:
@@ -2977,7 +2965,7 @@ sample configuration is shown below:
 store. The actual database access is defined in the options with `riak_`
 prefix.
 
-#### Connection [riakconnection]
+#### Connection
 
 The following paramaters are available:
 
@@ -3006,7 +2994,7 @@ Example configuration:
     riak_server: "riak.server.com"
     riak_port: 9097
 
-#### Storage [riakstorage]
+#### Storage
 
 Several `ejabberd` modules can be used to store information in Riak
 database. Refer to the corresponding module documentation to see if it
@@ -3014,7 +3002,7 @@ supports such ability. To enable storage to Riak database, just make
 sure that your database is running well (see the next section), and add
 the module option `db_type: riak`.
 
-#### Riak Configuration [riakconfiguration]
+#### Riak Configuration
 
 First, you need to configure Riak to use
 [`LevelDB`](http://en.wikipedia.org/wiki/LevelDB) as a database backend.
@@ -3048,8 +3036,7 @@ Second, Riak should be pointed to `ejabberd` Erlang binary files
 Important notice: make sure Riak has at least read access to that
 directory. Otherwise its startup will likely fail.
 
-Modules Configuration [modules]
----------------------
+## Modules Configuration
 
 The option `modules` defines the list of modules that will be loaded
 after `ejabberd`’s startup. Each entry in the list is a tuple in which
@@ -3078,7 +3065,7 @@ Examples:
           mod_time:      {}
           mod_version:   {}
 
-### Modules Overview [modoverview]
+### Modules Overview
 
 The following table lists all modules included in `ejabberd`.
 
@@ -3142,12 +3129,12 @@ You can find more
 work or that they can contain severe bugs and security leaks. Therefore,
 use them at your own risk!
 
-### Common Options [modcommonoptions]
+### Common Options
 
 The following options are used by many modules. Therefore, they are
 described in this separate section.
 
-#### `iqdisc` [modiqdiscoption]
+#### `iqdisc`
 
 Many modules define handlers for processing IQ queries of different
 namespaces to this server or to a user (e.g. to `example.org` or to
@@ -3199,7 +3186,7 @@ Example:
         iqdisc: no_queue
       ...
 
-#### `host` [modhostoption]
+#### `host`
 
 This option defines the Jabber ID of a service provided by an `ejabberd`
 module.
@@ -3231,7 +3218,7 @@ in all of them, the “@HOST@” keyword must be used:
         host: "mirror.@HOST@"
       ...
 
-### `mod_announce` [modannounce]
+### `mod_announce`
 
 This module enables configured users to broadcast announcements and to
 set the message of the day (MOTD). Configured users can perform these
@@ -3333,7 +3320,7 @@ Note that `mod_announce` can be resource intensive on large deployments
 as it can broadcast lot of messages. This module should be disabled for
 instances of `ejabberd` with hundreds of thousands users.
 
-###  [modclientstate]
+### `mod_client_state`
 
 This module allows for queueing or dropping certain types of stanzas
 when a client indicates that the user is not actively using the client
@@ -3365,7 +3352,7 @@ Example:
         queue_presence: true
       ...
 
-### `mod_disco` [moddisco]
+### `mod_disco`
 
 This module adds support for Service Discovery
 ([`XEP-0030`](http://xmpp.org/extensions/xep-0030.html)). With this
@@ -3466,7 +3453,7 @@ Examples:
                   - "xmpp:admins@shakespeare.lit"
           ...
 
-### `mod_echo` [modecho]
+### `mod_echo`
 
 This module simply echoes any XMPP packet back to the sender. This
 mirror can be of interest for `ejabberd` and XMPP client debugging.
@@ -3489,7 +3476,7 @@ all?
         host: "mirror.example.org"
       ...
 
-### `mod_fail2ban` [modfail2ban]
+### `mod_fail2ban`
 
 The module bans IPs that show the malicious signs. Currently only C2S
 authentication failures are detected.
@@ -3515,7 +3502,7 @@ Example:
         c2s_max_auth_failures: 50
       ...
 
-### `mod_http_bind` [modhttpbind]
+### `mod_http_bind`
 
 This module implements XMPP over Bosh (formerly known as HTTP Binding)
 as defined in [`XEP-0124`](http://xmpp.org/extensions/xep-0124.html) and
@@ -3575,7 +3562,7 @@ Options:
             max_inactivity: 50
           ...
 
-### `mod_http_fileserver` [modhttpfileserver]
+### `mod_http_fileserver`
 
 This simple module serves files from the local disk over HTTP.
 
@@ -3650,7 +3637,7 @@ And define it as a handler in the HTTP service:
           ...
       ...
 
-### `mod_irc` [modirc]
+### `mod_irc`
 
 This module is an IRC transport that can be used to join channels on IRC
 servers.
@@ -3744,7 +3731,7 @@ Examples:
             host: "irc.example.net"
           ...
 
-### `mod_last` [modlast]
+### `mod_last`
 
 This module adds support for Last Activity
 ([`XEP-0012`](http://xmpp.org/extensions/xep-0012.html)). It can be used
@@ -3766,7 +3753,7 @@ Options:
     Mnesia database. If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
-### `mod_muc` [modmuc]
+### `mod_muc`
 
 This module provides a Multi-User Chat
 ([`XEP-0045`](http://xmpp.org/extensions/xep-0045.html)) service. Users
@@ -4284,7 +4271,7 @@ Examples:
             timezone: local
           ...
 
-### `mod_offline` [modoffline]
+### `mod_offline`
 
 This module implements offline message storage
 ([`XEP-0160`](http://xmpp.org/extensions/xep-0160.html)). This means
@@ -4340,7 +4327,7 @@ messages, administrators up to 2000, and all the other users up to 100.
         access_max_user_messages: max_user_offline_messages
       ...
 
-### `mod_ping` [modping]
+### `mod_ping`
 
 This module implements support for XMPP Ping
 ([`XEP-0199`](http://xmpp.org/extensions/xep-0199.html)) and periodic
@@ -4381,7 +4368,7 @@ closed:
         timeout_action: kill
       ...
 
-### `mod_pres_counter` [modprescounter]
+### `mod_pres_counter`
 
 This module detects flood/spam in presence subscription stanza traffic.
 If a user sends or receives more of those stanzas in a time interval,
@@ -4411,7 +4398,7 @@ subscription stanzas to be sent or received by the users in 60 seconds:
         interval: 60
       ...
 
-### `mod_privacy` [modprivacy]
+### `mod_privacy`
 
 This module implements
 [`Blocking Communication`](http://xmpp.org/rfcs/rfc3921.html#privacy)
@@ -4459,7 +4446,7 @@ Options:
     Mnesia database. If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
-### `mod_private` [modprivate]
+### `mod_private`
 
 This module adds support for Private XML Storage
 ([`XEP-0049`](http://xmpp.org/extensions/xep-0049.html)):
@@ -4485,7 +4472,7 @@ Options:
     Mnesia database. If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
-### `mod_proxy65` [modproxy]
+### `mod_proxy65`
 
 This module implements SOCKS5 Bytestreams
 ([`XEP-0065`](http://xmpp.org/extensions/xep-0065.html)). It allows
@@ -4586,7 +4573,7 @@ Examples:
             shaper: proxy65_shaper
           ...
 
-### `mod_pubsub` [modpubsub]
+### `mod_pubsub`
 
 This module offers a Publish-Subscribe Service
 ([`XEP-0060`](http://xmpp.org/extensions/xep-0060.html)). The
@@ -4702,7 +4689,7 @@ following example shows previous configuration with ODBC usage:
           - "pep"
       ...
 
-### `mod_register` [modregister]
+### `mod_register`
 
 This module adds support for In-Band Registration
 ([`XEP-0077`](http://xmpp.org/extensions/xep-0077.html)). This protocol
@@ -4846,7 +4833,7 @@ Examples:
               - "boss@example.net"
           ...
 
-### `mod_register_web` [modregisterweb]
+### `mod_register_web`
 
 This module provides a web page where people can:
 
@@ -4892,7 +4879,7 @@ For example, the users of the host `example.org` can visit the page:
 `https://example.org:5281/register/` It is important to include the last
 / character in the URL, otherwise the subpages URL will be incorrect.
 
-### `mod_roster` [modroster]
+### `mod_roster`
 
 This module implements roster management as defined in
 [`RFC 6121: XMPP IM`](http://tools.ietf.org/html/rfc6121#section-2). It
@@ -4979,7 +4966,7 @@ everybody else cannot modify the roster:
         access: roster
       ...
 
-### `mod_service_log` [modservicelog]
+### `mod_service_log`
 
 This module adds support for logging end user packets via a XMPP message
 auditing service such as
@@ -5017,7 +5004,7 @@ Examples:
               - "bandersnatch.example.org"
           ...
 
-### `mod_shared_roster` [modsharedroster]
+### `mod_shared_roster`
 
 This module enables you to create shared roster groups. This means that
 you can create groups of people that can see members from (other) groups
@@ -5141,20 +5128,20 @@ Examples:
 
       
 
-### `mod_shared_roster_ldap` [modsharedrosterldap]
+### `mod_shared_roster_ldap`
 
 This module lets the server administrator automatically populate users’
 rosters (contact lists) with entries based on users and groups defined
 in an LDAP-based directory.
 
-#### Configuration parameters [msrlconfigparams]
+#### Configuration parameters
 
 The module accepts the following configuration parameters. Some of them,
 if unspecified, default to the values specified for the top level of
 configuration. This lets you avoid specifying, for example, the bind
 password, in multiple places.
 
-##### Filters [msrlfilters]
+##### Filters
 
 These parameters specify LDAP filters used to query for shared roster
 information. All of them are run against the `ldap_base`.
@@ -5223,7 +5210,7 @@ is that you will see messages such as the following in your
     get_filter: unknown filter type=130
     filter="(&(?=undefined)(?=undefined)(something=else))"
 
-#### Attributes [msrlattrs]
+#### Attributes
 
 These parameters specify the names of the attributes which hold
 interesting data in the entries returned by running filters specified in
@@ -5264,7 +5251,7 @@ retrieved from the <span>ldap\_memberattr</span> attribute of a group
 object. Retrieved from results of the “User Filter”. Defaults to
 <span>cn</span>.
 
-#### Control parameters [msrlcontrolparams]
+#### Control parameters
 
 These paramters control the behaviour of the module.
 
@@ -5332,13 +5319,13 @@ These paramters control the behaviour of the module.
     section [msrlconfigroster] on how it is used during roster
     retrieval.
 
-#### Connection parameters [msrlconnparams]
+#### Connection parameters
 
 The module also accepts the connection parameters, all of which default
 to the top-level parameter of the same name, if unspecified.
 See [ldapconnection] for more information about them.
 
-#### Retrieving the roster [msrlconfigroster]
+#### Retrieving the roster
 
 When the module is called to retrieve the shared roster for a user, the
 following algorithm is used:
@@ -5407,14 +5394,14 @@ following algorithm is used:
             2.  then, the display name for the given user ID is
                 retrieved from the user name cache.
 
-#### Configuration examples [msrlconfigexample]
+#### Configuration examples
 
 Since there are many possible
 [`DIT`](http://en.wikipedia.org/wiki/Directory_Information_Tree)
 layouts, it will probably be easiest to understand how to configure the
 module by looking at an example for a given DIT (or one resembling it).
 
-##### Flat DIT [msrlconfigexampleflat]
+##### Flat DIT
 
 This seems to be the kind of DIT for which this module was initially
 designed. Basically there are just user objects, and group membership is
@@ -5450,7 +5437,7 @@ supporting it. You can use the following configuration…
 …to be provided with a roster as shown in figure [fig:msrl-roster-flat]
 upon connecting as user <span>czesio</span>.
 
-##### Deep DIT [msrlconfigexampledeep]
+##### Deep DIT
 
 This type of DIT contains distinctly typed objects for users and groups
 – see figure [fig:msrl-dit-deep]. They are shown separated into
@@ -5475,7 +5462,7 @@ If you use the following example module configuration with it:
 …and connect as user <span>czesio</span>, then `ejabberd` will provide
 you with the roster shown in figure [fig:msrl-roster-deep].
 
-### `mod_sic` [modsic]
+### `mod_sic`
 
 This module adds support for Server IP Check
 ([`XEP-0279`](http://xmpp.org/extensions/xep-0279.html)). This protocol
@@ -5488,7 +5475,7 @@ Options:
 :   This specifies the processing discipline for `urn:xmpp:sic:0` IQ
     queries (see section [modiqdiscoption]).
 
-### `mod_sip` [modsip]
+### `mod_sip`
 
 This module adds SIP proxy/registrar support for the corresponding
 virtual host. Note that it is not enough to just load this module only.
@@ -5569,7 +5556,7 @@ Example complex configuration:
             port: 5060
       ...
 
-### `mod_stats` [modstats]
+### `mod_stats`
 
 This module adds support for Statistics Gathering
 ([`XEP-0039`](http://xmpp.org/extensions/xep-0039.html)). This protocol
@@ -5618,7 +5605,7 @@ send in order to get the statistics. Here they are:
           </query>
         </iq>
 
-### `mod_time` [modtime]
+### `mod_time`
 
 This module features support for Entity Time
 ([`XEP-0202`](http://xmpp.org/extensions/xep-0202.html)). By using this
@@ -5631,7 +5618,7 @@ Options:
 :   This specifies the processing discipline for Entity Time
     (`jabber:iq:time`) IQ queries (see section [modiqdiscoption]).
 
-### `mod_vcard` [modvcard]
+### `mod_vcard`
 
 This module allows end users to store and retrieve their vCard, and to
 retrieve other users vCards, as defined in vcard-temp
@@ -5715,7 +5702,7 @@ Examples:
             allow_return_all: true
           ...
 
-### `mod_vcard_ldap` [modvcardldap]
+### `mod_vcard_ldap`
 
 `ejabberd` can map LDAP attributes to vCard fields. This behaviour is
 implemented in the `mod_vcard_ldap` module. This module does not depend
@@ -5932,7 +5919,7 @@ Examples:
           {"Nickname", "NICKNAME"}
          ]},
 
-### `mod_vcard_xupdate` [modvcardxupdate]
+### `mod_vcard_xupdate`
 
 The user’s client can store an avatar in the user vCard. The vCard-Based
 Avatars protocol
@@ -5981,11 +5968,9 @@ Options:
 :   This specifies the processing discipline for Software Version
     (`jabber:iq:version`) IQ queries (see section [modiqdiscoption]).
 
-Managing an `ejabberd` Server [manage]
-=============================
+# Managing an `ejabberd` Server
 
-`ejabberdctl`
--------------
+## `ejabberdctl`
 
 With the `ejabberdctl` command line administration script you can
 execute `ejabberdctl commands` (described in the next section,
@@ -6008,7 +5993,7 @@ If you use Bash, you can get Bash completion by copying the file
 `tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
 Debian, Ubuntu, Fedora and maybe others).
 
-### ejabberdctl Commands [ectl-commands]
+### ejabberdctl Commands
 
 When `ejabberdctl` is executed without any parameter, it displays the
 available options. If there isn’t an `ejabberd` server running, the
@@ -6078,7 +6063,7 @@ then you can do this in the shell:
     testuser1
     testuser2
 
-### Erlang Runtime System [erlangconfiguration]
+### Erlang Runtime System
 
 `ejabberd` is an Erlang/OTP application that runs inside an Erlang
 runtime system. This system is configured using environment variables
@@ -6224,8 +6209,7 @@ Note that some characters need to be escaped when used in shell scripts,
 for instance `"` and `{}`. You can find other options in the Erlang
 manual page (`erl -man erl`).
 
-`ejabberd` Commands [eja-commands]
--------------------
+## `ejabberd` Commands
 
 An `ejabberd command` is an abstract function identified by a name, with
 a defined number and type of calling arguments and type of result that
@@ -6238,7 +6222,7 @@ script `ejabberdctl` ([ejabberdctl]) and the `ejabberd_xmlrpc` listener
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).
 
-### List of ejabberd Commands [list-eja-commands]
+### List of ejabberd Commands
 
 `ejabberd` includes a few ejabberd Commands by default as listed below.
 When more modules are installed, new commands may be available in the
@@ -6391,7 +6375,7 @@ The commands included in ejabberd by default are:
 
 :   Disconnect user’s active sessions
 
-### Restrict Execution with AccessCommands [accesscommands]
+### Restrict Execution with AccessCommands
 
 The frontends can be configured to restrict access to certain commands
 using the `AccessCommands`. In that case, authentication information
@@ -6587,8 +6571,7 @@ the system. The file is searched by default in
 be specified in the environment variable `EJABBERD_DOC_PATH`. See
 section [erlangconfiguration].
 
-Ad-hoc Commands [adhoccommands]
----------------
+## Ad-hoc Commands
 
 If you enable `mod_configure` and `mod_adhoc`, you can perform several
 administrative tasks in `ejabberd` with an XMPP client. The client must
@@ -6596,8 +6579,7 @@ support Ad-Hoc Commands
 ([`XEP-0050`](http://xmpp.org/extensions/xep-0050.html)), and you must
 login in the XMPP server with an account with proper privileges.
 
-Change Computer Hostname [changeerlangnodename]
-------------------------
+## Change Computer Hostname
 
 `ejabberd` uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
@@ -6674,11 +6656,9 @@ Before starting, setup some variables:
     accounts, rosters... After you finish, remember to delete the
     temporary backup files from public directories.
 
-Securing `ejabberd` [secure]
-===================
+# Securing `ejabberd`
 
-Firewall Settings [firewall]
------------------
+## Firewall Settings
 
 You need to take the following TCP ports in mind when configuring your
 firewall:
@@ -6691,8 +6671,7 @@ firewall:
 | 4369                  | EPMD (section [epmd]) listens for Erlang node name requests.                                |
 | port range            | Used for connections between Erlang nodes. This range is configurable (see section [epmd]). |
 
-epmd
-----
+## epmd
 
 [`epmd (Erlang Port Mapper Daemon)`](http://www.erlang.org/doc/man/epmd.html)
 is a small name server included in Erlang/OTP and used by Erlang
@@ -6733,8 +6712,7 @@ Erlang command-line parameter used internally is, for example:
 
     erl ... -kernel inet_dist_use_interface "{127,0,0,1}"
 
-Erlang Cookie [cookie]
--------------
+## Erlang Cookie
 
 The Erlang cookie is a string with numbers and letters. An Erlang node
 reads the cookie at startup from the command-line parameter
@@ -6756,8 +6734,7 @@ The communication between Erlang nodes are not encrypted, so the cookie
 could be read sniffing the traffic on the network. The recommended way
 to secure the Erlang node is to block the port 4369.
 
-Erlang Node Name [nodename]
-----------------
+## Erlang Node Name
 
 An Erlang node may have a node name. The name can be short (if indicated
 with the command-line parameter `-sname`) or long (if indicated with the
@@ -6771,8 +6748,7 @@ may be possible to fake the fact that you are on another network using a
 modified version of Erlang `epmd`. The recommended way to secure the
 Erlang node is to block the port 4369.
 
-Securing Sensitive Files [secure-files]
-------------------------
+## Securing Sensitive Files
 
 `ejabberd` stores sensitive data in the file system either in plain text
 or binary files. The file system permissions should be set to only allow
@@ -6802,11 +6778,9 @@ the proper user to read, write and execute those files and directories.
 
 :   See section [cookie].
 
-Clustering
-==========
+# Clustering
 
-How it Works [howitworks]
-------------
+## How it Works
 
 A XMPP domain is served by one or more `ejabberd` nodes. These nodes can
 be run on different machines that are connected via a network. They all
@@ -6834,21 +6808,21 @@ table. The domain of the packet’s destination is searched in the routing
 table, and if it is found, the packet is routed to the appropriate
 process. If not, it is sent to the s2s manager.
 
-### Local Router [localrouter]
+### Local Router
 
 This module routes packets which have a destination domain equal to one
 of this server’s host names. If the destination JID has a non-empty user
 part, it is routed to the session manager, otherwise it is processed
 depending on its content.
 
-### Session Manager [sessionmanager]
+### Session Manager
 
 This module routes packets to local users. It looks up to which user
 resource a packet must be sent via a presence table. Then the packet is
 either routed to the appropriate c2s process, or stored in offline
 storage, or bounced back.
 
-### s2s Manager [s2smanager]
+### s2s Manager
 
 This module routes packets to other XMPP servers. First, it checks if an
 opened s2s connection from the domain of the packet’s source to the
@@ -6856,8 +6830,7 @@ domain of the packet’s destination exists. If that is the case, the s2s
 manager routes the packet to the process serving this connection,
 otherwise a new connection is opened.
 
-Clustering Setup [cluster]
-----------------
+## Clustering Setup
 
 Suppose you already configured `ejabberd` on one machine named
 (`first`), and you need to setup another one to make an `ejabberd`
@@ -6930,10 +6903,9 @@ cluster. Then do following steps:
 You can repeat these steps for other machines supposed to serve this
 domain.
 
-Service Load-Balancing [servicelb]
-----------------------
+# Service Load-Balancing
 
-### Domain Load-Balancing Algorithm [domainlb]
+### Domain Load-Balancing Algorithm
 
 `ejabberd` includes an algorithm to load balance the components that are
 plugged on an `ejabberd` cluster. It means that you can plug one or
@@ -6968,7 +6940,7 @@ Several balancing criteria are available:
 If the value corresponding to the criteria is the same, the same
 component instance in the cluster will be used.
 
-### Load-Balancing Buckets [lbbuckets]
+### Load-Balancing Buckets
 
 When there is a risk of failure for a given component, domain balancing
 can cause service trouble. If one component is failing the service will
@@ -6986,11 +6958,9 @@ The syntax is:
 
 :   
 
-Debugging
-=========
+# Debugging
 
-Log Files [logfiles]
----------
+## Log Files
 
 An `ejabberd` node writes three log files:
 
@@ -7092,8 +7062,7 @@ exact format is:
 :   The default value is 1, which means only `ejabberd.log.0`,
     `error.log.0` and `crash.log.0` will be kept.
 
-Debug Console [debugconsole]
--------------
+## Debug Console
 
 The Debug Console is an Erlang shell attached to an already running
 `ejabberd` server. With this Erlang shell, an experienced administrator
@@ -7107,8 +7076,7 @@ examples in the article
 To exit the shell, close the window or press the keys: control+c
 control+c.
 
-Watchdog Alerts [watchdog]
----------------
+## Watchdog Alerts
 
 `ejabberd` includes a watchdog mechanism that may be useful to
 developers when troubleshooting a problem related to memory usage. If a
@@ -7146,8 +7114,7 @@ watchdog admins, set the option with an empty list:
 
     watchdog_admins: []
 
-Internationalization and Localization [i18ni10n]
-=====================================
+# Internationalization and Localization
 
 The source code of `ejabberd` supports localization. The translators can
 edit the [`gettext`](http://www.gnu.org/software/gettext/) .po files
@@ -7175,8 +7142,7 @@ query:
 
 The Web Admin also supports the `Accept-Language` HTTP header.
 
-Release Notes [releasenotes]
-=============
+# Release Notes
 
 Release notes are available from
 [`ejabberd Home Page`](http://www.process-one.net/en/ejabberd/release_notes/)
@@ -7214,22 +7180,10 @@ Thanks to all people who contributed to this guide:
 -   Vsevolod Pelipas
     ([`xmpp:vsevoload@jabber.ru`](xmpp:vsevoload@jabber.ru))
 
-Copyright Information [copyright]
-=====================
+-   Pawel Chmielowski
 
-Ejabberd Installation and Operation Guide.  
+
+# Copyright Information
+
+Ejabberd Installation and Operation Guide.
 Copyright © 2003 — 2015 ProcessOne
-
-This document is free software; you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the
-Free Software Foundation; either version 2 of the License, or (at your
-option) any later version.
-
-This document is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-Public License for more details.
-
-You should have received a copy of the GNU General Public License along
-with this document; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
