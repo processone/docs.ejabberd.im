@@ -254,6 +254,14 @@ menu {
     color: #666;
   }
 
+code {
+    background: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    font-size: inherit !important;
+}
+  
 /* Blog specific styles */
 
 body.blog .meta {
