@@ -158,6 +158,7 @@ server and does not require any extra dependencies.
 In \*nix systems, remember to set executable the binary installer before
 starting it. For example:
 
+    #!console
     chmod +x ejabberd-2.0.0_1-linux-x86-installer.bin
     ./ejabberd-2.0.0_1-linux-x86-installer.bin
 
@@ -277,6 +278,7 @@ Released versions of `ejabberd` are available in the ProcessOne
 Alternatively, the latest development source code can be retrieved from
 the Git repository using the commands:
 
+    #!console
     git clone git://github.com/processone/ejabberd.git ejabberd
     cd ejabberd
     ./autogen.sh
@@ -285,12 +287,14 @@ the Git repository using the commands:
 
 To compile `ejabberd` execute the commands:
 
+    #!console
     ./configure
     make
 
 The build configuration script allows several options. To get the full
 list run the command:
 
+    #!console
     ./configure --help
 
 Some options that you may be interested in modifying:
@@ -363,6 +367,7 @@ Some options that you may be interested in modifying:
 
 To install `ejabberd` in the destination directories, run the command:
 
+    #!console
     make install
 
 Note that you probably need administrative privileges in the system to
@@ -455,6 +460,7 @@ either that system account or root.
 
 Usage example:
 
+    #!console
     ejabberdctl start
 
     ejabberdctl status
@@ -482,6 +488,7 @@ used by the script to start the server. Then you can call
 
 The command to compile `ejabberd` in BSD systems is:
 
+    #!console
     gmake
 
 ### Specific Notes for Sun Solaris
@@ -491,15 +498,18 @@ be easily installed if your Solaris system is set up for
 [`blastwave.org`](http://www.blastwave.org/) package repository. Make
 sure `/opt/csw/bin` is in your `PATH` and run:
 
+    #!console
     pkg-get -i fileutils
 
 If that program is called `ginstall`, modify the `ejabberd` `Makefile`
 script to suit your system, for example:
 
+    #!console
     cat Makefile | sed s/install/ginstall/ > Makefile.gi
 
 And finally install `ejabberd` with:
 
+    #!console
     gmake -f Makefile.gi ginstall
 
 ### Specific Notes for Microsoft Windows
@@ -560,11 +570,13 @@ We assume that we will try to put as much library as possible into
 
 8.  While in the directory `ejabberd\src` run:
 
+        #!console
         configure.bat
         nmake -f Makefile.win32
 
 9.  Edit the file `ejabberd\src\texttt{ejabberd}.yml` and run
 
+        #!console
         werl -s ejabberd -name ejabberd
 
 ## Create an XMPP Account for Administration
@@ -578,6 +590,7 @@ enter the `ejabberd` Web Admin:
 
     1.  Using `ejabberdctl` (see section [ejabberdctl]):
 
+            #!console
             ejabberdctl register admin1 example.org FgT5bk3
 
     2.  Using an XMPP client and In-Band Registration (see
@@ -586,6 +599,7 @@ enter the `ejabberd` Web Admin:
 2.  Edit the `ejabberd` configuration file to give administration rights
     to the XMPP account you created:
 
+        #!yaml
         acl:
           admin:
             user:
@@ -681,6 +695,7 @@ If you just want to provide an erlang term inside an option, you can use
 the `> erlangterm.` syntax for embedding erlang terms in a YAML file,
 for example:
 
+    #!yaml
     modules:
       mod_cron:
         tasks:
@@ -710,10 +725,12 @@ Examples:
 
 -   Serving one domain:
 
+        #!yaml
         hosts: ["example.org"]
 
 -   Serving three domains:
 
+        #!yaml
         hosts:
           - "example.net"
           - "example.com"
@@ -736,6 +753,7 @@ Examples:
     while domain `example.com` is using the LDAP server running on the
     domain `localhost` to perform authentication:
 
+        #!yaml
         host_config:
           "example.net"
             auth_method: internal
@@ -753,6 +771,7 @@ Examples:
     domain `example.com` is using the LDAP servers running on the
     domains `localhost` and `otherhost`:
 
+        #!yaml
         host_config:
           "example.net":
             auth_method: odbc
@@ -778,6 +797,7 @@ the same syntax.
 In this example three virtual hosts have some similar modules, but there
 are also other different modules for some specific virtual hosts:
 
+    #!yaml
     ## This ejabberd server has three vhosts:
     hosts:
       - "one.example.org"
@@ -832,6 +852,7 @@ The option syntax is:
 
 Example:
 
+    #!yaml
     listen:
       -
         port: 5222
@@ -1300,7 +1321,7 @@ For example, the following simple configuration defines:
     socket only listens connections to the IP address 127.0.0.1.
 
 <!-- -->
-
+    #!yaml
     hosts:
       - "example.com"
       - "example.org"
@@ -1406,7 +1427,7 @@ In this example, the following configuration defines that:
     server, or even on behalf of any server.
 
 <!-- -->
-
+    #!yaml
     acl: 
       blocked: 
         user: "bad"
@@ -1522,34 +1543,35 @@ In this example, the following configuration defines that:
 Note, that for services based in jabberd14 or WPJabber you have to make
 the transports log and do XDB by themselves:
 
-      <!--
-         You have to add elogger and rlogger entries here when using ejabberd.
-         In this case the transport will do the logging.
-      -->
+    #!xml
+    <!--
+       You have to add elogger and rlogger entries here when using ejabberd.
+       In this case the transport will do the logging.
+    -->
 
-      <log id='logger'>
-        <host/>
-        <logtype/>
-        <format>%d: [%t] (%h): %s</format>
-        <file>/var/log/jabber/service.log</file>
-      </log>
+    <log id='logger'>
+      <host/>
+      <logtype/>
+      <format>%d: [%t] (%h): %s</format>
+      <file>/var/log/jabber/service.log</file>
+    </log>
 
-      <!--
-         Some XMPP server implementations do not provide
-         XDB services (for example, jabberd2 and ejabberd).
-         xdb_file.so is loaded in to handle all XDB requests.
-      -->
+    <!--
+       Some XMPP server implementations do not provide
+       XDB services (for example, jabberd2 and ejabberd).
+       xdb_file.so is loaded in to handle all XDB requests.
+    -->
 
-      <xdb id="xdb">
-        <host/>
-        <load>
-          <!-- this is a lib of wpjabber or jabberd14 -->
-          <xdb_file>/usr/lib/jabber/xdb_file.so</xdb_file>
-          </load>
-        <xdb_file xmlns="jabber:config:xdb_file">
-          <spool><jabberd:cmdline flag='s'>/var/spool/jabber</jabberd:cmdline></spool>
-        </xdb_file>
-      </xdb>
+    <xdb id="xdb">
+      <host/>
+      <load>
+        <!-- this is a lib of wpjabber or jabberd14 -->
+        <xdb_file>/usr/lib/jabber/xdb_file.so</xdb_file>
+        </load>
+      <xdb_file xmlns="jabber:config:xdb_file">
+        <spool><jabberd:cmdline flag='s'>/var/spool/jabber</jabberd:cmdline></spool>
+      </xdb_file>
+    </xdb>
 
 ### Authentication
 
@@ -1641,6 +1663,7 @@ Examples:
 -   To use internal authentication on `example.org` and LDAP
     authentication on `example.net`:
 
+        #!yaml
         host_config:
           "example.org":
             auth_method: [internal]
@@ -1650,6 +1673,7 @@ Examples:
 -   To use internal authentication with hashed passwords on all virtual
     hosts:
 
+        #!yaml
         auth_method: internal
         auth_password_format: scram
 
@@ -1693,6 +1717,7 @@ This example sets external authentication, the extauth script, enables
 caching for 10 minutes, and starts three instances of the script for
 each virtual host defined in ejabberd:
 
+    #!yaml
     auth_method: [external]
     extauth_program: "/etc/ejabberd/JabberAuth.class.php"
     extauth_cache: 600
@@ -1749,11 +1774,13 @@ Examples:
 
 -   To enable anonymous login on all virtual hosts:
 
+        #!yaml
         auth_method: [anonymous]
         anonymous_protocol: login_anon
 
 -   Similar as previous example, but limited to `public.example.org`:
 
+        #!yaml
         host_config:
           "public.example.org":
             auth_method: [anonymous]
@@ -1762,6 +1789,7 @@ Examples:
 -   To enable anonymous login and internal authentication on a virtual
     host:
 
+        #!yaml
         host_config:
           "public.example.org":
             auth_method:
@@ -1771,6 +1799,7 @@ Examples:
 
 -   To enable SASL Anonymous on a virtual host:
 
+        #!yaml
         host_config:
           "public.example.org":
             auth_method: [anonymous]
@@ -1778,6 +1807,7 @@ Examples:
 
 -   To enable SASL Anonymous and anonymous login on a virtual host:
 
+        #!yaml
         host_config:
           "public.example.org":
             auth_method: [anonymous]
@@ -1786,6 +1816,7 @@ Examples:
 -   To enable SASL Anonymous, anonymous login, and internal
     authentication on a virtual host:
 
+        #!yaml
         host_config:
           "public.example.org":
             auth_method:
@@ -1803,6 +1834,7 @@ There are more configuration examples and XMPP client example stanzas in
 X, NetBSD and Solaris. PAM authentication is disabled by default, so you
 have to configure and compile `ejabberd` with PAM support enabled:
 
+    #!console
     ./configure --enable-pam && make install
 
 Options:
@@ -1821,6 +1853,7 @@ Options:
 
 Example:
 
+    #!yaml
     auth_method: [pam]
     pam_service: "ejabberd"
 
@@ -1835,6 +1868,7 @@ introduces some security issues:
     `ejabberd` to this file and remove all other permissions from it.
     Execute with root privileges:
 
+        #!console
         chown root:ejabberd /var/lib/ejabberd/priv/bin/epam
         chmod 4750 /var/lib/ejabberd/priv/bin/epam
 
@@ -1886,6 +1920,7 @@ following syntax:
 
 :   Matches all JIDs. Example:
 
+        #!yaml
         acl:
           world: all
 
@@ -1894,6 +1929,7 @@ following syntax:
 :   Matches the user with the name `Username` at the first virtual host.
     Example:
 
+        #!yaml
         acl:
           admin:
             user: "yozhik"
@@ -1903,6 +1939,7 @@ following syntax:
 :   Matches the user with the JID `Username@Server` and any resource.
     Example:
 
+        #!yaml
         acl:
           admin:
             user:
@@ -1912,6 +1949,7 @@ following syntax:
 
 :   Matches any JID from server `Server`. Example:
 
+        #!yaml
         acl:
           exampleorg:
             server: "example.org"
@@ -1920,6 +1958,7 @@ following syntax:
 
 :   Matches any JID with a resource `Resource`. Example:
 
+        #!yaml
         acl:
           mucklres:
            resource: "muckl"
@@ -1929,6 +1968,7 @@ following syntax:
 :   Matches any member of a Shared Roster Group with name `Groupname` in
     the virtual host. Example:
 
+        #!yaml
         acl:
           techgroupmembers:
             shared_group: "techteam"
@@ -1938,6 +1978,7 @@ following syntax:
 :   Matches any member of a Shared Roster Group with name `Groupname` in
     the virtual host `Server`. Example:
 
+        #!yaml
         acl:
           techgroupmembers:
             shared_group:
@@ -1947,6 +1988,7 @@ following syntax:
 
 :   Matches any IP address from the `Network`. Example:
 
+        #!yaml
         acl:
           loopback:
             ip:
@@ -1958,6 +2000,7 @@ following syntax:
 :   Matches any local user with a name that matches `Regexp` on local
     virtual hosts. Example:
 
+        #!yaml
         acl:
           tests:
             user_regexp: "^test[0-9]*$"
@@ -1967,6 +2010,7 @@ following syntax:
 :   Matches any user with a name that matches `Regexp` at server
     `Server`. Example:
 
+        #!yaml
         acl:
           tests:
             user_regexp:
@@ -1976,6 +2020,7 @@ following syntax:
 
 :   Matches any JID from the server that matches `Regexp`. Example:
 
+        #!yaml
         acl:
           icq:
             server_regexp: "^icq\\."
@@ -1984,6 +2029,7 @@ following syntax:
 
 :   Matches any JID with a resource that matches `Regexp`. Example:
 
+        #!yaml
         acl:
           icq:
             resource_regexp: "^laptop\\."
@@ -1993,6 +2039,7 @@ following syntax:
 :   Matches any user with a name that matches `UserRegexp` at any server
     that matches `ServerRegexp`. Example:
 
+        #!yaml
         acl:
           yozhik:
             node_regexp:
@@ -2068,6 +2115,7 @@ effect.
 
 Example:
 
+    #!yaml
     access:
       configure:
         admin: allow
@@ -2103,6 +2151,7 @@ The syntax is:
 This example limits the number of sessions per user to 5 for all users,
 and to 10 for admins:
 
+    #!yaml
     access:
       max_user_sessions:
         admin: 10
@@ -2125,6 +2174,7 @@ Examples:
 
 -   Allow up to 3 connections with each remote server:
 
+        #!yaml
         access:
           max_s2s_connections:
             all: 3
@@ -2147,12 +2197,14 @@ Examples:
 -   To define a shaper named ‘`normal`’ with traffic speed limited to
     1,000bytes/second:
 
+        #!yaml
         shaper:
           normal: 1000
 
 -   To define a shaper named ‘`fast`’ with traffic speed limited to
     50,000bytes/second:
 
+        #!yaml
         shaper:
           fast: 50000
 
@@ -2173,6 +2225,7 @@ translation file `Language.msg` in `ejabberd`’s `msgs` directory.
 
 For example, to set Russian as default language:
 
+    #!yaml
     language: "ru"
 
 Appendix [i18ni10n] provides more details about internationalization and
@@ -2212,6 +2265,7 @@ Additionally, an `ejabberd_http` listener must be enabled with the
 
 Example configuration:
 
+    #!yaml
     hosts: ["example.org"]
 
     captcha_cmd: "/lib/ejabberd/priv/bin/captcha.sh"
@@ -2306,6 +2360,7 @@ You should configure `ejabberd_stun` listening module as described in
 
 Example configuration with disabled TURN functionality (STUN only):
 
+    #!yaml
     listen:
       ...
       - 
@@ -2324,6 +2379,7 @@ Example configuration with disabled TURN functionality (STUN only):
 Example configuration with TURN functionality. Note that STUN is always
 enabled if TURN is enabled. Here, only UDP section is shown:
 
+    #!yaml
     listen:
       ...
       - 
@@ -2368,6 +2424,7 @@ would fail.
 Example configuration with standard ports (as per
 [`RFC 3261`](http://tools.ietf.org/html/rfc3261)):
 
+    #!yaml
     listen:
       ...
       - 
@@ -2460,6 +2517,7 @@ The file is in a subdirectory from where the main configuration file is.
 In this example, `ejabberd.yml` defines some ACL and Access rules, and
 later includes another file with additional rules:
 
+    #!yaml
     acl:
       admin:
         user:
@@ -2475,6 +2533,7 @@ later includes another file with additional rules:
 
 and content of the file `acl_and_access.yml` can be, for example:
 
+    #!yaml
     acl:
       admin:
         user:
@@ -2507,6 +2566,7 @@ It isn’t possible to use a macro in the definition of another macro.
 
 This example shows the basic usage of a macro:
 
+    #!yaml
     define_macro:
       'LOG_LEVEL_NUMBER': 5
     loglevel: 'LOG_LEVEL_NUMBER'
@@ -2515,6 +2575,7 @@ The resulting option interpreted by `ejabberd` is: `loglevel: 5`.
 
 This example shows that values can be any arbitrary Erlang term:
 
+    #!yaml
     define_macro:
       'USERBOB':
         user:
@@ -2524,6 +2585,7 @@ This example shows that values can be any arbitrary Erlang term:
 
 The resulting option interpreted by `ejabberd` is:
 
+    #!yaml
     acl:
       admin:
         user:
@@ -2531,6 +2593,7 @@ The resulting option interpreted by `ejabberd` is:
 
 This complex example:
 
+    #!yaml
     define_macro:
       'NUMBER_PORT_C2S': 5222
       'NUMBER_PORT_HTTP': 5280
@@ -2544,6 +2607,7 @@ This complex example:
 
 produces this result after being interpreted:
 
+    #!yaml
     listen:
       - 
         port: 5222
@@ -2594,6 +2658,7 @@ virtual hosts. For that purpose, the options described in the next
 sections must be set inside a `host_config` for each vhost (see section
 [virtualhost]). For example:
 
+    #!yaml
     host_config:
       "public.example.org":
         odbc_type: pgsql
@@ -2659,10 +2724,12 @@ The following paramaters are available:
 
 Example of plain ODBC connection:
 
+    #!yaml
     odbc_server: "DSN=database;UID=ejabberd;PWD=password"
 
 Example of MySQL connection:
 
+    #!yaml
     odbc_type: mysql
     odbc_server: "server.company.com"
     odbc_port: 3306 # the default
@@ -2755,6 +2822,7 @@ Parameters:
 
 Example:
 
+    #!yaml
     auth_method: [ldap]
     ldap_servers:
       - "ldap1.example.org"
@@ -2816,6 +2884,7 @@ Available options are:
     FilterAttrs attributes and `%D` is replaced by Distinguished Name.
     By default `ldap_dn_filter` is undefined. Example:
 
+        #!yaml
         ldap_dn_filter:
           "(&(name=%s)(owner=%D)(user=%u@%d))": ["sn"]
 
@@ -2847,6 +2916,7 @@ connection to the LDAP server is encrypted using TLS, and using the
 custom port 6123. Corresponding authentication section should looks like
 this:
 
+    #!yaml
     ## Authentication method
     auth_method: [ldap]
     ## DNS name of our LDAP server
@@ -2866,6 +2936,7 @@ attributes defined in our LDAP schema: `mail` — email address,
 `givenName` — first name, `sn` — second name, `birthDay` — birthday.
 Also we want users to search each other. Let’s see how we can set it up:
 
+    #!yaml
     modules:
       ...
       mod_vcard_ldap:
@@ -2914,6 +2985,7 @@ before searching in his information in LDAP.
 Active Directory is just an LDAP-server with predefined attributes. A
 sample configuration is shown below:
 
+    #!yaml
     auth_method: [ldap]
     ldap_servers: ["office.org"]  # List of LDAP servers
     ldap_base: "DC=office,DC=org" # Search base of LDAP directory
@@ -2991,6 +3063,7 @@ The following paramaters are available:
 
 Example configuration:
 
+    #!yaml
     riak_server: "riak.server.com"
     riak_port: 9097
 
@@ -3010,6 +3083,7 @@ First, you need to configure Riak to use
 If you are using Riak 2.x and higher, configure `storage_backend` option
 of `/etc/riak/riak.conf` as follows:
 
+    #!yaml
     ...
     storage_backend = leveldb
     ...
@@ -3017,6 +3091,7 @@ of `/etc/riak/riak.conf` as follows:
 If you are using Riak 1.4.x and older, configure `storage_backend`
 option of `/etc/riak/app.config` in the section `riak_kv` as follows:
 
+    #!yaml
     ...
      {riak_kv, [
                 ...
@@ -3028,6 +3103,7 @@ Second, Riak should be pointed to `ejabberd` Erlang binary files
 `/lib/ejabberd/ebin` directory. So you should add the following to
 `/etc/riak/vm.args`:
 
+    #!yaml
     ...
     ## Path to ejabberd beams in order to make map/reduce
     -pz /lib/ejabberd/ebin
@@ -3054,12 +3130,14 @@ Examples:
 -   In this example only the module `mod_echo` is loaded and no module
     options are specified between the square brackets:
 
+        #!yaml
         modules:
           mod_echo: {}
 
 -   In the second example the modules `mod_echo`, `mod_time`, and
     `mod_version` are loaded without options.
 
+        #!yaml
         modules:
           mod_echo:      {}
           mod_time:      {}
@@ -3180,6 +3258,7 @@ Possible `Value` are:
 
 Example:
 
+    #!yaml
     modules:
       ...
       mod_time:
@@ -3203,6 +3282,7 @@ start time with the real virtual host string.
 This example configures the echo module to provide its echoing service
 in the Jabber ID `mirror.example.org`:
 
+    #!yaml
     modules:
       ...
       mod_echo:
@@ -3212,6 +3292,7 @@ in the Jabber ID `mirror.example.org`:
 However, if there are several virtual hosts and this module is enabled
 in all of them, the “@HOST@” keyword must be used:
 
+    #!yaml
     modules:
       ...
       mod_echo:
@@ -3283,6 +3364,7 @@ Examples:
 
 -   Only administrators can send announcements:
 
+        #!yaml
         access:
           announce:
             admin: allow
@@ -3296,6 +3378,7 @@ Examples:
 
 -   Administrators as well as the direction can send announcements:
 
+        #!yaml
         acl:
           direction:
             user:
@@ -3345,6 +3428,7 @@ Options:
 
 Example:
 
+    #!yaml
     modules:
       ...
       mod_client_state:
@@ -3394,6 +3478,7 @@ Examples:
 
 -   To serve a link to the Jabber User Directory on `jabber.org`:
 
+        #!yaml
         modules:
           ...
           mod_disco:
@@ -3402,6 +3487,7 @@ Examples:
 
 -   To serve a link to the transports on another server:
 
+        #!yaml
         modules:
           ...
           mod_disco:
@@ -3412,6 +3498,7 @@ Examples:
 
 -   To serve a link to a few friendly servers:
 
+        #!yaml
         modules:
           ...
           mod_disco:
@@ -3424,6 +3511,7 @@ Examples:
     address on the main server, and admin addresses for both the main
     server and the vJUD service:
 
+        #!yaml
         modules:
           ...
           mod_disco:
@@ -3470,6 +3558,7 @@ Options:
 Example: Mirror, mirror, on the wall, who is the most beautiful of them
 all?
 
+    #!yaml
     modules:
       ...
       mod_echo:
@@ -3495,6 +3584,7 @@ Available options:
 
 Example:
 
+    #!yaml
     modules:
       ...
       mod_fail2ban:
@@ -3512,6 +3602,7 @@ this service will be hosted.
 
 To use HTTP-Binding, enable the module:
 
+    #!yaml
     modules:
       ...
       mod_http_bind: {}
@@ -3519,6 +3610,7 @@ To use HTTP-Binding, enable the module:
 
 and add `http_bind` in the HTTP service. For example:
 
+    #!yaml
     listen:
       ...
       - 
@@ -3538,6 +3630,7 @@ If you want to set the service in a different URI path or use a
 different module, you can configure it manually using the option
 `request_handlers`. For example:
 
+    #!yaml
     listen:
       ...
       - 
@@ -3556,6 +3649,7 @@ Options:
 :   Define the maximum inactivity period in seconds. Default value is 30
     seconds. For example, to set 50 seconds:
 
+        #!yaml
         modules:
           ...
           mod_http_bind:
@@ -3606,6 +3700,7 @@ This example configuration will serve the files from the local directory
 this example a new content type `ogg` is defined, `png` is redefined,
 and `jpg` definition is deleted. To use this module you must enable it:
 
+    #!yaml
     modules:
       ...
       mod_http_fileserver:
@@ -3626,6 +3721,7 @@ and `jpg` definition is deleted. To use this module you must enable it:
 
 And define it as a handler in the HTTP service:
 
+    #!yaml
     listen:
       ...
       - 
@@ -3701,6 +3797,7 @@ Examples:
     able to use the transport. The default encoding is set to
     “iso8859-15”.
 
+        #!yaml
         modules:
           ...
           mod_irc:
@@ -3712,6 +3809,7 @@ Examples:
     `irc-t.net`. Moreover, the transport is only accessible to two users
     of `example.org`, and any user of `example.com`:
 
+        #!yaml
         acl:
           paying_customers:
             user:
@@ -4015,6 +4113,7 @@ Examples:
     to `conference.example.org`, it will be displayed in all active
     rooms. In this example the history feature is disabled.
 
+        #!yaml
         acl:
           admin:
             user:
@@ -4045,6 +4144,7 @@ Examples:
     the feature is enabled and the default value of 20 history messages
     will be send to the users.
 
+        #!yaml
         acl:
           paying_customers:
             user:
@@ -4079,6 +4179,7 @@ Examples:
     Room Description to 300 characters. No ACLs are defined, but some
     user restriction could be added as well:
 
+        #!yaml
         modules:
           ...
           mod_muc:
@@ -4092,6 +4193,7 @@ Examples:
 -   This example shows how to use `default_room_options` to make sure
     the newly created rooms have by default those options.
 
+        #!yaml
         modules:
           ...
           mod_muc:
@@ -4222,6 +4324,7 @@ Examples:
     and the time zone will be GMT/UTC. Finally, the top link will be
     `<a href="http://www.jabber.ru/">Jabber.ru</a>`.
 
+        #!yaml
         access: 
           muc: 
             all: allow
@@ -4248,6 +4351,7 @@ Examples:
     will be used. Finally, the top link will be the default
     `<a href="/">Home</a>`.
 
+        #!yaml
         acl: 
           admin: 
             user: 
@@ -4305,6 +4409,7 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 This example allows power users to have as much as 5000 offline
 messages, administrators up to 2000, and all the other users up to 100.
 
+    #!yaml
     acl: 
       admin: 
         user: 
@@ -4360,6 +4465,7 @@ to client connections that are inactive for 4 minutes, and if a client
 does not answer to the ping in less than 32 seconds, its connection is
 closed:
 
+    #!yaml
     modules:
       ...
       mod_ping:
@@ -4391,6 +4497,7 @@ Configuration options:
 This example enables the module, and allows up to 5 presence
 subscription stanzas to be sent or received by the users in 60 seconds:
 
+    #!yaml
     modules:
       ...
       mod_pres_counter:
@@ -4535,6 +4642,7 @@ Examples:
 
 -   The simpliest configuration of the module:
 
+        #!yaml
         modules:
           ...
           mod_proxy65: {}
@@ -4542,6 +4650,7 @@ Examples:
 
 -   More complicated configuration.
 
+        #!yaml
         acl: 
           admin: 
             user: 
@@ -4655,6 +4764,7 @@ Options:
     on given PEP namespace. The following example will use node\_tune
     instead of node\_pep for every PEP node with tune namespace:
 
+        #!yaml
         modules:
           ...
           mod_pubsub:
@@ -4665,6 +4775,7 @@ Options:
 Example of configuration that uses flat nodes as default, and allows use
 of flat, nodetree and pep nodes:
 
+    #!yaml
     modules:
       ...
       mod_pubsub:
@@ -4679,6 +4790,7 @@ Using ODBC database requires using mod\_pubsub\_odbc without option
 changes. Only flat, hometree and pep plugins supports ODBC. The
 following example shows previous configuration with ODBC usage:
 
+    #!yaml
     modules:
       ...
       mod_pubsub_odbc:
@@ -4765,6 +4877,7 @@ Examples:
 -   Next example prohibits the registration of too short account names,
     and allows to create accounts only to clients of the local network:
 
+        #!yaml
         acl: 
           loopback:
             ip:
@@ -4794,6 +4907,7 @@ Examples:
     or delete accounts, but allows existing accounts to change the
     password:
 
+        #!yaml
         access:
           register:
             all: deny
@@ -4807,6 +4921,7 @@ Examples:
 -   This configuration disables all In-Band Registration functionality:
     create, delete accounts and change password:
 
+        #!yaml
         modules:
           ...
           ## mod_register:
@@ -4816,6 +4931,7 @@ Examples:
 -   Define the welcome message and two registration watchers. Also
     define a registration timeout of one hour:
 
+        #!yaml
         registration_timeout: 3600
         modules:
           ...
@@ -4856,6 +4972,7 @@ Options:
 This example configuration shows how to enable the module and the web
 handler:
 
+    #!yaml
     hosts: 
       - "localhost"
       - "example.org"
@@ -4939,6 +5056,7 @@ This example configuration enables Roster Versioning with storage of
 current id. The ICQ and MSN transports can get ICQ and MSN contacts, add
 them, or remove them for any local account:
 
+    #!yaml
     modules:
       ...
       mod_roster:
@@ -4952,6 +5070,7 @@ them, or remove them for any local account:
 With this example configuration, only admins can manage their rosters;
 everybody else cannot modify the roster:
 
+    #!yaml
     acl:
       admin:
         user:
@@ -4986,6 +5105,7 @@ Examples:
 -   To log all end user packets to the Bandersnatch service running on
     `bandersnatch.example.com`:
 
+        #!yaml
         modules:
           ...
           mod_service_log:
@@ -4996,6 +5116,7 @@ Examples:
     `bandersnatch.example.com` and the backup service on
     `bandersnatch.example.org`:
 
+        #!yaml
         modules:
           ...
           mod_service_log:
@@ -5207,6 +5328,7 @@ An example where it is the case is OpenLDAP and
 is that you will see messages such as the following in your
 <span>slapd.log</span>:
 
+    #!yaml
     get_filter: unknown filter type=130
     filter="(&(?=undefined)(?=undefined)(something=else))"
 
@@ -5423,6 +5545,7 @@ Such layout has a few downsides, including:
 This however seems to be a common DIT layout, so the module keeps
 supporting it. You can use the following configuration…
 
+    #!yaml
     modules:
       ...
       mod_shared_roster_ldap:
@@ -5445,6 +5568,7 @@ different subtrees, but it’s not a requirement.
 
 If you use the following example module configuration with it:
 
+    #!yaml
     modules: 
       ...
       mod_shared_roster_ldap: 
@@ -5484,6 +5608,7 @@ section [sip] for the full explanation.
 
 Example configuration:
 
+    #!yaml
     modules:
       ...
       mod_sip: {}
@@ -5531,6 +5656,7 @@ Options:
 
 Example complex configuration:
 
+    #!yaml
     modules:
       ...
       mod_sip:
@@ -5590,6 +5716,7 @@ send in order to get the statistics. Here they are:
 -   You can request the number of online users on the current virtual
     host (`example.org`) by sending:
 
+        #!xml
         <iq to='example.org' type='get'>
           <query xmlns='http://jabber.org/protocol/stats'>
             <stat name='users/online'/>
@@ -5599,6 +5726,7 @@ send in order to get the statistics. Here they are:
 -   You can request the total number of registered users on all virtual
     hosts by sending:
 
+        #!xml
         <iq to='example.org' type='get'>
           <query xmlns='http://jabber.org/protocol/stats'>
             <stat name='users/all-hosts/total'/>
@@ -5681,6 +5809,7 @@ Examples:
     people do an empty search, and only users from the current host will
     be returned:
 
+        #!yaml
         modules:
           ...
           mod_vcard:
@@ -5694,6 +5823,7 @@ Examples:
     limited, and that all virtual hosts will be searched instead of only
     the current one:
 
+        #!yaml
         modules:
           ...
           mod_vcard:
@@ -5834,6 +5964,7 @@ Examples:
     directory. Corresponding authentication section should looks like
     this:
 
+        #!erlang
         %% authentication method
         {auth_method, ldap}.
         %% DNS name of our LDAP server
@@ -5847,6 +5978,7 @@ Examples:
     Also we want users to search each other. Let’s see how we can set it
     up:
 
+        #!erlang
         {modules,
           ...
           {mod_vcard_ldap,
@@ -5894,6 +6026,7 @@ Examples:
 
 -   `ldap_vcard_map` example:
 
+        #!erlang
         {ldap_vcard_map,
          [{"NICKNAME", "%u", []},
           {"FN", "%s", ["displayName"]},
@@ -5904,6 +6037,7 @@ Examples:
 
 -   `ldap_search_fields` example:
 
+        #!erlang
         {ldap_search_fields,
          [{"User", "uid"},
           {"Full Name", "displayName"},
@@ -5912,6 +6046,7 @@ Examples:
 
 -   `ldap_search_reported` example:
 
+        #!erlang
         {ldap_search_reported,
          [{"Full Name", "FN"},
           {"Email", "EMAIL"},
@@ -6049,6 +6184,7 @@ If account `robot1@example.org` is registered in `ejabberd` with
 password `abcdef` (which MD5 is E8B501798950FC58AAD83C8C14978E), and
 your old-format configuration file contains this setting:
 
+    #!erlang
     {hosts, ["example.org"]}.
     {acl, bots, {user, "robot1", "example.org"}}.
     {access, ctlaccess, [{allow, bots}]}.
@@ -6056,6 +6192,7 @@ your old-format configuration file contains this setting:
 
 then you can do this in the shell:
 
+    #!console
     $ ejabberdctl registered_users example.org
     Error: no_auth_provided
     $ ejabberdctl --auth robot1 example.org abcdef registered_users example.org
@@ -6231,6 +6368,7 @@ frontends.
 The easiest way to get a list of the available commands, and get help
 for them is to use the ejabberdctl script:
 
+    #!console
     $ ejabberdctl help
     Usage: ejabberdctl [--node nodename] [--auth user host password] command [options]
 
@@ -6413,6 +6551,7 @@ not contradict Arguments.
 
 As an example to understand the syntax, let’s suppose those options:
 
+    #!erlang
     {hosts, ["example.org"]}.
     {acl, bots, {user, "robot1", "example.org"}}.
     {access, commaccess, [{allow, bots}]}.
@@ -6425,6 +6564,7 @@ execute all commands:
 See another list of restrictions (the corresponding ACL and ACCESS are
 not shown):
 
+    #!erlang
     [
      %% This bot can execute all commands:
      {bot, all, []},
@@ -6444,6 +6584,7 @@ not shown):
 In summary, you put the frontends configurations in a CFG file using
 Erlang format, for example a file called `additional.cfg`:
 
+    #!erlang
     {ejabberdctl_access_commands, [ {ctlaccess, [registered_users, register], []} ]}.
 
     {listen, [
@@ -6508,6 +6649,7 @@ Example configurations:
     administer the virtual host `example.com`. The account
     ‘`reviewer@example.com`’ can browse that vhost in read-only mode.
 
+        #!yaml
         acl: 
           admin: 
             user: 
@@ -6546,6 +6688,7 @@ Example configurations:
     bind it to the internal LAN IP. The Web Admin will be accessible by
     pointing your web browser to `https://192.168.1.1:5282/admin/`:
 
+        #!yaml
         hosts: 
           - "example.org"
         listen: 
@@ -6608,36 +6751,44 @@ Before starting, setup some variables:
 
 1.  Start ejabberd enforcing the old node name:
 
+        #!console
         ejabberdctl --node $OLDNODE start
 
 2.  Generate a backup file:
 
+        #!console
         ejabberdctl --node $OLDNODE backup $OLDFILE
 
 3.  Stop the old node:
 
+        #!console
         ejabberdctl --node $OLDNODE stop
 
 4.  Make sure there aren’t files in the Mnesia spool dir. For example:
 
+        #!console
         mkdir /var/lib/ejabberd/oldfiles
         mv /var/lib/ejabberd/*.* /var/lib/ejabberd/oldfiles/
 
 5.  Start ejabberd. There isn’t any need to specify the node name
     anymore:
 
+        #!console
         ejabberdctl start
 
 6.  Convert the backup to new node name:
 
+        #!console
         ejabberdctl mnesia_change_nodename $OLDNODE $NEWNODE $OLDFILE $NEWFILE
 
 7.  Install the backup file as a fallback:
 
+        #!console
         ejabberdctl install_fallback $NEWFILE
 
 8.  Stop ejabberd:
 
+        #!console
         ejabberdctl stop
 
     You may see an error message in the log files, it’s normal, so don’t
@@ -6650,6 +6801,7 @@ Before starting, setup some variables:
 
 9.  Now you can finally start ejabberd:
 
+        #!console
         ejabberdctl start
 
 10. Check that the information of the old database is available:
@@ -6844,6 +6996,7 @@ cluster. Then do following steps:
 2.  On `second` run the following command as the `ejabberd` daemon user,
     in the working directory of `ejabberd`:
 
+        #!console
         erl -sname ejabberd \
             -mnesia dir '"/var/lib/ejabberd/"' \
             -mnesia extra_db_nodes "['ejabberd@first']" \
@@ -6863,6 +7016,7 @@ cluster. Then do following steps:
 
 3.  Now run the following in the same ‘`erl`’ session:
 
+        #!erlang
         mnesia:change_table_copy_type(schema, node(), disc_copies).
 
     This will create local disc storage for the database.
@@ -7104,6 +7258,7 @@ The syntax is:
 
 Example configuration:
 
+    #!yaml
     watchdog_admins:
       - "admin2@localhost"
       - "admin2@example.org"
@@ -7112,6 +7267,7 @@ Example configuration:
 To remove watchdog admins, remove them in the option. To remove all
 watchdog admins, set the option with an empty list:
 
+    #!yaml
     watchdog_admins: []
 
 # Internationalization and Localization
@@ -7133,6 +7289,7 @@ All built-in modules support the `xml:lang` attribute inside IQ queries.
 Figure [fig:discorus], for example, shows the reply to the following
 query:
 
+    #!xml
     <iq id='5'
         to='example.org'
         type='get'
