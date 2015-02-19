@@ -19,4 +19,4 @@ path to mastery. Whether you are a sysadmin, an architect, a developer
 planning to extend it, or even a simple XMPP user, we have something
 for you here.
 
-<a href="/get-started/" type="button" class="btn btn-danger">Get Started</a>
+<a href="/get-started/" type="button" class="btn">Get Started</a>
