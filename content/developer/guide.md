@@ -148,23 +148,35 @@ features:
 ## How it Works
 
 A XMPP domain is served by one or more `ejabberd` nodes. These nodes
-can be run on different machines that are connected via a
-network. They all must have the ability to connect to port 4369 of all
-another nodes, and must have the same magic cookie (see Erlang/OTP
-documentation, in other words the file `~ejabberd/.erlang.cookie` must
-be the same on all nodes). This is needed because all nodes exchange
-information about connected users, S2S connections, registered
-services, etc…
+can be run on different machines that are connected via a network. The
+set of all ejabberd nodes serving an XMPP domain is call a cluster.
 
-Each `ejabberd` node have following modules:
+All nodes in the cluster must have the ability to connect to port 4369
+of all another nodes, and must have the same _magic cookie_ (see
+Erlang/OTP documentation, in other words the file
+`~ejabberd/.erlang.cookie` must be the same on all nodes). This is
+needed because all nodes exchange information about connected users,
+S2S connections, registered services, etc…
 
-- router;
+Each `ejabberd` node have following core modules available:
+
+- router.
 
 - local router.
 
-- session manager;
+- session manager: It is responsible for managing C2S (client-to-server) connection.
 
-- S2S manager;
+- S2S manager: This is the server-to-server component, used for XMPP
+  federation. Note that federation can be blocked, if you do not want
+  the users on your server to have the ability to talk to users for
+  other servers, or use the features provided by other servers.
+
+The core modules are running and are available without any special
+addition in the configuration file.
+
+As ejabberd server is highly extensible, most of the remaining
+features are provided by modules, that need to be enabled in the
+configuration file.
 
 ### Router
 

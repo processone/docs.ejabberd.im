@@ -19,7 +19,9 @@ build your dream messaging system.
 The first step is to install / configure your development environment:
 
 * [Installing ejabberd development environment on OSX](install-osx/)
+* [Use Ansible to auto provision a development environment in a VM](https://github.com/processone/ejabberd-vagrant-dev)
 
 # Customizing ejabberd
 
+* [Development guide](guide/) (Currently being updated)
 * [ejabberd modules development](modules/)
