@@ -1,8 +1,7 @@
-Introduction [intro]
-============
+# Introduction
 
-`ejabberd` is a *free and open source* instant messaging server written
-in [`Erlang/OTP`](http://www.erlang.org/).
+`ejabberd` is a *free and open source* instant messaging server
+written in [`Erlang/OTP`](http://www.erlang.org/).
 
 `ejabberd` is *cross-platform*, distributed, fault-tolerant, and based
 on open standards to achieve real-time communication.
@@ -13,157 +12,159 @@ server.
 `ejabberd` is suitable for small deployments, whether they need to be
 *scalable* or not, as well as extremely big deployments.
 
-Key Features [keyfeatures]
-------------
+## Key Features
 
 `ejabberd` is:
 
--   *Cross-platform:* `ejabberd` runs under Microsoft Windows and Unix
-    derived systems such as Linux, FreeBSD and NetBSD.
+- *Cross-platform:* `ejabberd` runs under Microsoft Windows and Unix
+  derived systems such as Linux, FreeBSD and NetBSD.
 
--   *Distributed:* You can run `ejabberd` on a cluster of machines and
-    all of them will serve the same Jabber domain(s). When you need more
-    capacity you can simply add a new cheap node to your cluster.
-    Accordingly, you do not need to buy an expensive high-end machine to
-    support tens of thousands concurrent users.
+- *Distributed:* You can run `ejabberd` on a cluster of machines and
+  all of them will serve the same Jabber domain(s). When you need
+  more capacity you can simply add a new cheap node to your cluster.
+  Accordingly, you do not need to buy an expensive high-end machine
+  to support tens of thousands concurrent users.
 
--   *Fault-tolerant:* You can deploy an `ejabberd` cluster so that all
-    the information required for a properly working service will be
-    replicated permanently on all nodes. This means that if one of the
-    nodes crashes, the others will continue working without disruption.
-    In addition, nodes also can be added or replaced ‘on the fly’.
+- *Fault-tolerant:* You can deploy an `ejabberd` cluster so that all
+  the information required for a properly working service will be
+  replicated permanently on all nodes. This means that if one of the
+  nodes crashes, the others will continue working without disruption.
+  In addition, nodes also can be added or replaced ‘on the fly’.
 
--   *Administrator Friendly:* `ejabberd` is built on top of the Open
-    Source Erlang. As a result you do not need to install an external
-    database, an external web server, amongst others because everything
-    is already included, and ready to run out of the box. Other
-    administrator benefits include:
+- *Administrator Friendly:* `ejabberd` is built on top of the Open
+  Source Erlang. As a result you do not need to install an external
+  database, an external web server, amongst others because everything
+  is already included, and ready to run out of the box. Other
+  administrator benefits include:
 
-    -   Comprehensive documentation.
+    - Comprehensive documentation.
 
-    -   Straightforward installers for Linux, Mac OS X, and Windows.
+    - Straightforward installers for Linux, Mac OS X, and Windows.
 
-    -   Web Administration.
+    - Web Administration.
 
-    -   Shared Roster Groups.
+    - Shared Roster Groups.
 
-    -   Command line administration tool.
+    - Command line administration tool.
 
-    -   Can integrate with existing authentication mechanisms.
+    - Can integrate with existing authentication mechanisms.
 
-    -   Capability to send announce messages.
+    - Capability to send announce messages.
 
--   *Internationalized:* `ejabberd` leads in internationalization. Hence
-    it is very well suited in a globalized world. Related features are:
+- *Internationalized:* `ejabberd` leads in internationalization. Hence
+  it is very well suited in a globalized world. Related features are:
 
-    -   Translated to 25 languages.
+    - Translated to 25 languages.
 
-    -   Support for [`IDNA`](http://tools.ietf.org/html/rfc3490).
+    - Full Unicode support
 
--   *Open Standards:* `ejabberd` is the first Open Source Jabber server
-    claiming to fully comply to the XMPP standard.
+    - Support for [`IDNA`](http://tools.ietf.org/html/rfc3490).
 
-    -   Fully XMPP compliant.
+- *Open Standards:* `ejabberd` is the first Open Source Jabber server
+  claiming to fully comply to the XMPP standard.
 
-    -   XML-based protocol.
+    - Fully XMPP compliant.
 
-    -   [`Many protocols supported`](http://www.ejabberd.im/protocols).
+    - XML-based protocol.
 
-Additional Features [addfeatures]
--------------------
+    - [`Many protocols supported`](http://www.ejabberd.im/protocols).
+
+# Additional Features
 
 Moreover, `ejabberd` comes with a wide range of other state-of-the-art
 features:
 
--   Modular
+- Modular
 
-    -   Load only the modules you want.
+    - Load only the modules you want.
 
-    -   Extend `ejabberd` with your own custom modules.
+    - Extend `ejabberd` with your own custom modules.
 
--   Security
+- Security
 
-    -   SASL and STARTTLS for c2s and s2s connections.
+    - SASL and STARTTLS for c2s and s2s connections.
 
-    -   STARTTLS and Dialback s2s connections.
+    - STARTTLS and Dialback s2s connections.
 
-    -   Web Admin accessible via HTTPS secure access.
+    - Web Admin accessible via HTTPS secure access.
 
--   Databases
+    - Password encryption in database using SCRAM algorithm.
 
-    -   Internal database for fast deployment (Mnesia).
+- Databases
 
-    -   Native MySQL support.
+    - Internal database for fast deployment (Mnesia).
 
-    -   Native PostgreSQL support.
+    - Native MySQL support.
 
-    -   ODBC data storage support.
+    - Native PostgreSQL support.
 
-    -   Microsoft SQL Server support.
+    - ODBC data storage support.
 
-    -   Riak NoSQL database support.
+    - Microsoft SQL Server support.
 
--   Authentication
+    - Riak NoSQL database support.
 
-    -   Internal Authentication.
+- Authentication
 
-    -   PAM, LDAP, ODBC and Riak.
+    - Internal Authentication.
 
-    -   External Authentication script.
+    - PAM, LDAP, ODBC and Riak.
 
--   Others
+    - External Authentication script.
 
-    -   Support for virtual hosting.
+- Others
 
-    -   Compressing XML streams with Stream Compression
-        ([`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)).
+    - Support for virtual hosting.
 
-    -   Statistics via Statistics Gathering
-        ([`XEP-0039`](http://xmpp.org/extensions/xep-0039.html)).
+    - Compressing XML streams with Stream Compression
+      ([`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)).
 
-    -   IPv6 support both for c2s and s2s connections.
+    - Statistics via Statistics Gathering
+      ([`XEP-0039`](http://xmpp.org/extensions/xep-0039.html)).
 
-    -   [`Multi-User Chat`](http://xmpp.org/extensions/xep-0045.html)
-        module with support for clustering and HTML logging.
+    - IPv6 support both for c2s and s2s connections.
 
-    -   Users Directory based on users vCards.
+    - [`Multi-User Chat`](http://xmpp.org/extensions/xep-0045.html)
+      module with support for clustering and HTML logging.
 
-    -   [`Publish-Subscribe`](http://xmpp.org/extensions/xep-0060.html)
-        component with support for
-        [`Personal Eventing via Pubsub`](http://xmpp.org/extensions/xep-0163.html).
+    - Users Directory based on users vCards.
 
-    -   Support for web clients:
-        [`HTTP Polling`](http://xmpp.org/extensions/xep-0025.html) and
-        [`HTTP Binding (BOSH)`](http://xmpp.org/extensions/xep-0206.html)
-        services.
+    - [`Publish-Subscribe`](http://xmpp.org/extensions/xep-0060.html)
+      component with support for
+      [`Personal Eventing via Pubsub`](http://xmpp.org/extensions/xep-0163.html).
 
-    -   IRC transport.
+    - Support for web clients:
+      [`HTTP Polling`](http://xmpp.org/extensions/xep-0025.html) and
+      [`HTTP Binding (BOSH)`](http://xmpp.org/extensions/xep-0206.html)
+      services.
 
-    -   SIP support.
+    - IRC transport.
 
-    -   Component support: interface with networks such as AIM, ICQ and
-        MSN installing special tranports.
+    - SIP support.
 
-How it Works [howitworks]
-------------
+    - Component support: interface with networks such as AIM, ICQ and
+      MSN installing special tranports.
 
-A XMPP domain is served by one or more `ejabberd` nodes. These nodes can
-be run on different machines that are connected via a network. They all
-must have the ability to connect to port 4369 of all another nodes, and
-must have the same magic cookie (see Erlang/OTP documentation, in other
-words the file `~ejabberd/.erlang.cookie` must be the same on all
-nodes). This is needed because all nodes exchange information about
-connected users, S2S connections, registered services, etc…
+## How it Works
+
+A XMPP domain is served by one or more `ejabberd` nodes. These nodes
+can be run on different machines that are connected via a
+network. They all must have the ability to connect to port 4369 of all
+another nodes, and must have the same magic cookie (see Erlang/OTP
+documentation, in other words the file `~ejabberd/.erlang.cookie` must
+be the same on all nodes). This is needed because all nodes exchange
+information about connected users, S2S connections, registered
+services, etc…
 
 Each `ejabberd` node have following modules:
 
--   router;
+- router;
 
--   local router.
+- local router.
 
--   session manager;
+- session manager;
 
--   S2S manager;
+- S2S manager;
 
 ### Router
 
@@ -198,10 +199,9 @@ then it routes the packet to S2S manager on that node, if it is open on
 this node, then it is routed to the process that serves this connection,
 and if a connection does not exist, then it is opened and registered.
 
-Authentication
---------------
+## Authentication
 
-#### External [externalauth]
+#### External
 
 The external authentication script follows
 [`the erlang port driver API`](http://www.erlang.org/doc/tutorial/c_portdriver.html).
@@ -278,8 +278,7 @@ Example python script
             success = setpass(data[1], data[2], data[3])
         to_ejabberd(success)
 
-XML Representation [xmlrepr]
-------------------
+## XML Representation
 
 Each XML stanza is represented as the following tuple:
 
@@ -307,8 +306,7 @@ is represented as the following structure:
              [],
              [{xmlcdata, "test"}]}]}}
 
-Module `xml` [xmlmod]
-------------
+## Module `xml`
 
 <span>`element_to_string(El) -> string()`</span>
 
@@ -360,8 +358,7 @@ value of this attribute, else returns empty string.
              get_tag_attr/2, get_tag_attr_s/2
              get_subtag/2
 
-Module `xml_stream` [xmlstreammod]
--------------------
+Module `xml_stream`
 
 <span>`parse_element(Str) -> XMLElement | {error, Err}`</span>
 
@@ -371,10 +368,9 @@ Module `xml_stream` [xmlstreammod]
 Parses `Str` using XML parser, returns either parsed element or error
 tuple.
 
-Modules [emods]
--------
+## Modules
 
-### Module gen\_iq\_handler [geniqhandl]
+### Module gen\_iq\_handler
 
 The module `gen_iq_handler` allows to easily write handlers for IQ
 packets of particular XML namespaces that addressed to server or to
