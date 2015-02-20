@@ -45,7 +45,7 @@ body {
   font-weight: lighter;
 }
   body.homepage {
-    background: url(../images/background@2x.png) center 60px no-repeat #3eaefb;
+    background: url(../images/background@2x.jpg) center 60px no-repeat #3eaefb;
     background-size: 100% auto;
   }
   body.blog {
@@ -169,7 +169,7 @@ h5,h5 {
 #sidebar {
   padding-top: 60px;
   
-  background: url(../images/background@2x.png) top center no-repeat #3eaefb;
+  background: url(../images/background@2x.jpg) top center no-repeat #3eaefb;
   background-size: auto 728px;
   
   line-height: 2em;
