@@ -6,7 +6,7 @@ title: Understanding ejabberd and its dependencies | ejabberd documentation
 
 ## ejabberd dependencies
 
-### Required dependancies
+### Required dependencies
 
 We wanted to make sure that ejabberd is modular and that parts that
 can be of interest for other Erlang projects can be reused.
