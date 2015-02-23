@@ -4,12 +4,17 @@ title: Understanding ejabberd and its dependencies | ejabberd documentation
 
 # Understanding ejabberd and its dependencies
 
+We wanted to make sure that ejabberd is modular and that parts that
+can be of interest for other Erlang projects can be reused.
+
+Not only we are massive open source contributors to Erlang community
+and ecosystem, but we are also trying to help even more by reviewing
+your pull requests. Do not hesitate to submit some on any of the many
+repositories mentioned here.
+
 ## ejabberd dependencies
 
 ### Required dependencies
-
-We wanted to make sure that ejabberd is modular and that parts that
-can be of interest for other Erlang projects can be reused.
 
 The main ejabberd repository is
 [processone/ejabberd](https://github.com/processone/ejabberd)
