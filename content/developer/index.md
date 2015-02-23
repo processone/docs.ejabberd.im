@@ -18,7 +18,8 @@ build your dream messaging system.
 
 ## Source code
 
-ejabberd source is available on Github: [ejabberd](https://github.com/processone/ejabberd)
+ejabberd source is available on Github:
+[ejabberd](https://github.com/processone/ejabberd)
 
 You will need to get familiar with it to start learning about ejabberd
 module writing. The first place to start ? You should read the
@@ -30,6 +31,8 @@ source code of the many contributed ejabberd modules. Many of them are
 available from
 [ejabberd-contribs](https://github.com/processone/ejabberd-contrib)
 repository.
+
+For a complete overview of ejabberd source code and its dependencies, please refer to [ejabberd and related repositories](repositories/)
 
 ## Development environment
 
