@@ -36,8 +36,10 @@ This includes:
 
 ## Internet of Things
 
-* [Nabaztag](http://en.wikipedia.org/wiki/Nabaztag) (Violet, Mindscape, then Aldebaran Robotics)
+* [AeroFS](http://www.aerofs.com)
 * IMA Teleassistance
+* [Nabaztag](http://en.wikipedia.org/wiki/Nabaztag) (Violet, Mindscape, then Aldebaran Robotics)
+
 
 ## Telecom
 
@@ -66,6 +68,7 @@ This includes:
 
 * Apollo group
 * Laureate
+* [MuzMates](http://www.muzmates.com): elearning platorm for musicians.
 
 ## Push alerts
 
@@ -74,8 +77,8 @@ This includes:
 
 ## Dating
 
-* [Meetic](http://www.meetic.com)
 * [Grindr](http://www.meetup.com/idevelopers/messages/boards/thread/41634422#115806052)
+* [Meetic](http://www.meetic.com)
 
 ## Community sites
 
