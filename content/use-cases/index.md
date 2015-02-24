@@ -17,6 +17,7 @@ This includes:
 
 * [Libon](http://www.process-one.net/en/customers/case/libon/)
 * [Nokia OVI Chat](http://en.wikipedia.org/wiki/Ovi_(Nokia))
+* [Swisscom IO](https://io.swisscom.ch/en/introduction)
 * [Versapp](http://www.versapp.co)
 * [Whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html)
 
@@ -39,7 +40,6 @@ This includes:
 * [AeroFS](http://www.aerofs.com)
 * IMA Teleassistance
 * [Nabaztag](http://en.wikipedia.org/wiki/Nabaztag) (Violet, Mindscape, then Aldebaran Robotics)
-
 
 ## Telecom
 
@@ -68,7 +68,6 @@ This includes:
 
 * Apollo group
 * Laureate
-* [MuzMates](http://www.muzmates.com): elearning platorm for musicians.
 
 ## Push alerts
 
