@@ -62,6 +62,9 @@ Erlang dependencies:
 * [processone/p1_utils](processone/p1_utils): This is extra Erlang
   modules developed for ejabberd but that can be useful in other
   Erlang applications.
+* [processone/p1_logger](https://github.com/processone/p1_logger):
+  Logger wrapper to allow selecting your prefered logger at build
+  time.
 * [basho/lager](https://github.com/basho/lager): Erlang logger module.
 * [DeadZen/goldrush](https://github.com/DeadZen/goldrush): Small
   Erlang app that provides fast event stream processing. It is used by
