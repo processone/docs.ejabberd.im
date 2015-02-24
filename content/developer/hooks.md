@@ -73,7 +73,7 @@ corresponding hooks parameters is described below.
 * disco_sm_features(Acc, From, To, Node, Lang) -> Disco
 * disco_sm_identity(Acc, From, To, Node, Lang) -> []
 * disco_sm_items(Acc, From, To, Node, Lang) -> Disco
-* filter_packet(Acc) -> OrigPacket}
+* filter_packet(Acc) -> OrigPacket
 * forbidden_session_hook(JID) -> ok
 * http_request_debug({LocalPath, Request}) -> ok
 * local_send_to_resource_hook(From, To, Packet) -> ok
