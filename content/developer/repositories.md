@@ -14,14 +14,17 @@ repositories mentioned here.
 
 ## ejabberd dependencies
 
+ejabberd code based is split among several repositories so effectively
+ejabberd code is much more than what is in its primary repository.
+
 ### Required dependencies
 
 The main ejabberd repository is
 [processone/ejabberd](https://github.com/processone/ejabberd)
 
-There is a couple of thousands of forks, but we actively maintain
-ejabberd to make it the most reliable and up to date version. This is
-thus your best starting point.
+There is hundreds of forks, but we actively maintain ejabberd to make
+it the most reliable and up to date version. This is thus your best
+starting point.
 
 When you build ejabberd yourself, the build chain will download a few
 Erlang dependencies:
