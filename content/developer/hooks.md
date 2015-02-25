@@ -11,11 +11,6 @@ components through an event system. This allows for loose coupling
 between components of the system by calling only those which are
 available and configured to be used at runtime.
 
-To focus our attention we'll analyze `mod_offline` which is responsible
-for storing messages for delivery to users unavailable at the time
-of sending.
-`mod_offline` is an implementation of [XEP-0203][xep-0203].
-
 Each module can subscribe to events and a hook in the module code is
 called, passing all relevant data and parameters when the event occurs
 in the server.
