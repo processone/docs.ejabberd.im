@@ -62,7 +62,8 @@ The parameter for the add / remove hooks are defined as follow:
 
 The `Hook` parameter is the name of the event (see below).
 
-`Host` is the name of the virtual host related to the event.
+`Host` is the name of the [virtual host](/developer/hosts/) related to
+the event.
 
 `Module` and `Function` describe the hook to be called when the event occurs.
 
@@ -70,7 +71,22 @@ The `Hook` parameter is the name of the event (see below).
 run (when several hooks are defined for the same event). You can use
 it if you have dependencies between hooks.
 
-## List of events
+## ejabberd standard events
+
+ejabberd offers close to 100 standard hooks that are used for various
+purposes inside ejabberd server. Many of them are used to decouple
+some components in the core of the ejabberd application server
+itself. As an extension developer, you will likely use a much smaller
+subsets of the available hooks.
+
+### Most common hooks for module developers
+
+In this section, we will introduce you to a few hooks that are very
+handy to write your own custom ejabberd extensions.
+
+
+
+### Full events list
 
 Here is the list of available events in ejabberd. The types of the
 corresponding hooks parameters is described below.
