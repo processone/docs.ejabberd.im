@@ -4,7 +4,9 @@ title: Understanding ejabberd hosts | ejabberd documentation
 
 # Understanding ejabberd hosts
 
-An ejabberd cluster may serve more than one domain at the same time.
+The host parameter is very commonly used through ejabberd code
+base. It is very important to understand what it means and how it is
+used.
 
 ## Component subdomains
 
