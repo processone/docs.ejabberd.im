@@ -6,27 +6,58 @@ title: Events and Hooks | ejabberd documentation
 
 ## Introduction
 
-ejabberd provides a flexible way to tie together modular components
-through an event system.
+ejabberd provides a very flexible way to tie together modular
+components through an event system. This allows for loose coupling
+between components of the system by calling only those which are
+available and configured to be used at runtime.
+
+To focus our attention we'll analyze `mod_offline` which is responsible
+for storing messages for delivery to users unavailable at the time
+of sending.
+`mod_offline` is an implementation of [XEP-0203][xep-0203].
 
 Each module can subscribe to events and a hook in the module code is
-called when the event occurs.
+called, passing all relevant data and parameters when the event occurs
+in the server.
+
+The end result is an extensible system with pluggable extra
+functionality, that allows developers to customize ejabberd server
+without limits.
 
 ## Example
 
 The module
 [mod_offline.erl](https://github.com/processone/ejabberd/blob/master/src/mod_offline.erl)
-is an example of how the events/hooks mechanism can be used.
+is a great example of how the events/hooks mechanism can be used.
+
+`mod_offline` which is responsible for storing messages for delivery
+to users unavailable at the time of sending. `mod_offline` is an
+implementation of [XEP-0203](http://xmpp.org/extensions/xep-0203.html).
 
 ## Hook API
 
-To subscribe to events ejabberd modules register to hooks using the following API:
+### Adding and removing hooks
+
+To subscribe to events ejabberd modules register to hooks using the
+following API:
+
+When your ejabberd module start, you generally will want as a
+developer to register the code to be executed in your module when some
+of ejabberd specific events happen. This is done with `ejabberd_hooks:add/5`:
 
     #!erlang
     ejabberd_hooks:add(Hook, Host, Module, Function, Priority)
+
+As a consequence, you need to tell ejabberd to stop calling anymore
+your when that event is triggered, when you stop your ejabberd
+module. This is done with the `ejabberd_hooks:remove/5`.
+
+    #!erlang
     ejabberd_hooks:remove(Hook, Host, Module, Function, Priority)
 
-It uses the following Erlang data types:
+### Parameters
+
+The parameter for the add / remove hooks are defined as follow:
 
 * Hook = `atom()`
 * Host = `string()`
