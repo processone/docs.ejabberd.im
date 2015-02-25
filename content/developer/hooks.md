@@ -100,8 +100,8 @@ your callback function.
   registered to that event (if any). `run_fold` handler can return an
   accumulator `Value` of `{stop, Value}`.
 
-It means that hooks registration priority can be important for two
-primary reasons:
+It means that hooks registration priority is important for two primary
+reasons:
 
 * changing the prioriry (and thus order) of the `run_fold` handlers can
   change the final data set produced (depending of the process performed
