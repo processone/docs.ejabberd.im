@@ -14,9 +14,9 @@ versatile that you can deploy it and customize it for very large
 scale, no matter what is your use case.
 
 This incredible power comes with a price. You need to learn how to
-leverage it. The goal of this website is to get you started on your
-path to mastery. Whether you are a sysadmin, an architect, a developer
-planning to extend it, or even a simple XMPP user, we have something
-for you here.
+leverage it. Fortunately, the goal of this website is to get you
+started on your path to mastery. Whether you are a sysadmin, an
+architect, a developer planning to extend it, or even a simple XMPP
+user, we have something for you here.
 
 <a href="/get-started/" type="button" class="btn">Get Started</a>
