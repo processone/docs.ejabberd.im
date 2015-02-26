@@ -124,14 +124,14 @@ subsets of the available hooks.
 In this section, we will introduce you to a few hooks that are very
 handy to write your own custom ejabberd modules.
 
-### `filter_packet`
+### `filter_packet` (run_hook)
 
 Filter packet is one of the most useful hook. It is a `run_fold` hook
 run by `ejabberd_router` as soon as the packet is routed via
 `ejabberd_router:route/3` as follow:
 
     #!erlang
-    ejabberd_hooks:run_fold(filter_packet, {OrigFrom, OrigTo, OrigPacket}, [])
+    ejabberd_hooks:run_fold(filter_packet, {OrigFrom, OrigTo, OrigPacket}, []).
 
 This hook takes as parameter:
 
@@ -159,7 +159,7 @@ usual `ejabberd_hooks:run_fold/4`. The ternary variant doesn't take
 the XMPP domain argument and hence it's not possible to register
 per-domain handlers for this hook.
 
-### Full events list
+### Events list
 
 Here is the list of available events in ejabberd. The types of the
 corresponding hooks parameters is described below.
