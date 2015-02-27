@@ -42,11 +42,12 @@ This includes:
 * IMA Teleassistance
 * [Nabaztag](http://en.wikipedia.org/wiki/Nabaztag) (Violet, Mindscape, then Aldebaran Robotics)
 
-## Telecom
+## Telecom / Hosting
 
-* [SAPO - Portugal Telecom]()
+* [Fastmail](http://blog.fastmail.com/2011/08/)
 * GMX
 * Orange
+* [SAPO - Portugal Telecom](https://www.process-one.net/resources/case_studies/ProcessOne_SAPO_Case_Study_v7.pdf)
 
 ## Media
 
