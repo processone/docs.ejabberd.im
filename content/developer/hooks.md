@@ -177,7 +177,7 @@ corresponding hooks parameters is described below.
 * c2s_post_auth_features(Acc, Server) -> []
 * c2s_presence_in(Acc, {From, To, Packet}) -> C2SState
 * c2s_stream_features(Acc, Server) -> []
-* c2s_unauthenticated_iq(Acc, Server, IQ, IP) -> empty|Packet
+* c2s_unauthenticated_iq(Acc, Server, IQ, IP) -> empty \| Packet
 * c2s_update_presence(Acc, User, Server) -> Packet
 * caps_update(From, To, get_features(Server, Caps)) -> ok
 * csi_filter_stanza(Acc, Stanza) -> send
@@ -196,8 +196,8 @@ corresponding hooks parameters is described below.
 * presence_probe_hook(From, To, Pid) -> ok
 * privacy_check_packet(Acc, User, Server, PrivacyList, {From, To, Packet}, Dir) -> Auth
 * privacy_get_user_list(Acc, User, Server) -> #userlist{}
-* privacy_iq_get(Acc, From, To, IQ, PrivacyList) -> {result, Packet} | {error, Error}
-* privacy_iq_set(Acc, From, To, IQ) -> {result, Packet} | {error, Error}
+* privacy_iq_get(Acc, From, To, IQ, PrivacyList) -> {result, Packet} \| {error, Error}
+* privacy_iq_set(Acc, From, To, IQ) -> {result, Packet} \| {error, Error}
 * privacy_updated_list(Acc, PrivacyList, PrivList) -> bool()
 * pubsub_create_node(ServerHost, Host, Node, NodeId, NodeOptions) -> ok
 * pubsub_delete_node(ServerHost, Host, Node, NodeId) -> ok
@@ -242,21 +242,21 @@ corresponding hooks parameters is described below.
 * IQ = #iq (see jlib.h)
 * Error = ?STANZA_ERROR/3 (see jlib.h)
 * Lang = binary()
-* Dir = in | out
-* Auth = allow | deny
-* PrivacyList = OldPrivacyList = NewPrivacyList = none | #userlist
-* CtlStatus = false | ?STATUS_SUCCESS | ?STATUS_ERROR | ?STATUS_USAGE | ?STATUS_BADRPC (see ejabberd_ctl.hrl)
-* Adhoc = {result, I} | {error, Error} | empty
-* Disco = {result, Items} | {error, Error}
+* Dir = in \| out
+* Auth = allow \| deny
+* PrivacyList = OldPrivacyList = NewPrivacyList = none \| #userlist
+* CtlStatus = false \| ?STATUS_SUCCESS \| ?STATUS_ERROR \| ?STATUS_USAGE \| ?STATUS_BADRPC (see ejabberd_ctl.hrl)
+* Adhoc = {result, I} \| {error, Error} \| empty
+* Disco = {result, Items} \| {error, Error}
 * Items = Packet
 * Arg = [string()]
 * Node = [string()]
 * ItemID = string()
 * Route = {route, From, To, Packet}
 * RosterItem = #roster (see mod_roster.hrl)
-* Subscription = none | from | to | both | remove
-* SubscriptionInType = subscribe | unsubscribe
-* SubscriptionOutType = subscribed | unsubscribed
+* Subscription = none \| from \| to \| both \| remove
+* SubscriptionInType = subscribe \| unsubscribe
+* SubscriptionOutType = subscribed \| unsubscribed
 * Reason = binary()
 * Groups = [string()]
 * SimpleJID = FromSubscription = ToSubscription = {User, Server, Resource}
