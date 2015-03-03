@@ -872,9 +872,13 @@ other valid port number.
 
 The IP address can be represented as a string. The socket will listen
 only in that network interface. It is possible to specify a generic
-address, so `ejabberd` will listen in all addresses. Depending in the
-type of the IP address, IPv4 or IPv6 will be used. When not specified
-the IP address, it will listen on all IPv4 network addresses.
+address ("0.0.0.0" for IPv4 or "::" for IPv6), so `ejabberd` will listen
+in all addresses. Depending on the type of the IP address, IPv4 or IPv6
+will be used. When the IP address is not specified, it will listen on
+all IPv4 network addresses.
+
+Note that on some operating systems and/or OS configurations, listening
+on "::" will mean listening for IPv4 traffic as well as IPv6 traffic.
 
 Some example values for IP address:
 
