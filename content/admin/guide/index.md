@@ -1993,7 +1993,7 @@ following syntax:
           loopback:
             ip:
               - "127.0.0.0/8"
-              - "::"
+              - "::1"
 
 `user_regexp: Regexp`
 
@@ -4882,7 +4882,7 @@ Examples:
           loopback:
             ip:
               - "127.0.0.0/8"
-              - "::"
+              - "::1"
           shortname: 
             user_glob: 
               - "?"
