@@ -90,8 +90,18 @@ green     #859900  operators, other keywords
 .highlight .vi { color: #268bd2 } /* Name.Variable.Instance */
 .highlight .il { color: #2aa198 } /* Literal.Number.Integer.Long */
 
-td.linenos { width: 1.5em; margin: 0; padding: 0 10px; }
-td.code { margin: 0; padding: 0 10px; }
+td.linenos,
+td.code {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  
+  border: none;
+}
+
+td.linenos {
+  padding-right: 1em;
+}
 
 table.highlighttable {
   margin: 0;
@@ -99,11 +109,16 @@ table.highlighttable {
   width: 100%;
   
   overflow: auto;
+  white-space: nowrap;
 }
+  table.highlighttable td {
+    vertical-align: middle !important;
+  }
 
 pre,
 code {  
   border-radius: 3px;
+  margin: 0;
   
   font-size: 15px;
   line-height: 18px;
@@ -112,6 +127,11 @@ code {
     display: block;
     padding: 0 3px;
   }
+  
+  pre {
+    padding: 1em;
+  }
   pre pre {
+    padding: 0;
     overflow: visible;
   }

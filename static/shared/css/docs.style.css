@@ -82,7 +82,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 h2,h3,h4 {
   margin-top: 1.5em;
-  color: #3EAFFA;
 }
 h5,h5 {
   margin-top: 20px;
@@ -163,7 +162,7 @@ h5,h5 {
 
 #sidebar,
 #content {
-  min-height: 600px;
+  min-height: 728px;
 }
 
 #sidebar {
