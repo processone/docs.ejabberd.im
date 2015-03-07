@@ -12,7 +12,7 @@ The table is used to store privacy rules.
 
 The table is a direct translation of the XMPP packet used to set
 privacy lists. For more details, please read
-[XEP-0016: Privacy Lists, Syntax and Smemantics](http://xmpp.org/extensions/xep-0016.html#protocol-syntax). Here
+[XEP-0016: Privacy Lists, Syntax and Semantics](http://xmpp.org/extensions/xep-0016.html#protocol-syntax). Here
 is an example packet coming from privacy list specification:
 
     #!xml
