@@ -5,9 +5,11 @@ bodyclass: nocomment
 
 # ejabberd for administrators
 
-This section contains information on administering your ejabberd
+This area contains information on administering your ejabberd
 system.
 
-All our documents are managed in ProcessOne Github. You can help
-improving this site:
-[docs.ejabberd.im on Github](https://github.com/processone/docs.ejabberd.im)
+* [ejabberd Installation and Operation Guide](/admin/guide/) provides a full reference
+  information on ejabberd installation, configuration and management
+
+* [Admin FAQ](/admin/faq/) provides tips and information on Frequently
+  Asked Questions for ejabberd Administrators.
