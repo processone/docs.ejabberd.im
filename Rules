@@ -23,6 +23,7 @@ compile '*' do
   filter :colorize_syntax,
          :default_colorizer => :pygmentsrb,
          :pygmentsrb => {:options => {:nowrap => 'False', :linenos => 'table'}}
+  filter :add_toc
 
   layout 'default'
   rep.item.identifier + "index.html"

@@ -1,5 +1,8 @@
-# Introduction
+# Table of Contents
 
+{{TOC}}
+
+# Introduction
 
 `ejabberd` is a *free and open source* instant messaging server written
 in [`Erlang/OTP`](http://www.erlang.org/).
