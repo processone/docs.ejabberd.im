@@ -5780,7 +5780,7 @@ Options:
 `search: true|false`
 
 :   This option specifies whether the search functionality is enabled or
-    not If disabled, the option `host` will be ignored and the Jabber
+    not. If disabled, the option `host` will be ignored and the Jabber
     User Directory service will not appear in the Service Discovery item
     list. The default value is `true`.
 
