@@ -1178,7 +1178,7 @@ modules:
     5223 for client-to-server communications. But this method is
     nowadays deprecated and not recommended. The preferable encryption
     method is STARTTLS on port 5222, as defined
-    [`RFC 3920: XMPP Core`](http://xmpp.org/rfcs/rfc3920.html#tls),
+    [`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
     which can be enabled in `ejabberd` with the option `starttls`. If
     this option is set, you should also set the `certfile` option. The
     option `tls` can also be used in `ejabberd_http` to support HTTPS.
@@ -1295,9 +1295,9 @@ ejabberd configuration file (outside `listen`):
 
 :   Defines if ejabberd must route stanzas directed to subdomains
     locally (compliant with
-    [`RFC 3920: XMPP Core`](http://xmpp.org/rfcs/rfc3920.html#rules.subdomain)),
+    [`RFC 6120 Local Domain rules`](http://xmpp.org/rfcs/rfc6120.html\#rules-local)),
     or to foreign server using S2S (compliant with
-    [`RFC 3920 bis`](http://tools.ietf.org/html/draft-saintandre-rfc3920bis-09#section-11.3)).
+    [`RFC 6120 Remote Domain rules`](http://xmpp.org/rfcs/rfc6120.html\#rules-remote)).
 
 #### Examples
 
@@ -4512,9 +4512,9 @@ subscription stanzas to be sent or received by the users in 60 seconds:
 ### `mod_privacy`
 
 This module implements
-[`Blocking Communication`](http://xmpp.org/rfcs/rfc3921.html#privacy)
-(also known as Privacy Rules). If end users have support for it in their
-XMPP client, they will be able to:
+[XEP-0016: Privacy Lists`](http://www.xmpp.org/extensions/xep-0016.html). If
+end users have support for it in their XMPP client, they will be able
+to:
 
 > -   Retrieving one’s privacy lists.
 >
@@ -4539,9 +4539,6 @@ XMPP client, they will be able to:
 >
 > -   Allowing or blocking all communications based on JID, group, or
 >     subscription type (or globally).
->
-> (from
-> [`http://xmpp.org/rfcs/rfc3921.html#privacy`](http://xmpp.org/rfcs/rfc3921.html#privacy))
 
 Options:
 
