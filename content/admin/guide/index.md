@@ -6076,7 +6076,7 @@ Options:
     Mnesia database. If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
-### `mod_version` [modversion]
+### `mod_version`
 
 This module implements Software Version
 ([`XEP-0092`](http://xmpp.org/extensions/xep-0092.html)). Consequently,
@@ -6602,8 +6602,7 @@ file, usually called `ejabberd.yml`:
 
     include_config_file: "/etc/ejabberd/additional.cfg"
 
-Web Admin [webadmin]
----------
+## Web Admin
 
 The `ejabberd` Web Admin allows to administer most of `ejabberd` using a
 web browser.
@@ -7295,8 +7294,7 @@ The Web Admin also supports the `Accept-Language` HTTP header.
 Release notes are available from
 [`ejabberd Home Page`](http://www.process-one.net/en/ejabberd/release_notes/)
 
-Acknowledgements
-================
+# Acknowledgements
 
 Thanks to all people who contributed to this guide:
 
