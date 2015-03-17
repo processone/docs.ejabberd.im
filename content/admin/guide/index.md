@@ -1,4 +1,9 @@
-# Table of Contents
+---
+title: ejabberd Installation and Operation Guide
+bodyclass: nocomment
+---
+
+# ejabberd Installation and Operation Guide
 
 {{TOC}}
 
