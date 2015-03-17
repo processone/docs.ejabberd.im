@@ -79,7 +79,7 @@ Erlang dependencies:
 ### Optional dependencies
 
 Then, we use a few other dependant repositories that may be used if you
-have enable support in the configure script.
+have enabled support in the configure script.
 
 Here are the dependancies for relational database support:
 
