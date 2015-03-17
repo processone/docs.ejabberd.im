@@ -5868,7 +5868,7 @@ The second group of parameters consists of the following
 :   This specifies the processing discipline for `vcard-temp` IQ queries
     (see section [modiqdiscoption]).
 
-`{search, true|false}`
+`search: true|false`
 
 :   This option specifies whether the search functionality is enabled
     (value: `true`) or disabled (value: `false`). If disabled, the
@@ -5876,13 +5876,13 @@ The second group of parameters consists of the following
     will not appear in the Service Discovery item list. The default
     value is `true`.
 
-`{matches, infinity|Number}`
+`matches: infinity|Number`
 
 :   With this option, the number of reported search results can be
     limited. If the option’s value is set to `infinity`, all search
     results are reported. The default value is `30`.
 
-`{ldap_vcard_map, [ {Name, Pattern, LDAPattributes}, ...]}`
+`ldap_vcard_map: {Name: {Pattern, LDAPattributes}, ...}`
 
 :   With this option you can set the table that maps LDAP attributes to
     vCard fields. `Name` is the type name of the vCard as defined in
@@ -5894,28 +5894,28 @@ The second group of parameters consists of the following
     with the user part of a JID, and `%d` will be replaced with the
     domain part of a JID. The default is:
 
-        [{"NICKNAME", "%u", []},
-         {"FN", "%s", ["displayName"]},
-         {"LAST", "%s", ["sn"]},
-         {"FIRST", "%s", ["givenName"]},
-         {"MIDDLE", "%s", ["initials"]},
-         {"ORGNAME", "%s", ["o"]},
-         {"ORGUNIT", "%s", ["ou"]},
-         {"CTRY", "%s", ["c"]},
-         {"LOCALITY", "%s", ["l"]},
-         {"STREET", "%s", ["street"]},
-         {"REGION", "%s", ["st"]},
-         {"PCODE", "%s", ["postalCode"]},
-         {"TITLE", "%s", ["title"]},
-         {"URL", "%s", ["labeleduri"]},
-         {"DESC", "%s", ["description"]},
-         {"TEL", "%s", ["telephoneNumber"]},
-         {"EMAIL", "%s", ["mail"]},
-         {"BDAY", "%s", ["birthDay"]},
-         {"ROLE", "%s", ["employeeType"]},
-         {"PHOTO", "%s", ["jpegPhoto"]}]
+        "NICKNAME": {"%u": []}
+        "FN": {"%s": ["displayName"]}
+        "LAST": {"%s": ["sn"]}
+        "FIRST": {"%s": ["givenName"]}
+        "MIDDLE": {"%s": ["initials"]}
+        "ORGNAME": {"%s": ["o"]}
+        "ORGUNIT": {"%s": ["ou"]}
+        "CTRY": {"%s": ["c"]}
+        "LOCALITY": {"%s": ["l"]}
+        "STREET": {"%s": ["street"]}
+        "REGION": {"%s": ["st"]}
+        "PCODE": {"%s": ["postalCode"]}
+        "TITLE": {"%s": ["title"]}
+        "URL": {"%s": ["labeleduri"]}
+        "DESC": {"%s": ["description"]}
+        "TEL": {"%s": ["telephoneNumber"]}
+        "EMAIL": {"%s": ["mail"]}
+        "BDAY": {"%s": ["birthDay"]}
+        "ROLE": {"%s": ["employeeType"]}
+        "PHOTO": {"%s": ["jpegPhoto"]}
 
-`{ldap_search_fields, [ {Name, Attribute}, ...]}`
+`ldap_search_fields: {Name: Attribute, ...}`
 
 :   This option defines the search form and the LDAP attributes to
     search within. `Name` is the name of a search form field which will
@@ -5923,20 +5923,20 @@ The second group of parameters consists of the following
     `msgs/*.msg` for available words). `Attribute` is the LDAP attribute
     or the pattern `%u`. The default is:
 
-        [{"User", "%u"},
-         {"Full Name", "displayName"},
-         {"Given Name", "givenName"},
-         {"Middle Name", "initials"},
-         {"Family Name", "sn"},
-         {"Nickname", "%u"},
-         {"Birthday", "birthDay"},
-         {"Country", "c"},
-         {"City", "l"},
-         {"Email", "mail"},
-         {"Organization Name", "o"},
-         {"Organization Unit", "ou"}]
+        "User": "%u"
+        "Full Name": "displayName"
+        "Given Name": "givenName"
+        "Middle Name": "initials"
+        "Family Name": "sn"
+        "Nickname": "%u"
+        "Birthday": "birthDay"
+        "Country": "c"
+        "City": "l"
+        "Email": "mail"
+        "Organization Name": "o"
+        "Organization Unit": "ou"
 
-`{ldap_search_reported, [ {SearchField, VcardField}, ...]}`
+`ldap_search_reported: {SearchField: VcardField}, ...}`
 
 :   This option defines which search fields should be reported.
     `SearchField` is the name of a search form field which will be
@@ -5944,17 +5944,17 @@ The second group of parameters consists of the following
     `msgs/*.msg` for available words). `VcardField` is the vCard field
     name defined in the `ldap_vcard_map` option. The default is:
 
-        [{"Full Name", "FN"},
-         {"Given Name", "FIRST"},
-         {"Middle Name", "MIDDLE"},
-         {"Family Name", "LAST"},
-         {"Nickname", "NICKNAME"},
-         {"Birthday", "BDAY"},
-         {"Country", "CTRY"},
-         {"City", "LOCALITY"},
-         {"Email", "EMAIL"},
-         {"Organization Name", "ORGNAME"},
-         {"Organization Unit", "ORGUNIT"}]
+        "Full Name": "FN"
+        "Given Name": "FIRST"
+        "Middle Name": "MIDDLE"
+        "Family Name": "LAST"
+        "Nickname": "NICKNAME"
+        "Birthday": "BDAY"
+        "Country": "CTRY"
+        "City": "LOCALITY"
+        "Email": "EMAIL"
+        "Organization Name": "ORGNAME"
+        "Organization Unit": "ORGUNIT"
 
 Examples:
 
@@ -5965,13 +5965,14 @@ Examples:
     directory. Corresponding authentication section should looks like
     this:
 
-        #!erlang
-        %% authentication method
-        {auth_method, ldap}.
-        %% DNS name of our LDAP server
-        {ldap_servers, ["ldap.example.org"]}.
-        %% We want to authorize users from 'shadowAccount' object class only
-        {ldap_filter, "(objectClass=shadowAccount)"}.
+        #!yaml
+        ## authentication method
+        auth_method: ldap
+        ## DNS name of our LDAP server
+        ldap_servers:
+          - "ldap.example.org"
+        ## We want to authorize users from 'shadowAccount' object class only
+        ldap_filter: "(objectClass=shadowAccount)"
 
     Now we want to use users LDAP-info as their vCards. We have four
     attributes defined in our LDAP schema: `mail` — email address,
@@ -5979,81 +5980,70 @@ Examples:
     Also we want users to search each other. Let’s see how we can set it
     up:
 
-        #!erlang
-        {modules,
-          ...
-          {mod_vcard_ldap,
-           [
-            %% We use the same server and port, but want to bind anonymously because
-            %% our LDAP server accepts anonymous requests to
-            %% "ou=AddressBook,dc=example,dc=org" subtree.
-            {ldap_rootdn, ""},
-            {ldap_password, ""},
-            %% define the addressbook's base
-            {ldap_base, "ou=AddressBook,dc=example,dc=org"},
-            %% uidattr: user's part of JID is located in the "mail" attribute
-            %% uidattr_format: common format for our emails
-            {ldap_uids, [{"mail","%u@mail.example.org"}]},
-            %% We have to define empty filter here, because entries in addressbook does not
-            %% belong to shadowAccount object class
-            {ldap_filter, ""},
-            %% Now we want to define vCard pattern
-            {ldap_vcard_map,
-             [{"NICKNAME", "%u", []}, % just use user's part of JID as his nickname
-              {"FIRST", "%s", ["givenName"]},
-              {"LAST", "%s", ["sn"]},
-              {"FN", "%s, %s", ["sn", "givenName"]}, % example: "Smith, John"
-              {"EMAIL", "%s", ["mail"]},
-              {"BDAY", "%s", ["birthDay"]}]},
-            %% Search form
-            {ldap_search_fields,
-             [{"User", "%u"},
-              {"Name", "givenName"},
-              {"Family Name", "sn"},
-              {"Email", "mail"},
-              {"Birthday", "birthDay"}]},
-            %% vCard fields to be reported
-            %% Note that JID is always returned with search results
-            {ldap_search_reported,
-             [{"Full Name", "FN"},
-              {"Nickname", "NICKNAME"},
-              {"Birthday", "BDAY"}]}
-          ]}
-          ...
-        }.
+        #!yaml
+        modules:
+          mod_vcard_ldap:
+            ## We use the same server and port, but want to bind anonymously because
+            ## our LDAP server accepts anonymous requests to
+            ## "ou=AddressBook,dc=example,dc=org" subtree.
+            ldap_rootdn: ""
+            ldap_password: ""
+            ## define the addressbook's base
+            ldap_base: "ou=AddressBook,dc=example,dc=org"
+            ## uidattr: user's part of JID is located in the "mail" attribute
+            ## uidattr_format: common format for our emails
+            ldap_uids: {"mail": "%u@mail.example.org"}
+            ## Now we want to define vCard pattern
+            ldap_vcard_map:
+              "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+              "FIRST": {"%s": ["givenName"]}
+              "LAST": {"%s": ["sn"]}
+              "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
+              "EMAIL": {"%s": ["mail"]}
+              "BDAY": {"%s": ["birthDay"]}
+            ## Search form
+            ldap_search_fields:
+              "User": "%u"
+              "Name": "givenName"
+              "Family Name": "sn"
+              "Email": "mail"
+              "Birthday": "birthDay"
+            ## vCard fields to be reported
+            ## Note that JID is always returned with search results
+            ldap_search_reported:
+              "Full Name": "FN"
+              "Nickname": "NICKNAME"
+              "Birthday": "BDAY"
 
     Note that `mod_vcard_ldap` module checks an existence of the user
     before searching his info in LDAP.
 
 -   `ldap_vcard_map` example:
 
-        #!erlang
-        {ldap_vcard_map,
-         [{"NICKNAME", "%u", []},
-          {"FN", "%s", ["displayName"]},
-          {"CTRY", "Russia", []},
-          {"EMAIL", "%u@%d", []},
-          {"DESC", "%s\n%s", ["title", "description"]}
-         ]},
+        #!yaml
+        ldap_vcard_map:
+          "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+          "FN": {"%s": ["displayName"]}
+          "CTRY": {"Russia": []}
+          "EMAIL": {"%u@%d": []}
+          "DESC": {"%s\n%s": ["title", "description"]}
 
 -   `ldap_search_fields` example:
 
-        #!erlang
-        {ldap_search_fields,
-         [{"User", "uid"},
-          {"Full Name", "displayName"},
-          {"Email", "mail"}
-         ]},
+        #!yaml
+        ldap_search_fields:
+          "User": "uid"
+          "Full Name": "displayName"
+          "Email": "mail"
 
 -   `ldap_search_reported` example:
 
-        #!erlang
-        {ldap_search_reported,
-         [{"Full Name", "FN"},
-          {"Email", "EMAIL"},
-          {"Birthday", "BDAY"},
-          {"Nickname", "NICKNAME"}
-         ]},
+        #!yaml
+        ldap_search_reported:
+          "Full Name": "FN"
+          "Email": "EMAIL"
+          "Birthday": "BDAY"
+          "Nickname": "NICKNAME"
 
 ### `mod_vcard_xupdate`
 
