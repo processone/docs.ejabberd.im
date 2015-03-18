@@ -582,7 +582,7 @@ We assume that we will try to put as much library as possible into
         configure.bat
         nmake -f Makefile.win32
 
-9.  Edit the file `ejabberd\src\texttt{ejabberd}.yml` and run
+9.  Edit the file `ejabberd\src\ejabberd.yml` and run
 
         #!console
         werl -s ejabberd -name ejabberd
@@ -643,9 +643,9 @@ indicates you need to also update those tables.
 ## Basic Configuration
 
 The configuration file will be loaded the first time you start
-`ejabberd`. The configuration file name MUST have “.yml” extension. This
-helps ejabberd to differentiate between the new and legacy file formats
-(see section [oldconfig]).
+`ejabberd`. The configuration file name MUST have “.yml” or “.yaml”
+extension. This helps ejabberd to differentiate between the new and
+legacy file formats (see section [oldconfig]).
 
 Note that `ejabberd` never edits the configuration file.
 
