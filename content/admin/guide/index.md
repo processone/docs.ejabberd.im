@@ -7025,6 +7025,7 @@ permanently from the cluster.
 To remove permanently a node from the cluster, a command must be run
 after shutting down the node from an another running node:
 
+        #!console
         $ ejabberdctl leave_cluster 'ejabberd@second'
 
 # Service Load-Balancing
