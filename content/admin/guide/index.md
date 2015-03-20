@@ -6982,6 +6982,8 @@ otherwise a new connection is opened.
 
 ## Clustering Setup
 
+### Adding a node in a cluster
+
 Suppose you already configured `ejabberd` on one machine named
 (`first`), and you need to setup another one to make an `ejabberd`
 cluster. Then do following steps:
@@ -6991,69 +6993,39 @@ cluster. Then do following steps:
     (alt) You can also add ‘`-setcookie content_of_.erlang.cookie`’
     option to all ‘`erl`’ commands below.
 
-2.  On `second` run the following command as the `ejabberd` daemon user,
-    in the working directory of `ejabberd`:
+2.  Adding a node into the cluster is done by starting a new ejabberd
+    node within the same network, and running a command from a cluster
+    node. On `second` node for example, as ejabberd is already
+    started, run the following command as the `ejabberd` daemon user,
+    using the ejabberdctl script:
 
         #!console
-        erl -sname ejabberd \
-            -mnesia dir '"/var/lib/ejabberd/"' \
-            -mnesia extra_db_nodes "['ejabberd@first']" \
-            -s mnesia
+        $ ejabberdctl join_cluster 'ejabberd@first'
 
-    This will start Mnesia serving the same database as
-    `ejabberd@first`. You can check this by running the command
-    ‘`mnesia:info().`’. You should see a lot of remote tables and a line
-    like the following:
+    This enable ejabberd internals replications to be launched across
+    all nodes so new node can start receiving messages from other
+    nodes and be registered in the routing tables.
 
-    Note: the Mnesia directory may be different in your system. To know
-    where does ejabberd expect Mnesia to be installed by default, call
-    [ejabberdctl] without options and it will show some help, including
-    the Mnesia database spool dir.
+### Removing a node from the cluster
 
-        running db nodes   = [ejabberd@first, ejabberd@second]
+To remove a node from the cluster, it just has to be shut down. There
+is no specific delay for the cluster to figure out that the node is
+gone, the node is immediately removed from other routers entries. All
+clients directly connected to the stopped node are disconnected, and
+should reconnect to other nodes.
 
-3.  Now run the following in the same ‘`erl`’ session:
+If the cluster is used behind a load balancer and the node has been
+removed from the load balancer, no new clients should be connecting to
+that node but established connections should be kept, thus allowing to
+remove a node smoothly, by stopping it after most clients disconnected
+by themselves.  If the node is started again, it's immediately
+attached back to the cluster until it has been explicitly removed
+permanently from the cluster.
 
-        #!erlang
-        mnesia:change_table_copy_type(schema, node(), disc_copies).
+To remove permanently a node from the cluster, a command must be run
+after shutting down the node from an another running node:
 
-    This will create local disc storage for the database.
-
-    (alt) Change storage type of the `scheme` table to ‘RAM and disc
-    copy’ on the second node via the Web Admin.
-
-4.  Now you can add replicas of various tables to this node with
-    ‘`mnesia:add_table_copy`’ or ‘`mnesia:change_table_copy_type`’ as
-    above (just replace ‘`schema`’ with another table name and
-    ‘`disc_copies`’ can be replaced with ‘`ram_copies`’ or
-    ‘`disc_only_copies`’).
-
-    Which tables to replicate is very dependant on your needs, you can
-    get some hints from the command ‘`mnesia:info().`’, by looking at
-    the size of tables and the default storage type for each table on
-    ’first’.
-
-    Replicating a table makes lookups in this table faster on this node.
-    Writing, on the other hand, will be slower. And of course if machine
-    with one of the replicas is down, other replicas will be used.
-
-    Also
-    [` `](http://www.erlang.org/doc/apps/mnesia/Mnesia_chap5.html#5.3)
-    <span>section 5.3 (Table Fragmentation) of Mnesia User’s
-    Guide</span> can be helpful. (alt) Same as in previous item, but for
-    other tables.
-
-5.  Run ‘`init:stop().`’ or just ‘`q().`’ to exit from the Erlang shell.
-    This probably can take some time if Mnesia has not yet transfered
-    and processed all data it needed from `first`.
-
-6.  Now run `ejabberd` on `second` with a configuration similar as on
-    `first`: you probably do not need to duplicate ‘`acl`’ and
-    ‘`access`’ options because they will be taken from `first`; and
-    `mod_irc` should be enabled only on one machine in the cluster.
-
-You can repeat these steps for other machines supposed to serve this
-domain.
+        $ ejabberdctl leave_cluster 'ejabberd@second'
 
 # Service Load-Balancing
 
