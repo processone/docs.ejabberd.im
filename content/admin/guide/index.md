@@ -138,8 +138,9 @@ features:
         component with support for
         [`Personal Eventing via Pubsub`](http://xmpp.org/extensions/xep-0163.html).
 
-    -   Support for web clients:
-        [`HTTP Polling`](http://xmpp.org/extensions/xep-0025.html) and
+    - Support for web clients: Support for
+        [XMPP subprotocol for Websocket](https://tools.ietf.org/html/rfc7395)
+        and
         [`HTTP Binding (BOSH)`](http://xmpp.org/extensions/xep-0206.html)
         services.
 
@@ -946,10 +947,10 @@ are:
 
 `ejabberd_http`
 
-:   Handles incoming HTTP connections.  
+:   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP Bosh and Websocket with proper request handler configured. 
     Options: `captcha`, `certfile`, `default_host`, `http_bind`,
     `http_poll`, `request_handlers`, `tls`, `tls_compression`,
-    `trusted_proxies`, `web_admin`  
+    `trusted_proxies`, `web_admin`
 
 `ejabberd_xmlrpc`
 
@@ -1584,6 +1585,39 @@ the transports log and do XDB by themselves:
         <spool><jabberd:cmdline flag='s'>/var/spool/jabber</jabberd:cmdline></spool>
       </xdb_file>
     </xdb>
+
+#### Websocket support
+
+To enable Websocket support in ejabberd, you need to add the
+following request handler to `ejabberd_http` listener:
+
+      "/xmpp": ejabberd_http_ws
+
+The whole fragment for 'request_handler' section of 'ejabberd_http'
+listener can look like this:
+
+    #!yaml
+    listen:
+      -
+        port: 5280
+        module: ejabberd_http
+        request_handlers:
+          "/xmpp": ejabberd_http_ws
+
+To use websocket, you can use for example Strophe with websocket
+support. All changes required to switch from http-bind (BOSH
+)connection is updating url used to connect:
+
+    #!javascript
+    my_connection = new Strophe.Connection("http://myserver:5280/http-bind")
+
+would need to be changed to:
+
+    #!javascript
+    my_connection = new Strophe.Connection("ws://myserver:5280/xmpp")
+
+As you see, there is a single listener for both bosh and websocket, but endpoint are different.
+It means that both HTTP session type for XMPP can use the same port.
 
 ### Authentication
 
