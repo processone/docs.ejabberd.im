@@ -1586,39 +1586,6 @@ the transports log and do XDB by themselves:
       </xdb_file>
     </xdb>
 
-#### Websocket support
-
-To enable Websocket support in ejabberd, you need to add the
-following request handler to `ejabberd_http` listener:
-
-      "/xmpp": ejabberd_http_ws
-
-The whole fragment for 'request_handler' section of 'ejabberd_http'
-listener can look like this:
-
-    #!yaml
-    listen:
-      -
-        port: 5280
-        module: ejabberd_http
-        request_handlers:
-          "/xmpp": ejabberd_http_ws
-
-To use websocket, you can use for example Strophe with websocket
-support. All changes required to switch from http-bind (BOSH
-)connection is updating url used to connect:
-
-    #!javascript
-    my_connection = new Strophe.Connection("http://myserver:5280/http-bind")
-
-would need to be changed to:
-
-    #!javascript
-    my_connection = new Strophe.Connection("ws://myserver:5280/xmpp")
-
-As you see, there is a single listener for both bosh and websocket, but endpoint are different.
-It means that both HTTP session type for XMPP can use the same port.
-
 ### Authentication
 
 The option `auth_method` defines the authentication methods that are
@@ -3778,6 +3745,42 @@ And define it as a handler in the HTTP service:
           "/pub/archive": mod_http_fileserver
           ...
       ...
+
+### mod_http_ws
+
+This module enables xmpp communication over websocket connection as
+described in [`RFC 7395`](http://tools.ietf.org/html/rfc7395).
+
+To enable this module it must have handler added to `request_handler`
+section of `ejbberd_http` listener:
+
+    #!yaml
+    listen:
+      ...
+      -
+        port: 5280
+        module: ejabberd_http
+        request_handlers:
+          ...
+          "/xmpp": ejabberd_http_ws
+          ...
+      ...
+
+This module can be configured by using those options:
+
+`websocket_ping_interval: Seconds`
+
+: Defines time between pings send by server to client (websocket level
+protocol pings are used for this) to keep connection active. If client
+won't respond to two corresponding pings connection will be assumed as
+closed. Value of `0` can be used to disable it feature. Default value
+of this option is set to 60.
+
+`websocket_timeout: Seconds`
+
+: Amount of time without any communication after which connection
+would be closed, setting this option 0 will disable this feature. This
+option is set to 300.
 
 ### `mod_irc`
 
