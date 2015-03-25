@@ -2651,6 +2651,8 @@ The following databases are supported by `ejabberd`:
 
 -   [`Riak`](http://basho.com/riak/)
 
+-   [`Redis`](http://redis.io/) (only for transient data)
+
 The following LDAP servers are tested with `ejabberd`:
 
 -   [`Active Directory`](http://www.microsoft.com/activedirectory/) (see
@@ -3124,6 +3126,56 @@ Second, Riak should be pointed to `ejabberd` Erlang binary files
 
 Important notice: make sure Riak has at least read access to that
 directory. Otherwise its startup will likely fail.
+
+### Redis
+
+[`Redis`](http://redis.io/) is an advanced key-value cache and store. You can
+use it to store transient data, such as records for C2S (client) sessions.
+There are several options available:
+
+`redis_server: String`
+
+:   A hostname of the Redis server. The default is `localhost`.
+
+`redis_port: Port`
+
+:   The port where the Redis server is accepting connections. The defalt
+    is 6379.
+
+`redis_password: String`
+
+:   The password to the Redis server. The default is an empty string,
+    i.e. no password.
+
+`redis_db: N`
+
+:   Redis database number. The default is 0.
+
+`redis_reconnect_timeout: N`
+
+:   A number of seconds to wait before next connection attempt to the Redis server.
+    The default is 1 second.
+
+`redis_connect_timeout: N`
+
+:   A number of seconds to wait for the connection to be established to the Redis
+    server. The default is 1 second.
+
+Example configuration:
+
+    #!yaml
+    redis_server: "redis.server.com"
+    redis_db: 1
+
+## Session Management
+
+By default pointers to C2S sessions are kept in Mnesia. You may want to
+use another database backend for this. The option is:
+
+`sm_db_type: mnesia|odbc|redis`
+
+:   Note that for `odbc` or `redis` you should have them configured. See sections
+    [odbc] or [redis].
 
 ## Modules Configuration
 
