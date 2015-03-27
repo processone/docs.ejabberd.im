@@ -4507,6 +4507,12 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 :   Whether or not to store messages with empty `<body/>` element. The
     default value is `true`.
 
+`pool_size: Size`
+
+:   This option specifies the size of the worker pool for storing
+    offline messages. The allowed values are positive integers.
+    Default value: `16`.
+
 This example allows power users to have as much as 5000 offline
 messages, administrators up to 2000, and all the other users up to 100.
 
