@@ -21,6 +21,12 @@ Outside of a few infrastructure core components most of ejabberd
 features are developed as modules. Modules are use to extend the
 feature of ejabberd (plugins).
 
+## How to write a custom module ?
+
+Ejabberd comes with a lot of modules, but sometimes you may need an
+unsupported feature from the official sources or maybe you need to
+write your own custom implementation for your very special needs.
+
 Each modules is written in either Erlang or Elixir. To use them, you
 typically declare them in ejabberd configuration file. That's also the
 place where you can configure the module, by passing supported options
@@ -107,7 +113,106 @@ should see the following message in ejabberd log file:
 
     19:13:29.717 [info] Hello, ejabberd world!
 
-## Next steps
+
+# Working with the ejabberd module repository
+
+For many years, contributed modules were stored on ejabberd-contrib repository.
+
+However, these modules required manual compilation. This means having Erlang/OTP
+installed, a base knowledge of how to compile ejabberd modules and manual maintenance
+when ejabberd’s api is updated over time.
+
+Complex operations to manage ejabberd contributed modules is now behind us.
+ejabberd is now able to fetch module sources by itself, compile with correct flags
+and install in a local repository, without any external dependencies. You no
+longer need to know Erlang and have it installed in order to use the contributed modules.
+This works with ejabberd modules written in Erlang and will also support new Elixir modules.
+
+Before getting started, you need to use ejabberd official repository on Github.
+We are gathering feedback before you see that command in the next stable release.
+It will work with ejabberd HEAD, starting from version 15.02.77 (aa1250a). Once you have
+an ejabberd compiled from source installed, you can start playing with the commands.
+
+## Basic commands
+As a user, this is how it works:
+
+First you need to get/update the list of available modules:
+
+    $ ejabberdctl modules_update_specs
+
+Then you can list available modules
+
+    $ ejabberdctl modules_available
+    ...
+    mod_admin_extra Additional ejabberd commands
+    mod_archive Supports almost all the XEP-0136 version 0.6 except otr
+    mod_cron Execute scheduled commands
+    mod_log_chat Logging chat messages in text files
+    ...
+
+Let’s give mod_cron a try:
+
+    $ ejabberdctl module_install mod_cron
+    ok
+
+This command installs mod_cron from ejabberd-contrib repository. An example default
+configuration is installed in:
+
+    $HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
+
+All you have to do is to copy paste the module and add the values in there in the
+proper place in your ejabberd.yml config file. Be careful, the snippet can include ACLs,
+listeners and module configuration, that you have to put in the right place in your
+config file.
+
+Now, check your new module is installed:
+    $ ejabberdctl modules_installed
+    mod_cron
+
+And finally, you can remove it:
+    $ ejabberdctl module_uninstall mod_cron
+    ok
+
+## Managing your own modules
+As a developper, you still need Erlang and Ejabberd if you install everything from
+sources, but you can even not need Erlang if you installed ejabberd from official
+ProcesOne installer. The official installer includes everything needed to build
+ejabberd modules on its own.
+
+First you can work on your own module by creating a repository in
+
+    $HOME/.ejabberd-modules/sources/mod_mysupermodule
+
+and creating a specification file in YAML format as mod_mysupermodule.spec
+(see examples from ejabberd-contrib). From that point you should see it as available module.
+
+Before commiting your code, you should check if your module follows the policy and if it
+compiles correctly:
+
+    $ ejabberdctl module_check mod_mysupermodule
+    ok
+
+if all is OK, your’re done ! Else, just follow the warning/error messages to fix the issues.
+
+You can keep your repository private in this location, ejabberd see it as an available module,
+or you can publish it as a tgz/zip archive or git repository, and send your spec file for
+integration in ejabberd-contrib repository. ejabberd-contrib will only host a copy of your
+spec file and does not need your code to make it available to all ejabberd users.
+
+
+## Status
+Please note this is provided as a beta version. We want the work in progress to be released
+early to gather feedback from developers and users.
+
+For now, you need to edit the configuration snippet provided in module’s conf directory and
+copy it into your ejabberd’s main configuration. Then you’ll need to restart ejabberd or
+manually start the module.
+
+However, our plan is to keep iterating on the tool and to make our best to make module
+installation as easy as possible and avoid need to change main configuration:
+ejabberd should be able to include module configuration snippets on the fly in a near future.
+
+# Next steps
 
 From there, you know how to package a module to integrate it inside
 ejabberd environment. Packaging a module allows you to:
