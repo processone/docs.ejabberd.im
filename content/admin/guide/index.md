@@ -1597,7 +1597,7 @@ used for user authentication. The syntax is:
 
 The following authentication methods are supported by `ejabberd`:
 
--   internal (default) — See section [internalauth].
+-   internal — See section [internalauth].
 
 -   external — See section [extauth].
 
@@ -1608,6 +1608,10 @@ The following authentication methods are supported by `ejabberd`:
 -   anonymous — See section [saslanonymous].
 
 -   pam — See section [pam].
+
+When the option is omitted, ejabberd will rely upon the default database
+which is configured in `default_db` option. If this option is not set
+neither the default authentication method will be `internal`.
 
 Account creation is only supported by internal, external and odbc
 methods.
@@ -2759,7 +2763,8 @@ An ODBC compatible database also can be used to store information into
 from several `ejabberd` modules. See section [modoverview] to see which
 modules can be used with relational databases like MySQL. To enable
 storage to your database, just make sure that your database is running
-well (see previous sections), and add the module option `db_type: odbc`.
+well (see previous sections), and add the module option `db_type: odbc`
+or set `default_db: odbc` globally if you want to use ODBC for all modules.
 
 ### LDAP
 
@@ -3088,7 +3093,8 @@ Several `ejabberd` modules can be used to store information in Riak
 database. Refer to the corresponding module documentation to see if it
 supports such ability. To enable storage to Riak database, just make
 sure that your database is running well (see the next section), and add
-the module option `db_type: riak`.
+the module option `db_type: riak` or set `default_db: riak` globally
+if you want to use Riak for all modules.
 
 #### Riak Configuration
 
@@ -3166,6 +3172,16 @@ Example configuration:
     #!yaml
     redis_server: "redis.server.com"
     redis_db: 1
+
+### Default database configuration
+
+You can simplify the configuration by setting the default database. This can be
+done with `default_db` option:
+
+`default_db: mnesia|odbc|riak`
+
+:   This will define the default database for a module lacking `db_type` option
+    or if `auth_method` option is not set.
 
 ## Session Management
 
@@ -3415,8 +3431,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 `access: AccessName`
@@ -3878,8 +3895,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 `access: AccessName`
@@ -3948,8 +3966,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 ### `mod_muc`
@@ -3995,8 +4014,9 @@ Module options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 `access: AccessName`
@@ -4488,8 +4508,9 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 `access_max_user_messages: AccessName`
@@ -4653,8 +4674,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 ### `mod_private`
@@ -4679,8 +4701,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 ### `mod_proxy65`
@@ -5117,8 +5140,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 `versioning: false|true`
@@ -5245,8 +5269,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 Shared roster groups can be edited *only* via the Web Admin. Each group
@@ -5876,8 +5901,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 `search: true|false`
@@ -6175,8 +6201,9 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables
-    and store user information. The default is to store in the internal
-    Mnesia database. If `odbc` or `riak` value is defined, make sure you
+    and store user information. The default is the storage defined
+    by the global option `default_db`, or `mnesia` if omitted.
+    If `odbc` or `riak` value is defined, make sure you
     have defined the database, see [database].
 
 ### `mod_version`
