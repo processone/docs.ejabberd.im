@@ -3380,6 +3380,77 @@ in all of them, the “@HOST@” keyword must be used:
         host: "mirror.@HOST@"
       ...
 
+### `mod_admin_extra`
+
+Available option:
+
+`module_resource: Resource`
+
+:   Indicate the resource that the XMPP stanzas must use in the FROM or TO JIDs.
+    This is only useful in the vcard set and get commands.
+    The default value is "mod_admin_extra".
+
+In this example configuration, the users vcards can only be modified
+by executing `mod_admin_extra` commands:
+
+    #!yaml
+    acl:
+      adminextraresource:
+	resource: "modadminextraf8x,31ad"
+    access:
+      vcard_set:
+	adminextraresource: allow
+	all: deny
+    modules:
+      mod_admin_extra:
+	module_resource: "modadminextraf8x,31ad"
+      mod_vcard:
+	access_set: vcard_set
+
+Description of some commands:
+
+- `pushroster`
+
+:  The file used by `pushroster` and `pushroster-all` must be placed:
+     - Windows: on the directory were you installed ejabberd:
+       `C:/Program Files/ejabberd`
+     - Other OS: on the same directory where the .beam files are.
+   Example content for the roster file:
+
+       #!erlang
+       [{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
+	{<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
+	{<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
+
+- `srg-create`
+
+:  If you want to put a group Name with blankspaces, use the characters
+   "' and '" to define when the Name starts and ends. For example:
+
+       #!console
+       ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
+
+- `ban-account`
+
+:  This command kicks all the connected sessions of the account from the
+   server.  It also changes his password to another randomly
+   generated, so he can't login anymore unless a server administrator
+   changes him again the password.
+
+   It is possible to define the reason of the ban.  The new password
+   also includes the reason and the date and time of the ban.
+
+   For example, if this command is called:
+
+	#!console
+	ejabberdctl vhost example.org ban-account boby Spammed several MUC rooms
+
+   then the sessions of the local account which JID is boby@example.org
+   will be kicked, and its password will be set to something like this:
+
+	#!console
+	BANNED_ACCOUNT--20080425T21:45:07--2176635--Spammed_several_MUC_rooms
+
 ### `mod_announce`
 
 This module enables configured users to broadcast announcements and to
