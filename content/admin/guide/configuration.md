@@ -961,7 +961,7 @@ used for user authentication. The syntax is:
 
 The following authentication methods are supported by `ejabberd`:
 
--   internal (default) — See section [internalauth].
+-   internal — See section [internalauth].
 
 -   external — See section [extauth].
 
@@ -973,8 +973,9 @@ The following authentication methods are supported by `ejabberd`:
 
 -   pam — See section [pam].
 
-Account creation is only supported by internal, external and odbc
-methods.
+When the option is omitted, ejabberd will rely upon the default database which is configured in `default_db` option. If this option is not set neither the default authentication method will be `internal`.
+
+Account creation is only supported by internal, external and odbc methods.
 
 The option `resource_conflict` defines the action when a client attempts
 to login to an account with a resource that is already connected. The
@@ -2123,7 +2124,9 @@ An ODBC compatible database also can be used to store information into
 from several `ejabberd` modules. See section [modoverview] to see which
 modules can be used with relational databases like MySQL. To enable
 storage to your database, just make sure that your database is running
-well (see previous sections), and add the module option `db_type: odbc`.
+well (see previous sections), and add the module option `db_type: odbc`
+or set `default_db: odbc` globally if you want to use ODBC for all modules.
+
 
 ### LDAP
 
@@ -2452,7 +2455,8 @@ Several `ejabberd` modules can be used to store information in Riak
 database. Refer to the corresponding module documentation to see if it
 supports such ability. To enable storage to Riak database, just make
 sure that your database is running well (see the next section), and add
-the module option `db_type: riak`.
+the module option `db_type: riak` or set `default_db: riak` globally 
+if you want to use Riak for all modules.
 
 #### Riak Configuration
 
@@ -2530,6 +2534,12 @@ Example configuration:
 	#!yaml
 	redis_server: "redis.server.com"
 	redis_db: 1
+
+### Default database configuration
+
+You can simplify the configuration by setting the default database. This can be done with `default_db` option:
+
+`default_db: mnesia|odbc|riak`:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
 
 ## Session Management
 
@@ -2728,6 +2738,78 @@ in all of them, the “@HOST@” keyword must be used:
 	    host: "mirror.@HOST@"
 	  ...
 
+### `mod_admin_extra`
+
+Available option:
+
+`module_resource: Resource`
+
+:   Indicate the resource that the XMPP stanzas must use in the FROM or TO JIDs.
+    This is only useful in the vcard set and get commands.
+    The default value is "mod_admin_extra".
+
+In this example configuration, the users vcards can only be modified
+by executing `mod_admin_extra` commands:
+
+    #!yaml
+    acl:
+      adminextraresource:
+	resource: "modadminextraf8x,31ad"
+    access:
+      vcard_set:
+	adminextraresource: allow
+	all: deny
+    modules:
+      mod_admin_extra:
+	module_resource: "modadminextraf8x,31ad"
+      mod_vcard:
+	access_set: vcard_set
+
+Description of some commands:
+
+- `pushroster`
+
+:  The file used by `pushroster` and `pushroster-all` must be placed:
+     - Windows: on the directory were you installed ejabberd:
+       `C:/Program Files/ejabberd`
+     - Other OS: on the same directory where the .beam files are.
+   Example content for the roster file:
+
+       #!erlang
+       [{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
+	{<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
+	{<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
+
+- `srg-create`
+
+:  If you want to put a group Name with blankspaces, use the characters
+   "' and '" to define when the Name starts and ends. For example:
+
+       #!console
+       ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
+
+- `ban-account`
+
+:  This command kicks all the connected sessions of the account from the
+   server.  It also changes his password to another randomly
+   generated, so he can't login anymore unless a server administrator
+   changes him again the password.
+
+   It is possible to define the reason of the ban.  The new password
+   also includes the reason and the date and time of the ban.
+
+   For example, if this command is called:
+
+	#!console
+	ejabberdctl vhost example.org ban-account boby Spammed several MUC rooms
+
+   then the sessions of the local account which JID is boby@example.org
+   will be kicked, and its password will be set to something like this:
+
+	#!console
+	BANNED_ACCOUNT--20080425T21:45:07--2176635--Spammed_several_MUC_rooms
+
+
 ### `mod_announce`
 
 This module enables configured users to broadcast announcements and to
@@ -2778,10 +2860,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 `access: AccessName`
 
@@ -2837,7 +2916,7 @@ instances of `ejabberd` with hundreds of thousands users.
 This module allows for queueing or dropping certain types of stanzas
 when a client indicates that the user is not actively using the client
 at the moment (see
-[`XEP-0352`][64]). This can save
+[`XEP-0352`][65]). This can save
 bandwidth and resources.
 
 Options:
@@ -2868,12 +2947,12 @@ Example:
 ### `mod_disco`
 
 This module adds support for Service Discovery
-([`XEP-0030`][65]). With this
+([`XEP-0030`][66]). With this
 module enabled, services on your server can be discovered by XMPP
 clients. Note that `ejabberd` has no modules with support for the
 superseded Jabber Browsing
-([`XEP-0011`][66]) and Agent
-Information ([`XEP-0094`][67]).
+([`XEP-0011`][67]) and Agent
+Information ([`XEP-0094`][68]).
 Accordingly, XMPP clients need to have support for the newer Service
 Discovery protocol if you want them be able to discover the services you
 offer.
@@ -3024,8 +3103,8 @@ Example:
 ### `mod_http_bind`
 
 This module implements XMPP over Bosh (formerly known as HTTP Binding)
-as defined in [`XEP-0124`][68] and
-[`XEP-0206`][69]. It extends
+as defined in [`XEP-0124`][69] and
+[`XEP-0206`][70]. It extends
 ejabberd’s built in HTTP service with a configurable resource at which
 this service will be hosted.
 
@@ -3165,7 +3244,7 @@ And define it as a handler in the HTTP service:
 ### mod\_http\_ws
 
 This module enables xmpp communication over websocket connection as
-described in [`RFC 7395`][70].
+described in [`RFC 7395`][71].
 
 To enable this module it must have handler added to `request_handler`
 section of `ejbberd_http` listener:
@@ -3206,7 +3285,7 @@ servers.
 End user information:
 
 -   A XMPP client with ‘groupchat 1.0’ support or Multi-User Chat
-	support ([`XEP-0045`][71]) is
+	support ([`XEP-0045`][72]) is
 	necessary to join IRC channels.
 
 -   An IRC channel can be joined in nearly the same way as joining a
@@ -3223,7 +3302,7 @@ End user information:
 	to `nickserver!irc.example.org@irc.jabberserver.org`.
 
 -   The IRC transport provides Ad-Hoc Commands
-	([`XEP-0050`][72]) to join a
+	([`XEP-0050`][73]) to join a
 	channel, and to set custom IRC username and encoding.
 
 -   When using a popular XMPP server, it can occur that no connection
@@ -3241,10 +3320,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 `access: AccessName`
 
@@ -3297,7 +3373,7 @@ Examples:
 ### `mod_last`
 
 This module adds support for Last Activity
-([`XEP-0012`][73]). It can be used
+([`XEP-0012`][75]). It can be used
 to discover when a disconnected user last accessed the server, to know
 when a connected user was last active on the server, or to query the
 uptime of the `ejabberd` server.
@@ -3311,15 +3387,12 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 ### `mod_muc`
 
 This module provides a Multi-User Chat
-([`XEP-0045`][74]) service. Users
+([`XEP-0045`][77]) service. Users
 can discover existing rooms, join or create them. Occupants of a room
 can chat in public or have private chats.
 
@@ -3358,10 +3431,7 @@ Module options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 `access: AccessName`
 
@@ -3688,7 +3758,7 @@ Features:
 	subject and configuration.
 
 -   The room JID in the generated HTML is a link to join the room (using
-	[`XMPP URI`][75]).
+	[`XMPP URI`][79]).
 
 -   Subject and room configuration changes are tracked and displayed.
 
@@ -3843,7 +3913,7 @@ Examples:
 ### `mod_offline`
 
 This module implements offline message storage
-([`XEP-0160`][76]). This means
+([`XEP-0160`][80]). This means
 that all messages sent to an offline user will be stored on the server
 until that user comes online again. Thus it is very similar to how email
 works. Note that `ejabberdctl` has a command to delete expired messages
@@ -3851,10 +3921,7 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 `access_max_user_messages: AccessName`
 
@@ -3906,7 +3973,7 @@ messages, administrators up to 2000, and all the other users up to 100.
 ### `mod_ping`
 
 This module implements support for XMPP Ping
-([`XEP-0199`][77]) and periodic
+([`XEP-0199`][82]) and periodic
 keepalives. When this module is enabled ejabberd responds correctly to
 ping requests, as defined in the protocol.
 
@@ -3979,7 +4046,7 @@ subscription stanzas to be sent or received by the users in 60 seconds:
 ### `mod_privacy`
 
 This module implements
-[XEP-0016: Privacy Lists\`][78]. If
+[XEP-0016: Privacy Lists\`][83]. If
 end users have support for it in their XMPP client, they will be able
 to:
 
@@ -4016,22 +4083,19 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 ### `mod_private`
 
 This module adds support for Private XML Storage
-([`XEP-0049`][79]):
+([`XEP-0049`][85]):
 
 > Using this method, XMPP entities can store private data on the server
 > and retrieve it whenever necessary. The data stored might be anything,
 > as long as it is valid XML. One typical usage for this namespace is
 > the server-side storage of client-specific preferences; another is
 > Bookmark Storage
-> ([`XEP-0048`][80]).
+> ([`XEP-0048`][86]).
 
 Options:
 
@@ -4042,15 +4106,12 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 ### `mod_proxy65`
 
 This module implements SOCKS5 Bytestreams
-([`XEP-0065`][81]). It allows
+([`XEP-0065`][88]). It allows
 `ejabberd` to act as a file transfer proxy between two XMPP clients.
 
 Options:
@@ -4153,10 +4214,10 @@ Examples:
 ### `mod_pubsub`
 
 This module offers a Publish-Subscribe Service
-([`XEP-0060`][82]). The
+([`XEP-0060`][89]). The
 functionality in `mod_pubsub` can be extended using plugins. The plugin
 that implements PEP (Personal Eventing via Pubsub)
-([`XEP-0163`][83]) is enabled in
+([`XEP-0163`][90]) is enabled in
 the default ejabberd configuration file, and it requires `mod_caps`.
 
 Options:
@@ -4272,7 +4333,7 @@ following example shows previous configuration with ODBC usage:
 ### `mod_register`
 
 This module adds support for In-Band Registration
-([`XEP-0077`][84]). This protocol
+([`XEP-0077`][91]). This protocol
 enables end users to use a XMPP client to:
 
 -   Register a new account on the server.
@@ -4467,9 +4528,9 @@ For example, the users of the host `example.org` can visit the page:
 ### `mod_roster`
 
 This module implements roster management as defined in
-[`RFC 6121: XMPP IM`][85]. It
+[`RFC 6121: XMPP IM`][92]. It
 also supports Roster Versioning
-([`XEP-0237`][86]).
+([`XEP-0237`][93]).
 
 Options:
 
@@ -4480,10 +4541,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 `versioning: false|true`
 
@@ -4557,7 +4615,7 @@ everybody else cannot modify the roster:
 
 This module adds support for logging end user packets via a XMPP message
 auditing service such as
-[`Bandersnatch`][87].
+[`Bandersnatch`][95].
 All user packets are encapsulated in a `<route/>` element and sent to
 the specified service(s).
 
@@ -4608,10 +4666,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 Shared roster groups can be edited *only* via the Web Admin. Each group
 has a unique identification and the following parameters:
@@ -4984,7 +5039,7 @@ following algorithm is used:
 #### Configuration examples
 
 Since there are many possible
-[`DIT`][88]
+[`DIT`][97]
 layouts, it will probably be easiest to understand how to configure the
 module by looking at an example for a given DIT (or one resembling it).
 
@@ -5054,7 +5109,7 @@ you with the roster shown in figure [fig:msrl-roster-deep].
 ### `mod_sic`
 
 This module adds support for Server IP Check
-([`XEP-0279`][89]). This protocol
+([`XEP-0279`][98]). This protocol
 enables a client to discover its external IP address.
 
 Options:
@@ -5150,7 +5205,7 @@ Example complex configuration:
 ### `mod_stats`
 
 This module adds support for Statistics Gathering
-([`XEP-0039`][90]). This protocol
+([`XEP-0039`][99]). This protocol
 allows you to retrieve next statistics from your `ejabberd` deployment:
 
 -   Total number of registered users on the current virtual host
@@ -5174,7 +5229,7 @@ Options:
 	section [modiqdiscoption]).
 
 As there are only a small amount of clients (for example
-[`Tkabber`][91]) and software libraries with
+[`Tkabber`][100]) and software libraries with
 support for this XEP, a few examples are given of the XML you need to
 send in order to get the statistics. Here they are:
 
@@ -5201,7 +5256,7 @@ send in order to get the statistics. Here they are:
 ### `mod_time`
 
 This module features support for Entity Time
-([`XEP-0202`][92]). By using this
+([`XEP-0202`][101]). By using this
 XEP, you are able to discover the time at another entity’s location.
 
 Options:
@@ -5215,7 +5270,7 @@ Options:
 
 This module allows end users to store and retrieve their vCard, and to
 retrieve other users vCards, as defined in vcard-temp
-([`XEP-0054`][93]). The module
+([`XEP-0054`][102]). The module
 also implements an uncomplicated Jabber User Directory based on the
 vCards of these users. Moreover, it enables the server to send its vCard
 when queried.
@@ -5236,10 +5291,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 `search: true|false`
 
@@ -5307,7 +5359,7 @@ Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
 stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
-[`RFC 3062`][94].
+[`RFC 3062`][104].
 
 The `mod_vcard_ldap` module has its own optional parameters. The first
 group of parameters has the same meaning as the top-level LDAP
@@ -5513,14 +5565,14 @@ Examples:
 
 The user’s client can store an avatar in the user vCard. The vCard-Based
 Avatars protocol
-([`XEP-0153`][95]) provides a
+([`XEP-0153`][105]) provides a
 method for clients to inform the contacts what is the avatar hash value.
 However, simple or small clients may not implement that protocol.
 
 If this module is enabled, all the outgoing client presence stanzas get
 automatically the avatar hash on behalf of the client. So, the contacts
 receive the presence stanzas with the Update Data described in
-[`XEP-0153`][96] as if the client
+[`XEP-0153`][106] as if the client
 would had inserted it itself. If the client had already included such
 element in the presence stanza, it is replaced with the element
 generated by ejabberd.
@@ -5535,15 +5587,12 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables
-	and store user information. The default is to store in the internal
-	Mnesia database. If `odbc` or `riak` value is defined, make sure you
-	have defined the database, see [database].
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
 ### `mod_version`
 
 This module implements Software Version
-([`XEP-0092`][97]). Consequently,
+([`XEP-0092`][108]). Consequently,
 it answers `ejabberd`’s version when queried.
 
 Options:
@@ -5621,37 +5670,37 @@ Options:
 [61]:	http://xmpp.org/extensions/xep-0153.html
 [62]:	http://xmpp.org/extensions/xep-0092.html
 [63]:	http://www.ejabberd.im/contributions
-[64]:	http://xmpp.org/extensions/xep-0352.html
-[65]:	http://xmpp.org/extensions/xep-0030.html
-[66]:	http://xmpp.org/extensions/xep-0011.html
-[67]:	http://xmpp.org/extensions/xep-0094.html
-[68]:	http://xmpp.org/extensions/xep-0124.html
-[69]:	http://xmpp.org/extensions/xep-0206.html
-[70]:	http://tools.ietf.org/html/rfc7395
-[71]:	http://xmpp.org/extensions/xep-0045.html
-[72]:	http://xmpp.org/extensions/xep-0050.html
-[73]:	http://xmpp.org/extensions/xep-0012.html
-[74]:	http://xmpp.org/extensions/xep-0045.html
-[75]:	http://xmpp.org/rfcs/rfc5122.html
-[76]:	http://xmpp.org/extensions/xep-0160.html
-[77]:	http://xmpp.org/extensions/xep-0199.html
-[78]:	http://www.xmpp.org/extensions/xep-0016.html
-[79]:	http://xmpp.org/extensions/xep-0049.html
-[80]:	http://xmpp.org/extensions/xep-0048.html
-[81]:	http://xmpp.org/extensions/xep-0065.html
-[82]:	http://xmpp.org/extensions/xep-0060.html
-[83]:	http://xmpp.org/extensions/xep-0163.html
-[84]:	http://xmpp.org/extensions/xep-0077.html
-[85]:	http://tools.ietf.org/html/rfc6121#section-2
-[86]:	http://xmpp.org/extensions/xep-0237.html
-[87]:	http://www.funkypenguin.info/project/bandersnatch/
-[88]:	http://en.wikipedia.org/wiki/Directory_Information_Tree
-[89]:	http://xmpp.org/extensions/xep-0279.html
-[90]:	http://xmpp.org/extensions/xep-0039.html
-[91]:	http://tkabber.jabber.ru/
-[92]:	http://xmpp.org/extensions/xep-0202.html
-[93]:	http://xmpp.org/extensions/xep-0054.html
-[94]:	http://tools.ietf.org/html/rfc3062
-[95]:	http://xmpp.org/extensions/xep-0153.html
-[96]:	http://xmpp.org/extensions/xep-0153.html
-[97]:	http://xmpp.org/extensions/xep-0092.html
+[65]:	http://xmpp.org/extensions/xep-0352.html
+[66]:	http://xmpp.org/extensions/xep-0030.html
+[67]:	http://xmpp.org/extensions/xep-0011.html
+[68]:	http://xmpp.org/extensions/xep-0094.html
+[69]:	http://xmpp.org/extensions/xep-0124.html
+[70]:	http://xmpp.org/extensions/xep-0206.html
+[71]:	http://tools.ietf.org/html/rfc7395
+[72]:	http://xmpp.org/extensions/xep-0045.html
+[73]:	http://xmpp.org/extensions/xep-0050.html
+[75]:	http://xmpp.org/extensions/xep-0012.html
+[77]:	http://xmpp.org/extensions/xep-0045.html
+[79]:	http://xmpp.org/rfcs/rfc5122.html
+[80]:	http://xmpp.org/extensions/xep-0160.html
+[82]:	http://xmpp.org/extensions/xep-0199.html
+[83]:	http://www.xmpp.org/extensions/xep-0016.html
+[85]:	http://xmpp.org/extensions/xep-0049.html
+[86]:	http://xmpp.org/extensions/xep-0048.html
+[88]:	http://xmpp.org/extensions/xep-0065.html
+[89]:	http://xmpp.org/extensions/xep-0060.html
+[90]:	http://xmpp.org/extensions/xep-0163.html
+[91]:	http://xmpp.org/extensions/xep-0077.html
+[92]:	http://tools.ietf.org/html/rfc6121#section-2
+[93]:	http://xmpp.org/extensions/xep-0237.html
+[95]:	http://www.funkypenguin.info/project/bandersnatch/
+[97]:	http://en.wikipedia.org/wiki/Directory_Information_Tree
+[98]:	http://xmpp.org/extensions/xep-0279.html
+[99]:	http://xmpp.org/extensions/xep-0039.html
+[100]:	http://tkabber.jabber.ru/
+[101]:	http://xmpp.org/extensions/xep-0202.html
+[102]:	http://xmpp.org/extensions/xep-0054.html
+[104]:	http://tools.ietf.org/html/rfc3062
+[105]:	http://xmpp.org/extensions/xep-0153.html
+[106]:	http://xmpp.org/extensions/xep-0153.html
+[108]:	http://xmpp.org/extensions/xep-0092.html

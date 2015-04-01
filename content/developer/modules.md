@@ -116,30 +116,25 @@ should see the following message in ejabberd log file:
 
 # Working with the ejabberd module repository
 
-For many years, contributed modules were stored on ejabberd-contrib repository.
-
-However, these modules required manual compilation. This means having Erlang/OTP
-installed, a base knowledge of how to compile ejabberd modules and manual maintenance
-when ejabberd’s api is updated over time.
-
-Complex operations to manage ejabberd contributed modules is now behind us.
-ejabberd is now able to fetch module sources by itself, compile with correct flags
-and install in a local repository, without any external dependencies. You no
-longer need to know Erlang and have it installed in order to use the contributed modules.
+ejabberd is able to fetch module sources by itself, compile with correct flags
+and install in a local repository, without any external dependencies. You do not
+need to know Erlang and have it installed in order to use the contributed modules.
+The contributed modules repository is ejabberd-contrib on github. It contains
+most used contribution and also can link to any other external repository.
 This works with ejabberd modules written in Erlang and will also support new Elixir modules.
-
-Before getting started, you need to use ejabberd official repository on Github.
-We are gathering feedback before you see that command in the next stable release.
-It will work with ejabberd HEAD, starting from version 15.02.77 (aa1250a). Once you have
-an ejabberd compiled from source installed, you can start playing with the commands.
 
 ## Basic commands
 As a user, this is how it works:
 
-First you need to get/update the list of available modules:
+First you need to get/update the list of available modules. This must be done
+before anything else to let module related features to work correctly:
 
     $ ejabberdctl modules_update_specs
 
+You should repeat this command at regular interval depending on your needs.
+Basically running modules_update_specs once a week is enough to keep in sync
+but you may prefer to manually call this only before you need to install a
+new module or an attended upgrade.
 Then you can list available modules
 
     $ ejabberdctl modules_available
@@ -175,7 +170,7 @@ And finally, you can remove it:
 
 ## Managing your own modules
 As a developper, you still need Erlang and Ejabberd if you install everything from
-sources, but you can even not need Erlang if you installed ejabberd from official
+sources, but you may even not need Erlang if you installed ejabberd from official
 ProcesOne installer. The official installer includes everything needed to build
 ejabberd modules on its own.
 

@@ -97,11 +97,10 @@ by themselves.  If the node is started again, it's immediately
 attached back to the cluster until it has been explicitly removed
 permanently from the cluster.
 
-To remove permanently a node from the cluster, a command must be run
-after shutting down the node from an another running node:
+To remove permanently a node from the cluster, a command must be run from the node to be removed:
 
 	    #!console
-	    $ ejabberdctl leave_cluster 'ejabberd@second'
+	    $ ejabberdctl leave_cluster
 
 # Service Load-Balancing
 
