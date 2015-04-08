@@ -2767,7 +2767,7 @@ by executing `mod_admin_extra` commands:
 
 Description of some commands:
 
-- `pushroster`
+`pushroster`
 
 :  The file used by `pushroster` and `pushroster-all` must be placed:
      - Windows: on the directory were you installed ejabberd:
@@ -2775,20 +2775,20 @@ Description of some commands:
      - Other OS: on the same directory where the .beam files are.
    Example content for the roster file:
 
-       #!erlang
-       [{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
-	{<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
-	{<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
+	#!erlang
+	[{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
+	 {<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
+	 {<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
 
-- `srg-create`
+`srg-create`
 
 :  If you want to put a group Name with blankspaces, use the characters
    "' and '" to define when the Name starts and ends. For example:
 
-       #!console
-       ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
+	#!console
+	ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
 
-- `ban-account`
+`ban-account`
 
 :  This command kicks all the connected sessions of the account from the
    server.  It also changes his password to another randomly
