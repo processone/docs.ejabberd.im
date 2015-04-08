@@ -2586,46 +2586,48 @@ Examples:
 
 The following table lists all modules included in `ejabberd`.
 
-| <span>**Module**</span> | <span>**Feature**</span>                                                                                                       | <span>**Dependencies**</span>    |
-|:------------------------|:-------------------------------------------------------------------------------------------------------------------------------|:---------------------------------|
-| `mod_adhoc`             | Ad-Hoc Commands ([`XEP-0050`][38])                                                       |                                  |
-|                         | Manage announcements                                                                                                           | recommends `mod_adhoc`           |
-| `mod_blocking`          | Simple Communications Blocking ([`XEP-0191`][39])                                        | `mod_privacy`                    |
-| `mod_caps`              | Entity Capabilities ([`XEP-0115`][40])                                                   |                                  |
-| `mod_carboncopy`        | Message Carbons ([`XEP-0280`][41])                                                       |                                  |
-|                         | Filter stanzas for inactive clients                                                                                            |                                  |
-| `mod_configure`         | Server configuration using Ad-Hoc                                                                                              | `mod_adhoc`                      |
-|                         | Service Discovery ([`XEP-0030`][42])                                                     |                                  |
-|                         | Echoes XMPP stanzas                                                                                                            |                                  |
-|                         | Bans IPs that show the malicious signs                                                                                         |                                  |
-|                         | XMPP over Bosh service (HTTP Binding)                                                                                          |                                  |
-|                         | Small HTTP file server                                                                                                         |                                  |
-|                         | IRC transport                                                                                                                  |                                  |
-|                         | Last Activity ([`XEP-0012`][43])                                                         |                                  |
-|                         | Multi-User Chat ([`XEP-0045`][44])                                                       |                                  |
-|                         | Multi-User Chat room logging                                                                                                   | `mod_muc`                        |
-|                         | Offline message storage ([`XEP-0160`][45])                                               |                                  |
-|                         | XMPP Ping and periodic keepalives ([`XEP-0199`][46])                                     |                                  |
-|                         | Detect presence subscription flood                                                                                             |                                  |
-|                         | Blocking Communication ([`XEP-0016`][47])                                                |                                  |
-|                         | Private XML Storage ([`XEP-0049`][48])                                                   |                                  |
-|                         | SOCKS5 Bytestreams ([`XEP-0065`][49])                                                    |                                  |
-|                         | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51]) | `mod_caps`                       |
-|                         | Pub-Sub ([`XEP-0060`][52]), PEP ([`XEP-0163`][53]) | supported DB (\*) and `mod_caps` |
-|                         | In-Band Registration ([`XEP-0077`][54])                                                  |                                  |
-|                         | Web for Account Registrations                                                                                                  |                                  |
-|                         | Roster management (XMPP IM)                                                                                                    |                                  |
-|                         | Copy user messages to logger service                                                                                           |                                  |
-|                         | Shared roster management                                                                                                       | `mod_roster`                     |
-|                         | LDAP Shared roster management                                                                                                  | `mod_roster`                     |
-|                         | Server IP Check ([`XEP-0279`][55])                                                       |                                  |
-|                         | SIP Registrar/Proxy ([`RFC 3261`][56])                                                         | `ejabberd_sip`                   |
-|                         | Statistics Gathering ([`XEP-0039`][57])                                                  |                                  |
-|                         | Entity Time ([`XEP-0202`][58])                                                           |                                  |
-|                         | vcard-temp ([`XEP-0054`][59])                                                            |                                  |
-|                         | vcard-temp ([`XEP-0054`][60])                                                            | LDAP server                      |
-|                         | vCard-Based Avatars ([`XEP-0153`][61])                                                   | `mod_vcard`                      |
-|                         | Software Version ([`XEP-0092`][62])                                                      |                                  |
+| <span>**Module**</span>                        | <span>**Feature**</span>                             | <span>**Dependencies**</span>    |
+|:-----------------------------------------------|:-----------------------------------------------------|:---------------------------------|
+| mod_adhoc                                      | Ad-Hoc Commands ([`XEP-0050`][38])                   |                                  |
+| [mod_announce](#modannounce)                   | Manage announcements                                 | recommends `mod_adhoc`           |
+| mod_blocking                                   | Simple Communications Blocking ([`XEP-0191`][39])    | `mod_privacy`                    |
+| mod_caps                                       | Entity Capabilities ([`XEP-0115`][40])               |                                  |
+| mod_carboncopy                                 | Message Carbons ([`XEP-0280`][41])                   |                                  |
+| [mod_client_state](#modclientstate)            | Filter stanzas for inactive clients                  |                                  |
+| mod_configure                                  | Server configuration using Ad-Hoc                    | `mod_adhoc`                      |
+| [mod_disco](#moddisco)                         | Service Discovery ([`XEP-0030`][42])                 |                                  |
+| [mod_echo](#modecho)                           | Echoes XMPP stanzas                                  |                                  |
+| [mod_fail2ban](#modfail2ban)                   | Bans IPs that show the malicious signs               |                                  |
+| [mod_http_bind](#modhttpbind)                  | XMPP over Bosh service (HTTP Binding)                |                                  |
+| [mod_http_fileserver](#modhttpfileserver)      | Small HTTP file server                               |                                  |
+| [mod_irc](#modirc)                             | IRC transport                                        |                                  |
+| [mod_last](#modlast)                           | Last Activity ([`XEP-0012`][43])                     |                                  |
+| [mod_muc](#modmuc)                             | Multi-User Chat ([`XEP-0045`][44])                   |                                  |
+| mod_muc_admin                                  | Administrative commands for Multi-User Chat          | `mod_muc`                        |
+| [mod_muc_log](#modmuclog)                      | Multi-User Chat room logging                         | `mod_muc`                        |
+| [mod_multicast](#modmulticast)                 | Extended Stanza Addressing ([`XEP-0033`][109])       |                                  |
+| [mod_offline](#modoffline)                     | Offline message storage ([`XEP-0160`][45])           |                                  |
+| [mod_ping](#modping)                           | XMPP Ping and periodic keepalives ([`XEP-0199`][46]) |                                  |
+| [mod_pres_counter](#modprescounter)            | Detect presence subscription flood                   |                                  |
+| [mod_privacy](#modprivacy)                     | Blocking Communication ([`XEP-0016`][47])            |                                  |
+| [mod_private](#modprivate)                     | Private XML Storage ([`XEP-0049`][48])               |                                  |
+| [mod_proxy65](#modproxy65)                     | SOCKS5 Bytestreams ([`XEP-0065`][49])                |                                  |
+| [mod_pubsub](#modpubsub)                       | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51])   | `mod_caps`                       |
+| [mod_pubsub_odbc](#modpubsubodbc)              | Pub-Sub ([`XEP-0060`][52]), PEP ([`XEP-0163`][53])   | supported DB (\*) and `mod_caps` |
+| [mod_register](#modregister)                   | In-Band Registration ([`XEP-0077`][54])              |                                  |
+| [mod_register_web](#modregisterweb)            | Web for Account Registrations                        |                                  |
+| [mod_roster](#modroster)                       | Roster management (XMPP IM)                          |                                  |
+| [mod_service_log](#modservicelog)              | Copy user messages to logger service                 |                                  |
+| [mod_shared_roster](#modsharedroster)          | Shared roster management                             | `mod_roster`                     |
+| [mod_shared_roster_ldap](#modsharedrosterldap) | LDAP Shared roster management                        | `mod_roster`                     |
+| [mod_sic](#modsic)                             | Server IP Check ([`XEP-0279`][55])                   |                                  |
+| [mod_sip](#modsip)                             | SIP Registrar/Proxy ([`RFC 3261`][56])               | `ejabberd_sip`                   |
+| [mod_stats](#modstats)                         | Statistics Gathering ([`XEP-0039`][57])              |                                  |
+| [mod_time](#modtime)                           | Entity Time ([`XEP-0202`][58])                       |                                  |
+| [mod_vcard](#modvcard)                         | vcard-temp ([`XEP-0054`][59])                        |                                  |
+| [mod_vcard_ldap](#modvcardldap)                | vcard-temp ([`XEP-0054`][60])                        | LDAP server                      |
+| [mod_vcard_xupdate](#modvcardxupdate)          | vCard-Based Avatars ([`XEP-0153`][61])               | `mod_vcard`                      |
+| [mod_version](#modversion)                     | Software Version ([`XEP-0092`][62])                  |                                  |
 
 -   (\*) This module requires a supported database. For a list of
 	supported databases, see section [database].
