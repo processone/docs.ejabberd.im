@@ -3910,6 +3910,62 @@ Examples:
 		    timezone: local
 		  ...
 
+
+### `mod_multicast`
+
+This module implements a service for Extended Stanza Addressing ([`XEP-0033`][109])
+
+Configurable options:
+
+`host`
+
+: Define the hostname of the service. Default value: "multicast.SERVER"
+
+`access`
+
+: Specify who can send packets to the multicast service. Default value: all
+
+`limits`
+
+: Specify a list of custom limits which override the default ones defined in XEP-0033.
+    Limits are defined with this syntax: {Sender_type, Stanza_type, Number}
+    Where:
+    Sender_type can have values: local or remote.
+    Stanza_type can have values: message or presence.
+    Number can be a positive integer or the key word infinite.
+    Default value: []
+
+Example configuration:
+
+	#!yaml
+	# Only admins can send packets to multicast service
+	access:
+	  multicast:
+	    admin: allow
+	    all: deny
+
+	# If you want to allow all your users:
+	access:
+	  multicast:
+	    all: allow
+
+	# This allows both admins and remote users to send packets,
+	# but does not allow local users
+	acl:
+	  allservers:
+	    server_glob: "*"
+	access:
+	  multicast:
+	    admin: allow
+	    local: deny
+	    allservers: allow
+
+	modules:
+	  mod_multicast:
+	     host: "multicast.example.org"
+	     access: multicast
+	     limits, "> [ {local,message,40}, {local,presence,infinite}, {remote,message,150} ]."
+
 ### `mod_offline`
 
 This module implements offline message storage
@@ -5704,3 +5760,4 @@ Options:
 [105]:	http://xmpp.org/extensions/xep-0153.html
 [106]:	http://xmpp.org/extensions/xep-0153.html
 [108]:	http://xmpp.org/extensions/xep-0092.html
+[109]:	http://xmpp.org/extensions/xep-0033.html
