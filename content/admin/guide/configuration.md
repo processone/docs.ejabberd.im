@@ -3092,6 +3092,13 @@ Available options:
 :   The number of C2S authentication failures to trigger the IP ban. The
 	default is 20.
 
+`access: AccessName`
+
+:   Specify an access rule for whitelisting IP addresses or networks. If
+	the rule returns ‘`allow`’ for a given IP address, that
+	address will never be banned. The `AccessName` should be of type
+	`ip`. The default value is `none`.
+
 Example:
 
 	#!yaml
