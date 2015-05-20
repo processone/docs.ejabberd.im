@@ -382,7 +382,7 @@ version indicates you need to also update those tables.
 [12]:	http://sourceforge.net/project/showfiles.php?group_id=10127&package_id=11277
 [13]:	http://www.gnu.org/software/libiconv/
 [14]:	http://www.slproweb.com/products/Win32OpenSSL.html
-xx[15]:	http://www.zlib.net/
+[15]:	http://www.zlib.net/
 [16]:   /admin/guide/configuration/#captcha
 [17]:   /admin/guide/configuration/#database
 [18]:   /admin/guide/configuration/#odbc
