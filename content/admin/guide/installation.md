@@ -3,7 +3,7 @@ title: Installing ejabberd | ejabberd Installation and Operation Guide
 bodyclass: nocomment
 ---
 
-# Installing `ejabberd`
+# Installing ejabberd
 
 You have several options to install ejabberd:
 
@@ -12,7 +12,7 @@ You have several options to install ejabberd:
 - [Installing `ejabberd` from Source Code](#installing-ejabberd-from-source-code)
 - [Post-install Operations](#post-install-operations)
 
-## Installing `ejabberd` with Binary Installer
+## Installing ejabberd with Binary Installer
 
 ### Download and running the installer
 
@@ -93,7 +93,7 @@ Redistributable Package”. You can download it from
 [`www.microsoft.com`][2]. Then uninstall `ejabberd` and install it
 again.
 
-## Installing `ejabberd` with Operating System Specific Packages
+## Installing ejabberd with Operating System Specific Packages
 
 <!-- TODO: Update with mention to our links and RPMs -->
 
@@ -107,7 +107,7 @@ more information.
 Usually those packages create a script like `/etc/init.d/ejabberd` to
 start and stop `ejabberd` as a service at boot time.
 
-## Installing `ejabberd` from Source Code
+## Installing ejabberd from Source Code
 
 The canonical form for distribution of `ejabberd` stable releases is
 the source code package. Compiling `ejabberd` from source code is
@@ -356,7 +356,7 @@ enter the `ejabberd` Web Admin. Here are the steps to create it:
     example: `admin1@example.org`). The reason that you also need to
     enter the suffix, is because `ejabberd`’s virtual hosting support.
 
-### Upgrading `ejabberd`
+### Upgrading ejabberd
 
 To upgrade an ejabberd installation to a new version, simply uninstall
 the old version, and then install the new one. Of course, it is

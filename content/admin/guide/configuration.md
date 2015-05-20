@@ -3,9 +3,21 @@ title: Configuring ejabberd | ejabberd Installation and Operation Guide
 bodyclass: nocomment
 ---
 
-# Configuring `ejabberd`
+# Configuring ejabberd
 
-## Basic Configuration
+Here are the main entry points to learn more about ejabberd
+configuration. ejabberd is extremely powerful and can be configured in
+many ways with many options.
+
+- [Config File Formatting](#config-file-formatting)
+- [Basic Configuration](#basic-configuration)
+
+Do not let this complexity scare you. Most of you will be fine with
+default config file (or light changes).
+
+## Config File Formatting
+
+### Yaml Configuration File Format
 
 The configuration file will be loaded the first time you start
 `ejabberd`. The configuration file name MUST have “.yml” or “.yaml”
@@ -14,9 +26,8 @@ legacy file formats (see section [oldconfig]).
 
 Note that `ejabberd` never edits the configuration file.
 
-The configuration file is written in
-[`YAML`][1]. However, different scalars
-are treated as different types:
+The configuration file is written in [`YAML`][1]. However, different
+scalars are treated as different types:
 
 -   unquoted or single-quoted strings. The type is called `atom()` in
 	this document. Examples: `dog`, `'Jupiter'`, `'3.14159'`, `YELLOW`.
@@ -53,20 +64,22 @@ are treated as different types:
 
 ### Legacy Configuration File
 
-In previous `ejabberd` version the configuration file should be written
-in Erlang terms. The format is still supported, but it is highly
-recommended to convert it to the new YAML format using `convert_to_yaml`
-command from `ejabberdctl` (see [ejabberdctl] and [list-eja-commands]
-for details).
+In previous `ejabberd` version the configuration file should be
+written in Erlang terms. The format is still supported, but it is
+highly recommended to convert it to the new YAML format using
+`convert_to_yaml` command from `ejabberdctl` (see [ejabberdctl][110]
+and [List of ejabberd Commands][111] for details).
 
-If you want to specify some options using the old Erlang format, you can
-set them in an additional cfg file, and include it using the
-`include_config_file` option, see [includeconfigfile] for the option
-description and a related example in [accesscommands].
+If you want to specify some options using the old Erlang format, you
+can set them in an additional cfg file, and include it using the
+`include_config_file` option, see
+[Include Additional Configuration Files ][112] for the option
+description and a related example in
+[Restrict Execution with AccessCommands][113].
 
-If you just want to provide an erlang term inside an option, you can use
-the `> erlangterm.` syntax for embedding erlang terms in a YAML file,
-for example:
+If you just want to provide an erlang term inside an option, you can
+use the `> erlangterm.` syntax for embedding erlang terms in a YAML
+file, for example:
 
 	#!yaml
 	modules:
@@ -83,16 +96,14 @@ for example:
 	        function: try_register
 	        arguments: "> [\"user1\", \"localhost\", \"pass\"]."
 
+## Basic Configuration
+
 ### Host Names
 
 The option `hosts` defines a list containing one or more domains that
 `ejabberd` will serve.
 
-The syntax is:
-
-`[HostName]`
-
-:  
+The syntax is: `["HostName1", "Hostname2"]`
 
 Examples:
 
@@ -114,11 +125,7 @@ Examples:
 Options can be defined separately for every virtual host using the
 `host_config` option.
 
-The syntax is:
-
-`{HostName: [Option, ...]}`
-
-:  
+The syntax is: `{HostName: [Option, ...]}`
 
 Examples:
 
@@ -2653,7 +2660,7 @@ use them at your own risk!
 The following options are used by many modules. Therefore, they are
 described in this separate section.
 
-#### `iqdisc`
+#### iqdisc
 
 Many modules define handlers for processing IQ queries of different
 namespaces to this server or to a user (e.g. to `example.org` or to
@@ -2706,7 +2713,7 @@ Example:
 	    iqdisc: no_queue
 	  ...
 
-#### `host`
+#### host
 
 This option defines the Jabber ID of a service provided by an `ejabberd`
 module.
@@ -2740,7 +2747,7 @@ in all of them, the “@HOST@” keyword must be used:
 	    host: "mirror.@HOST@"
 	  ...
 
-### `mod_admin_extra`
+### mod_admin_extra
 
 Available option:
 
@@ -2812,7 +2819,7 @@ Description of some commands:
 	BANNED_ACCOUNT--20080425T21:45:07--2176635--Spammed_several_MUC_rooms
 
 
-### `mod_announce`
+### mod_announce
 
 This module enables configured users to broadcast announcements and to
 set the message of the day (MOTD). Configured users can perform these
@@ -2913,7 +2920,7 @@ Note that `mod_announce` can be resource intensive on large deployments
 as it can broadcast lot of messages. This module should be disabled for
 instances of `ejabberd` with hundreds of thousands users.
 
-### `mod_client_state`
+### mod_client_state
 
 This module allows for queueing or dropping certain types of stanzas
 when a client indicates that the user is not actively using the client
@@ -2946,7 +2953,7 @@ Example:
 	    queue_presence: true
 	  ...
 
-### `mod_disco`
+### mod_disco
 
 This module adds support for Service Discovery
 ([`XEP-0030`][66]). With this
@@ -3051,7 +3058,7 @@ Examples:
 		          - "xmpp:admins@shakespeare.lit"
 		  ...
 
-### `mod_echo`
+### mod_echo
 
 This module simply echoes any XMPP packet back to the sender. This
 mirror can be of interest for `ejabberd` and XMPP client debugging.
@@ -3075,7 +3082,7 @@ all?
 	    host: "mirror.example.org"
 	  ...
 
-### `mod_fail2ban`
+### mod_fail2ban
 
 The module bans IPs that show the malicious signs. Currently only C2S
 authentication failures are detected.
@@ -3109,7 +3116,7 @@ Example:
 	    c2s_max_auth_failures: 50
 	  ...
 
-### `mod_http_bind`
+### mod_http_bind
 
 This module implements XMPP over Bosh (formerly known as HTTP Binding)
 as defined in [`XEP-0124`][69] and
@@ -3173,7 +3180,7 @@ Options:
 	        max_inactivity: 50
 	      ...
 
-### `mod_http_fileserver`
+### mod_http_fileserver
 
 This simple module serves files from the local disk over HTTP.
 
@@ -3286,7 +3293,7 @@ of this option is set to 60.
 would be closed, setting this option 0 will disable this feature. This
 option is set to 300.
 
-### `mod_irc`
+### mod_irc
 
 This module is an IRC transport that can be used to join channels on IRC
 servers.
@@ -3379,7 +3386,7 @@ Examples:
 		    host: "irc.example.net"
 		  ...
 
-### `mod_last`
+### mod_last
 
 This module adds support for Last Activity
 ([`XEP-0012`][75]). It can be used
@@ -3398,7 +3405,7 @@ Options:
 
 :   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
-### `mod_muc`
+### mod_muc
 
 This module provides a Multi-User Chat
 ([`XEP-0045`][77]) service. Users
@@ -3753,7 +3760,7 @@ Examples:
 		    access_admin: muc_admin
 		  ...
 
-### `mod_muc_log` [modmuclog]
+### mod_muc_log
 
 This module enables optional logging of Multi-User Chat (MUC) public
 conversations to HTML. Once you enable this module, users can join a
@@ -3920,7 +3927,7 @@ Examples:
 		  ...
 
 
-### `mod_multicast`
+### mod_multicast
 
 This module implements a service for Extended Stanza Addressing ([`XEP-0033`][109])
 
@@ -3975,7 +3982,7 @@ Example configuration:
 	     access: multicast
 	     limits, "> [ {local,message,40}, {local,presence,infinite}, {remote,message,150} ]."
 
-### `mod_offline`
+### mod_offline
 
 This module implements offline message storage
 ([`XEP-0160`][80]). This means
@@ -4035,7 +4042,7 @@ messages, administrators up to 2000, and all the other users up to 100.
 	    access_max_user_messages: max_user_offline_messages
 	  ...
 
-### `mod_ping`
+### mod_ping
 
 This module implements support for XMPP Ping
 ([`XEP-0199`][82]) and periodic
@@ -4077,7 +4084,7 @@ closed:
 	    timeout_action: kill
 	  ...
 
-### `mod_pres_counter`
+### mod_pres_counter
 
 This module detects flood/spam in presence subscription stanza traffic.
 If a user sends or receives more of those stanzas in a time interval,
@@ -4108,7 +4115,7 @@ subscription stanzas to be sent or received by the users in 60 seconds:
 	    interval: 60
 	  ...
 
-### `mod_privacy`
+### mod_privacy
 
 This module implements
 [XEP-0016: Privacy Lists\`][83]. If
@@ -4150,7 +4157,7 @@ Options:
 
 :   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
-### `mod_private`
+### mod_private
 
 This module adds support for Private XML Storage
 ([`XEP-0049`][85]):
@@ -4173,7 +4180,7 @@ Options:
 
 :   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
-### `mod_proxy65`
+### mod_proxy65
 
 This module implements SOCKS5 Bytestreams
 ([`XEP-0065`][88]). It allows
@@ -4276,7 +4283,7 @@ Examples:
 		    shaper: proxy65_shaper
 		  ...
 
-### `mod_pubsub`
+### mod_pubsub
 
 This module offers a Publish-Subscribe Service
 ([`XEP-0060`][89]). The
@@ -4395,7 +4402,7 @@ following example shows previous configuration with ODBC usage:
 	      - "pep"
 	  ...
 
-### `mod_register`
+### mod_register
 
 This module adds support for In-Band Registration
 ([`XEP-0077`][91]). This protocol
@@ -4590,7 +4597,7 @@ For example, the users of the host `example.org` can visit the page:
 `https://example.org:5281/register/` It is important to include the last
 / character in the URL, otherwise the subpages URL will be incorrect.
 
-### `mod_roster`
+### mod_roster
 
 This module implements roster management as defined in
 [`RFC 6121: XMPP IM`][92]. It
@@ -4676,7 +4683,7 @@ everybody else cannot modify the roster:
 	    access: roster
 	  ...
 
-### `mod_service_log`
+### mod_service_log
 
 This module adds support for logging end user packets via a XMPP message
 auditing service such as
@@ -4716,7 +4723,7 @@ Examples:
 		      - "bandersnatch.example.org"
 		  ...
 
-### `mod_shared_roster`
+### mod_shared_roster
 
 This module enables you to create shared roster groups. This means that
 you can create groups of people that can see members from (other) groups
@@ -4834,7 +4841,7 @@ Examples:
 	| `sales`      |
 
 
-### `mod_shared_roster_ldap`
+### mod_shared_roster_ldap
 
 This module lets the server administrator automatically populate users’
 rosters (contact lists) with entries based on users and groups defined
@@ -5171,7 +5178,7 @@ If you use the following example module configuration with it:
 …and connect as user <span>czesio</span>, then `ejabberd` will provide
 you with the roster shown in figure [fig:msrl-roster-deep].
 
-### `mod_sic`
+### mod_sic
 
 This module adds support for Server IP Check
 ([`XEP-0279`][98]). This protocol
@@ -5184,7 +5191,7 @@ Options:
 :   This specifies the processing discipline for `urn:xmpp:sic:0` IQ
 	queries (see section [modiqdiscoption]).
 
-### `mod_sip`
+### mod_sip
 
 This module adds SIP proxy/registrar support for the corresponding
 virtual host. Note that it is not enough to just load this module only.
@@ -5267,7 +5274,7 @@ Example complex configuration:
 	        port: 5060
 	  ...
 
-### `mod_stats`
+### mod_stats
 
 This module adds support for Statistics Gathering
 ([`XEP-0039`][99]). This protocol
@@ -5318,7 +5325,7 @@ send in order to get the statistics. Here they are:
 		  </query>
 		</iq>
 
-### `mod_time`
+### mod_time
 
 This module features support for Entity Time
 ([`XEP-0202`][101]). By using this
@@ -5331,7 +5338,7 @@ Options:
 :   This specifies the processing discipline for Entity Time
 	(`jabber:iq:time`) IQ queries (see section [modiqdiscoption]).
 
-### `mod_vcard`
+### mod_vcard
 
 This module allows end users to store and retrieve their vCard, and to
 retrieve other users vCards, as defined in vcard-temp
@@ -5414,7 +5421,7 @@ Examples:
 		    allow_return_all: true
 		  ...
 
-### `mod_vcard_ldap`
+### mod_vcard_ldap
 
 `ejabberd` can map LDAP attributes to vCard fields. This behaviour is
 implemented in the `mod_vcard_ldap` module. This module does not depend
@@ -5654,7 +5661,7 @@ Options:
 
 :   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
-### `mod_version`
+### mod_version
 
 This module implements Software Version
 ([`XEP-0092`][108]). Consequently,
@@ -5770,3 +5777,7 @@ Options:
 [106]:	http://xmpp.org/extensions/xep-0153.html
 [108]:	http://xmpp.org/extensions/xep-0092.html
 [109]:	http://xmpp.org/extensions/xep-0033.html
+[110]:  /admin/guide/managing/#ejabberdctl
+[111]:  /admin/guide/managing/#list-of-ejabberd-commands
+[112]:  /admin/guide/configuration/#include-additional-configuration-files
+[113]:  /admin/guide/managing/#restrict-execution-with-accesscommands

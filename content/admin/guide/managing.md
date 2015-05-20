@@ -3,9 +3,9 @@ title: Managing ejabberd | ejabberd Installation and Operation Guide
 bodyclass: nocomment
 ---
 
-# Managing an `ejabberd` server
+# Managing an ejabberd server
 
-## `ejabberdctl`
+## ejabberdctl
 
 With the `ejabberdctl` command line administration script you can
 execute `ejabberdctl commands` (described in the next section,
@@ -246,7 +246,7 @@ Note that some characters need to be escaped when used in shell scripts,
 for instance `"` and `{}`. You can find other options in the Erlang
 manual page (`erl -man erl`).
 
-## `ejabberd` Commands
+## ejabberd Commands
 
 An `ejabberd command` is an abstract function identified by a name, with
 a defined number and type of calling arguments and type of result that
