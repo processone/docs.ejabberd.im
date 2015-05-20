@@ -22,9 +22,8 @@ default config file (or light changes).
 The configuration file will be loaded the first time you start
 `ejabberd`. The configuration file name MUST have “.yml” or “.yaml”
 extension. This helps ejabberd to differentiate between the new and
-legacy file formats (see section [oldconfig]).
-
-Note that `ejabberd` never edits the configuration file.
+legacy file formats (see
+section [Legacy Configuration File](#legacy-configuration-file)).
 
 The configuration file is written in [`YAML`][1]. However, different
 scalars are treated as different types:
@@ -62,6 +61,12 @@ scalars are treated as different types:
 
 	Note that both styles are used in this document.
 
+Note that `ejabberd` never edits the configuration file. If you are
+changing parameter from web admin interface, you will need to apply
+them to configuration file manually. This is to prevent messing up
+with your config file comments, syntax, etc.
+
+
 ### Legacy Configuration File
 
 In previous `ejabberd` version the configuration file should be
@@ -96,12 +101,18 @@ file, for example:
 	        function: try_register
 	        arguments: "> [\"user1\", \"localhost\", \"pass\"]."
 
-## Basic Configuration
+## Configuring One or Several XMPP Domains
 
 ### Host Names
 
+`ejabberd` supports managing several independant XMPP domains on a
+single ejabberd instance, using a feature called virtual hosting.
+
 The option `hosts` defines a list containing one or more domains that
 `ejabberd` will serve.
+
+Of course, the `hosts` list can contain just one domain if you do not
+want to host multiple XMPP domains on the same instance.
 
 The syntax is: `["HostName1", "Hostname2"]`
 
@@ -121,6 +132,10 @@ Examples:
 		  - "jabber.somesite.org"
 
 ### Virtual Hosting
+
+When managing several XMPP domains in a single instance, those domains
+are truly independant. It means they can even have different
+configuration parameters.
 
 Options can be defined separately for every virtual host using the
 `host_config` option.
@@ -209,6 +224,8 @@ are also other different modules for some specific virtual hosts:
 	    modules:
 	      mod_echo:
 	        host: "mirror.two.example.org"
+
+## Basic Configuration
 
 ### Listening Ports
 
