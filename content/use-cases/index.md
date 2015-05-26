@@ -49,6 +49,11 @@ This includes:
 * Orange
 * [SAPO - Portugal Telecom](https://www.process-one.net/resources/case_studies/ProcessOne_SAPO_Case_Study_v7.pdf)
 
+## Customer chat / CRM
+
+* [CoBrowser.net](https://www.cobrowser.net): [Coder Interview](https://blog.process-one.net/code-as-craft-interview-cobrowser-net/).
+* [iAdvize](http://www.iadvize.com/)
+
 ## Media
 
 * [AFP](http://www.afp.com/en/)
