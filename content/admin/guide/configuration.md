@@ -298,7 +298,7 @@ are:
 `ejabberd_c2s`
 
 :   Handles c2s connections.  
-    Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`
+    Options: `access`, `certfile`, `ciphers`, `protocol_options`
 	`max_ack_queue`, `max_fsm_queue`, `max_stanza_size`,
 	`resend_on_timeout`, `resume_timeout`, `shaper`, `starttls`,
 	`starttls_required`, `stream_management`, `tls`, `zlib`,
@@ -336,7 +336,7 @@ are:
 `ejabberd_http`
 
 :   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP Bosh and Websocket with proper request handler configured. 
-	Options: `captcha`, `certfile`, `default_host`, `dhfile`, `http_bind`,
+	Options: `captcha`, `certfile`, `default_host`, `http_bind`,
 	`http_poll`, `request_handlers`, `tls`, `tls_compression`,
 	`trusted_proxies`, `web_admin`
 
@@ -397,14 +397,6 @@ modules:
 	defined in ejabberd (see [hostnames]), then this configured HostName
 	is set as the request Host. The default value of this option is:
 	`undefined`.
-
-`dhfile: Path`
-
-:   Full path to a file containing custom parameters for Diffie-Hellman key
-	exchange. Such a file could be created with the command
-	`openssl dhparam -out dh.pem 2048`. If this option is not specified,
-	default parameters will be used, which might not provide the same level
-	of security as using custom parameters.
 
 `hosts: {Hostname: [HostOption, ...]}`
 
@@ -627,13 +619,6 @@ ejabberd configuration file (outside `listen`):
 `s2s_certfile: Path`
 
 :   Full path to a file containing a SSL certificate.
-
-`s2s_dhfile: Path`
-
-:   Full path to a file containing custom DH parameters. Such a file could be
-	created with the command `openssl dhparam -out dh.pem 2048`. If this
-	option is not specified, default parameters will be used, which might
-	not provide the same level of security as using custom parameters.
 
 `domain_certfile: Path`
 
