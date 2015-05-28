@@ -15,6 +15,7 @@ backbone for a very large number of mobile messaging services.
 
 This includes:
 
+* [Chaatz](http://chaatz.com)
 * [Libon](http://www.process-one.net/en/customers/case/libon/)
 * [Nokia OVI Chat](http://en.wikipedia.org/wiki/Ovi_(Nokia))
 * [Roo Kids](http://www.rookidsapp.com): Safe & fun instant messaging app for kids with minimum yet critical parental controls.
