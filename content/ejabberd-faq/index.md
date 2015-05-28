@@ -102,8 +102,8 @@ you can handle tens of millions of users on ejabberd systems.
 ### Is ejabberd conform to the best Erlang practices ?
 
 Yes. Our build system is primarily based on rebar. However, as we are
-multiplatform and need to run in many various environment we rely on a
-toolchain that can detect requiresd library dependancies using
+multiplatform and need to run in many various environments, we rely on a
+toolchain that can detect required library dependancies using
 autotools.
 
 This gives developers and admins the best of both worlds. A very
