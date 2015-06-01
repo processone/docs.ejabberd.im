@@ -54,6 +54,7 @@ This includes:
 
 * [CoBrowser.net](https://www.cobrowser.net): [Coder Interview](https://blog.process-one.net/code-as-craft-interview-cobrowser-net/).
 * [iAdvize](http://www.iadvize.com/)
+* [LiveHelpercChat](https://livehelperchat.com): [Blog post: Full XMPP chat support for ejabberd](https://livehelperchat.com/full-xmpp-chat-support-for-ejabberd-423a.html)
 
 ## Media
 
