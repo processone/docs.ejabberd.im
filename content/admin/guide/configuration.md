@@ -733,7 +733,7 @@ For example, the following simple configuration defines:
 	service.
 
 -   Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind
-	(BOSH) and the Web Admin as explained in section [webadmin]. The
+	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../managing/#web-admin). The
 	socket only listens connections to the IP address 127.0.0.1.
 
 <!-- -->
@@ -1000,17 +1000,17 @@ used for user authentication. The syntax is:
 
 The following authentication methods are supported by `ejabberd`:
 
--   internal — See section [internalauth].
+-   internal — See section [Internal](#internal).
 
--   external — See section [extauth].
+-   external — See section [EXternal Script](#external-script).
 
--   ldap — See section [ldap].
+-   ldap — See section  [LDAP](#ldap).
 
--   odbc — See section [odbc].
+-   odbc — See section [ODBC](#odbc).
 
--   anonymous — See section [saslanonymous].
+-   anonymous — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 
--   pam — See section [pam].
+-   pam — See section [Pam Authentication](#pam-authentication).
 
 When the option is omitted, ejabberd will rely upon the default database which is configured in `default_db` option. If this option is not set neither the default authentication method will be `internal`.
 
@@ -1678,7 +1678,7 @@ The configurable options are:
 	example below.
 
 Additionally, an `ejabberd_http` listener must be enabled with the
-`captcha` option. See section [listened-module].
+`captcha` option. See section [Listening Module](#listening-module).
 
 Example configuration:
 
@@ -2588,7 +2588,7 @@ use another database backend for this. The option is:
 `sm_db_type: mnesia|odbc|redis`
 
 :   Note that for `odbc` or `redis` you should have them configured. See sections
-	[odbc] or [redis].
+	[ODBC](#odbc) or [Redis](#redis).
 
 ## Modules Configuration
 
@@ -2669,14 +2669,14 @@ The following table lists all modules included in `ejabberd`.
 | [mod_version](#modversion)                     | Software Version ([`XEP-0092`][62])                  |                                  |
 
 -   (\*) This module requires a supported database. For a list of
-	supported databases, see section [database].
+	supported databases, see section [Database and LDAP Configuration](#database-and-ldap-configuration).
 
 You can see which database backend each module needs by looking at the
 suffix:
 
 -   No suffix, this means that the module uses Erlang’s built-in
 	database Mnesia as backend, Riak key-value store or ODBC database
-	(see [database]).
+	(see [Database and LDAP Configuration](#database-and-ldap-configuration)).
 
 -   ‘\_ldap’, this means that the module needs an LDAP server as
 	backend.
@@ -4960,7 +4960,7 @@ is that you will see messages such as the following in your
 
 These parameters specify the names of the attributes which hold
 interesting data in the entries returned by running filters specified in
-section [msrlfilters].
+section [Filters](#filters).
 
 The name of the attribute that holds the group name, and that is used to
 differentiate between them. Retrieved from results of the “Roster
@@ -5007,7 +5007,7 @@ These paramters control the behaviour of the module.
 	attribute named by `ldap_memberattr`. Defaults to <span>%u</span>,
 	which means that the whole value is the member ID. If you change it
 	to something different, you may also need to specify the User and
-	Group Filters manually — see section [msrlfilters].
+	Group Filters manually — see section [Filters](#filters).
 
 `ldap_memberattr_format_re`
 
@@ -5041,7 +5041,7 @@ These paramters control the behaviour of the module.
 	
 	Also, note that in all cases <span>ldap\_memberattr\_format</span>
 	(and <span>*not*</span> the regex version) is used for constructing
-	the default “User/Group Filter” — see section [msrlfilters].
+	the default “User/Group Filter” — see section [Filters](#filters).
 
 `ldap_auth_check`
 
