@@ -19,7 +19,7 @@ end
 
 compile '*' do
   filter :erb
-  filter :kramdown, :toc_levels => [2]
+  filter :kramdown, :toc_levels => [2,3]
   filter :colorize_syntax,
          :default_colorizer => :pygmentsrb,
          :pygmentsrb => {:options => {:nowrap => 'False', :linenos => 'table'}}

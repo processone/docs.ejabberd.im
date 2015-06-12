@@ -9,11 +9,12 @@ Here are the main entry points to learn more about ejabberd
 configuration. ejabberd is extremely powerful and can be configured in
 many ways with many options.
 
-- [Config File Formatting](#config-file-formatting)
-- [Basic Configuration](#basic-configuration)
-
 Do not let this complexity scare you. Most of you will be fine with
 default config file (or light changes).
+
+* This line is a placeholder to generate the table of contents
+{:toc}
+---
 
 ## Config File Formatting
 

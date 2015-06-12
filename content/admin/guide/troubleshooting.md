@@ -5,6 +5,10 @@ bodyclass: nocomment
 
 # Troubleshooting ejabberd
 
+* This line is a placeholder to generate the table of contents
+{:toc}
+---
+
 ## Log Files
 
 An `ejabberd` node writes three log files:

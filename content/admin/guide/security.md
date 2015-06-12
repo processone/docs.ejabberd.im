@@ -5,6 +5,10 @@ bodyclass: nocomment
 
 # Securing ejabberd
 
+* This line is a placeholder to generate the table of contents
+{:toc}
+---
+
 ## Firewall Settings
 
 You need to take the following TCP ports in mind when configuring your

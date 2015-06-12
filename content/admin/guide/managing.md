@@ -5,6 +5,10 @@ bodyclass: nocomment
 
 # Managing an ejabberd server
 
+* This line is a placeholder to generate the table of contents
+{:toc}
+---
+
 ## ejabberdctl
 
 With the `ejabberdctl` command line administration script you can

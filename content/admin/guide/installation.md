@@ -12,6 +12,8 @@ You have several options to install ejabberd:
 - [Installing `ejabberd` from Source Code](#installing-ejabberd-from-source-code)
 - [Post-install Operations](#post-install-operations)
 
+---
+
 ## Installing ejabberd with Binary Installer
 
 ### Download and running the installer

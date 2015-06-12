@@ -5,6 +5,10 @@ bodyclass: nocomment
 
 # Clustering
 
+* This line is a placeholder to generate the table of contents
+{:toc}
+---
+
 ## How it Works
 
 A XMPP domain is served by one or more `ejabberd` nodes. These nodes can
