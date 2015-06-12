@@ -4012,7 +4012,7 @@ Example configuration:
 	  mod_multicast:
 	     host: "multicast.example.org"
 	     access: multicast
-	     limits, "> [ {local,message,40}, {local,presence,infinite}, {remote,message,150} ]."
+	     limits: "> [ {local,message,40}, {local,presence,infinite}, {remote,message,150} ]."
 
 ### mod_offline
 
