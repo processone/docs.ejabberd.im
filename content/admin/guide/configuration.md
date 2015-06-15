@@ -1699,6 +1699,17 @@ Example configuration:
 	    captcha: true
 	  ...
 
+### Node settings
+
+`net_ticktime: 60`
+
+:   This option can be used to tune tick time parameter of
+    net_kernel. It tells `erlang` VM how often nodes should check if
+    intra-node communication was not interruped. This option must have
+    identical value on all nodes, or it will lead to subtle bugs. Usually
+    leaving default value of this is option is best, tweak it only if you
+    know what are you doing.
+
 ### STUN and TURN
 
 `ejabberd` is able to act as a stand-alone STUN/TURN server
