@@ -125,7 +125,7 @@ To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 -   Libexpat 1.95 or higher
 -   Erlang/OTP R16B03 or higher.
 -   Libyaml 0.1.4 or higher
--   OpenSSL 0.9.8 or higher, for STARTTLS, SASL and SSL encryption.
+-   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`][4]). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See section [pam][8].
 -   GNU Iconv 1.8 or higher, for the IRC Transport (mod\_irc). Optional. Not needed on systems with GNU Libc. See section [mod_irc][9].
@@ -284,14 +284,31 @@ used by the script to start the server. Then you can call
 
 ### Specific Notes
 
-### Specific Notes for BSD
+#### Specific Notes for OSX
+
+On OS X, you need to tell ejabberd to use OpenSSL for the build. The
+best approach is to use homebrew to install openssl and to build
+ejabberd with Homebrew installed OpenSSL.
+
+Here is an example command to build ejabberd with brew-installed OpenSSL:
+
+    #!console
+    LDFLAGS=-L/usr/local/opt/openssl/lib CFLAGS=-I/usr/local/opt/openssl/include ./configure --enable-all
+    LDFLAGS=-L/usr/local/opt/openssl/lib CFLAGS=-I/usr/local/opt/openssl/include make
+
+Note: Reference to custom OpenSSL need at the moment to be passed to
+`make` command. This is because make command download, configure and
+build dependencies. The reference is also needed in that context.
+    
+
+#### Specific Notes for BSD
 
 The command to compile `ejabberd` in BSD systems is:
 
 	#!console
 	gmake
 
-### Specific Notes for Sun Solaris
+#### Specific Notes for Sun Solaris
 
 <!-- TODO: Is this still valid ? -->
 
