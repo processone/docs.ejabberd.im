@@ -4638,7 +4638,7 @@ Examples:
 		      - "boss@example.net"
 		  ...
 
-### `mod_register_web`
+### mod_register_web
 
 This module provides a web page where people can:
 
@@ -5721,7 +5721,7 @@ Examples:
 		  "Birthday": "BDAY"
 		  "Nickname": "NICKNAME"
 
-### `mod_vcard_xupdate`
+### mod_vcard_xupdate
 
 The user’s client can store an avatar in the user vCard. The vCard-Based
 Avatars protocol
