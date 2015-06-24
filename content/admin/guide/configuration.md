@@ -66,7 +66,12 @@ Note that `ejabberd` never edits the configuration file. If you are
 changing parameter from web admin interface, you will need to apply
 them to configuration file manually. This is to prevent messing up
 with your config file comments, syntax, etc.
-
+Please, consult `ejabberd.log` for configuration errors. `ejabberd` will
+report syntax related errors, as well as complains about unknown options.
+The later error typically looks like this:
+    17:10:52.858 [error] unknown option 'db_typ' for module 'mod_roster' will be likely ignored, available options are: 'access', 'db_type', 'iqdisc', 'managers', 'store_current_id', 'versioning'
+Unknown options are not ignored at the moment in order to make legacy third-party modules working.
+Make sure you respect indentation (YAML is sensitive to this) or you will get pretty cryptic errors.
 
 ### Legacy Configuration File
 
