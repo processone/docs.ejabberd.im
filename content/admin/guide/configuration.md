@@ -73,8 +73,9 @@ The later error typically looks like this:
 
     17:10:52.858 [error] unknown option 'db_typ' for module 'mod_roster' will be likely ignored, available options are: 'access', 'db_type', 'iqdisc', 'managers', 'store_current_id', 'versioning'
 
-Unknown options are not ignored at the moment in order to make legacy third-party modules working.
-Make sure you respect indentation (YAML is sensitive to this) or you will get pretty cryptic errors.
+Unknown options are not ignored at the moment in order to make legacy
+third-party modules work.  Make sure you respect indentation (YAML is
+sensitive to this) or you will get pretty cryptic errors.
 
 ### Legacy Configuration File
 
@@ -2661,6 +2662,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_http_fileserver](#modhttpfileserver)      | Small HTTP file server                               |                                  |
 | [mod_irc](#modirc)                             | IRC transport                                        |                                  |
 | [mod_last](#modlast)                           | Last Activity ([`XEP-0012`][43])                     |                                  |
+| [mod_mam](#modmam)                             | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
 | [mod_muc](#modmuc)                             | Multi-User Chat ([`XEP-0045`][44])                   |                                  |
 | mod_muc_admin                                  | Administrative commands for Multi-User Chat          | `mod_muc`                        |
 | [mod_muc_log](#modmuclog)                      | Multi-User Chat room logging                         | `mod_muc`                        |
@@ -3627,6 +3629,14 @@ Module options:
 	broadcasted to all occupants in the room after expiration of the
 	interval delay. Intermediate presence packets are silently
 	discarded. A good value for this option is 4 seconds.
+
+`max_users_presence: Number`
+
+:   This option defines after how many users in the room, it is
+    considered overcrowded. When a MUC room is considered overcrowed,
+    presence broadcasts are limited to reduce load, traffic and excessive
+    presence 'storm' received by participants.
+
 
 `default_room_options: {OptionName: OptionValue}`
 
@@ -5859,3 +5869,4 @@ Options:
 [111]:  /admin/guide/managing/#list-of-ejabberd-commands
 [112]:  /admin/guide/configuration/#include-additional-configuration-files
 [113]:  /admin/guide/managing/#restrict-execution-with-accesscommands
+[114]:  http://xmpp.org/extensions/xep-0313.html
