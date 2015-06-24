@@ -3449,6 +3449,32 @@ Options:
 
 :   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
 
+### mod_mam
+
+This module implements Message Archive Management as described in [`XEP-0313`]. Versions 0.2 and 0.3 are supported at the moment. Compatible XMPP clients can use it to store their chat history on the server.
+
+Options:
+
+`iqdisc: Discipline`
+
+:   This specifies the processing discipline for Message Archive Management IQ queries (see section [modiqdiscoption]).
+
+`db_type: mnesia|odbc`
+
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` value is defined, make sure you have defined the database, see [database]().
+
+`default: always|never|roster`
+
+:   The option defines default policy for chat history. When `always` is set every chat message is stored. With `roster` only chat history with contacts from user's roster is stored. `never` fully disables chat history. Note that a client can change its policy via protocol commands. The default is `never`.
+
+`cache_size: Integer`
+
+:   There is a cache which is used to improve performance for retrieving user's policy. This option will allow you to set the size of this cache. The default is 1000 items.
+
+`cache_lifetime: Seconds`
+
+:   Lifetime of the cached items in the cache described in the option `cache_size`. The default is 3600 seconds, i.e. one hour.
+
 ### mod_muc
 
 This module provides a Multi-User Chat
