@@ -1076,7 +1076,7 @@ The following authentication methods are supported by `ejabberd`:
 
 -   internal — See section [Internal](#internal).
 
--   external — See section [EXternal Script](#external-script).
+-   external — See section [External Script](#external-script).
 
 -   ldap — See section  [LDAP](#ldap).
 
