@@ -163,10 +163,10 @@ list run the command:
 
 Some options that you may be interested in modifying:
 
-- **`–prefix=/`**: Specify the path prefix where the files will be
+- **`-–prefix=/`**: Specify the path prefix where the files will be
   copied when running the `make install` command.
 
-- **`–enable-user[=USER]`**: Allow this normal system user to execute
+- **`-–enable-user[=USER]`**: Allow this normal system user to execute
   the ejabberdctl script (see section [ejabberdctl][7]), read the
   configuration files, read and write in the spool directory, read and
   write in the log directory. The account user and group must exist in
@@ -174,50 +174,52 @@ Some options that you may be interested in modifying:
   an explicit HOME directory, because `/var/lib/ejabberd/` will be
   used by default.
 
-- **`–enable-pam`**: Enable the PAM authentication method (see section
+- **`-–enable-pam`**: Enable the PAM authentication method (see section
   [pam][8]).
 
-- **`–enable-tools`**: Enable the use of development tools.
+- **`-–enable-tools`**: Enable the use of development tools.
 
-- **`–enable-mysql`**: Enable MySQL support (see section [databases][18]).
+- **`-–enable-mysql`**: Enable MySQL support (see section [databases][18]).
 
-- **`–enable-pgsql`**: Enable PostgreSQL support (see section [databases][18]).
+- **`-–enable-pgsql`**: Enable PostgreSQL support (see section [databases][18]).
 
-- **`–enable-sqlite`**: Enable SQLite support (see section [databases][18]).
+- **`-–enable-sqlite`**: Enable SQLite support (see section [databases][18]).
 
-- **`–enable-riak`**: Enable Riak database support (see section [databases][18]).
+- **`–-enable-riak`**: Enable Riak database support (see section [databases][18]).
 
-- **`–enable-redis`**: Enable Redis support to use for external session storage.
+- **`-–enable-redis`**: Enable Redis support to use for external session storage.
 
-- **`–enable-zlib`**: Enable Stream Compression (XEP-0138) using zlib.
+- **`-–enable-zlib`**: Enable Stream Compression (XEP-0138) using zlib.
 
-- **`–enable-lager`**: Use lager Erlang logging tool instead of
+- **`-–enable-lager`**: Use lager Erlang logging tool instead of
   standard error logger.
 
-- **`–enable-iconv`**: Enable iconv support. This is needed for
+- **`-–enable-iconv`**: Enable iconv support. This is needed for
   `mod_irc` (see section [mod_irc][9]).
 
-- **`–enable-debug`**: Compile with `+debug_info` enabled.
+- **`–-enable-debug`**: Compile with `+debug_info` enabled.
 
-- **`–enable-nif`**: Replaces some critical Erlang functions with
+- **`–-enable-nif`**: Replaces some critical Erlang functions with
   equivalents written in C to improve performance.
 
-- **`–enable-elixir`**: Build ejabberd with Elixir extension support.
+- **`–-enable-elixir`**: Build ejabberd with Elixir extension support.
 
-- **`–enable-all`**: Enable all previous options.
+- **`–-enable-all`**: Enable all previous options.
 
 Here are other available options, that are experimental and not recommended:
 
-- **`–enable-json`**: Enable JSON support for mod_bosh. This allow to
+- **`–-enable-json`**: Enable JSON support for mod_bosh. This allow to
   use JSON instead of XML packet format from the browser.
 
-- **`–disable-transient-supervisors`**: Disable the use of Erlang/OTP
+- **`–-disable-transient-supervisors`**: Disable the use of Erlang/OTP
   supervision for transient processes.
 
-- **`–enable-full-xml`**: Enable the use of XML based
+- **`–-enable-full-xml`**: Enable the use of XML based
   optimisations. It will for example use CDATA to escape characters in
   the XMPP stream. Use this option only if you are sure your XMPP
   clients include a fully compliant XML parser.
+
+- **`–-enable-hipe`**: Compile natively with HiPE, not recommended.
 
 ### Install
 
