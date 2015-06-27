@@ -161,10 +161,12 @@ listeners and module configuration, that you have to put in the right place in y
 config file.
 
 Now, check your new module is installed:
+
     $ ejabberdctl modules_installed
     mod_cron
 
 And finally, you can remove it:
+
     $ ejabberdctl module_uninstall mod_cron
     ok
 
