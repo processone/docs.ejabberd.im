@@ -150,7 +150,11 @@ To compile `ejabberd` execute the commands:
 	./configure --enable-mysql
 	make
 
-The build configuration script allows several options. To get the full list run the command:
+*Note*: To build ejabberd, you will need Internet access, as
+ dependencies will by downloaded depending on the selected options in 
+
+The build configuration script allows several options. To get the full
+list run the command:
 
 	#!console
 	./configure --help
