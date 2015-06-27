@@ -305,7 +305,7 @@ Here is an example command to build ejabberd with brew-installed OpenSSL:
     LDFLAGS=-L/usr/local/opt/openssl/lib CFLAGS=-I/usr/local/opt/openssl/include ./configure --enable-all
     LDFLAGS=-L/usr/local/opt/openssl/lib CFLAGS=-I/usr/local/opt/openssl/include make
 
-Note: Reference to custom OpenSSL need at the moment to be passed to
+Note: Reference to custom OpenSSL needs at the moment to be passed to
 `make` command. This is because make command download, configure and
 build dependencies. The reference is also needed in that context.
     
