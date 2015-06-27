@@ -1,15 +1,17 @@
 ---
-title: Installing ejabberd | ejabberd Installation and Operation Guide
+title: ejabberd Installation and Setup | ejabberd Installation and Operation Guide
 bodyclass: nocomment
 ---
 
-# Installing ejabberd
+# ejabberd Installation and Setup
 
 You have several options to install ejabberd:
 
 - [Installing `ejabberd` with Binary Installer](#installing-ejabberd-with-binary-installer)
 - [Installing `ejabberd` with Operating System Specific Packages](#installing-ejabberd-with-operating-system-specific-packages)
 - [Installing `ejabberd` from Source Code](#installing-ejabberd-from-source-code)
+
+Once installed, you may want to register users and create admin accounts:
 - [Post-install Operations](#post-install-operations)
 
 ---
