@@ -32,8 +32,8 @@ In \*nix systems, remember to set executable the binary installer
 before starting it. For example:
 
 	#!console
-	chmod +x ejabberd-2.0.0_1-linux-x86-installer.bin
-	./ejabberd-2.0.0_1-linux-x86-installer.bin
+	chmod +x ejabberd-15.06-linux-x86_64-installer.run
+	./ejabberd-15.06-linux-x86_64-installer.run
 
 `ejabberd` can be started manually at any time, or automatically by
 the operating system at system boot time.
@@ -59,23 +59,19 @@ When ejabberd is started, the processes that are started in the system
 are `beam` or `beam.smp`, and also `epmd`. For more information
 regarding `epmd` consult the section relating to [epmd][6].
 
-If `ejabberd` doesn’t start correctly and a crash dump is generated,
-there was a severe problem. You can try starting `ejabberd` with the
-script `bin/live.bat` in Windows, or with the command `bin/ejabberdctl
-live` in other Operating Systems. This way you see the error message
-provided by Erlang and can identify what is exactly the problem.
+If `ejabberd` doesn’t start correctly and a crash dump file is
+generated, there was a severe problem. You can try starting `ejabberd`
+with the script `bin/live.bat` in Windows, or with the command
+`bin/ejabberdctl live` in other Operating Systems. This way you see
+the error message provided by Erlang and can identify what is exactly
+the problem.
 
 The `ejabberdctl` administration script is included in the `bin`
-directory. Please refer to the section [ejabberdctl][7] for details about
-`ejabberdctl`, and configurable options to fine tune the Erlang
+directory. Please refer to the section [ejabberdctl][7] for details
+about `ejabberdctl`, and configurable options to fine tune the Erlang
 runtime system.
 
 ### Using ejabberd on Microsoft Windows
-
-**ejabberd installer is not available at the moment for Microsoft
-   Windows, but the team is working a building a new up to date
-   installer. The following commments are for ejabberd 2.1.x old
-   Windows installer.**
 
 The Windows installer also adds ejabberd as a system service, and a
 shortcut to a debug console for experienced administrators. If you
@@ -85,15 +81,8 @@ started. Note that the Windows service is a feature still in
 development, and for example it doesn’t read the file
 `ejabberdctl.cfg`.
 
-On Microsoft Windows, the Erlag processes for ejabberd are named
+On Microsoft Windows, the Erlang processes for ejabberd are named
 `erl.exe` and `epmd.exe`.
-
-If `ejabberd` doesn’t start correctly on Windows, try to start it
-using the shortcut in desktop or start menu. If the window shows error
-14001, the solution is to install: “Microsoft Visual C++ 2005 SP1
-Redistributable Package”. You can download it from
-[`www.microsoft.com`][2]. Then uninstall `ejabberd` and install it
-again.
 
 ## Installing ejabberd with Operating System Specific Packages
 
@@ -108,6 +97,13 @@ more information.
 
 Usually those packages create a script like `/etc/init.d/ejabberd` to
 start and stop `ejabberd` as a service at boot time.
+
+ProcessOne now provides RPM and DEB all in one packages as well, since
+ejabberd version 15.06. This is self-sufficient packages also
+containing a minimal Erlang distribution. It ensures that it does not
+interfere with your existing Erlang version. This is also a good way
+to make sure ejabberd will run with the latest Erlang version. You can
+download the packages from [ejabberd Downloads][1].
 
 ## Installing ejabberd from Source Code
 
