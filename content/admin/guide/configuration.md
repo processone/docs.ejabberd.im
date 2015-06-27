@@ -1080,7 +1080,7 @@ The following authentication methods are supported by `ejabberd`:
 
 -   ldap — See section  [LDAP](#ldap).
 
--   odbc — See section [ODBC](#odbc).
+-   odbc — See section [Relational Databases](#relational-databases).
 
 -   anonymous — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 
@@ -2172,7 +2172,7 @@ sections must be set inside a `host_config` for each vhost (see section
 	    odbc_password: "password"
 	    auth_method: [odbc]
 
-### ODBC
+### Relational Databases
 
 The actual database access is defined in the options with `odbc_`
 prefix. The values are used to define if we want to use ODBC, or one of
@@ -2673,7 +2673,7 @@ use another database backend for this. The option is:
 `sm_db_type: mnesia|odbc|redis`
 
 :   Note that for `odbc` or `redis` you should have them configured. See sections
-	[ODBC](#odbc) or [Redis](#redis).
+	[Relational Databases](#relational-databases) or [Redis](#redis).
 
 ## Modules Configuration
 

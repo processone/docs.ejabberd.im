@@ -422,6 +422,6 @@ version indicates you need to also update those tables.
 [15]:	http://www.zlib.net/
 [16]:   /admin/guide/configuration/#captcha
 [17]:   /admin/guide/configuration/#database
-[18]:   /admin/guide/configuration/#odbc
+[18]:   /admin/guide/configuration/#relational-databases
 [19]:   /admin/guide/security/#erlang-cookie
 [20]:   /admin/guide/configuration/#mod_register
