@@ -12,6 +12,7 @@ You have several options to install ejabberd:
 - [Installing `ejabberd` from Source Code](#installing-ejabberd-from-source-code)
 
 Once installed, you may want to register users and create admin accounts:
+
 - [Post-install Operations](#post-install-operations)
 
 ---
