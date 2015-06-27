@@ -147,7 +147,7 @@ from the Git repository using the commands:
 To compile `ejabberd` execute the commands:
 
 	#!console
-	./configure
+	./configure --enable-mysql
 	make
 
 The build configuration script allows several options. To get the full list run the command:
