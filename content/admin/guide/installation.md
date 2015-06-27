@@ -171,34 +171,47 @@ Some options that you may be interested in modifying:
 - **`–enable-pam`**: Enable the PAM authentication method (see section
   [pam][8]).
 
-- **`–enable-mssql`**: Required if you want to use an external
-  database. See section [database][17] for more information.
-
 - **`–enable-tools`**: Enable the use of development tools.
 
-- **`–enable-mysql`**: Enable MySQL support (see section [odbc][18]).
+- **`–enable-mysql`**: Enable MySQL support (see section [databases][18]).
 
-- **`–enable-pgsql`**: Enable PostgreSQL support (see section [odbc][18]).
+- **`–enable-pgsql`**: Enable PostgreSQL support (see section [databases][18]).
+
+- **`–enable-sqlite`**: Enable SQLite support (see section [databases][18]).
+
+- **`–enable-riak`**: Enable Riak database support (see section [databases][18]).
+
+- **`–enable-redis`**: Enable Redis support to use for external session storage.
 
 - **`–enable-zlib`**: Enable Stream Compression (XEP-0138) using zlib.
 
+- **`–enable-lager`**: Use lager Erlang logging tool instead of
+  standard error logger.
+
 - **`–enable-iconv`**: Enable iconv support. This is needed for
-  `mod_irc` (see section [modirc][9]).
+  `mod_irc` (see section [mod_irc][9]).
 
 - **`–enable-debug`**: Compile with `+debug_info` enabled.
-
-- **`–enable-full-xml`**: Enable the use of XML based
-  optimisations. It will for example use CDATA to escape characters in
-  the XMPP stream. Use this option only if you are sure your XMPP
-  clients include a fully compliant XML parser.
-
-- **`–disable-transient-supervisors`**: Disable the use of Erlang/OTP
-  supervision for transient processes.
 
 - **`–enable-nif`**: Replaces some critical Erlang functions with
   equivalents written in C to improve performance.
 
 - **`–enable-elixir`**: Build ejabberd with Elixir extension support.
+
+- **`–enable-all`**: Enable all previous options.
+
+Here are other available options, that are experimental and not recommended:
+
+- **`–enable-json`**: Enable JSON support for mod_bosh. This allow to
+  use JSON instead of XML packet format from the browser.
+
+- **`–disable-transient-supervisors`**: Disable the use of Erlang/OTP
+  supervision for transient processes.
+
+- **`–enable-full-xml`**: Enable the use of XML based
+  optimisations. It will for example use CDATA to escape characters in
+  the XMPP stream. Use this option only if you are sure your XMPP
+  clients include a fully compliant XML parser.
 
 ### Install
 
