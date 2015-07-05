@@ -1732,6 +1732,10 @@ provided so the user can fill the challenge in a web browser.
 An example script is provided that generates the image using
 ImageMagick’s Convert program.
 
+Note: we do not provide example scripts to support image generation on
+Microsoft Windows. Captcha will not work with ejabberd Windows
+installer.
+
 The configurable options are:
 
 `captcha_cmd: Path`
