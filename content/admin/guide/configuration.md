@@ -736,6 +736,11 @@ ejabberd configuration file (outside `listen`):
 
 :   The timeout in milliseconds for outgoing S2S connection attempts.
 
+`s2s_access: Access`
+
+:   The policy for incoming and outgoing s2s connections to other XMPP
+	servers. The default value is `all`.
+
 `s2s_dns_timeout: Timeout`
 
 :   The timeout in seconds for DNS resolving. The default value is `10`.
@@ -743,11 +748,6 @@ ejabberd configuration file (outside `listen`):
 `s2s_dns_retries: Number`
 
 :   DNS resolving retries in seconds. The default value is `2`.
-
-`s2s_policy: Access`
-
-:   The policy for incoming and outgoing s2s connections to other XMPP
-	servers. The default value is `all`.
 
 `s2s_max_retry_delay: Seconds`
 
