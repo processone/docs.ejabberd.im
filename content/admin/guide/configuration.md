@@ -2759,7 +2759,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_version](#modversion)                     | Software Version ([`XEP-0092`][62])                  |                                  |
 
 -   (\*) This module requires a supported database. For a list of
-	supported databases, see section [Database and LDAP Configuration](#database-and-ldap-configuration).
+	supported databases, see section [Database and LDAP Configuration](#database-and-ldap-configuration).
 
 You can see which database backend each module needs by looking at the
 suffix:
@@ -2991,7 +2991,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `access: AccessName`
 
@@ -3095,7 +3095,7 @@ Options:
 :   This specifies the processing discipline for Service Discovery
 	(`http://jabber.org/protocol/disco#items` and
 	`http://jabber.org/protocol/disco#info`) IQ queries (see
-	section [modiqdiscoption]).
+	section [IQ Discipline Option](#iqdisc)).
 
 `extra_domains: [Domain, ...]`
 
@@ -3458,7 +3458,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `access: AccessName`
 
@@ -3521,25 +3521,25 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for Last activity
-	(`jabber:iq:last`) IQ queries (see section [modiqdiscoption]).
+	(`jabber:iq:last`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ### mod_mam
 
-This module implements Message Archive Management as described in [`XEP-0313`]. Versions 0.2 and 0.3 are supported at the moment. Compatible XMPP clients can use it to store their chat history on the server.
+This module implements Message Archive Management as described in [`XEP-0313`][114]. Versions 0.2 and 0.3 are supported at the moment. Compatible XMPP clients can use it to store their chat history on the server.
 
 Options:
 
 `iqdisc: Discipline`
 
-:   This specifies the processing discipline for Message Archive Management IQ queries (see section [modiqdiscoption]).
+:   This specifies the processing discipline for Message Archive Management IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 `db_type: mnesia|odbc`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `default: always|never|roster`
 
@@ -3595,7 +3595,7 @@ Module options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `access: AccessName`
 
@@ -4149,7 +4149,7 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `access_max_user_messages: AccessName`
 
@@ -4307,11 +4307,11 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for Blocking Communication
-	(`jabber:iq:privacy`) IQ queries (see section [modiqdiscoption]).
+	(`jabber:iq:privacy`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ### mod_private
 
@@ -4330,11 +4330,11 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for Private XML Storage
-	(`jabber:iq:private`) IQ queries (see section [modiqdiscoption]).
+	(`jabber:iq:private`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ### mod_proxy65
 
@@ -4617,7 +4617,7 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for In-Band Registration
-	(`jabber:iq:register`) IQ queries (see section [modiqdiscoption]).
+	(`jabber:iq:register`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 This module reads also another option defined globally for the server:
 `registration_timeout: Timeout`. This option limits the frequency of
@@ -4765,11 +4765,11 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for Roster Management
-	(`jabber:iq:roster`) IQ queries (see section [modiqdiscoption]).
+	(`jabber:iq:roster`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `versioning: false|true`
 
@@ -4894,7 +4894,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 Shared roster groups can be edited *only* via the Web Admin. Each group
 has a unique identification and the following parameters:
@@ -5345,7 +5345,7 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for `urn:xmpp:sic:0` IQ
-	queries (see section [modiqdiscoption]).
+	queries (see section [IQ Discipline Option](#iqdisc)).
 
 ### mod_sip
 
@@ -5454,7 +5454,7 @@ Options:
 
 :   This specifies the processing discipline for Statistics Gathering
 	(`http://jabber.org/protocol/stats`) IQ queries (see
-	section [modiqdiscoption]).
+	section [IQ Discipline Option](#iqdisc)).
 
 As there are only a small amount of clients (for example
 [`Tkabber`][100]) and software libraries with
@@ -5492,7 +5492,7 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for Entity Time
-	(`jabber:iq:time`) IQ queries (see section [modiqdiscoption]).
+	(`jabber:iq:time`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 ### mod_vcard
 
@@ -5515,11 +5515,11 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for `vcard-temp` IQ queries
-	(see section [modiqdiscoption]).
+	(see section [IQ Discipline Option](#iqdisc)).
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `search: true|false`
 
@@ -5610,7 +5610,7 @@ The second group of parameters consists of the following
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for `vcard-temp` IQ queries
-	(see section [modiqdiscoption]).
+	(see section [IQ Discipline Option](#iqdisc)).
 
 `search: true|false`
 
@@ -5815,7 +5815,7 @@ Options:
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database]().
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ### mod_version
 
@@ -5833,7 +5833,7 @@ Options:
 `iqdisc: Discipline`
 
 :   This specifies the processing discipline for Software Version
-	(`jabber:iq:version`) IQ queries (see section [modiqdiscoption]).
+	(`jabber:iq:version`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 [1]:	http://en.wikipedia.org/wiki/YAML
 [2]:	http://www.ejabberd.im/pyaimt
