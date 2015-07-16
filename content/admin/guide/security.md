@@ -19,8 +19,8 @@ firewall:
 | 5222                  | Standard port for Jabber/XMPP client connections, plain or STARTTLS.                        |
 | 5223                  | Standard port for Jabber client connections using the old SSL method.                       |
 | 5269                  | Standard port for Jabber/XMPP server connections.                                           |
-| 4369                  | EPMD (section [epmd]) listens for Erlang node name requests.                                |
-| port range            | Used for connections between Erlang nodes. This range is configurable (see section [epmd]). |
+| 4369                  | EPMD (see [epmd](#epmd)) listens for Erlang node name requests.                                |
+| port range            | Used for connections between Erlang nodes. This range is configurable (see [epmd](#epmd)). |
 
 ## epmd
 
@@ -127,6 +127,6 @@ the proper user to read, write and execute those files and directories.
 
 `Erlang cookie file: /var/lib/ejabberd/.erlang.cookie`
 
-:   See section [cookie].
+:   See section [Erlang Cookie](#erlang-cookie).
 
 [1]:	http://www.erlang.org/doc/man/epmd.html

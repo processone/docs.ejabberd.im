@@ -13,14 +13,16 @@ bodyclass: nocomment
 
 With the `ejabberdctl` command line administration script you can
 execute `ejabberdctl commands` (described in the next section,
-[ectl-commands]) and also many general `ejabberd commands` (described in
-section [eja-commands]). This means you can start, stop and perform many
+[ejabberdctl Commands](#ejabberdctl-commands)) and also many general
+`ejabberd commands` (described in section
+[ejabberd Commands](#ejabberd-commands)).
+This means you can start, stop and perform many
 other administrative tasks in a local or remote `ejabberd` server (by
 providing the argument `–node NODENAME`).
 
 The `ejabberdctl` script can be configured in the file
 `ejabberdctl.cfg`. This file includes detailed information about each
-configurable option. See section [erlangconfiguration].
+configurable option. See section [Erlang Runtime System](#erlang-runtime-system).
 
 The `ejabberdctl` script returns a numerical status code. Success is
 represented by `0`, error is represented by `1`, and other codes may be
@@ -56,7 +58,8 @@ available parameters are:
 
 If there is an `ejabberd` server running in the system, `ejabberdctl`
 shows the `ejabberdctl commands` described bellow and all the
-`ejabberd commands` available in that server (see [list-eja-commands]).
+`ejabberd commands` available in that server (see
+[List of ejabberd Commands](#list-of-ejabberd-commands)).
 
 The `ejabberdctl commands` are:
 
@@ -82,7 +85,8 @@ The `ejabberdctl commands` are:
 :   Get information about the Mnesia database.
 
 The `ejabberdctl` script can be restricted to require authentication and
-execute some `ejabberd commands`; see [accesscommands].
+execute some `ejabberd commands`; see
+[AccessCommands](#restrict-execution-with-accesscommands).
 
 If account `robot1@example.org` is registered in `ejabberd` with
 password `abcdef` (which MD5 is E8B501798950FC58AAD83C8C14978E), and
@@ -151,7 +155,7 @@ The environment variables:
 
 `ERL_EPMD_ADDRESS`
 
-:   IP address where epmd listens for connections (see section [epmd]).
+:   IP address where epmd listens for connections (see [epmd](../security/#epmd)).
 
 `ERL_INETRC`
 
@@ -187,13 +191,13 @@ The command line parameters:
 
 `-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210`
 
-:   Define the first and last ports that `epmd` (section [epmd]) can
-	listen to.
+:   Define the first and last ports that `epmd` can listen to
+	(see [epmd](../security/#epmd)).
 
 `-kernel inet_dist_use_interface { 127,0,0,1 }`
 
 :   Define the IP address where this Erlang node listens for other nodes
-	connections (see section [epmd]).
+	connections (see [epmd](../security/#epmd)).
 
 `-detached`
 
@@ -258,8 +262,9 @@ is registered in the `ejabberd_commands` service. Those commands can be
 defined in any Erlang module and executed using any valid frontend.
 
 `ejabberd` includes two frontends to execute `ejabberd commands`: the
-script `ejabberdctl` ([ejabberdctl]) and the `ejabberd_xmlrpc` listener
-([listened-module]). Other known frontends that can be installed to
+script `ejabberdctl` (see [ejabberdctl](#ejabberdctl)) and the `ejabberd_xmlrpc`
+listener (see [Listening Ports](../configuration/#listening-ports)).
+Other known frontends that can be installed to
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).
 
@@ -297,7 +302,7 @@ The commands included in ejabberd by default are:
 
 :   Reopen the log files after they were renamed. If the old files were
 	not renamed before calling this command, they are automatically
-	renamed to `*-old.log`. See section [logfiles].
+	renamed to `*-old.log`. See section [Log Files](../troubleshooting/#log-files).
 
 `convert_to_yaml /etc/ejabberd/ejabberd.cfg /etc/ejabberd/ejabberd-converted.yml`
 
@@ -521,7 +526,8 @@ The `ejabberd` Web Admin allows to administer most of `ejabberd` using a
 web browser.
 
 This feature is enabled by default: a `ejabberd_http` listener with the
-option `web_admin` (see section [listened]) is included in the listening
+option `web_admin` (see [Listening Ports](../configuration/#listening-ports))
+is included in the listening
 ports. Then you can open `http://server:port/admin/` in your favourite
 web browser. You will be asked to enter the username (the *full* Jabber
 ID) and password of an `ejabberd` user with administrator rights. After
@@ -615,7 +621,7 @@ view such links, a copy in HTML format of the Guide must be installed in
 the system. The file is searched by default in
 `/share/doc/ejabberd/guide.html`. The directory of the documentation can
 be specified in the environment variable `EJABBERD_DOC_PATH`. See
-section [erlangconfiguration].
+section [Erlang Runtime System](#erlang-runtime-system).
 
 ## Ad-hoc Commands
 
@@ -629,7 +635,7 @@ login in the XMPP server with an account with proper privileges.
 
 `ejabberd` uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
-Erlang node in it (see section [nodename]). The name of an Erlang node
+Erlang node in it (see section [Erlang Node Name](../security/#erlang-node-name)). The name of an Erlang node
 includes the hostname of the computer. So, the name of the Erlang node
 changes if you change the name of the machine in which `ejabberd` runs,
 or when you move `ejabberd` to a different machine.
