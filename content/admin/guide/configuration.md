@@ -537,7 +537,7 @@ modules:
 	enabled. When the limit is exceeded, the client session is
 	terminated. This option can be specified for `ejabberd_c2s`
 	listeners. The allowed values are positive integers and `infinity`.
-	Default value: `500`.
+	Default value: `1000`.
 
 `max_fsm_queue: Size`
 
