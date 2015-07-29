@@ -192,6 +192,7 @@ corresponding hooks parameters is described below.
 * forbidden_session_hook(JID) -> ok
 * http_request_debug({LocalPath, Request}) -> ok
 * local_send_to_resource_hook(From, To, Packet) -> ok
+* muc_filter_packet(Packet, MUCState, RoomJID, FromJID, FromNick) -> Packet
 * offline_message_hook(From, To, Packet) -> ok
 * presence_probe_hook(From, To, Pid) -> ok
 * privacy_check_packet(Acc, User, Server, PrivacyList, {From, To, Packet}, Dir) -> Auth
@@ -228,7 +229,7 @@ corresponding hooks parameters is described below.
 * user_available_hook(JID) -> ok
 * user_ping_timeout(JID) -> ok
 * user_receive_packet(JID, From, To, Packet) -> ok
-* user_send_packet(JID, JID, Packet) -> ok
+* user_send_packet(C2SState, JID, JID, Packet) -> Packet
 * vcard_set(User, Server, VCARD) -> ok
 * webadmin_menu_host(Acc, Host, Lang) -> []
 * webadmin_menu_hostnode(Acc, Host, Node, Lang) -> []
