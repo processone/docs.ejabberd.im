@@ -4890,6 +4890,15 @@ roster group can have members from any XMPP server, but the presence
 will only be available from and to members of the same virtual host
 where the group is created.
 
+It still allows the users to have / add their own contacts, as it does
+not replace the standard roster. Instead, the shared roster contacts
+are merged to the revelant users at retrieval time. The standard user
+rosters thus stay unmodified.
+
+Special values like @all@ and @online@ will help populating the shared
+roster dynamically. It means that the actual list of members in those
+shared rosters is generated dynamically at retrieval time.
+
 Options:
 
 `db_type: mnesia|odbc|riak`
