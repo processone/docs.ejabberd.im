@@ -1918,6 +1918,8 @@ And you should also add these in the case if TURN is enabled:
 
 ### SIP
 
+#### Configuration
+
 `ejabberd` has built-in SIP support. In order to activate it you need to
 add listeners for it, configure DNS properly and enable `mod_sip` for
 the desired virtual host.
@@ -1972,6 +1974,12 @@ Example configuration of SRV records with standard ports (as per
 	_sip._udp   IN SRV  0 0 5060 sip.example.com.
 	_sip._tcp   IN SRV  0 0 5060 sip.example.com.
 	_sips._tcp  IN SRV  0 0 5061 sip.example.com.
+
+#### Note on SIP usage
+
+SIP authentication does not support SCRAM. As such, it is not possible
+to use `mod_sip` to authenticate when ejabberd has been set to encrypt
+password with SCRAM.
 
 ### Include Additional Configuration Files
 
