@@ -5,6 +5,10 @@ bodyclass: nocomment
 
 # ejabberd FAQ
 
+* This line is a placeholder to generate the table of contents
+{:toc}
+---
+
 ## Development process
 
 ### Why is there a commercial version of ejabberd ?
@@ -74,7 +78,7 @@ sauce to make sure everyone benefits.
 
 ## Performance
 
-### Is ejabberd the most scalable version
+### Is ejabberd the most scalable version ?
 
 Yes. Definitely. Despite claims that there is small change you can
 make to make it more scalable, we already performed the changes during
@@ -96,6 +100,25 @@ scalable version. Once it is properly configured, optimized and tuned,
 you can handle tens of millions of users on ejabberd systems.
 
 ... And we are still improving :)
+
+### What are the tips to optimize performance ?
+
+Optimisation of XMPP servers performance, including ejabberd, is
+highly dependant on the use case. You really need to find your
+bottleneck by monitoring the process queues and finding out what is
+your limiting factor, and move to the next one.
+
+The first step is to make sure you run the latest ejabberd. Each new
+release comes with a bunch of optimisations and a specific bottleneck
+you are facing may have gone away in the latest version.
+
+To give you an idea ejabberd 15.07 is 2 to 3 times more efficient in
+memory, latency and CPU compared to ejabberd 2.1.
+
+You should also make sure that you are also using the latest Erlang
+version. Each release of Erlang comes with more optimisation regarding
+locks, especially on SMP server, and using the latest Erlang version
+can also help tremendously.
 
 ## Erlang support
 
