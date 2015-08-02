@@ -9,6 +9,19 @@ bodyclass: nocomment
 {:toc}
 ---
 
+## Purpose
+
+The purpose of ejabberd clustering is to be able to use several
+servers for a single or small group of large domains, for
+fault-tolerance and scalability.
+
+Note that you do not necessarily need clustering if you want to run
+two large domains independantly. You may simply want to run two
+different independant servers.
+
+However, to build reliable service and support large user base,
+clustering is a must have feature.
+
 ## How it Works
 
 A XMPP domain is served by one or more `ejabberd` nodes. These nodes can
@@ -58,6 +71,19 @@ opened s2s connection from the domain of the packet’s source to the
 domain of the packet’s destination exists. If that is the case, the s2s
 manager routes the packet to the process serving this connection,
 otherwise a new connection is opened.
+
+## Before to get started
+
+Before you start implementing clustering, there if a few things you
+need to take into account:
+
+- Cluster should be set up in a single data center: The clustering in
+  ejabberd Community Edition rely on low latency network. While it may
+  work across region, it is recommended that you run an ejabberd
+  cluster in a single Amazon region.
+- Clustering rely on Erlang feature and Mnesia shared schema. Before
+  getting started, it is best to get familiar with Erlang environment
+  as the wording will heavily reference Erlang terms.
 
 ## Clustering Setup
 
