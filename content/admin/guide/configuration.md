@@ -1168,6 +1168,13 @@ Examples:
 		auth_method: internal
 		auth_password_format: scram
 
+*Note on SCRAM using and foreign authentication limitations*: when using
+the SCRAM password format, it is not possible to use foreign
+authentication method in ejabberd, as the real password is not known,
+Foreign authentication are use to authenticate through various bridges
+ejabberd provide. Foreign authentication includes at the moment SIP
+and TURN auth support and they will not be working with SCRAM.
+
 #### External Script
 
 In this authentication method, when `ejabberd` starts, it start a
