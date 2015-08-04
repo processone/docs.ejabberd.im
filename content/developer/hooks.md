@@ -193,6 +193,7 @@ corresponding hooks parameters is described below.
 * http_request_debug({LocalPath, Request}) -> ok
 * local_send_to_resource_hook(From, To, Packet) -> ok
 * muc_filter_message(Stanza, MUCState, RoomJID, FromJID, FromNick) -> Stanza | drop
+* muc_filter_presence(Stanza, MUCState, RoomJID, FromJID, FromNick) -> Stanza | drop
 * offline_message_hook(From, To, Packet) -> ok
 * presence_probe_hook(From, To, Pid) -> ok
 * privacy_check_packet(Acc, User, Server, PrivacyList, {From, To, Packet}, Dir) -> Auth
