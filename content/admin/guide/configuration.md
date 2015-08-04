@@ -3071,14 +3071,14 @@ Options:
 
 :   Drop most “standalone” Chat State Notifications (as defined in
 	[`XEP-0085`](http://xmpp.org/extensions/xep-0085.html)) while a
-	client indicates inactivity. The default value is `false`.
+	client indicates inactivity. The default value is `true`.
 
 `queue_presence: true|false`
 
 :   While a client is inactive, queue presence stanzas that indicate
 	(un)availability. The latest queued stanza of each contact is
 	delivered as soon as the client becomes active again. The default
-	value is `false`.
+	value is `true`.
 
 Example:
 
