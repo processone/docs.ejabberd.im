@@ -3414,7 +3414,8 @@ section of `ejbberd_http` listener:
 	      ...
 	  ...
 
-This module can be configured by using those options:
+This module can be configured by using those options that should be
+placed in general section of config file:
 
 `websocket_ping_interval: Seconds`
 
