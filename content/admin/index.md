@@ -9,7 +9,10 @@ This area contains information on administering your ejabberd
 system.
 
 * [ejabberd Installation and Operation Guide](/admin/guide/) provides a full reference
-  information on ejabberd installation, configuration and management
+  information on ejabberd installation, configuration and management.
+
+* [ejabberdctl Reference](/admin/ejabberctl/) provides documentation
+  for ejabberd server administration command-line tool.
 
 * [Admin FAQ](/admin/faq/) provides tips and information on Frequently
   Asked Questions for ejabberd Administrators.
