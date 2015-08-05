@@ -3422,8 +3422,11 @@ placed in general section of config file:
 : Defines time between pings send by server to client (websocket level
 protocol pings are used for this) to keep connection active. If client
 won't respond to two corresponding pings connection will be assumed as
-closed. Value of `0` can be used to disable it feature. Default value
-of this option is set to 60.
+closed. Value of `0` can be used to disable it feature. This options
+do make server send pings only for connections using rfc compilant
+protocol, for older style connections server expects that whitespace
+pings would be used for this purpose. Default value of this option
+is set to 60.
 
 `websocket_timeout: Seconds`
 
