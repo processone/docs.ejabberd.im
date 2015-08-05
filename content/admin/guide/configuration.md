@@ -1115,10 +1115,11 @@ mechanism. The option syntax is:
 :  
 
 The option `disable_sasl_mechanisms` specifies a list of SASL mechanisms
-that should *not* be offered to the client. The mechanisms can be listed
-as lowercase or uppercase strings. The option syntax is:
+(such as "DIGEST-MD5" or "SCRAM-SHA1") that should *not* be offered to
+the client. The mechanisms can be listed as lowercase or uppercase
+strings. The option syntax is:
 
-`disable_sasl_mechanisms: [Mechanism, ...]`
+`disable_sasl_mechanisms: Mechanism|[Mechanism, ...]`
 
 :  
 
