@@ -2262,6 +2262,14 @@ Example of MySQL connection:
 	odbc_password: "**********"
 	odbc_pool_size: 5
 
+#### Authentication
+
+You can authenticate users against an ODBC database, see the option
+`auth_method` in section [Authentication](#authentication).
+
+The option `auth_password_format` is supported,
+for details see section [Internal](#internal).
+
 #### Storage
 
 An ODBC compatible database also can be used to store information into
