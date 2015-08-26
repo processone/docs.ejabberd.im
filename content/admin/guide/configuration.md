@@ -82,15 +82,17 @@ sensitive to this) or you will get pretty cryptic errors.
 In previous `ejabberd` version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format using
-`convert_to_yaml` command from `ejabberdctl` (see [ejabberdctl][110]
-and [List of ejabberd Commands][111] for details).
+`convert_to_yaml` command from `ejabberdctl` (see
+[ejabberdctl](../managing/#ejabberdctl)
+and [List of ejabberd Commands](../managing/#list-of-ejabberd-commands)
+for details).
 
 If you want to specify some options using the old Erlang format, you
 can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
-[Include Additional Configuration Files ][112] for the option
-description and a related example in
-[Restrict Execution with AccessCommands][113].
+[Include Additional Configuration Files](#include-additional-configuration-files)
+for the option description and a related example in
+[Restrict Execution with AccessCommands](../managing/#restrict-execution-with-accesscommands).
 
 If you just want to provide an erlang term inside an option, you can
 use the `> erlangterm.` syntax for embedding erlang terms in a YAML
@@ -338,7 +340,8 @@ Example:
 #### Port Number, IP Address and Transport Protocol
 
 The port number defines which port to listen for incoming connections.
-It can be a Jabber/XMPP standard port (see section [firewall]) or any
+It can be a Jabber/XMPP standard port (see section
+[Firewall Settings](../security/#firewall-settings)) or any
 other valid port number.
 
 The IP address can be represented as a string. The socket will listen
@@ -443,7 +446,7 @@ modules:
 `captcha: true|false`
 
 :   Simple web page that allows a user to fill a CAPTCHA challenge (see
-	section [captcha]).
+	section [CAPTCHA](#captcha)).
 
 `certfile: Path`
 
@@ -468,7 +471,7 @@ modules:
 
 :   If the HTTP request received by ejabberd contains the HTTP header
 	`Host` with an ambiguous virtual host that doesn’t match any one
-	defined in ejabberd (see [hostnames]), then this configured HostName
+	defined in ejabberd (see [Host Names](#host-names)), then this configured HostName
 	is set as the request Host. The default value of this option is:
 	`undefined`.
 
@@ -615,13 +618,13 @@ modules:
 
 `shaper: none|ShaperName`
 
-:   This option defines a shaper for the port (see section [shapers]).
+:   This option defines a shaper for the port (see section [Shapers](#shapers)).
 	The default value is `none`.
 
 `shaper_rule: none|ShaperRule`
 
 :   This option defines a shaper rule for the `ejabberd_service` (see
-	section [shapers]). The recommended value is `fast`.
+	section [Shapers](#shapers)). The recommended value is `fast`.
 
 `starttls: true|false`
 
@@ -881,7 +884,7 @@ In this example, the following configuration defines that:
 
 -   Port 5280 is serving the Web Admin and the HTTP Polling service in
 	all the IPv4 addresses. Note that it is also possible to serve them
-	on different ports. The second example in section [webadmin] shows
+	on different ports. The second example in section [Managing: Web Admin](../managing/#web-admin) shows
 	how exactly this can be done.
 
 -   All users except for the administrators have a traffic of limit
@@ -1249,7 +1252,7 @@ authentication:
 
 The anonymous authentication method can be configured with the following
 options. Remember that you can use the `host_config` option to set
-virtual host specific options (see section [virtualhost]).
+virtual host specific options (see section [Virtual Hosting](#virtual-hosting)).
 
 `allow_multiple_connections: false|true`
 
@@ -1267,7 +1270,7 @@ virtual host specific options (see section [virtualhost]).
 	enabled.
 
 Those options are defined for each virtual host with the `host_config`
-parameter (see section [virtualhost]).
+parameter (see section  [Virtual Hosting](#virtual-hosting)).
 
 Examples:
 
@@ -1727,8 +1730,8 @@ For example, to set Russian as default language:
 	#!yaml
 	language: "ru"
 
-Appendix [i18ni10n] provides more details about internationalization and
-localization.
+The page [Internationalization and Localization](../../../developer/localization/)
+provides more details.
 
 ### CAPTCHA
 
@@ -1806,7 +1809,7 @@ discover their external addresses and ports and to relay media traffic
 when it is impossible to establish direct peer-to-peer connection.
 
 You should configure `ejabberd_stun` listening module as described in
-[listened] section. The specific configurable options are:
+[Listening Module](#listening-module) section. The specific configurable options are:
 
 `tls: true|false`
 
@@ -1926,14 +1929,14 @@ And you should also add these in the case if TURN is enabled:
 
 ### SIP
 
-#### Configuration
+#### SIP Configuration
 
 `ejabberd` has built-in SIP support. In order to activate it you need to
 add listeners for it, configure DNS properly and enable `mod_sip` for
 the desired virtual host.
 
 To add a listener you should configure `ejabberd_sip` listening module
-as described in [listened] section. If option `tls` is specified, option
+as described in [Listening Module](#listening-module) section. If option `tls` is specified, option
 `certfile` must be specified as well, otherwise incoming TLS connections
 would fail.
 
@@ -2165,7 +2168,7 @@ The following databases are supported by `ejabberd`:
 The following LDAP servers are tested with `ejabberd`:
 
 -   [`Active Directory`][30] (see
-	section [ad])
+	section [Active Directory](#active-directory))
 
 -   [`OpenLDAP`][31]
 
@@ -2175,12 +2178,12 @@ The following LDAP servers are tested with `ejabberd`:
 	your success with a not-listed server so that we can list it here.
 
 Important note about virtual hosting: if you define several domains in
-ejabberd.yml (see section [hostnames]), you probably want that each
+ejabberd.yml (see section [Host Names](#host-names)), you probably want that each
 virtual host uses a different configuration of database, authentication
 and storage, so that usernames do not conflict and mix between different
 virtual hosts. For that purpose, the options described in the next
 sections must be set inside a `host_config` for each vhost (see section
-[virtualhost]). For example:
+[Virtual Hosting](#virtual-hosting)). For example:
 
 	#!yaml
 	host_config:
@@ -2262,7 +2265,7 @@ Example of MySQL connection:
 	odbc_password: "**********"
 	odbc_pool_size: 5
 
-#### Authentication
+#### ODBC Authentication
 
 You can authenticate users against an ODBC database, see the option
 `auth_method` in section [Authentication](#authentication).
@@ -2270,10 +2273,10 @@ You can authenticate users against an ODBC database, see the option
 The option `auth_password_format` is supported,
 for details see section [Internal](#internal).
 
-#### Storage
+#### ODBC Storage
 
 An ODBC compatible database also can be used to store information into
-from several `ejabberd` modules. See section [modoverview] to see which
+from several `ejabberd` modules. See section [Modules Overview](#modules-overview) to see which
 modules can be used with relational databases like MySQL. To enable
 storage to your database, just make sure that your database is running
 well (see previous sections), and add the module option `db_type: odbc`
@@ -2291,7 +2294,7 @@ stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
 [`RFC 3062`][33].
 
-#### Connection
+#### LDAP Connection
 
 Two connections are established to the LDAP server per vhost, one for
 authentication and other for regular calls.
@@ -2364,7 +2367,7 @@ Example:
 	ldap_rootdn: "cn=Manager,dc=domain,dc=org"
 	ldap_password: "**********"
 
-#### Authentication
+#### LDAP Authentication
 
 You can authenticate users against an LDAP directory. Note that current
 LDAP implementation does not support SASL authentication.
@@ -2438,7 +2441,7 @@ Available options are:
 	    {ldap_local_filter, {equal, {"accountStatus",["enabled"]}}}.
 	    {ldap_local_filter, undefined}.
 
-#### Examples
+#### LDAP Examples
 
 ##### Common example
 
@@ -2571,7 +2574,7 @@ sample configuration is shown below:
 store. The actual database access is defined in the options with `riak_`
 prefix.
 
-#### Connection
+#### Riak Connection
 
 The following paramaters are available:
 
@@ -2601,7 +2604,7 @@ Example configuration:
 	riak_server: "riak.server.com"
 	riak_port: 9097
 
-#### Storage
+#### Riak Storage
 
 Several `ejabberd` modules can be used to store information in Riak
 database. Refer to the corresponding module documentation to see if it
@@ -2634,7 +2637,8 @@ option of `/etc/riak/app.config` in the section `riak_kv` as follows:
 	...
 
 Second, Riak should be pointed to `ejabberd` Erlang binary files
-(\*.beam). As described in [install], by default those are located in
+(\*.beam). As described in
+[Install](../installation/#install), by default those are located in
 `/lib/ejabberd/ebin` directory. So you should add the following to
 `/etc/riak/vm.args`:
 
@@ -2986,7 +2990,7 @@ hosts in ejabberd.
 	and connected to several resources, only the resource with the
 	highest priority will receive the message. If the registered user is
 	not connected, the message will be stored offline in assumption that
-	offline storage (see section [modoffline]) is enabled.
+	offline storage (see section  [mod_offline](#modoffline)) is enabled.
 
 `example.org/announce/online (example.org/announce/all-hosts/online)`
 
@@ -3781,7 +3785,7 @@ Module options:
 	
 	:   When a user tries to join a room where he has no affiliation
 	    (not owner, admin or member), the room requires him to fill a
-	    CAPTCHA challenge (see section [captcha]) in order to accept her
+	    CAPTCHA challenge (see section [CAPTCHA](#captcha)) in order to accept her
 	    join in the room.
 	
 	`logging: false|true`
@@ -4173,7 +4177,7 @@ This module implements offline message storage
 that all messages sent to an offline user will be stored on the server
 until that user comes online again. Thus it is very similar to how email
 works. Note that `ejabberdctl` has a command to delete expired messages
-(see section [ejabberdctl]).
+(see section [Managing: ejabberdctl](../managing/#ejabberdctl)).
 
 `db_type: mnesia|odbc|riak`
 
@@ -4187,7 +4191,7 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 	receive are discarded, and a resource-constraint error is returned
 	to the sender. The default value is `max_user_offline_messages`.
 	Then you can define an access rule with a syntax similar to
-	`max_user_sessions` (see [configmaxsessions]).
+	`max_user_sessions` (see [Limiting Opened Sessions with ACL](#limiting-opened-sessions-with-acl)).
 
 `store_empty_body: true|false`
 
@@ -4616,7 +4620,7 @@ Options:
 
 `captcha_protected: false|true`
 
-:   Protect registrations with CAPTCHA (see section [captcha]). The
+:   Protect registrations with CAPTCHA (see section [CAPTCHA](#captcha)). The
 	default is `false`.
 
 `ip_access: AccessName`
@@ -5208,7 +5212,7 @@ These paramters control the behaviour of the module.
 
 :   Whether the module should check (via the ejabberd authentication
 	subsystem) for existence of each user in the shared LDAP roster. See
-	section [msrlconfigroster] form more information. Set to
+	section [mod_shared_roster_ldap](#modsharedrosterldap) form more information. Set to
 	<span>off</span> if you want to disable the check. Defaults to
 	<span>on</span>.
 
@@ -5216,21 +5220,21 @@ These paramters control the behaviour of the module.
 
 :   Number of seconds for which the cache for roster item full names is
 	considered fresh after retrieval. 300 by default. See
-	section [msrlconfigroster] on how it is used during roster
+	section [mod_shared_roster_ldap](#modsharedrosterldap) on how it is used during roster
 	retrieval.
 
 `ldap_group_cache_validity`
 
 :   Number of seconds for which the cache for group membership is
 	considered fresh after retrieval. 300 by default. See
-	section [msrlconfigroster] on how it is used during roster
+	section [mod_shared_roster_ldap](#modsharedrosterldap) on how it is used during roster
 	retrieval.
 
 #### Connection parameters
 
 The module also accepts the connection parameters, all of which default
 to the top-level parameter of the same name, if unspecified.
-See [ldapconnection] for more information about them.
+See [LDAP Connection](#ldapconnection)] for more information about them.
 
 #### Retrieving the roster
 
@@ -5389,7 +5393,7 @@ Options:
 This module adds SIP proxy/registrar support for the corresponding
 virtual host. Note that it is not enough to just load this module only.
 You should also configure listeners and DNS records properly. See
-section [sip] for the full explanation.
+section [SIP](#sip) for the full explanation.
 
 Example configuration:
 
@@ -5618,7 +5622,7 @@ Examples:
 
 `ejabberd` can map LDAP attributes to vCard fields. This behaviour is
 implemented in the `mod_vcard_ldap` module. This module does not depend
-on the authentication method (see [ldapauth]).
+on the authentication method (see [LDAP Authentication](#ldap-authentication)).
 
 Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
@@ -5630,7 +5634,8 @@ The `mod_vcard_ldap` module has its own optional parameters. The first
 group of parameters has the same meaning as the top-level LDAP
 parameters to set the authentication method: `ldap_servers`,
 `ldap_port`, `ldap_rootdn`, `ldap_password`, `ldap_base`, `ldap_uids`,
-`ldap_deref_aliases` and `ldap_filter`. See section [ldapauth] for
+`ldap_deref_aliases` and `ldap_filter`. See section
+[LDAP Authentication](#ldap-authentication) for
 detailed information about these options. If one of these options is not
 set, `ejabberd` will look for the top-level option with the same name.
 
