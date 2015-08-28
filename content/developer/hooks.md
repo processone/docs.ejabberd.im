@@ -229,8 +229,8 @@ corresponding hooks parameters is described below.
 * unset_presence_hook(User, Server, Resource, Status) -> ok
 * user_available_hook(JID) -> ok
 * user_ping_timeout(JID) -> ok
-* user_receive_packet(JID, From, To, Packet) -> ok
-* user_send_packet(C2SState, JID, JID, Packet) -> Packet
+* user_receive_packet(Packet, C2SState, JID, From, To) -> Packet
+* user_send_packet(Packet, C2SState, From, To) -> Packet
 * vcard_set(User, Server, VCARD) -> ok
 * webadmin_menu_host(Acc, Host, Lang) -> []
 * webadmin_menu_hostnode(Acc, Host, Node, Lang) -> []
