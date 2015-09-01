@@ -432,7 +432,9 @@ This option allows quite complex settings, so it does not use the YAML
 format, instead it uses the Erlang format. If you want to set that
 option, then you must move the frontend definition to another config
 file and include it using the `include_config_file` option (see
-section [includeconfigfile] and the example below).
+section 
+[Include Additional Configuration Files](../configuration/#include-additional-configuration-files)
+and the example below).
 
 In each frontend the `AccessCommands` option is defined in a different
 place. But in all cases the option syntax is the same:
