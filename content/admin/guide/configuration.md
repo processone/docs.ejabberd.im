@@ -2758,7 +2758,6 @@ The following table lists all modules included in `ejabberd`.
 | [mod_private](#modprivate)                     | Private XML Storage ([`XEP-0049`][48])               |                                  |
 | [mod_proxy65](#modproxy65)                     | SOCKS5 Bytestreams ([`XEP-0065`][49])                |                                  |
 | [mod_pubsub](#modpubsub)                       | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51])   | `mod_caps`                       |
-| [mod_pubsub_odbc](#modpubsubodbc)              | Pub-Sub ([`XEP-0060`][52]), PEP ([`XEP-0163`][53])   | supported DB (\*) and `mod_caps` |
 | [mod_register](#modregister)                   | In-Band Registration ([`XEP-0077`][54])              |                                  |
 | [mod_register_web](#modregisterweb)            | Web for Account Registrations                        |                                  |
 | [mod_roster](#modroster)                       | Roster management (XMPP IM)                          |                                  |
@@ -4477,8 +4476,9 @@ Options:
 	virtual host with the prefix ‘`pubsub.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
 	
-	If you use `mod_pubsub_odbc`, please ensure the prefix contains only
-	one dot, for example ‘`pubsub.`’, or ‘`publish.`’,.
+	If you use `mod_pubsub` with `odbc` `db_type`, please ensure the
+	prefix contains only one dot, for example ‘`pubsub.`’, or
+	‘`publish.`’,.
 
 `access_createnode: AccessName`
 
@@ -4563,19 +4563,22 @@ of flat, nodetree and pep nodes:
 	      - "pep"
 	  ...
 
-Using ODBC database requires using mod\_pubsub\_odbc without option
-changes. Only flat, hometree and pep plugins supports ODBC. The
+Using relational database requires using mod\_pubsub with db_type
+`odbc`. Only flat, hometree and pep plugins supports ODBC. The
 following example shows previous configuration with ODBC usage:
 
 	#!yaml
 	modules:
 	  ...
-	  mod_pubsub_odbc:
-	    access_createnode: pubsub_createnode
-	    plugins:
-	      - "flat"
-	      - "hometree"
-	      - "pep"
+      mod_pubsub: 
+        db_type: odbc
+        access_createnode: pubsub_createnode
+        ignore_pep_from_offline: true
+        last_item_cache: false
+        plugins: 
+          - "flat"
+          - "hometree"
+          - "pep"
 	  ...
 
 ### mod_register
@@ -5915,8 +5918,6 @@ Options:
 [49]:	http://xmpp.org/extensions/xep-0065.html
 [50]:	http://xmpp.org/extensions/xep-0060.html
 [51]:	http://xmpp.org/extensions/xep-0163.html
-[52]:	http://xmpp.org/extensions/xep-0060.html
-[53]:	http://xmpp.org/extensions/xep-0163.html
 [54]:	http://xmpp.org/extensions/xep-0077.html
 [55]:	http://xmpp.org/extensions/xep-0279.html
 [56]:	http://tools.ietf.org/html/rfc3261
