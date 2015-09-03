@@ -376,9 +376,9 @@ are:
 
 :   Handles c2s connections.  
     Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`
-	`max_ack_queue`, `max_fsm_queue`, `max_stanza_size`,
-	`resend_on_timeout`, `resume_timeout`, `shaper`, `starttls`,
-	`starttls_required`, `stream_management`, `tls`, `zlib`,
+	`max_ack_queue`, `max_fsm_queue`, `max_resume_timeout`,
+	`max_stanza_size`, `resend_on_timeout`, `resume_timeout`, `shaper`,
+	`starttls`, `starttls_required`, `stream_management`, `tls`, `zlib`,
 	`tls_compression`
 
 `ejabberd_s2s_in`
@@ -559,6 +559,17 @@ modules:
 	configured value is used. The allowed values are integers and
 	’undefined’. Default value: ’undefined’.
 
+`max_resume_timeout: Seconds`
+
+:   If `stream_management` is enabled, a client may specify the number of
+	seconds until a session times out if the connection is lost. During
+	this period of time, the client may resume the session. This option
+	limits the number of seconds a client is permitted to request. It
+	can be specified for `ejabberd_c2s` listeners, and it must be set to
+	a number equal to or larger than the default `resume_timeout` (see
+	below). By default, it is set to the same value as the
+	`resume_timeout` option.
+
 `max_stanza_size: Size`
 
 :   This option specifies an approximate maximum size in bytes of XML
@@ -598,12 +609,13 @@ modules:
 
 `resume_timeout: Seconds`
 
-:   This option configures the number of seconds until a session times
-	out if the connection is lost. During this period of time, a client
-	may resume the session if `stream_management` is enabled. This
-	option can be specified for `ejabberd_c2s` listeners. Setting it to
-	`0` effectively disables session resumption. The default value is
-	`300`.
+:   This option configures the (default) number of seconds until a session
+	times out if the connection is lost. During this period of time, a
+	client may resume the session if `stream_management` is enabled.
+	(Note that the client may request a different timeout value, see the
+	`max_resume_timeout` option above.) This option can be specified for
+	`ejabberd_c2s` listeners. Setting it to `0` effectively disables
+	session resumption. The default value is `300`.
 
 `service_check_from: true|false`
 
