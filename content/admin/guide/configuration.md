@@ -3802,6 +3802,10 @@ Module options:
 	`logging: false|true`
 	
 	:   The public messages are logged using `mod_muc_log`.
+
+	`mam: false|true`
+
+	:   Enable message archiving. Implies `mod_mam` is enabled.
 	
 	`max_users: 200`
 	
