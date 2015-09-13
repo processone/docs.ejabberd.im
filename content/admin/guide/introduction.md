@@ -66,6 +66,7 @@ Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 	-   Native PostgreSQL support.
 	-   ODBC data storage support.
 	-   Microsoft SQL Server support.
+	-   SQLite support.
 	-   Riak NoSQL database support.
 
 -   Authentication

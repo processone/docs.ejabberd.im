@@ -102,6 +102,8 @@ features:
 
     - Microsoft SQL Server support.
 
+    - SQLite support.
+
     - Riak NoSQL database support.
 
 - Authentication

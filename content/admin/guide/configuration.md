@@ -2173,6 +2173,10 @@ The following databases are supported by `ejabberd`:
 
 -   [`PostgreSQL`][27]
 
+-   [`MS SQL Server/SQL Azure`][115]
+
+-   [`SQLite`][119]
+
 -   [`Riak`][28]
 
 -   [`Redis`][29] (only for transient data)
@@ -2209,13 +2213,15 @@ sections must be set inside a `host_config` for each vhost (see section
 
 ### Relational Databases
 
+You need to upload SQL schema to your SQL server. Choose the one from [`this`][118] list.
+
 The actual database access is defined in the options with `odbc_`
 prefix. The values are used to define if we want to use ODBC, or one of
 the two native interface available, PostgreSQL or MySQL.
 
 The following paramaters are available:
 
-`odbc_type: mysql | pgsql | odbc`
+`odbc_type: mysql | pgsql | odbc | mssql | sqlite`
 
 :   The type of an ODBC connection. The default is `odbc`.
 
@@ -2276,6 +2282,19 @@ Example of MySQL connection:
 	odbc_username: "user1"
 	odbc_password: "**********"
 	odbc_pool_size: 5
+
+### Microsoft SQL Notes
+
+For now, MS SQL is only supported in Unix-like OS'es. You need to have
+[`FreeTDS`][116] and [`unixODBC`][117] installed on your machine.
+Also, in some cases you need to add machine name to `odbc_username`, especially
+when you have `odbc_server` defined as an IP address, e.g.:
+
+	#!yaml
+	odbc_type: mssql
+	odbc_server: "1.2.3.4"
+	...
+	odbc_username: "user1@host"
 
 #### ODBC Authentication
 
@@ -5997,3 +6016,8 @@ Options:
 [112]:  /admin/guide/configuration/#include-additional-configuration-files
 [113]:  /admin/guide/managing/#restrict-execution-with-accesscommands
 [114]:  http://xmpp.org/extensions/xep-0313.html
+[115]:  https://en.wikipedia.org/wiki/Microsoft_SQL_Server
+[116]:  http://www.freetds.org
+[117]:  http://www.unixodbc.org
+[118]:  https://github.com/processone/ejabberd/tree/master/sql
+[119]:  https://www.sqlite.org
