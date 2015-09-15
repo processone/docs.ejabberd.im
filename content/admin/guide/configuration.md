@@ -595,15 +595,15 @@ modules:
 `resend_on_timeout: true|false|if_offline`
 
 :   If `stream_management` is enabled and this option is set to `true`,
-	any stanzas that weren’t acknowledged by the client will be resent
-	on session timeout. This behavior might often be desired, but could
-	have unexpected results under certain circumstances. For example, a
-	message that was sent to two resources might get resent to one of
-	them if the other one timed out. Therefore, the default value for
-	this option is `false`, which tells ejabberd to generate an error
-	message instead. As an alternative, the option may be set to
-	`if_offline`. In this case, unacknowledged stanzas are resent only
-	if no other resource is online when the session times out.
+	any message stanzas that weren’t acknowledged by the client will
+	be resent on session timeout. This behavior might often be desired,
+	but could have unexpected results under certain circumstances. For
+	example, a message that was sent to two resources might get resent
+	to one of them if the other one timed out. Therefore, the default
+	value for this option is `false`, which tells ejabberd to generate
+	an error message instead. As an alternative, the option may be set
+	to `if_offline`. In this case, unacknowledged messages are resent
+	only if no other resource is online when the session times out.
 	Otherwise, error messages are generated. The option can be specified
 	for `ejabberd_c2s` listeners.
 
