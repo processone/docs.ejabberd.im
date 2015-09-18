@@ -3474,8 +3474,8 @@ is set to 60.
 `websocket_timeout: Seconds`
 
 : Amount of time without any communication after which connection
-would be closed, setting this option 0 will disable this feature. This
-option is set to 300.
+would be closed. The specified number of seconds must be larger than 0.
+This option is set to 300 by default.
 
 ### mod_irc
 
