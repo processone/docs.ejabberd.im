@@ -41,17 +41,6 @@ OAuth support is available in ejabberd 15.09 and newest release.
 An X-OAUTH2 SASL mechanism is available as default for authentication
 in ejabberd.
 
-You can check availability in the SASL mechanisms advertised by
-ejabberd:
-
-```
-  <mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
-    <mechanism>PLAIN</mechanism>
-    <mechanism>X-OAUTH2</mechanism>
-    <mechanism>SCRAM-SHA-1</mechanism>
-  </mechanisms>
-```
-
 If `ejabberd_oauth` HTTP request handlers is not enabled, there is no
 way to generate token from outside ejabberd. However, you can still
 explicitely disabled X-OAUTH2 with the `disable_sasl_mechanisms`
@@ -171,7 +160,7 @@ To generate a token you can have the user open the `/oauth/authorization_token` 
 
 For example, URL can be:
 
-    http://example.net:5280/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=user_get_roster
+    http://example.net:5280/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=user_get_roster+sasl_auth
 
 Parameters are described in OAuth 2.0 specification:
 
@@ -201,7 +190,7 @@ accepts granting delegating rights and confirms the token generation.
 If the provided credentials are valid, the browser or webview will
 redirect the user to the redirect_uri, to actually let ejabberd pass
 the token to the app that requested it. It can be either a Web app or
-a mobile / desktop application.
+`a mobile / desktop application.
 
 ### redirect_uri: Receiving OAuth token
 
@@ -211,7 +200,7 @@ with added parameters.
 
 For example, redirect URI called by ejabberd can be:
 
-    http://client.uri/?access_token=RHIT8DoudzOctdzBhYL9bYvXz28xQ4Oj&token_type=bearer&expires_in=3600&scope=user_get_roster&state=
+    http://client.uri/?access_token=RHIT8DoudzOctdzBhYL9bYvXz28xQ4Oj&token_type=bearer&expires_in=3600&scope=user_get_roster+sasl_auth&state=
 
 Parameters are described in OAuth specification:
 
@@ -223,7 +212,8 @@ Parameters are described in OAuth specification:
   to be generated an approved by the user.
   <!--- TODO: Does oauth2 allow token refresh ? Is it implemented or could
   it be implemented in ejabberd ? -->
-- **scope**: Confirms the granted scope to the requesting application.
+- **scope**: Confirms the granted scope to the requesting
+  application. Several scopes can be passed, separated by '+'.
 - **state**: If a state parameter was passed by requesting application
   in authorization_token URL, it will be passed back to the
   application as a parameter of the `redirect_uri` to help with the
@@ -231,21 +221,46 @@ Parameters are described in OAuth specification:
 
 <!--- TODO: Add Android and iOS examples on how to get the token.  -->
 
+### Available default scopes
+
+- **sasl_auth**: This scope is use to generate a token that can login
+  over XMPP using SASL X-OAUTH2 mechanism.
+- **user_get_roster** (*mod_oauth_test*): This scope is used to allow
+  retrieving user roster.
+
+<!--- TODO: As scope are generally provided by commands, which are
+provided by enabled modules, we need to command to list enabled
+scopes.  We should also probably support scopes that are categories of
+commands (like user for example). Finally, we should probably allow
+getting scope as a command tag, to grant access to all MUC commands
+for example. The authorize_token form should list the commands that
+will be enabled by the scope at token generation time. -->
+
+
 ### Implementing X-OAuth2 authentication in XMPP client
 
-You can connect to ejabberd using and X-OAUTH2 token. You can use an
-OAuth token as generated in the previous steps instead of a password
-when connecting to ejabberd servers support OAuth authentication
-methods (See `auth_method` configuration).
+You can connect to ejabberd using an X-OAUTH2 token that is valid in
+the scope `sasl_auth`. You can use an OAuth token as generated in the
+previous steps instead of a password when connecting to ejabberd
+servers support OAuth SASL mechanism.
 
-When enabled, X-OAUTH2 authentication method is advertised as follow:
+When enabled, X-OAUTH2 SASL mechanism is advertised as follow:
 
+```
+  <mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
+    <mechanism>PLAIN</mechanism>
+    <mechanism>X-OAUTH2</mechanism>
+    <mechanism>SCRAM-SHA-1</mechanism>
+  </mechanisms>
+```
 
 This is done by modifying the SASL auth element as follows:
 
 
 
 
+
+## ejabberd development
 
 ### Writing ejabberd commands supporting OAuth
 
