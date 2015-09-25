@@ -38,25 +38,27 @@ OAuth support is available in ejabberd 15.09 and newest release.
 
 ### Authentication method
 
-An X-OAUTH2 SASL mechanism is available as default for
-authentication in ejabberd.
+An X-OAUTH2 SASL mechanism is available as default for authentication
+in ejabberd.
 
 You can check availability in the SASL mechanisms advertised by
 ejabberd:
 
+```
   <mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
     <mechanism>PLAIN</mechanism>
     <mechanism>X-OAUTH2</mechanism>
     <mechanism>SCRAM-SHA-1</mechanism>
   </mechanisms>
+```
 
 If `ejabberd_oauth` HTTP request handlers is not enabled, there is no
 way to generate token from outside ejabberd. However, you can still
-explicitely disabled X-OAUTH2 with the following option in
-`ejabberd.yml` file, either at global or at virtual host level:
+explicitely disabled X-OAUTH2 with the `disable_sasl_mechanisms`
+option in `ejabberd.yml` file, either at global or at virtual host
+level:
 
-
-
+    disable_sasl_mechanisms: ["X-OAUTH2"]
 
 ### ejabberd listeners
 
