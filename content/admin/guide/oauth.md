@@ -236,7 +236,6 @@ getting scope as a command tag, to grant access to all MUC commands
 for example. The authorize_token form should list the commands that
 will be enabled by the scope at token generation time. -->
 
-
 ### Implementing X-OAuth2 authentication in XMPP client
 
 You can connect to ejabberd using an X-OAUTH2 token that is valid in
@@ -244,21 +243,37 @@ the scope `sasl_auth`. You can use an OAuth token as generated in the
 previous steps instead of a password when connecting to ejabberd
 servers support OAuth SASL mechanism.
 
-When enabled, X-OAUTH2 SASL mechanism is advertised as follow:
+When enabled, X-OAUTH2 SASL mechanism is advertised in server stream
+features:
 
 ```
-  <mechanisms xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
+<stream:features>
+  <c xmlns="http://jabber.org/protocol/caps" node="http://www.process-one.net/en/ejabberd/" ver="nM19M+JK0ZBMXK7iJAvKnmDuQus=" hash="sha-1"/> 
+  <register xmlns="http://jabber.org/features/iq-register"/>
+  <mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl">
     <mechanism>PLAIN</mechanism>
+    <mechanism>DIGEST-MD5</mechanism>
     <mechanism>X-OAUTH2</mechanism>
     <mechanism>SCRAM-SHA-1</mechanism>
-  </mechanisms>
+  </mechanisms> 
+</stream:features>
 ```
 
-This is done by modifying the SASL auth element as follows:
+Authentication with X-OAUTH2 is done by modifying the SASL auth
+element as follow:
 
+```
+<auth mechanism='X-OAUTH2'
+	  xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>AHRlc3RAbG9jYWxob3N0AEltSG0yMVprWHdoNEFkMXIyejhQN0Q1YWRQd1prUTlv</auth>
+```
 
+The response is standard for SASL XMPP authentication. For example, on success, server will reply with:
 
+    <success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
 
+### Using commands with ReST / XML-RPC API
+
+<!-- TODO -->
 
 ## ejabberd development
 
@@ -266,4 +281,5 @@ This is done by modifying the SASL auth element as follows:
 
 If you have existing command that we want to make OAuth compliant, you
 need to change it as follow:
+
 <!-- TODO -->
