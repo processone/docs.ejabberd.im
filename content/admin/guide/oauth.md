@@ -102,7 +102,7 @@ listen:
     http_bind: true
     captcha: true
     
-_... other listeners_
+... other listeners
 ```
 
 ### Module configuration
