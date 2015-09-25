@@ -7,32 +7,33 @@ stack.
 
 This OAuth integration makes ejabberd:
 
-- an ideal project to develop XMPP application with web in mind, as it
-  exposes ejabberd features as ReST or XML-RPC HTTP based API
-  endpoints.
+- an ideal project to develop XMPP applications with Web in mind, as
+  it exposes ejabberd features as ReST or XML-RPC HTTP based API
+  endpoints. **OAuth makes ejabberd the ideal XMPP server to integrate in a
+  larger Web / HTTP ecosystem**.
 
-- a more secure tool that can leverage the use of oAuth token to
-  authenticate, hiding your real password from the client itself. As
+- a more **secure tool that can leverage the use of oAuth token to
+  authenticate, hiding your real password from the client itself**. As
   your password is never shared with client directly with our X-OAUTH2
   authentication mechanism, user have less risks of having their
   primary password leaked.
 
 - a tool that can be used at the core of larger platforms as oauth
-  token can be used by users and admins to delegate rights to
-  subcomponents / subservices.
+  token can be used by users and admins to **delegate rights to
+  subcomponents / subservices**.
 
 - a tool that is friendly to other online services as users can
-  delegate rights to others SaaS platoform they are using. This will
+  delegate rights to others SaaS platform they are using. This will
   be possible to let services access your message archive, show your
   offline message count or with future commands send message to users
   and chatrooms on your behalf. This is done in a granular way, with a
   scope limited to a specific function. And the delegation rights for
-  a specific app / third partye can always be revoked at any time as
+  a specific app / third party can always be revoked at any time as
   this is usually the case with OAuth services.
 
 You can read more on OAuth from [OAuth website](http://oauth.net).
 
-OAuth support is available in ejabberd 15.09 and newest release.
+OAuth support is available in ejabberd 15.09 and newest releases.
 
 ## Configuration
 
