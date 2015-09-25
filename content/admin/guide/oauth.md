@@ -277,11 +277,51 @@ byte and the string representation of the user’s OAuth token. This is
 similar to how to authenticate with a password using the PLAIN
 mechanism, except the token is added instead of the user’s password.
 
-The response is standard for SASL XMPP authentication. For example, on success, server will reply with:
+The response is standard for SASL XMPP authentication. For example, on
+success, server will reply with:
 
     <success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
 
 ### Using commands with ReST / XML-RPC API
+
+#### Passing credentials
+
+To pass your bearer token using ReST API, you need to pass your token
+as Bearer token in Authorization HTTP header:
+
+    Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
+
+For XML-RPC, credentials must be passed as XML-RPC parameters.
+
+#### Acting as an admin
+
+With both HTTP remote call mechanism, you can either act as a user or
+act as an admin (See previous reference about access rules).
+
+To act as an admin from a ReST API call, the HTTP request must contain
+the following header:
+
+    X-Admin: true
+
+To act as an admin from an XML-RPC query, the XML-RPC query must contain:
+
+    {admin,true}
+
+#### XML-RPC example
+
+With a command like `user_get_roster`, you can get your own roster, or
+act as an admin to get any user roster.
+
+Here is an (Erlang) XML-RPC example on how to get your own roster:
+
+```
+xmlrpc:call({127, 0, 0, 1}, 4560, "/", {call, user_get_roster, [{struct, [{user, "mremond"}, {server, "localhost"}, {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}]}]}, false, 60000, "Host: localhost\r\n", []).
+```
+
+<!-- TODO: Add XML-RPC payload rendering -->
+
+
+
 
 <!-- TODO -->
 
