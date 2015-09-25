@@ -119,7 +119,7 @@ For now the only module supporting OAuth is `mod_oauth_test`.
 Here are the following available parameters to tweak the behaviour of
 OAuth and the available commands:
 
-- ** commands_admin_access**: This option will reference an ejabberd
+- **commands_admin_access**: This option will reference an ejabberd
   access rule that will define the user that will be able to use
   commands that are defined as admin only.
 - **commands**: This option is used to define the list of commands we
