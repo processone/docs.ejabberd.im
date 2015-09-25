@@ -211,7 +211,8 @@ Parameters are described in OAuth specification:
 - **expires_in**: This is the validity duration of the token, in
   seconds. When the token expires, a new authorization token will need
   to be generated an approved by the user.
-  <!--- TODO: Does oauth2 allow token refresh ? Is it implemented or could
+
+<!--- TODO: Does oauth2 allow token refresh ? Is it implemented or could
   it be implemented in ejabberd ? -->
 - **scope**: Confirms the granted scope to the requesting
   application. Several scopes can be passed, separated by '+'.
