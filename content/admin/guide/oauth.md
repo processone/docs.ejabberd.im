@@ -266,8 +266,16 @@ element as follow:
 
 ```
 <auth mechanism='X-OAUTH2'
-	  xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>AHRlc3RAbG9jYWxob3N0AEltSG0yMVprWHdoNEFkMXIyejhQN0Q1YWRQd1prUTlv</auth>
+      xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
+  base64("\0" + user_name + "\0" + oauth_token)
+</auth>
 ```
+
+The content in the auth element should be the base64 encoding of a
+string containing a null byte, followed by the user name, another null
+byte and the string representation of the user’s OAuth token. This is
+similar to how to authenticate with a password using the PLAIN
+mechanism, except the token is added instead of the user’s password.
 
 The response is standard for SASL XMPP authentication. For example, on success, server will reply with:
 
