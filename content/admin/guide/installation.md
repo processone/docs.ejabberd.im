@@ -209,16 +209,8 @@ Some options that you may be interested in modifying:
 
 Here are other available options, that are experimental and not recommended:
 
-- **`–-enable-json`**: Enable JSON support for mod_bosh. This allow to
-  use JSON instead of XML packet format from the browser.
-
 - **`–-disable-transient-supervisors`**: Disable the use of Erlang/OTP
   supervision for transient processes.
-
-- **`–-enable-full-xml`**: Enable the use of XML based
-  optimisations. It will for example use CDATA to escape characters in
-  the XMPP stream. Use this option only if you are sure your XMPP
-  clients include a fully compliant XML parser.
 
 - **`–-enable-hipe`**: Compile natively with HiPE, not recommended.
 
