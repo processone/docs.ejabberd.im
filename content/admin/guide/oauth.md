@@ -75,10 +75,10 @@ file, focusing on HTTP handlers:
 ```
 listen:
   ## To handle ejabberd commands using XML-RPC
-  - 
+  -
     port: 4560
     module: ejabberd_xmlrpc
-  - 
+  -
     port: 5280
     module: ejabberd_http
     request_handlers:
@@ -91,7 +91,7 @@ listen:
     web_admin: true
     http_bind: true
     captcha: true
-    
+
 ... other listeners
 ```
 
@@ -120,7 +120,7 @@ OAuth and the available commands:
   order and you can have several of them to control the precise list
   of commands you want to expose through OAuth.
   Possible categories of commands are:
-  
+
   - *open*: no auth required for that command. Typically, for generic
     service information related commands.
   - *admin*: Only an admin user can use the method.
@@ -141,7 +141,7 @@ OAuth and the available commands:
 Here is an example, for OAuth specific parameters configuration:
 
 ```
-commands_admin_access: configure 
+commands_admin_access: configure
 commands:
   - add_commands: user
 oauth_expire: 3600
@@ -253,14 +253,14 @@ features:
 
 ```
 <stream:features>
-  <c xmlns="http://jabber.org/protocol/caps" node="http://www.process-one.net/en/ejabberd/" ver="nM19M+JK0ZBMXK7iJAvKnmDuQus=" hash="sha-1"/> 
+  <c xmlns="http://jabber.org/protocol/caps" node="http://www.process-one.net/en/ejabberd/" ver="nM19M+JK0ZBMXK7iJAvKnmDuQus=" hash="sha-1"/>
   <register xmlns="http://jabber.org/features/iq-register"/>
   <mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl">
     <mechanism>PLAIN</mechanism>
     <mechanism>DIGEST-MD5</mechanism>
     <mechanism>X-OAUTH2</mechanism>
     <mechanism>SCRAM-SHA-1</mechanism>
-  </mechanisms> 
+  </mechanisms>
 </stream:features>
 ```
 
@@ -318,7 +318,27 @@ act as an admin to get any user roster.
 Here is an (Erlang) XML-RPC example on how to get your own roster:
 
 ```
-xmlrpc:call({127, 0, 0, 1}, 4560, "/", {call, user_get_roster, [{struct, [{user, "mremond"}, {server, "localhost"}, {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}]}]}, false, 60000, "Host: localhost\r\n", []).
+xmlrpc:call({127, 0, 0, 1}, 4560, "/",
+  {call, get_roster, [
+    {struct, [{user, "peter"},
+              {server, "example.com"},
+              {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}]}]},
+  false, 60000, "Host: localhost\r\n", []).
+```
+
+To get roster of ther user using admin authorization, XML-RPC payload
+would like like this:
+
+```
+xmlrpc:call({127, 0, 0, 1}, 4560, "/",
+  {call, get_roster, [
+    {struct, [{user, "admin"},
+              {server, "example.com"},
+              {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}
+              {admin, true}]},
+    {struct, [{user, "peter"},
+              {server, "example.com"}]}]},
+  false, 60000, "Host: localhost\r\n", []).
 ```
 
 <!-- TODO: Add XML-RPC payload rendering -->
@@ -373,7 +393,7 @@ implicitely expect them.
 That's all you need to have commands that can be used in a variety of
 ways.
 
-Here is a example way to register commands when 
+Here is a example way to register commands when
 
 ```
 start(_Host, _Opts) ->
@@ -411,5 +431,3 @@ commands() ->
                                  {pending, string}]}}}}}
         ].
 ```
-
-
