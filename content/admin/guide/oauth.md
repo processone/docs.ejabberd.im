@@ -134,6 +134,9 @@ OAuth and the available commands:
   seconds. After that amount of time, the token expires and the
   delegated credential cannot be used and is removed from the
   database.
+- **oauth_access**: If you want to limit which users can create OAuth
+  tokens, you can refer to an ejabberd access rule in the `oauth_access`
+  option.
 
 Here is an example, for OAuth specific parameters configuration:
 
