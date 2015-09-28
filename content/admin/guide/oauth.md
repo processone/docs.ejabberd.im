@@ -350,7 +350,7 @@ record. The record requires a few fields:
 - **module** and **function**: Module and function to call to execute
   the command logic.
 - **args**: Argument of the command. An argument is defined by a tuple
-  of atoms of the form `{argument_name, data_type}`. `data_type can be
+  of atoms of the form `{argument_name, data_type}`. `data_type` can be
   one of:
 
     - binary
