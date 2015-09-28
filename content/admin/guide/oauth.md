@@ -144,7 +144,7 @@ commands:
 oauth_expire: 3600
 ```
 
-In the previous case, tokens expires after an hour. All commands in
+In the previous example, tokens expire after an hour. All commands in
 categorie `user` are exposed. Admin access is granted to users that
 can pass the `configure` access rule defined in the config file.
 
