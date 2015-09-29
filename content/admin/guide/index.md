@@ -11,9 +11,9 @@ bodyclass: nocomment
 - [Managing an ejabberd server][4]
 - [Securing ejabberd][5]
 - [Clustering ejabberd][6]
-- [Troubleshooting ejabberd][7]
-- [Unattended installation][8]
-- [OAuth support][9]
+- [Unattended installation][7]
+- [OAuth support][8]
+- [Troubleshooting ejabberd][9]
 
 [1]:	/admin/guide/introduction/ "Introduction"
 [2]:	/admin/guide/installation/
@@ -21,6 +21,6 @@ bodyclass: nocomment
 [4]:	/admin/guide/managing/
 [5]:	/admin/guide/security/
 [6]:	/admin/guide/clustering/
-[7]:	/admin/guide/troubleshooting/
-[8]:    /admin/guide/unattended/
-[9]:    /admin/guide/oauth/
+[7]:    /admin/guide/unattended/
+[8]:    /admin/guide/oauth/
+[9]:	/admin/guide/troubleshooting/
