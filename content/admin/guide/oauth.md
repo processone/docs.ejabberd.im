@@ -77,7 +77,7 @@ If you want to support commands using the XML-RPC protocol, you can add
 Here is a example of the `listen` section in ejabberd configuration
 file, focusing on HTTP handlers:
 
-```
+```yaml
 listen:
   ## To handle ejabberd commands using XML-RPC
   -
@@ -145,7 +145,7 @@ OAuth and the available commands:
 
 Here is an example, for OAuth specific parameters configuration:
 
-```
+```yaml
 commands_admin_access: configure
 commands:
   - add_commands: user
@@ -256,7 +256,7 @@ servers support OAuth SASL mechanism.
 When enabled, X-OAUTH2 SASL mechanism is advertised in server stream
 features:
 
-```
+```xml
 <stream:features>
   <c xmlns="http://jabber.org/protocol/caps" node="http://www.process-one.net/en/ejabberd/" ver="nM19M+JK0ZBMXK7iJAvKnmDuQus=" hash="sha-1"/>
   <register xmlns="http://jabber.org/features/iq-register"/>
@@ -272,7 +272,7 @@ features:
 Authentication with X-OAUTH2 is done by modifying the SASL auth
 element as follow:
 
-```
+```xml
 <auth mechanism='X-OAUTH2'
       xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
   base64("\0" + user_name + "\0" + oauth_token)
@@ -288,7 +288,9 @@ mechanism, except the token is added instead of the user’s password.
 The response is standard for SASL XMPP authentication. For example, on
 success, server will reply with:
 
-    <success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
+```xml
+<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
+```
 
 ### Using commands with ReST / XML-RPC API
 
@@ -297,8 +299,9 @@ success, server will reply with:
 To pass your bearer token using ReST API, you need to pass your token
 as Bearer token in Authorization HTTP header:
 
-    Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
-
+```http
+Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
+```
 For XML-RPC, credentials must be passed as XML-RPC parameters.
 
 #### Acting as an admin
@@ -309,11 +312,15 @@ act as an admin (See previous reference about access rules).
 To act as an admin from a ReST API call, the HTTP request must contain
 the following header:
 
-    X-Admin: true
+```http
+X-Admin: true
+```
 
 To act as an admin from an XML-RPC query, the XML-RPC query must contain:
 
-    {admin,true}
+```erlang
+{admin,true}
+```
 
 #### XML-RPC example
 
@@ -322,7 +329,7 @@ act as an admin to get any user roster.
 
 Here is an (Erlang) XML-RPC example on how to get your own roster:
 
-```
+```erlang
 xmlrpc:call({127, 0, 0, 1}, 4560, "/",
   {call, get_roster, [
     {struct, [{user, "peter"},
@@ -333,7 +340,7 @@ xmlrpc:call({127, 0, 0, 1}, 4560, "/",
 
 This will lead to sending this XML-RPC payload to server:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <methodCall>
   <methodName>get_roster</methodName>
@@ -369,7 +376,7 @@ This will lead to sending this XML-RPC payload to server:
 To get roster of ther user using admin authorization, this erlang
 XML-RPC code can be used:
 
-```
+```erlang
 xmlrpc:call({127, 0, 0, 1}, 4560, "/",
   {call, get_roster, [
     {struct, [{user, "admin"},
@@ -383,7 +390,7 @@ xmlrpc:call({127, 0, 0, 1}, 4560, "/",
 
 that would send this XML to server:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <methodCall>
   <methodName>get_roster</methodName>
