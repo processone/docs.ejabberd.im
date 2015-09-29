@@ -53,6 +53,7 @@ explicitely disabled X-OAUTH2 with the `disable_sasl_mechanisms`
 option in `ejabberd.yml` file, either at global or at virtual host
 level:
 
+    #!yaml
     disable_sasl_mechanisms: ["X-OAUTH2"]
 
 ### ejabberd listeners
@@ -255,28 +256,26 @@ servers support OAuth SASL mechanism.
 When enabled, X-OAUTH2 SASL mechanism is advertised in server stream
 features:
 
-```xml
-<stream:features>
-  <c xmlns="http://jabber.org/protocol/caps" node="http://www.process-one.net/en/ejabberd/" ver="nM19M+JK0ZBMXK7iJAvKnmDuQus=" hash="sha-1"/>
-  <register xmlns="http://jabber.org/features/iq-register"/>
-  <mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl">
-    <mechanism>PLAIN</mechanism>
-    <mechanism>DIGEST-MD5</mechanism>
-    <mechanism>X-OAUTH2</mechanism>
-    <mechanism>SCRAM-SHA-1</mechanism>
-  </mechanisms>
-</stream:features>
-```
+    #!xml
+    <stream:features>
+      <c xmlns="http://jabber.org/protocol/caps" node="http://www.process-one.net/en/ejabberd/" ver="nM19M+JK0ZBMXK7iJAvKnmDuQus=" hash="sha-1"/>
+      <register xmlns="http://jabber.org/features/iq-register"/>
+      <mechanisms xmlns="urn:ietf:params:xml:ns:xmpp-sasl">
+        <mechanism>PLAIN</mechanism>
+        <mechanism>DIGEST-MD5</mechanism>
+        <mechanism>X-OAUTH2</mechanism>
+        <mechanism>SCRAM-SHA-1</mechanism>
+      </mechanisms>
+    </stream:features>
 
 Authentication with X-OAUTH2 is done by modifying the SASL auth
 element as follow:
 
-```xml
-<auth mechanism='X-OAUTH2'
-      xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
-  base64("\0" + user_name + "\0" + oauth_token)
-</auth>
-```
+    #!xml
+    <auth mechanism='X-OAUTH2'
+          xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
+      base64("\0" + user_name + "\0" + oauth_token)
+    </auth>
 
 The content in the auth element should be the base64 encoding of a
 string containing a null byte, followed by the user name, another null
@@ -287,9 +286,8 @@ mechanism, except the token is added instead of the user’s password.
 The response is standard for SASL XMPP authentication. For example, on
 success, server will reply with:
 
-```xml
-<success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
-```
+    #!xml
+    <success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
 
 ### Using commands with ReST / XML-RPC API
 
@@ -298,9 +296,9 @@ success, server will reply with:
 To pass your bearer token using ReST API, you need to pass your token
 as Bearer token in Authorization HTTP header:
 
-```http
-Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
-```
+    #!http
+    Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
+
 For XML-RPC, credentials must be passed as XML-RPC parameters.
 
 #### Acting as an admin
@@ -311,15 +309,13 @@ act as an admin (See previous reference about access rules).
 To act as an admin from a ReST API call, the HTTP request must contain
 the following header:
 
-```http
-X-Admin: true
-```
+    #!http
+    X-Admin: true
 
 To act as an admin from an XML-RPC query, the XML-RPC query must contain:
 
-```erlang
-{admin,true}
-```
+    #!erlang
+    {admin,true}
 
 #### XML-RPC example
 
@@ -328,123 +324,119 @@ act as an admin to get any user roster.
 
 Here is an (Erlang) XML-RPC example on how to get your own roster:
 
-```erlang
-xmlrpc:call({127, 0, 0, 1}, 4560, "/",
-  {call, get_roster, [
-    {struct, [{user, "peter"},
-              {server, "example.com"},
-              {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}]}]},
-  false, 60000, "Host: localhost\r\n", []).
-```
+    #!erlang
+    xmlrpc:call({127, 0, 0, 1}, 4560, "/",
+      {call, get_roster, [
+        {struct, [{user, "peter"},
+                  {server, "example.com"},
+                  {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}]}]},
+      false, 60000, "Host: localhost\r\n", []).
 
 This will lead to sending this XML-RPC payload to server:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<methodCall>
-  <methodName>get_roster</methodName>
-  <params>
-    <param>
-      <value>
-        <struct>
-          <member>
-            <name>server</name>
-            <value>
-              <string>example.com</string>
-            </value>
-          </member>
-          <member>
-            <name>user</name>
-            <value>
-              <string>peter</string>
-            </value>
-          </member>
-          <member>
-            <name>token</name>
-            <value>
-              <string>0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L</string>
-            </value>
-          </member>
-        </struct>
-      </value>
-    </param>
-  </params>
-</methodCall>
-```
+    #!xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <methodCall>
+      <methodName>get_roster</methodName>
+      <params>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>server</name>
+                <value>
+                  <string>example.com</string>
+                </value>
+              </member>
+              <member>
+                <name>user</name>
+                <value>
+                  <string>peter</string>
+                </value>
+              </member>
+              <member>
+                <name>token</name>
+                <value>
+                  <string>0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L</string>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+      </params>
+    </methodCall>
 
 To get roster of ther user using admin authorization, this erlang
 XML-RPC code can be used:
 
-```erlang
-xmlrpc:call({127, 0, 0, 1}, 4560, "/",
-  {call, get_roster, [
-    {struct, [{user, "admin"},
-              {server, "example.com"},
-              {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}
-              {admin, true}]},
-    {struct, [{user, "peter"},
-              {server, "example.com"}]}]},
-  false, 60000, "Host: localhost\r\n", []).
-```
+    #!erlang
+    xmlrpc:call({127, 0, 0, 1}, 4560, "/",
+      {call, get_roster, [
+        {struct, [{user, "admin"},
+                  {server, "example.com"},
+                  {token, "0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L"}
+                  {admin, true}]},
+        {struct, [{user, "peter"},
+                  {server, "example.com"}]}]},
+      false, 60000, "Host: localhost\r\n", []).
 
 that would send this XML to server:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<methodCall>
-  <methodName>get_roster</methodName>
-  <params>
-    <param>
-      <value>
-        <struct>
-          <member>
-            <name>admin</name>
-            <value>
-              <boolean>1</boolean>
-            </value>
-          </member>
-          <member>
-            <name>server</name>
-            <value>
-              <string>example.com</string>
-            </value>
-          </member>
-          <member>
-            <name>user</name>
-            <value>
-              <string>admin</string>
-            </value>
-          </member>
-          <member>
-            <name>token</name>
-            <value>
-              <string>0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L</string>
-            </value>
-          </member>
-        </struct>
-      </value>
-    </param>
-    <param>
-      <value>
-        <struct>
-          <member>
-            <name>user</name>
-            <value>
-              <string>peter</string>
-            </value>
-          </member>
-          <member>
-            <name>server</name>
-            <value>
-              <string>example.com</string>
-            </value>
-          </member>
-        </struct>
-      </value>
-    </param>
-  </params>
-</methodCall>
-```
+    #!xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <methodCall>
+      <methodName>get_roster</methodName>
+      <params>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>admin</name>
+                <value>
+                  <boolean>1</boolean>
+                </value>
+              </member>
+              <member>
+                <name>server</name>
+                <value>
+                  <string>example.com</string>
+                </value>
+              </member>
+              <member>
+                <name>user</name>
+                <value>
+                  <string>admin</string>
+                </value>
+              </member>
+              <member>
+                <name>token</name>
+                <value>
+                  <string>0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L</string>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>user</name>
+                <value>
+                  <string>peter</string>
+                </value>
+              </member>
+              <member>
+                <name>server</name>
+                <value>
+                  <string>example.com</string>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+      </params>
+    </methodCall>
 
 ### List of commands available with OAuth support
 
