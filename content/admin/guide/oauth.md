@@ -165,7 +165,9 @@ release, we plan to support multiple token
 
 ### authorization_token: Generating OAuth token
 
-To generate a token you can have the user open the `/oauth/authorization_token` in a webview in your application or in a browser.
+To generate a token you can have the user open the
+`/oauth/authorization_token` in a webview in your application or in a
+browser.
 
 For example, URL can be:
 
@@ -299,7 +301,13 @@ as Bearer token in Authorization HTTP header:
     #!http
     Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
 
-For XML-RPC, credentials must be passed as XML-RPC parameters.
+Using ReST API, authorization is using a bearer token, meaning you do
+not need to pass the user and host parameters.
+
+For XML-RPC, credentials must be passed as XML-RPC parameters,
+including token but also user and host parameters. This is for legacy
+reason, but will likely change in a future version, making user and
+host implicit, thanks to bearer token.
 
 #### Acting as an admin
 
