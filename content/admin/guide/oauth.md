@@ -1,3 +1,8 @@
+---
+title: OAuth support | ejabberd Installation and Operation Guide
+bodyclass: nocomment
+---
+
 # OAuth support
 
 ## Introduction

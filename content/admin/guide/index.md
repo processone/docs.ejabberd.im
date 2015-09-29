@@ -13,6 +13,7 @@ bodyclass: nocomment
 - [Clustering ejabberd][6]
 - [Troubleshooting ejabberd][7]
 - [Unattended installation][8]
+- [OAuth support][9]
 
 [1]:	/admin/guide/introduction/ "Introduction"
 [2]:	/admin/guide/installation/
@@ -22,3 +23,4 @@ bodyclass: nocomment
 [6]:	/admin/guide/clustering/
 [7]:	/admin/guide/troubleshooting/
 [8]:    /admin/guide/unattended/
+[9]:    /admin/guide/oauth/
