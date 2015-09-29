@@ -440,3 +440,24 @@ that would send this XML to server:
 </methodCall>
 ```
 
+### List of commands available with OAuth support
+
+At this moment those commands are available with OAuth authentication
+
+- *incoming\_s2s\_number* - Number of incoming s2s connections on node
+  _(admin only)_
+- *outgoing\_s2s\_number* - Number of outgoing s2s connections on node
+  _(admin only)_
+- *connected\_users* - List of established sessions _(admin only)_
+- *connected\_users\_number* - Number of established sessions _(admin only)_
+- *user\_resources* - List of connected user's resources _(user and admin)_
+- *num\_active\_users* - Number of users active in the last days _(admin only)_
+- *status\_num\_host* - Number of logged users with given status in host _(admin only)_
+- *status\_num* - Number of logged users with given status _(admin only)_
+- *get\_roster* - Get roster of a local user _(user and admin)_
+- *get\_offline\_count* - Number of unread offline messages _(user and admin)_
+- *stats* -  Get statistical value: registeredusers onlineusers
+  onlineusersnode uptimeseconds _(admin only)_
+- *stats\_host* - Get statistical value per host: registeredusers
+  onlineusers onlineusersnode uptimeseconds _(admin only)_
+- *muc\_online\_rooms* - List of existing rooms _(admin only)_
