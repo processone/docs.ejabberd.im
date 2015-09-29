@@ -326,8 +326,43 @@ xmlrpc:call({127, 0, 0, 1}, 4560, "/",
   false, 60000, "Host: localhost\r\n", []).
 ```
 
-To get roster of ther user using admin authorization, XML-RPC payload
-would like like this:
+This will lead to sending this XML-RPC payload to server:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+  <methodName>get_roster</methodName>
+  <params>
+    <param>
+      <value>
+        <struct>
+          <member>
+            <name>server</name>
+            <value>
+              <string>example.com</string>
+            </value>
+          </member>
+          <member>
+            <name>user</name>
+            <value>
+              <string>peter</string>
+            </value>
+          </member>
+          <member>
+            <name>token</name>
+            <value>
+              <string>0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L</string>
+            </value>
+          </member>
+        </struct>
+      </value>
+    </param>
+  </params>
+</methodCall>
+```
+
+To get roster of ther user using admin authorization, this erlang
+XML-RPC code can be used:
 
 ```
 xmlrpc:call({127, 0, 0, 1}, 4560, "/",
@@ -341,7 +376,64 @@ xmlrpc:call({127, 0, 0, 1}, 4560, "/",
   false, 60000, "Host: localhost\r\n", []).
 ```
 
-<!-- TODO: Add XML-RPC payload rendering -->
+that would send this XML to server:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall>
+  <methodName>get_roster</methodName>
+  <params>
+    <param>
+      <value>
+        <struct>
+          <member>
+            <name>admin</name>
+            <value>
+              <boolean>1</boolean>
+            </value>
+          </member>
+          <member>
+            <name>server</name>
+            <value>
+              <string>example.com</string>
+            </value>
+          </member>
+          <member>
+            <name>user</name>
+            <value>
+              <string>admin</string>
+            </value>
+          </member>
+          <member>
+            <name>token</name>
+            <value>
+              <string>0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L</string>
+            </value>
+          </member>
+        </struct>
+      </value>
+    </param>
+    <param>
+      <value>
+        <struct>
+          <member>
+            <name>user</name>
+            <value>
+              <string>peter</string>
+            </value>
+          </member>
+          <member>
+            <name>server</name>
+            <value>
+              <string>example.com</string>
+            </value>
+          </member>
+        </struct>
+      </value>
+    </param>
+  </params>
+</methodCall>
+```
 
 
 
