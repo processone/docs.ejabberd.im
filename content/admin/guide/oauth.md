@@ -475,24 +475,37 @@ authentication:
 You can enable all those commands individually or enable them all at
 once by adding all commands in `admin` policy.
 
-- *incoming\_s2s\_number* - Number of incoming s2s connections on node
-- *outgoing\_s2s\_number* - Number of outgoing s2s connections on node
-- *connected\_users* - List of established sessions
-- *connected\_users\_number* - Number of established sessions
-- *num\_active\_users* - Number of users active in the last days
-- *status\_num\_host* - Number of logged users with given status in host
-- *status\_num* - Number of logged users with given status
-- *stats* -  Get statistical value: registeredusers onlineusers
-  onlineusersnode uptimeseconds
-- *stats\_host* - Get statistical value per host: registeredusers
-  onlineusers onlineusersnode uptimeseconds
-- *muc\_online\_rooms* - List of existing rooms
+- ejabberd core:
+
+    - *incoming\_s2s\_number* - Number of incoming s2s connections on node
+    - *outgoing\_s2s\_number* - Number of outgoing s2s connections on node
+    - *connected\_users* - List of established sessions
+    - *connected\_users\_number* - Number of established sessions
+
+- `mod_admin_extra`:
+
+    - *num\_active\_users* - Number of users active in the last days
+    - *status\_num\_host* - Number of logged users with given status in host
+    - *status\_num* - Number of logged users with given status
+    - *stats* -  Get statistical value: registered users, online users, 
+       online users node, uptime seconds
+    - *stats\_host* - Get statistical value per host: registered users,
+      online users, online users node, uptime seconds
+
+- `mod_muc_admin`:
+
+    - *muc\_online\_rooms* - List of existing rooms
 
 #### User and Admin
 
 You can enable all those commands individually or enable them all at
 once by adding all commands in `user` policy.
 
-- *user\_resources* - List of connected user's resources _(user and admin)_
-- *get\_roster* - Get roster of a local user _(user and admin)_
-- *get\_offline\_count* - Number of unread offline messages _(user and admin)_
+- ejabberd core:
+
+    - *user\_resources* - List of connected user's resources
+
+- `mod_admin_extra`:
+
+    - *get\_roster* - Get roster of a local user
+    - *get\_offline\_count* - Number of unread offline messages
