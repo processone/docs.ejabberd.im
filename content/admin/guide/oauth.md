@@ -77,28 +77,28 @@ If you want to support commands using the XML-RPC protocol, you can add
 Here is a example of the `listen` section in ejabberd configuration
 file, focusing on HTTP handlers:
 
-```yaml
-listen:
-  ## To handle ejabberd commands using XML-RPC
-  -
-    port: 4560
-    module: ejabberd_xmlrpc
-  -
-    port: 5280
-    module: ejabberd_http
-    request_handlers:
-      "/websocket": ejabberd_http_ws
-      "/log": mod_log_http
-      # OAuth support:
-      "/oauth": ejabberd_oauth
-      # ReST API:
-      "/api": mod_http_api
-    web_admin: true
-    http_bind: true
-    captcha: true
+    #!yaml
+    listen:
+      ## To handle ejabberd commands using XML-RPC
+      -
+        port: 4560
+        module: ejabberd_xmlrpc
+      -
+        port: 5280
+        module: ejabberd_http
+        request_handlers:
+          "/websocket": ejabberd_http_ws
+          "/log": mod_log_http
+          # OAuth support:
+          "/oauth": ejabberd_oauth
+          # ReST API:
+          "/api": mod_http_api
+        web_admin: true
+        http_bind: true
+        captcha: true
+    
+    ... other listeners
 
-... other listeners
-```
 
 ### Module configuration
 
@@ -145,12 +145,11 @@ OAuth and the available commands:
 
 Here is an example, for OAuth specific parameters configuration:
 
-```yaml
-commands_admin_access: configure
-commands:
-  - add_commands: user
-oauth_expire: 3600
-```
+    #!yaml
+    commands_admin_access: configure
+    commands:
+      - add_commands: user
+    oauth_expire: 3600
 
 In the previous example, tokens expire after an hour. All commands in
 categorie `user` are exposed. Admin access is granted to users that
