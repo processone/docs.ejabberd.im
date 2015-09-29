@@ -103,12 +103,12 @@ file, focusing on HTTP handlers:
 
 ### Module configuration
 
-Make sure you have enabled module supporting OAuth enabled commands.
+Make sure you have enabled the modules supporting the OAuth commands
+you want to use in `ejabberd.yml` modules section.
 
-For now the only module supporting OAuth is `mod_oauth_test`.
-
-<!--- TODO Do we want to commit it / package it for demonstration
-      purpose ? -->
+Please, refer to the
+[List of commands available with OAuth support](#list-of-commands-available-with-oauth-support)
+for reference.
 
 ### OAuth specific parameters
 
@@ -448,22 +448,32 @@ that would send this XML to server:
 
 ### List of commands available with OAuth support
 
-At this moment those commands are available with OAuth authentication
+At the moment, here are the commands are available with OAuth
+authentication:
+
+#### Admin only
+
+You can enable all those commands individually or enable them all at
+once by adding all commands in `admin` policy.
 
 - *incoming\_s2s\_number* - Number of incoming s2s connections on node
-  _(admin only)_
 - *outgoing\_s2s\_number* - Number of outgoing s2s connections on node
-  _(admin only)_
-- *connected\_users* - List of established sessions _(admin only)_
-- *connected\_users\_number* - Number of established sessions _(admin only)_
+- *connected\_users* - List of established sessions
+- *connected\_users\_number* - Number of established sessions
+- *num\_active\_users* - Number of users active in the last days
+- *status\_num\_host* - Number of logged users with given status in host
+- *status\_num* - Number of logged users with given status
+- *stats* -  Get statistical value: registeredusers onlineusers
+  onlineusersnode uptimeseconds
+- *stats\_host* - Get statistical value per host: registeredusers
+  onlineusers onlineusersnode uptimeseconds
+- *muc\_online\_rooms* - List of existing rooms
+
+#### User and Admin
+
+You can enable all those commands individually or enable them all at
+once by adding all commands in `user` policy.
+
 - *user\_resources* - List of connected user's resources _(user and admin)_
-- *num\_active\_users* - Number of users active in the last days _(admin only)_
-- *status\_num\_host* - Number of logged users with given status in host _(admin only)_
-- *status\_num* - Number of logged users with given status _(admin only)_
 - *get\_roster* - Get roster of a local user _(user and admin)_
 - *get\_offline\_count* - Number of unread offline messages _(user and admin)_
-- *stats* -  Get statistical value: registeredusers onlineusers
-  onlineusersnode uptimeseconds _(admin only)_
-- *stats\_host* - Get statistical value per host: registeredusers
-  onlineusers onlineusersnode uptimeseconds _(admin only)_
-- *muc\_online\_rooms* - List of existing rooms _(admin only)_
