@@ -311,7 +311,7 @@ host implicit, thanks to bearer token.
 
 #### Acting as an admin
 
-With both HTTP remote call mechanism, you can either act as a user or
+With both HTTP remote call mechanisms, you can either act as a user or
 act as an admin (See previous reference about access rules).
 
 To act as an admin from a ReST API call, the HTTP request must contain
@@ -325,10 +325,29 @@ To act as an admin from an XML-RPC query, the XML-RPC query must contain:
     #!erlang
     {admin,true}
 
+#### ReST JSON example
+
+With a command like `get_roster`, you can get your own roster, or act
+as an admin to get any user roster.
+
+The HTTP endpoint does not take any parameter, so we can just do an
+HTTP post with empty JSON structure list (see `-d` option):
+
+    #!bash
+    curl -v -X POST -H "Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx" http://localhost:5280/api/get_roster -d '[]'
+
+For admin queries, add "X-Admin: true" header:
+
+    #!bash
+    curl -v -X POST -H "X-Admin: true" -H "Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx" http://localhost:5280/api/get_roster -d '{"user": "test10", "server": "localhost"}'
+
+<!--- There is --oauth2-bearer curl option, which probably should add
+      that authorization header, but it does nothing in my curl version -->
+
 #### XML-RPC example
 
-With a command like `user_get_roster`, you can get your own roster, or
-act as an admin to get any user roster.
+With a command like `get_roster`, you can get your own roster, or act
+as an admin to get any user roster.
 
 Here is an (Erlang) XML-RPC example on how to get your own roster:
 
