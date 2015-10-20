@@ -428,31 +428,33 @@ The frontends can be configured to restrict access to certain commands
 using the `AccessCommands`. In that case, authentication information
 must be provided.
 
-This option allows quite complex settings, so it does not use the YAML
-format, instead it uses the Erlang format. If you want to set that
-option, then you must move the frontend definition to another config
-file and include it using the `include_config_file` option (see
-section 
-[Include Additional Configuration Files](../configuration/#include-additional-configuration-files)
-and the example below).
-
 In each frontend the `AccessCommands` option is defined in a different
 place. But in all cases the option syntax is the same:
 
-	AccessCommands = [ {Access, CommandNames, Arguments}, ...]
-	Access = atom()
-	CommandNames = all | [CommandName]
-	CommandName = atom()
-	Arguments = [ {ArgumentName, ArgumentValue}, ...]
-	ArgumentName = atom()
-	ArgumentValue = any()
+	#!yaml
+	access_commands:
+	  Access:
+	    commands:
+	      - CommandName
+	      - CommandName
+	      - ...
+	    options:
+	      ArgumentName: ArgumentValue
+	      ArgumentName: ArgumentValue
+	      ...
 
-The default value is to not define any restriction: `[]`. The
+Before ejabberd 15.09 the default value was to not define any restriction:
+`[]`. After 15.09 by default the list of allowed commands depends on `commands`
+global option (see
+section_[OAuth specific parameters](../oauth/#oauth-specific-parameters)).  The
 authentication information is provided when executing a command, and is
-Username, Hostname and Password of a local XMPP account that has
-permission to execute the corresponding command. This means that the
-account must be registered in the local ejabberd, because the
-information will be verified.
+Username, Hostname and Password or OAuth token of a local XMPP account that has
+permission to execute the corresponding command. This means that the account
+must be registered in the local ejabberd, because the information will be
+verified.
+
+Instead of specifying a list of allowed commands, `commands` option can have
+the `all` value to allow all commands.
 
 When one or several access restrictions are defined and the
 authentication information is provided, each restriction is verified
@@ -462,65 +464,80 @@ not contradict Arguments.
 
 As an example to understand the syntax, let’s suppose those options:
 
-	#!erlang
-	{hosts, ["example.org"]}.
-	{acl, bots, {user, "robot1", "example.org"}}.
-	{access, commaccess, [{allow, bots}]}.
+	#!yaml
+	hosts:
+	  - "localhost"
+	acl:
+	  bots:
+	    user:
+	      - "robot1": "example.org"
+	access:
+	  commaccess:
+	    bots: allow
 
 This list of access restrictions allows only `robot1@example.org` to
 execute all commands:
 
-	[{commaccess, all, []}]
+	#!yaml
+	access_commands:
+	  commaccess:
+	    commands: all
+	    options: []
 
 See another list of restrictions (the corresponding ACL and ACCESS are
 not shown):
 
-	#!erlang
-	[
-	 %% This bot can execute all commands:
-	 {bot, all, []},
-	 %% This bot can only execute the command 'dump'. No argument restriction:
-	 {bot_backups, [dump], []}
-	 %% This bot can execute all commands,
-	 %% but if a 'host' argument is provided, it must be "example.org":
-	 {bot_all_example, all, [{host, "example.org"}]},
-	 %% This bot can only execute the command 'register',
-	 %% and if argument 'host' is provided, it must be "example.org":
-	 {bot_reg_example, [register], [{host, "example.org"}]},
-	 %% This bot can execute the commands 'register' and 'unregister',
-	 %% if argument host is provided, it must be "test.org":
-	 {_bot_reg_test, [register, unregister], [{host, "test.org"}]}
-	]
+	#!yaml
+	access_commands:
+	  # This bot can execute all commands:
+	  bot:
+	    commands: all
+	    options: []
+	  # This bot can only execute the command 'dump'. No argument restriction:
+	  bot_backups:
+	    commands:
+	      - dump
+	    options: []
+	  # This bot can execute all commands,
+	  # but if a 'host' argument is provided, it must be "example.org":
+	  bot_all_example:
+	    commands: all
+	    options:
+	      host: "example.org"
+	  # This bot can only execute the command 'register',
+	  # and if argument 'host' is provided, it must be "example.org":
+	  bot_reg_example:
+	    commands:
+	      - register
+	    options:
+	      host: "example.org"
+	  # This bot can execute the commands 'register' and 'unregister',
+	  # if argument host is provided, it must be "test.org":
+	  bot_reg_test:
+	    commands:
+	      - register
+	      - unregister
+	    options:
+	      host: "test.org"
 
-In summary, you put the frontends configurations in a CFG file using
-Erlang format, for example a file called `additional.cfg`:
+An example of complete `ejabberd_xmlrpc` configuration:
 
-	#!erlang
-	{ejabberdctl_access_commands, [ {ctlaccess, [registered_users, register], []} ]}.
-	
-	{listen, [
-	  {4560, ejabberd_xmlrpc, [{maxsessions, 10}, {timeout, 5000},
-	    {access_commands, [
-	      {ctlaccess, [registered_users], [{host, "localhost"}]}
-	    ]}
-	  ]}
-	 ]}.
-	
-	{modules, [
-	  {mod_rest, [
-	    {allowed_ips, [ {127,0,0,1}, {192,168,1,12} ]},
-	    {allowed_destinations, [ "nolan@localhost", "admin@example.com" ]},
-	    {allowed_stanza_types, [ "message", "presence", "iq" ]},
-	    {access_commands, [
-	      {ctlaccess, [registered_users], [{host, "localhost"}]}
-	    ]}
-	   ]}
-	 ]}.
-
-and then add this line at the end of your main ejabberd configuration
-file, usually called `ejabberd.yml`:
-
-	include_config_file: "/etc/ejabberd/additional.cfg"
+	#!yaml
+	listen:
+      -
+        port: 4560
+        module: ejabberd_xmlrpc
+        maxsessions: 10
+        timeout: 5000
+        access_commands:
+          xmlrpc:
+            commands:
+              - register
+              - change_password
+              - send_message
+              - registered_users
+              - unregister
+            options: []
 
 ## Web Admin
 
