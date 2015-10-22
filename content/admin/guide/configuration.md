@@ -4287,10 +4287,16 @@ Configuration options:
 	stanza in this interval, a ping request is sent to the client. The
 	default value is 60 seconds.
 
+`ping_ack_timeout: Seconds`
+
+:   How long to wait before deeming that a client has not answered a given
+    server ping request.
+	default value is 32 seconds.
+
 `timeout_action: none|kill`
 
 :   What to do when a client does not answer to a server ping request in
-	less than 32 seconds. The default is to do nothing.
+	less than `ping_ack_timeout`. The default is to do nothing.
 
 This example enables Ping responses, configures the module to send pings
 to client connections that are inactive for 4 minutes, and if a client
