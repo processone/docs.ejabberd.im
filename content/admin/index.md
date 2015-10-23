@@ -16,3 +16,6 @@ system.
 
 * [Admin FAQ](/admin/faq/) provides tips and information on Frequently
   Asked Questions for ejabberd Administrators.
+
+* [Contributions](/admin/contrib/) lists other modules or projects that you can install
+  to help in ejabberd administration.
