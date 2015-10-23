@@ -294,17 +294,24 @@ used by the script to start the server. Then you can call
 
 ### Specific Notes
 
-#### Specific Notes for OSX
+#### Specific Notes for OSX (Yosemite or El Capitan)
 
-On OS X, you need to tell ejabberd to use OpenSSL for the build. The
-best approach is to use homebrew to install openssl and to build
-ejabberd with Homebrew installed OpenSSL.
-
-Here is an example command to build ejabberd with brew-installed OpenSSL:
+On OS X, you need to tell ejabberd to OpenSSL, Yaml, iconv for the
+build. The best approach is to use Homebrew(http://brew.sh) to install
+your dependencies:
 
     #!console
-    LDFLAGS=-L/usr/local/opt/openssl/lib CFLAGS=-I/usr/local/opt/openssl/include ./configure --enable-all
-    LDFLAGS=-L/usr/local/opt/openssl/lib CFLAGS=-I/usr/local/opt/openssl/include make
+    brew install expat openssl libyaml libiconv sqlite 
+
+Here is an example command to build ejabberd with brew-installed
+dependencies:
+
+    #!console
+    export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
+    export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+    export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+    ./configure --enable-all
+    make
 
 Note: Reference to custom OpenSSL needs at the moment to be passed to
 `make` command. This is because make command download, configure and
