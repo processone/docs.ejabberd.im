@@ -36,6 +36,7 @@ This includes:
 * [Nimbuzz](http://www.nimbuzz.com/)
 * [ooVoo](http://www.oovoo.com)
 * [Sipphone](http://www.process-one.net/resources/case_studies/ProcessOne_SIP_Phone_Case_Study_v3.pdf)
+* [WowApp](https://www.wowapp.com)
 
 ## Internet of Things
 
