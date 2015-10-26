@@ -2790,6 +2790,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_irc](#modirc)                             | IRC transport                                        |                                  |
 | [mod_last](#modlast)                           | Last Activity ([`XEP-0012`][43])                     |                                  |
 | [mod_mam](#modmam)                             | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
+| [mod_metrics](#modmetrics)                     | Simple metrics handler for runtime statistics        |                                  |
 | [mod_muc](#modmuc)                             | Multi-User Chat ([`XEP-0045`][44])                   |                                  |
 | mod_muc_admin                                  | Administrative commands for Multi-User Chat          | `mod_muc`                        |
 | [mod_muc_log](#modmuclog)                      | Multi-User Chat room logging                         | `mod_muc`                        |
@@ -3614,6 +3615,20 @@ Options:
 `cache_lifetime: Seconds`
 
 :   Lifetime of the cached items in the cache described in the option `cache_size`. The default is 3600 seconds, i.e. one hour.
+
+### mod_metrics
+
+This module sends events to external backend (by now it only
+supports grapherl). Supported events are: sm_register_connection,
+sm_remove_connection, user_send_packet, user_receive_packet,
+s2s_send_packet, s2s_receive_packet, register_user, remove_user,
+offline_message.
+
+When enabled, every call to these hooks triggers a counter event
+to the configured backend.
+
+Backend is not configurable yet, by now it requires to be grapherl
+running in localhost and listening to port 11111.
 
 ### mod_muc
 
