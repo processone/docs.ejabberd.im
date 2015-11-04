@@ -3535,9 +3535,8 @@ For example: `"0755"`. Default: `undefined`.
 `docroot: Path`
 
 : Uploaded files are stored below the directory specified (as an
-absolute path) with this option. It is mandatory to specify either this
-option or the `service_url` option. The keyword `@HOME@` is replaced
-with the home directory of the user running ejabberd. Default:
+absolute path) with this option. The keyword `@HOME@` is replaced with
+the home directory of the user running ejabberd. Default:
 `"@HOME@/upload"`.
 
 `put_url: URL`
