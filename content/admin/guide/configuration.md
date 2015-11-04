@@ -3450,29 +3450,6 @@ server (by default) also creates a thumbnail.
 In order to use this module, it must be configured as a
 `request_handler` for an `ejabberd_http` listener.
 
-Example:
-
-	#!yaml
-	listen:
-	  ...
-	  -
-	    port: 5443
-	    module: ejabberd_http
-	    tls: true
-	    certfile: "/etc/ejabberd/certificate.pem"
-	    request_handlers:
-	      ...
-	      "upload": mod_http_upload
-	      ...
-	  ...
-	
-	modules:
-	  ...
-	  mod_http_upload:
-	    docroot: "/ejabberd/upload"
-	    put_url: "https://@HOST@:5443/upload"
-	  ...
-
 Options:
 
 `host: HostName`
@@ -3574,6 +3551,29 @@ HTTP responses. Default: `[]`.
 
 : This option specifies whether files uploaded by a user should be
 removed when that user is unregistered. Default: `true`.
+
+Example:
+
+	#!yaml
+	listen:
+	  ...
+	  -
+	    port: 5443
+	    module: ejabberd_http
+	    tls: true
+	    certfile: "/etc/ejabberd/certificate.pem"
+	    request_handlers:
+	      ...
+	      "upload": mod_http_upload
+	      ...
+	  ...
+	
+	modules:
+	  ...
+	  mod_http_upload:
+	    docroot: "/ejabberd/upload"
+	    put_url: "https://@HOST@:5443/upload"
+	  ...
 
 ### mod\_http\_ws
 
