@@ -2788,6 +2788,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_http_bind](#modhttpbind)                  | XMPP over Bosh service (HTTP Binding)                |                                  |
 | [mod_http_fileserver](#modhttpfileserver)      | Small HTTP file server                               |                                  |
 | [mod_http_upload](#modhttpupload)              | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
+| [mod_http_upload_quota](#modhttpuploadquota)   | HTTP File Upload Quotas                              | `mod_http_upload`                |
 | [mod_irc](#modirc)                             | IRC transport                                        |                                  |
 | [mod_last](#modlast)                           | Last Activity ([`XEP-0012`][43])                     |                                  |
 | [mod_mam](#modmam)                             | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
@@ -3573,6 +3574,56 @@ Example:
 	  mod_http_upload:
 	    docroot: "/ejabberd/upload"
 	    put_url: "https://@HOST@:5443/upload"
+	  ...
+
+### mod_http_upload_quota
+
+This module adds quota support for `mod_http_upload`.
+
+Options:
+
+`max_days: Days`
+
+: If a number larger than zero is specified, any files (and directories)
+older than this number of days are removed from the subdirectories of the
+`docroot` directory, once per day. Default: `infinity`.
+
+`access_hard_quota: AccessName`
+
+: This option defines which access rule is used to specify the "hard
+quota" for the matching JIDs. That rule must yield a positive number for
+any JID that is supposed to have a quota limit. This is the number of
+megabytes a corresponding user may upload. When this threshold is
+exceeded, ejabberd deletes the oldest files uploaded by that user until
+their disk usage equals or falls below the specified soft quota (see
+below).
+
+`access_soft_quota: AccessName`
+
+This option defines which access rule is used to specify the "soft
+quota" for the matching JIDs. That rule must yield a positive number of
+megabytes for any JID that is supposed to have a quota limit. See the
+description of the `access_hard_quota` option for details.
+
+Note: It's not necessary to specify the `access_hard_quota` and
+`access_soft_quota` options in order to use the quota feature. You can
+stick to the default names and just specify access rules such as those
+in the following example.
+
+	#!yaml
+	access:
+	  ...
+	  soft_upload_quota:
+	    all: 1000 # MiB
+	  hard_upload_quota:
+	    all: 1100 # MiB
+	  ...
+	
+	modules:
+	  ...
+	  mod_http_upload: {}
+	  mod_http_upload_quota:
+	    max_days: 100
 	  ...
 
 ### mod\_http\_ws
