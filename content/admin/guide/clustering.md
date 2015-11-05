@@ -72,50 +72,51 @@ domain of the packet’s destination exists. If that is the case, the s2s
 manager routes the packet to the process serving this connection,
 otherwise a new connection is opened.
 
-## Before to get started
+## Before you get started
 
-Before you start implementing clustering, there if a few things you
+Before you start implementing clustering, there are a few things you
 need to take into account:
 
 - Cluster should be set up in a single data center: The clustering in
-  ejabberd Community Edition rely on low latency network. While it may
-  work across region, it is recommended that you run an ejabberd
+  ejabberd Community Edition relies on low latency networking. While it may
+  work across regions, it is recommended that you run an ejabberd
   cluster in a single Amazon region.
-- Clustering rely on Erlang feature and Mnesia shared schema. Before
-  getting started, it is best to get familiar with Erlang environment
-  as the wording will heavily reference Erlang terms.
+- Clustering relies on Erlang features and Mnesia shared schemas. Before
+  getting started, it is best to get familiar with the Erlang environment
+  as this guide will heavily reference Erlang terms.
 
 ## Clustering Setup
 
-### Adding a node in a cluster
+### Adding a node to a cluster
 
-Suppose you already configured `ejabberd` on one machine named
-(`first`), and you need to setup another one to make an `ejabberd`
-cluster. Then do following steps:
+Suppose you have already configured `ejabberd` on one node named
+`ejabber01`. Let's create an additional node (`ejabberd02`) and connect them
+together.
 
-1.  Copy `~ejabberd/.erlang.cookie` file from `first` to `second`.
+1.  Copy the `/home/ejabberd/.erlang.cookie` file from `ejabberd01` to
+    `ejabberd02`.
 
-	(alt) You can also add ‘`-setcookie content_of_.erlang.cookie`’
-	option to all ‘`erl`’ commands below.
+	Alternatively you could pass the `-setcookie <value>`
+	option to all `erl` commands below.
 
-2.  Adding a node into the cluster is done by starting a new ejabberd
+2.  Adding a node to the cluster is done by starting a new `ejabberd`
 	node within the same network, and running a command from a cluster
-	node. On `second` node for example, as ejabberd is already
+	node. On the `ejabberd02` node for example, as ejabberd is already
 	started, run the following command as the `ejabberd` daemon user,
 	using the ejabberdctl script:
 
 		#!console
-		$ ejabberdctl join_cluster 'ejabberd@first'
+		$ ejabberdctl join_cluster 'ejabberd@ejabberd01'
 
-	This enable ejabberd internals replications to be launched across
-	all nodes so new node can start receiving messages from other
+	This enables ejabberd's internal replications to be launched across
+	all nodes so new nodes can start receiving messages from other
 	nodes and be registered in the routing tables.
 
 ### Removing a node from the cluster
 
-To remove a node from the cluster, it just has to be shut down. There
+To remove a node from the cluster, it just needs to be shut down. There
 is no specific delay for the cluster to figure out that the node is
-gone, the node is immediately removed from other routers entries. All
+gone, the node is immediately removed from other router entries. All
 clients directly connected to the stopped node are disconnected, and
 should reconnect to other nodes.
 
@@ -123,14 +124,14 @@ If the cluster is used behind a load balancer and the node has been
 removed from the load balancer, no new clients should be connecting to
 that node but established connections should be kept, thus allowing to
 remove a node smoothly, by stopping it after most clients disconnected
-by themselves.  If the node is started again, it's immediately
+by themselves. If the node is started again, it's immediately
 attached back to the cluster until it has been explicitly removed
 permanently from the cluster.
 
-To remove permanently a node from the cluster, a command must be run from the node to be removed:
+To remove a node from the cluster permanently, the following command must be run from the node:
 
-	    #!console
-	    $ ejabberdctl leave_cluster
+		#!console
+		$ ejabberdctl leave_cluster
 
 # Service Load-Balancing
 
@@ -141,10 +142,10 @@ plugged on an `ejabberd` cluster. It means that you can plug one or
 several instances of the same component on each `ejabberd` cluster and
 that the traffic will be automatically distributed.
 
-The default distribution algorithm try to deliver to a local instance of
+The default distribution algorithm attempts to deliver to a local instance of
 a component. If several local instances are available, one instance is
-chosen randomly. If no instance is available locally, one instance is
-chosen randomly among the remote component instances.
+chosen at random. If no instance is available locally, one instance is
+randomly chosen among the remote component instances.
 
 If you need a different behaviour, you can change the load balancing
 behaviour with the option `domain_balancing`. The syntax of the option
@@ -154,7 +155,7 @@ is the following:
 
 :  
 
-Several balancing criteria are available:
+Several balancing criterias are available:
 
 -   `destination`: the full JID of the packet `to` attribute is used.
 
