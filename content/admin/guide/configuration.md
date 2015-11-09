@@ -3977,102 +3977,102 @@ Module options:
 	options. Note that the creator of a room can modify the options of
 	his room at any time using an XMPP client with MUC capability. The
 	available room options and the default values are:
-	
+
 	`allow_change_subj: true|false`
-	
+
 	:   Allow occupants to change the subject.
-	
+
 	`allow_private_messages: true|false`
-	
+
 	:   Occupants can send private messages to other occupants.
-	
+
 	`allow_private_messages_from_visitors: anyone|moderators|nobody`
-	
+
 	:   Visitors can send private messages to other occupants.
-	
+
 	`allow_query_users: true|false`
-	
+
 	:   Occupants can send IQ queries to other occupants.
-	
+
 	`allow_user_invites: false|true`
-	
+
 	:   Allow occupants to send invitations.
-	
+
 	`allow_visitor_nickchange: true|false`
-	
+
 	:   Allow visitors to change nickname.
-	
+
 	`allow_visitor_status: true|false`
-	
+
 	:   Allow visitors to send status text in presence updates. If
 	    disallowed, the `status` text is stripped before broadcasting
 	    the presence update to all the room occupants.
-	
+
 	`anonymous: true|false`
-	
+
 	:   The room is anonymous: occupants don’t see the real JIDs of
 	    other occupants. Note that the room moderators can always see
 	    the real JIDs of the occupants.
-	
+
 	`captcha_protected: false`
-	
+
 	:   When a user tries to join a room where he has no affiliation
 	    (not owner, admin or member), the room requires him to fill a
 	    CAPTCHA challenge (see section [CAPTCHA](#captcha)) in order to accept her
 	    join in the room.
-	
+
 	`logging: false|true`
-	
+
 	:   The public messages are logged using `mod_muc_log`.
 
 	`mam: false|true`
 
 	:   Enable message archiving. Implies `mod_mam` is enabled.
-	
+
 	`max_users: 200`
-	
+
 	:   Maximum number of occupants in the room.
-	
+
 	`members_by_default: true|false`
-	
+
 	:   The occupants that enter the room are participants by default,
 	    so they have ’voice’.
-	
+
 	`members_only: false|true`
-	
+
 	:   Only members of the room can enter.
-	
+
 	`moderated: true|false`
-	
+
 	:   Only occupants with ’voice’ can send public messages.
-	
+
 	`password: roompass123`
-	
+
 	:   Password of the room. You may want to enable the next option
 	    too.
-	
+
 	`password_protected: false|true`
-	
+
 	:   The password is required to enter the room.
-	
+
 	`persistent: false|true`
-	
+
 	:   The room persists even if the last participant leaves.
-	
+
 	`public: true|false`
-	
+
 	:   The room is public in the list of the MUC service, so it can be
 	    discovered.
-	
+
 	`public_list: true|false`
-	
+
 	:   The list of participants is public, without requiring to enter
 	    the room.
-	
+
 	`title: Room Title`
-	
+
 	:   A human-readable title of the room.
-	
+
 	All of those room options can be set to `true` or `false`, except
 	`password` and `title` which are strings, and `max_users` that is
 	integer.
