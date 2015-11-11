@@ -3520,9 +3520,11 @@ the home directory of the user running ejabberd. Default:
 `put_url: URL`
 
 : This option specifies the initial part of the PUT URLs used for file
-uploads. The keyword `@HOST@` is replaced with the virtual host name.
-Default: `"http://@HOST@:5444"`. *Note: Different virtual hosts cannot
-use the same PUT URL domain.*
+uploads. If this part contains a path component, it must match the
+`request_handlers` path for `mod_http_upload` in the corresponding
+`ejabberd_http` listener configuration. The keyword `@HOST@` is replaced
+with the virtual host name. Default: `"http://@HOST@:5444"`. *Note:
+Different virtual hosts cannot use the same PUT URL domain.*
 
 `get_url: URL`
 
