@@ -589,8 +589,8 @@ modules:
 	serve the URIs `/http-bind/`, use this option:
 	
 	    request_handlers:
-	      /"a"/"b": mod_foo
-	      /"http-bind": mod_http_bind
+	      "/a/b": mod_foo
+	      "/http-bind": mod_http_bind
 
 `resend_on_timeout: true|false|if_offline`
 
