@@ -3631,8 +3631,8 @@ in the following example.
 This module enables xmpp communication over websocket connection as
 described in [`RFC 7395`][71].
 
-To enable this module it must have handler added to `request_handler`
-section of `ejbberd_http` listener:
+To enable this module it must have handler added to `request_handlers`
+section of `ejabberd_http` listener:
 
 	#!yaml
 	listen:
