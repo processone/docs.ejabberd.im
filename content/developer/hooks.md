@@ -84,7 +84,7 @@ your callback function.
 * `run` hooks: This is hooks whose only role is to propagate events to
   handlers throughout the code. When that hook is run, it does not
   gather data. `run` hooks support two type of return value from their
-  handler: 'stop' or anything else (that is ignore, so you can return
+  handler: 'stop' or anything else (that is ignored, so you can return
   the atom ok as a convention). If you return `stop` from your
   handler, it means no further processing will be done, i.e. that
   handlers defined for the same hook with lower priority will not be
@@ -98,7 +98,7 @@ your callback function.
   data as an addition to parameters and you will have to return those
   data as a starting point for processing by the next handler
   registered to that event (if any). `run_fold` handler can return an
-  accumulator `Value` of `{stop, Value}`.
+  accumulator `Value` or `{stop, Value}`.
 
 It means that hooks registration priority is important for two primary
 reasons:
