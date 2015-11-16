@@ -5816,7 +5816,7 @@ Options:
 :   This option specifies whether the search functionality is enabled or
 	not. If disabled, the option `host` will be ignored and the Jabber
 	User Directory service will not appear in the Service Discovery item
-	list. The default value is `true`.
+	list. The default value is `false`.
 
 `matches: infinity|Number`
 
@@ -5909,7 +5909,7 @@ The second group of parameters consists of the following
 	(value: `true`) or disabled (value: `false`). If disabled, the
 	option `host` will be ignored and the Jabber User Directory service
 	will not appear in the Service Discovery item list. The default
-	value is `true`.
+	value is `false`.
 
 `matches: infinity|Number`
 
