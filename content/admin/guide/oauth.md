@@ -84,6 +84,7 @@ file, focusing on HTTP handlers:
       -
         port: 4560
         module: ejabberd_xmlrpc
+        access_commands: {}
       -
         port: 5280
         module: ejabberd_http
