@@ -90,7 +90,7 @@ need to take into account:
 ### Adding a node to a cluster
 
 Suppose you have already configured `ejabberd` on one node named
-`ejabber01`. Let's create an additional node (`ejabberd02`) and connect them
+`ejabberd01`. Let's create an additional node (`ejabberd02`) and connect them
 together.
 
 1.  Copy the `/home/ejabberd/.erlang.cookie` file from `ejabberd01` to
@@ -128,10 +128,15 @@ by themselves. If the node is started again, it's immediately
 attached back to the cluster until it has been explicitly removed
 permanently from the cluster.
 
-To remove a node from the cluster permanently, the following command must be run from the node:
+To permanently remove a running node from the cluster, the following
+command must be run as the `ejabberd` daemon user, from one node of the
+cluster:
 
 		#!console
-		$ ejabberdctl leave_cluster
+		$ ejabberdctl leave_cluster 'ejabberd@ejabberd02'
+
+The removed node must be running while calling leave_cluster to make
+it permanently removed. It's then immediately stopped.
 
 # Service Load-Balancing
 
