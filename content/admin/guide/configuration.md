@@ -3604,7 +3604,7 @@ below).
 
 `access_soft_quota: AccessName`
 
-This option defines which access rule is used to specify the "soft
+: This option defines which access rule is used to specify the "soft
 quota" for the matching JIDs. That rule must yield a positive number of
 megabytes for any JID that is supposed to have a quota limit. See the
 description of the `access_hard_quota` option for details.
