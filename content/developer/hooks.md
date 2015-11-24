@@ -81,16 +81,16 @@ very important to know the type of the hooks you are dealing with, as
 this is needed by your event handlers to know what can be returned in
 your callback function.
 
-* `run` hooks: This is hooks whose only role is to propagate events to
+* `run` hooks: These are hooks whose only role is to propagate events to
   handlers throughout the code. When that hook is run, it does not
-  gather data. `run` hooks support two type of return value from their
+  gather data. `run` hooks support two types of return value from their
   handler: 'stop' or anything else (that is ignored, so you can return
   the atom ok as a convention). If you return `stop` from your
   handler, it means no further processing will be done, i.e. that
   handlers defined for the same hook with lower priority will not be
   called. This approach is call `Enum.map/2` in Elixir.
 
-* `run_fold` hooks: This is hooks whose purpose is to retrieve /
+* `run_fold` hooks: These are hooks whose purpose is to retrieve /
   gather data. It is name after the Erlang `lists:foldl/3` function,
   which is having data passed iteratively through a function to
   produce a final data set. This is called `Enum.reduce/3` in
