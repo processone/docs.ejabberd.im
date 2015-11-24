@@ -296,12 +296,12 @@ used by the script to start the server. Then you can call
 
 #### Specific Notes for OSX (Yosemite or El Capitan)
 
-On OS X, you need to tell ejabberd to OpenSSL, Yaml, iconv for the
-build. The best approach is to use Homebrew(http://brew.sh) to install
-your dependencies:
+On OS X, you need to tell ejabberd to use custom OpenSSL, Yaml, iconv
+for the build. The best approach is to use Homebrew(http://brew.sh) to
+install your dependencies:
 
     #!console
-    brew install expat openssl libyaml libiconv sqlite 
+    brew install git erlang autoconf automake expat openssl libyaml libiconv sqlite
 
 Here is an example command to build ejabberd with brew-installed
 dependencies:
@@ -310,13 +310,17 @@ dependencies:
     export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
     export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
     export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-    ./configure --enable-all
+    ./configure --enable-mysql
     make
 
 Note: Reference to custom OpenSSL needs at the moment to be passed to
 `make` command. This is because make command download, configure and
 build dependencies. The reference is also needed in that context.
-    
+
+Please, make sure that for OSX El Capitan you are aware of rootless
+feature and have read Homebrew documentation no that topic:
+[El Capitan & Homebrew](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md)
+
 
 #### Specific Notes for BSD
 

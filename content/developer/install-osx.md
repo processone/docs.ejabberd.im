@@ -23,7 +23,7 @@ on your system:
 
 ## Homebrew
 
-An easy way to install some of the packages is by using a package
+An easy way to install some of the dependencies is by using a package
 manager, such as [Homebrew](http://brew.sh) – the Homebrew commands
 are provided here:
 
@@ -31,6 +31,20 @@ are provided here:
 * Erlang /OTP: `brew install erlang`
 * Autoconf: `brew install autoconf`
 * Automake: `brew install automake`
+* Openssl: `brew install openssl`
+* Expat: `brew install expat`
+* Libyaml: `brew install libyaml`
+* Libiconv: `brew install libiconv`
+* Sqlite: `brew install sqlite`
+
+You can install everything with a single command:
+
+    #!console
+    brew install git erlang autoconf automake expat openssl libyaml libiconv sqlite 
+
+Please, make sure that for OSX El Capitan you are aware of rootless
+feature and have read Homebrew documentation no that topic:
+[El Capitan & Homebrew](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md)
 
 ## Installation
 
@@ -41,11 +55,21 @@ To build and install ejabberd from source code, do the following:
 3. Run the following commands, assuming you want to install your
    ejabberd deployment into your home directory:
 ```
-$ chmod +x autogen.sh
-$ ./autogen.sh 
-$ ./configure --prefix=$HOME/my-ejabberd
-$ make && make install
+chmod +x autogen.sh
+./autogen.sh
+export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
+export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+./configure --prefix=$HOME/my-ejabberd --enable-mysql
+make && make install
 ```
+
+Note that the previous command reference the previously installed
+dependencies from [Homebrew](http://brew.sh).
+
+The exports are needed to point to the Homebrew version of the
+libraries, not the one provided by OSX.
+
 
 ## Running ejabberd
 
