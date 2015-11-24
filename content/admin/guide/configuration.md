@@ -419,11 +419,12 @@ are:
 
 `ejabberd_xmlrpc`
 
-:   Handles XML-RPC requests to execute ejabberd commands
-	([eja-commands]).  
+:   Handles XML-RPC requests to execute
+	[ejabberd commands](../managing/#ejabberd-commands).
 	Options: `access_commands`, `maxsessions`, `timeout`.  
-	You can find option explanations, example configuration in old and
-	new format, and example calls in several languages in the old
+	For explanations about `access_commands` see
+	[Restrict Execution with AccessCommands](../managing/#restrict-execution-with-accesscommands).
+	You can find more information in the old
 	[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
 
 #### Options
@@ -991,6 +992,7 @@ In this example, the following configuration defines that:
 	  - 
 	    port: 4560
 	    module: ejabberd_xmlrpc
+	    access_commands: {}
 	  - 
 	    ip: "127.0.0.1"
 	    port: 5233
@@ -3602,7 +3604,7 @@ below).
 
 `access_soft_quota: AccessName`
 
-This option defines which access rule is used to specify the "soft
+: This option defines which access rule is used to specify the "soft
 quota" for the matching JIDs. That rule must yield a positive number of
 megabytes for any JID that is supposed to have a quota limit. See the
 description of the `access_hard_quota` option for details.
