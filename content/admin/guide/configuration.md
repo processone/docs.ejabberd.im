@@ -424,6 +424,7 @@ are:
 	Options: `access_commands`, `maxsessions`, `timeout`.  
 	For explanations about `access_commands` see
 	[Restrict Execution with AccessCommands](../managing/#restrict-execution-with-accesscommands).
+	Check some [XML-RPC examples](../oauth/#xml-rpc-examples).
 	You can find more information in the old
 	[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
 

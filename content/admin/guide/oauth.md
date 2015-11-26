@@ -5,6 +5,9 @@ bodyclass: nocomment
 
 # OAuth support
 
+* This line is a placeholder to generate the table of contents
+{:toc}
+
 ## Introduction
 
 ejabberd includes a full support OAuth 2.0 deep inside the ejabberd
@@ -345,7 +348,7 @@ For admin queries, add "X-Admin: true" header:
 <!--- There is --oauth2-bearer curl option, which probably should add
       that authorization header, but it does nothing in my curl version -->
 
-#### XML-RPC example
+#### XML-RPC examples
 
 With a command like `get_roster`, you can get your own roster, or act
 as an admin to get any user roster.
@@ -394,7 +397,7 @@ This will lead to sending this XML-RPC payload to server:
       </params>
     </methodCall>
 
-To get roster of ther user using admin authorization, this erlang
+To get roster of other user using admin authorization, this erlang
 XML-RPC code can be used:
 
     #!erlang
@@ -407,6 +410,24 @@ XML-RPC code can be used:
         {struct, [{user, "peter"},
                   {server, "example.com"}]}]},
       false, 60000, "Host: localhost\r\n", []).
+
+Or this equivalent Python script:
+
+    import xmlrpclib
+
+    server_url = 'http://127.0.0.1:4560'
+    server = xmlrpclib.ServerProxy(server_url)
+
+    LOGIN = {'user': 'admin', 'server': 'example.com',
+	'token': '0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L',
+	'admin': True}
+
+    def calling(command, data):
+	fn = getattr(server, command)
+	return fn(LOGIN, data)
+
+    result = calling('get_roster', {'user':'peter', 'server':'example.com'})
+    print result
 
 that would send this XML to server:
 
