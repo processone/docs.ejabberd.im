@@ -415,7 +415,7 @@ are:
 :   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP Bosh and Websocket with proper request handler configured. 
 	Options: `captcha`, `certfile`, `default_host`, `dhfile`, `http_bind`,
 	`http_poll`, `request_handlers`, `tls`, `tls_compression`,
-	`trusted_proxies`, `web_admin`
+	`trusted_proxies` (global option), `web_admin`
 
 `ejabberd_xmlrpc`
 
@@ -684,13 +684,6 @@ modules:
 :   Whether to enable or disable TLS compression. The default value is
 	`true`.
 
-`trusted_proxies: all | [IpString]`
-
-:   Specify what proxies are trusted when an HTTP request contains the
-	header `X-Forwarded-For` You can specify `all` to allow all proxies,
-	or specify a list of IPs in string format. The default value is:
-	`[127.0.0.1]`
-
 `web_admin: true|false`
 
 :   This option enables the Web Admin for `ejabberd` administration
@@ -802,6 +795,13 @@ ejabberd configuration file (outside `listen`):
 	or to foreign server using S2S (compliant with
 	[`RFC 6120 Remote Domain rules`](http://xmpp.org/rfcs/rfc6120.html\#rules-remote)).
 
+`trusted_proxies: all | [IpString]`
+
+:   Specify what proxies are trusted when an HTTP request contains the
+	header `X-Forwarded-For` You can specify `all` to allow all proxies,
+	or specify a list of IPs in string format. The default value is:
+	`["127.0.0.1"]`
+
 #### Examples
 
 For example, the following simple configuration defines:
@@ -883,6 +883,7 @@ For example, the following simple configuration defines:
 	  - ipv4
 	  - ipv6
 	outgoing_s2s_timeout: 10000
+	trusted_proxies: ["127.0.0.1", "192.168.1.11"]
 
 In this example, the following configuration defines that:
 
