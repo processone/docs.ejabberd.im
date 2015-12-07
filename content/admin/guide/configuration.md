@@ -4870,6 +4870,8 @@ Options:
 	s2s or existing c2s sessions. You can change it by defining access
 	rule in this option. Use with care: allowing registration from s2s
 	leads to uncontrolled massive accounts creation by rogue users.
+	Additionally, if set to 'none', then In Band Registration is not
+	advertised as a stream feature.
 
 `captcha_protected: false|true`
 
