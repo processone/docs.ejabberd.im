@@ -4436,10 +4436,13 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 	Then you can define an access rule with a syntax similar to
 	`max_user_sessions` (see [Limiting Opened Sessions with ACL](#limiting-opened-sessions-with-acl)).
 
-`store_empty_body: true|false`
+`store_empty_body: true|false|unless_chat_state`
 
 :   Whether or not to store messages with empty `<body/>` element. The
-	default value is `true`.
+	default value is `unless_chat_state`, which tells ejabberd to
+	store messages with empty `<body/>` element *unless* they only
+	contain a chat state notification (as defined in
+	[`XEP-0085`](http://xmpp.org/extensions/xep-0085.html)).
 
 `pool_size: Size`
 
