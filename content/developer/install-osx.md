@@ -54,15 +54,14 @@ To build and install ejabberd from source code, do the following:
 2. Go to your ejabberd build directory: `cd ejabberd`
 3. Run the following commands, assuming you want to install your
    ejabberd deployment into your home directory:
-```
-chmod +x autogen.sh
-./autogen.sh
-export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
-export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-./configure --prefix=$HOME/my-ejabberd --enable-mysql
-make && make install
-```
+
+        chmod +x autogen.sh
+        ./autogen.sh
+        export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
+        export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+        export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+        ./configure --prefix=$HOME/my-ejabberd --enable-mysql
+        make && make install
 
 Note that the previous command reference the previously installed
 dependencies from [Homebrew](http://brew.sh).
