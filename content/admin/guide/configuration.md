@@ -5224,21 +5224,24 @@ Displayed groups
 
 Examples:
 
--   Take the case of a computer club that wants all its members seeing
+- Take the case of a computer club that wants all its members seeing
 	each other in their rosters. To achieve this, they need to create a
-	shared roster group similar to next table:
+	shared roster group similar to this one:
 
-	<span>|l|l|</span> Identification& Group ‘`club_members`’  
-	Name& Club Members  
-	Description& Members from the computer club  
-	Members&
+	**Identification**
+	:  Group ‘`club_members`’
 
-	|:----------------------|
-	| `member1@example.org` |
-	| `member2@example.org` |
-	| `member3@example.org` |
+	**Name**
+	:  Club Members
 
-	Displayed groups& `club_members`  
+	**Description**
+	:  Members from the computer club
+
+	**Members**
+	:  `member1@example.org`, `member2@example.org`, `member3@example.org`
+
+	**Displayed groups**
+	:  `club_members`
 
 -   In another case we have a company which has three divisions:
 	Management, Marketing and Sales. All group members should see all
@@ -5246,54 +5249,58 @@ Examples:
 	have all marketing and sales people in their roster. Simultaneously,
 	all marketeers and the whole sales team should see all managers.
 	This scenario can be achieved by creating shared roster groups as
-	shown in the following table:
+	shown in the following lists:
 
-	<span>|l|l|l|l|</span> Identification& Group ‘`management`’& Group
-	‘`marketing`’& Group ‘`sales`’  
-	Name& Management& Marketing& Sales  
-	Description&  
-	Members&
+	First list:
 
-	|:-----------------------|
-	| `manager1@example.org` |
-	| `manager2@example.org` |
-	| `manager3@example.org` |
-	| `manager4@example.org` |
+	**Identification**
+	:  Group ‘`management`’
 
-	&
+	**Name**
+	:  Management
 
-	|:-------------------------|
-	| `marketeer1@example.org` |
-	| `marketeer2@example.org` |
-	| `marketeer3@example.org` |
-	| `marketeer4@example.org` |
+	**Description**
+	:  Management
 
-	&
+	**Members**
+	:  `manager1@example.org`, `manager2@example.org`
 
-	|:--------------------------|
-	| `saleswoman1@example.org` |
-	| `salesman1@example.org`   |
-	| `saleswoman2@example.org` |
-	| `salesman2@example.org`   |
+	**Displayed groups**
+	:  `management`, `marketing`, `sales`
 
-	Displayed groups&
+	Second list:
 
-	|:-------------|
-	| `management` |
-	| `marketing`  |
-	| `sales`      |
+	**Identification**
+	:  Group ‘`marketing`’
 
-	&
+	**Name**
+	:  Marketing
 
-	|:-------------|
-	| `management` |
-	| `marketing`  |
+	**Description**
+	:  Marketing
 
-	&
+	**Members**
+	:  `marketeer1@example.org`, `marketeer2@example.org`, `marketeer3@example.org`
 
-	|:-------------|
-	| `management` |
-	| `sales`      |
+	**Displayed groups**
+	:  `management`, `marketing`
+
+	Third list:
+
+	**Identification**
+	:  Group ‘`sales`’
+
+	**Name**
+	:  Sales
+
+	**Description**
+	:  Sales
+
+	**Members**
+	:  `salesman1@example.org`, `salesman2@example.org`, `salesman3@example.org`
+
+	**Displayed groups**
+	:  `management`, `sales`
 
 
 ### mod_shared_roster_ldap
@@ -5331,14 +5338,14 @@ information. All of them are run against the `ldap_base`.
 	If that one also is unspecified, then the filter is assembled from
 	values of other parameters as follows (`[ldap_SOMETHING]` is used to
 	mean “the value of the configuration parameter
-	`ldap\_SOMETHING`”):
+	`ldap_SOMETHING`”):
 
 	    (&(&([ldap_memberattr]=[ldap_memberattr_format])([ldap_groupattr]=%g))[ldap_filter])
 
-	Subsequently `%u` and `%g` are replaced with a
-	. This means that given the defaults, the filter sent to the LDAP
+	Subsequently `%u` and `%g` are replaced with a \*.
+	This means that given the defaults, the filter sent to the LDAP
 	server is would be `(&(memberUid=*)(cn=*))`. If however the
-	`ldap\_memberattr\_format` is something like
+	`ldap_memberattr_format` is something like
 	`uid=%u,ou=People,o=org`, then the filter will be
 	`(&(memberUid=uid=*,ou=People,o=org)(cn=*))`.
 
@@ -5363,11 +5370,11 @@ Note that you will probably need to manually define the
 *User* and *Group Filter* (since the
 auto-assembled ones will not work) if:
 
--   your `ldap\_memberattr\_format` is anything other than a
+-   your `ldap_memberattr_format` is anything other than a
 	simple `%u`,
 
 -   **and** the attribute specified with
-	`ldap\_memberattr` does not support substring matches.
+	`ldap_memberattr` does not support substring matches.
 
 An example where it is the case is OpenLDAP and
 *(unique)MemberName* attribute from the
@@ -5385,37 +5392,45 @@ These parameters specify the names of the attributes which hold
 interesting data in the entries returned by running filters specified in
 section [Filters](#filters).
 
-The name of the attribute that holds the group name, and that is used to
-differentiate between them. Retrieved from results of the “Roster
-Filter” and “Group Filter”. Defaults to `cn`.
+`ldap_groupattr`
 
-The name of the attribute which holds the human-readable group name in
-the objects you use to represent groups. Retrieved from results of the
-“Group Filter”. Defaults to whatever `ldap\_groupattr` is
-set.
+: The name of the attribute that holds the group name, and that is used to
+  differentiate between them. Retrieved from results of the “Roster
+  Filter” and “Group Filter”. Defaults to `cn`.
 
-The name of the attribute which holds the IDs of the members of a group.
-Retrieved from results of the “Group Filter”. Defaults to
-`memberUid`.
+`ldap_groupdesc`
 
-The name of the attribute differs depending on the
-`objectClass` you use for your group objects, for example:
+: The name of the attribute which holds the human-readable group name in
+  the objects you use to represent groups. Retrieved from results of the
+  “Group Filter”. Defaults to whatever `ldap_groupattr` is
+  set.
 
-`posixGroup` -> `memberUid`
+`ldap_memberattr`
 
-`groupOfNames` -> `member`
+: The name of the attribute which holds the IDs of the members of a group.
+	Retrieved from results of the “Group Filter”. Defaults to
+	`memberUid`.
 
-`groupOfUniqueNames` -> `uniqueMember`
+	The name of the attribute differs depending on the
+	`objectClass` you use for your group objects, for example:
 
-The name of the attribute which holds the human-readable user name.
-Retrieved from results of the “User Filter”. Defaults to
-`cn`.
+		`posixGroup` -> `memberUid`
+		`groupOfNames` -> `member`
+		`groupOfUniqueNames` -> `uniqueMember`
 
-The name of the attribute which holds the ID of a roster item. Value of
-this attribute in the roster item objects needs to match the ID
-retrieved from the `ldap\_memberattr` attribute of a group
-object. Retrieved from results of the “User Filter”. Defaults to
-`cn`.
+`ldap_userdesc`
+
+: The name of the attribute which holds the human-readable user name.
+  Retrieved from results of the “User Filter”. Defaults to
+  `cn`.
+
+`ldap_useruid`
+
+: The name of the attribute which holds the ID of a roster item. Value of
+  this attribute in the roster item objects needs to match the ID
+  retrieved from the `ldap_memberattr` attribute of a group
+  object. Retrieved from results of the “User Filter”. Defaults to
+  `cn`.
 
 #### Control parameters
 
@@ -5435,31 +5450,26 @@ These paramters control the behaviour of the module.
 	by `ldap_memberattr`.
 
 	An example value
-	`“CN=(\\\\w\*),(OU=.\*,)\*DC=company,DC=com”`
+	`“CN=(\\w*),(OU=.*,)*DC=company,DC=com”`
 	works for user IDs such as the following:
 
 	-   `CN=Romeo,OU=Montague,DC=company,DC=com`
-
 	-   `CN=Abram,OU=Servants,OU=Montague,DC=company,DC=com`
-
 	-   `CN=Juliet,OU=Capulet,DC=company,DC=com`
-
 	-   `CN=Peter,OU=Servants,OU=Capulet,DC=company,DC=com`
 
 	In case:
 
 	-   the option is unset,
-
 	-   or the `re` module in unavailable in the current
 	    Erlang environment,
-
 	-   or the regular expression does not compile,
 
 	then instead of a regular expression, a simple format specified by
-	`ldap\_memberattr\_format` is used. Also, in the last two
+	`ldap_memberattr_format` is used. Also, in the last two
 	cases an error message is logged during the module initialization.
 
-	Also, note that in all cases `ldap\_memberattr\_format`
+	Also, note that in all cases `ldap_memberattr_format`
 	(and `*not*` the regex version) is used for constructing
 	the default “User/Group Filter” — see section [Filters](#filters).
 
@@ -5498,29 +5508,29 @@ following algorithm is used:
 
 1.  [step:rfilter] A list of names of groups to display is created: the
 	*Roster Filter* is run against the base DN, retrieving
-	the values of the attribute named by `ldap\_groupattr`.
+	the values of the attribute named by `ldap_groupattr`.
 
 2.  Unless the group cache is fresh (see the
-	`ldap\_group\_cache\_validity` option), it is refreshed:
+	`ldap_group_cache_validity` option), it is refreshed:
 
 	1.  Information for all groups is retrieved using a single query:
 		the *Group Filter* is run against the Base DN,
 		retrieving the values of attributes named by
-		`ldap\_groupattr` (group ID),
-		`ldap\_groupdesc` (group “Display Name”) and
-		`ldap\_memberattr` (IDs of group members).
+		`ldap_groupattr` (group ID),
+		`ldap_groupdesc` (group “Display Name”) and
+		`ldap_memberattr` (IDs of group members).
 
 	2.  group “Display Name”, read from the attribute named by
-		`ldap\_groupdesc`, is stored in the cache for the
+		`ldap_groupdesc`, is stored in the cache for the
 		given group
 
 	3.  the following processing takes place for each retrieved value of
-		attribute named by `ldap\_memberattr`:
+		attribute named by `ldap_memberattr`:
 
 		1.  the user ID part of it is extracted using
-			`ldap\_memberattr\_format(\_re)`,
+			`ldap_memberattr_format(_re)`,
 
-		2.  then (unless `ldap\_auth\_check` is set to
+		2.  then (unless `ldap_auth_check` is set to
 			`off`) for each found user ID, the module checks
 			(using the `ejabberd` authentication subsystem) whether such
 			user exists in the given virtual host. It is skipped if the
@@ -5529,7 +5539,7 @@ following algorithm is used:
 			This step is here for historical reasons. If you have a tidy
 			DIT and properly defined “Roster Filter” and “Group Filter”,
 			it is safe to disable it by setting
-			`ldap\_auth\_check` to `off` — it will
+			`ldap_auth_check` to `off` — it will
 			speed up the roster retrieval.
 
 		3.  the user ID is stored in the list of members in the cache
@@ -5551,11 +5561,11 @@ following algorithm is used:
 		2.  the display name of a shared roster user is retrieved:
 
 			1.  first, unless the user name cache is fresh (see the
-				`ldap\_user\_cache\_validity` option), it is
+				`ldap_user_cache_validity` option), it is
 				refreshed by running the *User Filter*,
 				against the Base DN, retrieving the values of attributes
-				named by `ldap\_useruid` and
-				`ldap\_userdesc`.
+				named by `ldap_useruid` and
+				`ldap_userdesc`.
 
 			2.  then, the display name for the given user ID is
 				retrieved from the user name cache.
