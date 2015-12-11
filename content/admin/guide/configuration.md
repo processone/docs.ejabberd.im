@@ -41,7 +41,7 @@ scalars are treated as different types:
 
 		> Art thou not Romeo,
 		  and a Montague?
-		
+
 		| Neither, fair saint,
 		  if either thee dislike.
 
@@ -210,7 +210,7 @@ are also other different modules for some specific virtual hosts:
 	  - "one.example.org"
 	  - "two.example.org"
 	  - "three.example.org"
-	
+
 	## Configuration of modules that are common to all vhosts
 	modules:
 	  mod_roster:    {}
@@ -220,7 +220,7 @@ are also other different modules for some specific virtual hosts:
 	  mod_time:      {}
 	  mod_last:      {}
 	  mod_version:   {}
-	
+
 	## Add some modules to vhost one:
 	append_host_config:
 	  "one.example.org":
@@ -229,7 +229,7 @@ are also other different modules for some specific virtual hosts:
 	        host: "echo-service.one.example.org"
 	      mod_http_bind: {}
 	      mod_logxml: {}
-	
+
 	## Add a module just to vhost two:
 	append_host_config:
 	  "two.example.org":
@@ -412,7 +412,7 @@ are:
 
 `ejabberd_http`
 
-:   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP Bosh and Websocket with proper request handler configured. 
+:   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP Bosh and Websocket with proper request handler configured.
 	Options: `captcha`, `certfile`, `default_host`, `dhfile`, `http_bind`,
 	`http_poll`, `request_handlers`, `tls`, `tls_compression`,
 	`trusted_proxies` (global option), `web_admin`
@@ -491,7 +491,7 @@ modules:
 	`ejabberd_service` can serve one or more hostnames. As `HostOption`
 	you can define options for the component; currently the only allowed
 	option is the password required to the component when attempt to
-	connect to ejabberd: <span>`password: Secret`</span>. Note that you
+	connect to ejabberd: `password: Secret`. Note that you
 	cannot define in a single `ejabberd_service` components of different
 	services: add an `ejabberd_service` for each service, as seen in an
 	example below.
@@ -503,10 +503,10 @@ modules:
 	[`XEP-0206`](http://xmpp.org/extensions/xep-0206.html)) support.
 	HTTP Bind enables access via HTTP requests to `ejabberd` from behind
 	firewalls which do not allow outgoing sockets on port 5222.
-	
+
 	Remember that you must also install and enable the module
 	mod\_http\_bind.
-	
+
 	If HTTP Bind is enabled, it will be available at
 	`http://server:port/http-bind/`. Be aware that support for HTTP Bind
 	is also needed in the XMPP client. Remark also that HTTP Bind can be
@@ -522,13 +522,13 @@ modules:
 	([`XEP-0025`](http://xmpp.org/extensions/xep-0025.html)) support.
 	HTTP Polling enables access via HTTP requests to `ejabberd` from
 	behind firewalls which do not allow outgoing sockets on port 5222.
-	
+
 	If HTTP Polling is enabled, it will be available at
 	`http://server:port/http-poll/`. Be aware that support for HTTP
 	Polling is also needed in the XMPP client. Remark also that HTTP
 	Polling can be interesting to host a web-based XMPP client such as
 	[`JWChat`](http://jwchat.sourceforge.net/).
-	
+
 	The maximum period of time to keep a client session active without
 	an incoming POST request can be configured with the global option
 	`http_poll_timeout`. The default value is five minutes. The option
@@ -589,7 +589,7 @@ modules:
 	served by Module. For example, if you want `mod_foo` to serve the
 	URIs that start with `/a/b/`, and you also want `mod_http_bind` to
 	serve the URIs `/http-bind/`, use this option:
-	
+
 	    request_handlers:
 	      "/a/b": mod_foo
 	      "/http-bind": mod_http_bind
@@ -833,9 +833,9 @@ For example, the following simple configuration defines:
 	  - "example.com"
 	  - "example.org"
 	  - "example.net"
-	
+
 	listen:
-	  - 
+	  -
 	    port: 5222
 	    module: ejabberd_c2s
 	    access: c2s
@@ -843,7 +843,7 @@ For example, the following simple configuration defines:
 	    starttls: true
 	    certfile: "/etc/ejabberd/server.pem"
 	    max_stanza_size: 65536
-	  - 
+	  -
 	    port: 5223
 	    module: ejabberd_c2s
 	    access: c2s
@@ -851,21 +851,21 @@ For example, the following simple configuration defines:
 	    tls: true
 	    certfile: "/etc/ejabberd/server.pem"
 	    max_stanza_size: 65536
-	  - 
+	  -
 	    port: 5269
 	    ip: "::"
 	    module: ejabberd_s2s_in
 	    shaper: s2s_shaper
 	    max_stanza_size: 131072
-	  - 
+	  -
 	    port: 3478
 	    transport: udp
 	    module: ejabberd_stun
-	  - 
+	  -
 	    port: 5280
 	    module: ejabberd_http
 	    http_poll: true
-	  - 
+	  -
 	    port: 5281
 	    ip: "127.0.0.1"
 	    module: ejabberd_http
@@ -873,7 +873,7 @@ For example, the following simple configuration defines:
 	    http_bind: true
 	    tls: true
 	    certfile: "/etc/ejabberd/server.pem"
-	
+
 	s2s_use_starttls: optional
 	s2s_certfile: "/etc/ejabberd/server.pem"
 	host_config:
@@ -936,26 +936,26 @@ In this example, the following configuration defines that:
 
 <!-- -->
 	#!yaml
-	acl: 
-	  blocked: 
+	acl:
+	  blocked:
 	    user: "bad"
-	  trusted_servers: 
+	  trusted_servers:
 	    server:
 	      - "example.com"
 	      - "jabber.example.org"
-	  xmlrpc_bot: 
-	    user: 
+	  xmlrpc_bot:
+	    user:
 	      - "xmlrpc-robot": "example.org"
-	shaper: 
+	shaper:
 	  normal: 1000
-	access: 
-	  c2s: 
+	access:
+	  c2s:
 	    blocked: deny
 	    all: allow
-	  c2s_shaper: 
+	  c2s_shaper:
 	    admin: none
 	    all: normal
-	  xmlrpc_access: 
+	  xmlrpc_access:
 	    xmlrpc_bot: allow
 	  s2s:
 	    trusted_servers: allow
@@ -963,90 +963,90 @@ In this example, the following configuration defines that:
 	s2s_certfile: "/path/to/ssl.pem"
 	s2s_access: s2s
 	s2s_use_starttls: required_trusted
-	listen: 
-	  - 
+	listen:
+	  -
 	    port: 5222
 	    module: ejabberd_c2s
 	    shaper: c2s_shaper
 	    access: c2s
-	  - 
+	  -
 	    ip: "192.168.0.1"
 	    port: 5223
 	    module: ejabberd_c2s
 	    certfile: "/path/to/ssl.pem"
 	    tls: true
 	    access: c2s
-	  - 
+	  -
 	    ip: "FDCA:8AB6:A243:75EF::1"
 	    port: 5223
 	    module: ejabberd_c2s
 	    certfile: "/path/to/ssl.pem"
 	    tls: true
 	    access: c2s
-	  - 
+	  -
 	    port: 5269
 	    module: ejabberd_s2s_in
-	  - 
+	  -
 	    port: 5280
 	    module: ejabberd_http
 	    web_admin: true
 	    http_poll: true
-	  - 
+	  -
 	    port: 4560
 	    module: ejabberd_xmlrpc
 	    access_commands: {}
-	  - 
+	  -
 	    ip: "127.0.0.1"
 	    port: 5233
 	    module: ejabberd_service
-	    hosts: 
-	      "aim.example.org": 
+	    hosts:
+	      "aim.example.org":
 	        password: "aimsecret"
-	  - 
+	  -
 	    ip: "::1"
 	    port: 5233
 	    module: ejabberd_service
-	    hosts: 
-	      "aim.example.org": 
+	    hosts:
+	      "aim.example.org":
 	        password: "aimsecret"
-	  - 
+	  -
 	    port: 5234
 	    module: ejabberd_service
-	    hosts: 
-	      "icq.example.org": 
+	    hosts:
+	      "icq.example.org":
 	        password: "jitsecret"
-	      "sms.example.org": 
+	      "sms.example.org":
 	        password: "jitsecret"
-	  - 
+	  -
 	    port: 5235
 	    module: ejabberd_service
-	    hosts: 
-	      "msn.example.org": 
+	    hosts:
+	      "msn.example.org":
 	        password: "msnsecret"
-	  - 
+	  -
 	    port: 5236
 	    module: ejabberd_service
-	    hosts: 
-	      "yahoo.example.org": 
+	    hosts:
+	      "yahoo.example.org":
 	        password: "yahoosecret"
-	  - 
+	  -
 	    port: 5237
 	    module: ejabberd_service
-	    hosts: 
-	      "gg.example.org": 
+	    hosts:
+	      "gg.example.org":
 	        password: "ggsecret"
-	  - 
+	  -
 	    port: 5238
 	    module: ejabberd_service
-	    hosts: 
-	      "jmc.example.org": 
+	    hosts:
+	      "jmc.example.org":
 	        password: "jmcsecret"
-	  - 
+	  -
 	    port: 5239
 	    module: ejabberd_service
 	    service_check_from: false
-	    hosts: 
-	      "custom.example.org": 
+	    hosts:
+	      "custom.example.org":
 	        password: "customsecret"
 
 Note, that for services based in jabberd14 or WPJabber you have to make
@@ -1057,20 +1057,20 @@ the transports log and do XDB by themselves:
 	   You have to add elogger and rlogger entries here when using ejabberd.
 	   In this case the transport will do the logging.
 	-->
-	
+
 	<log id='logger'>
 	  <host/>
 	  <logtype/>
 	  <format>%d: [%t] (%h): %s</format>
 	  <file>/var/log/jabber/service.log</file>
 	</log>
-	
+
 	<!--
 	   Some XMPP server implementations do not provide
 	   XDB services (for example, jabberd2 and ejabberd).
 	   xdb_file.so is loaded in to handle all XDB requests.
 	-->
-	
+
 	<xdb id="xdb">
 	  <host/>
 	  <load>
@@ -1446,7 +1446,7 @@ following syntax:
 
 :   Matches the user with the name `Username` at the first virtual host.
 	Example:
-	
+
 	    #!yaml
 	    acl:
 	      admin:
@@ -1456,7 +1456,7 @@ following syntax:
 
 :   Matches the user with the JID `Username@Server` and any resource.
 	Example:
-	
+
 	    #!yaml
 	    acl:
 	      admin:
@@ -1485,7 +1485,7 @@ following syntax:
 
 :   Matches any member of a Shared Roster Group with name `Groupname` in
 	the virtual host. Example:
-	
+
 	    #!yaml
 	    acl:
 	      techgroupmembers:
@@ -1495,7 +1495,7 @@ following syntax:
 
 :   Matches any member of a Shared Roster Group with name `Groupname` in
 	the virtual host `Server`. Example:
-	
+
 	    #!yaml
 	    acl:
 	      techgroupmembers:
@@ -1517,7 +1517,7 @@ following syntax:
 
 :   Matches any local user with a name that matches `Regexp` on local
 	virtual hosts. Example:
-	
+
 	    #!yaml
 	    acl:
 	      tests:
@@ -1527,7 +1527,7 @@ following syntax:
 
 :   Matches any user with a name that matches `Regexp` at server
 	`Server`. Example:
-	
+
 	    #!yaml
 	    acl:
 	      tests:
@@ -1556,7 +1556,7 @@ following syntax:
 
 :   Matches any user with a name that matches `UserRegexp` at any server
 	that matches `ServerRegexp`. Example:
-	
+
 	    #!yaml
 	    acl:
 	      yozhik:
@@ -1584,17 +1584,17 @@ following syntax:
 :   This is the same as above. However, it uses shell glob patterns
 	instead of regexp. These patterns can have the following special
 	characters:
-	
+
 	`*`
-	
+
 	:   matches any string including the null string.
-	
+
 	`?`
-	
+
 	:   matches any single character.
-	
+
 	`[...]`
-	
+
 	:   matches any of the enclosed characters. Character ranges are
 	    specified by a pair of characters separated by a `-`. If the
 	    first character after `[` is a `!`, any character not enclosed
@@ -1789,12 +1789,12 @@ Example configuration:
 
 	#!yaml
 	hosts: ["example.org"]
-	
+
 	captcha_cmd: "/lib/ejabberd/priv/bin/captcha.sh"
 	captcha_host: "example.org:5280"
 	## captcha_host: "https://example.org:443"
 	## captcha_host: "http://example.com"
-	
+
 	listen:
 	  ...
 	  -
@@ -1896,11 +1896,11 @@ Example configuration with disabled TURN functionality (STUN only):
 	#!yaml
 	listen:
 	  ...
-	  - 
+	  -
 	    port: 3478
 	    transport: udp
 	    module: ejabberd_stun
-	  - 
+	  -
 	    port: 3478
 	    module: ejabberd_stun
 	  -
@@ -1915,7 +1915,7 @@ enabled if TURN is enabled. Here, only UDP section is shown:
 	#!yaml
 	listen:
 	  ...
-	  - 
+	  -
 	    port: 3478
 	    transport: udp
 	    use_turn: true
@@ -1962,11 +1962,11 @@ Example configuration with standard ports (as per
 	#!yaml
 	listen:
 	  ...
-	  - 
+	  -
 	    port: 5060
 	    transport: udp
 	    module: ejabberd_sip
-	  - 
+	  -
 	    port: 5060
 	    module: ejabberd_sip
 	  -
@@ -2139,10 +2139,10 @@ This complex example:
 	  'NUMBER_PORT_C2S': 5222
 	  'NUMBER_PORT_HTTP': 5280
 	listen:
-	  - 
+	  -
 	    port: 'NUMBER_PORT_C2S'
 	    module: ejabberd_c2s
-	  - 
+	  -
 	    port: 'NUMBER_PORT_HTTP'
 	    module: ejabberd_http
 
@@ -2150,10 +2150,10 @@ produces this result after being interpreted:
 
 	#!yaml
 	listen:
-	  - 
+	  -
 	    port: 5222
 	    module: ejabberd_c2s
-	  - 
+	  -
 	    port: 5280
 	    module: ejabberd_http
 
@@ -2422,14 +2422,14 @@ Available options are:
 	`[{ldap_uidattr, ldap_uidattr_format}]`. You can use as many comma
 	separated attributes as needed. The values for `ldap_uidattr` and
 	`ldap_uidattr_format` are described as follow:
-	
+
 	`ldap_uidattr`
-	
+
 	:   LDAP attribute which holds the user’s part of a JID. The default
 	    value is `uid`.
-	
+
 	`ldap_uidattr_format`
-	
+
 	:   Format of the `ldap_uidattr` variable. The format *must* contain
 	    one and only one pattern variable `%u` which will be replaced by
 	    the user’s part of a JID. For example, `%u@example.org`. The
@@ -2455,11 +2455,11 @@ Available options are:
 	all `%s` variables are consecutively replaced by values of
 	FilterAttrs attributes and `%D` is replaced by Distinguished Name.
 	By default `ldap_dn_filter` is undefined. Example:
-	
+
 	    #!yaml
 	    ldap_dn_filter:
 	      "(&(name=%s)(owner=%D)(user=%u@%d))": ["sn"]
-	
+
 	Since this filter makes additional LDAP lookups, use it only in the
 	last resort: try to define all filter rules in `ldap_filter` if
 	possible.
@@ -2471,7 +2471,7 @@ Available options are:
 	The local filter checks an attribute in ejabberd, not in LDAP, so
 	this limits the load on the LDAP directory. The default filter is:
 	`undefined`. Example values:
-	
+
 	    {ldap_local_filter, {notequal, {"accountStatus",["disabled"]}}}.
 	    {ldap_local_filter, {equal, {"accountStatus",["enabled"]}}}.
 	    {ldap_local_filter, undefined}.
@@ -2565,11 +2565,11 @@ sample configuration is shown below:
 	ldap_password: "*******" # Password to LDAP manager
 	ldap_uids: ["sAMAccountName"]
 	ldap_filter: "(memberOf=*)"
-	
-	modules: 
+
+	modules:
 	  ...
-	  mod_vcard_ldap: 
-	    ldap_vcard_map: 
+	  mod_vcard_ldap:
+	    ldap_vcard_map:
 	      "NICKNAME": {"%u", []}
 	      "GIVEN": {"%s", ["givenName"]}
 	      "MIDDLE": {"%s", ["initials"]}
@@ -2587,7 +2587,7 @@ sample configuration is shown below:
 	      "URL": {"%s", ["wWWHomePage"]}
 	      "DESC": {"%s", ["description"]}
 	      "TEL": {"%s", ["telephoneNumber"]}]}
-	    ldap_search_fields: 
+	    ldap_search_fields:
 	      "User": "%u"
 	      "Name": "givenName"
 	      "Family Name": "sn"
@@ -2597,7 +2597,7 @@ sample configuration is shown below:
 	      "Role": "title"
 	      "Description": "description"
 	      "Phone": "telephoneNumber"
-	    ldap_search_reported: 
+	    ldap_search_reported:
 	      "Full Name": "FN"
 	      "Nickname": "NICKNAME"
 	      "Email": "EMAIL"
@@ -2645,7 +2645,7 @@ Several `ejabberd` modules can be used to store information in Riak
 database. Refer to the corresponding module documentation to see if it
 supports such ability. To enable storage to Riak database, just make
 sure that your database is running well (see the next section), and add
-the module option `db_type: riak` or set `default_db: riak` globally 
+the module option `db_type: riak` or set `default_db: riak` globally
 if you want to use Riak for all modules.
 
 #### Riak Configuration
@@ -2777,7 +2777,7 @@ Examples:
 
 The following table lists all modules included in `ejabberd`.
 
-| <span>**Module**</span>                        | <span>**Feature**</span>                             | <span>**Dependencies**</span>    |
+| **Module**                                     | **Feature**                                          | **Dependencies**                 |
 |:-----------------------------------------------|:-----------------------------------------------------|:---------------------------------|
 | mod_adhoc                                      | Ad-Hoc Commands ([`XEP-0050`][38])                   |                                  |
 | [mod_announce](#modannounce)                   | Manage announcements                                 | recommends `mod_adhoc`           |
@@ -3072,7 +3072,7 @@ Examples:
 		access:
 		  announce:
 		    admin: allow
-		
+
 		modules:
 		  ...
 		  mod_adhoc: {}
@@ -3095,7 +3095,7 @@ Examples:
 		  announce:
 		    admin: allow
 		    direction: allow
-		
+
 		modules:
 		  ...
 		  mod_adhoc: {}
@@ -3220,22 +3220,22 @@ Examples:
 		  ...
 		  mod_disco:
 		    server_info:
-		      - 
+		      -
 		        modules: all
 		        name: "abuse-addresses"
 		        urls: ["mailto:abuse@shakespeare.lit"]
-		      - 
+		      -
 		        modules: [mod_muc]
 		        name: "Web chatroom logs"
 		        urls: ["http://www.example.org/muc-logs"]
-		      - 
+		      -
 		        modules: [mod_disco]
 		        name: "feedback-addresses"
 		        urls:
 		          - "http://shakespeare.lit/feedback.php"
 		          - "mailto:feedback@shakespeare.lit"
 		          - "xmpp:feedback@shakespeare.lit"
-		      - 
+		      -
 		        modules:
 		          - mod_disco
 		          - mod_vcard
@@ -3324,7 +3324,7 @@ and add `http_bind` in the HTTP service. For example:
 	#!yaml
 	listen:
 	  ...
-	  - 
+	  -
 	    port: 5280
 	    module: ejabberd_http
 	    http_bind: true
@@ -3344,7 +3344,7 @@ different module, you can configure it manually using the option
 	#!yaml
 	listen:
 	  ...
-	  - 
+	  -
 	    port: 5280
 	    module: ejabberd_http
 	    request_handlers:
@@ -3359,7 +3359,7 @@ Options:
 
 :   Define the maximum inactivity period in seconds. Default value is 30
 	seconds. For example, to set 50 seconds:
-	
+
 	    #!yaml
 	    modules:
 	      ...
@@ -3435,7 +3435,7 @@ And define it as a handler in the HTTP service:
 	#!yaml
 	listen:
 	  ...
-	  - 
+	  -
 	    port: 5280
 	    module: ejabberd_http
 	    request_handlers:
@@ -3574,7 +3574,7 @@ Example:
 	      "upload": mod_http_upload
 	      ...
 	  ...
-	
+
 	modules:
 	  ...
 	  mod_http_upload:
@@ -3624,7 +3624,7 @@ in the following example.
 	  hard_upload_quota:
 	    all: 1100 # MiB
 	  ...
-	
+
 	modules:
 	  ...
 	  mod_http_upload: {}
@@ -3752,12 +3752,12 @@ Examples:
 		      - "customer1": "example.org"
 		      - "customer2": "example.org"
 		    server: "example.com"
-		
+
 		access:
 		  irc_users:
 		    paying_customers: allow
 		    all: deny
-		
+
 		modules:
 		  ...
 		  mod_irc:
@@ -4100,11 +4100,11 @@ Examples:
 		  admin:
 		    user:
 		      - "admin": "example.org"
-		
+
 		access:
 		  muc_admin:
 		    admin: allow
-		
+
 		modules:
 		  ...
 		  mod_muc:
@@ -4136,7 +4136,7 @@ Examples:
 		  admin:
 		    user:
 		      - "admin": "example.org"
-		
+
 		access:
 		  muc_admin
 		    admin: allow
@@ -4145,7 +4145,7 @@ Examples:
 		    paying_customers: allow
 		    admin: allow
 		    all: deny
-		
+
 		modules:
 		  ...
 		  mod_muc:
@@ -4307,13 +4307,13 @@ Examples:
 	`<a href="http://www.jabber.ru/">Jabber.ru</a>`.
 
 		#!yaml
-		access: 
-		  muc: 
+		access:
+		  muc:
 		    all: allow
-		
-		modules: 
+
+		modules:
 		  ...
-		  mod_muc_log: 
+		  mod_muc_log:
 		    access_log: muc
 		    cssfile: "http://example.com/my.css"
 		    dirtype: plain
@@ -4321,7 +4321,7 @@ Examples:
 		    outdir: "/var/www/muclogs"
 		    timezone: universal
 		    spam_prevention: true
-		    top_link: 
+		    top_link:
 		      "http://www.jabber.ru/": "Jabber.ru"
 		  ...
 
@@ -4334,19 +4334,19 @@ Examples:
 	`<a href="/">Home</a>`.
 
 		#!yaml
-		acl: 
-		  admin: 
-		    user: 
+		acl:
+		  admin:
+		    user:
 		      - "admin1": "example.org"
 		      - "admin2": "example.net"
-		access: 
-		  muc_log: 
+		access:
+		  muc_log:
 		    admin: allow
 		    all: deny
-		
-		modules: 
+
+		modules:
 		  ...
-		  mod_muc_log: 
+		  mod_muc_log:
 		    access_log: muc_log
 		    cssfile: false
 		    dirtype: subdirs
@@ -4454,25 +4454,25 @@ This example allows power users to have as much as 5000 offline
 messages, administrators up to 2000, and all the other users up to 100.
 
 	#!yaml
-	acl: 
-	  admin: 
-	    user: 
+	acl:
+	  admin:
+	    user:
 	      - "admin1": "localhost"
 	      - "admin2": "example.org"
-	  poweruser: 
-	    user: 
+	  poweruser:
+	    user:
 	      - "bob": "example.org"
 	      - "jane": "example.org"
-	
-	access: 
-	  max_user_offline_messages: 
+
+	access:
+	  max_user_offline_messages:
 	    poweruser: 5000
 	    admin: 2000
 	    all: 100
-	
-	modules: 
+
+	modules:
 	  ...
-	  mod_offline: 
+	  mod_offline:
 	    access_max_user_messages: max_user_offline_messages
 	  ...
 
@@ -4563,26 +4563,26 @@ end users have support for it in their XMPP client, they will be able
 to:
 
 > -   Retrieving one’s privacy lists.
-> 
+>
 > -   Adding, removing, and editing one’s privacy lists.
-> 
+>
 > -   Setting, changing, or declining active lists.
-> 
+>
 > -   Setting, changing, or declining the default list (i.e., the list
 > 	that is active by default).
-> 
+>
 > -   Allowing or blocking messages based on JID, group, or subscription
 > 	type (or globally).
-> 
+>
 > -   Allowing or blocking inbound presence notifications based on JID,
 > 	group, or subscription type (or globally).
-> 
+>
 > -   Allowing or blocking outbound presence notifications based on JID,
 > 	group, or subscription type (or globally).
-> 
+>
 > -   Allowing or blocking IQ stanzas based on JID, group, or
 > 	subscription type (or globally).
-> 
+>
 > -   Allowing or blocking all communications based on JID, group, or
 > 	subscription type (or globally).
 
@@ -4692,28 +4692,28 @@ Examples:
 -   More complicated configuration.
 
 		#!yaml
-		acl: 
-		  admin: 
-		    user: 
+		acl:
+		  admin:
+		    user:
 		      - "admin": "example.org"
-		  proxy_users: 
-		    server: 
+		  proxy_users:
+		    server:
 		      - "example.org"
-		
-		access: 
-		  proxy65_access: 
+
+		access:
+		  proxy65_access:
 		    proxy_users: allow
 		    all: deny
-		  proxy65_shaper: 
+		  proxy65_shaper:
 		    admin: none
 		    proxy_users: proxyrate
-		
-		shaper: 
+
+		shaper:
 		  proxyrate: 10240
-		
-		modules: 
+
+		modules:
 		  ...
-		  mod_proxy65: 
+		  mod_proxy65:
 		    host: "proxy1.example.org"
 		    name: "File Transfer Proxy"
 		    ip: "200.150.100.1"
@@ -4740,7 +4740,7 @@ Options:
 	option is not specified, the Jabber ID will be the hostname of the
 	virtual host with the prefix ‘`pubsub.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
-	
+
 	If you use `mod_pubsub` with `odbc` `db_type`, please ensure the
 	prefix contains only one dot, for example ‘`pubsub.`’, or
 	‘`publish.`’,.
@@ -4769,7 +4769,7 @@ Options:
 :   To specify which nodetree to use. If not defined, the default pubsub
 	nodetree is used: “tree”. Only one nodetree can be used per host,
 	and is shared by all node plugins.
-	
+
 	The “virtual” nodetree does not store nodes on database. This saves
 	resources on systems with tons of nodes. If using the “virtual”
 	nodetree, you can only enable those node plugins: [“flat”,“pep”] or
@@ -4778,7 +4778,7 @@ Options:
 	changed. Using “virtual” nodetree requires to start from a clean
 	database, it will not work if you used the default “tree” nodetree
 	before.
-	
+
 	The “dag” nodetree provides experimental support for PubSub
 	Collection Nodes
 	([`XEP-0248`](http://xmpp.org/extensions/xep-0248.html)). In that
@@ -4805,7 +4805,7 @@ Options:
 :   This allow to define a Key-Value list to choose defined node plugins
 	on given PEP namespace. The following example will use node\_tune
 	instead of node\_pep for every PEP node with tune namespace:
-	
+
 	    #!yaml
 	    modules:
 	      ...
@@ -4835,12 +4835,12 @@ following example shows previous configuration with ODBC usage:
 	#!yaml
 	modules:
 	  ...
-      mod_pubsub: 
+      mod_pubsub:
         db_type: odbc
         access_createnode: pubsub_createnode
         ignore_pep_from_offline: true
         last_item_cache: false
-        plugins: 
+        plugins:
           - "flat"
           - "hometree"
           - "pep"
@@ -4925,28 +4925,28 @@ Examples:
 	and allows to create accounts only to clients of the local network:
 
 		#!yaml
-		acl: 
+		acl:
 		  loopback:
 		    ip:
 		      - "127.0.0.0/8"
 		      - "::1"
-		  shortname: 
-		    user_glob: 
+		  shortname:
+		    user_glob:
 		      - "?"
 		      - "??"
 		    ## The same using regexp:
 		    ##user_regexp: "^..?$"
-		
-		access: 
-		  mynetworks: 
+
+		access:
+		  mynetworks:
 		    loopback: allow
 		    all: deny
-		  register: 
+		  register:
 		    shortname: deny
 		    all: allow
-		
-		modules: 
-		  mod_register: 
+
+		modules:
+		  mod_register:
 		    ip_access: mynetworks
 		    access: register
 
@@ -4958,7 +4958,7 @@ Examples:
 		access:
 		  register:
 		    all: deny
-		
+
 		modules:
 		  ...
 		  mod_register:
@@ -4989,7 +4989,7 @@ Examples:
 		        Hi.
 		        Welcome to this Jabber server.
 		        Check http://www.jabber.org
-		
+
 		        Bye
 		    registration_watchers:
 		      - "admin1@example.org"
@@ -5020,21 +5020,21 @@ This example configuration shows how to enable the module and the web
 handler:
 
 	#!yaml
-	hosts: 
+	hosts:
 	  - "localhost"
 	  - "example.org"
 	  - "example.com"
-	listen: 
+	listen:
 	  ...
-	  - 
+	  -
 	    port: 5281
 	    module: ejabberd_http
 	    register: true
 	    certfile: "/etc/ejabberd/certificate.pem"
 	    tls: true
 	  ...
-	
-	modules: 
+
+	modules:
 	  ...
 	  mod_register_web: {}
 	  ...
@@ -5122,7 +5122,7 @@ everybody else cannot modify the roster:
 	access:
 	  roster:
 	    admin: allow
-	
+
 	modules:
 	  ...
 	  mod_roster:
@@ -5319,7 +5319,7 @@ information. All of them are run against the `ldap_base`.
 :   So called “Roster Filter”. Used to find names of all “shared roster”
 	groups. See also the `ldap_groupattr` parameter. If unspecified,
 	defaults to the top-level parameter of the same name. You
-	<span>*must*</span> specify it in some place in the configuration,
+	*must* specify it in some place in the configuration,
 	there is no default.
 
 `ldap_ufilter`
@@ -5331,14 +5331,14 @@ information. All of them are run against the `ldap_base`.
 	If that one also is unspecified, then the filter is assembled from
 	values of other parameters as follows (`[ldap_SOMETHING]` is used to
 	mean “the value of the configuration parameter
-	<span>ldap\_SOMETHING</span>”):
-	
+	`ldap\_SOMETHING`”):
+
 	    (&(&([ldap_memberattr]=[ldap_memberattr_format])([ldap_groupattr]=%g))[ldap_filter])
-	
-	Subsequently <span>%u</span> and <span>%g</span> are replaced with a
+
+	Subsequently `%u` and `%g` are replaced with a
 	. This means that given the defaults, the filter sent to the LDAP
 	server is would be `(&(memberUid=*)(cn=*))`. If however the
-	<span>ldap\_memberattr\_format</span> is something like
+	`ldap\_memberattr\_format` is something like
 	`uid=%u,ou=People,o=org`, then the filter will be
 	`(&(memberUid=uid=*,ou=People,o=org)(cn=*))`.
 
@@ -5349,31 +5349,31 @@ information. All of them are run against the `ldap_base`.
 	`ldap_groupattr`, `ldap_groupdesc` and `ldap_memberattr`. If
 	unspecified, defaults to the top-level parameter of the same name.
 	If that one also is unspecified, then the filter is constructed
-	exactly in the same way as <span>User Filter</span>.
+	exactly in the same way as *User Filter*.
 
 `ldap_filter`
 
-:   Additional filter which is AND-ed together with <span>User
-	Filter</span> and <span>Group Filter</span>. If unspecified,
+:   Additional filter which is AND-ed together with *User
+	Filter* and *Group Filter*. If unspecified,
 	defaults to the top-level parameter of the same name. If that one is
 	also unspecified, then no additional filter is merged with the other
 	filters.
 
 Note that you will probably need to manually define the
-<span>User</span> and <span>Group Filter</span>s (since the
+*User* and *Group Filter* (since the
 auto-assembled ones will not work) if:
 
--   your <span>ldap\_memberattr\_format</span> is anything other than a
-	simple <span>%u</span>,
+-   your `ldap\_memberattr\_format` is anything other than a
+	simple `%u`,
 
--   <span>**and**</span> the attribute specified with
-	<span>ldap\_memberattr</span> does not support substring matches.
+-   **and** the attribute specified with
+	`ldap\_memberattr` does not support substring matches.
 
 An example where it is the case is OpenLDAP and
-<span>(unique)MemberName</span> attribute from the
-<span>groupOf(Unique)Names</span> objectClass. A symptom of this problem
+*(unique)MemberName* attribute from the
+*groupOf(Unique)Names* objectClass. A symptom of this problem
 is that you will see messages such as the following in your
-<span>slapd.log</span>:
+`slapd.log`:
 
 	#!yaml
 	get_filter: unknown filter type=130
@@ -5387,38 +5387,35 @@ section [Filters](#filters).
 
 The name of the attribute that holds the group name, and that is used to
 differentiate between them. Retrieved from results of the “Roster
-Filter” and “Group Filter”. Defaults to <span>cn</span>.
+Filter” and “Group Filter”. Defaults to `cn`.
 
 The name of the attribute which holds the human-readable group name in
 the objects you use to represent groups. Retrieved from results of the
-“Group Filter”. Defaults to whatever <span>ldap\_groupattr</span> is
+“Group Filter”. Defaults to whatever `ldap\_groupattr` is
 set.
 
 The name of the attribute which holds the IDs of the members of a group.
 Retrieved from results of the “Group Filter”. Defaults to
-<span>memberUid</span>.
+`memberUid`.
 
 The name of the attribute differs depending on the
-<span>objectClass</span> you use for your group objects, for example:
+`objectClass` you use for your group objects, for example:
 
-<span><span>posixGroup</span></span> \\(\rightarrow{}\\)
-<span>memberUid</span>
+`posixGroup` -> `memberUid`
 
-<span><span>groupOfNames</span></span> \\(\rightarrow{}\\)
-<span>member</span>
+`groupOfNames` -> `member`
 
-<span><span>groupOfUniqueNames</span></span> \\(\rightarrow{}\\)
-<span>uniqueMember</span>
+`groupOfUniqueNames` -> `uniqueMember`
 
 The name of the attribute which holds the human-readable user name.
 Retrieved from results of the “User Filter”. Defaults to
-<span>cn</span>.
+`cn`.
 
 The name of the attribute which holds the ID of a roster item. Value of
 this attribute in the roster item objects needs to match the ID
-retrieved from the <span>ldap\_memberattr</span> attribute of a group
+retrieved from the `ldap\_memberattr` attribute of a group
 object. Retrieved from results of the “User Filter”. Defaults to
-<span>cn</span>.
+`cn`.
 
 #### Control parameters
 
@@ -5427,7 +5424,7 @@ These paramters control the behaviour of the module.
 `ldap_memberattr_format`
 
 :   A globbing format for extracting user ID from the value of the
-	attribute named by `ldap_memberattr`. Defaults to <span>%u</span>,
+	attribute named by `ldap_memberattr`. Defaults to `%u`,
 	which means that the whole value is the member ID. If you change it
 	to something different, you may also need to specify the User and
 	Group Filters manually — see section [Filters](#filters).
@@ -5436,34 +5433,34 @@ These paramters control the behaviour of the module.
 
 :   A regex for extracting user ID from the value of the attribute named
 	by `ldap_memberattr`.
-	
+
 	An example value
-	<span>“CN=(\\(\backslash{}\backslash{}\\)w\*),(OU=.\*,)\*DC=company,DC=com”</span>
+	`“CN=(\\\\w\*),(OU=.\*,)\*DC=company,DC=com”`
 	works for user IDs such as the following:
-	
+
 	-   `CN=Romeo,OU=Montague,DC=company,DC=com`
-	
+
 	-   `CN=Abram,OU=Servants,OU=Montague,DC=company,DC=com`
-	
+
 	-   `CN=Juliet,OU=Capulet,DC=company,DC=com`
-	
+
 	-   `CN=Peter,OU=Servants,OU=Capulet,DC=company,DC=com`
-	
+
 	In case:
-	
+
 	-   the option is unset,
-	
-	-   or the <span>re</span> module in unavailable in the current
+
+	-   or the `re` module in unavailable in the current
 	    Erlang environment,
-	
+
 	-   or the regular expression does not compile,
-	
+
 	then instead of a regular expression, a simple format specified by
-	<span>ldap\_memberattr\_format</span> is used. Also, in the last two
+	`ldap\_memberattr\_format` is used. Also, in the last two
 	cases an error message is logged during the module initialization.
-	
-	Also, note that in all cases <span>ldap\_memberattr\_format</span>
-	(and <span>*not*</span> the regex version) is used for constructing
+
+	Also, note that in all cases `ldap\_memberattr\_format`
+	(and `*not*` the regex version) is used for constructing
 	the default “User/Group Filter” — see section [Filters](#filters).
 
 `ldap_auth_check`
@@ -5471,8 +5468,8 @@ These paramters control the behaviour of the module.
 :   Whether the module should check (via the ejabberd authentication
 	subsystem) for existence of each user in the shared LDAP roster. See
 	section [mod_shared_roster_ldap](#modsharedrosterldap) form more information. Set to
-	<span>off</span> if you want to disable the check. Defaults to
-	<span>on</span>.
+	`off` if you want to disable the check. Defaults to
+	`on`.
 
 `ldap_user_cache_validity`
 
@@ -5500,31 +5497,31 @@ When the module is called to retrieve the shared roster for a user, the
 following algorithm is used:
 
 1.  [step:rfilter] A list of names of groups to display is created: the
-	<span>Roster Filter</span> is run against the base DN, retrieving
-	the values of the attribute named by <span>ldap\_groupattr</span>.
+	*Roster Filter* is run against the base DN, retrieving
+	the values of the attribute named by `ldap\_groupattr`.
 
 2.  Unless the group cache is fresh (see the
-	<span>ldap\_group\_cache\_validity</span> option), it is refreshed:
+	`ldap\_group\_cache\_validity` option), it is refreshed:
 
 	1.  Information for all groups is retrieved using a single query:
-		the <span>Group Filter</span> is run against the Base DN,
+		the *Group Filter* is run against the Base DN,
 		retrieving the values of attributes named by
-		<span>ldap\_groupattr</span> (group ID),
-		<span>ldap\_groupdesc</span> (group “Display Name”) and
-		<span>ldap\_memberattr</span> (IDs of group members).
+		`ldap\_groupattr` (group ID),
+		`ldap\_groupdesc` (group “Display Name”) and
+		`ldap\_memberattr` (IDs of group members).
 
 	2.  group “Display Name”, read from the attribute named by
-		<span>ldap\_groupdesc</span>, is stored in the cache for the
+		`ldap\_groupdesc`, is stored in the cache for the
 		given group
 
 	3.  the following processing takes place for each retrieved value of
-		attribute named by <span>ldap\_memberattr</span>:
+		attribute named by `ldap\_memberattr`:
 
 		1.  the user ID part of it is extracted using
-			<span>ldap\_memberattr\_format(\_re)</span>,
+			`ldap\_memberattr\_format(\_re)`,
 
-		2.  then (unless <span>ldap\_auth\_check</span> is set to
-			<span>off</span>) for each found user ID, the module checks
+		2.  then (unless `ldap\_auth\_check` is set to
+			`off`) for each found user ID, the module checks
 			(using the `ejabberd` authentication subsystem) whether such
 			user exists in the given virtual host. It is skipped if the
 			check is enabled and fails.
@@ -5532,7 +5529,7 @@ following algorithm is used:
 			This step is here for historical reasons. If you have a tidy
 			DIT and properly defined “Roster Filter” and “Group Filter”,
 			it is safe to disable it by setting
-			<span>ldap\_auth\_check</span> to <span>off</span> — it will
+			`ldap\_auth\_check` to `off` — it will
 			speed up the roster retrieval.
 
 		3.  the user ID is stored in the list of members in the cache
@@ -5554,11 +5551,11 @@ following algorithm is used:
 		2.  the display name of a shared roster user is retrieved:
 
 			1.  first, unless the user name cache is fresh (see the
-				<span>ldap\_user\_cache\_validity</span> option), it is
-				refreshed by running the <span>User Filter</span>,
+				`ldap\_user\_cache\_validity` option), it is
+				refreshed by running the *User Filter*,
 				against the Base DN, retrieving the values of attributes
-				named by <span>ldap\_useruid</span> and
-				<span>ldap\_userdesc</span>.
+				named by `ldap\_useruid` and
+				`ldap\_userdesc`.
 
 			2.  then, the display name for the given user ID is
 				retrieved from the user name cache.
@@ -5576,7 +5573,7 @@ This seems to be the kind of DIT for which this module was initially
 designed. Basically there are just user objects, and group membership is
 stored in an attribute individually for each user. For example in a
 layout shown in figure [fig:msrl-dit-flat], the group of each user is
-stored in its <span>ou</span> attribute.
+stored in its `ou` attribute.
 
 Such layout has a few downsides, including:
 
@@ -5605,7 +5602,7 @@ supporting it. You can use the following configuration…
 	  ...
 
 …to be provided with a roster as shown in figure [fig:msrl-roster-flat]
-upon connecting as user <span>czesio</span>.
+upon connecting as user `czesio`.
 
 ##### Deep DIT
 
@@ -5616,9 +5613,9 @@ different subtrees, but it’s not a requirement.
 If you use the following example module configuration with it:
 
 	#!yaml
-	modules: 
+	modules:
 	  ...
-	  mod_shared_roster_ldap: 
+	  mod_shared_roster_ldap:
 	    ldap_base: "ou=deep,dc=nodomain"
 	    ldap_rfilter: "(objectClass=groupOfUniqueNames)"
 	    ldap_filter: ""
@@ -5630,7 +5627,7 @@ If you use the following example module configuration with it:
 	    ldap_userdesc: "displayName"
 	  ...
 
-…and connect as user <span>czesio</span>, then `ejabberd` will provide
+…and connect as user `czesio`, then `ejabberd` will provide
 you with the roster shown in figure [fig:msrl-roster-deep].
 
 ### mod_sic
@@ -5715,15 +5712,15 @@ Example complex configuration:
 	    flow_timeout_udp: 30
 	    flow_timeout_tcp: 130
 	    via:
-	      - 
+	      -
 	        type: tls
 	        host: "sip-tls.example.com"
 	        port: 5061
-	      - 
+	      -
 	        type: tcp
 	        host: "sip-tcp.example.com"
 	        port: 5060
-	      - 
+	      -
 	        type: udp
 	        host: "sip-udp.example.com"
 	        port: 5060
@@ -5937,7 +5934,7 @@ The second group of parameters consists of the following
 	attributes from `List_of_LDAP_attributes`, `%u` will be replaced
 	with the user part of a JID, and `%d` will be replaced with the
 	domain part of a JID. The default is:
-	
+
 	    "NICKNAME": {"%u": []}
 	    "FN": {"%s": ["displayName"]}
 	    "LAST": {"%s": ["sn"]}
@@ -5966,7 +5963,7 @@ The second group of parameters consists of the following
 	be automatically translated by using the translation files (see
 	`msgs/*.msg` for available words). `Attribute` is the LDAP attribute
 	or the pattern `%u`. The default is:
-	
+
 	    "User": "%u"
 	    "Full Name": "displayName"
 	    "Given Name": "givenName"
@@ -5987,7 +5984,7 @@ The second group of parameters consists of the following
 	automatically translated by using the translation files (see
 	`msgs/*.msg` for available words). `VcardField` is the vCard field
 	name defined in the `ldap_vcard_map` option. The default is:
-	
+
 	    "Full Name": "FN"
 	    "Given Name": "FIRST"
 	    "Middle Name": "MIDDLE"
