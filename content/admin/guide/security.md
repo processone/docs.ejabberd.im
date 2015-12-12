@@ -14,13 +14,13 @@ bodyclass: nocomment
 You need to take the following TCP ports in mind when configuring your
 firewall:
 
-| <span>**Port**</span> | <span>**Description**</span>                                                                |
+| **Port**              | **Description**                                                                             |
 |:----------------------|:--------------------------------------------------------------------------------------------|
 | 5222                  | Standard port for Jabber/XMPP client connections, plain or STARTTLS.                        |
 | 5223                  | Standard port for Jabber client connections using the old SSL method.                       |
 | 5269                  | Standard port for Jabber/XMPP server connections.                                           |
-| 4369                  | EPMD (see [epmd](#epmd)) listens for Erlang node name requests.                                |
-| port range            | Used for connections between Erlang nodes. This range is configurable (see [epmd](#epmd)). |
+| 4369                  | EPMD (see [epmd](#epmd)) listens for Erlang node name requests.                             |
+| port range            | Used for connections between Erlang nodes. This range is configurable (see [epmd](#epmd)).  |
 
 ## epmd
 
