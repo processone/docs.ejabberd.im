@@ -322,27 +322,27 @@ is represented as the following structure:
 
 ## Module `xml`
 
-<span>`element_to_string(El) -> string()`</span>
+`element_to_string(El) -> string()`
 
     El = XMLElement
 
 Returns string representation of XML stanza `El`.
 
-<span>`crypt(S) -> string()`</span>
+`crypt(S) -> string()`
 
     S = string()
 
 Returns string which correspond to `S` with encoded XML special
 characters.
 
-<span>`remove_cdata(ECList) -> EList`</span>
+`remove_cdata(ECList) -> EList`
 
     ECList = [ElementOrCDATA]
     EList = [XMLElement]
 
 `EList` is a list of all non-CDATA elements of ECList.
 
-<span>`get_path_s(El, Path) -> Res`</span>
+`get_path_s(El, Path) -> Res`
 
     El = XMLElement
     Path = [PathItem]
@@ -356,16 +356,16 @@ characters.
 If `Path` is empty, then returns `El`. Else sequentially consider
 elements of `Path`. Each element is one of:
 
-<span>`{elem, Name}`</span> `Name` is name of subelement of `El`, if
+`{elem, Name}` `Name` is name of subelement of `El`, if
 such element exists, then this element considered in following steps,
 else returns empty string.
 
-<span>`{attr, Name}`</span> If `El` have attribute `Name`, then returns
+`{attr, Name}` If `El` have attribute `Name`, then returns
 value of this attribute, else returns empty string.
 
-<span>`cdata`</span> Returns CDATA of `El`.
+`cdata` Returns CDATA of `El`.
 
-<span>TODO:</span>
+TODO:
 
              get_cdata/1, get_tag_cdata/1
              get_attr/2, get_attr_s/2
@@ -374,7 +374,7 @@ value of this attribute, else returns empty string.
 
 Module `xml_stream`
 
-<span>`parse_element(Str) -> XMLElement | {error, Err}`</span>
+`parse_element(Str) -> XMLElement | {error, Err}`
 
     Str = string()
     Err = term()
@@ -392,7 +392,7 @@ users bare JIDs.
 
 In this module the following functions are defined:
 
-<span>`add_iq_handler(Component, Host, NS, Module, Function, Type)`</span>
+`add_iq_handler(Component, Host, NS, Module, Function, Type)`
 
     Component = Module = Function = atom()
     Host = NS = string()
@@ -403,13 +403,13 @@ virtual host `Host` that contain child of namespace `NS` in `Component`.
 Queueing discipline is `Type`. There are at least two components
 defined:
 
-<span>`ejabberd_local`</span> Handles packets that addressed to server
+`ejabberd_local` Handles packets that addressed to server
 JID;
 
-<span>`ejabberd_sm`</span> Handles packets that addressed to users bare
+`ejabberd_sm` Handles packets that addressed to users bare
 JIDs.
 
-<span>`remove_iq_handler(Component, Host, NS)`</span>
+`remove_iq_handler(Component, Host, NS)`
 
     Component = atom()
     Host = NS = string()
@@ -419,7 +419,7 @@ Removes IQ handler on virtual host `Host` for namespace `NS` from
 
 Handler function must have the following type:
 
-<span>`Module:Function(From, To, IQ)`</span>
+`Module:Function(From, To, IQ)`
 
     From = To = jid()
 
