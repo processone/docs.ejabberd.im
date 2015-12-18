@@ -392,7 +392,7 @@ are:
 	[`external component`](http://www.ejabberd.im/tutorials-transports)
 	(as defined in the Jabber Component Protocol
 	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).  
-	Options: `access`, `hosts`, `max_fsm_queue`, `service_check_from`,
+	Options: `access`, `hosts`, `max_fsm_queue`, `password`, `service_check_from`,
 	`shaper_rule`
 
 `ejabberd_sip`
@@ -494,7 +494,10 @@ modules:
 	connect to ejabberd: `password: Secret`. Note that you
 	cannot define in a single `ejabberd_service` components of different
 	services: add an `ejabberd_service` for each service, as seen in an
-	example below.
+	example below. This option may not be necessary if the component
+	already provides the host in its packets; in that case, you can simply
+	provide the password option that will be used for all the hosts
+	(see port 5236 definition in the example below).
 
 `http_bind: true|false`
 
@@ -581,6 +584,10 @@ modules:
 	connections and 131072 for s2s connections. s2s max stanza size must
 	always much higher than c2s limit. Change this value with extreme
 	care as it can cause unwanted disconnect if set too low.
+
+`password: Secret`
+
+:   Specify the password to verify an external component that connects to the port.
 
 `request_handlers: {Path: Module}`
 
@@ -1026,9 +1033,7 @@ In this example, the following configuration defines that:
 	  -
 	    port: 5236
 	    module: ejabberd_service
-	    hosts:
-	      "yahoo.example.org":
-	        password: "yahoosecret"
+	    password: "yahoosecret"
 	  -
 	    port: 5237
 	    module: ejabberd_service
