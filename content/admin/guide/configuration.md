@@ -469,7 +469,7 @@ modules:
 	[`see the source`](https://github.com/processone/tls/blob/master/c_src/options.h).
 	The default entry is: `"no_sslv2"`
 
-`default_host: undefined|HostName}`
+`default_host: undefined|HostName`
 
 :   If the HTTP request received by ejabberd contains the HTTP header
 	`Host` with an ambiguous virtual host that doesn’t match any one
