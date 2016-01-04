@@ -3540,6 +3540,10 @@ Different virtual hosts cannot use the same PUT URL domain.*
 : This option specifies the initial part of the GET URLs used for
 downloading the files. By default, it is set to the same value as the
 `put_url`. The keyword `@HOST@` is replaced with the virtual host name.
+*Note: If GET requests are handled by `mod_http_upload`, the `get_url`
+must match the `put_url`.* Setting it to a different value only makes
+sense if an external web server or `mod_http_fileserver` is used to
+serve the uploaded files.
 
 `service_url: URL`
 
