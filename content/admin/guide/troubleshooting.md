@@ -97,10 +97,11 @@ exact value is controlled by `log_rotate_date` option. The syntax is:
 
 However, you can rotate the log files manually. For doing this, set
 `log_rotate_size` option to 0 and `log_rotate_date` to empty list, then,
-when you need to rotate the files, rename and then reopen them. The
-ejabberdctl command `reopen-log` (please refer to section
-[ectl-commands]) reopens the log files, and also renames the old ones if
-you didn’t rename them.
+when you need to rotate the files, rename and then reopen them. You can
+either use an external tool for log rotation and the ejabberdctl command
+`reopen-log` to reopen the log files, or the ejabberdctl command
+`rotate-log` to perform both steps (please refer to section [ejabberd
+Commands](../managing/#ejabberd-commands)).
 
 The option `log_rotate_count` defines the number of rotated files to
 keep by `reopen-log` command. Every such file has a numeric suffix. The

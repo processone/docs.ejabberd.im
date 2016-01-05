@@ -300,9 +300,13 @@ The commands included in ejabberd by default are:
 
 `reopen_log`
 
-:   Reopen the log files after they were renamed. If the old files were
-	not renamed before calling this command, they are automatically
-	renamed to `*-old.log`. See section [Log Files](../troubleshooting/#log-files).
+:   Reopen the log files after they were renamed. This can be useful when an
+	external tool is used for log rotation. See section
+	[Log Files](../troubleshooting/#log-files).
+
+`rotate_log`
+
+:   Rotate the log files.
 
 `convert_to_yaml /etc/ejabberd/ejabberd.cfg /etc/ejabberd/ejabberd-converted.yml`
 
