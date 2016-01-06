@@ -11,7 +11,7 @@ system.
 * [ejabberd Installation and Operation Guide](/admin/guide/) provides a full reference
   information on ejabberd installation, configuration and management.
 
-* [ejabberdctl Reference](/admin/ejabberctl/) provides documentation
+* [ejabberdctl Reference](/admin/ejabberdctl/) provides documentation
   for ejabberd server administration command-line tool.
 
 * [Admin FAQ](/admin/faq/) provides tips and information on Frequently
