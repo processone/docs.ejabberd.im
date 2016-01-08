@@ -375,7 +375,7 @@ are:
 `ejabberd_c2s`
 
 :   Handles c2s connections.  
-    Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`
+    Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`,
 	`max_ack_queue`, `max_fsm_queue`, `max_resume_timeout`,
 	`max_stanza_size`, `resend_on_timeout`, `resume_timeout`, `shaper`,
 	`starttls`, `starttls_required`, `stream_management`, `tls`, `zlib`,
