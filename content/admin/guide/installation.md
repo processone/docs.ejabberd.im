@@ -207,6 +207,10 @@ Some options that you may be interested in modifying:
 
 - **`–-enable-all`**: Enable all previous options.
 
+- **`--enable-latest-deps`**: Makes rebar use latest versions of dependences developed
+  alongside `ejabberd` instead of version specified in rebar.config. Should be only used
+  when developing `ejabberd`.
+
 Here are other available options, that are experimental and not recommended:
 
 - **`–-disable-transient-supervisors`**: Disable the use of Erlang/OTP
