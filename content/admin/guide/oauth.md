@@ -144,9 +144,9 @@ OAuth and the available commands:
   seconds. After that amount of time, the token expires and the
   delegated credential cannot be used and is removed from the
   database.
-- **oauth_access**: If you want to limit which users can create OAuth
-  tokens, you can refer to an ejabberd access rule in the `oauth_access`
-  option.
+- **oauth_access**: By default creating OAuth tokens is not allowed.  To define
+  which users can create OAuth tokens, you can refer to an ejabberd access rule
+  in the `oauth_access` option.  Use `all` to allow everyone to create tokens.
 
 Here is an example, for OAuth specific parameters configuration:
 
@@ -155,10 +155,11 @@ Here is an example, for OAuth specific parameters configuration:
     commands:
       - add_commands: user
     oauth_expire: 3600
+    oauth_access: all
 
-In the previous example, tokens expire after an hour. All commands in
-categorie `user` are exposed. Admin access is granted to users that
-can pass the `configure` access rule defined in the config file.
+In the previous example, tokens expire after an hour. All commands in categorie
+`user` are exposed. All users can create tokens, and admin access is granted to
+users that can pass the `configure` access rule defined in the config file.
 
 ### Database / Back-ends for OAuth tokens
 
