@@ -4763,6 +4763,11 @@ Options:
 :   Define the maximum number of items that can be stored in a node.
 	Default value is 10.
 
+`max_subscriptions_node: MaxSubs`
+
+:   Define the maximum number of subscriptions managed by a node.
+	Default value is undefined; no limitation.
+
 `plugins: [ Plugin, ...]`
 
 :   To specify which pubsub node plugins to use. The first one in the
@@ -4807,6 +4812,13 @@ Options:
 	and allows to raise user connection rate. The cost is memory usage,
 	as every item is stored in memory.
 
+`default_node_config: Config`
+
+:   To override default node configuration, regradless of node plugin. Value
+	is a list of key-value definition. Node configuration still uses
+	default configuration defined by node plugin, and overrides any items
+	by value defined in this configurable list.
+
 `pep_mapping: {Key, Value}`
 
 :   This allow to define a Key-Value list to choose defined node plugins
@@ -4829,6 +4841,11 @@ of flat, nodetree and pep nodes:
 	  ...
 	  mod_pubsub:
 	    access_createnode: pubsub_createnode
+	    max_subscriptions_node: 100
+	    default_node_config:
+	      notification_type: normal
+	      notify_retract: false
+	      max_items: 4
 	    plugins:
 	      - "flat"
 	      - "hometree"
