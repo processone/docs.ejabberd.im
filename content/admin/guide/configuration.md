@@ -4027,7 +4027,7 @@ Module options:
 	    other occupants. Note that the room moderators can always see
 	    the real JIDs of the occupants.
 
-	`captcha_protected: false`
+	`captcha_protected: false|true`
 
 	:   When a user tries to join a room where he has no affiliation
 	    (not owner, admin or member), the room requires him to fill a
