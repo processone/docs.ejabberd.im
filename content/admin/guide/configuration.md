@@ -3809,6 +3809,10 @@ Options:
 
 :   The option defines default policy for chat history. When `always` is set every chat message is stored. With `roster` only chat history with contacts from user's roster is stored. `never` fully disables chat history. Note that a client can change its policy via protocol commands. The default is `never`.
 
+`request_activates_archiving: true|false`
+
+:   If this option is enabled, no messages are stored for a user until his client issued a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual.
+
 `cache_size: Integer`
 
 :   There is a cache which is used to improve performance for retrieving user's policy. This option will allow you to set the size of this cache. The default is 1000 items.
