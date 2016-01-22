@@ -3813,6 +3813,10 @@ Options:
 
 :   If this option is enabled, no messages are stored for a user until his client issued a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual.
 
+`assume_mam_usage: if_enabled|on_request|never`
+
+:   This option determines how ejabberd's stream management code handles unacknowledged messages when the connection is lost. Usually, such messages are either bounced or resent. However, neither is done if ejabberd assumes those messages will be retrieved from the MAM archive. If the option is set to `if_enabled`, this is assumed whenever the user has a MAM archive. With `on_request`, this is only assumed if archiving was explicitly enabled by the client or by means of the `request_activates_archiving` option. The default is `never`.
+
 `cache_size: Integer`
 
 :   There is a cache which is used to improve performance for retrieving user's policy. This option will allow you to set the size of this cache. The default is 1000 items.
