@@ -3803,7 +3803,7 @@ Options:
 
 `db_type: mnesia|odbc`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration). Note: If `mnesia` is used, the total size of all MAM archives cannot exceed 2 GB. The `delete_old_mam_messages` command could be run periodically to make sure the `mnesia` data won't grow beyond that limit. To support larger archives, `odbc` storage must be used.
 
 `default: always|never|roster`
 
