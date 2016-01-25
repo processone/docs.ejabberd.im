@@ -164,6 +164,9 @@ list run the command:
 
 Some options that you may be interested in modifying:
 
+- **`-–bindir=/`**: Specify the path to the user executables
+  (where `epmd` and `iex` are available).
+
 - **`-–prefix=/`**: Specify the path prefix where the files will be
   copied when running the `make install` command.
 
