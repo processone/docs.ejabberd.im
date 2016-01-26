@@ -12,5 +12,5 @@ Here are main features covered by `ejabberdctl` command-line tool:
 - [Multi User Chat Administration Commands][3]
 
 [1]:	/admin/guide/managing/#ejabberdctl-commands
-[2]:	/admin/ejabberdctl/api-admin/ "Administration Commands API"
+[2]:	/admin/api/ "Administration Commands API"
 [3]:	/admin/ejabberdctl/muc-admin/ "Multi User Chat Administration Commands"

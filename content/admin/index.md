@@ -11,6 +11,9 @@ system.
 * [ejabberd Installation and Operation Guide](/admin/guide/) provides a full reference
   information on ejabberd installation, configuration and management.
 
+* [Administration API Reference](/admin/api/) provides documentation
+  for commands available in ejabberdctl, ctl, REST API, XMLRpc etc.
+
 * [ejabberdctl Reference](/admin/ejabberdctl/) provides documentation
   for ejabberd server administration command-line tool.
 

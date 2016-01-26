@@ -162,7 +162,7 @@ h5,h5 {
 
 #sidebar,
 #content {
-  min-height: 728px;
+  min-height: 1024px;
 }
 
 #sidebar {
@@ -308,6 +308,46 @@ code {
     margin: 0;
     padding: 0;
 }
+
+.code-samples-labels,
+.code-samples-tabs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.code-samples-labels {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1em;
+}
+
+.code-samples-labels li {
+  display: inline-block;
+  margin-right: 1px;
+  padding: 5px 25px;
+  cursor: pointer;
+
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #eee;
+}
+  .code-samples-labels li:hover {
+    text-decoration: underline;
+  }
+  .code-samples-labels li.selected {
+    margin-bottom: -1px;
+
+    border: 1px solid #ddd;
+    border-bottom-color: #fff;
+    background: #fff;
+  }
+
+.code-samples-tabs li {
+  display: none;
+}
+  .code-samples-tabs li.selected {
+    display: block;
+  }
   
 /* Blog specific styles */
 
