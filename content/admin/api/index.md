@@ -20,7 +20,7 @@ Add an item to a user's roster (supports ODBC)
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -124,7 +124,7 @@ Store the database to backup file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -182,7 +182,7 @@ Ban an account: kick sessions and set random password
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -256,7 +256,7 @@ Change the password of an account
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -331,7 +331,7 @@ Change an option in a MUC room
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -412,7 +412,7 @@ Check if an account exists or not
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -478,7 +478,7 @@ Check if a password is correct
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -553,7 +553,7 @@ Allowed hash methods: md5, sha.
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -633,7 +633,7 @@ Recompile and reload Erlang source code file
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -688,7 +688,7 @@ List all established sessions
 ### Result:
 {connected_users,{list,{sessions,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -750,7 +750,7 @@ List all established sessions and their information
                  {node,string},
                  {uptime,integer}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -818,7 +818,7 @@ Get the number of established sessions
 ### Result:
 {num_sessions,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -868,7 +868,7 @@ Get the list of established sessions in a vhost
 ### Result:
 {connected_users_vhost,{list,{sessions,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -927,7 +927,7 @@ Convert the passwords in 'users' ODBC table to SCRAM
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -984,7 +984,7 @@ Convert the input file from Erlang to YAML format
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1050,7 +1050,7 @@ Create a MUC room name@service in host
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1122,7 +1122,7 @@ Provide one room JID per line. Rooms will be created after restart.
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1177,7 +1177,7 @@ Delete expired offline messages from database
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1228,7 +1228,7 @@ Valid message TYPEs: "chat", "groupchat", "all".
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1292,7 +1292,7 @@ Delete offline messages older than DAYS
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1348,7 +1348,7 @@ Delete users that didn't log in last days, or that never logged
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1405,7 +1405,7 @@ Delete users that didn't log in last days in vhost, or that never logged
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1472,7 +1472,7 @@ Delete an item from a user's roster (supports ODBC)
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1553,7 +1553,7 @@ Destroy a MUC room
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1617,7 +1617,7 @@ Provide one room JID per line.
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1673,7 +1673,7 @@ Dump the database to text file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1730,7 +1730,7 @@ Dump a table to text file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1794,7 +1794,7 @@ Echo Integer
 ### Result:
 {thatinteger,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1852,7 +1852,7 @@ Echo an integer and List of strings
 {thistuple,{tuple,[{thatinteger,integer},
                    {thatlist,{list,{thatstring,string}}}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -1949,7 +1949,7 @@ Echo integer and string, in result as a tuple
 ### Result:
 {thistuple,{tuple,[{thisinteger,integer},{thisstring,string}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2027,7 +2027,7 @@ Echo integer, string, atom and tuple of integer and list of strings
                  [{listlen,integer},
                   {thatlist,{list,{contentstring,string}}}]}}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2160,7 +2160,7 @@ Echo List of integers
 ### Result:
 {thatlist,{list,{thatinteger,integer}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2245,7 +2245,7 @@ Echo List of strings
 ### Result:
 {thatlist,{list,{thatstring,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2330,7 +2330,7 @@ Echo String
 ### Result:
 {thatstring,string}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2387,7 +2387,7 @@ Export virtual host information from Mnesia tables to SQL files
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2452,7 +2452,7 @@ Export all tables as SQL queries to a file
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2516,7 +2516,7 @@ Export data of all users in the server to PIEFXIS files (XEP-0227)
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2573,7 +2573,7 @@ Export data of users in a host to PIEFXIS files (XEP-0227)
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2651,7 +2651,7 @@ Generates html documentation for ejabberd_commands
 0 if command failed, 1 when succedded
 
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2737,7 +2737,7 @@ Generates markdown documentation for ejabberd_commands
 0 if command failed, 1 when succedded
 
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2808,7 +2808,7 @@ Get the Erlang cookie of this node
 ### Result:
 {cookie,string}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2859,7 +2859,7 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
 ### Result:
 {last_activity,string}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2924,7 +2924,7 @@ Get the current loglevel
                     {levelatom,atom},
                     {leveldesc,string}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -2977,7 +2977,7 @@ Get the number of unread offline messages
 ### Result:
 {res,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3035,7 +3035,7 @@ Get the list of affiliations of a MUC room
                  {affiliation,atom},
                  {reason,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3115,7 +3115,7 @@ Get the list of occupants of a MUC room
                                    {nick,string},
                                    {role,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3191,7 +3191,7 @@ Get the number of occupants of a MUC room
 ### Result:
 {occupants,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3256,7 +3256,7 @@ Get options from a MUC room
 ### Result:
 {options,{list,{option,{tuple,[{name,string},{value,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3332,7 +3332,7 @@ Get roster of a local user
                                  {ask,string},
                                  {group,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3398,7 +3398,7 @@ Get the list of rooms where this user is occupant
 ### Result:
 {rooms,{list,{room,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3487,7 +3487,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 ### Result:
 {content,string}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3582,7 +3582,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 ### Result:
 {content,string}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3685,7 +3685,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 ### Result:
 {contents,{list,{value,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3768,7 +3768,7 @@ Import users data from jabberd14 spool dir
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3824,7 +3824,7 @@ Import user data from jabberd14 spool file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3880,7 +3880,7 @@ Import users data from a PIEFXIS file (XEP-0227)
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3935,7 +3935,7 @@ Number of incoming s2s connections on the node
 ### Result:
 {s2s_incoming,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -3985,7 +3985,7 @@ Install the database from a fallback file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4041,7 +4041,7 @@ Join this node into the cluster handled by Node
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4100,7 +4100,7 @@ Kick a user session
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4181,7 +4181,7 @@ Disconnect user's active sessions
 ### Result:
 {num_resources,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4245,7 +4245,7 @@ Remove node handled by Node from the cluster
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4300,7 +4300,7 @@ List nodes that are part of the cluster handled by Node
 ### Result:
 {nodes,{list,{node,atom}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4353,7 +4353,7 @@ Restore the database from text file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4412,7 +4412,7 @@ Change the erlang node name in a backup file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4492,7 +4492,7 @@ Change the erlang node name in a backup file
 ### Result:
 {res,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4548,7 +4548,7 @@ Change the erlang node name in a backup file
 ### Result:
 {res,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4604,7 +4604,7 @@ Change the erlang node name in a backup file
 ### Result:
 {res,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4660,7 +4660,7 @@ Change the erlang node name in a backup file
 ### Result:
 {res,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4715,7 +4715,7 @@ Change the erlang node name in a backup file
 ### Result:
 {modules,{list,{module,{tuple,[{name,atom},{summary,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4767,7 +4767,7 @@ Change the erlang node name in a backup file
 ### Result:
 {modules,{list,{module,{tuple,[{name,atom},{summary,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4819,7 +4819,7 @@ Change the erlang node name in a backup file
 ### Result:
 {res,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4869,7 +4869,7 @@ List existing rooms ('global' to get all vhosts)
 ### Result:
 {rooms,{list,{room,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4928,7 +4928,7 @@ Unregister the nick in the MUC service
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -4985,7 +4985,7 @@ Get number of users active in the last days
 ### Result:
 {users,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5050,7 +5050,7 @@ Get the number of resources of a user
 ### Result:
 {resources,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5113,7 +5113,7 @@ Number of outgoing s2s connections on the node
 ### Result:
 {s2s_outgoing,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5165,7 +5165,7 @@ This is an example command. The formula is:
 ### Result:
 {power,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5231,7 +5231,7 @@ Send a IQ set privacy stanza for a local account
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5306,7 +5306,7 @@ Get some information from a user private storage
 ### Result:
 {res,string}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5388,7 +5388,7 @@ Set to the user private storage
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5482,7 +5482,7 @@ This example will list roster items with subscription 'none', 'from' or 'to' tha
 ### Result:
 {response,{list,{pairs,{tuple,[{user,string},{contact,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5580,7 +5580,7 @@ Add all the users to all the users of Host in Group
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5646,7 +5646,7 @@ Push template roster from file to a user
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5718,7 +5718,7 @@ Push template roster from file to all those users
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5776,7 +5776,7 @@ Register a user
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5848,7 +5848,7 @@ List all registered users in HOST
 ### Result:
 {users,{list,{username,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5906,7 +5906,7 @@ List all registered vhosts in SERVER
 ### Result:
 {vhosts,{list,{vhost,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -5958,7 +5958,7 @@ Reload config file in memory (only affects ACL and Access)
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6008,7 +6008,7 @@ Remove an ejabberd node from Mnesia clustering config
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6063,7 +6063,7 @@ Reopen the log files
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6115,7 +6115,7 @@ Resource string of a session number
 ### Result:
 {resource,string}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6186,7 +6186,7 @@ Restart ejabberd gracefully
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6236,7 +6236,7 @@ Restore the database from backup file
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6293,7 +6293,7 @@ Destroy the rooms that are unused for many days in host
 ### Result:
 {rooms,{list,{room,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6361,7 +6361,7 @@ List the rooms that are unused for many days in host
 ### Result:
 {rooms,{list,{room,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6427,7 +6427,7 @@ Rotate the log files
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6481,7 +6481,7 @@ Password and Message can also be: none. Users JIDs are separated with :
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6573,7 +6573,7 @@ Send a message to a local or remote bare of full JID
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6663,7 +6663,7 @@ Send a stanza; provide From JID and valid To JID
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6738,7 +6738,7 @@ Send a stanza as if sent from a c2s session
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6819,7 +6819,7 @@ Return list of integers between two integers
 ### Result:
 {sequence,{list,{intermediate,integer}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6889,7 +6889,7 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -6969,7 +6969,7 @@ Set the loglevel (0 to 5)
 ### Result:
 {logger,atom}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7025,7 +7025,7 @@ If you provide as nodename "self", this node will be set as its own master.
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7083,7 +7083,7 @@ Set nickname in a user's vCard
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7161,7 +7161,7 @@ Set presence of a session
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7268,7 +7268,7 @@ Change an affiliation in a MUC room
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7371,7 +7371,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7475,7 +7475,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7587,7 +7587,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7701,7 +7701,7 @@ Split JID in parts: user, server, resource
 ### Result:
 {jidparts,{tuple,[{user,string},{server,string},{resource,string}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7763,7 +7763,7 @@ Split JIDs in parts: user, server, resource
                                    {server,string},
                                    {resource,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7864,7 +7864,7 @@ For example:
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -7953,7 +7953,7 @@ Delete a Shared Roster Group
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8018,7 +8018,7 @@ Get info of a Shared Roster Group
 ### Result:
 {informations,{list,{information,{tuple,[{key,string},{value,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8092,7 +8092,7 @@ Get members of a Shared Roster Group
 ### Result:
 {members,{list,{member,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8159,7 +8159,7 @@ List the Shared Roster Groups in Host
 ### Result:
 {groups,{list,{id,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8221,7 +8221,7 @@ Add the JID user@host to the Shared Roster Group
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8304,7 +8304,7 @@ Delete this JID user@host from the Shared Roster Group
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8384,7 +8384,7 @@ Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds
 ### Result:
 {stat,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8441,7 +8441,7 @@ Get statistical value for this host: registeredusers onlineusers
 ### Result:
 {stat,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8504,7 +8504,7 @@ Get status of the ejabberd server
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8558,7 +8558,7 @@ List of logged users with this status
                                  {priority,integer},
                                  {status,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8634,7 +8634,7 @@ List of users logged in host with their statuses
                                  {priority,integer},
                                  {status,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8713,7 +8713,7 @@ Number of logged users with this status
 ### Result:
 {users,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8770,7 +8770,7 @@ Number of logged users with this status in host
 ### Result:
 {users,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8833,7 +8833,7 @@ Stop ejabberd gracefully
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8885,7 +8885,7 @@ ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -8949,7 +8949,7 @@ Return list of substrings of length increasing
 ### Result:
 {substrings,{list,{miniword,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9008,7 +9008,7 @@ Take Integer in args, give Integer zero
 ### Result:
 {zero,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9065,7 +9065,7 @@ Take integer and string, give Integer zero
 ### Result:
 {zero,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9129,7 +9129,7 @@ Take List of integers, give Integer zero
 ### Result:
 {zero,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9211,7 +9211,7 @@ Take List of strings, give Integer zero
 ### Result:
 {zero,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9293,7 +9293,7 @@ Take String, give Integer zero
 ### Result:
 {zero,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9349,7 +9349,7 @@ Take Tuple of two integers, give Integer zero
 ### Result:
 {zero,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9421,7 +9421,7 @@ Take Tuple of two strings, give Integer zero
 ### Result:
 {zero,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9493,7 +9493,7 @@ Tell Atom, give Integer zero
 ### Result:
 {thisatom,atom}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9548,7 +9548,7 @@ Tell a list with 3 atoms
 ### Result:
 {thatlist,{list,{thisatom,atom}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9600,7 +9600,7 @@ Tell a list with 3 integers
 ### Result:
 {thatlist,{list,{thisinteger,integer}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9652,7 +9652,7 @@ Tell a list with 3 strings
 ### Result:
 {thatlist,{list,{thisstring,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9706,7 +9706,7 @@ Tell a list with 3 tuples
                                    {thistring,string},
                                    {thisatom,atom}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9767,7 +9767,7 @@ Tell rescode
 ### Result:
 {res,rescode}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9823,7 +9823,7 @@ Tell restuple
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9878,7 +9878,7 @@ Tell a tuple with 3 atoms
 ### Result:
 {thattuple,{tuple,[{first,atom},{second,atom},{third,atom}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9931,7 +9931,7 @@ Tell a tuple with 3 integers
 ### Result:
 {thattuple,{tuple,[{first,integer},{second,integer},{third,integer}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -9986,7 +9986,7 @@ Tell a tuple with 3 lists
                    {second,{list,{thisstring,string}}},
                    {third,{list,{thisatom,atom}}}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10048,7 +10048,7 @@ Tell a tuple with 3 strings
 ### Result:
 {thattuple,{tuple,[{first,string},{second,string},{third,string}]}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10102,7 +10102,7 @@ This command crashes: test+5
 ### Result:
 {result,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10159,7 +10159,7 @@ This problematic command defines 2 arguments but function expects 1
 ### Result:
 {result,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10222,7 +10222,7 @@ This problematic command doesn't give a proper return
 ### Result:
 {result,integer}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10273,7 +10273,7 @@ Unregister a user
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10337,7 +10337,7 @@ Update the given module, or use the keyword: all
 ### Result:
 {res,restuple}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10392,7 +10392,7 @@ List modified modules that can be updated
 ### Result:
 {modules,{list,{module,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10444,7 +10444,7 @@ List user's connected resources
 ### Result:
 {resources,{list,{resource,string}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
@@ -10506,7 +10506,7 @@ Get information about all sessions of a user
                                       {resource,string},
                                       {statustext,string}]}}}}
 
-### Examples;
+### Examples:
 
 * Perl
 * XmlRPC
