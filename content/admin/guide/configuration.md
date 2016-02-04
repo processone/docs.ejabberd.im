@@ -794,6 +794,16 @@ ejabberd configuration file (outside `listen`):
 	configured value is used. The allowed values are integers and
 	’undefined’. Default value: ’undefined’.
 
+`c2s_hibernate: Timeout|hibernate`
+
+:   The timeout in milliseconds before the c2s processes will be hibernated.
+    Default value: ’90000’
+
+`receiver_hibernate: Timeout|hibernate`
+
+:   The timeout in milliseconds before the receiver processes will be hibernated.
+    Default value: ’90000’
+
 `route_subdomains: local|s2s`
 
 :   Defines if ejabberd must route stanzas directed to subdomains
