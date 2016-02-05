@@ -3956,6 +3956,11 @@ Module options:
 	can have when creating a new room. The default value is to not
 	limit: `infinity`.
 
+`regexp_room_id: String`
+
+:   This option defines the regular expression that a Room ID must satisfy
+	to allow the room creation. The default value is the empty string.
+
 `max_room_name: Number`
 
 :   This option defines the maximum number of characters that Room Name
@@ -4182,6 +4187,7 @@ Examples:
 -   In the following example, MUC anti abuse options are used. An
 	occupant cannot send more than one message every 0.4 seconds and
 	cannot change its presence more than once every 4 seconds. The
+	Room IDs can contain only letters and numbers. The
 	length of Room IDs and Room Names are limited to 20 characters, and
 	Room Description to 300 characters. No ACLs are defined, but some
 	user restriction could be added as well:
@@ -4192,6 +4198,7 @@ Examples:
 		  mod_muc:
 		    min_message_interval: 0.4
 		    min_presence_interval: 4
+		    regexp_room_id: "^[a-z0-9]+$"
 		    max_room_id: 20
 		    max_room_name: 20
 		    max_room_desc: 300
