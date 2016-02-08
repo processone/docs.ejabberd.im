@@ -15,7 +15,7 @@ Once installed, you may want to register users and create admin accounts:
 
 - [Post-install Operations](#post-install-operations)
 
----
+___
 
 ## Installing ejabberd with Binary Installer
 
