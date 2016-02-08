@@ -26,6 +26,7 @@ This includes:
 ## Gaming
 
 * [Electronic Arts](http://www.ea.com)
+* [FACEIT](https://beta.faceit.com/)
 * [Kixeye](http://www.kixeye.com)
 * Machine Zone (Game of War)
 * [Nokia nGage](http://en.wikipedia.org/wiki/N-Gage_(service))
