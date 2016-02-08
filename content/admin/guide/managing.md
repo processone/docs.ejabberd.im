@@ -355,6 +355,12 @@ The commands included in ejabberd by default are:
 	tutorials to
 	[`migrate from other software to ejabberd`](http://www.ejabberd.im/migrate-to-ejabberd).
 
+`import_prosody import_dir`
+
+:  Import data from Prosody server. `import_dir` is typically `/var/lib/prosody/`.
+   Currently the following data is imported: vcards, accounts, rosters, private data
+   (e.g. conference bookmarks), conferences, offline messages and privacy lists.
+
 `set_master nodename`
 
 :   Set master node of the clustered Mnesia tables. If you provide as
