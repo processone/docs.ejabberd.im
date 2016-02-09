@@ -8,6 +8,7 @@ bodyclass: nocomment
 
 Add an item to a user's roster (supports ODBC)
 
+
 ### Arguments:
 - *localuser* :: binary
 - *localserver* :: binary
@@ -17,15 +18,36 @@ Add an item to a user's roster (supports ODBC)
 - *group* :: binary
 - *subs* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("add_rosteritem", new HashMap<String, Object>() {{
+      put("localuser", "aaaaa");
+      put("localserver", "bbbbb");
+      put("user", "ccccc");
+      put("server", "ddddd");
+      put("nick", "eeeee");
+      put("group", "fffff");
+      put("subs", "ggggg");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("add_rosteritem", {
@@ -113,23 +135,40 @@ Add an item to a user's roster (supports ODBC)
 {: .code-samples-tabs}
 
 
+
 ## *backup* - Store the database to backup file
 
 
 Store the database to backup file
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("backup", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("backup", {
@@ -169,31 +208,63 @@ Store the database to backup file
 {: .code-samples-tabs}
 
 
+
 ## *ban_account* - Ban an account: kick sessions and set random password
 
 
 Ban an account: kick sessions and set random password
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
-- *reason* :: binary
+
+*user* :: binary
+
+: User name to ban
+
+*host* :: binary
+
+: Server name
+
+*reason* :: binary
+
+: Reason for banning user
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("ban_account", new HashMap<String, Object>() {{
+      put("user", "attacker");
+      put("host", "myserver.com");
+      put("reason", "Spaming other users");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("ban_account", {
-      user => "aaaaa",
-      host => "bbbbb",
-      reason => "ccccc"
+      user => "attacker",
+      host => "myserver.com",
+      reason => "Spaming other users"
     })->results()
 ~~~
 
@@ -207,19 +278,19 @@ Ban an account: kick sessions and set random password
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>attacker</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>reason</name>
                 <value>
-                  <string>ccccc</string>
+                  <string>Spaming other users</string>
                 </value>
               </member>
             </struct>
@@ -232,9 +303,9 @@ Ban an account: kick sessions and set random password
 * ~~~ json
     POST /api/ban_account
     {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "reason": "ccccc"
+      "user": "attacker",
+      "host": "myserver.com",
+      "reason": "Spaming other users"
     }
     
     HTTP/1.1 200 OK
@@ -243,31 +314,63 @@ Ban an account: kick sessions and set random password
 {: .code-samples-tabs}
 
 
+
 ## *change_password* - Change the password of an account
 
 
 Change the password of an account
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
-- *newpass* :: binary
+
+*user* :: binary
+
+: User name
+
+*host* :: binary
+
+: Server name
+
+*newpass* :: binary
+
+: New password for user
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("change_password", new HashMap<String, Object>() {{
+      put("user", "peter");
+      put("host", "myserver.com");
+      put("newpass", "blank");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("change_password", {
-      user => "aaaaa",
-      host => "bbbbb",
-      newpass => "ccccc"
+      user => "peter",
+      host => "myserver.com",
+      newpass => "blank"
     })->results()
 ~~~
 
@@ -281,19 +384,19 @@ Change the password of an account
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>peter</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>newpass</name>
                 <value>
-                  <string>ccccc</string>
+                  <string>blank</string>
                 </value>
               </member>
             </struct>
@@ -306,9 +409,9 @@ Change the password of an account
 * ~~~ json
     POST /api/change_password
     {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "newpass": "ccccc"
+      "user": "peter",
+      "host": "myserver.com",
+      "newpass": "blank"
     }
     
     HTTP/1.1 200 OK
@@ -317,10 +420,12 @@ Change the password of an account
 {: .code-samples-tabs}
 
 
+
 ## *change_room_option* - Change an option in a MUC room
 
 
 Change an option in a MUC room
+
 
 ### Arguments:
 - *name* :: binary
@@ -328,15 +433,33 @@ Change an option in a MUC room
 - *option* :: binary
 - *value* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("change_room_option", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+      put("option", "ccccc");
+      put("value", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("change_room_option", {
@@ -400,29 +523,57 @@ Change an option in a MUC room
 {: .code-samples-tabs}
 
 
+
 ## *check_account* - Check if an account exists or not
 
 
 Check if an account exists or not
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
+
+*user* :: binary
+
+: User name to check
+
+*host* :: binary
+
+: Server to check
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("check_account", new HashMap<String, Object>() {{
+      put("user", "peter");
+      put("host", "myserver.com");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("check_account", {
-      user => "aaaaa",
-      host => "bbbbb"
+      user => "peter",
+      host => "myserver.com"
     })->results()
 ~~~
 
@@ -436,13 +587,13 @@ Check if an account exists or not
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>peter</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
             </struct>
@@ -455,8 +606,8 @@ Check if an account exists or not
 * ~~~ json
     POST /api/check_account
     {
-      "user": "aaaaa",
-      "host": "bbbbb"
+      "user": "peter",
+      "host": "myserver.com"
     }
     
     HTTP/1.1 200 OK
@@ -465,31 +616,63 @@ Check if an account exists or not
 {: .code-samples-tabs}
 
 
+
 ## *check_password* - Check if a password is correct
 
 
 Check if a password is correct
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
-- *password* :: binary
+
+*user* :: binary
+
+: User name to check
+
+*host* :: binary
+
+: Server to check
+
+*password* :: binary
+
+: Password to check
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("check_password", new HashMap<String, Object>() {{
+      put("user", "peter");
+      put("host", "myserver.com");
+      put("password", "secret");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("check_password", {
-      user => "aaaaa",
-      host => "bbbbb",
-      password => "ccccc"
+      user => "peter",
+      host => "myserver.com",
+      password => "secret"
     })->results()
 ~~~
 
@@ -503,19 +686,19 @@ Check if a password is correct
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>peter</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>password</name>
                 <value>
-                  <string>ccccc</string>
+                  <string>secret</string>
                 </value>
               </member>
             </struct>
@@ -528,9 +711,9 @@ Check if a password is correct
 * ~~~ json
     POST /api/check_password
     {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "password": "ccccc"
+      "user": "peter",
+      "host": "myserver.com",
+      "password": "secret"
     }
     
     HTTP/1.1 200 OK
@@ -539,33 +722,69 @@ Check if a password is correct
 {: .code-samples-tabs}
 
 
+
 ## *check_password_hash* - Check if the password hash is correct
 
 
 Allowed hash methods: md5, sha.
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
-- *passwordhash* :: string
-- *hashmethod* :: string
+
+*user* :: binary
+
+: User name to check
+
+*host* :: binary
+
+: Server to check
+
+*passwordhash* :: string
+
+: Password's hash value
+
+*hashmethod* :: string
+
+: Name of hash method
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("check_password_hash", new HashMap<String, Object>() {{
+      put("user", "peter");
+      put("host", "myserver.com");
+      put("passwordhash", "5ebe2294ecd0e0f08eab7690d2a6ee69");
+      put("hashmethod", "md5");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("check_password_hash", {
-      user => "aaaaa",
-      host => "bbbbb",
-      passwordhash => "ccccc",
-      hashmethod => "ddddd"
+      user => "peter",
+      host => "myserver.com",
+      passwordhash => "5ebe2294ecd0e0f08eab7690d2a6ee69",
+      hashmethod => "md5"
     })->results()
 ~~~
 
@@ -579,25 +798,25 @@ Allowed hash methods: md5, sha.
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>peter</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>passwordhash</name>
                 <value>
-                  <string>ccccc</string>
+                  <string>5ebe2294ecd0e0f08eab7690d2a6ee69</string>
                 </value>
               </member>
               <member>
                 <name>hashmethod</name>
                 <value>
-                  <string>ddddd</string>
+                  <string>md5</string>
                 </value>
               </member>
             </struct>
@@ -610,10 +829,10 @@ Allowed hash methods: md5, sha.
 * ~~~ json
     POST /api/check_password_hash
     {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "passwordhash": "ccccc",
-      "hashmethod": "ddddd"
+      "user": "peter",
+      "host": "myserver.com",
+      "passwordhash": "5ebe2294ecd0e0f08eab7690d2a6ee69",
+      "hashmethod": "md5"
     }
     
     HTTP/1.1 200 OK
@@ -622,27 +841,51 @@ Allowed hash methods: md5, sha.
 {: .code-samples-tabs}
 
 
+
 ## *compile* - Recompile and reload Erlang source code file
 
 
 Recompile and reload Erlang source code file
 
+
 ### Arguments:
-- *file* :: string
+
+*file* :: string
+
+: Filename of erlang source file to compile
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("compile", new HashMap<String, Object>() {{
+      put("file", "/home/me/srcs/ejabberd/mod_example.erl");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("compile", {
-      file => "aaaaa"
+      file => "/home/me/srcs/ejabberd/mod_example.erl"
     })->results()
 ~~~
 
@@ -656,7 +899,7 @@ Recompile and reload Erlang source code file
               <member>
                 <name>file</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>/home/me/srcs/ejabberd/mod_example.erl</string>
                 </value>
               </member>
             </struct>
@@ -669,7 +912,7 @@ Recompile and reload Erlang source code file
 * ~~~ json
     POST /api/compile
     {
-      "file": "aaaaa"
+      "file": "/home/me/srcs/ejabberd/mod_example.erl"
     }
     
     HTTP/1.1 200 OK
@@ -678,22 +921,39 @@ Recompile and reload Erlang source code file
 {: .code-samples-tabs}
 
 
+
 ## *connected_users* - List all established sessions
 
 
 List all established sessions
 
+
 ### Arguments:
+
 
 ### Result:
 {connected_users,{list,{sessions,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("connected_users", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("connected_users", {
@@ -730,12 +990,15 @@ List all established sessions
 {: .code-samples-tabs}
 
 
+
 ## *connected_users_info* - List all established sessions and their information
 
 
 List all established sessions and their information
 
+
 ### Arguments:
+
 
 ### Result:
 {connected_users_info,
@@ -752,10 +1015,24 @@ List all established sessions and their information
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("connected_users_info", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("connected_users_info", {
@@ -808,22 +1085,39 @@ List all established sessions and their information
 {: .code-samples-tabs}
 
 
+
 ## *connected_users_number* - Get the number of established sessions
 
 
 Get the number of established sessions
 
+
 ### Arguments:
+
 
 ### Result:
 {num_sessions,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("connected_users_number", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("connected_users_number", {
@@ -857,23 +1151,40 @@ Get the number of established sessions
 {: .code-samples-tabs}
 
 
+
 ## *connected_users_vhost* - Get the list of established sessions in a vhost
 
 
 Get the list of established sessions in a vhost
 
+
 ### Arguments:
 - *host* :: binary
+
 
 ### Result:
 {connected_users_vhost,{list,{sessions,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("connected_users_vhost", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("connected_users_vhost", {
@@ -916,23 +1227,40 @@ Get the list of established sessions in a vhost
 {: .code-samples-tabs}
 
 
+
 ## *convert_to_scram* - Convert the passwords in 'users' ODBC table to SCRAM
 
 
 Convert the passwords in 'users' ODBC table to SCRAM
 
+
 ### Arguments:
 - *host* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("convert_to_scram", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("convert_to_scram", {
@@ -972,24 +1300,42 @@ Convert the passwords in 'users' ODBC table to SCRAM
 {: .code-samples-tabs}
 
 
+
 ## *convert_to_yaml* - Convert the input file from Erlang to YAML format
 
 
 Convert the input file from Erlang to YAML format
 
+
 ### Arguments:
 - *in* :: string
 - *out* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("convert_to_yaml", new HashMap<String, Object>() {{
+      put("in", "aaaaa");
+      put("out", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("convert_to_yaml", {
@@ -1037,25 +1383,44 @@ Convert the input file from Erlang to YAML format
 {: .code-samples-tabs}
 
 
+
 ## *create_room* - Create a MUC room name@service in host
 
 
 Create a MUC room name@service in host
+
 
 ### Arguments:
 - *name* :: binary
 - *service* :: binary
 - *host* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("create_room", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+      put("host", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("create_room", {
@@ -1111,23 +1476,40 @@ Create a MUC room name@service in host
 {: .code-samples-tabs}
 
 
+
 ## *create_rooms_file* - Create the rooms indicated in file
 
 
 Provide one room JID per line. Rooms will be created after restart.
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("create_rooms_file", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("create_rooms_file", {
@@ -1167,22 +1549,39 @@ Provide one room JID per line. Rooms will be created after restart.
 {: .code-samples-tabs}
 
 
+
 ## *delete_expired_messages* - Delete expired offline messages from database
 
 
 Delete expired offline messages from database
 
+
 ### Arguments:
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("delete_expired_messages", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("delete_expired_messages", {
@@ -1216,24 +1615,42 @@ Delete expired offline messages from database
 {: .code-samples-tabs}
 
 
+
 ## *delete_old_mam_messages* - Delete MAM messages older than DAYS
 
 
 Valid message TYPEs: "chat", "groupchat", "all".
 
+
 ### Arguments:
 - *type* :: binary
 - *days* :: integer
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("delete_old_mam_messages", new HashMap<String, Object>() {{
+      put("type", "aaaaa");
+      put("days", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("delete_old_mam_messages", {
@@ -1281,23 +1698,40 @@ Valid message TYPEs: "chat", "groupchat", "all".
 {: .code-samples-tabs}
 
 
+
 ## *delete_old_messages* - Delete offline messages older than DAYS
 
 
 Delete offline messages older than DAYS
 
+
 ### Arguments:
 - *days* :: integer
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("delete_old_messages", new HashMap<String, Object>() {{
+      put("days", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("delete_old_messages", {
@@ -1337,27 +1771,51 @@ Delete offline messages older than DAYS
 {: .code-samples-tabs}
 
 
+
 ## *delete_old_users* - Delete users that didn't log in last days, or that never logged
 
 
 Delete users that didn't log in last days, or that never logged
 
+
 ### Arguments:
-- *days* :: integer
+
+*days* :: integer
+
+: Last login age in days of accounts that should be removed
+
 
 ### Result:
+
 {res,restuple}
+
+: Result tuple
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("delete_old_users", new HashMap<String, Object>() {{
+      put("days", new Integer(30));
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("delete_old_users", {
-      days => 1
+      days => 30
     })->results()
 ~~~
 
@@ -1371,7 +1829,7 @@ Delete users that didn't log in last days, or that never logged
               <member>
                 <name>days</name>
                 <value>
-                  <integer>1</integer>
+                  <integer>30</integer>
                 </value>
               </member>
             </struct>
@@ -1384,13 +1842,14 @@ Delete users that didn't log in last days, or that never logged
 * ~~~ json
     POST /api/delete_old_users
     {
-      "days": 1
+      "days": 30
     }
     
     HTTP/1.1 200 OK
-    "Success"
+    "Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *delete_old_users_vhost* - Delete users that didn't log in last days in vhost, or that never logged
@@ -1398,24 +1857,51 @@ Delete users that didn't log in last days, or that never logged
 
 Delete users that didn't log in last days in vhost, or that never logged
 
+
 ### Arguments:
-- *host* :: binary
-- *days* :: integer
+
+*host* :: binary
+
+: Server name
+
+*days* :: integer
+
+: Last login age in days of accounts that should be removed
+
 
 ### Result:
+
 {res,restuple}
+
+: Result tuple
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("delete_old_users_vhost", new HashMap<String, Object>() {{
+      put("host", "myserver.com");
+      put("days", new Integer(30));
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("delete_old_users_vhost", {
-      host => "aaaaa",
-      days => 1
+      host => "myserver.com",
+      days => 30
     })->results()
 ~~~
 
@@ -1429,13 +1915,13 @@ Delete users that didn't log in last days in vhost, or that never logged
               <member>
                 <name>host</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>days</name>
                 <value>
-                  <integer>1</integer>
+                  <integer>30</integer>
                 </value>
               </member>
             </struct>
@@ -1448,14 +1934,15 @@ Delete users that didn't log in last days in vhost, or that never logged
 * ~~~ json
     POST /api/delete_old_users_vhost
     {
-      "host": "aaaaa",
-      "days": 1
+      "host": "myserver.com",
+      "days": 30
     }
     
     HTTP/1.1 200 OK
-    "Success"
+    "Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *delete_rosteritem* - Delete an item from a user's roster (supports ODBC)
@@ -1463,21 +1950,40 @@ Delete users that didn't log in last days in vhost, or that never logged
 
 Delete an item from a user's roster (supports ODBC)
 
+
 ### Arguments:
 - *localuser* :: binary
 - *localserver* :: binary
 - *user* :: binary
 - *server* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("delete_rosteritem", new HashMap<String, Object>() {{
+      put("localuser", "aaaaa");
+      put("localserver", "bbbbb");
+      put("user", "ccccc");
+      put("server", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("delete_rosteritem", {
@@ -1541,24 +2047,42 @@ Delete an item from a user's roster (supports ODBC)
 {: .code-samples-tabs}
 
 
+
 ## *destroy_room* - Destroy a MUC room
 
 
 Destroy a MUC room
 
+
 ### Arguments:
 - *name* :: binary
 - *service* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("destroy_room", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("destroy_room", {
@@ -1606,23 +2130,40 @@ Destroy a MUC room
 {: .code-samples-tabs}
 
 
+
 ## *destroy_rooms_file* - Destroy the rooms indicated in file
 
 
 Provide one room JID per line.
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("destroy_rooms_file", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("destroy_rooms_file", {
@@ -1662,23 +2203,40 @@ Provide one room JID per line.
 {: .code-samples-tabs}
 
 
+
 ## *dump* - Dump the database to text file
 
 
 Dump the database to text file
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("dump", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("dump", {
@@ -1718,24 +2276,42 @@ Dump the database to text file
 {: .code-samples-tabs}
 
 
+
 ## *dump_table* - Dump a table to text file
 
 
 Dump a table to text file
 
+
 ### Arguments:
 - *file* :: string
 - *table* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("dump_table", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+      put("table", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("dump_table", {
@@ -1783,23 +2359,40 @@ Dump a table to text file
 {: .code-samples-tabs}
 
 
+
 ## *echo_integer* - Echo Integer
 
 
 Echo Integer
 
+
 ### Arguments:
 - *thisinteger* :: integer
+
 
 ### Result:
 {thatinteger,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("echo_integer", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("echo_integer", {
@@ -1839,14 +2432,17 @@ Echo Integer
 {: .code-samples-tabs}
 
 
+
 ## *echo_integer_list_string* - Echo an integer and List of strings
 
 
 Echo an integer and List of strings
 
+
 ### Arguments:
 - *thisinteger* :: integer
 - *thislist* :: {list,{thisstring,string}}
+
 
 ### Result:
 {thistuple,{tuple,[{thatinteger,integer},
@@ -1854,10 +2450,28 @@ Echo an integer and List of strings
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("echo_integer_list_string", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+      put("thislist", new Object[] {
+        new HashMap<String, Object>() {{ put("thisstring", "aaaaa"); }},
+        new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
+      });
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("echo_integer_list_string", {
@@ -1937,24 +2551,42 @@ Echo an integer and List of strings
 {: .code-samples-tabs}
 
 
+
 ## *echo_integer_string* - Echo integer and string, in result as a tuple
 
 
 Echo integer and string, in result as a tuple
 
+
 ### Arguments:
 - *thisinteger* :: integer
 - *thisstring* :: string
+
 
 ### Result:
 {thistuple,{tuple,[{thisinteger,integer},{thisstring,string}]}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("echo_integer_string", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+      put("thisstring", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("echo_integer_string", {
@@ -2005,16 +2637,19 @@ Echo integer and string, in result as a tuple
 {: .code-samples-tabs}
 
 
+
 ## *echo_isatils* - Echo integer, string, atom and tuple of integer and list of strings
 
 
 Echo integer, string, atom and tuple of integer and list of strings
+
 
 ### Arguments:
 - *thisinteger* :: integer
 - *thisstring* :: string
 - *thisatom* :: atom
 - *thistuple* :: {tuple,[{listlen,integer},{thislist,{list,{contentstring,string}}}]}
+
 
 ### Result:
 {results,
@@ -2029,10 +2664,33 @@ Echo integer, string, atom and tuple of integer and list of strings
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("echo_isatils", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+      put("thisstring", "aaaaa");
+      put("thisatom", "bbbbb");
+      put("thistuple", new HashMap<String, Object>() {{
+      put("listlen", new Integer(2));
+      put("thislist", new Object[] {
+          new HashMap<String, Object>() {{ put("contentstring", "ccccc"); }},
+          new HashMap<String, Object>() {{ put("contentstring", "ddddd"); }}
+        });
+    }})
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("echo_isatils", {
@@ -2149,23 +2807,43 @@ Echo integer, string, atom and tuple of integer and list of strings
 {: .code-samples-tabs}
 
 
+
 ## *echo_list_integer* - Echo List of integers
 
 
 Echo List of integers
 
+
 ### Arguments:
 - *thislist* :: {list,{thisinteger,integer}}
+
 
 ### Result:
 {thatlist,{list,{thatinteger,integer}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("echo_list_integer", new HashMap<String, Object>() {{
+      put("thislist", new Object[] {
+        new HashMap<String, Object>() {{ put("thisinteger", new Integer(1)); }},
+        new HashMap<String, Object>() {{ put("thisinteger", new Integer(2)); }}
+      });
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("echo_list_integer", {
@@ -2234,23 +2912,43 @@ Echo List of integers
 {: .code-samples-tabs}
 
 
+
 ## *echo_list_string* - Echo List of strings
 
 
 Echo List of strings
 
+
 ### Arguments:
 - *thislist* :: {list,{thisstring,string}}
+
 
 ### Result:
 {thatlist,{list,{thatstring,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("echo_list_string", new HashMap<String, Object>() {{
+      put("thislist", new Object[] {
+        new HashMap<String, Object>() {{ put("thisstring", "aaaaa"); }},
+        new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
+      });
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("echo_list_string", {
@@ -2319,23 +3017,40 @@ Echo List of strings
 {: .code-samples-tabs}
 
 
+
 ## *echo_string* - Echo String
 
 
 Echo String
 
+
 ### Arguments:
 - *thisstring* :: string
+
 
 ### Result:
 {thatstring,string}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("echo_string", new HashMap<String, Object>() {{
+      put("thisstring", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("echo_string", {
@@ -2375,24 +3090,42 @@ Echo String
 {: .code-samples-tabs}
 
 
+
 ## *export2odbc* - Export virtual host information from Mnesia tables to SQL files
 
 
 Export virtual host information from Mnesia tables to SQL files
 
+
 ### Arguments:
 - *host* :: string
 - *directory* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("export2odbc", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+      put("directory", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("export2odbc", {
@@ -2440,24 +3173,42 @@ Export virtual host information from Mnesia tables to SQL files
 {: .code-samples-tabs}
 
 
+
 ## *export_odbc* - Export all tables as SQL queries to a file
 
 
 Export all tables as SQL queries to a file
 
+
 ### Arguments:
 - *host* :: string
 - *file* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("export_odbc", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+      put("file", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("export_odbc", {
@@ -2505,23 +3256,40 @@ Export all tables as SQL queries to a file
 {: .code-samples-tabs}
 
 
+
 ## *export_piefxis* - Export data of all users in the server to PIEFXIS files (XEP-0227)
 
 
 Export data of all users in the server to PIEFXIS files (XEP-0227)
 
+
 ### Arguments:
 - *dir* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("export_piefxis", new HashMap<String, Object>() {{
+      put("dir", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("export_piefxis", {
@@ -2561,24 +3329,42 @@ Export data of all users in the server to PIEFXIS files (XEP-0227)
 {: .code-samples-tabs}
 
 
+
 ## *export_piefxis_host* - Export data of users in a host to PIEFXIS files (XEP-0227)
 
 
 Export data of users in a host to PIEFXIS files (XEP-0227)
 
+
 ### Arguments:
 - *dir* :: string
 - *host* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("export_piefxis_host", new HashMap<String, Object>() {{
+      put("dir", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("export_piefxis_host", {
@@ -2626,10 +3412,12 @@ Export data of users in a host to PIEFXIS files (XEP-0227)
 {: .code-samples-tabs}
 
 
+
 ## *gen_html_doc_for_commands* - Generates html documentation for ejabberd_commands
 
 
 Generates html documentation for ejabberd_commands
+
 
 ### Arguments:
 
@@ -2645,18 +3433,36 @@ Generates html documentation for ejabberd_commands
 
 : Comma separated list of languages (choosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
 
+
 ### Result:
+
 {res,rescode}
 
-0 if command failed, 1 when succedded
+: 0 if command failed, 1 when succedded
 
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("gen_html_doc_for_commands", new HashMap<String, Object>() {{
+      put("file", "/home/me/docs/api.html");
+      put("regexp", "mod_admin");
+      put("examples", "java,json");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("gen_html_doc_for_commands", {
@@ -2712,10 +3518,12 @@ Generates html documentation for ejabberd_commands
 {: .code-samples-tabs}
 
 
+
 ## *gen_markdown_doc_for_commands* - Generates markdown documentation for ejabberd_commands
 
 
 Generates markdown documentation for ejabberd_commands
+
 
 ### Arguments:
 
@@ -2731,18 +3539,36 @@ Generates markdown documentation for ejabberd_commands
 
 : Comma separated list of languages (choosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
 
+
 ### Result:
+
 {res,rescode}
 
-0 if command failed, 1 when succedded
+: 0 if command failed, 1 when succedded
 
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("gen_markdown_doc_for_commands", new HashMap<String, Object>() {{
+      put("file", "/home/me/docs/api.html");
+      put("regexp", "mod_admin");
+      put("examples", "java,json");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("gen_markdown_doc_for_commands", {
@@ -2798,22 +3624,43 @@ Generates markdown documentation for ejabberd_commands
 {: .code-samples-tabs}
 
 
+
 ## *get_cookie* - Get the Erlang cookie of this node
 
 
 Get the Erlang cookie of this node
 
+
 ### Arguments:
 
+
 ### Result:
+
 {cookie,string}
+
+: Erlang cookie used for authentication by ejabberd
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_cookie", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_cookie", {
@@ -2842,9 +3689,10 @@ Get the Erlang cookie of this node
     }
     
     HTTP/1.1 200 OK
-        {"cookie": "aaaaa"    }
+        {"cookie": "MWTAVMODFELNLSMYXPPD"    }
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *get_last* - Get last activity information (timestamp and status)
@@ -2852,19 +3700,36 @@ Get the Erlang cookie of this node
 
 Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
+
 
 ### Result:
 {last_activity,string}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_last", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_last", {
@@ -2912,12 +3777,15 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
 {: .code-samples-tabs}
 
 
+
 ## *get_loglevel* - Get the current loglevel
 
 
 Get the current loglevel
 
+
 ### Arguments:
+
 
 ### Result:
 {leveltuple,{tuple,[{levelnumber,integer},
@@ -2926,10 +3794,24 @@ Get the current loglevel
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_loglevel", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_loglevel", {
@@ -2967,22 +3849,39 @@ Get the current loglevel
 {: .code-samples-tabs}
 
 
+
 ## *get_offline_count* - Get the number of unread offline messages
 
 
 Get the number of unread offline messages
 
+
 ### Arguments:
+
 
 ### Result:
 {res,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_offline_count", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_offline_count", {
@@ -3016,14 +3915,17 @@ Get the number of unread offline messages
 {: .code-samples-tabs}
 
 
+
 ## *get_room_affiliations* - Get the list of affiliations of a MUC room
 
 
 Get the list of affiliations of a MUC room
 
+
 ### Arguments:
 - *name* :: binary
 - *service* :: binary
+
 
 ### Result:
 {affiliations,
@@ -3037,10 +3939,25 @@ Get the list of affiliations of a MUC room
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_room_affiliations", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_room_affiliations", {
@@ -3101,14 +4018,17 @@ Get the list of affiliations of a MUC room
 {: .code-samples-tabs}
 
 
+
 ## *get_room_occupants* - Get the list of occupants of a MUC room
 
 
 Get the list of occupants of a MUC room
 
+
 ### Arguments:
 - *name* :: binary
 - *service* :: binary
+
 
 ### Result:
 {occupants,{list,{occupant,{tuple,[{jid,string},
@@ -3117,10 +4037,25 @@ Get the list of occupants of a MUC room
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_room_occupants", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_room_occupants", {
@@ -3179,24 +4114,42 @@ Get the list of occupants of a MUC room
 {: .code-samples-tabs}
 
 
+
 ## *get_room_occupants_number* - Get the number of occupants of a MUC room
 
 
 Get the number of occupants of a MUC room
 
+
 ### Arguments:
 - *name* :: binary
 - *service* :: binary
+
 
 ### Result:
 {occupants,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_room_occupants_number", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_room_occupants_number", {
@@ -3244,24 +4197,42 @@ Get the number of occupants of a MUC room
 {: .code-samples-tabs}
 
 
+
 ## *get_room_options* - Get options from a MUC room
 
 
 Get options from a MUC room
 
+
 ### Arguments:
 - *name* :: binary
 - *service* :: binary
+
 
 ### Result:
 {options,{list,{option,{tuple,[{name,string},{value,string}]}}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_room_options", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_room_options", {
@@ -3318,12 +4289,15 @@ Get options from a MUC room
 {: .code-samples-tabs}
 
 
+
 ## *get_roster* - Get roster of a local user
 
 
 Get roster of a local user
 
+
 ### Arguments:
+
 
 ### Result:
 {contacts,{list,{contact,{tuple,[{jid,string},
@@ -3334,10 +4308,24 @@ Get roster of a local user
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_roster", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_roster", {
@@ -3386,24 +4374,42 @@ Get roster of a local user
 {: .code-samples-tabs}
 
 
+
 ## *get_user_rooms* - Get the list of rooms where this user is occupant
 
 
 Get the list of rooms where this user is occupant
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
+
 
 ### Result:
 {rooms,{list,{room,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_user_rooms", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_user_rooms", {
@@ -3454,6 +4460,7 @@ Get the list of rooms where this user is occupant
 {: .code-samples-tabs}
 
 
+
 ## *get_vcard* - Get content from a vCard field
 
 
@@ -3479,20 +4486,38 @@ Some vcard field names and subnames in get/set_vcard2 are:
 
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *name* :: binary
+
 
 ### Result:
 {content,string}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_vcard", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("name", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_vcard", {
@@ -3548,6 +4573,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 {: .code-samples-tabs}
 
 
+
 ## *get_vcard2* - Get content from a vCard field
 
 
@@ -3573,21 +4599,40 @@ Some vcard field names in get/set_vcard are:
  ROLE		- Work: Role
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *name* :: binary
 - *subname* :: binary
 
+
 ### Result:
 {content,string}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_vcard2", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("name", "ccccc");
+      put("subname", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_vcard2", {
@@ -3651,6 +4696,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 {: .code-samples-tabs}
 
 
+
 ## *get_vcard2_multi* - Get multiple contents from a vCard field
 
 
@@ -3676,21 +4722,40 @@ Some vcard field names in get/set_vcard are:
  ROLE		- Work: Role
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *name* :: binary
 - *subname* :: binary
 
+
 ### Result:
 {contents,{list,{value,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_vcard2_multi", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("name", "ccccc");
+      put("subname", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("get_vcard2_multi", {
@@ -3757,23 +4822,40 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 {: .code-samples-tabs}
 
 
+
 ## *import_dir* - Import users data from jabberd14 spool dir
 
 
 Import users data from jabberd14 spool dir
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("import_dir", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("import_dir", {
@@ -3813,23 +4895,40 @@ Import users data from jabberd14 spool dir
 {: .code-samples-tabs}
 
 
+
 ## *import_file* - Import user data from jabberd14 spool file
 
 
 Import user data from jabberd14 spool file
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("import_file", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("import_file", {
@@ -3869,23 +4968,40 @@ Import user data from jabberd14 spool file
 {: .code-samples-tabs}
 
 
+
 ## *import_piefxis* - Import users data from a PIEFXIS file (XEP-0227)
 
 
 Import users data from a PIEFXIS file (XEP-0227)
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("import_piefxis", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("import_piefxis", {
@@ -3925,22 +5041,112 @@ Import users data from a PIEFXIS file (XEP-0227)
 {: .code-samples-tabs}
 
 
+
+## *import_prosody* - Import data from Prosody
+
+
+Import data from Prosody
+
+
+### Arguments:
+- *dir* :: string
+
+
+### Result:
+{res,rescode}
+
+### Examples:
+
+* Java
+* Perl
+* XmlRPC
+* JSON
+{: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("import_prosody", new HashMap<String, Object>() {{
+      put("dir", "aaaaa");
+    }});
+
+~~~
+
+* ~~~ perl
+    XMLRPC::Lite->proxy($url)->call("import_prosody", {
+      dir => "aaaaa"
+    })->results()
+~~~
+
+* ~~~ xml
+    <methodCall>
+      <methodName>import_prosody</methodName>
+      <params>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>dir</name>
+                <value>
+                  <string>aaaaa</string>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+      </params>
+    </methodCall>
+~~~
+
+* ~~~ json
+    POST /api/import_prosody
+    {
+      "dir": "aaaaa"
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+{: .code-samples-tabs}
+
+
+
 ## *incoming_s2s_number* - Number of incoming s2s connections on the node
 
 
 Number of incoming s2s connections on the node
 
+
 ### Arguments:
+
 
 ### Result:
 {s2s_incoming,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("incoming_s2s_number", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("incoming_s2s_number", {
@@ -3974,23 +5180,40 @@ Number of incoming s2s connections on the node
 {: .code-samples-tabs}
 
 
+
 ## *install_fallback* - Install the database from a fallback file
 
 
 Install the database from a fallback file
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("install_fallback", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("install_fallback", {
@@ -4030,23 +5253,40 @@ Install the database from a fallback file
 {: .code-samples-tabs}
 
 
+
 ## *join_cluster* - Join this node into the cluster handled by Node
 
 
 Join this node into the cluster handled by Node
 
+
 ### Arguments:
 - *node* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("join_cluster", new HashMap<String, Object>() {{
+      put("node", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("join_cluster", {
@@ -4086,33 +5326,69 @@ Join this node into the cluster handled by Node
 {: .code-samples-tabs}
 
 
+
 ## *kick_session* - Kick a user session
 
 
 Kick a user session
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
-- *resource* :: binary
-- *reason* :: binary
+
+*user* :: binary
+
+: User name
+
+*host* :: binary
+
+: Server name
+
+*resource* :: binary
+
+: User's resource
+
+*reason* :: binary
+
+: Reason for closing session
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("kick_session", new HashMap<String, Object>() {{
+      put("user", "peter");
+      put("host", "myserver.com");
+      put("resource", "Psi");
+      put("reason", "Stuck connection");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("kick_session", {
-      user => "aaaaa",
-      host => "bbbbb",
-      resource => "ccccc",
-      reason => "ddddd"
+      user => "peter",
+      host => "myserver.com",
+      resource => "Psi",
+      reason => "Stuck connection"
     })->results()
 ~~~
 
@@ -4126,25 +5402,25 @@ Kick a user session
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>peter</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>resource</name>
                 <value>
-                  <string>ccccc</string>
+                  <string>Psi</string>
                 </value>
               </member>
               <member>
                 <name>reason</name>
                 <value>
-                  <string>ddddd</string>
+                  <string>Stuck connection</string>
                 </value>
               </member>
             </struct>
@@ -4157,10 +5433,10 @@ Kick a user session
 * ~~~ json
     POST /api/kick_session
     {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "resource": "ccccc",
-      "reason": "ddddd"
+      "user": "peter",
+      "host": "myserver.com",
+      "resource": "Psi",
+      "reason": "Stuck connection"
     }
     
     HTTP/1.1 200 OK
@@ -4169,24 +5445,42 @@ Kick a user session
 {: .code-samples-tabs}
 
 
+
 ## *kick_user* - Disconnect user's active sessions
 
 
 Disconnect user's active sessions
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
+
 
 ### Result:
 {num_resources,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("kick_user", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("kick_user", {
@@ -4234,23 +5528,40 @@ Disconnect user's active sessions
 {: .code-samples-tabs}
 
 
+
 ## *leave_cluster* - Remove node handled by Node from the cluster
 
 
 Remove node handled by Node from the cluster
 
+
 ### Arguments:
 - *node* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("leave_cluster", new HashMap<String, Object>() {{
+      put("node", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("leave_cluster", {
@@ -4290,22 +5601,39 @@ Remove node handled by Node from the cluster
 {: .code-samples-tabs}
 
 
+
 ## *list_cluster* - List nodes that are part of the cluster handled by Node
 
 
 List nodes that are part of the cluster handled by Node
 
+
 ### Arguments:
+
 
 ### Result:
 {nodes,{list,{node,atom}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("list_cluster", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("list_cluster", {
@@ -4342,23 +5670,40 @@ List nodes that are part of the cluster handled by Node
 {: .code-samples-tabs}
 
 
+
 ## *load* - Restore the database from text file
 
 
 Restore the database from text file
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("load", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("load", {
@@ -4398,10 +5743,12 @@ Restore the database from text file
 {: .code-samples-tabs}
 
 
+
 ## *mnesia_change_nodename* - Change the erlang node name in a backup file
 
 
 Change the erlang node name in a backup file
+
 
 ### Arguments:
 - *oldnodename* :: string
@@ -4409,15 +5756,33 @@ Change the erlang node name in a backup file
 - *oldbackup* :: string
 - *newbackup* :: string
 
+
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("mnesia_change_nodename", new HashMap<String, Object>() {{
+      put("oldnodename", "aaaaa");
+      put("newnodename", "bbbbb");
+      put("oldbackup", "ccccc");
+      put("newbackup", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("mnesia_change_nodename", {
@@ -4481,7 +5846,9 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *module_check* - 
+
 
 
 
@@ -4489,15 +5856,30 @@ Change the erlang node name in a backup file
 ### Arguments:
 - *module* :: binary
 
+
 ### Result:
 {res,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("module_check", new HashMap<String, Object>() {{
+      put("module", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("module_check", {
@@ -4537,7 +5919,9 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *module_install* - 
+
 
 
 
@@ -4545,15 +5929,30 @@ Change the erlang node name in a backup file
 ### Arguments:
 - *module* :: binary
 
+
 ### Result:
 {res,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("module_install", new HashMap<String, Object>() {{
+      put("module", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("module_install", {
@@ -4593,7 +5992,9 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *module_uninstall* - 
+
 
 
 
@@ -4601,15 +6002,30 @@ Change the erlang node name in a backup file
 ### Arguments:
 - *module* :: binary
 
+
 ### Result:
 {res,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("module_uninstall", new HashMap<String, Object>() {{
+      put("module", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("module_uninstall", {
@@ -4649,7 +6065,9 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *module_upgrade* - 
+
 
 
 
@@ -4657,15 +6075,30 @@ Change the erlang node name in a backup file
 ### Arguments:
 - *module* :: binary
 
+
 ### Result:
 {res,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("module_upgrade", new HashMap<String, Object>() {{
+      put("module", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("module_upgrade", {
@@ -4705,22 +6138,39 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *modules_available* - 
+
 
 
 
 
 ### Arguments:
 
+
 ### Result:
 {modules,{list,{module,{tuple,[{name,atom},{summary,string}]}}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("modules_available", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("modules_available", {
@@ -4757,22 +6207,39 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *modules_installed* - 
+
 
 
 
 
 ### Arguments:
 
+
 ### Result:
 {modules,{list,{module,{tuple,[{name,atom},{summary,string}]}}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("modules_installed", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("modules_installed", {
@@ -4809,22 +6276,39 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *modules_update_specs* - 
+
 
 
 
 
 ### Arguments:
 
+
 ### Result:
 {res,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("modules_update_specs", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("modules_update_specs", {
@@ -4858,23 +6342,40 @@ Change the erlang node name in a backup file
 {: .code-samples-tabs}
 
 
+
 ## *muc_online_rooms* - List existing rooms ('global' to get all vhosts)
 
 
 List existing rooms ('global' to get all vhosts)
 
+
 ### Arguments:
 - *host* :: binary
+
 
 ### Result:
 {rooms,{list,{room,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("muc_online_rooms", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("muc_online_rooms", {
@@ -4917,23 +6418,40 @@ List existing rooms ('global' to get all vhosts)
 {: .code-samples-tabs}
 
 
+
 ## *muc_unregister_nick* - Unregister the nick in the MUC service
 
 
 Unregister the nick in the MUC service
 
+
 ### Arguments:
 - *nick* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("muc_unregister_nick", new HashMap<String, Object>() {{
+      put("nick", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("muc_unregister_nick", {
@@ -4973,29 +6491,57 @@ Unregister the nick in the MUC service
 {: .code-samples-tabs}
 
 
+
 ## *num_active_users* - Get number of users active in the last days
 
 
 Get number of users active in the last days
 
+
 ### Arguments:
-- *host* :: binary
-- *days* :: integer
+
+*host* :: binary
+
+: Name of host to check
+
+*days* :: integer
+
+: Number of days to calculate sum
+
 
 ### Result:
+
 {users,integer}
+
+: Number of users active on given server in last n days
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("num_active_users", new HashMap<String, Object>() {{
+      put("host", "myserver.com");
+      put("days", new Integer(3));
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("num_active_users", {
-      host => "aaaaa",
-      days => 1
+      host => "myserver.com",
+      days => 3
     })->results()
 ~~~
 
@@ -5009,13 +6555,13 @@ Get number of users active in the last days
               <member>
                 <name>host</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>days</name>
                 <value>
-                  <integer>1</integer>
+                  <integer>3</integer>
                 </value>
               </member>
             </struct>
@@ -5028,14 +6574,15 @@ Get number of users active in the last days
 * ~~~ json
     POST /api/num_active_users
     {
-      "host": "aaaaa",
-      "days": 1
+      "host": "myserver.com",
+      "days": 3
     }
     
     HTTP/1.1 200 OK
-        {"users": 1    }
+        {"users": 123    }
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *num_resources* - Get the number of resources of a user
@@ -5043,24 +6590,51 @@ Get number of users active in the last days
 
 Get the number of resources of a user
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
+
+*user* :: binary
+
+: User name
+
+*host* :: binary
+
+: Server name
+
 
 ### Result:
+
 {resources,integer}
+
+: Number of active resources for a user
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("num_resources", new HashMap<String, Object>() {{
+      put("user", "peter");
+      put("host", "myserver.com");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("num_resources", {
-      user => "aaaaa",
-      host => "bbbbb"
+      user => "peter",
+      host => "myserver.com"
     })->results()
 ~~~
 
@@ -5074,13 +6648,13 @@ Get the number of resources of a user
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>peter</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
             </struct>
@@ -5093,14 +6667,15 @@ Get the number of resources of a user
 * ~~~ json
     POST /api/num_resources
     {
-      "user": "aaaaa",
-      "host": "bbbbb"
+      "user": "peter",
+      "host": "myserver.com"
     }
     
     HTTP/1.1 200 OK
-        {"resources": 1    }
+        {"resources": 5    }
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *outgoing_s2s_number* - Number of outgoing s2s connections on the node
@@ -5108,17 +6683,33 @@ Get the number of resources of a user
 
 Number of outgoing s2s connections on the node
 
+
 ### Arguments:
+
 
 ### Result:
 {s2s_outgoing,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("outgoing_s2s_number", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("outgoing_s2s_number", {
@@ -5152,25 +6743,43 @@ Number of outgoing s2s connections on the node
 {: .code-samples-tabs}
 
 
+
 ## *pow* - Return the power of base for exponent
 
 
 This is an example command. The formula is:
  power = base ^ exponent
 
+
 ### Arguments:
 - *base* :: integer
 - *exponent* :: integer
+
 
 ### Result:
 {power,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("pow", new HashMap<String, Object>() {{
+      put("base", new Integer(1));
+      put("exponent", new Integer(2));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("pow", {
@@ -5218,25 +6827,44 @@ This is an example command. The formula is:
 {: .code-samples-tabs}
 
 
+
 ## *privacy_set* - Send a IQ set privacy stanza for a local account
 
 
 Send a IQ set privacy stanza for a local account
+
 
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *xmlquery* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("privacy_set", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("xmlquery", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("privacy_set", {
@@ -5292,10 +6920,12 @@ Send a IQ set privacy stanza for a local account
 {: .code-samples-tabs}
 
 
+
 ## *private_get* - Get some information from a user private storage
 
 
 Get some information from a user private storage
+
 
 ### Arguments:
 - *user* :: binary
@@ -5303,15 +6933,33 @@ Get some information from a user private storage
 - *element* :: binary
 - *ns* :: binary
 
+
 ### Result:
 {res,string}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("private_get", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("element", "ccccc");
+      put("ns", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("private_get", {
@@ -5375,25 +7023,44 @@ Get some information from a user private storage
 {: .code-samples-tabs}
 
 
+
 ## *private_set* - Set to the user private storage
 
 
 Set to the user private storage
+
 
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *element* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("private_set", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("element", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("private_set", {
@@ -5449,6 +7116,7 @@ Set to the user private storage
 {: .code-samples-tabs}
 
 
+
 ## *process_rosteritems* - List or delete rosteritems that match filtering options
 
 
@@ -5472,6 +7140,7 @@ Allowed values in the arguments:
 This example will list roster items with subscription 'none', 'from' or 'to' that have any ask property, of local users which JID is in the virtual host 'example.org' and that the contact JID is either a bare server name (without user part) or that has a user part and the server part contains the word 'icq':
   list none:from:to any *@example.org *:*@*icq*
 
+
 ### Arguments:
 - *action* :: string
 - *subs* :: string
@@ -5479,15 +7148,34 @@ This example will list roster items with subscription 'none', 'from' or 'to' tha
 - *users* :: string
 - *contacts* :: string
 
+
 ### Result:
 {response,{list,{pairs,{tuple,[{user,string},{contact,string}]}}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("process_rosteritems", new HashMap<String, Object>() {{
+      put("action", "aaaaa");
+      put("subs", "bbbbb");
+      put("asks", "ccccc");
+      put("users", "ddddd");
+      put("contacts", "eeeee");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("process_rosteritems", {
@@ -5568,24 +7256,42 @@ This example will list roster items with subscription 'none', 'from' or 'to' tha
 {: .code-samples-tabs}
 
 
+
 ## *push_alltoall* - Add all the users to all the users of Host in Group
 
 
 Add all the users to all the users of Host in Group
 
+
 ### Arguments:
 - *host* :: binary
 - *group* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("push_alltoall", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+      put("group", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("push_alltoall", {
@@ -5633,25 +7339,44 @@ Add all the users to all the users of Host in Group
 {: .code-samples-tabs}
 
 
+
 ## *push_roster* - Push template roster from file to a user
 
 
 Push template roster from file to a user
+
 
 ### Arguments:
 - *file* :: binary
 - *user* :: binary
 - *host* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("push_roster", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+      put("user", "bbbbb");
+      put("host", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("push_roster", {
@@ -5707,23 +7432,40 @@ Push template roster from file to a user
 {: .code-samples-tabs}
 
 
+
 ## *push_roster_all* - Push template roster from file to all those users
 
 
 Push template roster from file to all those users
 
+
 ### Arguments:
 - *file* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("push_roster_all", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("push_roster_all", {
@@ -5763,25 +7505,44 @@ Push template roster from file to all those users
 {: .code-samples-tabs}
 
 
+
 ## *register* - Register a user
 
 
 Register a user
+
 
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *password* :: binary
 
+
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("register", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("password", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("register", {
@@ -5837,23 +7598,40 @@ Register a user
 {: .code-samples-tabs}
 
 
+
 ## *registered_users* - List all registered users in HOST
 
 
 List all registered users in HOST
 
+
 ### Arguments:
 - *host* :: binary
+
 
 ### Result:
 {users,{list,{username,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("registered_users", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("registered_users", {
@@ -5896,22 +7674,39 @@ List all registered users in HOST
 {: .code-samples-tabs}
 
 
+
 ## *registered_vhosts* - List all registered vhosts in SERVER
 
 
 List all registered vhosts in SERVER
 
+
 ### Arguments:
+
 
 ### Result:
 {vhosts,{list,{vhost,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("registered_vhosts", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("registered_vhosts", {
@@ -5948,22 +7743,39 @@ List all registered vhosts in SERVER
 {: .code-samples-tabs}
 
 
+
 ## *reload_config* - Reload config file in memory (only affects ACL and Access)
 
 
 Reload config file in memory (only affects ACL and Access)
 
+
 ### Arguments:
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("reload_config", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("reload_config", {
@@ -5997,27 +7809,51 @@ Reload config file in memory (only affects ACL and Access)
 {: .code-samples-tabs}
 
 
+
 ## *remove_node* - Remove an ejabberd node from Mnesia clustering config
 
 
 Remove an ejabberd node from Mnesia clustering config
 
+
 ### Arguments:
-- *node* :: string
+
+*node* :: string
+
+: Name of erlang node to remove
+
 
 ### Result:
+
 {res,rescode}
+
+: Status code: 0 on success, 1 otherwise
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("remove_node", new HashMap<String, Object>() {{
+      put("node", "ejabberd@server2");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("remove_node", {
-      node => "aaaaa"
+      node => "ejabberd@server2"
     })->results()
 ~~~
 
@@ -6031,7 +7867,7 @@ Remove an ejabberd node from Mnesia clustering config
               <member>
                 <name>node</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>ejabberd@server2</string>
                 </value>
               </member>
             </struct>
@@ -6044,7 +7880,7 @@ Remove an ejabberd node from Mnesia clustering config
 * ~~~ json
     POST /api/remove_node
     {
-      "node": "aaaaa"
+      "node": "ejabberd@server2"
     }
     
     HTTP/1.1 200 OK
@@ -6053,22 +7889,39 @@ Remove an ejabberd node from Mnesia clustering config
 {: .code-samples-tabs}
 
 
+
 ## *reopen_log* - Reopen the log files
 
 
 Reopen the log files
 
+
 ### Arguments:
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("reopen_log", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("reopen_log", {
@@ -6102,31 +7955,63 @@ Reopen the log files
 {: .code-samples-tabs}
 
 
+
 ## *resource_num* - Resource string of a session number
 
 
 Resource string of a session number
 
+
 ### Arguments:
-- *user* :: binary
-- *host* :: binary
-- *num* :: integer
+
+*user* :: binary
+
+: User name
+
+*host* :: binary
+
+: Server name
+
+*num* :: integer
+
+: ID of resource to return
+
 
 ### Result:
+
 {resource,string}
+
+: Name of user resource
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("resource_num", new HashMap<String, Object>() {{
+      put("user", "peter");
+      put("host", "myserver.com");
+      put("num", new Integer(2));
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("resource_num", {
-      user => "aaaaa",
-      host => "bbbbb",
-      num => 1
+      user => "peter",
+      host => "myserver.com",
+      num => 2
     })->results()
 ~~~
 
@@ -6140,19 +8025,19 @@ Resource string of a session number
               <member>
                 <name>user</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>peter</string>
                 </value>
               </member>
               <member>
                 <name>host</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>num</name>
                 <value>
-                  <integer>1</integer>
+                  <integer>2</integer>
                 </value>
               </member>
             </struct>
@@ -6165,15 +8050,16 @@ Resource string of a session number
 * ~~~ json
     POST /api/resource_num
     {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "num": 1
+      "user": "peter",
+      "host": "myserver.com",
+      "num": 2
     }
     
     HTTP/1.1 200 OK
-        {"resource": "aaaaa"    }
+        {"resource": "Psi"    }
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *restart* - Restart ejabberd gracefully
@@ -6181,17 +8067,33 @@ Resource string of a session number
 
 Restart ejabberd gracefully
 
+
 ### Arguments:
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("restart", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("restart", {
@@ -6225,23 +8127,40 @@ Restart ejabberd gracefully
 {: .code-samples-tabs}
 
 
+
 ## *restore* - Restore the database from backup file
 
 
 Restore the database from backup file
 
+
 ### Arguments:
 - *file* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("restore", new HashMap<String, Object>() {{
+      put("file", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("restore", {
@@ -6281,24 +8200,42 @@ Restore the database from backup file
 {: .code-samples-tabs}
 
 
+
 ## *rooms_unused_destroy* - Destroy the rooms that are unused for many days in host
 
 
 Destroy the rooms that are unused for many days in host
 
+
 ### Arguments:
 - *host* :: binary
 - *days* :: integer
+
 
 ### Result:
 {rooms,{list,{room,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("rooms_unused_destroy", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+      put("days", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("rooms_unused_destroy", {
@@ -6349,24 +8286,42 @@ Destroy the rooms that are unused for many days in host
 {: .code-samples-tabs}
 
 
+
 ## *rooms_unused_list* - List the rooms that are unused for many days in host
 
 
 List the rooms that are unused for many days in host
 
+
 ### Arguments:
 - *host* :: binary
 - *days* :: integer
+
 
 ### Result:
 {rooms,{list,{room,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("rooms_unused_list", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+      put("days", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("rooms_unused_list", {
@@ -6417,22 +8372,39 @@ List the rooms that are unused for many days in host
 {: .code-samples-tabs}
 
 
+
 ## *rotate_log* - Rotate the log files
 
 
 Rotate the log files
 
+
 ### Arguments:
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("rotate_log", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("rotate_log", {
@@ -6466,10 +8438,12 @@ Rotate the log files
 {: .code-samples-tabs}
 
 
+
 ## *send_direct_invitation* - Send a direct invitation to several destinations
 
 
 Password and Message can also be: none. Users JIDs are separated with : 
+
 
 ### Arguments:
 - *name* :: binary
@@ -6478,15 +8452,34 @@ Password and Message can also be: none. Users JIDs are separated with :
 - *reason* :: binary
 - *users* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("send_direct_invitation", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+      put("password", "ccccc");
+      put("reason", "ddddd");
+      put("users", "eeeee");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("send_direct_invitation", {
@@ -6558,10 +8551,12 @@ Password and Message can also be: none. Users JIDs are separated with :
 {: .code-samples-tabs}
 
 
+
 ## *send_message* - Send a message to a local or remote bare of full JID
 
 
 Send a message to a local or remote bare of full JID
+
 
 ### Arguments:
 - *type* :: binary
@@ -6570,15 +8565,34 @@ Send a message to a local or remote bare of full JID
 - *subject* :: binary
 - *body* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("send_message", new HashMap<String, Object>() {{
+      put("type", "aaaaa");
+      put("from", "bbbbb");
+      put("to", "ccccc");
+      put("subject", "ddddd");
+      put("body", "eeeee");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("send_message", {
@@ -6650,25 +8664,44 @@ Send a message to a local or remote bare of full JID
 {: .code-samples-tabs}
 
 
+
 ## *send_stanza* - Send a stanza; provide From JID and valid To JID
 
 
 Send a stanza; provide From JID and valid To JID
+
 
 ### Arguments:
 - *from* :: binary
 - *to* :: binary
 - *stanza* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("send_stanza", new HashMap<String, Object>() {{
+      put("from", "aaaaa");
+      put("to", "bbbbb");
+      put("stanza", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("send_stanza", {
@@ -6724,10 +8757,12 @@ Send a stanza; provide From JID and valid To JID
 {: .code-samples-tabs}
 
 
+
 ## *send_stanza_c2s* - Send a stanza as if sent from a c2s session
 
 
 Send a stanza as if sent from a c2s session
+
 
 ### Arguments:
 - *user* :: binary
@@ -6735,15 +8770,33 @@ Send a stanza as if sent from a c2s session
 - *resource* :: binary
 - *stanza* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("send_stanza_c2s", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("resource", "ccccc");
+      put("stanza", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("send_stanza_c2s", {
@@ -6807,24 +8860,42 @@ Send a stanza as if sent from a c2s session
 {: .code-samples-tabs}
 
 
+
 ## *seq* - Return list of integers between two integers
 
 
 Return list of integers between two integers
 
+
 ### Arguments:
 - *from* :: integer
 - *to* :: integer
+
 
 ### Result:
 {sequence,{list,{intermediate,integer}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("seq", new HashMap<String, Object>() {{
+      put("from", new Integer(1));
+      put("to", new Integer(2));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("seq", {
@@ -6875,10 +8946,12 @@ Return list of integers between two integers
 {: .code-samples-tabs}
 
 
+
 ## *set_last* - Set last activity information
 
 
 Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
+
 
 ### Arguments:
 - *user* :: binary
@@ -6886,15 +8959,33 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
 - *timestamp* :: integer
 - *status* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_last", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("timestamp", new Integer(1));
+      put("status", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_last", {
@@ -6958,23 +9049,40 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
 {: .code-samples-tabs}
 
 
+
 ## *set_loglevel* - Set the loglevel (0 to 5)
 
 
 Set the loglevel (0 to 5)
 
+
 ### Arguments:
 - *loglevel* :: integer
+
 
 ### Result:
 {logger,atom}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_loglevel", new HashMap<String, Object>() {{
+      put("loglevel", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_loglevel", {
@@ -7014,23 +9122,40 @@ Set the loglevel (0 to 5)
 {: .code-samples-tabs}
 
 
+
 ## *set_master* - Set master node of the clustered Mnesia tables
 
 
 If you provide as nodename "self", this node will be set as its own master.
 
+
 ### Arguments:
 - *nodename* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_master", new HashMap<String, Object>() {{
+      put("nodename", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_master", {
@@ -7070,25 +9195,44 @@ If you provide as nodename "self", this node will be set as its own master.
 {: .code-samples-tabs}
 
 
+
 ## *set_nickname* - Set nickname in a user's vCard
 
 
 Set nickname in a user's vCard
+
 
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *nickname* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_nickname", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("nickname", "ccccc");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_nickname", {
@@ -7144,10 +9288,12 @@ Set nickname in a user's vCard
 {: .code-samples-tabs}
 
 
+
 ## *set_presence* - Set presence of a session
 
 
 Set presence of a session
+
 
 ### Arguments:
 - *user* :: binary
@@ -7158,15 +9304,36 @@ Set presence of a session
 - *status* :: binary
 - *priority* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_presence", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("resource", "ccccc");
+      put("type", "ddddd");
+      put("show", "eeeee");
+      put("status", "fffff");
+      put("priority", "ggggg");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_presence", {
@@ -7254,10 +9421,12 @@ Set presence of a session
 {: .code-samples-tabs}
 
 
+
 ## *set_room_affiliation* - Change an affiliation in a MUC room
 
 
 Change an affiliation in a MUC room
+
 
 ### Arguments:
 - *name* :: binary
@@ -7265,15 +9434,33 @@ Change an affiliation in a MUC room
 - *jid* :: binary
 - *affiliation* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_room_affiliation", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+      put("jid", "ccccc");
+      put("affiliation", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_room_affiliation", {
@@ -7337,6 +9524,7 @@ Change an affiliation in a MUC room
 {: .code-samples-tabs}
 
 
+
 ## *set_vcard* - Set content in a vCard field
 
 
@@ -7362,21 +9550,40 @@ Some vcard field names and subnames in get/set_vcard2 are:
 
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
 - *name* :: binary
 - *content* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_vcard", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("name", "ccccc");
+      put("content", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_vcard", {
@@ -7440,6 +9647,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 {: .code-samples-tabs}
 
 
+
 ## *set_vcard2* - Set content in a vCard subfield
 
 
@@ -7465,6 +9673,7 @@ Some vcard field names in get/set_vcard are:
  ROLE		- Work: Role
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
@@ -7472,15 +9681,34 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 - *subname* :: binary
 - *content* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_vcard2", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("name", "ccccc");
+      put("subname", "ddddd");
+      put("content", "eeeee");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_vcard2", {
@@ -7552,6 +9780,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 {: .code-samples-tabs}
 
 
+
 ## *set_vcard2_multi* - Set multiple contents in a vCard subfield
 
 
@@ -7577,6 +9806,7 @@ Some vcard field names in get/set_vcard are:
  ROLE		- Work: Role
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
@@ -7584,15 +9814,37 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 - *subname* :: binary
 - *contents* :: {list,{value,binary}}
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("set_vcard2_multi", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("name", "ccccc");
+      put("subname", "ddddd");
+      put("contents", new Object[] {
+        new HashMap<String, Object>() {{ put("value", "eeeee"); }},
+        new HashMap<String, Object>() {{ put("value", "fffff"); }}
+      });
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("set_vcard2_multi", {
@@ -7690,23 +9942,40 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 {: .code-samples-tabs}
 
 
+
 ## *splitjid* - Split JID in parts: user, server, resource
 
 
 Split JID in parts: user, server, resource
 
+
 ### Arguments:
 - *jid* :: string
+
 
 ### Result:
 {jidparts,{tuple,[{user,string},{server,string},{resource,string}]}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("splitjid", new HashMap<String, Object>() {{
+      put("jid", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("splitjid", {
@@ -7750,13 +10019,16 @@ Split JID in parts: user, server, resource
 {: .code-samples-tabs}
 
 
+
 ## *splitjids* - Split JIDs in parts: user, server, resource
 
 
 Split JIDs in parts: user, server, resource
 
+
 ### Arguments:
 - *jids* :: {list,{jid,string}}
+
 
 ### Result:
 {jidsparts,{list,{jidparts,{tuple,[{user,string},
@@ -7765,10 +10037,27 @@ Split JIDs in parts: user, server, resource
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("splitjids", new HashMap<String, Object>() {{
+      put("jids", new Object[] {
+        new HashMap<String, Object>() {{ put("jid", "aaaaa"); }},
+        new HashMap<String, Object>() {{ put("jid", "bbbbb"); }}
+      });
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("splitjids", {
@@ -7845,6 +10134,7 @@ Split JIDs in parts: user, server, resource
 {: .code-samples-tabs}
 
 
+
 ## *srg_create* - Create a Shared Roster Group
 
 
@@ -7854,6 +10144,7 @@ separate the identifiers with \ \ n
 For example:
   ejabberdctl srg_create group3 localhost name desc \"group1\\ngroup2\"
 
+
 ### Arguments:
 - *group* :: binary
 - *host* :: binary
@@ -7861,15 +10152,34 @@ For example:
 - *description* :: binary
 - *display* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("srg_create", new HashMap<String, Object>() {{
+      put("group", "aaaaa");
+      put("host", "bbbbb");
+      put("name", "ccccc");
+      put("description", "ddddd");
+      put("display", "eeeee");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("srg_create", {
@@ -7941,24 +10251,42 @@ For example:
 {: .code-samples-tabs}
 
 
+
 ## *srg_delete* - Delete a Shared Roster Group
 
 
 Delete a Shared Roster Group
 
+
 ### Arguments:
 - *group* :: binary
 - *host* :: binary
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("srg_delete", new HashMap<String, Object>() {{
+      put("group", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("srg_delete", {
@@ -8006,24 +10334,42 @@ Delete a Shared Roster Group
 {: .code-samples-tabs}
 
 
+
 ## *srg_get_info* - Get info of a Shared Roster Group
 
 
 Get info of a Shared Roster Group
 
+
 ### Arguments:
 - *group* :: binary
 - *host* :: binary
+
 
 ### Result:
 {informations,{list,{information,{tuple,[{key,string},{value,string}]}}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("srg_get_info", new HashMap<String, Object>() {{
+      put("group", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("srg_get_info", {
@@ -8080,24 +10426,42 @@ Get info of a Shared Roster Group
 {: .code-samples-tabs}
 
 
+
 ## *srg_get_members* - Get members of a Shared Roster Group
 
 
 Get members of a Shared Roster Group
 
+
 ### Arguments:
 - *group* :: binary
 - *host* :: binary
+
 
 ### Result:
 {members,{list,{member,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("srg_get_members", new HashMap<String, Object>() {{
+      put("group", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("srg_get_members", {
@@ -8148,23 +10512,40 @@ Get members of a Shared Roster Group
 {: .code-samples-tabs}
 
 
+
 ## *srg_list* - List the Shared Roster Groups in Host
 
 
 List the Shared Roster Groups in Host
 
+
 ### Arguments:
 - *host* :: binary
+
 
 ### Result:
 {groups,{list,{id,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("srg_list", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("srg_list", {
@@ -8207,10 +10588,12 @@ List the Shared Roster Groups in Host
 {: .code-samples-tabs}
 
 
+
 ## *srg_user_add* - Add the JID user@host to the Shared Roster Group
 
 
 Add the JID user@host to the Shared Roster Group
+
 
 ### Arguments:
 - *user* :: binary
@@ -8218,15 +10601,33 @@ Add the JID user@host to the Shared Roster Group
 - *group* :: binary
 - *grouphost* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("srg_user_add", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("group", "ccccc");
+      put("grouphost", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("srg_user_add", {
@@ -8290,10 +10691,12 @@ Add the JID user@host to the Shared Roster Group
 {: .code-samples-tabs}
 
 
+
 ## *srg_user_del* - Delete this JID user@host from the Shared Roster Group
 
 
 Delete this JID user@host from the Shared Roster Group
+
 
 ### Arguments:
 - *user* :: binary
@@ -8301,15 +10704,33 @@ Delete this JID user@host from the Shared Roster Group
 - *group* :: binary
 - *grouphost* :: binary
 
+
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("srg_user_del", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+      put("group", "ccccc");
+      put("grouphost", "ddddd");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("srg_user_del", {
@@ -8373,23 +10794,40 @@ Delete this JID user@host from the Shared Roster Group
 {: .code-samples-tabs}
 
 
+
 ## *stats* - Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds processes
 
 
 Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds processes
 
+
 ### Arguments:
 - *name* :: binary
+
 
 ### Result:
 {stat,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("stats", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("stats", {
@@ -8429,24 +10867,42 @@ Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds
 {: .code-samples-tabs}
 
 
+
 ## *stats_host* - Get statistical value for this host: registeredusers onlineusers
 
 
 Get statistical value for this host: registeredusers onlineusers
 
+
 ### Arguments:
 - *name* :: binary
 - *host* :: binary
+
 
 ### Result:
 {stat,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("stats_host", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("stats_host", {
@@ -8494,22 +10950,39 @@ Get statistical value for this host: registeredusers onlineusers
 {: .code-samples-tabs}
 
 
+
 ## *status* - Get status of the ejabberd server
 
 
 Get status of the ejabberd server
 
+
 ### Arguments:
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("status", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("status", {
@@ -8543,13 +11016,16 @@ Get status of the ejabberd server
 {: .code-samples-tabs}
 
 
+
 ## *status_list* - List of logged users with this status
 
 
 List of logged users with this status
 
+
 ### Arguments:
 - *status* :: binary
+
 
 ### Result:
 {users,{list,{userstatus,{tuple,[{user,string},
@@ -8560,10 +11036,24 @@ List of logged users with this status
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("status_list", new HashMap<String, Object>() {{
+      put("status", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("status_list", {
@@ -8618,14 +11108,17 @@ List of logged users with this status
 {: .code-samples-tabs}
 
 
+
 ## *status_list_host* - List of users logged in host with their statuses
 
 
 List of users logged in host with their statuses
 
+
 ### Arguments:
 - *host* :: binary
 - *status* :: binary
+
 
 ### Result:
 {users,{list,{userstatus,{tuple,[{user,string},
@@ -8636,10 +11129,25 @@ List of users logged in host with their statuses
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("status_list_host", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+      put("status", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("status_list_host", {
@@ -8702,27 +11210,51 @@ List of users logged in host with their statuses
 {: .code-samples-tabs}
 
 
+
 ## *status_num* - Number of logged users with this status
 
 
 Number of logged users with this status
 
+
 ### Arguments:
-- *status* :: binary
+
+*status* :: binary
+
+: Status type to check
+
 
 ### Result:
+
 {users,integer}
+
+: Number of connected sessions with given status type
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("status_num", new HashMap<String, Object>() {{
+      put("status", "dnd");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("status_num", {
-      status => "aaaaa"
+      status => "dnd"
     })->results()
 ~~~
 
@@ -8736,7 +11268,7 @@ Number of logged users with this status
               <member>
                 <name>status</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>dnd</string>
                 </value>
               </member>
             </struct>
@@ -8749,13 +11281,14 @@ Number of logged users with this status
 * ~~~ json
     POST /api/status_num
     {
-      "status": "aaaaa"
+      "status": "dnd"
     }
     
     HTTP/1.1 200 OK
-        {"users": 1    }
+        {"users": 23    }
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *status_num_host* - Number of logged users with this status in host
@@ -8763,24 +11296,51 @@ Number of logged users with this status
 
 Number of logged users with this status in host
 
+
 ### Arguments:
-- *host* :: binary
-- *status* :: binary
+
+*host* :: binary
+
+: Server name
+
+*status* :: binary
+
+: Status type to check
+
 
 ### Result:
+
 {users,integer}
+
+: Number of connected sessions with given status type
+
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
 
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("status_num_host", new HashMap<String, Object>() {{
+      put("host", "myserver.com");
+      put("status", "dnd");
+    }});
+
+~~~
+
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("status_num_host", {
-      host => "aaaaa",
-      status => "bbbbb"
+      host => "myserver.com",
+      status => "dnd"
     })->results()
 ~~~
 
@@ -8794,13 +11354,13 @@ Number of logged users with this status in host
               <member>
                 <name>host</name>
                 <value>
-                  <string>aaaaa</string>
+                  <string>myserver.com</string>
                 </value>
               </member>
               <member>
                 <name>status</name>
                 <value>
-                  <string>bbbbb</string>
+                  <string>dnd</string>
                 </value>
               </member>
             </struct>
@@ -8813,14 +11373,15 @@ Number of logged users with this status in host
 * ~~~ json
     POST /api/status_num_host
     {
-      "host": "aaaaa",
-      "status": "bbbbb"
+      "host": "myserver.com",
+      "status": "dnd"
     }
     
     HTTP/1.1 200 OK
-        {"users": 1    }
+        {"users": 23    }
 ~~~
 {: .code-samples-tabs}
+
 
 
 ## *stop* - Stop ejabberd gracefully
@@ -8828,17 +11389,33 @@ Number of logged users with this status in host
 
 Stop ejabberd gracefully
 
+
 ### Arguments:
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("stop", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("stop", {
@@ -8872,25 +11449,43 @@ Stop ejabberd gracefully
 {: .code-samples-tabs}
 
 
+
 ## *stop_kindly* - Inform users and rooms, wait, and stop the server
 
 
 Provide the delay in seconds, and the announcement quoted, for example: 
 ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
 
+
 ### Arguments:
 - *delay* :: integer
 - *announcement* :: string
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("stop_kindly", new HashMap<String, Object>() {{
+      put("delay", new Integer(1));
+      put("announcement", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("stop_kindly", {
@@ -8938,23 +11533,40 @@ ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
 {: .code-samples-tabs}
 
 
+
 ## *substrs* - Return list of substrings of length increasing
 
 
 Return list of substrings of length increasing
 
+
 ### Arguments:
 - *word* :: string
+
 
 ### Result:
 {substrings,{list,{miniword,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("substrs", new HashMap<String, Object>() {{
+      put("word", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("substrs", {
@@ -8997,23 +11609,40 @@ Return list of substrings of length increasing
 {: .code-samples-tabs}
 
 
+
 ## *take_integer* - Take Integer in args, give Integer zero
 
 
 Take Integer in args, give Integer zero
 
+
 ### Arguments:
 - *thisinteger* :: integer
+
 
 ### Result:
 {zero,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("take_integer", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("take_integer", {
@@ -9053,24 +11682,42 @@ Take Integer in args, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *take_integer_string* - Take integer and string, give Integer zero
 
 
 Take integer and string, give Integer zero
 
+
 ### Arguments:
 - *thisinteger* :: integer
 - *thisstring* :: string
+
 
 ### Result:
 {zero,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("take_integer_string", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+      put("thisstring", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("take_integer_string", {
@@ -9118,23 +11765,43 @@ Take integer and string, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *take_list_integer* - Take List of integers, give Integer zero
 
 
 Take List of integers, give Integer zero
 
+
 ### Arguments:
 - *thislist* :: {list,{thisinteger,integer}}
+
 
 ### Result:
 {zero,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("take_list_integer", new HashMap<String, Object>() {{
+      put("thislist", new Object[] {
+        new HashMap<String, Object>() {{ put("thisinteger", new Integer(1)); }},
+        new HashMap<String, Object>() {{ put("thisinteger", new Integer(2)); }}
+      });
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("take_list_integer", {
@@ -9200,23 +11867,43 @@ Take List of integers, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *take_list_string* - Take List of strings, give Integer zero
 
 
 Take List of strings, give Integer zero
 
+
 ### Arguments:
 - *thislist* :: {list,{thisstring,string}}
+
 
 ### Result:
 {zero,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("take_list_string", new HashMap<String, Object>() {{
+      put("thislist", new Object[] {
+        new HashMap<String, Object>() {{ put("thisstring", "aaaaa"); }},
+        new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
+      });
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("take_list_string", {
@@ -9282,23 +11969,40 @@ Take List of strings, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *take_string* - Take String, give Integer zero
 
 
 Take String, give Integer zero
 
+
 ### Arguments:
 - *thisstring* :: string
+
 
 ### Result:
 {zero,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("take_string", new HashMap<String, Object>() {{
+      put("thisstring", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("take_string", {
@@ -9338,23 +12042,43 @@ Take String, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *take_tuple_2integer* - Take Tuple of two integers, give Integer zero
 
 
 Take Tuple of two integers, give Integer zero
 
+
 ### Arguments:
 - *thistuple* :: {tuple,[{thisinteger1,integer},{thisinteger2,integer}]}
+
 
 ### Result:
 {zero,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("take_tuple_2integer", new HashMap<String, Object>() {{
+      put("thistuple", new HashMap<String, Object>() {{
+      put("thisinteger1", new Integer(1));
+      put("thisinteger2", new Integer(2));
+    }})
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("take_tuple_2integer", {
@@ -9410,23 +12134,43 @@ Take Tuple of two integers, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *take_tuple_2string* - Take Tuple of two strings, give Integer zero
 
 
 Take Tuple of two strings, give Integer zero
 
+
 ### Arguments:
 - *thistuple* :: {tuple,[{thisstring1,string},{thisstring2,string}]}
+
 
 ### Result:
 {zero,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("take_tuple_2string", new HashMap<String, Object>() {{
+      put("thistuple", new HashMap<String, Object>() {{
+      put("thisstring1", "aaaaa");
+      put("thisstring2", "bbbbb");
+    }})
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("take_tuple_2string", {
@@ -9482,23 +12226,40 @@ Take Tuple of two strings, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *tell_atom* - Tell Atom, give Integer zero
 
 
 Tell Atom, give Integer zero
 
+
 ### Arguments:
 - *thisinteger* :: integer
+
 
 ### Result:
 {thisatom,atom}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_atom", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_atom", {
@@ -9538,22 +12299,39 @@ Tell Atom, give Integer zero
 {: .code-samples-tabs}
 
 
+
 ## *tell_list_3atom* - Tell a list with 3 atoms
 
 
 Tell a list with 3 atoms
 
+
 ### Arguments:
+
 
 ### Result:
 {thatlist,{list,{thisatom,atom}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_list_3atom", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_list_3atom", {
@@ -9590,22 +12368,39 @@ Tell a list with 3 atoms
 {: .code-samples-tabs}
 
 
+
 ## *tell_list_3integer* - Tell a list with 3 integers
 
 
 Tell a list with 3 integers
 
+
 ### Arguments:
+
 
 ### Result:
 {thatlist,{list,{thisinteger,integer}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_list_3integer", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_list_3integer", {
@@ -9642,22 +12437,39 @@ Tell a list with 3 integers
 {: .code-samples-tabs}
 
 
+
 ## *tell_list_3string* - Tell a list with 3 strings
 
 
 Tell a list with 3 strings
 
+
 ### Arguments:
+
 
 ### Result:
 {thatlist,{list,{thisstring,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_list_3string", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_list_3string", {
@@ -9694,12 +12506,15 @@ Tell a list with 3 strings
 {: .code-samples-tabs}
 
 
+
 ## *tell_list_3tuple* - Tell a list with 3 tuples
 
 
 Tell a list with 3 tuples
 
+
 ### Arguments:
+
 
 ### Result:
 {thatlist,{list,{thistuple,{tuple,[{thisinteger,integer},
@@ -9708,10 +12523,24 @@ Tell a list with 3 tuples
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_list_3tuple", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_list_3tuple", {
@@ -9756,23 +12585,40 @@ Tell a list with 3 tuples
 {: .code-samples-tabs}
 
 
+
 ## *tell_rescode* - Tell rescode
 
 
 Tell rescode
 
+
 ### Arguments:
 - *thisinteger* :: integer
+
 
 ### Result:
 {res,rescode}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_rescode", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_rescode", {
@@ -9812,23 +12658,40 @@ Tell rescode
 {: .code-samples-tabs}
 
 
+
 ## *tell_restuple* - Tell restuple
 
 
 Tell restuple
 
+
 ### Arguments:
 - *thisinteger* :: integer
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_restuple", new HashMap<String, Object>() {{
+      put("thisinteger", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_restuple", {
@@ -9868,22 +12731,39 @@ Tell restuple
 {: .code-samples-tabs}
 
 
+
 ## *tell_tuple_3atom* - Tell a tuple with 3 atoms
 
 
 Tell a tuple with 3 atoms
 
+
 ### Arguments:
+
 
 ### Result:
 {thattuple,{tuple,[{first,atom},{second,atom},{third,atom}]}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_tuple_3atom", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_tuple_3atom", {
@@ -9921,22 +12801,39 @@ Tell a tuple with 3 atoms
 {: .code-samples-tabs}
 
 
+
 ## *tell_tuple_3integer* - Tell a tuple with 3 integers
 
 
 Tell a tuple with 3 integers
 
+
 ### Arguments:
+
 
 ### Result:
 {thattuple,{tuple,[{first,integer},{second,integer},{third,integer}]}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_tuple_3integer", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_tuple_3integer", {
@@ -9974,12 +12871,15 @@ Tell a tuple with 3 integers
 {: .code-samples-tabs}
 
 
+
 ## *tell_tuple_3list* - Tell a tuple with 3 lists
 
 
 Tell a tuple with 3 lists
 
+
 ### Arguments:
+
 
 ### Result:
 {thattuple,{tuple,[{first,{list,{thisinteger,integer}}},
@@ -9988,10 +12888,24 @@ Tell a tuple with 3 lists
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_tuple_3list", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_tuple_3list", {
@@ -10038,22 +12952,39 @@ Tell a tuple with 3 lists
 {: .code-samples-tabs}
 
 
+
 ## *tell_tuple_3string* - Tell a tuple with 3 strings
 
 
 Tell a tuple with 3 strings
 
+
 ### Arguments:
+
 
 ### Result:
 {thattuple,{tuple,[{first,string},{second,string},{third,string}]}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("tell_tuple_3string", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("tell_tuple_3string", {
@@ -10091,23 +13022,40 @@ Tell a tuple with 3 strings
 {: .code-samples-tabs}
 
 
+
 ## *this_crashes* - This command crashes: test+5
 
 
 This command crashes: test+5
 
+
 ### Arguments:
 - *aninteger* :: integer
+
 
 ### Result:
 {result,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("this_crashes", new HashMap<String, Object>() {{
+      put("aninteger", new Integer(1));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("this_crashes", {
@@ -10147,24 +13095,42 @@ This command crashes: test+5
 {: .code-samples-tabs}
 
 
+
 ## *this_wrong_args* - This problematic command defines 2 arguments but function expects 1
 
 
 This problematic command defines 2 arguments but function expects 1
 
+
 ### Arguments:
 - *a* :: integer
 - *b* :: integer
+
 
 ### Result:
 {result,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("this_wrong_args", new HashMap<String, Object>() {{
+      put("a", new Integer(1));
+      put("b", new Integer(2));
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("this_wrong_args", {
@@ -10212,22 +13178,39 @@ This problematic command defines 2 arguments but function expects 1
 {: .code-samples-tabs}
 
 
+
 ## *this_wrong_return* - This problematic command doesn't give a proper return
 
 
 This problematic command doesn't give a proper return
 
+
 ### Arguments:
+
 
 ### Result:
 {result,integer}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("this_wrong_return", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("this_wrong_return", {
@@ -10261,24 +13244,42 @@ This problematic command doesn't give a proper return
 {: .code-samples-tabs}
 
 
+
 ## *unregister* - Unregister a user
 
 
 Unregister a user
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("unregister", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("unregister", {
@@ -10326,23 +13327,40 @@ Unregister a user
 {: .code-samples-tabs}
 
 
+
 ## *update* - Update the given module, or use the keyword: all
 
 
 Update the given module, or use the keyword: all
 
+
 ### Arguments:
 - *module* :: string
+
 
 ### Result:
 {res,restuple}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("update", new HashMap<String, Object>() {{
+      put("module", "aaaaa");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("update", {
@@ -10382,22 +13400,39 @@ Update the given module, or use the keyword: all
 {: .code-samples-tabs}
 
 
+
 ## *update_list* - List modified modules that can be updated
 
 
 List modified modules that can be updated
 
+
 ### Arguments:
+
 
 ### Result:
 {modules,{list,{module,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("update_list", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("update_list", {
@@ -10434,22 +13469,39 @@ List modified modules that can be updated
 {: .code-samples-tabs}
 
 
+
 ## *user_resources* - List user's connected resources
 
 
 List user's connected resources
 
+
 ### Arguments:
+
 
 ### Result:
 {resources,{list,{resource,string}}}
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("user_resources", new HashMap<String, Object>() {{
+      
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("user_resources", {
@@ -10486,14 +13538,17 @@ List user's connected resources
 {: .code-samples-tabs}
 
 
+
 ## *user_sessions_info* - Get information about all sessions of a user
 
 
 Get information about all sessions of a user
 
+
 ### Arguments:
 - *user* :: binary
 - *host* :: binary
+
 
 ### Result:
 {sessions_info,{list,{session,{tuple,[{connection,string},
@@ -10508,10 +13563,25 @@ Get information about all sessions of a user
 
 ### Examples:
 
+* Java
 * Perl
 * XmlRPC
 * JSON
 {: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("user_sessions_info", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("host", "bbbbb");
+    }});
+
+~~~
 
 * ~~~ perl
     XMLRPC::Lite->proxy($url)->call("user_sessions_info", {
