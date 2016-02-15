@@ -206,6 +206,20 @@ h5,h5 {
     body.homepage #sidebar ul li:first-child a {
       color: #fff;
     }
+  
+  #markdown-source {
+    margin-top: -60px;
+    margin-bottom: 60px;
+    
+    font-size: 75%;
+  }
+    #markdown-source,
+    #markdown-source a {
+      color: #aaa;
+    }
+    body.homepage #markdown-source {
+      display: none;
+    }
 
 #content {
   padding-top: 60px;
@@ -393,5 +407,9 @@ body.blog .meta {
   #content {
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+  
+  #markdown-source {
+    margin-top: 0;
   }
 }
