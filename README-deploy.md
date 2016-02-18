@@ -6,6 +6,7 @@
     sleep 2
     rvm use 1.9.3
     bundle install
+    rm -rf output/
     nanoc compile
     if [ ! "$?" -eq "0" ]; then
     	echo "Error compiling, not sending site..."
@@ -21,6 +22,7 @@
     sleep 2
     rvm use 1.9.3
     bundle install
+    rm -rf output/
     nanoc compile
     nanoc view
 
