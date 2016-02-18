@@ -46,7 +46,6 @@ Add an item to a user's roster (supports ODBC)
       put("group", "fffff");
       put("subs", "ggggg");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -167,7 +166,6 @@ Store the database to backup file
     client.execute("backup", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -257,7 +255,6 @@ Ban an account: kick sessions and set random password
       put("host", "myserver.com");
       put("reason", "Spaming other users");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -363,7 +360,6 @@ Change the password of an account
       put("host", "myserver.com");
       put("newpass", "blank");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -458,7 +454,6 @@ Change an option in a MUC room
       put("option", "ccccc");
       put("value", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -567,7 +562,6 @@ Check if an account exists or not
       put("user", "peter");
       put("host", "myserver.com");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -665,7 +659,6 @@ Check if a password is correct
       put("host", "myserver.com");
       put("password", "secret");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -776,7 +769,6 @@ Allowed hash methods: md5, sha.
       put("passwordhash", "5ebe2294ecd0e0f08eab7690d2a6ee69");
       put("hashmethod", "md5");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -880,7 +872,6 @@ Recompile and reload Erlang source code file
     client.execute("compile", new HashMap<String, Object>() {{
       put("file", "/home/me/srcs/ejabberd/mod_example.erl");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -952,7 +943,6 @@ List all established sessions
     client.execute("connected_users", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1031,7 +1021,6 @@ List all established sessions and their information
     client.execute("connected_users_info", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1116,7 +1105,6 @@ Get the number of established sessions
     client.execute("connected_users_number", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1183,7 +1171,6 @@ Get the list of established sessions in a vhost
     client.execute("connected_users_vhost", new HashMap<String, Object>() {{
       put("host", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1259,7 +1246,6 @@ Convert the passwords in 'users' ODBC table to SCRAM
     client.execute("convert_to_scram", new HashMap<String, Object>() {{
       put("host", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1334,7 +1320,6 @@ Convert the input file from Erlang to YAML format
       put("in", "aaaaa");
       put("out", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1419,7 +1404,6 @@ Create a MUC room name@service in host
       put("service", "bbbbb");
       put("host", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1508,7 +1492,6 @@ Provide one room JID per line. Rooms will be created after restart.
     client.execute("create_rooms_file", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1580,7 +1563,6 @@ Delete expired offline messages from database
     client.execute("delete_expired_messages", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1649,7 +1631,6 @@ Valid message TYPEs: "chat", "groupchat", "all".
       put("type", "aaaaa");
       put("days", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1730,7 +1711,6 @@ Delete offline messages older than DAYS
     client.execute("delete_old_messages", new HashMap<String, Object>() {{
       put("days", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1810,7 +1790,6 @@ Delete users that didn't log in last days, or that never logged
     client.execute("delete_old_users", new HashMap<String, Object>() {{
       put("days", new Integer(30));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1895,7 +1874,6 @@ Delete users that didn't log in last days in vhost, or that never logged
       put("host", "myserver.com");
       put("days", new Integer(30));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -1982,7 +1960,6 @@ Delete an item from a user's roster (supports ODBC)
       put("user", "ccccc");
       put("server", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2081,7 +2058,6 @@ Destroy a MUC room
       put("name", "aaaaa");
       put("service", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2162,7 +2138,6 @@ Provide one room JID per line.
     client.execute("destroy_rooms_file", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2235,7 +2210,6 @@ Dump the database to text file
     client.execute("dump", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2310,7 +2284,6 @@ Dump a table to text file
       put("file", "aaaaa");
       put("table", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2391,7 +2364,6 @@ Echo Integer
     client.execute("echo_integer", new HashMap<String, Object>() {{
       put("thisinteger", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2470,7 +2442,6 @@ Echo an integer and List of strings
         new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
       });
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2585,7 +2556,6 @@ Echo integer and string, in result as a tuple
       put("thisinteger", new Integer(1));
       put("thisstring", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2689,7 +2659,6 @@ Echo integer, string, atom and tuple of integer and list of strings
         });
     }})
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2842,7 +2811,6 @@ Echo List of integers
         new HashMap<String, Object>() {{ put("thisinteger", new Integer(2)); }}
       });
     }});
-
 ~~~
 
 * ~~~ perl
@@ -2947,7 +2915,6 @@ Echo List of strings
         new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
       });
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3049,7 +3016,6 @@ Echo String
     client.execute("echo_string", new HashMap<String, Object>() {{
       put("thisstring", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3124,7 +3090,6 @@ Export virtual host information from Mnesia tables to SQL files
       put("host", "aaaaa");
       put("directory", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3207,7 +3172,6 @@ Export all tables as SQL queries to a file
       put("host", "aaaaa");
       put("file", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3288,7 +3252,6 @@ Export data of all users in the server to PIEFXIS files (XEP-0227)
     client.execute("export_piefxis", new HashMap<String, Object>() {{
       put("dir", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3363,7 +3326,6 @@ Export data of users in a host to PIEFXIS files (XEP-0227)
       put("dir", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3461,7 +3423,6 @@ Generates html documentation for ejabberd_commands
       put("regexp", "mod_admin");
       put("examples", "java,json");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3567,7 +3528,6 @@ Generates markdown documentation for ejabberd_commands
       put("regexp", "mod_admin");
       put("examples", "java,json");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3659,7 +3619,6 @@ Get the Erlang cookie of this node
     client.execute("get_cookie", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3728,7 +3687,6 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
       put("user", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3810,7 +3768,6 @@ Get the current loglevel
     client.execute("get_loglevel", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3880,7 +3837,6 @@ Get the number of unread offline messages
     client.execute("get_offline_count", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -3956,7 +3912,6 @@ Get the list of affiliations of a MUC room
       put("name", "aaaaa");
       put("service", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4054,7 +4009,6 @@ Get the list of occupants of a MUC room
       put("name", "aaaaa");
       put("service", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4148,7 +4102,6 @@ Get the number of occupants of a MUC room
       put("name", "aaaaa");
       put("service", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4231,7 +4184,6 @@ Get options from a MUC room
       put("name", "aaaaa");
       put("service", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4324,7 +4276,6 @@ Get roster of a local user
     client.execute("get_roster", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4408,7 +4359,6 @@ Get the list of rooms where this user is occupant
       put("user", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4516,7 +4466,6 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
       put("host", "bbbbb");
       put("name", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4631,7 +4580,6 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
       put("name", "ccccc");
       put("subname", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4754,7 +4702,6 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
       put("name", "ccccc");
       put("subname", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4854,7 +4801,6 @@ Import users data from jabberd14 spool dir
     client.execute("import_dir", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -4927,7 +4873,6 @@ Import user data from jabberd14 spool file
     client.execute("import_file", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5000,7 +4945,6 @@ Import users data from a PIEFXIS file (XEP-0227)
     client.execute("import_piefxis", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5073,7 +5017,6 @@ Import data from Prosody
     client.execute("import_prosody", new HashMap<String, Object>() {{
       put("dir", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5145,7 +5088,6 @@ Number of incoming s2s connections on the node
     client.execute("incoming_s2s_number", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5212,7 +5154,6 @@ Install the database from a fallback file
     client.execute("install_fallback", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5285,7 +5226,6 @@ Join this node into the cluster handled by Node
     client.execute("join_cluster", new HashMap<String, Object>() {{
       put("node", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5380,7 +5320,6 @@ Kick a user session
       put("resource", "Psi");
       put("reason", "Stuck connection");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5479,7 +5418,6 @@ Disconnect user's active sessions
       put("user", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5560,7 +5498,6 @@ Remove node handled by Node from the cluster
     client.execute("leave_cluster", new HashMap<String, Object>() {{
       put("node", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5632,7 +5569,6 @@ List nodes that are part of the cluster handled by Node
     client.execute("list_cluster", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5702,7 +5638,6 @@ Restore the database from text file
     client.execute("load", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5781,7 +5716,6 @@ Change the erlang node name in a backup file
       put("oldbackup", "ccccc");
       put("newbackup", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5878,7 +5812,6 @@ Change the erlang node name in a backup file
     client.execute("module_check", new HashMap<String, Object>() {{
       put("module", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -5951,7 +5884,6 @@ Change the erlang node name in a backup file
     client.execute("module_install", new HashMap<String, Object>() {{
       put("module", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6024,7 +5956,6 @@ Change the erlang node name in a backup file
     client.execute("module_uninstall", new HashMap<String, Object>() {{
       put("module", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6097,7 +6028,6 @@ Change the erlang node name in a backup file
     client.execute("module_upgrade", new HashMap<String, Object>() {{
       put("module", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6169,7 +6099,6 @@ Change the erlang node name in a backup file
     client.execute("modules_available", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6238,7 +6167,6 @@ Change the erlang node name in a backup file
     client.execute("modules_installed", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6307,7 +6235,6 @@ Change the erlang node name in a backup file
     client.execute("modules_update_specs", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6374,7 +6301,6 @@ List existing rooms ('global' to get all vhosts)
     client.execute("muc_online_rooms", new HashMap<String, Object>() {{
       put("host", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6450,7 +6376,6 @@ Unregister the nick in the MUC service
     client.execute("muc_unregister_nick", new HashMap<String, Object>() {{
       put("nick", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6535,7 +6460,6 @@ Get number of users active in the last days
       put("host", "myserver.com");
       put("days", new Integer(3));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6628,7 +6552,6 @@ Get the number of resources of a user
       put("user", "peter");
       put("host", "myserver.com");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6708,7 +6631,6 @@ Number of outgoing s2s connections on the node
     client.execute("outgoing_s2s_number", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6778,7 +6700,6 @@ This is an example command. The formula is:
       put("base", new Integer(1));
       put("exponent", new Integer(2));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6863,7 +6784,6 @@ Send a IQ set privacy stanza for a local account
       put("host", "bbbbb");
       put("xmlquery", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -6958,7 +6878,6 @@ Get some information from a user private storage
       put("element", "ccccc");
       put("ns", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7059,7 +6978,6 @@ Set to the user private storage
       put("host", "bbbbb");
       put("element", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7174,7 +7092,6 @@ This example will list roster items with subscription 'none', 'from' or 'to' tha
       put("users", "ddddd");
       put("contacts", "eeeee");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7290,7 +7207,6 @@ Add all the users to all the users of Host in Group
       put("host", "aaaaa");
       put("group", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7375,7 +7291,6 @@ Push template roster from file to a user
       put("user", "bbbbb");
       put("host", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7464,7 +7379,6 @@ Push template roster from file to all those users
     client.execute("push_roster_all", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7541,7 +7455,6 @@ Register a user
       put("host", "bbbbb");
       put("password", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7630,7 +7543,6 @@ List all registered users in HOST
     client.execute("registered_users", new HashMap<String, Object>() {{
       put("host", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7705,7 +7617,6 @@ List all registered vhosts in SERVER
     client.execute("registered_vhosts", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7774,7 +7685,6 @@ Reload config file in memory (only affects ACL and Access)
     client.execute("reload_config", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7848,7 +7758,6 @@ Remove an ejabberd node from Mnesia clustering config
     client.execute("remove_node", new HashMap<String, Object>() {{
       put("node", "ejabberd@server2");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -7920,7 +7829,6 @@ Reopen the log files
     client.execute("reopen_log", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8004,7 +7912,6 @@ Resource string of a session number
       put("host", "myserver.com");
       put("num", new Integer(2));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8092,7 +7999,6 @@ Restart ejabberd gracefully
     client.execute("restart", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8159,7 +8065,6 @@ Restore the database from backup file
     client.execute("restore", new HashMap<String, Object>() {{
       put("file", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8234,7 +8139,6 @@ Destroy the rooms that are unused for many days in host
       put("host", "aaaaa");
       put("days", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8320,7 +8224,6 @@ List the rooms that are unused for many days in host
       put("host", "aaaaa");
       put("days", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8403,7 +8306,6 @@ Rotate the log files
     client.execute("rotate_log", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8478,7 +8380,6 @@ Password and Message can also be: none. Users JIDs are separated with :
       put("reason", "ddddd");
       put("users", "eeeee");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8591,7 +8492,6 @@ Send a message to a local or remote bare of full JID
       put("subject", "ddddd");
       put("body", "eeeee");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8700,7 +8600,6 @@ Send a stanza; provide From JID and valid To JID
       put("to", "bbbbb");
       put("stanza", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8795,7 +8694,6 @@ Send a stanza as if sent from a c2s session
       put("resource", "ccccc");
       put("stanza", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8894,7 +8792,6 @@ Return list of integers between two integers
       put("from", new Integer(1));
       put("to", new Integer(2));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -8984,7 +8881,6 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
       put("timestamp", new Integer(1));
       put("status", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9081,7 +8977,6 @@ Set the loglevel (0 to 5)
     client.execute("set_loglevel", new HashMap<String, Object>() {{
       put("loglevel", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9154,7 +9049,6 @@ If you provide as nodename "self", this node will be set as its own master.
     client.execute("set_master", new HashMap<String, Object>() {{
       put("nodename", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9231,7 +9125,6 @@ Set nickname in a user's vCard
       put("host", "bbbbb");
       put("nickname", "ccccc");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9332,7 +9225,6 @@ Set presence of a session
       put("status", "fffff");
       put("priority", "ggggg");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9459,7 +9351,6 @@ Change an affiliation in a MUC room
       put("jid", "ccccc");
       put("affiliation", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9582,7 +9473,6 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
       put("name", "ccccc");
       put("content", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9707,7 +9597,6 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
       put("subname", "ddddd");
       put("content", "eeeee");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9843,7 +9732,6 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
         new HashMap<String, Object>() {{ put("value", "fffff"); }}
       });
     }});
-
 ~~~
 
 * ~~~ perl
@@ -9974,7 +9862,6 @@ Split JID in parts: user, server, resource
     client.execute("splitjid", new HashMap<String, Object>() {{
       put("jid", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10056,7 +9943,6 @@ Split JIDs in parts: user, server, resource
         new HashMap<String, Object>() {{ put("jid", "bbbbb"); }}
       });
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10178,7 +10064,6 @@ For example:
       put("description", "ddddd");
       put("display", "eeeee");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10285,7 +10170,6 @@ Delete a Shared Roster Group
       put("group", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10368,7 +10252,6 @@ Get info of a Shared Roster Group
       put("group", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10460,7 +10343,6 @@ Get members of a Shared Roster Group
       put("group", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10544,7 +10426,6 @@ List the Shared Roster Groups in Host
     client.execute("srg_list", new HashMap<String, Object>() {{
       put("host", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10626,7 +10507,6 @@ Add the JID user@host to the Shared Roster Group
       put("group", "ccccc");
       put("grouphost", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10729,7 +10609,6 @@ Delete this JID user@host from the Shared Roster Group
       put("group", "ccccc");
       put("grouphost", "ddddd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10826,7 +10705,6 @@ Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds
     client.execute("stats", new HashMap<String, Object>() {{
       put("name", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10901,7 +10779,6 @@ Get statistical value for this host: registeredusers onlineusers
       put("name", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -10981,7 +10858,6 @@ Get status of the ejabberd server
     client.execute("status", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11052,7 +10928,6 @@ List of logged users with this status
     client.execute("status_list", new HashMap<String, Object>() {{
       put("status", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11146,7 +11021,6 @@ List of users logged in host with their statuses
       put("host", "aaaaa");
       put("status", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11249,7 +11123,6 @@ Number of logged users with this status
     client.execute("status_num", new HashMap<String, Object>() {{
       put("status", "dnd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11334,7 +11207,6 @@ Number of logged users with this status in host
       put("host", "myserver.com");
       put("status", "dnd");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11414,7 +11286,6 @@ Stop ejabberd gracefully
     client.execute("stop", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11484,7 +11355,6 @@ ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
       put("delay", new Integer(1));
       put("announcement", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11565,7 +11435,6 @@ Return list of substrings of length increasing
     client.execute("substrs", new HashMap<String, Object>() {{
       put("word", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11641,7 +11510,6 @@ Take Integer in args, give Integer zero
     client.execute("take_integer", new HashMap<String, Object>() {{
       put("thisinteger", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11716,7 +11584,6 @@ Take integer and string, give Integer zero
       put("thisinteger", new Integer(1));
       put("thisstring", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11800,7 +11667,6 @@ Take List of integers, give Integer zero
         new HashMap<String, Object>() {{ put("thisinteger", new Integer(2)); }}
       });
     }});
-
 ~~~
 
 * ~~~ perl
@@ -11902,7 +11768,6 @@ Take List of strings, give Integer zero
         new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
       });
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12001,7 +11866,6 @@ Take String, give Integer zero
     client.execute("take_string", new HashMap<String, Object>() {{
       put("thisstring", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12077,7 +11941,6 @@ Take Tuple of two integers, give Integer zero
       put("thisinteger2", new Integer(2));
     }})
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12169,7 +12032,6 @@ Take Tuple of two strings, give Integer zero
       put("thisstring2", "bbbbb");
     }})
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12258,7 +12120,6 @@ Tell Atom, give Integer zero
     client.execute("tell_atom", new HashMap<String, Object>() {{
       put("thisinteger", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12330,7 +12191,6 @@ Tell a list with 3 atoms
     client.execute("tell_list_3atom", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12399,7 +12259,6 @@ Tell a list with 3 integers
     client.execute("tell_list_3integer", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12468,7 +12327,6 @@ Tell a list with 3 strings
     client.execute("tell_list_3string", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12539,7 +12397,6 @@ Tell a list with 3 tuples
     client.execute("tell_list_3tuple", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12617,7 +12474,6 @@ Tell rescode
     client.execute("tell_rescode", new HashMap<String, Object>() {{
       put("thisinteger", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12690,7 +12546,6 @@ Tell restuple
     client.execute("tell_restuple", new HashMap<String, Object>() {{
       put("thisinteger", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12762,7 +12617,6 @@ Tell a tuple with 3 atoms
     client.execute("tell_tuple_3atom", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12832,7 +12686,6 @@ Tell a tuple with 3 integers
     client.execute("tell_tuple_3integer", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12904,7 +12757,6 @@ Tell a tuple with 3 lists
     client.execute("tell_tuple_3list", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -12983,7 +12835,6 @@ Tell a tuple with 3 strings
     client.execute("tell_tuple_3string", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13054,7 +12905,6 @@ This command crashes: test+5
     client.execute("this_crashes", new HashMap<String, Object>() {{
       put("aninteger", new Integer(1));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13129,7 +12979,6 @@ This problematic command defines 2 arguments but function expects 1
       put("a", new Integer(1));
       put("b", new Integer(2));
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13209,7 +13058,6 @@ This problematic command doesn't give a proper return
     client.execute("this_wrong_return", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13278,7 +13126,6 @@ Unregister a user
       put("user", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13359,7 +13206,6 @@ Update the given module, or use the keyword: all
     client.execute("update", new HashMap<String, Object>() {{
       put("module", "aaaaa");
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13431,7 +13277,6 @@ List modified modules that can be updated
     client.execute("update_list", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13500,7 +13345,6 @@ List user's connected resources
     client.execute("user_resources", new HashMap<String, Object>() {{
       
     }});
-
 ~~~
 
 * ~~~ perl
@@ -13580,7 +13424,6 @@ Get information about all sessions of a user
       put("user", "aaaaa");
       put("host", "bbbbb");
     }});
-
 ~~~
 
 * ~~~ perl
