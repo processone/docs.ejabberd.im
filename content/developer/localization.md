@@ -15,8 +15,8 @@ updated .po files. Finally those .po files are exported to .msg files,
 that have a format easily readable by `ejabberd`.
 
 All built-in modules support the `xml:lang` attribute inside IQ queries.
-Figure [fig:discorus], for example, shows the reply to the following
-query:
+
+The following example shows the reply to the following query:
 
 	#!xml
 	<iq id='5'
