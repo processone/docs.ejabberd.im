@@ -3533,8 +3533,8 @@ For example: `"0755"`. Default: `undefined`.
 
 : Uploaded files are stored below the directory specified (as an
 absolute path) with this option. The keyword `@HOME@` is replaced with
-the home directory of the user running ejabberd. Default:
-`"@HOME@/upload"`.
+the home directory of the user running ejabberd, and the keyword
+`@HOST@` with the virtual host name. Default: `"@HOME@/upload"`.
 
 `put_url: URL`
 
