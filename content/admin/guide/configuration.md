@@ -4223,6 +4223,16 @@ Examples:
 		    access_admin: muc_admin
 		  ...
 
+### mod_muc_admin
+
+Most of the command to manage MUC service depends on the activation
+of `mod_muc_admin` module in ejabberd.
+
+`mod_muc_admin` is included in ejabberd main code base since
+ejabberd 15.04.
+
+This module does not need any option.
+
 ### mod_muc_log
 
 This module enables optional logging of Multi-User Chat (MUC) public
