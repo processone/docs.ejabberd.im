@@ -20,7 +20,7 @@ If you want to contribute to this ejabberd documentation, here are some helpful 
   
      * Nested item list text
      
-       ~~~ perl
+     ~~~ perl
   my $nested_var = 'or nothing';
   ~~~
   ```
