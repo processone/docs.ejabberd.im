@@ -16,6 +16,6 @@ If you want to contribute to this ejabberd documentation, here are some helpful 
   
      ~~~ perl
   my $variable = 'something';
-     ~~~
+  ...
   ```
 - while we are at it, ordered lists don't need to be enumerated 1,2,3... in the source - they can all start with `1.`, the generator will enumerate them properly
