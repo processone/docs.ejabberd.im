@@ -3784,13 +3784,15 @@ Examples:
 
 ### mod_last
 
+#### Description
+
 This module adds support for Last Activity
 ([`XEP-0012`][75]). It can be used
 to discover when a disconnected user last accessed the server, to know
 when a connected user was last active on the server, or to query the
 uptime of the `ejabberd` server.
 
-Options:
+#### Options
 
 `iqdisc: Discipline`
 
@@ -3800,6 +3802,26 @@ Options:
 `db_type: mnesia|odbc|riak`
 
 :   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+
+#### Example Configuration
+
+~~~ yaml
+modules:
+  mod_last: {}
+~~~
+
+#### Comments
+
+You may want to disable that module depending on several parameters:
+
+- **Privacy:** You may not want to store the last presence of your users
+  in database.
+- **Performance:** If you have usage pattern with large spike of
+  disconneect, you may want to disable that module to limit trafic
+  spike on your `mod_last` database backend.
+
+Note that you may want also to purge last activity that is too old to
+limit the storage size of those data.
 
 ### mod_mam
 
