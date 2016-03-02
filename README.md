@@ -18,7 +18,7 @@ If you want to contribute to this ejabberd documentation, here are some helpful 
   my $variable = 'something';
   ~~~
   
-     • Nested item list text
+     § Nested item list text
      
        ~~~ perl
   my $nested_var = 'or nothing';
