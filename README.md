@@ -14,6 +14,8 @@ If you want to contribute to this ejabberd documentation, here are some helpful 
 
 - for code blocks with terminal listings, use `~~~ bash` or `~~~ python`, whichever looks best
 
+- ordered lists don't need to be enumerated 1,2,3... in the source - they can all start with `1.`, the generator will enumerate them properly
+
 - for code blocks within lists, make sure indentation of first `~~~` is vertically aligned with list item text, for example:
     ```
     1. Item list text
@@ -23,4 +25,3 @@ If you want to contribute to this ejabberd documentation, here are some helpful 
     ...
     ```
   
-- while we are at it, ordered lists don't need to be enumerated 1,2,3... in the source - they can all start with `1.`, the generator will enumerate them properly
