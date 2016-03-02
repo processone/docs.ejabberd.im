@@ -21,7 +21,10 @@ If you want to contribute to this ejabberd documentation, here are some helpful 
     1. Item list text
     
        ~~~ perl
-    my $variable = 'something';
-    ...
+       my $variable = 'something';
+       ...
+       ~~~
     ```
-  
+    This is generally 3 spaces for numbered list item and 2 for bullet items.
+
+- It is usually better to indent at same level the whole code block (so in list item), otherwise, empty lines will break rendering.

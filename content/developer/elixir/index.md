@@ -77,3 +77,120 @@ Consolidated Inspect
 Interactive Elixir (1.2.0) - press Ctrl+C to exit (type h() ENTER for help)
 iex(1)> 
 ~~~
+
+## Embedding ejabberd in an Elixir application
+
+Starting from version 16.02, ejabberd is packaged as an Hex.pm
+application: [ejabberd on hex.pm](https://hex.pm/packages/ejabberd).
+
+It means that you can now building a customized XMPP messaging
+platform with Elixir on top of ejabberd by leveraging ejabberd code
+base in your app and providing only your custom modules.
+
+This makes the management of your ejabberd plugins easier and cleaner.
+
+To create your own application depending on ejabberd, you can go
+through the following steps:
+
+1. Create new Elixir app with mix:
+
+   ~~~ python
+   mix new ejapp
+   * creating README.md
+   * creating .gitignore
+   * creating mix.exs
+   * creating config
+   * creating config/config.exs
+   * creating lib
+   * creating lib/ejapp.ex
+   * creating test
+   * creating test/test_helper.exs
+   * creating test/ejapp_test.exs
+
+   Your Mix project was created successfully.
+   You can use "mix" to compile it, test it, and more:
+
+   cd ejapp
+   mix test
+
+   Run "mix help" for more commands.
+   ~~~
+
+
+1. Get to your new app directory:
+
+   ~~~ python
+   cd ejapp
+   ~~~
+
+1. Add [ejabberd package](https://hex.pm/packages/ejabberd) as a
+   dependency in your `mix.exs` file:
+
+   ~~~ elixir
+   defmodule Ejapp.Mixfile do
+   ...
+     defp deps do
+       [{:ejabberd, "~> 16.2"}]
+     end
+   end
+   ~~~
+
+1. Start ejabberd application from `mix.exs` when your app is started:
+
+   ~~~ elixir
+   defmodule Ejapp.Mixfile do
+   ...
+     def application do
+       [applications: [:logger, :ejabberd]]
+     end
+   ...
+   end
+   ~~~
+
+1. Create or get ejabberd config file:
+
+   ~~~ bash
+   (cd config; wget https://gist.githubusercontent.com/mremond/383666d563025e86adfe/raw/723dfa50c955c112777f3361b4f2067b76a55d7b/ejabberd.yml)
+   ~~~
+
+1. Define ejabberd configuration reference in `config/config.exs`:
+
+   ~~~ elixir
+   config :ejabberd,
+     file: "config/ejabberd.yml",
+     log_path: 'logs/ejabberd.log'
+   
+   # Customize Mnesia directory:
+   config :mnesia,
+     dir: 'mnesiadb/'
+   ~~~
+
+1. Create log dir:
+
+   ~~~ bash
+   mkdir logs
+   ~~~
+
+1. Compile everything:
+
+   ~~~ bash
+   mix do deps.get, deps.compile, compile
+   ~~~
+
+   Note: We have to make a second mix deps.compile to have fast_xml
+   .so file properly move to _build proper subdirectories. We need to
+   investigate / fix that.
+
+1. Start your app, ejabberd will be started as a dependency:
+
+   ~~~ bash
+   iex -S mix
+   ~~~
+
+1. Register user from Elixir console:
+
+   ~~~ elixir
+   :ejabberd_auth.try_register("test", "localhost", "passw0rd")
+   ~~~ 
+
+1. You are all set, you can now connect with an XMPP client !
