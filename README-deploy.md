@@ -4,7 +4,7 @@
     export LC_ALL="en_US.UTF-8"
     git pull
     sleep 2
-    rvm use 1.9.3
+    rvm use 2.1.5
     bundle install
     rm -rf output/
     nanoc compile
@@ -20,7 +20,7 @@
     export LC_ALL="en_US.UTF-8"
     git pull
     sleep 2
-    rvm use 1.9.3
+    rvm use 2.1.5
     bundle install
     rm -rf output/
     nanoc compile
