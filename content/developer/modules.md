@@ -44,9 +44,10 @@ call them as you want.
 All ejabberd modules are implementing the `gen_mod` behaviour. It
 means that a module must provide the following API:
 
-    #!erlang
-    start(Host, Opts) -> ok
-    stop(Host) -> ok
+~~~ erlang
+start(Host, Opts) -> ok
+stop(Host) -> ok
+~~~
 
 Parameters are:
 
@@ -66,53 +67,58 @@ function.
 
 The following code shows the simplest possible module.
 
-    #!erlang
-    -module(mod_hello_world).
-    
-    -behaviour(gen_mod).
-    
-    %% Required by ?INFO_MSG macros
-    -include("logger.hrl").
-    
-    %% gen_mod API callbacks
-    -export([start/2, stop/1]).
-    
-    start(_Host, _Opts) ->
-        ?INFO_MSG("Hello, ejabberd world!", []),
-        ok.
-    
-    stop(_Host) ->
-        ?INFO_MSG("Bye bye, ejabberd world!", []),
-        ok.
+~~~ erlang
+-module(mod_hello_world).
+
+-behaviour(gen_mod).
+
+%% Required by ?INFO_MSG macros
+-include("logger.hrl").
+
+%% gen_mod API callbacks
+-export([start/2, stop/1]).
+
+start(_Host, _Opts) ->
+    ?INFO_MSG("Hello, ejabberd world!", []),
+    ok.
+
+stop(_Host) ->
+    ?INFO_MSG("Bye bye, ejabberd world!", []),
+    ok.
+~~~
 
 You can use it by adding it in the config file. Adding the following
 snippet in the config file will integrate the module in ejabberd
 module lifecycle management. It means the module will be started and
 ejabberd launch and stopped during ejabberd shutdown process:
 
-    #!yaml
-    modules:
-      ...
-      mod_hello_world: {}
+~~~ yaml
+modules:
+  ...
+  mod_hello_world: {}
+~~~
 
 Or you can start / stop it manually by typind the following commands
 from an Erlang shell running ejabberd:
 
 * To manually start your module:
 
-        #!erlang
-        gen_mod:start_module(<<"localhost">>, mod_hello_world, []).
+  ~~~ erlang
+gen_mod:start_module(<<"localhost">>, mod_hello_world, []).
+~~~
 
 * To manually stop your module:
 
-        #!erlang
-        gen_mod:stop_module(<<"localhost">>, mod_hello_world).
+  ~~~ erlang
+gen_mod:stop_module(<<"localhost">>, mod_hello_world).
+~~~
 
 When the module is started, either on ejabberd start or manually, you
 should see the following message in ejabberd log file:
 
-    19:13:29.717 [info] Hello, ejabberd world!
-
+~~~ python
+19:13:29.717 [info] Hello, ejabberd world!
+~~~
 
 # Working with the ejabberd module repository
 
@@ -124,12 +130,15 @@ most used contribution and also can link to any other external repository.
 This works with ejabberd modules written in Erlang and will also support new Elixir modules.
 
 ## Basic commands
+
 As a user, this is how it works:
 
 First you need to get/update the list of available modules. This must be done
 before anything else to let module related features to work correctly:
 
-    $ ejabberdctl modules_update_specs
+~~~ bash
+$ ejabberdctl modules_update_specs
+~~~
 
 You should repeat this command at regular interval depending on your needs.
 Basically running modules_update_specs once a week is enough to keep in sync
@@ -137,23 +146,29 @@ but you may prefer to manually call this only before you need to install a
 new module or an attended upgrade.
 Then you can list available modules
 
-    $ ejabberdctl modules_available
-    ...
-    mod_admin_extra Additional ejabberd commands
-    mod_archive Supports almost all the XEP-0136 version 0.6 except otr
-    mod_cron Execute scheduled commands
-    mod_log_chat Logging chat messages in text files
-    ...
+~~~ bash
+$ ejabberdctl modules_available
+...
+mod_admin_extra Additional ejabberd commands
+mod_archive Supports almost all the XEP-0136 version 0.6 except otr
+mod_cron Execute scheduled commands
+mod_log_chat Logging chat messages in text files
+...
+~~~
 
-Let’s give mod_cron a try:
+Let’s give `mod_cron` a try:
 
-    $ ejabberdctl module_install mod_cron
-    ok
+~~~ bash
+$ ejabberdctl module_install mod_cron
+ok
+~~~
 
-This command installs mod_cron from ejabberd-contrib repository. An example default
+This command installs `mod_cron` from ejabberd-contrib repository. An example default
 configuration is installed in:
 
-    $HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
+~~~
+$HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
+~~~
 
 All you have to do is to copy paste the module and add the values in there in the
 proper place in your ejabberd.yml config file. Be careful, the snippet can include ACLs,
@@ -162,13 +177,17 @@ config file.
 
 Now, check your new module is installed:
 
-    $ ejabberdctl modules_installed
-    mod_cron
+~~~ bash
+$ ejabberdctl modules_installed
+mod_cron
+~~~
 
 And finally, you can remove it:
 
-    $ ejabberdctl module_uninstall mod_cron
-    ok
+~~~ bash
+$ ejabberdctl module_uninstall mod_cron
+ok
+~~~
 
 ## Managing your own modules
 As a developper, you still need Erlang and Ejabberd if you install everything from
@@ -178,7 +197,9 @@ ejabberd modules on its own.
 
 First you can work on your own module by creating a repository in
 
-    $HOME/.ejabberd-modules/sources/mod_mysupermodule
+~~~
+$HOME/.ejabberd-modules/sources/mod_mysupermodule
+~~~
 
 and creating a specification file in YAML format as mod_mysupermodule.spec
 (see examples from ejabberd-contrib). From that point you should see it as available module.
@@ -186,8 +207,10 @@ and creating a specification file in YAML format as mod_mysupermodule.spec
 Before commiting your code, you should check if your module follows the policy and if it
 compiles correctly:
 
-    $ ejabberdctl module_check mod_mysupermodule
-    ok
+~~~ bash
+$ ejabberdctl module_check mod_mysupermodule
+ok
+~~~
 
 if all is OK, your’re done ! Else, just follow the warning/error messages to fix the issues.
 
@@ -198,6 +221,7 @@ spec file and does not need your code to make it available to all ejabberd users
 
 
 ## Status
+
 Please note this is provided as a beta version. We want the work in progress to be released
 early to gather feedback from developers and users.
 
