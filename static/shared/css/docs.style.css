@@ -233,9 +233,6 @@ h5,h5 {
   font-size: 15px;
   color: #666;
 }
-  body #content li {
-    margin-bottom: 30px;
-  }
   body.homepage #content {
     background: transparent;
     color: #fff;
@@ -326,6 +323,12 @@ code {
   font-size: 12px;
   line-height: 16px;
 }
+pre {
+  margin-bottom: 30px;
+}
+  pre pre {
+    margin-bottom: 0;
+  }
 
 code {
     background: inherit;
