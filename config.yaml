@@ -19,6 +19,8 @@ index_filenames: [ 'index.html' ]
 # before and after the last site compilation.
 enable_output_diff: false
 
+string_pattern_type: glob
+
 # The data sources where nanoc loads its data from. This is an array of
 # hashes; each array element represents a single data source. By default,
 # there is only a single data source that reads data from the “content/” and
@@ -28,6 +30,7 @@ data_sources:
     # The type is the identifier of the data source. By default, this will be
     # `filesystem_unified`.
     type: filesystem_unified
+    identifier_type: legacy
 
     # The path where items should be mounted (comparable to mount points in
     # Unix-like systems). This is “/” by default, meaning that items will have
@@ -42,17 +45,21 @@ data_sources:
 
   -
     type: filesystem_unified
+    identifier_type: legacy
     content_dir: ../docs.ejabberd.im_ebe/content
     layouts_dir: ../layouts
 
   -
     type: filesystem_unified
+    identifier_type: legacy
     content_dir: ../docs.ejabberd.im_saas/content
     layouts_dir: ../layouts
 
   -
-    type: static
+    type: filesystem
     items_root: /static
+    content_dir: 'static'
+    layouts_dir: null
 
 # For the atom feed.
 base_url: http://docs.ejabberd.im

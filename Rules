@@ -11,13 +11,13 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-compile '/static/*' do
+compile '/static/**/*' do
 end
 
 compile '/CNAME/' do
 end
 
-compile '*' do
+compile '**/*' do
   filter :erb
   filter :kramdown, :toc_levels => [2,3]
   filter :colorize_syntax,
@@ -26,19 +26,23 @@ compile '*' do
   filter :add_toc
 
   layout 'default'
-  rep.item.identifier + "index.html"
+  item.identifier + "index.html"
 end
 
-route '/static/*' do
-  item.identifier[7..-2]
+#route '/static/*' do
+#  item.identifier[7..-2]
+#end
+
+route '/static/**/*' do
+  item.identifier.to_s.sub(/\A\/static/, '')
 end
 
 route '/CNAME/' do
   '/CNAME'
 end
 
-route '*' do
+route '**/*' do
   item.identifier + 'index.html'
 end
 
-layout '*', :erb
+layout '**/*', :erb
