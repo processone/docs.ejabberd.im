@@ -67,11 +67,58 @@ It is enabled by default in ejabberd configuration template.
 
 #### Disabling
 
-2. Make sure `mod_last` is not defined or commented in ejabberd config
-   `modules` section.
+2. Make sure `mod_last` is not defined or is commented out in ejabberd
+   config `modules` section.
    
 No side effect.
 
 #### Module documentation
 
 * [mod_last](/admin/guide/configuration/#modlast)
+
+## XEP-0013: Flexible Offline Message Retrieval
+
+#### Specification
+
+[XEP-0013: Flexible Offline Message Retrieval](http://xmpp.org/extensions/xep-0013.html)
+
+#### Implementation
+
+Main ejabberd module: [mod_offline.erl](https://github.com/processone/ejabberd/blob/master/src/mod_offline.erl)
+
+#### Comment
+
+This extension is active on server if `mod_offline` module is enabled on ejabberd.
+
+However, it is not used by client automatically. Flexible offline
+message retrieval is enabled in the following cases:
+
+* client send request to retrieve number of messages prior to sending
+  its initial presence:
+  [Requesting Number of Messages](http://xmpp.org/extensions/xep-0013.html#request-number)
+* client send request to retrieve messages headers prior to sending
+  its initial presence:
+  [Requesting Message Headers](http://xmpp.org/extensions/xep-0013.html#request-headers)
+* client send all messages retrieval request prior to sending its
+  initial presence:
+  [Retrieving All Messages](http://xmpp.org/extensions/xep-0013.html#request-headers)
+
+#### Enabling
+
+1. Add `mod_offline` configuration in `modules` section of the
+   configuration file.
+
+It is enabled and can be used by client if mod_offline is
+enabled. This is a module enabled by default in default ejabberd
+configuration file template.
+
+#### Disabling
+
+2. Make sure `mod_offline` is not defined or is commented out in
+   ejabberd config `modules` section.
+   
+Side effect: It will disable all offline messages storage.
+
+#### Module documentation
+
+* [mod_offline](/admin/guide/configuration/#modoffline)
