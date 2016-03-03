@@ -4473,7 +4473,7 @@ Example configuration:
 
 This module implements offline message storage ([`XEP-0160`][80]) and
 flexible offline message retrieval
-([`XEP-0013`][http://xmpp.org/extensions/xep-0013.html]). This means
+([`XEP-0013`][121]). This means
 that all messages sent to an offline user will be stored on the server
 until that user comes online again. Thus it is very similar to how
 email works. A user is considered offline if no session presence
@@ -6352,3 +6352,4 @@ Options:
 [118]:  https://github.com/processone/ejabberd/tree/master/sql
 [119]:  https://www.sqlite.org
 [120]:  http://xmpp.org/extensions/xep-0363.html
+[121]:  http://xmpp.org/extensions/xep-0013.html
