@@ -1,6 +1,5 @@
 ---
 title: ejabberd for Elixir Developers | ejabberd documentation
-bodyclass: nocomment
 ---
 
 # ejabberd for Elixir developers
