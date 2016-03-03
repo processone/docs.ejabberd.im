@@ -101,7 +101,7 @@ message retrieval is enabled in the following cases:
   [Requesting Message Headers](http://xmpp.org/extensions/xep-0013.html#request-headers)
 * client send all messages retrieval request prior to sending its
   initial presence:
-  [Retrieving All Messages](http://xmpp.org/extensions/xep-0013.html#request-headers)
+  [Retrieving All Messages](http://xmpp.org/extensions/xep-0013.html#retrieve-all)
 
 #### Enabling
 
