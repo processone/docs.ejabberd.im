@@ -47,7 +47,7 @@ data_sources:
     type: filesystem_unified
     identifier_type: legacy
     content_dir: ../docs.ejabberd.im_ebe/content
-    layouts_dir: ../layouts
+    layouts_dir: ../docs.ejabberd.im_ebe/layouts
 
   -
     type: filesystem_unified
