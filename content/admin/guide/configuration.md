@@ -3810,7 +3810,7 @@ modules:
   mod_last: {}
 ~~~
 
-#### Comments
+#### Implementation notes
 
 You may want to disable that module depending on several parameters:
 
@@ -4469,30 +4469,43 @@ Example configuration:
 
 ### mod_offline
 
-This module implements offline message storage
-([`XEP-0160`][80]). This means
+#### Description
+
+This module implements offline message storage ([`XEP-0160`][80]) and
+flexible offline message retrieval
+([`XEP-0013`][http://xmpp.org/extensions/xep-0013.html]). This means
 that all messages sent to an offline user will be stored on the server
-until that user comes online again. Thus it is very similar to how email
-works. Note that `ejabberdctl` has a command to delete expired messages
-(see section [Managing: ejabberdctl](../managing/#ejabberdctl)).
+until that user comes online again. Thus it is very similar to how
+email works. A user is considered offline if no session presence
+priority > 0 are currently open.
+
+Note that `ejabberdctl` has a command to delete expired messages (see
+section [Managing: ejabberdctl](../managing/#ejabberdctl)).
+
+#### Options
 
 `db_type: mnesia|odbc|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+: Define the type of storage where the module will create the tables
+and store user information. The default is the storage defined by the
+global option `default_db`, or `mnesia` if omitted. If `odbc` or
+`riak` value is defined, make sure you have defined the database, see
+[database](#database-and-ldap-configuration).
 
 `access_max_user_messages: AccessName`
 
-:   This option defines which access rule will be enforced to limit the
-	maximum number of offline messages that a user can have (quota).
-	When a user has too many offline messages, any new messages that he
-	receive are discarded, and a resource-constraint error is returned
-	to the sender. The default value is `max_user_offline_messages`.
-	Then you can define an access rule with a syntax similar to
-	`max_user_sessions` (see [Limiting Opened Sessions with ACL](#limiting-opened-sessions-with-acl)).
+: This option defines which access rule (atom) will be enforced to
+	limit the maximum number of offline messages that a user can have
+	(quota).  When a user has too many offline messages, any new
+	messages that he receive are discarded, and a resource-constraint
+	error is returned to the sender. The default value is
+	`max_user_offline_messages`.  Then you can define an access rule
+	with a syntax similar to `max_user_sessions` (see
+	[Limiting Opened Sessions with ACL](#limiting-opened-sessions-with-acl)).
 
 `store_empty_body: true|false|unless_chat_state`
 
-:   Whether or not to store messages with empty `<body/>` element. The
+: Whether or not to store messages with empty `<body/>` element. The
 	default value is `unless_chat_state`, which tells ejabberd to
 	store messages with empty `<body/>` element *unless* they only
 	contain a chat state notification (as defined in
@@ -4500,12 +4513,15 @@ works. Note that `ejabberdctl` has a command to delete expired messages
 
 `pool_size: Size`
 
-:   This option specifies the size of the worker pool for storing
+: This option specifies the size of the worker pool for storing
 	offline messages. The allowed values are positive integers.
 	Default value: `16`.
 
+#### Example Configuration
+
 This example allows power users to have as much as 5000 offline
-messages, administrators up to 2000, and all the other users up to 100.
+messages, administrators up to 2000, and all the other users up to
+100.
 
 	#!yaml
 	acl:
@@ -4529,6 +4545,22 @@ messages, administrators up to 2000, and all the other users up to 100.
 	  mod_offline:
 	    access_max_user_messages: max_user_offline_messages
 	  ...
+
+#### Implementation notes
+
+You have several approach for a client to learn what happened when it was offline:
+
+- offline storage: This is adequate especially when a single client is
+  typically used at a time.
+- message archive (MAM): This is a new archiving feature. A client
+  (for example a mobile client) can use it to resync its own history
+  with what happened when it was offline. In that case, the client is
+  responsible for marking messages it considers new as "unread". See
+  [mod_mam](#modmam).
+
+Some clients may rely on offline and/or message archives to catch up
+on messages on reconnect, but client developers should always consider
+interactions with those two modules together.
 
 ### mod_ping
 
