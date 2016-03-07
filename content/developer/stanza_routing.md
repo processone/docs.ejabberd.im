@@ -32,7 +32,7 @@ is as follows:
    ~~~
    
    In that case, user is local so we need to route to same domain (in
-   our case localhost). We this can see that we have to call
+   our case localhost). We then can see that we have to call
    `ejabberd_local:route` to route the message to local user. As both
    user are local (no server-to-server involved), it matches our
    expectations.
