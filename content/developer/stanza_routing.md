@@ -56,3 +56,9 @@ is as follows:
    detached and push notifications can be used as a fallback.
    `user_receive_packet` hook is run to notify the rest of the system
    about stanza delivery to User B.
+
+Here is a broader diagram, including server-to-server routing:
+
+![][image-1]
+
+[image-1]:      /images/developer/stanza-flow.png
