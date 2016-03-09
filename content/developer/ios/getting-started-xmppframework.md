@@ -19,14 +19,14 @@ Here are the steps needed to get started:
    
 3. Edit your `Podfile` to use XMPPFramework as a target. It may looks like:
 
-   ``` ruby
+   ~~~ ruby
    platform :ios, '6.0'
    use_frameworks!
 
    target 'projectname' do
       pod 'XMPPFramework'
    end
-   ```
+   ~~~
 
 4. Run `pod install` command. It should download, install and
    configure three pods.
