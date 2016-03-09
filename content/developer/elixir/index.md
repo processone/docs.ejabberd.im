@@ -173,12 +173,8 @@ through the following steps:
 1. Compile everything:
 
    ~~~ bash
-   mix do deps.get, deps.compile, compile
+   mix do deps.get, compile
    ~~~
-
-   Note: We have to make a second mix deps.compile to have fast_xml
-   .so file properly move to _build proper subdirectories. We need to
-   investigate / fix that.
 
 1. Start your app, ejabberd will be started as a dependency:
 
