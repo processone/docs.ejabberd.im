@@ -6,6 +6,20 @@ title: ejabberd SQL database schema | ejabberd documentation
 
 This page explains ejabberd SQL database schema
 
+
+## Table `last`
+This table is used to store the last time the user was seen online.  
+It is defined as follow:
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username             | string           | User                                                                                    |
+| seconds              | string           | Timestamp for the last time the user was seen online                                    |
+| state                | string           | Why user got disconnected. Usually is empty                                             |
+
+Note that the table is *not* updated while the user has the session open. 
+
+
 ## Table `privacy_list_data`
 
 The table is used to store privacy rules.
