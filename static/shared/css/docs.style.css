@@ -336,6 +336,12 @@ code {
     margin: 0;
     padding: 0;
 }
+  h1 code,
+  h2 code,
+  h3 code,
+  h4 code {
+    font-size: inherit;
+  }
 
 .code-samples-labels,
 .code-samples-tabs {
@@ -426,4 +432,14 @@ body.blog .meta {
   #markdown-source {
     margin-top: 0;
   }
+}
+
+@media only screen and (max-width: 532px) {
+
+  #header menu {
+    padding-top: 20px;
+    text-align: left;
+    width: 100%;
+  }
+
 }
