@@ -40,6 +40,23 @@ It is defined as follow:
 Note that the table is *not* updated while the user has the session open. 
 
 
+## Table `spool`
+Messages sent to users that are offline are stored in this table. 
+Do not confuse this with general message archiving: messages are only temporarly stored in this table, removed as soon as the target user 
+is back online and the pending messages delivered to it.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username             | string           | User                                                                                    |
+| xml                  | blob             | Raw packet                                                                              |
+| seq                  | integer          | Unique, autoincrement sequence number.                                                  |
+| created_at           | timestamp        | When the message was stored                                                             |
+
+The seq field is used for sorting, and to easily identify a particular user message.
+
+
+
+
 ## Table `privacy_list_data`
 
 The table is used to store privacy rules.
