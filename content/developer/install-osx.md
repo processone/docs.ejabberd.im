@@ -66,8 +66,14 @@ To build and install ejabberd from source code, do the following:
 Note that the previous command reference the previously installed
 dependencies from [Homebrew](http://brew.sh).
 
-The exports are needed to point to the Homebrew version of the
-libraries, not the one provided by OSX.
+The exports are sometimes needed to help the build chain find the
+libraries installed by Homebrew, not the one provided by OSX.
+
+However, often, it is just enough to for for Homebrew update its symlinks for OpenSSL:
+
+~~~ bash
+brew link openssl --force
+~~~
 
 
 ## Running ejabberd
