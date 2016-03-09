@@ -7,6 +7,26 @@ title: ejabberd SQL database schema | ejabberd documentation
 This page explains ejabberd SQL database schema
 
 
+## Table `users`
+Contains the information required to authenticate users.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username             | string           | User                                                                                    |
+| password             | string           | User password, can be hashed                                                            |
+| created_at           | timestamp        | When the user account was created                                                       |
+
+
+The password are hashed if you use SCRAM authentication. In that case the next fields are also defined
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| serverkey            | string           | support for salted passwords                                                            |
+| salt                 | string           | support for salted passwords                                                            |
+| iterationcount       | integer          | support for salted passwords                                                            |
+
+
+
 ## Table `last`
 This table is used to store the last time the user was seen online.  
 It is defined as follow:
