@@ -55,6 +55,32 @@ is back online and the pending messages delivered to it.
 The seq field is used for sorting, and to easily identify a particular user message.
 
 
+## Table `muc_room`
+It is used to store *persistent* rooms, that is, rooms that must be automatically started with the server.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| name                 | string           | Room name                                                                               |
+| host                 | string           | Hostname of the conference component                                                    |
+| opts                 | string           | Room options, encoded as erlang terms                                                   |
+| created_at           | timestamp        | Creation date                                                                           |
+
+The opts field is legible, but not mean to be modified directly. It contents depends on the implementation of mod_muc. 
+It contains the room configuration and affiliations.
+
+
+## Table `muc_registered`
+Contains a map of user to nicknames.  When a user register a nickname with the conference module, that nick is reserved and can't be used by 
+anyone else, in any room from that conference host.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| jid                  | string           | User jid                                                                                |
+| host                 | string           | Hostname of the conference component                                                    |
+| nick                 | string           | Room options, encoded as erlang terms                                                   |
+| created_at           | timestamp        | Creation date                                                                           |
+
+
 
 
 ## Table `privacy_list_data`
