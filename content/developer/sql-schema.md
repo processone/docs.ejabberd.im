@@ -81,6 +81,19 @@ anyone else, in any room from that conference host.
 | created_at           | timestamp        | Creation date                                                                           |
 
 
+## Table `room_history`
+This table is used if persistent room history is enabled. If so, recent room history is saved to the DB before ejabberd is stopped, 
+allowing the recent history to survive server restarts.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| room                 | string           | Room jid                                                                                |
+| nick                 | string           | Nickname that sent the message                                                          |
+| packet               | string           | XML stanza with the message                                                             |
+| have_subject         | boolean          | True if the message stanza had subject                                                  |
+| created_at           | timestamp        | Creation date                                                                           |
+| size                 | integer          | Size in bytes of the xml packet                                                             |
+
 
 
 ## Table `privacy_list_data`
