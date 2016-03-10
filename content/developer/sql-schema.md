@@ -4,15 +4,17 @@ title: ejabberd SQL database schema | ejabberd documentation
 
 # ejabberd SQL database schema
 
-This page explains ejabberd SQL database schema.
-It is a work in progress, not all tables are documented yet.
+This page explains ejabberd SQL database schema.  We present the tables that might be in use, depending on your server configuration, together with a short explanation of the fields involved and their intended use. Tables are presented rougly grouped by related functionality.
+
+Consider this document a work in progress, not all tables are documented yet.
 
 
 * Will be reoplaced with the ToC
 {:toc}
 
+## Authentication
 
-## Table `users`
+### Table `users`
 Contains the information required to authenticate users.
 
 | Field                | Type             | Usage                                                                                   |
@@ -31,21 +33,21 @@ The password are hashed if you use SCRAM authentication. In that case the next f
 | iterationcount       | integer          | support for salted passwords                                                            |
 
 
+## Rosters
 
-## Table `last`
-This table is used to store the last time the user was seen online.  
-It is defined as follow:
+### Table `rosterusers`
 
-| Field                | Type             | Usage                                                                                   |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
-| username             | string           | User                                                                                    |
-| seconds              | string           | Timestamp for the last time the user was seen online                                    |
-| state                | string           | Why user got disconnected. Usually is empty                                             |
+### Table `rostergroups`
 
-Note that the table is *not* updated while the user has the session open. 
+### Table `sr_group`
+
+### Table `sr_user`
 
 
-## Table `spool`
+
+## Messages
+
+### Table `spool`
 Messages sent to users that are offline are stored in this table. 
 Do not confuse this with general message archiving: messages are only temporarly stored in this table, removed as soon as the target user 
 is back online and the pending messages delivered to it.
@@ -59,72 +61,8 @@ is back online and the pending messages delivered to it.
 
 The seq field is used for sorting, and to easily identify a particular user message.
 
-## Table `caps_features`
-Ejabberd uses this table to keep a list of the entity capabilities discovered.
 
-| Field                | Type             | Usage                                                                                   |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
-| node                 | string           | Node                                                                                    |
-| subnode              | string           | Subnode                                                                                 |
-| feature              | string           | Entity feature                                                                          |
-| created_at           | timestamp        | Creation date                                                                           |
-
-The subnode field correspond to the 'ver' ("verification string") of XEP-0115. 
-There is one entry in this table for each feature advertised by the given (node,subnode) pair.
-
-
-## Table `muc_room`
-It is used to store *persistent* rooms, that is, rooms that must be automatically started with the server.
-
-| Field                | Type             | Usage                                                                                   |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
-| name                 | string           | Room name                                                                               |
-| host                 | string           | Hostname of the conference component                                                    |
-| opts                 | string           | Room options, encoded as erlang terms                                                   |
-| created_at           | timestamp        | Creation date                                                                           |
-
-The opts field is legible, but not mean to be modified directly. It contents depends on the implementation of mod_muc. 
-It contains the room configuration and affiliations.
-
-
-## Table `muc_registered`
-Contains a map of user to nicknames.  When a user register a nickname with the conference module, that nick is reserved and can't be used by 
-anyone else, in any room from that conference host.
-
-| Field                | Type             | Usage                                                                                   |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
-| jid                  | string           | User jid                                                                                |
-| host                 | string           | Hostname of the conference component                                                    |
-| nick                 | string           | Room options, encoded as erlang terms                                                   |
-| created_at           | timestamp        | Creation date                                                                           |
-
-
-## Table `room_history`
-This table is used if persistent room history is enabled. If so, recent room history is saved to the DB before ejabberd is stopped, 
-allowing the recent history to survive server restarts.
-
-| Field                | Type             | Usage                                                                                   |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
-| room                 | string           | Room jid                                                                                |
-| nick                 | string           | Nickname that sent the message                                                          |
-| packet               | string           | XML stanza with the message                                                             |
-| have_subject         | boolean          | True if the message stanza had subject                                                  |
-| created_at           | timestamp        | Creation date                                                                           |
-| size                 | integer          | Size in bytes of the xml packet                                                         |
-
-
-## Table `private_storage`
-Used for user private data storage.
-
-| Field                | Type             | Usage                                                                                   |
-| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
-| username             | string           | User                                                                                    |
-| namespace            | string           | XEP-0049 namespace of the stored data                                                   |
-| data                 | string           | Raw xml                                                                                 |
-| created_at           | timestamp        | Creation date                                                                           |
-
-
-## Table `privacy_list_data`
+### Table `privacy_list_data`
 
 The table is used to store privacy rules.
 
@@ -160,7 +98,53 @@ The table fields are defined as follow:
 | match\_presence\_in  | boolean (0 or 1) | If true (1), means inbound presence packets type will be matched by rule.               |
 | match\_presence\_out | boolean (0 or 1) | If true (1), means outbound packets type will be matched by rule.                       |
 
-## Table `vcard`
+
+
+## Multiuser Chat Rooms
+
+### Table `muc_room`
+It is used to store *persistent* rooms, that is, rooms that must be automatically started with the server.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| name                 | string           | Room name                                                                               |
+| host                 | string           | Hostname of the conference component                                                    |
+| opts                 | string           | Room options, encoded as erlang terms                                                   |
+| created_at           | timestamp        | Creation date                                                                           |
+
+The opts field is legible, but not mean to be modified directly. It contents depends on the implementation of mod_muc. 
+It contains the room configuration and affiliations.
+
+
+### Table `muc_registered`
+Contains a map of user to nicknames.  When a user register a nickname with the conference module, that nick is reserved and can't be used by 
+anyone else, in any room from that conference host.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| jid                  | string           | User jid                                                                                |
+| host                 | string           | Hostname of the conference component                                                    |
+| nick                 | string           | Room options, encoded as erlang terms                                                   |
+| created_at           | timestamp        | Creation date                                                                           |
+
+
+### Table `room_history`
+This table is used if persistent room history is enabled. If so, recent room history is saved to the DB before ejabberd is stopped, 
+allowing the recent history to survive server restarts.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| room                 | string           | Room jid                                                                                |
+| nick                 | string           | Nickname that sent the message                                                          |
+| packet               | string           | XML stanza with the message                                                             |
+| have_subject         | boolean          | True if the message stanza had subject                                                  |
+| created_at           | timestamp        | Creation date                                                                           |
+| size                 | integer          | Size in bytes of the xml packet                                                         |
+
+
+## VCard
+
+### Table `vcard`
 
 The table is used to store raw vCard content for delivery of the vCard
 "as is".
@@ -173,7 +157,7 @@ The table fields are defined as follow:
 | vcard                | text             | Raw Vcard            |
 | created_at           | timestamp        | Record creation date |
 
-## Table `vcard_search`
+### Table `vcard_search`
 
 The table is used to store vCard index on a few of the Vcard field
 used for vCard search in users directory.
@@ -209,4 +193,43 @@ The table fields are defined as follow:
 | lorgname             | string           | Lowercase organisation name for search        |
 | orgunit              | string           | Raw organation department name for display    |
 | lorgunit             | string           | Lowercase organisation departement for search |
+
+## Others
+
+### Table `last`
+This table is used to store the last time the user was seen online.  
+It is defined as follow:
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username             | string           | User                                                                                    |
+| seconds              | string           | Timestamp for the last time the user was seen online                                    |
+| state                | string           | Why user got disconnected. Usually is empty                                             |
+
+Note that the table is *not* updated while the user has the session open. 
+
+
+
+### Table `caps_features`
+Ejabberd uses this table to keep a list of the entity capabilities discovered.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| node                 | string           | Node                                                                                    |
+| subnode              | string           | Subnode                                                                                 |
+| feature              | string           | Entity feature                                                                          |
+| created_at           | timestamp        | Creation date                                                                           |
+
+The subnode field correspond to the 'ver' ("verification string") of XEP-0115. 
+There is one entry in this table for each feature advertised by the given (node,subnode) pair.
+
+### Table `private_storage`
+Used for user private data storage.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username             | string           | User                                                                                    |
+| namespace            | string           | XEP-0049 namespace of the stored data                                                   |
+| data                 | string           | Raw xml                                                                                 |
+| created_at           | timestamp        | Creation date                                                                           |
 
