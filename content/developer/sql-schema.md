@@ -4,7 +4,12 @@ title: ejabberd SQL database schema | ejabberd documentation
 
 # ejabberd SQL database schema
 
-This page explains ejabberd SQL database schema
+This page explains ejabberd SQL database schema.
+It is a work in progress, not all tables are documented yet.
+
+
+* Will be reoplaced with the ToC
+{:toc}
 
 
 ## Table `users`
@@ -92,8 +97,18 @@ allowing the recent history to survive server restarts.
 | packet               | string           | XML stanza with the message                                                             |
 | have_subject         | boolean          | True if the message stanza had subject                                                  |
 | created_at           | timestamp        | Creation date                                                                           |
-| size                 | integer          | Size in bytes of the xml packet                                                             |
+| size                 | integer          | Size in bytes of the xml packet                                                         |
 
+
+## Table `private_storage`
+Used for user private data storage.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username             | string           | User                                                                                    |
+| namespace            | string           | XEP-0049 namespace of the stored data                                                   |
+| data                 | string           | Raw xml                                                                                 |
+| created_at           | timestamp        | Creation date                                                                           |
 
 
 ## Table `privacy_list_data`
