@@ -59,6 +59,19 @@ is back online and the pending messages delivered to it.
 
 The seq field is used for sorting, and to easily identify a particular user message.
 
+## Table `caps_features`
+Ejabberd uses this table to keep a list of the entity capabilities discovered.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| node                 | string           | Node                                                                                    |
+| subnode              | string           | Subnode                                                                                 |
+| feature              | string           | Entity feature                                                                          |
+| created_at           | timestamp        | Creation date                                                                           |
+
+The subnode field correspond to the 'ver' ("verification string") of XEP-0115. 
+There is one entry in this table for each feature advertised by the given (node,subnode) pair.
+
 
 ## Table `muc_room`
 It is used to store *persistent* rooms, that is, rooms that must be automatically started with the server.
