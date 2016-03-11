@@ -6,6 +6,15 @@ title: ejabberd SQL database schema | ejabberd documentation
 
 This page explains ejabberd SQL database schema.  We present the tables that might be in use, depending on your server configuration, together with a short explanation of the fields involved and their intended use. Tables are presented rougly grouped by related functionality.
 
+Latest version of database schema are available in [ejabberd Github repository](https://github.com/processone/ejabberd):
+
+* [MySQL schema](https://github.com/processone/ejabberd/blob/master/sql/mysql.sql)
+* [Postgres schema](https://github.com/processone/ejabberd/blob/master/sql/pg.sql)
+* [SQLite schema](https://github.com/processone/ejabberd/blob/master/sql/lite.sql)
+* [MS SQL Server schema](https://github.com/processone/ejabberd/blob/master/sql/mssql.sql). This
+  schema need testing / feedback and possibly improvement from SQL
+  Server users.
+
 Consider this document a work in progress, not all tables are documented yet.
 
 
