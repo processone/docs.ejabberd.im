@@ -2811,6 +2811,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_irc](#modirc)                             | IRC transport                                        |                                  |
 | [mod_last](#modlast)                           | Last Activity ([`XEP-0012`][43])                     |                                  |
 | [mod_mam](#modmam)                             | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
+| [mod_mix](#modmix)                             | Mediated Information eXchange ([`XEP-0369`][122])    | `mod_pubsub`                     |
 | [mod_metrics](#modmetrics)                     | Simple metrics handler for runtime statistics        |                                  |
 | [mod_muc](#modmuc)                             | Multi-User Chat ([`XEP-0045`][44])                   |                                  |
 | mod_muc_admin                                  | Administrative commands for Multi-User Chat          | `mod_muc`                        |
@@ -3856,6 +3857,19 @@ Options:
 `cache_lifetime: Seconds`
 
 :   Lifetime of the cached items in the cache described in the option `cache_size`. The default is 3600 seconds, i.e. one hour.
+
+### mod_mix
+
+This module is an experimental implementation Mediated Information
+eXchange (MIX) as descrive in [`XEP-0369`][122]. Our implementation is
+base on version 0.1.
+
+To feature will be added to ejabberd 16.03 as an experimental feature
+and is not yet ready to use in production.
+
+To learn more about how to use that feature, you can refer to our
+tutorial:
+[Getting started with XEP-0369: Mediated Information eXchange (MIX) v0.1](/tutorials/mix-010/).
 
 ### mod_metrics
 
@@ -6353,3 +6367,4 @@ Options:
 [119]:  https://www.sqlite.org
 [120]:  http://xmpp.org/extensions/xep-0363.html
 [121]:  http://xmpp.org/extensions/xep-0013.html
+[122]:  https://xmpp.org/extensions/xep-0369.html
