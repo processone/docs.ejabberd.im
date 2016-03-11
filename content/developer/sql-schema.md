@@ -47,6 +47,39 @@ The password are hashed if you use SCRAM authentication. In that case the next f
 
 ### Table `rosterusers`
 
+This is a quite complex table, used as a store for a quite complex protocol that is the one defined to manage
+rosters and subscriptions on [rfc6121](http://tools.ietf.org/html/rfc6121).  
+
+In the common case of two users adding each other as contacts, entries in the roster table follows a series of steps
+ as they moves from a subscription request to the final approval and bi-directional subscription being established. 
+This process can be initiated either by the user, or by the (possible remote) peer. Also need to account for the case
+where the user, or the contact, might not be online at the moment of the subscription request is made.
+
+Steps are further complicated by the fact that entries in the roster aren't required to have corresponding subscriptions. 
+For details of the meaning of the different fields, refer to [the protocol itself](http://tools.ietf.org/html/rfc6121#section-2), as these are mostly a direct mapping of it. 
+ 
+Note:
+If you manage users contacts from outside the roster workflow of XMPP (for example your site backends perform the linking between
+users),  it is likely that you only need to care about the  username, jid and nick fields,  and set the subscription field to be always
+'B' for a mutual link between users.
+
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username             | string           | User                                                                                    |
+| jid                  | string           | Contact jid                                                                             |
+| nick                 | string           | Contact nickname                                                                        |
+| subscription         | char             | 'B'=both &#124; 'T'=To &#124; 'F'=From &#124; 'N'=none                                  |
+| ask                  | char             | 'S'=subscribe &#124; 'U'=unsubscribe &#124; B='both' &#124; 'O'=out &#124; 'I'=in &#124; 'N'=none                |
+| askmessage           | string           |  Message to be displayed on the subscription request                                    |
+| server               | char             | 'N' for normal users contacts                                                           |
+| subscribe            | string           |                                                                                         |
+| type                 | string           | "item"                                                                                  |
+| created_at           | timestamp        | Creation date of this roster entry                                                      |
+
+
+
+
 ### Table `rostergroups`
 
 ### Table `sr_group`
