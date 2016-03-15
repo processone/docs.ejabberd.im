@@ -1,5 +1,5 @@
 ---
-title: ejabberd SQL database schema | ejabberd documentation
+title: ejabberd SQL database schema
 ---
 
 # ejabberd SQL database schema

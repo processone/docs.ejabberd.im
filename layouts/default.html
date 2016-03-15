@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title><%= @item[:title] %></title>
+    <title><%= @item[:title] %> | ejabberd Docs</title>
     <link rel="shortcut icon" href="/favicon.png">
     
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/shared/css/pygments.min.css" rel="stylesheet" type="text/css" />
     <link href="/shared/css/docs.style.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="api <%= @item[:bodyclass] %> <% if @item[:kind] == 'article' %>blog single<% end %>">
+<body class="<%= @item[:bodyclass] %><% if @item[:kind] == 'article' %>blog single<% end %>">
 
 <div id="header-wrapper">
     <div id="header" class="container-fluid">
@@ -32,38 +32,51 @@
 <div id="wrapper" class="container-fluid">
   <div class="row">
     <div id="sidebar" class="col-md-4">
+    
+      <style>
+        #sidebar a[href="<%= @item.identifier %>"] {
+          color: #fff !important;
+        }
+        #sidebar ul[rel="<%= @item[:firstpath] %>"],
+        #sidebar ul[rel="<%= @item[:secondpath] %>"] {
+          display: block !important;
+        }
+        #sidebar ul[rel="<%= @item[:secondpath] %>"] {
+          border-left: 1px solid rgba(0,0,0,0.25);
+        }
+      </style>
       
-      <div id="js-sidebar" class="sidebar-shell">
-        <div class="js-toggle-list sidebar-module expandable">
+      <div class="sidebar-shell">
+        <div class="sidebar-module expandable">
           <ul>
-            <li class="js-topic"><a href="/">Home</a></li>
-            <li class="js-topic"><a href="/get-started/">Get Started</a></li>
-            <li class="js-topic"><a href="/tutorials/">Tutorials</a></li>
-            <li class="js-topic"><a href="/use-cases/">Use Cases</a></li>
-            <li class="js-topic"><a href="/ejabberd-faq/">FAQ</a></li>
-            <li class="js-topic">
+            <li><a href="/">Home</a></li>
+            <li><a href="/get-started/">Get Started</a></li>
+            <li><a href="/tutorials/">Tutorials</a></li>
+            <li><a href="/use-cases/">Use Cases</a></li>
+            <li><a href="/ejabberd-faq/">FAQ</a></li>
+            <li>
               <a href="/admin/">ejabberd for Administrators</a>
-              <ul class="js-guides">
+              <ul rel="/admin/">
                 <li>
                   <a href="/admin/guide/">Guide</a>
-                  <ul>
-                    <li class="js-section"><a href="/admin/guide/introduction/">Introduction</a></li>
-                    <li class="js-section"><a href="/admin/guide/installation/">Installation</a></li>
-                    <li class="js-section"><a href="/admin/guide/configuration/">Configuration</a></li>
-                    <li class="js-section"><a href="/admin/guide/xep/">XMPP Extensions</a></li>
-                    <li class="js-section"><a href="/admin/guide/managing/">Managing</a></li>
-                    <li class="js-section"><a href="/admin/guide/security/">Security</a></li>
-                    <li class="js-section"><a href="/admin/guide/clustering/">Clustering</a></li>
-                    <li class="js-section"><a href="/admin/guide/unattended/">Unattended installation</a></li>
-                    <li class="js-section"><a href="/admin/guide/oauth/">OAuth support</a></li>
-                    <li class="js-section"><a href="/admin/guide/troubleshooting/">Troubleshooting</a></li>
+                  <ul rel="/admin/guide/">
+                    <li><a href="/admin/guide/introduction/">Introduction</a></li>
+                    <li><a href="/admin/guide/installation/">Installation</a></li>
+                    <li><a href="/admin/guide/configuration/">Configuration</a></li>
+                    <li><a href="/admin/guide/xep/">XMPP Extensions</a></li>
+                    <li><a href="/admin/guide/managing/">Managing</a></li>
+                    <li><a href="/admin/guide/security/">Security</a></li>
+                    <li><a href="/admin/guide/clustering/">Clustering</a></li>
+                    <li><a href="/admin/guide/unattended/">Unattended installation</a></li>
+                    <li><a href="/admin/guide/oauth/">OAuth support</a></li>
+                    <li><a href="/admin/guide/troubleshooting/">Troubleshooting</a></li>
                   </ul>
                 </li>
                 <li><a href="/admin/api/">Administration API</a></li>
                 <li>
                   <a href="/admin/ejabberdctl/">ejabberdctl Commands</a>
-                  <ul>
-                    <li class="js-section"><a href="/admin/ejabberdctl/muc-admin/">Multi User Chat (MUC)</a></li>
+                  <ul rel="/admin/ejabberdctl/">
+                    <li><a href="/admin/ejabberdctl/muc-admin/">Multi User Chat (MUC)</a></li>
                   </ul>
                 </li>
                 <li>
@@ -74,12 +87,12 @@
                 </li>                
               </ul>
             </li>
-            <li class="js-topic">
+            <li>
               <a href="/architect/">ejabberd for Architects</a>
             </li>
-            <li class="js-topic">
+            <li>
               <a href="/developer/">ejabberd for Developers</a>
-              <ul class="js-guides">
+              <ul rel="/developer/">
                 <li>
                   <a href="/developer/modules/">Modules development</a>
                 </li>
@@ -97,6 +110,9 @@
                 </li>
                 <li>
                   <a href="/developer/ios/">iOS Development</a>
+                  <ul rel="/developer/ios/">
+                    <li><a href="/developer/ios/getting-started-xmppframework/">Getting Started with XMPPFramework</a></li>
+                  </ul>
                 </li>
                 <li>
                   <a href="/developer/sql-schema/">SQL Schema</a>
@@ -106,7 +122,7 @@
                 </li>
               </ul>
             </li>
-            <li class="js-topic">
+            <li>
               <a href="/user/">ejabberd for Users</a>
             </li>
           </ul>

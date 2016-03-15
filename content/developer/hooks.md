@@ -1,5 +1,5 @@
 ---
-title: Events and Hooks | ejabberd documentation
+title: Events and Hooks
 ---
 
 # Events and Hooks

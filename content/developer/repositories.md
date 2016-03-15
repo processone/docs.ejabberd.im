@@ -1,5 +1,5 @@
 ---
-title: Understanding ejabberd and its dependencies | ejabberd documentation
+title: Understanding ejabberd and its dependencies
 ---
 
 # Understanding ejabberd and its dependencies

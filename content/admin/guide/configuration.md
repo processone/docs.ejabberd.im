@@ -1,6 +1,5 @@
 ---
 title: Configuring ejabberd | ejabberd Installation and Operation Guide
-bodyclass: nocomment
 ---
 
 # Configuring ejabberd

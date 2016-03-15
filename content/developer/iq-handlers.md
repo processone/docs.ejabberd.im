@@ -1,5 +1,5 @@
 ---
-title: IQ Handlers | ejabberd documentation
+title: IQ Handlers
 ---
 
 # IQ Handlers

@@ -1,5 +1,5 @@
 ---
-title: ejabberd operation FAQ | ejabberd documentation
+title: ejabberd operation FAQ
 ---
 
 # Frequently Asked Questions

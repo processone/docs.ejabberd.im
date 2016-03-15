@@ -1,5 +1,5 @@
 ---
-title: Getting started with ejabberd | ejabberd documentation
+title: Getting started with ejabberd
 ---
 
 # Getting started with ejabberd

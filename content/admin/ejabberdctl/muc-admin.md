@@ -1,6 +1,5 @@
 ---
 title: ejabberdctl - Multi User Chat Administration Commands
-bodyclass: nocomment
 ---
 
 # Multi User Chat Administration Commands

@@ -1,6 +1,5 @@
 ---
 title: ejabberd use cases
-bodyclass: nocomment
 ---
 
 # ejabberd use cases

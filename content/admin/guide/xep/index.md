@@ -1,5 +1,5 @@
 ---
-title: Supporting and configuring specific XMPP Extensions in ejabberd | ejabberd documentation 
+title: Supporting and configuring specific XMPP Extensions in ejabberd 
 ---
 
 {:toc}

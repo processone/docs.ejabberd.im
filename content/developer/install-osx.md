@@ -1,5 +1,5 @@
 ---
-title: Installing ejabberd development environment on OSX | ejabberd documentation
+title: Installing ejabberd development environment on OSX
 ---
 
 # Installing ejabberd development environment on OSX

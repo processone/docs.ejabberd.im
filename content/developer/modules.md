@@ -1,5 +1,5 @@
 ---
-title: ejabberd Modules Development | ejabberd documentation
+title: ejabberd Modules Development
 ---
 
 # ejabberd Modules development

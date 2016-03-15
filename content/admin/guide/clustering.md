@@ -1,6 +1,5 @@
 ---
 title: ejabberd cluster | ejabberd Installation and Operation Guide
-bodyclass: nocomment
 ---
 
 # Clustering

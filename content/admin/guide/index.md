@@ -1,6 +1,5 @@
 ---
 title: ejabberd Installation and Operation Guide
-bodyclass: nocomment
 ---
 
 # ejabberd Installation and Operation Guide

@@ -1,5 +1,5 @@
 ---
-title: ejabberd Stanza Routing | ejabberd documentation
+title: ejabberd Stanza Routing
 ---
 
 # ejabberd Stanza Routing

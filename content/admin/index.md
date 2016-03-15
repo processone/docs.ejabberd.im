@@ -1,6 +1,5 @@
 ---
-title: ejabberd for administrators | ejabberd documentation
-bodyclass: nocomment
+title: ejabberd for administrators
 ---
 
 # ejabberd for administrators

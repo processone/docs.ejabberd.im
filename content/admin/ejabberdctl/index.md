@@ -1,6 +1,5 @@
 ---
 title: ejabberdctl reference
-bodyclass: nocomment
 ---
 
 # ejabberdctl command-line tool reference

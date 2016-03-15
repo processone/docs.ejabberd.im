@@ -1,5 +1,5 @@
 ---
-title: ejabberd Contributions | ejabberd documentation
+title: ejabberd Contributions
 ---
 
 # Contributions

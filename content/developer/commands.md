@@ -1,5 +1,5 @@
 ---
-title: Global commands interface | ejabberd documentation
+title: Global commands interface
 ---
 
 # ejabberd commands

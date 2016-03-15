@@ -1,6 +1,5 @@
 ---
 title: Managing ejabberd | ejabberd Installation and Operation Guide
-bodyclass: nocomment
 ---
 
 # Managing an ejabberd server

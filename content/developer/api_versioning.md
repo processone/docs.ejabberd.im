@@ -1,5 +1,5 @@
 ---
-title: API versioning | ejabberd documentation
+title: API versioning
 ---
 
 # Introduction

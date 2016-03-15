@@ -1,6 +1,5 @@
 ---
 title: ejabberd security | ejabberd Installation and Operation Guide
-bodyclass: nocomment
 ---
 
 # Securing ejabberd

@@ -1,6 +1,5 @@
 ---
 title: ejabberd Frequently Ask Questions (FAQ)
-bodyclass: nocomment
 ---
 
 # ejabberd FAQ

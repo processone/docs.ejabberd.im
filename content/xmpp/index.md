@@ -1,5 +1,5 @@
 ---
-title: XMPP use cases | ejabberd documentation
+title: XMPP use cases
 ---
 
 # XMPP use cases

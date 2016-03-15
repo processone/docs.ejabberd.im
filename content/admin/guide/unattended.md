@@ -1,6 +1,5 @@
 ---
 title: Unattended installations | ejabberd Installation and Operation Guide
-bodyclass: nocomment
 ---
 
 # Unattended installations

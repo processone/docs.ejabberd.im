@@ -1,6 +1,5 @@
 ---
 title: Administration API reference
-bodyclass: nocomment
 ---
 
 ## *add_rosteritem* - Add an item to a user's roster (supports ODBC)

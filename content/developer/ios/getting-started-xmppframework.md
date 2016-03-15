@@ -1,5 +1,5 @@
 ---
-title: Getting Started with XMPPFramework | ejabberd documentation
+title: Getting Started with XMPPFramework
 ---
 
 # Getting Started with XMPPFramework

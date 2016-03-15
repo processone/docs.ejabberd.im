@@ -1,5 +1,5 @@
 ---
-title: ejabberd for Elixir Developers | ejabberd documentation
+title: ejabberd for Elixir Developers
 ---
 
 # ejabberd for Elixir developers

@@ -1,6 +1,6 @@
 ---
 title: ejabberd XMPP Messaging Framework Documentation
-bodyclass: nocomment homepage
+bodyclass: homepage
 ---
 
 # Welcome to ejabberd, your superpowerful messaging framework

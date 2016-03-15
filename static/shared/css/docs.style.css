@@ -199,13 +199,12 @@ h5,h5 {
     list-style: none;
   }
     #sidebar ul ul {
-      margin-left: 10px;
+      display: none;
+      padding-left: 1.5em;
+      margin-bottom: 0.5em;
       
       line-height: 2em;
       font-size: 0.9em;
-    }
-    body.homepage #sidebar ul li:first-child a {
-      color: #fff;
     }
   
   #markdown-source {

@@ -1,5 +1,5 @@
 ---
-title: Understanding ejabberd hosts | ejabberd documentation
+title: Understanding ejabberd hosts
 ---
 
 # Understanding ejabberd hosts

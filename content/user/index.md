@@ -1,6 +1,5 @@
 ---
-title: ejabberd for users | ejabberd documentation
-bodyclass: nocomment
+title: ejabberd for users
 ---
 
 # ejabberd for users

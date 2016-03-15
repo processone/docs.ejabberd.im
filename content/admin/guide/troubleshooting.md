@@ -1,6 +1,5 @@
 ---
 title: ejabberd troubleshooting | ejabberd Installation and Operation Guide
-bodyclass: nocomment
 ---
 
 # Troubleshooting ejabberd

@@ -1,5 +1,5 @@
 ---
-title: ejabberd for architects | ejabberd documentation
+title: ejabberd for architects
 ---
 
 # ejabberd for software architects

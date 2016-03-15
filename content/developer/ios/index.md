@@ -1,5 +1,5 @@
 ---
-title: XMPP Development on iOS | ejabberd documentation
+title: XMPP Development on iOS
 ---
 
 # XMPP Development on iOS
