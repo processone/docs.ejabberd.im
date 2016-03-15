@@ -31,29 +31,30 @@ Erlang dependencies:
 
 * [processone/cache_tab](https://github.com/processone/cache_tab):
   Flexible in-memory Erlang caching module.
-* [processone/eiconv](https://github.com/processone/eiconv): Native
+* [processone/iconv](https://github.com/processone/iconv): Native
   iconv driver for Erlang. This is use for fast character encoding
   conversion.
-* [processone/xml](https://github.com/processone/xml): Fast native
-  Expat based Erlang XML parsing library. XML is the core of XMPP so
-  we needed to provide the fast and more robust XML parsing stack as
-  possible. It means that if you are looking for a great XML parser,
-  reusing p1_xml is probably a great idea.
+* [processone/fast_xml](https://github.com/processone/fast_xml):
+  Fast native Expat based Erlang XML parsing library. XML is the
+  core of XMPP so we needed to provide the fast and more robust XML
+  parsing stack as possible. It means that if you are looking for a
+  great XML parser, reusing p1_xml is probably a great idea.
 * [processone/stringprep](https://github.com/processone/stringprep):
   Fast and efficient Erlang Stringprep native driver. Stringprep is
   heavily used in XMPP to define encoding rules of various XMPP
   objects.
-* [processone/p1_yaml](https://github.com/processone/p1_yaml): Native
-  Erlang interface to libyaml, for fast robust YAML parsing. This is
-  needed by our new config file format.
-* [processone/zlib](https://github.com/processone/zlib): Native zlib
-  driver for Erlang. Used for fast / efficient stream compression.
-* [processone/tls](https://github.com/processone/tls): Erlang native
-  driver for TLS / SSL. It is build for performance and is more
-  scalable that Erlang SSL driver. If your Erlang server is handling
-  heavy load and is using TLS, we strongly recommand you check /
-  compare with this driver.
-* [processone/p1_sip](https://github.com/processone/p1_sip):
+* [processone/fast_yaml](https://github.com/processone/fast_yaml):
+  Native Erlang interface to libyaml, for fast robust YAML parsing.
+  This is needed by our new config file format.
+* [processone/ezlib](https://github.com/processone/ezlib):
+  Native zlib driver for Erlang. Used for fast / efficient stream
+  compression.
+* [processone/fast_tls](https://github.com/processone/fast_tls):
+  Erlang native driver for TLS / SSL. It is build for performance
+  and is more scalable that Erlang SSL driver. If your Erlang server
+  is handling heavy load and is using TLS, we strongly recommand you
+  check / compare with this driver.
+* [processone/esip](https://github.com/processone/esip):
   ProcessOne SIP protocol support to add SIP-based voice capabilities
   to ejabberd.
 * [processone/stun](https://github.com/processone/stun):
@@ -62,9 +63,9 @@ Erlang dependencies:
   is used for XMPP and SIP media capabilities, to help client discover
   their visible IP address and allow them to get in touch through
   NAT. This is basically useful for voice and file transfers.
-* [processone/p1_utils](processone/p1_utils): This is extra Erlang
-  modules developed for ejabberd but that can be useful in other
-  Erlang applications.
+* [processone/p1_utils](https://github.com/processone/p1_utils):
+  This is extra Erlang modules developed for ejabberd but that can
+  be useful in other Erlang applications.
 * [processone/p1_logger](https://github.com/processone/p1_logger):
   Logger wrapper to allow selecting your prefered logger at build
   time.
