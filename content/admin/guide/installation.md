@@ -121,8 +121,8 @@ To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 -   GNU Make
 -   GCC
 -   Libexpat 1.95 or higher
--   Erlang/OTP R16B03 or higher.
 -   Libyaml 0.1.4 or higher
+-   Erlang/OTP 17.1 or higher
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`][4]). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See section [pam][8].
