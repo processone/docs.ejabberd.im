@@ -41,6 +41,7 @@ title: ejabberd and XMPP tutorials
 - Why do avatars / carbons not work in MUC rooms ? What is special about MUC rooms ?  
   [XMPP Academy #2 Video - direct link: 34m15s](https://youtu.be/SbpFgdryyIA?t=34m15s)
 - [Getting started with XEP-0369: Mediated Information eXchange (MIX)](/tutorials/mix-010/) version 0.1
+- [Setting vCards / Avatars for MUC rooms](/tutorials/muc-vcard/)
 
 ## Developer tools and technics
 
