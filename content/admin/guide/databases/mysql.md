@@ -313,9 +313,44 @@ default_db: odbc
 **Note:** even if you move all the persistent data you can to MySQL,
 Mnesia will still be started and used to manage clustering.
 
-<!-- TODO
 ## Migrating data from internal database to MySQL
--->
+
+To migrate your data, once you have setup your odbc service, you can
+move most of the data to your database.
+
+You need to take precautions before you launch the migration:
+
+1. Before you launch migration from internal database, make sure you have
+made a proper backup.
+
+2. Always try the migration first on an instance created from your data
+backup, to make sure the migration script will work fine on your
+dataset.
+
+3. Then, when doing final migration, make sure your instance is not
+accepting connections by blocking incoming connections, for example
+with firewall rules (block port 5222, 5269 and 5280 as default).
+
+When you are ready, you can:
+
+1. Connect to a running ejabberd:
+
+   ~~~ bash
+   ./ejabberdctl debug
+   ~~~
+
+2. Alternatively, use `ejabberdctl live` to launch ejabberd with an Erlang shell attached.
+
+3. Launch the migration command `ejd2odbc:export/2` from Erlang
+shell. First parameter is the XMPP domain name you want to migrate
+(i.e `localhost`). Second parameter `odbc` tells ejabberd to export to
+configured MySQL database. For example:
+
+   ~~~ erlang
+   ejd2odbc:export(<<"localhost">>, odbc).
+   ~~~
+
+You should be set now.
 
 ## Getting further
 
