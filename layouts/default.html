@@ -30,8 +30,8 @@
 </div><!-- #header-wrapper -->
 
 <div id="wrapper" class="container-fluid">
-  <div class="row">
-    <div id="sidebar" class="col-md-4">
+  <div class="row row-height">
+    <div id="sidebar" class="col-md-4 col-height col-top">
 
       <style>
         #sidebar a[href="<%= @item.identifier %>"] {
@@ -130,7 +130,7 @@
       </div><!-- /sidebar-shell -->
 
     </div>
-    <div id="content" class="col-md-8">
+    <div id="content" class="col-md-8 col-height col-top">
 
       <div id="markdown-source">
         <div class="pull-left"><%= @item[:filename] %></div>
