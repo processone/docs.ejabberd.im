@@ -39,14 +39,16 @@
 /* --- STYLES --- */
 
 body {
-  background: #3eaefb;
+  background: #fff;
+  max-width: 1440px;
+  margin: 0 auto;
   
   font-family: "nunito-light", Helvetica, Arial, sans-serif;
   font-weight: lighter;
 }
-  body.homepage {
-    background: url(../images/background@2x.jpg) center 60px no-repeat #3eaefb;
-    background-size: 100% auto;
+  body.homepage #wrapper {
+    background: url(../images/background@2x.jpg) top center no-repeat #3eaefb;
+    background-size: 110%;
   }
   body.blog {
     background: #fff;
@@ -116,6 +118,10 @@ h5,h5 {
   background-color: #2B3038;
 }
 
+#wrapper {
+  box-shadow: -1px 0 0 #eee inset;
+}
+
 #logo {
   display: inline-block;
   
@@ -166,6 +172,8 @@ h5,h5 {
 }
 
 #sidebar {
+  height: 100%;
+  
   padding-top: 60px;
   padding-bottom: 60px;
   
@@ -415,7 +423,7 @@ body.blog .meta {
 
 /* Mobile styles */
 
-@media only screen and (max-width: 990px) {
+@media only screen and (max-width: 991px) {
     
   #sidebar,
   #content {
@@ -441,4 +449,73 @@ body.blog .meta {
     width: 100%;
   }
 
+}
+
+@media (min-width: 992px) {
+  /* columns of same height styles */
+  
+  .row-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-top {
+    vertical-align: top;
+  }
+  .col-middle {
+    vertical-align: middle;
+  }
+  .col-bottom {
+    vertical-align: bottom;
+  }
+
+  .row-md-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-md-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-md-top {
+    vertical-align: top;
+  }
+  .col-md-middle {
+    vertical-align: middle;
+  }
+  .col-md-bottom {
+    vertical-align: bottom;
+  }
+}
+
+@media (min-width: 1200px) {
+  .row-lg-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  .col-lg-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+  }
+  .col-lg-top {
+    vertical-align: top;
+  }
+  .col-lg-middle {
+    vertical-align: middle;
+  }
+  .col-lg-bottom {
+    vertical-align: bottom;
+  }
 }
