@@ -39,7 +39,7 @@
 /* --- STYLES --- */
 
 body {
-  background: #fff;
+  background: #2B3038;
   max-width: 1440px;
   margin: 0 auto;
   
@@ -116,10 +116,6 @@ h5,h5 {
 #header-wrapper {
   padding: 20px 0 15px 0;
   background-color: #2B3038;
-}
-
-#wrapper {
-  box-shadow: -1px 0 0 #eee inset;
 }
 
 #logo {
