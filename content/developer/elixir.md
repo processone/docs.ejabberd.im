@@ -12,7 +12,7 @@ done as follow:
 <!--- Code blocks in lists have indentation of 3 spaces at first ~~~ -->
 1. Clone ejabberd project from Github:
 
-   ~~~ python 
+   ~~~ python
 git clone https://github.com/processone/ejabberd.git
 ~~~
 
@@ -74,7 +74,7 @@ Consolidated Inspect
 19:24:55.700 [info] ejabberd 16.02.0 is started in the node nonode@nohost
 19:24:55.700 [info] Application ejabberd started on node nonode@nohost
 Interactive Elixir (1.2.0) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> 
+iex(1)>
 ~~~
 
 ## Embedding ejabberd in an Elixir application
@@ -82,7 +82,7 @@ iex(1)>
 Starting from version 16.02, ejabberd is packaged as an Hex.pm
 application: [ejabberd on hex.pm](https://hex.pm/packages/ejabberd).
 
-It means that you can now building a customized XMPP messaging
+It means that you can now build a customized XMPP messaging
 platform with Elixir on top of ejabberd by leveraging ejabberd code
 base in your app and providing only your custom modules.
 
@@ -158,7 +158,7 @@ through the following steps:
    config :ejabberd,
      file: "config/ejabberd.yml",
      log_path: 'logs/ejabberd.log'
-   
+
    # Customize Mnesia directory:
    config :mnesia,
      dir: 'mnesiadb/'
@@ -186,6 +186,6 @@ through the following steps:
 
    ~~~ elixir
    :ejabberd_auth.try_register("test", "localhost", "passw0rd")
-   ~~~ 
+   ~~~
 
 1. You are all set, you can now connect with an XMPP client !
