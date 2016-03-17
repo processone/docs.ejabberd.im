@@ -12,7 +12,8 @@
 #   because “*” matches zero or more characters.
 
 preprocess do
-  @items.each do |item|
+  
+  items.each do |item|
     patharray = item[:filename].split('/')
     item[:firstpath] = '/' + patharray[1] + '/'
     
@@ -21,6 +22,7 @@ preprocess do
     else
       item[:secondpath] = item[:firstpath]
     end
+    
   end
 end
 
