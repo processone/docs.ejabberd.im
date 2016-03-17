@@ -12,7 +12,7 @@
     	echo "Error compiling, not sending site..."
 	    exit 1
     fi
-    rsync --omit-dir-times -rltvz output/ webcorp.vpn.p1:/opt/www/docs.ejabberd.im/
+    rsync --omit-dir-times --delete -rltvz output/ webcorp.vpn.p1:/opt/www/docs.ejabberd.im/
 
 # How to generate the docs site for local testing
 
