@@ -92,24 +92,29 @@ Suppose you have already configured `ejabberd` on one node named
 `ejabberd01`. Let's create an additional node (`ejabberd02`) and connect them
 together.
 
-1.  Copy the `/home/ejabberd/.erlang.cookie` file from `ejabberd01` to
-    `ejabberd02`.
+1. Copy the `/home/ejabberd/.erlang.cookie` file from `ejabberd01` to
+   `ejabberd02`.
 
-	Alternatively you could pass the `-setcookie <value>`
-	option to all `erl` commands below.
+   Alternatively you could pass the `-setcookie <value>`
+   option to all `erl` commands below.
 
-2.  Adding a node to the cluster is done by starting a new `ejabberd`
+2. Make sure your new ejabberd node is properly configured. Usually,
+   you want to have the same `ejabberd.yml` config file on the new node that on the
+   other cluster nodes.
+
+3.  Adding a node to the cluster is done by starting a new `ejabberd`
 	node within the same network, and running a command from a cluster
 	node. On the `ejabberd02` node for example, as ejabberd is already
 	started, run the following command as the `ejabberd` daemon user,
 	using the ejabberdctl script:
 
-		#!console
-		$ ejabberdctl join_cluster 'ejabberd@ejabberd01'
+    ~~~ bash
+	$ ejabberdctl join_cluster 'ejabberd@ejabberd01'
+    ~~~
 
-	This enables ejabberd's internal replications to be launched across
-	all nodes so new nodes can start receiving messages from other
-	nodes and be registered in the routing tables.
+	This enables ejabberd's internal replications to be launched
+	across all nodes so new nodes can start receiving messages from
+	other nodes and be registered in the routing tables.
 
 ### Removing a node from the cluster
 
@@ -131,63 +136,9 @@ To permanently remove a running node from the cluster, the following
 command must be run as the `ejabberd` daemon user, from one node of the
 cluster:
 
-		#!console
-		$ ejabberdctl leave_cluster 'ejabberd@ejabberd02'
+~~~ bash
+$ ejabberdctl leave_cluster 'ejabberd@ejabberd02'
+~~~
 
 The removed node must be running while calling leave_cluster to make
 it permanently removed. It's then immediately stopped.
-
-# Service Load-Balancing
-
-### Domain Load-Balancing Algorithm
-
-`ejabberd` includes an algorithm to load balance the components that are
-plugged on an `ejabberd` cluster. It means that you can plug one or
-several instances of the same component on each `ejabberd` cluster and
-that the traffic will be automatically distributed.
-
-The default distribution algorithm attempts to deliver to a local instance of
-a component. If several local instances are available, one instance is
-chosen at random. If no instance is available locally, one instance is
-randomly chosen among the remote component instances.
-
-If you need a different behaviour, you can change the load balancing
-behaviour with the option `domain_balancing`. The syntax of the option
-is the following:
-
-`domain_balancing: BalancingCriteria`
-
-:  
-
-Several balancing criterias are available:
-
--   `destination`: the full JID of the packet `to` attribute is used.
-
--   `source`: the full JID of the packet `from` attribute is used.
-
--   `bare_destination`: the bare JID (without resource) of the packet
-	`to` attribute is used.
-
--   `bare_source`: the bare JID (without resource) of the packet `from`
-	attribute is used.
-
-If the value corresponding to the criteria is the same, the same
-component instance in the cluster will be used.
-
-### Load-Balancing Buckets
-
-When there is a risk of failure for a given component, domain balancing
-can cause service trouble. If one component is failing the service will
-not work correctly unless the sessions are rebalanced.
-
-In this case, it is best to limit the problem to the sessions handled by
-the failing component. This is what the
-`domain_balancing_component_number` option does, making the load
-balancing algorithm not dynamic, but sticky on a fix number of component
-instances.
-
-The syntax is:
-
-`domain_balancing_component_number: Number`
-
-:  

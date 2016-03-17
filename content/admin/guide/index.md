@@ -14,6 +14,7 @@ title: ejabberd Installation and Operation Guide
 - [Clustering ejabberd][6]
 - [Unattended installation][7]
 - [OAuth support][8]
+- [Advanced Configuration][12]
 - [Troubleshooting ejabberd][9]
 
 [1]:	/admin/guide/introduction/ "Introduction"
@@ -27,3 +28,4 @@ title: ejabberd Installation and Operation Guide
 [9]:	/admin/guide/troubleshooting/
 [10]:	/admin/guide/databases/
 [11]:   /admin/guide/xep/
+[12]:   /admin/guide/advanced/
