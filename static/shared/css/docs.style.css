@@ -46,10 +46,6 @@ body {
   font-family: "nunito-light", Helvetica, Arial, sans-serif;
   font-weight: lighter;
 }
-  body.homepage #wrapper {
-    background: url(../images/background@2x.jpg) top center no-repeat #3eaefb;
-    background-size: 110%;
-  }
   body.blog {
     background: #fff;
   }
@@ -118,6 +114,14 @@ h5,h5 {
   background-color: #2B3038;
 }
 
+#wrapper {
+  background-color: #fff;
+}
+  body.homepage #wrapper {
+    background: url(../images/background@2x.jpg) top center no-repeat #3eaefb;
+    background-size: 110%;
+  }
+
 #logo {
   display: inline-block;
   
@@ -143,6 +147,7 @@ h5,h5 {
 #header menu {
   margin: 0;
   padding: 0;
+  margin-right: 34px;
   
   list-style: none;
   float: right;
@@ -437,17 +442,19 @@ body.blog .meta {
   }
 }
 
-@media only screen and (max-width: 532px) {
+@media only screen and (max-width: 564px) {
 
   #header menu {
     padding-top: 20px;
+    margin-right: 0;
+    
     text-align: left;
     width: 100%;
   }
 
 }
 
-@media (min-width: 992px) {
+@media only screen and (min-width: 992px) {
   /* columns of same height styles */
   
   .row-height {
@@ -493,7 +500,7 @@ body.blog .meta {
   }
 }
 
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
   .row-lg-height {
     display: table;
     table-layout: fixed;
@@ -513,5 +520,19 @@ body.blog .meta {
   }
   .col-lg-bottom {
     vertical-align: bottom;
+  }
+}
+
+@media only print {
+  
+  #header-wrapper,
+  #footer-wrapper,
+  #sidebar,
+  #markdown-source {
+    display: none;
+  }
+  
+  pre {
+    border: none !important;
   }
 }
