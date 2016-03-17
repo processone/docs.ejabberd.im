@@ -7,6 +7,8 @@ title: ejabberd Installation and Operation Guide
 - [Introduction][1]
 - [Installing ejabberd][2]
 - [Configuring ejabberd][3]
+- [Configuring ejabberd to support specific XMPP Extensions][11]
+- [Step-by-step Databases Configuration][10]
 - [Managing an ejabberd server][4]
 - [Securing ejabberd][5]
 - [Clustering ejabberd][6]
@@ -23,3 +25,5 @@ title: ejabberd Installation and Operation Guide
 [7]:    /admin/guide/unattended/
 [8]:    /admin/guide/oauth/
 [9]:	/admin/guide/troubleshooting/
+[10]:	/admin/guide/databases/
+[11]:   /admin/guide/xep/
