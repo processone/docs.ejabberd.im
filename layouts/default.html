@@ -35,14 +35,16 @@
 
       <style>
         #sidebar a[href="<%= @item.identifier %>"] {
+          border-bottom: 1px solid #fff;
+        }
+        #sidebar a[href="<%= @item.identifier %>"],
+        #sidebar a[href="<%= @item[:firstpath] %>"],
+        #sidebar a[href="<%= @item[:secondpath] %>"] {
           color: #fff !important;
         }
         #sidebar ul[rel="<%= @item[:firstpath] %>"],
         #sidebar ul[rel="<%= @item[:secondpath] %>"] {
           display: block !important;
-        }
-        #sidebar ul[rel="<%= @item[:secondpath] %>"] {
-          border-left: 1px solid rgba(0,0,0,0.25);
         }
       </style>
 
@@ -111,9 +113,6 @@
                 </li>
                 <li>
                   <a href="/developer/ios/">iOS Development</a>
-                  <ul rel="/developer/ios/">
-                    <li><a href="/developer/ios/getting-started-xmppframework/">Getting Started with XMPPFramework</a></li>
-                  </ul>
                 </li>
                 <li>
                   <a href="/developer/sql-schema/">SQL Schema</a>
