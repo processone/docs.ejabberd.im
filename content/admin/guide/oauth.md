@@ -163,7 +163,7 @@ users that can pass the `configure` access rule defined in the config file.
 ### Database / Back-ends for OAuth tokens
 
 Currently, OAuth tokens are stored in Mnesia database. In a future
-release, we plan to support multiple token
+release, we plan to support multiple token backends.
 
 ## Using ejabberd OAuth API from your applications
 
@@ -175,7 +175,11 @@ browser.
 
 For example, URL can be:
 
-    http://example.net:5280/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=user_get_roster+sasl_auth
+    http://example.net:5280/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=get_roster+sasl_auth
+
+**Note::** To use `get_roster` scope, you need to have
+`mod_admin_extra` enabled. Otherwise, the command is unknown and you
+will get an invalid_scope error.
 
 Parameters are described in OAuth 2.0 specification:
 
