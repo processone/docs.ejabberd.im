@@ -1183,6 +1183,15 @@ the users passwords are stored:
 	`plain` anymore. This format allows clients to authenticate using:
 	`SASL PLAIN` and `SASL SCRAM-SHA-1`.
 
+When you enable SCRAM password format for internal storage, if you try
+to authenticate a user that had his password already stored in plain
+text, his password will be automatically converted to SCRAM format. It
+means database is converted as you use it.
+
+If you want to convert your Mnesia database all at once, you can look
+into the Erlang function:
+`ejabberd_auth_internal:maybe_scram_passwords/0`.
+
 Examples:
 
 -   To use internal authentication on `example.org` and LDAP
@@ -3706,11 +3715,11 @@ End user information:
 	server hosting ‘channel’. And of course the host should point to the
 	IRC transport instead of the Multi-User Chat service.
 
--   You can register your nickame by sending ‘IDENTIFY password’ to  
+-   You can register your nickame by sending ‘IDENTIFY password’ to
 	`nickserver!irc.example.org@irc.jabberserver.org`.
 
 -   Entering your password is possible by sending ‘LOGIN nick
-	password’  
+	password’
 	to `nickserver!irc.example.org@irc.jabberserver.org`.
 
 -   The IRC transport provides Ad-Hoc Commands
