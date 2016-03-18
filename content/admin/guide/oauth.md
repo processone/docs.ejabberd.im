@@ -100,7 +100,7 @@ file, focusing on HTTP handlers:
         web_admin: true
         http_bind: true
         captcha: true
-    
+
     ... other listeners
 
 
@@ -134,7 +134,7 @@ OAuth and the available commands:
     service information related commands.
   - *admin*: Only an admin user can use the method.
   - *user*: User can use the method to access server level information
-    (like browse MUC room list as user) or there own data. Admin can
+    (like browse MUC room list as user) or their own data. Admin can
     still use it to access any user data.
   - *restricted*: Such admin command is not exposed over internet and
     is only available through local secure tool like `ejabberdctl`
@@ -509,7 +509,7 @@ once by adding all commands in `admin` policy.
     - *num\_active\_users* - Number of users active in the last days
     - *status\_num\_host* - Number of logged users with given status in host
     - *status\_num* - Number of logged users with given status
-    - *stats* -  Get statistical value: registered users, online users, 
+    - *stats* -  Get statistical value: registered users, online users,
        online users node, uptime seconds
     - *stats\_host* - Get statistical value per host: registered users,
       online users, online users node, uptime seconds
