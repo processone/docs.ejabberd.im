@@ -2638,29 +2638,60 @@ The following paramaters are available:
 
 `riak_server: String`
 
-:   A hostname of the Riak server. The default is `localhost`.
+:   
+
+A hostname of the Riak server. The default is `localhost`.
 
 `riak_port: Port`
 
-:   The port where the Riak server is accepting connections. The defalt
-	is 8087.
+:   
+
+The port where the Riak server is accepting connections. The default is
+8087.
 
 `riak_pool_size: N`
 
-:   By default `ejabberd` opens 10 connections to the Riak server. You
-	can change this number by using this option.
+:   
+
+By default `ejabberd` opens 10 connections to the Riak server. You can
+change this number by using this option.
 
 `riak_start_interval: N`
 
-:   If the connection to the Riak server fails, `ejabberd` waits 30
-	seconds before retrying. You can modify this interval with this
-	option.
+:   
+
+If the connection to the Riak server fails, `ejabberd` waits 30
+seconds before retrying. You can modify this interval with this
+option.
 
 Example configuration:
 
 	#!yaml
 	riak_server: "riak.server.com"
 	riak_port: 9097
+
+Starting from ejabberd 16.03, Riak security and authentication is
+supported. It can be configured with the following additional
+parameters:
+
+`riak_cacertfile: String`
+
+:   
+
+Path to Riak `ca.pem` (i.e. "/path/to/ca.pem")
+
+`riak_username: String`
+
+:   
+
+Username to use to authenticate on Riak database.
+
+`riak_password: String`
+
+:   
+
+Password to use to authenticate on Riak database.
+
 
 #### Riak Storage
 
@@ -2708,6 +2739,13 @@ Second, Riak should be pointed to `ejabberd` Erlang binary files
 
 Important notice: make sure Riak has at least read access to that
 directory. Otherwise its startup will likely fail.
+
+Starting from version 16.03, Riak authentication is supported. You can
+enable it with Riak admin command:
+
+~~~ bash
+riak-admin security enable
+~~~
 
 ### Redis
 
