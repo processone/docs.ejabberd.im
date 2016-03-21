@@ -2259,23 +2259,23 @@ The following paramaters are available:
 `odbc_port: Port`
 
 :   The port where the ODBC server is accepting connections. The option
-	is only valid for `mysql` and `pgsql`. The default is `3306` and
+	is valid for `mysql`, `pgsql` and `mssql`. The default is `3306` and
 	`5432` respectively.
 
 `odbc_database: String`
 
-:   The database name. The default is `ejabberd`. The option is only
-	valid for `mysql` and `pgsql`.
+:   The database name. The default is `ejabberd`. The option is valid
+	for `mysql`, `pgsql` and `mssql`.
 
 `odbc_username: String`
 
-:   The username. The default is `ejabberd`. The option is only valid
-	for `mysql` and `pgsql`.
+:   The username. The default is `ejabberd`. The option is valid
+	for `mysql`, `pgsql` and `mssql`.
 
 `odbc_password: String`
 
-:   The password. The default is empty string. The option is only valid
-	for `mysql` and `pgsql`.
+:   The password. The default is empty string. The option is valid
+	for `mysql`, `pgsql` and `mssql`.
 
 `odbc_pool_size: N`
 
