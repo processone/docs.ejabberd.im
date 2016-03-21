@@ -127,6 +127,22 @@
               <a href="/user/">ejabberd for Users</a>
             </li>
           </ul>
+          
+          <script>
+            function search() {
+              document.getElementById('search-query').value = document.getElementById('search-term').value + ' site:docs.ejabberd.im';
+              return true;
+            }
+          </script>
+          
+          <form onSubmit="return search()" method="get" action="https://duckduckgo.com/">
+            <input type="hidden" name="kp" value="1" />
+            <input type="hidden" name="k1" value="-1" />
+            <input type="hidden" id="search-query" name="q" value="" />
+            
+            <input type="search" id="search-term" value="" placeholder="Search..." />
+          </form>
+          
         </div> <!-- /sidebar-module -->
       </div><!-- /sidebar-shell -->
 

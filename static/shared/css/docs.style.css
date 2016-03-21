@@ -85,7 +85,8 @@ h5,h5 {
   margin-top: 20px;
 }
 
-.btn {
+.btn,
+input {
   padding: 1em 2em;
   
   border: 1px solid #fff;
@@ -98,6 +99,16 @@ h5,h5 {
     border-color: #fff;
     background-color: #fff;
     color: #3e9cda !important;
+  }
+
+input {
+  padding: 0 10px;
+  outline: 0;
+  max-width: 100%;
+  text-transform: none;
+}
+  #search-term {
+    margin-top: 7em;
   }
   
 /* Core styles */
