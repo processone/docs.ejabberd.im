@@ -89,13 +89,23 @@ execute some `ejabberd commands`; see
 
 If account `robot1@example.org` is registered in `ejabberd` with
 password `abcdef` (which MD5 is E8B501798950FC58AAD83C8C14978E), and
-your old-format configuration file contains this setting:
+your configuration file contains this setting:
 
-	#!erlang
-	{hosts, ["example.org"]}.
-	{acl, bots, {user, "robot1", "example.org"}}.
-	{access, ctlaccess, [{allow, bots}]}.
-	{ejabberdctl_access_commands, [ {ctlaccess, [registered_users, register], []} ]}.
+	#!yaml
+	hosts:
+	  - "example.org"
+	acl:
+	  bots:
+	    user:
+	      - "robot1": "example.org"
+	access:
+	  ctlaccess:
+	    bots: allow
+	commands_admin_access: ctlaccess
+	ejabberdctl_access_commands:
+	  ctlaccess:
+	    - registered_users
+	    - register
 
 then you can do this in the shell:
 
