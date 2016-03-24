@@ -2646,8 +2646,8 @@ A hostname of the Riak server. The default is `localhost`.
 
 :   
 
-The port where the Riak server is accepting connections. The default is
-8087.
+The port where the Riak server is accepting connections for Protocol
+Buffer (PBC). The default is 8087.
 
 `riak_pool_size: N`
 
