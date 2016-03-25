@@ -2405,11 +2405,11 @@ Parameters:
 
 `ldap_rootdn: RootDN`
 
-:   Bind DN. The default value is \`\` which means ‘anonymous connection’.
+:   Bind DN. The default value is empty string "" which means ‘anonymous connection’.
 
 `ldap_password: Password`
 
-:   Bind password. The default value is \`\`.
+:   Bind password. The default value is is empty string.
 
 `ldap_deref_aliases: never|always|finding|searching`
 
@@ -2554,7 +2554,7 @@ Also we want users to search each other. Let’s see how we can set it up:
 	     "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
 	     "GIVEN": {"%s": ["givenName"]}
 	     "FAMILY": {"%s": ["sn"]}
-	     "FN": {"%s, %s": ["sn", "givenName"]}, # example: "Smith, John"
+	     "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
 	     "EMAIL": {"%s": ["mail"]}
 	     "BDAY": {"%s": ["birthDay"]}]}
 	    ## Search form
@@ -5352,6 +5352,10 @@ Special values like @all@ and @online@ will help populating the shared
 roster dynamically. It means that the actual list of members in those
 shared rosters is generated dynamically at retrieval time.
 
+**Note:** `mod_shared_roster` depends on `mod_roster` being
+enabled. Roster queries will return 503 errors if `mod_roster` is not
+enabled.
+
 Options:
 
 `db_type: mnesia|odbc|riak`
@@ -5471,6 +5475,10 @@ Examples:
 This module lets the server administrator automatically populate users’
 rosters (contact lists) with entries based on users and groups defined
 in an LDAP-based directory.
+
+**Note:** `mod_shared_roster_ldap` depends on `mod_roster` being
+enabled. Roster queries will return 503 errors if `mod_roster` is not
+enabled.
 
 #### Configuration parameters
 
@@ -6066,6 +6074,8 @@ parameters to set the authentication method: `ldap_servers`,
 [LDAP Authentication](#ldap-authentication) for
 detailed information about these options. If one of these options is not
 set, `ejabberd` will look for the top-level option with the same name.
+
+
 
 The second group of parameters consists of the following
 `mod_vcard_ldap`-specific options:
