@@ -2593,23 +2593,23 @@ sample configuration is shown below:
 	  ...
 	  mod_vcard_ldap:
 	    ldap_vcard_map:
-	      "NICKNAME": {"%u", []}
-	      "GIVEN": {"%s", ["givenName"]}
-	      "MIDDLE": {"%s", ["initials"]}
-	      "FAMILY": {"%s", ["sn"]}
-	      "FN": {"%s", ["displayName"]}
-	      "EMAIL": {"%s", ["mail"]}
-	      "ORGNAME": {"%s", ["company"]}
-	      "ORGUNIT": {"%s", ["department"]}
-	      "CTRY": {"%s", ["c"]}
-	      "LOCALITY": {"%s", ["l"]}
-	      "STREET": {"%s", ["streetAddress"]}
-	      "REGION": {"%s", ["st"]}
-	      "PCODE": {"%s", ["postalCode"]}
-	      "TITLE": {"%s", ["title"]}
-	      "URL": {"%s", ["wWWHomePage"]}
-	      "DESC": {"%s", ["description"]}
-	      "TEL": {"%s", ["telephoneNumber"]}]}
+	      "NICKNAME": {"%u": []}
+	      "GIVEN": {"%s": ["givenName"]}
+	      "MIDDLE": {"%s": ["initials"]}
+	      "FAMILY": {"%s": ["sn"]}
+	      "FN": {"%s": ["displayName"]}
+	      "EMAIL": {"%s": ["mail"]}
+	      "ORGNAME": {"%s": ["company"]}
+	      "ORGUNIT": {"%s": ["department"]}
+	      "CTRY": {"%s": ["c"]}
+	      "LOCALITY": {"%s": ["l"]}
+	      "STREET": {"%s": ["streetAddress"]}
+	      "REGION": {"%s": ["st"]}
+	      "PCODE": {"%s": ["postalCode"]}
+	      "TITLE": {"%s": ["title"]}
+	      "URL": {"%s": ["wWWHomePage"]}
+	      "DESC": {"%s": ["description"]}
+	      "TEL": {"%s": ["telephoneNumber"]}]}
 	    ldap_search_fields:
 	      "User": "%u"
 	      "Name": "givenName"
