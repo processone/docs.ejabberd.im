@@ -27,7 +27,7 @@ This includes:
 * [Electronic Arts](http://www.ea.com)
 * [FACEIT](https://beta.faceit.com/)
 * [Kixeye](http://www.kixeye.com)
-* Machine Zone (Game of War)
+* [Machine Zone (Game of War)](http://www.machinezone.com)
 * [Nokia nGage](http://en.wikipedia.org/wiki/N-Gage_(service))
 * [Riot Games (League of Legends)](http://highscalability.com/blog/2014/10/13/how-league-of-legends-scaled-chat-to-70-million-players-it-t.html)
 
@@ -99,4 +99,3 @@ This includes:
 This list is a work in progress.
 
 [Contact us](http://www.process-one.net/en/company/contact/) !
-
