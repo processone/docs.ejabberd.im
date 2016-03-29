@@ -145,10 +145,10 @@ happening in your system, understand and even anticipate issues.
 
 The main benefit of ejabberd is the ability to reach a command-line to
 type Erlang commands. This allows you to fix and troubleshoot most of
-the tricky situation and even update and reload codem without stopping
+the tricky situation and even update and reload code without stopping
 the service. This is a life saver for your uptime.
 
-Welcome to the benefit of Erlang hot-code swapping !
+Welcome to the benefit of Erlang hot-code swapping!
 
 ## ejabberd is more than XMPP
 
