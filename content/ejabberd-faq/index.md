@@ -21,7 +21,7 @@ requested to provide a stable version with long term commitment and
 high level of quality, testing, audit, etc.
 
 Maintaining such a version in parallel of the community version, along
-with extremeluy strong commitment in term of availability and 24/7
+with extremely strong commitment in term of availability and 24/7
 support has a cost. With ejabberd business edition we commit on a
 level of scalability and optimize thew software until it is performing
 to the level agreed with the customer.
@@ -42,7 +42,7 @@ edition customers, ejabberd project itself is a [major contributor to
 Erlang and Elixir community](/developer/repositories/).
 
 
-### Do ProcessOne voluntarily hold some code in ejabberd community to push toward the business edition ?
+### Does ProcessOne voluntarily hold some code in ejabberd community to push toward the business edition ?
 
 No. We never do that and have no plan doing so with the code we
 produce and we own.
@@ -99,6 +99,9 @@ scalable version. Once it is properly configured, optimized and tuned,
 you can handle tens of millions of users on ejabberd systems.
 
 ... And we are still improving :)
+
+As a reference, you should read blog post:
+[ejabberd Massive Scalability: 1 Node — 2+ Million Concurrent Users](https://blog.process-one.net/ejabberd-massive-scalability-1node-2-million-concurrent-users/)
 
 ### What are the tips to optimize performance ?
 
