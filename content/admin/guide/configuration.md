@@ -1467,7 +1467,7 @@ following syntax:
 
 `user: Username`
 
-:   Matches the user with the name `Username` at the first virtual host.
+:   Matches the user with the name `Username` on any of the local virtual host.
 	Example:
 
 	    #!yaml
