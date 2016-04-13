@@ -688,7 +688,7 @@ modules:
 `tls_compression: true|false`
 
 :   Whether to enable or disable TLS compression. The default value is
-	`true`.
+	`false`.
 
 `web_admin: true|false`
 
@@ -774,7 +774,7 @@ ejabberd configuration file (outside `listen`):
 `s2s_tls_compression: true|false`
 
 :   Whether to enable or disable TLS compression for s2s connections.
-	The default value is `true`.
+	The default value is `false`.
 
 `max_fsm_queue: Size`
 
