@@ -2759,7 +2759,7 @@ There are several options available:
 
 `redis_port: Port`
 
-:   The port where the Redis server is accepting connections. The defalt
+:   The port where the Redis server is accepting connections. The default 
 	is 6379.
 
 `redis_password: String`
