@@ -110,7 +110,7 @@ features:
 
     - Internal Authentication.
 
-    - PAM, LDAP, ODBC and Riak.
+    - PAM, LDAP, SQL and Riak.
 
     - External Authentication script.
 

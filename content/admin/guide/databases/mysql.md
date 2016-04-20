@@ -241,13 +241,13 @@ on a module-by-module basis.
 In `ejabberd.yml`, define your database parameters:
 
 ~~~ yaml
-odbc_type: mysql
-odbc_server: "localhost"
-odbc_database: "ejabberd"
-odbc_username: "ejabberd"
-odbc_password: "password"
+sql_type: mysql
+sql_server: "localhost"
+sql_database: "ejabberd"
+sql_username: "ejabberd"
+sql_password: "password"
 # If you want to specify the port:
-odbc_port: 3306
+sql_port: 3306
 ~~~
 
 Those parameters are mandatory if you want to use MySQL with ejabberd.
@@ -258,10 +258,10 @@ If you decide to store user password in ejabberd, you need to tell
 ejabberd to use MySQL instead of internal database for authentication.
 
 You thus need to change ejabberd configuration `auth_method` to
-replace `internal` authentication with `odbc`:
+replace `internal` authentication with `sql`:
 
 ~~~ yaml
-auth_method: odbc
+auth_method: sql
 ~~~
 
 If you restart ejabberd, it should connect to your database for
@@ -279,11 +279,6 @@ User testuser@localhost successfully registered
 
 You should now be able to connect XMPP users based on MySQL user base.
 
-**Note:** `odbc` does not means that any ODBC driver will be
-used. ejabberd supports native MySQL driver. The wording is here for
-historical reason. Starting from ejabberd 16.03, you can replace
-`odbc` with `sql`.
-
 ### Switch modules to use MySQL instead of Mnesia
 
 At this stage, only the authentication / user base has been moved to
@@ -291,7 +286,7 @@ MySQL. For data managed by modules, ejabberd still use internal
 database as default.
 
 For each modules that support SQL backend, you can pass option
-`db_type: odbc` to use your configured MySQL database. Switch can be
+`db_type: sql` to use your configured MySQL database. Switch can be
 done on a module by module basis. For example, if you want to store
 contact list in MySQL, you can do:
 
@@ -299,15 +294,15 @@ contact list in MySQL, you can do:
 modules:
   ...
   mod_roster:
-    db_type: odbc
+    db_type: sql
   ...
 ~~~
 
 However, if you want to use MySQL for all modules that support MySQL
-as db_type, you can simply use global option `default_db: odbc`:
+as db_type, you can simply use global option `default_db: sql`:
 
 ~~~ yaml
-default_db: odbc
+default_db: sql
 ~~~
 
 **Note:** even if you move all the persistent data you can to MySQL,
@@ -315,7 +310,7 @@ Mnesia will still be started and used to manage clustering.
 
 ## Migrating data from internal database to MySQL
 
-To migrate your data, once you have setup your odbc service, you can
+To migrate your data, once you have setup your sql service, you can
 move most of the data to your database.
 
 You need to take precautions before you launch the migration:
@@ -341,13 +336,13 @@ When you are ready, you can:
 
 2. Alternatively, use `ejabberdctl live` to launch ejabberd with an Erlang shell attached.
 
-3. Launch the migration command `ejd2odbc:export/2` from Erlang
+3. Launch the migration command `ejd2sql:export/2` from Erlang
 shell. First parameter is the XMPP domain name you want to migrate
-(i.e `localhost`). Second parameter `odbc` tells ejabberd to export to
+(i.e `localhost`). Second parameter `sql` tells ejabberd to export to
 configured MySQL database. For example:
 
    ~~~ erlang
-   ejd2odbc:export(<<"localhost">>, odbc).
+   ejd2sql:export(<<"localhost">>, sql).
    ~~~
 
 You should be set now.

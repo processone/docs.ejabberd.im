@@ -346,7 +346,7 @@ The commands included in ejabberd by default are:
 
 :   Change the erlang node name in a backup file
 
-`export2odbc virtualhost directory`
+`export2sql virtualhost directory`
 
 :   Export virtual host information from Mnesia tables to SQL files.
 
