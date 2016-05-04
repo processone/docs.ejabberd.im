@@ -2,10 +2,10 @@
 title: Administration API reference
 ---
 
-## *add_rosteritem* - Add an item to a user's roster (supports ODBC)
+## *add_rosteritem* - Add an item to a user's roster (supports SQL)
 
 
-Add an item to a user's roster (supports ODBC)
+Add an item to a user's roster (supports SQL)
 
 
 ### Arguments:
@@ -1214,10 +1214,10 @@ Get the list of established sessions in a vhost
 
 
 
-## *convert_to_scram* - Convert the passwords in 'users' ODBC table to SCRAM
+## *convert_to_scram* - Convert the passwords in 'users' SQL table to SCRAM
 
 
-Convert the passwords in 'users' ODBC table to SCRAM
+Convert the passwords in 'users' SQL table to SCRAM
 
 
 ### Arguments:
@@ -1922,10 +1922,10 @@ Delete users that didn't log in last days in vhost, or that never logged
 
 
 
-## *delete_rosteritem* - Delete an item from a user's roster (supports ODBC)
+## *delete_rosteritem* - Delete an item from a user's roster (supports SQL)
 
 
-Delete an item from a user's roster (supports ODBC)
+Delete an item from a user's roster (supports SQL)
 
 
 ### Arguments:
@@ -3056,7 +3056,7 @@ Echo String
 
 
 
-## *export2odbc* - Export virtual host information from Mnesia tables to SQL files
+## *export2sql* - Export virtual host information from Mnesia tables to SQL files
 
 
 Export virtual host information from Mnesia tables to SQL files
@@ -3085,14 +3085,14 @@ Export virtual host information from Mnesia tables to SQL files
     XmlRpcClient client = new XmlRpcClient();
     client.setConfig(config);
     
-    client.execute("export2odbc", new HashMap<String, Object>() {{
+    client.execute("export2sql", new HashMap<String, Object>() {{
       put("host", "aaaaa");
       put("directory", "bbbbb");
     }});
 ~~~
 
 * ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("export2odbc", {
+    XMLRPC::Lite->proxy($url)->call("export2sql", {
       host => "aaaaa",
       directory => "bbbbb"
     })->results()
@@ -3100,7 +3100,7 @@ Export virtual host information from Mnesia tables to SQL files
 
 * ~~~ xml
     <methodCall>
-      <methodName>export2odbc</methodName>
+      <methodName>export2sql</methodName>
       <params>
         <param>
           <value>
@@ -3125,7 +3125,7 @@ Export virtual host information from Mnesia tables to SQL files
 ~~~
 
 * ~~~ json
-    POST /api/export2odbc
+    POST /api/export2sql
     {
       "host": "aaaaa",
       "directory": "bbbbb"
@@ -3138,7 +3138,7 @@ Export virtual host information from Mnesia tables to SQL files
 
 
 
-## *export_odbc* - Export all tables as SQL queries to a file
+## *export_sql* - Export all tables as SQL queries to a file
 
 
 Export all tables as SQL queries to a file
@@ -3167,14 +3167,14 @@ Export all tables as SQL queries to a file
     XmlRpcClient client = new XmlRpcClient();
     client.setConfig(config);
     
-    client.execute("export_odbc", new HashMap<String, Object>() {{
+    client.execute("export_sql", new HashMap<String, Object>() {{
       put("host", "aaaaa");
       put("file", "bbbbb");
     }});
 ~~~
 
 * ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("export_odbc", {
+    XMLRPC::Lite->proxy($url)->call("export_sql", {
       host => "aaaaa",
       file => "bbbbb"
     })->results()
@@ -3182,7 +3182,7 @@ Export all tables as SQL queries to a file
 
 * ~~~ xml
     <methodCall>
-      <methodName>export_odbc</methodName>
+      <methodName>export_sql</methodName>
       <params>
         <param>
           <value>
@@ -3207,7 +3207,7 @@ Export all tables as SQL queries to a file
 ~~~
 
 * ~~~ json
-    POST /api/export_odbc
+    POST /api/export_sql
     {
       "host": "aaaaa",
       "file": "bbbbb"

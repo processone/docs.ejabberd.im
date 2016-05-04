@@ -173,16 +173,16 @@ Examples:
 		    ldap_rootdn: "dc=example,dc=com"
 		    ldap_password: ""
 
--   Domain `example.net` is using ODBC to perform authentication while
+-   Domain `example.net` is using SQL to perform authentication while
 	domain `example.com` is using the LDAP servers running on the
 	domains `localhost` and `otherhost`:
 
 		#!yaml
 		host_config:
 		  "example.net":
-		    auth_method: odbc
-		    odbc_type: odbc
-		    odbc_server: "DSN=ejabberd;UID=ejabberd;PWD=ejabberd"
+		    auth_method: sql
+		    sql_type: odbc
+		    sql_server: "DSN=ejabberd;UID=ejabberd;PWD=ejabberd"
 		  "example.com":
 		    auth_method: ldap
 		    ldap_servers:
@@ -1113,7 +1113,7 @@ The following authentication methods are supported by `ejabberd`:
 
 -   ldap — See section  [LDAP](#ldap).
 
--   odbc — See section [Relational Databases](#relational-databases).
+-   sql — See section [Relational Databases](#relational-databases).
 
 -   anonymous — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 
@@ -1121,7 +1121,7 @@ The following authentication methods are supported by `ejabberd`:
 
 When the option is omitted, ejabberd will rely upon the default database which is configured in `default_db` option. If this option is not set neither the default authentication method will be `internal`.
 
-Account creation is only supported by internal, external and odbc methods.
+Account creation is only supported by internal, external and sql methods.
 
 The option `resource_conflict` defines the action when a client attempts
 to login to an account with a resource that is already connected. The
@@ -2231,65 +2231,65 @@ sections must be set inside a `host_config` for each vhost (see section
 	#!yaml
 	host_config:
 	  "public.example.org":
-	    odbc_type: pgsql
-	    odbc_server: "localhost"
-	    odbc_database: "database-public-example-org"
-	    odbc_username: "ejabberd"
-	    odbc_password: "password"
-	    auth_method: [odbc]
+	    sql_type: pgsql
+	    sql_server: "localhost"
+	    sql_database: "database-public-example-org"
+	    sql_username: "ejabberd"
+	    sql_password: "password"
+	    auth_method: [sql]
 
 ### Relational Databases
 
 You need to upload SQL schema to your SQL server. Choose the one from [`this`][118] list.
 
-The actual database access is defined in the options with `odbc_`
+The actual database access is defined in the options with `sql_`
 prefix. The values are used to define if we want to use ODBC, or one of
 the two native interface available, PostgreSQL or MySQL.
 
 The following paramaters are available:
 
-`odbc_type: mysql | pgsql | odbc | mssql | sqlite`
+`sql_type: mysql | pgsql | odbc | mssql | sqlite`
 
-:   The type of an ODBC connection. The default is `odbc`.
+:   The type of an SQL connection. The default is `odbc`.
 
-`odbc_server: String`
+`sql_server: String`
 
-:   A hostname of the ODBC server. The default is `localhost`.
+:   A hostname of the SQL server. The default is `localhost`.
 
-`odbc_port: Port`
+`sql_port: Port`
 
-:   The port where the ODBC server is accepting connections. The option
+:   The port where the SQL server is accepting connections. The option
 	is valid for `mysql`, `pgsql` and `mssql`. The default is `3306` and
 	`5432` respectively.
 
-`odbc_database: String`
+`sql_database: String`
 
 :   The database name. The default is `ejabberd`. The option is valid
 	for `mysql`, `pgsql` and `mssql`.
 
-`odbc_username: String`
+`sql_username: String`
 
 :   The username. The default is `ejabberd`. The option is valid
 	for `mysql`, `pgsql` and `mssql`.
 
-`odbc_password: String`
+`sql_password: String`
 
 :   The password. The default is empty string. The option is valid
 	for `mysql`, `pgsql` and `mssql`.
 
-`odbc_pool_size: N`
+`sql_pool_size: N`
 
 :   By default `ejabberd` opens 10 connections to the database for each
 	virtual host. You can change this number by using this option.
 
-`odbc_keepalive_interval: N`
+`sql_keepalive_interval: N`
 
 :   You can configure an interval to make a dummy SQL request to keep
 	alive the connections to the database. The default value is
 	’undefined’, so no keepalive requests are made. Specify in seconds:
 	for example 28800 means 8 hours.
 
-`odbc_start_interval: N`
+`sql_start_interval: N`
 
 :   If the connection to the database fails, `ejabberd` waits 30 seconds
 	before retrying. You can modify this interval with this option.
@@ -2297,48 +2297,48 @@ The following paramaters are available:
 Example of plain ODBC connection:
 
 	#!yaml
-	odbc_server: "DSN=database;UID=ejabberd;PWD=password"
+	sql_server: "DSN=database;UID=ejabberd;PWD=password"
 
 Example of MySQL connection:
 
 	#!yaml
-	odbc_type: mysql
-	odbc_server: "server.company.com"
-	odbc_port: 3306 # the default
-	odbc_database: "mydb"
-	odbc_username: "user1"
-	odbc_password: "**********"
-	odbc_pool_size: 5
+	sql_type: mysql
+	sql_server: "server.company.com"
+	sql_port: 3306 # the default
+	sql_database: "mydb"
+	sql_username: "user1"
+	sql_password: "**********"
+	sql_pool_size: 5
 
 ### Microsoft SQL Notes
 
 For now, MS SQL is only supported in Unix-like OS'es. You need to have
 [`FreeTDS`][116] and [`unixODBC`][117] installed on your machine.
-Also, in some cases you need to add machine name to `odbc_username`, especially
-when you have `odbc_server` defined as an IP address, e.g.:
+Also, in some cases you need to add machine name to `sql_username`, especially
+when you have `sql_server` defined as an IP address, e.g.:
 
 	#!yaml
-	odbc_type: mssql
-	odbc_server: "1.2.3.4"
+	sql_type: mssql
+	sql_server: "1.2.3.4"
 	...
-	odbc_username: "user1@host"
+	sql_username: "user1@host"
 
-#### ODBC Authentication
+#### SQL Authentication
 
-You can authenticate users against an ODBC database, see the option
+You can authenticate users against an SQL database, see the option
 `auth_method` in section [Authentication](#authentication).
 
 The option `auth_password_format` is supported,
 for details see section [Internal](#internal).
 
-#### ODBC Storage
+#### SQL Storage
 
 An ODBC compatible database also can be used to store information into
 from several `ejabberd` modules. See section [Modules Overview](#modules-overview) to see which
 modules can be used with relational databases like MySQL. To enable
 storage to your database, just make sure that your database is running
-well (see previous sections), and add the module option `db_type: odbc`
-or set `default_db: odbc` globally if you want to use ODBC for all modules.
+well (see previous sections), and add the module option `db_type: sql`
+or set `default_db: sql` globally if you want to use SQL for all modules.
 
 
 ### LDAP
@@ -2759,7 +2759,7 @@ There are several options available:
 
 `redis_port: Port`
 
-:   The port where the Redis server is accepting connections. The defalt
+:   The port where the Redis server is accepting connections. The default 
 	is 6379.
 
 `redis_password: String`
@@ -2791,16 +2791,16 @@ Example configuration:
 
 You can simplify the configuration by setting the default database. This can be done with `default_db` option:
 
-`default_db: mnesia|odbc|riak`:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
+`default_db: mnesia|sql|riak`:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
 
 ## Session Management
 
 By default pointers to C2S sessions are kept in Mnesia. You may want to
 use another database backend for this. The option is:
 
-`sm_db_type: mnesia|odbc|redis`
+`sm_db_type: mnesia|sql|redis`
 
-:   Note that for `odbc` or `redis` you should have them configured. See sections
+:   Note that for `sql` or `redis` you should have them configured. See sections
 	[Relational Databases](#relational-databases) or [Redis](#redis).
 
 ## Modules Configuration
@@ -2892,7 +2892,7 @@ You can see which database backend each module needs by looking at the
 suffix:
 
 -   No suffix, this means that the module uses Erlang’s built-in
-	database Mnesia as backend, Riak key-value store or ODBC database
+	database Mnesia as backend, Riak key-value store or SQL database
 	(see [Database and LDAP Configuration](#database-and-ldap-configuration)).
 
 -   ‘\_ldap’, this means that the module needs an LDAP server as
@@ -3116,9 +3116,9 @@ hosts in ejabberd.
 
 Options:
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `access: AccessName`
 
@@ -3777,9 +3777,9 @@ Options:
 	virtual host with the prefix ‘`irc.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `access: AccessName`
 
@@ -3846,9 +3846,9 @@ uptime of the `ejabberd` server.
 :   This specifies the processing discipline for Last activity
 	(`jabber:iq:last`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 #### Example Configuration
 
@@ -3880,9 +3880,9 @@ Options:
 
 :   This specifies the processing discipline for Message Archive Management IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
-`db_type: mnesia|odbc`
+`db_type: mnesia|sql`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration). Note: If `mnesia` is used, the total size of all MAM archives cannot exceed 2 GB. The `delete_old_mam_messages` command could be run periodically to make sure the `mnesia` data won't grow beyond that limit. To support larger archives, `odbc` storage must be used.
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration). Note: If `mnesia` is used, the total size of all MAM archives cannot exceed 2 GB. The `delete_old_mam_messages` command could be run periodically to make sure the `mnesia` data won't grow beyond that limit. To support larger archives, `sql` storage must be used.
 
 `default: always|never|roster`
 
@@ -3971,9 +3971,9 @@ Module options:
 	virtual host with the prefix ‘`conference.`’. The keyword “@HOST@”
 	is replaced at start time with the real virtual host name.
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `access: AccessName`
 
@@ -4544,11 +4544,11 @@ section [Managing: ejabberdctl](../managing/#ejabberdctl)).
 
 #### Options
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
 : Define the type of storage where the module will create the tables
 and store user information. The default is the storage defined by the
-global option `default_db`, or `mnesia` if omitted. If `odbc` or
+global option `default_db`, or `mnesia` if omitted. If `sql` or
 `riak` value is defined, make sure you have defined the database, see
 [database](#database-and-ldap-configuration).
 
@@ -4739,9 +4739,9 @@ Options:
 :   This specifies the processing discipline for Blocking Communication
 	(`jabber:iq:privacy`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ### mod_private
 
@@ -4762,9 +4762,9 @@ Options:
 :   This specifies the processing discipline for Private XML Storage
 	(`jabber:iq:private`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ### mod_proxy65
 
@@ -4887,7 +4887,7 @@ Options:
 	virtual host with the prefix ‘`pubsub.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
 
-	If you use `mod_pubsub` with `odbc` `db_type`, please ensure the
+	If you use `mod_pubsub` with `sql` `db_type`, please ensure the
 	prefix contains only one dot, for example ‘`pubsub.`’, or
 	‘`publish.`’,.
 
@@ -4992,14 +4992,14 @@ of flat, nodetree and pep nodes:
 	  ...
 
 Using relational database requires using mod\_pubsub with db_type
-`odbc`. Only flat, hometree and pep plugins supports ODBC. The
-following example shows previous configuration with ODBC usage:
+`sql`. Only flat, hometree and pep plugins supports SQL. The
+following example shows previous configuration with SQL usage:
 
 	#!yaml
 	modules:
 	  ...
       mod_pubsub:
-        db_type: odbc
+        db_type: sql
         access_createnode: pubsub_createnode
         ignore_pep_from_offline: true
         last_item_cache: false
@@ -5220,9 +5220,9 @@ Options:
 :   This specifies the processing discipline for Roster Management
 	(`jabber:iq:roster`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `versioning: false|true`
 
@@ -5358,9 +5358,9 @@ enabled.
 
 Options:
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 Shared roster groups can be edited *only* via the Web Admin. Each group
 has a unique identification and the following parameters:
@@ -5994,9 +5994,9 @@ Options:
 :   This specifies the processing discipline for `vcard-temp` IQ queries
 	(see section [IQ Discipline Option](#iqdisc)).
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 `search: true|false`
 
@@ -6022,7 +6022,7 @@ Options:
 :   If this option is set to `true`, search operations will apply to all
 	virtual hosts. Otherwise only the current host will be searched. The
 	default value is `true`. This option is available in `mod_vcard`
-	when using Mnesia, but not when using ODBC storage.
+	when using Mnesia, but not when using SQL storage.
 
 Examples:
 
@@ -6293,9 +6293,9 @@ that change frequently their presence.
 
 Options:
 
-`db_type: mnesia|odbc|riak`
+`db_type: mnesia|sql|riak`
 
-:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `odbc` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ### mod_version
 

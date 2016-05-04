@@ -71,7 +71,7 @@ Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 -   Authentication
 
 	-   Internal Authentication.
-	-   PAM, LDAP, ODBC and Riak.
+	-   PAM, LDAP, SQL and Riak.
 	-   External Authentication script.
 
 -   Others

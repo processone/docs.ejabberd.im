@@ -83,39 +83,6 @@ The `ejabberdctl commands` are:
 
 :   Get information about the Mnesia database.
 
-The `ejabberdctl` script can be restricted to require authentication and
-execute some `ejabberd commands`; see
-[AccessCommands](#restrict-execution-with-accesscommands).
-
-If account `robot1@example.org` is registered in `ejabberd` with
-password `abcdef` (which MD5 is E8B501798950FC58AAD83C8C14978E), and
-your configuration file contains this setting:
-
-	#!yaml
-	hosts:
-	  - "example.org"
-	acl:
-	  bots:
-	    user:
-	      - "robot1": "example.org"
-	access:
-	  ctlaccess:
-	    bots: allow
-	commands_admin_access: ctlaccess
-	ejabberdctl_access_commands:
-	  ctlaccess:
-	    - registered_users
-	    - register
-
-then you can do this in the shell:
-
-	#!console
-	$ ejabberdctl registered_users example.org
-	Error: no_auth_provided
-	$ ejabberdctl --auth robot1 example.org abcdef registered_users example.org
-	robot1
-	testuser1
-	testuser2
 
 ### Erlang Runtime System
 
@@ -379,7 +346,7 @@ The commands included in ejabberd by default are:
 
 :   Change the erlang node name in a backup file
 
-`export2odbc virtualhost directory`
+`export2sql virtualhost directory`
 
 :   Export virtual host information from Mnesia tables to SQL files.
 
