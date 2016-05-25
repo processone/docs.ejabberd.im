@@ -362,6 +362,10 @@ code {
     font-size: inherit;
   }
 
+.code-action-labels {
+  text-transform: uppercase;
+}
+
 .code-samples-labels,
 .code-samples-tabs {
   list-style: none;
