@@ -54,7 +54,7 @@
 			"post": {
 				"description": "Register a user.",
 				"tags": [
-					"server"
+					"accounts"
 				],
 				"consumes": [
 					"application/json"
@@ -93,9 +93,65 @@
 					}
 				}
 			}
-		}
+		},
+		"/unregister": {
+			"post": {
+				"description": "Delete a user from server, with all his data.",
+				"tags": [
+					"accounts"
+				],
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "user",
+						"in": "body",
+						"description": "User",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/user"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"schema": {
+							"title": "ResponseText",
+							"type": "string"
+						}
+					},
+					"500": {
+						"description": "Crash error",
+						"schema": {
+							"title": "LogMessage",
+							"type": "string"
+						}
+					}
+				}
+			}
+		}		
 	},
 	"definitions": {
+		"user": {
+			"type": "object",
+			"required": [
+				"user",
+				"host"
+			],
+			"properties": {
+				"user": {
+					"type": "string"
+				},
+				"host": {
+					"type": "string"
+				}
+			}
+		},
 		"userCredentials": {
 			"type": "object",
 			"required": [
