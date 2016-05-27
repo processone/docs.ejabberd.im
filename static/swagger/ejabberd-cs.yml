@@ -16,8 +16,8 @@ schemes:
   - https
 paths:
   /backup:
-	# FIXME: I could not make backup work properly:
-	#  curl -X GET --header 'Accept: application/json' 'http://localhost:5280/api/backup?filename=test'
+    # FIXME: I could not make backup work properly:
+    #  curl -X GET --header 'Accept: application/json' 'http://localhost:5280/api/backup?filename=test'
     # "Can't store backup in <<\"/Users/mremond/devel/p1/ejabberd/ejabberd\">> at node nonode@nohost: {'EXIT',\n{error,\nfunction_clause}}"
     get:
       description: >-
@@ -44,9 +44,9 @@ paths:
             title: LogMessage
             type: string
   /register:
-	# FIXME: For register and unregister, we need to switch to ReSTFUL approach:
-	# We can have URL like: /api/account/user@domain.net with GET to get user info, POST to create user, PUT to update it and DELETE to unregister it.
-	# That requires quite some change on the command approach ...
+    # FIXME: For register and unregister, we need to switch to ReSTFUL approach:
+    # We can have URL like: /api/account/user@domain.net with GET to get user info, POST to create user, PUT to update it and DELETE to unregister it.
+    # That requires quite some change on the command approach ...
     # We need to have commands, that can be aliased with Restful interfaces.
     post:
       description: Register a user.
@@ -64,7 +64,7 @@ paths:
           schema:
             $ref: '#/definitions/userCredentials'
       responses:
-		# FIXME: Response are inconsistents, especially on missing parameters
+        # FIXME: Response are inconsistents, especially on missing parameters
         '200':
           description: Successful response
           schema:
@@ -94,8 +94,8 @@ paths:
           schema:
             $ref: '#/definitions/user'
       responses:
-	    # FIXME: Response is always 200 even if user deleted does not exist anymore.
-		# FIXME: Body response is empty JSON string ""
+        # FIXME: Response is always 200 even if user deleted does not exist anymore.
+        # FIXME: Body response is empty JSON string ""
         '200':
           description: Successful response
           schema:
