@@ -2,7 +2,9 @@
     "swagger": "2.0",
     "info": {
         "version": "0.1.0",
-        "title": "ejabberd API"
+        "title": "ejabberd Community Server - ReST API",
+		"description": "ejabberd is a Rock Solid, Massively Scalable, Infinitely Extensible XMPP Server. It can be fully controled with ReST API described in this document.",
+		"contact": "ProcessOne"
     },
     "basePath": "/api",
     "host": "localhost:5280",
