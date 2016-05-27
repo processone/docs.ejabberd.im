@@ -1,0 +1,104 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.1.0",
+        "title": "ejabberd API"
+    },
+    "basePath": "/api",
+    "host": "localhost:5280",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/backup": {
+            "get": {
+                "description": "Initiate backup of ejabberd Mnesia database. The file is stored on local ejabberd server where the request is made. You can use a full path to store the file.",
+                "parameters": [
+                    {
+                        "name": "filename",
+                        "in": "query",
+                        "description": "Filename",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "ResponseText",
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Crash error",
+                        "schema": {
+                            "title": "LogMessage",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "description": "Register a user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "userCredentials",
+                        "in": "body",
+                        "description": "User credentials",
+                        "required": true,
+                        "schema": {
+                          "$ref": "#/definitions/userCredentials"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "ResponseText",
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Crash error",
+                        "schema": {
+                            "title": "LogMessage",
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+      "userCredentials": {
+        "type": "object",
+        "required": [ "user", "host", "password" ],
+            "properties":{
+                            "user": {
+                              "type": "string"
+                            },
+                            "host": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          }
+       } 
+    }
+}
+
