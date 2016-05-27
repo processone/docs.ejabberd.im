@@ -14,6 +14,7 @@
         "/backup": {
             "get": {
                 "description": "Initiate backup of ejabberd Mnesia database. The file is stored on local ejabberd server where the request is made. You can use a full path to store the file.",
+                "tags": ["mnesia"],
                 "parameters": [
                     {
                         "name": "filename",
@@ -44,6 +45,7 @@
         "/register": {
             "post": {
                 "description": "Register a user.",
+                "tags": ["server"],
                 "consumes": [
                     "application/json"
                 ],
