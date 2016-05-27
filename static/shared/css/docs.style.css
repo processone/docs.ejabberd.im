@@ -50,6 +50,11 @@ body {
     background: #fff;
   }
 
+.highlight *::selection {
+  background: #3daefb !important;
+  color: #eee !important;
+}
+
 /* Overrides */
   
   body .on-blog,
