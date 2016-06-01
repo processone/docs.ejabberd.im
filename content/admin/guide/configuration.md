@@ -2330,6 +2330,12 @@ You can authenticate users against an SQL database, see the option
 
 The option `auth_password_format` is supported,
 for details see section [Internal](#internal).
+Please note that if you use SQL auth method and set SCRAM format,
+old plain passwords tha may be stored in the database are not
+automatically scrammed. For that, you can execute the command:
+
+	#!console
+	ejabberdctl convert_to_scram example.org
 
 #### SQL Storage
 
