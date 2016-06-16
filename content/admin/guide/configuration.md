@@ -1475,7 +1475,7 @@ following syntax:
 	      admin:
 	        user: "yozhik"
 
-`user: {Username: Server}`
+`user: {Username: Server} | Jid`
 
 :   Matches the user with the JID `Username@Server` and any resource.
 	Example:
@@ -1483,9 +1483,9 @@ following syntax:
 	    #!yaml
 	    acl:
 	      admin:
-	        user:
+	        - user:
 	          "yozhik": "example.org"
-            user: "peter@example.org"
+	        - user: "peter@example.org"
 
 `server: Server`
 
@@ -1503,7 +1503,7 @@ following syntax:
 	    #!yaml
 	    acl:
 	      mucklres:
-	       resource: "muckl"
+	        resource: "muckl"
 
 `shared_group: Groupname`
 
@@ -1547,7 +1547,7 @@ following syntax:
 	      tests:
 	        user_regexp: "^test[0-9]*$"
 
-`user_regexp: {Regexp: Server}`
+`user_regexp: {Regexp: Server} | JidRegexp`
 
 :   Matches any user with a name that matches `Regexp` at server
 	`Server`. Example:
@@ -1556,8 +1556,8 @@ following syntax:
 	    acl:
 	      tests:
 	        user_regexp:
-	          "^test": "example.org"
-              "^test@example.org"
+	          - "^test1": "example.org"
+	          - "^test2@example.org"
 
 `server_regexp: Regexp`
 
@@ -1588,7 +1588,7 @@ following syntax:
 	        node_regexp:
 	          "^yozhik$": "^example.(com|org)$"
 
-`user_glob: Glob}`
+`user_glob: Glob`
 
 :  
 
@@ -1646,7 +1646,8 @@ Each definition may contain arbitrary number of `- allow` or `- deny`
 sections, and each section can contain any number of acl rules
 (as defined in [previous section](#acl-definition), it recognizes
 one additional rule `acl: RuleName` that matches when acl rule
-named `RuleName` matches).
+named `RuleName` matches). If no rule or definition is defined, the
+rule `all` is applyed.
 
 Definition's `- allow` and `- deny` sections are processed in top
 to bottom order, and first one for which all listed acl rules matches
@@ -1678,30 +1679,30 @@ effect.
 
 Example:
 
-	#!yaml
-	access_rules:
-	  configure:
-	    - allow: admin
-	  something
-	    - deny: deny
-	    - allow
-      s2s_banned:
-        - deny: problematic_hosts
-        - deny:
-          - acl: banned_forever
-        - deny:
-          - ip: "222.111.222.111/32"
-        - deny:
-          - ip: "111.222.111.222/32"
-        - allow
-      xmlrpc_access:
-        - allow:
-          - user: "peter@example.com"
-        - allow:
-          - user: "ivone@example.com"
-        - allow:
-          - user: "bot@example.com"
-          - ip: "10.0.0.0/24"
+      #!yaml
+      access_rules:
+        configure:
+          - allow: admin
+        something:
+          - deny: someone
+          - allow
+        s2s_banned:
+          - deny: problematic_hosts
+          - deny:
+            - acl: banned_forever
+          - deny:
+            - ip: "222.111.222.111/32"
+          - deny:
+            - ip: "111.222.111.222/32"
+          - allow
+        xmlrpc_access:
+          - allow:
+            - user: "peter@example.com"
+          - allow:
+            - user: "ivone@example.com"
+          - allow:
+            - user: "bot@example.com"
+            - ip: "10.0.0.0/24"
 
 The following `AccessName` are pre-defined:
 
@@ -1751,7 +1752,7 @@ or `infinity`. The default value is `infinity`.
 
 The syntax is:
 
-`{ max_user_sessions: { ACLName: MaxNumber } }`
+`{ max_user_sessions: { - Number: ACLRule|ACLDefinition } }`
 
 :  
 
@@ -1762,7 +1763,7 @@ and to 10 for admins:
 	shaper_rules:
 	  max_user_sessions:
 	    - 10: admin
-        - 5 : all
+	    - 5
 
 #### Several connections to a remote XMPP server with ACL
 
