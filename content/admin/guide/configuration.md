@@ -964,18 +964,18 @@ In this example, the following configuration defines that:
 	      - "xmlrpc-robot": "example.org"
 	shaper:
 	  normal: 1000
-	access:
-	  c2s:
-	    blocked: deny
-	    all: allow
+    shaper_rules:
 	  c2s_shaper:
-	    admin: none
-	    all: normal
+	    - none: admin
+	    - normal
+	access_rules:
+	  c2s:
+	    - deny: blocked
+	    - allow
 	  xmlrpc_access:
-	    xmlrpc_bot: allow
+	    - allow: xmlrpc_bot
 	  s2s:
-	    trusted_servers: allow
-	    all: deny
+	    - allow: trusted_servers
 	s2s_certfile: "/path/to/ssl.pem"
 	s2s_access: s2s
 	s2s_use_starttls: required_trusted
@@ -1485,6 +1485,7 @@ following syntax:
 	      admin:
 	        user:
 	          "yozhik": "example.org"
+            user: "peter@example.org"
 
 `server: Server`
 
@@ -1556,6 +1557,7 @@ following syntax:
 	      tests:
 	        user_regexp:
 	          "^test": "example.org"
+              "^test@example.org"
 
 `server_regexp: Regexp`
 
@@ -1638,15 +1640,35 @@ The following `ACLName` are pre-defined:
 An entry allowing or denying access to different services. The syntax
 is:
 
-`access: { AccessName: { ACLName: allow|deny } }`
+`access_rules: { AccessName: { - allow|deny: ACLRule|ACLDefinition } }`
 
-:  
+Each definition may contain arbitrary number of `- allow` or `- deny`
+sections, and each section can contain any number of acl rules
+(as defined in [previous section](#acl-definition), it recognizes
+one additional rule `acl: RuleName` that matches when acl rule
+named `RuleName` matches).
 
-When a JID is checked to have access to `Accessname`, the server
-sequentially checks if that JID matches any of the ACLs that are named
-in the first elements of the tuples in the list. If it matches, the
-second element of the first matched tuple is returned, otherwise the
-value ‘`deny`’ is returned.
+Definition's `- allow` and `- deny` sections are processed in top
+to bottom order, and first one for which all listed acl rules matches
+is returned as result of access rule. If no rule matches `deny` is returned.
+
+To simplify configuration two shortcut version are available:
+`- allow: acl` and `- allow`, example below shows equivalent
+definitions where short or long version are used:
+
+    #!yaml
+    access_rules:
+      a_short: admin
+      a_long:
+        - acl: admin
+      b_short:
+        - deny: banned
+        - allow
+      b_long:
+        - deny:
+          - acl: banned
+        - allow:
+          - all
 
 If you define specific Access rights in a virtual host, remember that
 the globally defined Access rights have precedence over those. This
@@ -1657,12 +1679,29 @@ effect.
 Example:
 
 	#!yaml
-	access:
+	access_rules:
 	  configure:
-	    admin: allow
+	    - allow: admin
 	  something
-	    badmans: deny
-	    all: allow
+	    - deny: deny
+	    - allow
+      s2s_banned:
+        - deny: problematic_hosts
+        - deny:
+          - acl: banned_forever
+        - deny:
+          - ip: "222.111.222.111/32"
+        - deny:
+          - ip: "111.222.111.222/32"
+        - allow
+      xmlrpc_access:
+        - allow:
+          - user: "peter@example.com"
+        - allow:
+          - user: "ivone@example.com"
+        - allow:
+          - user: "bot@example.com"
+          - ip: "10.0.0.0/24"
 
 The following `AccessName` are pre-defined:
 
@@ -1673,6 +1712,33 @@ The following `AccessName` are pre-defined:
 `none`
 
 :   Always returns the value ‘`deny`’.
+
+#### Shaper Rules
+
+An entry allowing to declaring shaper to use for matching user/hosts. The syntax
+is:
+
+`shaper_rules: { ShaperRuleName: { - Number|ShaperName: ACLRule|ACLDefinition } }`
+
+Semantic is similar to that described in [Access Rights](#access-rights) section,
+only difference is that instead using `- allow` or `- deny`, name of shaper or number
+should be used.
+
+Examples:
+
+    #!yaml
+    shaper_rules:
+      connections_limit:
+        - 10:
+          - user: "peter@example.com"
+        - 100: admin
+        - 5
+      download_speed:
+        - fast: admin
+        - slow: anonymous_users
+        - normal
+      log_days: 30
+
 
 #### Limiting Opened Sessions with ACL
 
@@ -1693,10 +1759,10 @@ This example limits the number of sessions per user to 5 for all users,
 and to 10 for admins:
 
 	#!yaml
-	access:
+	shaper_rules:
 	  max_user_sessions:
-	    admin: 10
-	    all: 5
+	    - 10: admin
+        - 5 : all
 
 #### Several connections to a remote XMPP server with ACL
 
@@ -1716,9 +1782,8 @@ Examples:
 -   Allow up to 3 connections with each remote server:
 
 		#!yaml
-		access:
-		  max_s2s_connections:
-		    all: 3
+		shaper_rules:
+		  max_s2s_connections: 3
 
 ### Shapers
 
@@ -2086,14 +2151,14 @@ later includes another file with additional rules:
 	  admin:
 	    user:
 	      - "admin": "localhost"
-	access:
+	access_rules:
 	  announce:
-	    admin: allow
+	    - allow: admin
 	include_config_file:
 	  "/etc/ejabberd/acl_and_access.yml":
 	    allow_only:
 	      - acl
-	      - access
+	      - access_rules
 
 and content of the file `acl_and_access.yml` can be, for example:
 
@@ -3018,11 +3083,10 @@ by executing `mod_admin_extra` commands:
     #!yaml
     acl:
       adminextraresource:
-	resource: "modadminextraf8x,31ad"
-    access:
+	    - resource: "modadminextraf8x,31ad"
+    access_rules:
       vcard_set:
-	adminextraresource: allow
-	all: deny
+	    - allow: adminextraresource
     modules:
       mod_admin_extra:
 	module_resource: "modadminextraf8x,31ad"
@@ -3137,9 +3201,9 @@ Examples:
 -   Only administrators can send announcements:
 
 		#!yaml
-		access:
+		access_rules:
 		  announce:
-		    admin: allow
+		    - allow: admin
 
 		modules:
 		  ...
@@ -3159,10 +3223,10 @@ Examples:
 		  admin:
 		    user:
 		      "admin": "example.org"
-		access:
+		access_rules:
 		  announce:
-		    admin: allow
-		    direction: allow
+		    - allow: admin
+		    - allow: direction
 
 		modules:
 		  ...
@@ -3687,12 +3751,12 @@ stick to the default names and just specify access rules such as those
 in the following example.
 
 	#!yaml
-	access:
+	shaper_rules:
 	  ...
 	  soft_upload_quota:
-	    all: 1000 # MiB
+	    - 1000: all # MiB
 	  hard_upload_quota:
-	    all: 1100 # MiB
+	    - 1100: all # MiB
 	  ...
 
 	modules:
@@ -3823,10 +3887,9 @@ Examples:
 		      - "customer2": "example.org"
 		    server: "example.com"
 
-		access:
+		access_rules:
 		  irc_users:
-		    paying_customers: allow
-		    all: deny
+		    - allow: paying_customers
 
 		modules:
 		  ...
@@ -4219,9 +4282,9 @@ Examples:
 		    user:
 		      - "admin": "example.org"
 
-		access:
+		access_rules:
 		  muc_admin:
-		    admin: allow
+		    - allow: admin
 
 		modules:
 		  ...
@@ -4255,14 +4318,12 @@ Examples:
 		    user:
 		      - "admin": "example.org"
 
-		access:
+		access_rules:
 		  muc_admin
-		    admin: allow
-		    all: deny
+		    - allow: admin
 		  muc_access:
-		    paying_customers: allow
-		    admin: allow
-		    all: deny
+		    - allow: paying_customers
+		    - allow: admin
 
 		modules:
 		  ...
@@ -4427,9 +4488,8 @@ Examples:
 	`<a href="http://www.jabber.ru/">Jabber.ru</a>`.
 
 		#!yaml
-		access:
-		  muc:
-		    all: allow
+		access_rules:
+		  - muc: allow
 
 		modules:
 		  ...
@@ -4459,10 +4519,9 @@ Examples:
 		    user:
 		      - "admin1": "example.org"
 		      - "admin2": "example.net"
-		access:
+		access_rules:
 		  muc_log:
-		    admin: allow
-		    all: deny
+		    - allow: admin
 
 		modules:
 		  ...
@@ -4506,26 +4565,25 @@ Example configuration:
 
 	#!yaml
 	# Only admins can send packets to multicast service
-	access:
+	access_rules:
 	  multicast:
-	    admin: allow
-	    all: deny
+	    - allow: admin
 
 	# If you want to allow all your users:
-	access:
+	access_rules:
 	  multicast:
-	    all: allow
+	    - allow
 
 	# This allows both admins and remote users to send packets,
 	# but does not allow local users
 	acl:
 	  allservers:
 	    server_glob: "*"
-	access:
+	access_rules:
 	  multicast:
-	    admin: allow
-	    local: deny
-	    allservers: allow
+	    - allow: admin
+	    - deny: local
+	    - allow: allservers
 
 	modules:
 	  mod_multicast:
@@ -4600,11 +4658,11 @@ messages, administrators up to 2000, and all the other users up to
 	      - "bob": "example.org"
 	      - "jane": "example.org"
 
-	access:
+	shaper_rules:
 	  max_user_offline_messages:
-	    poweruser: 5000
-	    admin: 2000
-	    all: 100
+	    - 5000: poweruser
+	    - 2000: admin
+        - 100
 
 	modules:
 	  ...
@@ -4852,13 +4910,13 @@ Examples:
 		    server:
 		      - "example.org"
 
-		access:
+		access_rules:
 		  proxy65_access:
-		    proxy_users: allow
-		    all: deny
+		    - allow: proxy_users
+        shaper_rules:
 		  proxy65_shaper:
-		    admin: none
-		    proxy_users: proxyrate
+		    - none: admin
+		    - proxyrate: proxy_users
 
 		shaper:
 		  proxyrate: 10240
@@ -5106,13 +5164,12 @@ Examples:
 		    ## The same using regexp:
 		    ##user_regexp: "^..?$"
 
-		access:
+		access_rules:
 		  mynetworks:
-		    loopback: allow
-		    all: deny
+		    - allow: loopback
 		  register:
-		    shortname: deny
-		    all: allow
+		    - deny: shortname
+		    - allow: all
 
 		modules:
 		  mod_register:
@@ -5124,9 +5181,9 @@ Examples:
 	password:
 
 		#!yaml
-		access:
+		access_rules:
 		  register:
-		    all: deny
+		    - deny
 
 		modules:
 		  ...
@@ -5288,9 +5345,9 @@ everybody else cannot modify the roster:
 	  admin:
 	    user:
 	      - "sarah": "example.org"
-	access:
+	access_rules:
 	  roster:
-	    admin: allow
+	    - allow: admin
 
 	modules:
 	  ...
