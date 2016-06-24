@@ -1445,6 +1445,11 @@ introduces some security issues:
 
 ### Access Rules
 
+*This section describes new ACL syntax introduced in ejabberd
+16.06. For old access rule and ACL syntax documentation, please refer
+to
+[configuration document archive](https://github.com/processone/docs.ejabberd.im/blob/7391ac375fd8253f74214cbffa2bafb140501981/content/admin/guide/configuration.md)*
+
 #### ACL Definition
 
 Access control in `ejabberd` is performed via Access Control Lists
