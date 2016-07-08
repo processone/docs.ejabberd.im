@@ -71,7 +71,7 @@ Consolidated Inspect
 19:24:55.699 [info] Reusing listening port for {5222,{0,0,0,0},tcp}
 19:24:55.699 [info] Reusing listening port for {5269,{0,0,0,0},tcp}
 19:24:55.700 [info] Reusing listening port for {5280,{0,0,0,0},tcp}
-19:24:55.700 [info] ejabberd 16.04.0 is started in the node nonode@nohost
+19:24:55.700 [info] ejabberd 16.06.1 is started in the node nonode@nohost
 19:24:55.700 [info] Application ejabberd started on node nonode@nohost
 Interactive Elixir (1.2.0) - press Ctrl+C to exit (type h() ENTER for help)
 iex(1)>
@@ -129,12 +129,12 @@ through the following steps:
    defmodule Ejapp.Mixfile do
    ...
      defp deps do
-       [{:ejabberd, "~> 16.4"}]
+       [{:ejabberd, "~> 16.6"}]
      end
    end
    ~~~
 
-1. Start ejabberd application from `mix.exs` when your app is started:
+1. Start ejabberd application from `mix.exs` when your app is started, after Elixir logger:
 
    ~~~ elixir
    defmodule Ejapp.Mixfile do
