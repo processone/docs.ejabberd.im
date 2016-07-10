@@ -3247,26 +3247,34 @@ instances of `ejabberd` with hundreds of thousands users.
 
 ### mod_client_state
 
-This module allows for queueing or dropping certain types of stanzas
-when a client indicates that the user is not actively using the client
-at the moment (see
-[`XEP-0352`][65]). This can save
-bandwidth and resources.
+This module allows for queueing certain types of stanzas when a client
+indicates that the user is not actively using the client right now (see
+[`XEP-0352`][65]). This can save bandwidth and resources.
+
+A stanza is dropped from the queue if it's effectively obsoleted by a new
+one (e.g., a new presence stanza would replace an old one from the same
+client). The queue is flushed if a stanza arrives that won't be queued, or
+if the queue size reaches a certain limit (currently 100 stanzas), or if
+the client becomes active again.
 
 Options:
 
-`drop_chat_states: true|false`
+`queue_chat_states: true|false`
 
-:   Drop most “standalone” Chat State Notifications (as defined in
+:   Queue “standalone” chat state notifications (as defined in
 	[`XEP-0085`](http://xmpp.org/extensions/xep-0085.html)) while a
 	client indicates inactivity. The default value is `true`.
+
+`queue_pep: true|false`
+
+:   Queue PEP notifications while a client is inactive. When the queue is
+	flushed, only the most recent notification of a given PEP node is
+	delivered. The default value is `false`.
 
 `queue_presence: true|false`
 
 :   While a client is inactive, queue presence stanzas that indicate
-	(un)availability. The latest queued stanza of each contact is
-	delivered as soon as the client becomes active again. The default
-	value is `true`.
+	(un)availability. The default value is `true`.
 
 Example:
 
@@ -3274,7 +3282,8 @@ Example:
 	modules:
 	  ...
 	  mod_client_state:
-	    drop_chat_states: true
+	    queue_chat_states: true
+	    queue_pep: false
 	    queue_presence: true
 	  ...
 
