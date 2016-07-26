@@ -205,7 +205,9 @@ input {
   }
 
   #sidebar a {
+    display: inline-block;
     text-decoration: none;
+    line-height: 1.25em;
     color: #444;
   }
     #sidebar a.current-item {
@@ -216,6 +218,10 @@ input {
   #sidebar a:active {
     text-decoration: none;
     color: #fff;
+  }
+  
+  #sidebar hr {
+    border-top-color: #333;
   }
   
   #sidebar ul {
@@ -474,7 +480,7 @@ body.blog .meta {
 
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 767px) {
   /* columns of same height styles */
   
   .row-height {

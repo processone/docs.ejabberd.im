@@ -53,7 +53,7 @@ data_sources:
     type: filesystem_unified
     identifier_type: legacy
     content_dir: ../docs.ejabberd.im_saas/content
-    layouts_dir: ../layouts
+    layouts_dir: ../docs.ejabberd.im_saas/layouts
 
   -
     type: filesystem

@@ -1,0 +1,111 @@
+ 
+       <div class="sidebar-shell">
+         <div class="sidebar-module expandable">
+           <ul>
+             <li><a href="/">ejabberd Docs</a></li>
+             <li><a href="/get-started/">Get Started</a></li>
+             <li><a href="/tutorials/">Tutorials</a></li>
+             <li><a href="/use-cases/">Use Cases</a></li>
+             <li><a href="/ejabberd-faq/">FAQ</a></li>
+             <li>
+               <a href="/admin/">ejabberd for Administrators</a>
+               <ul rel="/admin/">
+                 <li>
+                   <a href="/admin/guide/">Guide</a>
+                   <ul rel="/admin/guide/">
+                     <li><a href="/admin/guide/introduction/">Introduction</a></li>
+                     <li><a href="/admin/guide/installation/">Installation</a></li>
+                     <li><a href="/admin/guide/configuration/">Configuration</a></li>
+                     <li><a href="/admin/guide/databases/">Databases</a></li>
+                     <li><a href="/admin/guide/xep/">XMPP Extensions</a></li>
+                     <li><a href="/admin/guide/managing/">Managing</a></li>
+                     <li><a href="/admin/guide/security/">Security</a></li>
+                     <li><a href="/admin/guide/clustering/">Clustering</a></li>
+                     <li><a href="/admin/guide/unattended/">Unattended installation</a></li>
+                     <li><a href="/admin/guide/oauth/">OAuth support</a></li>
+                     <li><a href="/admin/guide/advanced/">Advanced configuration</a></li>
+                     <li><a href="/admin/guide/troubleshooting/">Troubleshooting</a></li>
+                   </ul>
+                 </li>
+                 <li><a href="/admin/api/">Administration API</a></li>
+                 <li>
+                   <a href="/admin/ejabberdctl/">ejabberdctl Commands</a>
+                   <ul rel="/admin/ejabberdctl/">
+                     <li><a href="/admin/ejabberdctl/muc-admin/">Multi User Chat (MUC)</a></li>
+                   </ul>
+                 </li>
+                 <li>
+                   <a href="/admin/faq/">FAQ</a>
+                 </li>
+                 <li>
+                   <a href="/admin/contrib/">Contributions</a>
+                 </li>
+               </ul>
+             </li>
+             <li>
+               <a href="/architect/">ejabberd for Architects</a>
+             </li>
+             <li>
+               <a href="/developer/">ejabberd for Developers</a>
+               <ul rel="/developer/">
+                 <li>
+                   <a href="/developer/proposed-extensions/">Proposed Extensions</a>
+                 </li>
+                 <li>
+                   <a href="/developer/modules/">Modules development</a>
+                 </li>
+                 <li>
+                   <a href="/developer/testing/">Testing ejabberd</a>
+                 </li>
+                 <li>
+                   <a href="/developer/hooks/">Events and Hooks</a>
+                 </li>
+                 <li>
+                   <a href="/developer/iq-handlers/">IQ Handlers</a>
+                 </li>
+                 <li>
+                   <a href="/developer/stanza-routing/">Stanza Routing</a>
+                 </li>
+                 <li>
+                   <a href="/developer/elixir/">Elixir Development</a>
+                 </li>
+                 <li>
+                   <a href="/developer/ios/">iOS Development</a>
+                 </li>
+                 <li>
+                   <a href="/developer/sql-schema/">SQL Schema</a>
+                 </li>
+                 <li>
+                   <a href="/developer/localization/">Localization</a>
+                 </li>
+               </ul>
+             </li>
+             <li>
+               <a href="/user/">ejabberd for Users</a>
+             </li>
+             <li><hr /></li>
+             <li>
+               <a href="/ejabberd-saas/">ejabberd SaaS Docs</a>
+             </li>
+             <li>
+               <a href="/business-edition/">ejabberd Business Edition Docs</a>
+             </li>
+           </ul>
+ 
+           <script>
+             function search() {
+               document.getElementById('search-query').value = document.getElementById('search-term').value + ' site:docs.ejabberd.im';
+               return true;
+             }
+           </script>
+ 
+           <form onSubmit="return search()" method="get" action="https://duckduckgo.com/">
+             <input type="hidden" name="kp" value="1" />
+             <input type="hidden" name="k1" value="-1" />
+             <input type="hidden" id="search-query" name="q" value="" />
+ 
+             <input type="search" id="search-term" value="" placeholder="Search..." />
+           </form>
+ 
+         </div> <!-- /sidebar-module -->
+       </div><!-- /sidebar-shell -->
