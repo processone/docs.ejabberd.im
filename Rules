@@ -19,6 +19,19 @@ preprocess do
     
     if patharray.count > 2 && patharray[2] !~ /\.(md|html)/i
       item[:secondpath] = item[:firstpath] + patharray[2] + '/'
+      
+      # [third and fourth path applies to ebe and saas only]
+      if patharray.count > 3 && patharray[3] !~ /\.(md|html)/i
+        item[:thirdpath] = '/' + patharray[3] + '/'
+        
+        if patharray.count > 4 && patharray[4] !~ /\.(md|html)/i
+          item[:fourthpath] = item[:thirdpath] + patharray[4] + '/'
+        else
+          item[:fourthpath] = item[:thirdpath]
+        end
+      else
+        item[:thirdpath] = item[:secondpath]
+      end
     else
       item[:secondpath] = item[:firstpath]
     end
