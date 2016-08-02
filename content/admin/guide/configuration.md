@@ -3974,7 +3974,7 @@ Options:
 
 `request_activates_archiving: true|false`
 
-:   If this option is enabled, no messages are stored for a user until his client issued a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual.
+:   If this option is enabled, no messages are stored for a user until his client issued a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual. The default is `false`.
 
 `assume_mam_usage: if_enabled|on_request|never`
 
