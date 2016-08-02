@@ -3269,7 +3269,7 @@ Options:
 
 :   Queue PEP notifications while a client is inactive. When the queue is
 	flushed, only the most recent notification of a given PEP node is
-	delivered. The default value is `false`.
+	delivered. The default value is `true`.
 
 `queue_presence: true|false`
 
