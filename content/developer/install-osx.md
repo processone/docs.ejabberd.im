@@ -17,7 +17,7 @@ on your system:
   are installed, you can install the Command Line Tools for Xcode,
   available via Xcode or from the Apple Developer website.
 * Git
-* Erlang /OTP R16B or higher. We recommand using Erlang R17B, latest
+* Erlang /OTP R17B or higher. We recommand using Erlang R18B, latest
   version.
 * Autotools
 
