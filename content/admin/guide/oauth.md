@@ -508,6 +508,10 @@ once by adding all commands in `admin` policy.
     - *connected\_users* - List of established sessions
     - *connected\_users\_number* - Number of established sessions
 
+- `ejabberd_admin`:
+
+   - *register* - Create a new user
+
 - `mod_admin_extra`:
 
     - *num\_active\_users* - Number of users active in the last days
