@@ -413,7 +413,7 @@ are:
 
 :   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP Bosh and Websocket with proper request handler configured.
 	Options: `captcha`, `certfile`, `default_host`, `dhfile`, `http_bind`,
-	`http_poll`, `request_handlers`, `tls`, `tls_compression`,
+	`request_handlers`, `tls`, `tls_compression`,
 	`trusted_proxies` (global option), `web_admin`
 
 `ejabberd_xmlrpc`
@@ -517,25 +517,6 @@ modules:
 	install JWChat with ejabberd and an
 	[`embedded local web server`](http://www.ejabberd.im/jwchat-localserver)
 	or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
-
-`http_poll: true|false`
-
-:   This option enables HTTP Polling
-	([`XEP-0025`](http://xmpp.org/extensions/xep-0025.html)) support.
-	HTTP Polling enables access via HTTP requests to `ejabberd` from
-	behind firewalls which do not allow outgoing sockets on port 5222.
-
-	If HTTP Polling is enabled, it will be available at
-	`http://server:port/http-poll/`. Be aware that support for HTTP
-	Polling is also needed in the XMPP client. Remark also that HTTP
-	Polling can be interesting to host a web-based XMPP client such as
-	[`JWChat`](http://jwchat.sourceforge.net/).
-
-	The maximum period of time to keep a client session active without
-	an incoming POST request can be configured with the global option
-	`http_poll_timeout`. The default value is five minutes. The option
-	can be defined in `ejabberd.yml`, expressing the time in seconds:
-	`{http_poll_timeout, 300}.`
 
 `max_ack_queue: Size`
 
@@ -836,7 +817,7 @@ For example, the following simple configuration defines:
 
 -   Port 3478 listens for STUN requests over UDP.
 
--   Port 5280 listens for HTTP requests, and serves the HTTP Poll
+-   Port 5280 listens for HTTP requests, and serves the HTTP-Bind (BOSH)
 	service.
 
 -   Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind
@@ -880,7 +861,7 @@ For example, the following simple configuration defines:
 	  -
 	    port: 5280
 	    module: ejabberd_http
-	    http_poll: true
+	    http_bind: true
 	  -
 	    port: 5281
 	    ip: "127.0.0.1"
@@ -913,7 +894,7 @@ In this example, the following configuration defines that:
 	remote XMPP servers are denied, only two servers can connect:
 	“jabber.example.org” and “example.com”.
 
--   Port 5280 is serving the Web Admin and the HTTP Polling service in
+-   Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
 	all the IPv4 addresses. Note that it is also possible to serve them
 	on different ports. The second example in section [Managing: Web Admin](../managing/#web-admin) shows
 	how exactly this can be done.
@@ -1006,7 +987,7 @@ In this example, the following configuration defines that:
 	    port: 5280
 	    module: ejabberd_http
 	    web_admin: true
-	    http_poll: true
+	    http_bind: true
 	  -
 	    port: 4560
 	    module: ejabberd_xmlrpc
@@ -3475,7 +3456,6 @@ and add `http_bind` in the HTTP service. For example:
 	    port: 5280
 	    module: ejabberd_http
 	    http_bind: true
-	    http_poll: true
 	    web_admin: true
 	  ...
 
@@ -3496,7 +3476,6 @@ different module, you can configure it manually using the option
 	    module: ejabberd_http
 	    request_handlers:
 	       "/http-bind": mod_http_bind
-	    http_poll: true
 	    web_admin: true
 	  ...
 
