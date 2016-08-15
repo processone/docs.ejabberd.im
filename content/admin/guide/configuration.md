@@ -3963,7 +3963,7 @@ Options:
 
 :   There is a cache which is used to improve performance for retrieving user's policy. This option will allow you to set the size of this cache. The default is 1000 items.
 
-`cache_lifetime: Seconds`
+`cache_life_time: Seconds`
 
 :   Lifetime of the cached items in the cache described in the option `cache_size`. The default is 3600 seconds, i.e. one hour.
 
