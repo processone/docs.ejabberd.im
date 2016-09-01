@@ -94,10 +94,10 @@ the room" in XEP-0045 becomes more "Being available in the MUC room".
 You can check if MUC Sub feature is available on MUC service by sending disco info IQ:
 
 ~~~ xml
-<iq from='hag66@shakespeare.lit/pda'
-    id='ik3vs715'
-    to='chat.shakespeare.lit'
-    type='get'>
+<iq from='hag66@shakespeare.example/pda'
+    to='muc.shakespeare.example'
+    type='get'
+    id='ik3vs715'>
   <query xmlns='http://jabber.org/protocol/disco#info'/>
 </iq>
 ~~~
@@ -106,13 +106,18 @@ MUC service will show a feature of type 'urn:xmpp:mucsub:0' to the response if t
 feature is supported and enabled:
 
 ~~~ xml
-<iq from="conference.process-one.net" type="result" to="mremond@process-one.net/MacBook-Pro-de-Mickael" id="ik3vs715">
- <query xmlns="http://jabber.org/protocol/disco#info">
-  <identity category="conference" type="text" name="Chatrooms"/>
-  ...
-  <feature var="urn:xmpp:mucsub:0"/>
-  ...
- </query>
+<iq from="muc.shakespeare.example"
+    to="hag66@shakespeare.example/pda"
+    type="result"
+    id="ik3vs715">
+  <query xmlns="http://jabber.org/protocol/disco#info">
+    <identity category="conference"
+              type="text"
+              name="Chatrooms" />
+    ...
+    <feature var="urn:xmpp:mucsub:0" />
+    ...
+  </query>
 </iq>
 ~~~
 
@@ -122,10 +127,10 @@ A user can discover support for MUC/Sub feature on a MUC room as
 follow:
 
 ~~~ xml
-<iq from='hag66@shakespeare.lit/pda'
-    id='ik3vs715'
-    to='coven@chat.shakespeare.lit'
-    type='get'>
+<iq from='hag66@shakespeare.example/pda'
+    to='coven@muc.shakespeare.example'
+    type='get'
+    id='ik3vs715'>
   <query xmlns='http://jabber.org/protocol/disco#info'/>
 </iq>
 ~~~
@@ -134,17 +139,18 @@ A conference MUST add 'urn:xmpp:mucsub:0' to the response if the
 feature is supported and enabled:
 
 ~~~ xml
-<iq from='coven@chat.shakespeare.lit'
-    id='ik3vs715'
-    to='hag66@shakespeare.lit/pda'
-    type='result'>
+<iq from='coven@muc.shakespeare.example'
+    to='hag66@shakespeare.example/pda'
+    type='result'
+    id='ik3vs715'>
   <query xmlns='http://jabber.org/protocol/disco#info'>
-    <identity
-        category='conference'
-        name='A Dark Cave'
-        type='text'/>
-    <feature var='http://jabber.org/protocol/muc'/>
-    <feature var='urn:xmpp:mucsub:0'/>
+    <identity category='conference'
+              name='A Dark Cave'
+              type='text' />
+    <feature var='http://jabber.org/protocol/muc' />
+    ...
+    <feature var='urn:xmpp:mucsub:0' />
+    ...
   </query>
 </iq>
 ~~~
@@ -178,15 +184,16 @@ nodes:
 Example: User Subscribe to MUC/Sub events
 
 ~~~ xml
-<iq type='set'
-    from='hag66@shakespeare.example'
+<iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
+    type='set'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
-  <subscribe xmlns='urn:xmpp:mucsub:0' nick='mynick'>
-    <event node='urn:xmpp:mucsub:nodes:messages'/>
-    <event node='urn:xmpp:mucsub:nodes:affiliations'/>
-    <event node='urn:xmpp:mucsub:nodes:subject'/>
-    <event node='urn:xmpp:mucsub:nodes:config'/>
+  <subscribe xmlns='urn:xmpp:mucsub:0'
+             nick='mynick'>
+    <event node='urn:xmpp:mucsub:nodes:messages' />
+    <event node='urn:xmpp:mucsub:nodes:affiliations' />
+    <event node='urn:xmpp:mucsub:nodes:subject' />
+    <event node='urn:xmpp:mucsub:nodes:config' />
   </subscribe>
 </iq>
 ~~~
@@ -196,15 +203,16 @@ If user is allowed to subscribe, server replies with success.
 Example: Server replies with success
 
 ~~~ xml
-<iq type='result'
-    from='coven@muc.shakespeare.example'
+<iq from='coven@muc.shakespeare.example'
     to='hag66@shakespeare.example'
+    type='result'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
-  <subscribe xmlns='urn:xmpp:mucsub:0' nick='mynick'>
-    <event node='urn:xmpp:mix:nodes:messages'/>
-    <event node='urn:xmpp:mix:nodes:affiliations'/>
-    <event node='urn:xmpp:mix:nodes:subject'/>
-    <event node='urn:xmpp:mix:nodes:config'/>
+  <subscribe xmlns='urn:xmpp:mucsub:0'
+             nick='mynick'>
+    <event node='urn:xmpp:mix:nodes:messages' />
+    <event node='urn:xmpp:mix:nodes:affiliations' />
+    <event node='urn:xmpp:mix:nodes:subject' />
+    <event node='urn:xmpp:mix:nodes:config' />
   </subscribe>
 </iq>
 ~~~
@@ -218,13 +226,14 @@ MUST be sent with a different nick or nodes information.
 Example: User changes subscription data
 
 ~~~ xml
-<iq type='set'
-    from='hag66@shakespeare.example'
+<iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
+    type='set'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
-  <subscribe xmlns='urn:xmpp:mucsub:0' nick='newnick'>
-    <event node='urn:xmpp:mucsub:nodes:messages'/>
-    <event node='urn:xmpp:mucsub:nodes:presence'/>
+  <subscribe xmlns='urn:xmpp:mucsub:0'
+             nick='newnick'>
+    <event node='urn:xmpp:mucsub:nodes:messages' />
+    <event node='urn:xmpp:mucsub:nodes:presence' />
   </subscribe>
 </iq>
 ~~~
@@ -236,21 +245,21 @@ At any time a user can unsubsribe from MUC Room events.
 Example: User unsubscribes from a MUC Room
 
 ~~~ xml
-<iq type='set'
-    from='hag66@shakespeare.example'
+<iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
+    type='set'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
-  <unsubscribe xmlns='urn:xmpp:mucsub:0'/>
+  <unsubscribe xmlns='urn:xmpp:mucsub:0' />
 </iq>
 ~~~
 
 Example: A MUC Room responds to unsubscribe request
 
 ~~~ xml
-<iq type='result'
-    from='hag66@shakespeare.example'
+<iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
-    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'/>
+    type='result'
+    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7' />
 ~~~
 
 ## Subscriber actions
@@ -270,10 +279,10 @@ Here are a few examples:
 Sending a message is like sending a standard groupchat message in MUC room:
 
 ~~~ xml
-<message type="groupchat"
-         from="hag66@shakespeare.example"
-		 to="coven@muc.shakespeare.example">
- <body>Test</body>
+<message from="hag66@shakespeare.example"
+         to="coven@muc.shakespeare.example"
+         type="groupchat">
+  <body>Test</body>
 </message>
 ~~~
 
@@ -300,36 +309,49 @@ leaves.
 Here is as an example message received by a subscriber when a message is posted to a MUC room:
 
 ~~~ xml
-<message from="coven@muc.shakespeare.example" to="hag66@shakespeare.example/pda">
- <event xmlns="http://jabber.org/protocol/pubsub#event">
-  <items node="urn:xmpp:mucsub:nodes:messages">
-   <item id="18277869892147515942">
-    <message xmlns="jabber:client" from="coven@muc.shakespeare.example/secondwitch" type="groupchat" to="hag66@shakespeare.example/pda">
-     <archived xmlns="urn:xmpp:mam:tmp" by="muc.shakespeare.example" id="1467896732929849"/>
-     <stanza-id xmlns="urn:xmpp:sid:0" by="muc.shakespeare.example" id="1467896732929849"/>
-     <body>Hello from the MUC room !</body>
-     </message>
-    </item>
-   </items>
- </event>
+<message from="coven@muc.shakespeare.example"
+         to="hag66@shakespeare.example/pda">
+  <event xmlns="http://jabber.org/protocol/pubsub#event">
+    <items node="urn:xmpp:mucsub:nodes:messages">
+      <item id="18277869892147515942">
+        <message from="coven@muc.shakespeare.example/secondwitch"
+                 to="hag66@shakespeare.example/pda"
+                 type="groupchat"
+                 xmlns="jabber:client">
+          <archived xmlns="urn:xmpp:mam:tmp"
+                    by="muc.shakespeare.example"
+                    id="1467896732929849" />
+          <stanza-id xmlns="urn:xmpp:sid:0"
+                     by="muc.shakespeare.example"
+                     id="1467896732929849" />
+          <body>Hello from the MUC room !</body>
+        </message>
+      </item>
+    </items>
+  </event>
 </message>
 ~~~
 
 Presence changes in the MUC room are received wrapped in the same way:
 
 ~~~ xml
-<message from="coven@muc.shakespeare.example" to="hag66@shakespeare.example/pda">
- <event xmlns="http://jabber.org/protocol/pubsub#event">
-  <items node="urn:xmpp:mucsub:nodes:presences">
-   <item id="8170705750417052518">
-    <presence xmlns="jabber:client" from="coven@muc.shakespeare.example/secondwitch" type="unavailable" to="hag66@shakespeare.example/pda">
-     <x xmlns="http://jabber.org/protocol/muc#user">
-      <item affiliation="none" role="none"/>
-     </x>
-    </presence>
-   </item>
-  </items>
- </event>
+<message from="coven@muc.shakespeare.example"
+         to="hag66@shakespeare.example/pda">
+  <event xmlns="http://jabber.org/protocol/pubsub#event">
+    <items node="urn:xmpp:mucsub:nodes:presences">
+      <item id="8170705750417052518">
+        <presence xmlns="jabber:client"
+                  from="coven@muc.shakespeare.example/secondwitch"
+                  type="unavailable"
+                  to="hag66@shakespeare.example/pda">
+          <x xmlns="http://jabber.org/protocol/muc#user">
+            <item affiliation="none"
+                  role="none" />
+          </x>
+        </presence>
+      </item>
+    </items>
+  </event>
 </message>
 ~~~
 
@@ -343,24 +365,24 @@ subscriptions.
 Example: User asks for subscriptions list
 
 ~~~ xml
-<iq type='get'
-    from='hag66@shakespeare.example'
+<iq from='hag66@shakespeare.example'
     to='muc.shakespeare.example'
+    type='get'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
-  <subscriptions xmlns='urn:xmpp:mucsub:0'/>
+  <subscriptions xmlns='urn:xmpp:mucsub:0' />
 </iq>
 ~~~
 
 Example: Server replies with subscriptions list
 
 ~~~ xml
-<iq type='result'
-    from='muc.shakespeare.example'
+<iq from='muc.shakespeare.example'
     to='hag66@shakespeare.example'
-    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'/>
-  <subscriptions xmlns='urn:xmpp:mucsub:0'/>
-    <subscription jid='coven@muc.shakespeare.example'/>
-    <subscription jid='chat@muc.shakespeare.example'/>
+    type='result'
+    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
+  <subscriptions xmlns='urn:xmpp:mucsub:0'>
+    <subscription jid='coven@muc.shakespeare.example' />
+    <subscription jid='chat@muc.shakespeare.example' />
   </subscriptions>
 </iq>
 ~~~
