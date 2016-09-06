@@ -387,6 +387,34 @@ Example: Server replies with subscriptions list
 </iq>
 ~~~
 
+A moderator can get the list of subscribers by sending <subscriptions/>
+request directly to MUC JID.
+
+Example: Moderator asks for subscribers list
+
+~~~ xml
+<iq from='hag66@shakespeare.example'
+    to='coven@muc.shakespeare.example'
+    type='get'
+    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
+  <subscriptions xmlns='urn:xmpp:mucsub:0' />
+</iq>
+~~~
+
+Example: Server replies with subscribers list
+
+~~~ xml
+<iq from='coven@muc.shakespeare.example'
+    to='hag66@shakespeare.example'
+    type='result'
+    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
+  <subscriptions xmlns='urn:xmpp:mucsub:0'>
+    <subscription jid='juliet@shakespeare.example' />
+    <subscription jid='romeo@shakespeare.example' />
+  </subscriptions>
+</iq>
+~~~
+
 ## Compliance with existing MUC clients
 
 MUC/Sub approach is compliant with existing MUC service and MUC
