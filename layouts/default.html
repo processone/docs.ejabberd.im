@@ -35,10 +35,9 @@
 
     <style>
       #sidebar a[href="<%= @item.identifier %>"] {
-        border-left: 2px solid #fff;
-        padding-left: 10px;
-        margin-left: -12px;
+        text-decoration: underline;
       }
+      #sidebar a[href="/"],
       #sidebar a[href="<%= @item.identifier %>"],
       #sidebar a[href="<%= @item[:firstpath] %>"],
       #sidebar a[href="<%= @item[:secondpath] %>"] {
@@ -134,7 +133,7 @@
           <li>
             <a href="/user/">ejabberd for Users</a>
           </li>
-          <li><hr /></li>
+          <li>&mdash;</li>
           <li>
             <a href="/ejabberd-saas/">ejabberd SaaS Docs</a>
           </li>

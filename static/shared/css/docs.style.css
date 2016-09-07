@@ -557,6 +557,10 @@ body.blog .meta {
   #markdown-source {
     display: none;
   }
+
+  .col-sm-8 {
+    width: 100%;
+  }
   
   pre {
     border: none !important;
