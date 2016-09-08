@@ -2905,6 +2905,7 @@ The following table lists all modules included in `ejabberd`.
 | mod_carboncopy                                 | Message Carbons ([`XEP-0280`][41])                   |                                  |
 | [mod_client_state](#modclientstate)            | Filter stanzas for inactive clients                  |                                  |
 | mod_configure                                  | Server configuration using Ad-Hoc                    | `mod_adhoc`                      |
+| [mod_delegation](#moddelegation)               | Namespace Delegation ([`XEP-0355`][123])             |                                  |
 | [mod_disco](#moddisco)                         | Service Discovery ([`XEP-0030`][42])                 |                                  |
 | [mod_echo](#modecho)                           | Echoes XMPP stanzas                                  |                                  |
 | [mod_fail2ban](#modfail2ban)                   | Bans IPs that show the malicious signs               |                                  |
@@ -2926,6 +2927,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_pres_counter](#modprescounter)            | Detect presence subscription flood                   |                                  |
 | [mod_privacy](#modprivacy)                     | Blocking Communication ([`XEP-0016`][47])            |                                  |
 | [mod_private](#modprivate)                     | Private XML Storage ([`XEP-0049`][48])               |                                  |
+| [mod_privilege](#modprivilege)                 | Privileged Entity ([`XEP-0356`][124])                |                                  |
 | [mod_proxy65](#modproxy65)                     | SOCKS5 Bytestreams ([`XEP-0065`][49])                |                                  |
 | [mod_pubsub](#modpubsub)                       | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51])   | `mod_caps`                       |
 | [mod_register](#modregister)                   | In-Band Registration ([`XEP-0077`][54])              |                                  |
@@ -3267,6 +3269,56 @@ Example:
 	    queue_pep: false
 	    queue_presence: true
 	  ...
+
+### mod_delegation
+
+This module is an implementation of ([`XEP-0355`][123]). Only admin mode has been implemented by now. Namespace delegation allows external services to handle IQ using specific namespace. This may be applied for external PEP service.
+
+Options:
+
+`iqdisc: Discipline`
+
+:   This specifies the processing discipline for Namespace Delegation
+	(`urn:xmpp:delegation`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
+
+Example:
+
+To use the module add `mod_delegation` to `modules` section:
+
+		#!yaml
+		modules:
+		  ...
+		  mod_delegation: {}
+		  ...
+
+If you want to delegate namespaces to a component, specify them in the component configurations, e.g.:
+
+
+		#!yaml
+		listen:
+		  ...
+		  -
+		    port: 8888
+		    module: ejabberd_service
+		    hosts:
+		      "sat-pubsub.example.org":
+		        password: "secret"
+		    delegations:
+		      "urn:xmpp:mam:1":
+		        filtering: ["node"]
+		      "http://jabber.org/protocol/pubsub":
+		        filtering: []
+		  ...
+
+In the example above `sat-pubsub.example.org` will receive all `pubsub` requests and all `MAM` requests with the `node` filtering attribute presented in `<query/>`.
+
+Make sure you do not delegate the same namespace to several services at the same time. As in the example above to have the `sat-pubsub.example.org` component perform correctly disable the `mod_pubsub` module.
+
+#### Security issue
+Namespace delegation gives components access to sensitive data, so permission should be granted carefully, only if you trust the component.
+
+#### Note
+This module is complementary to `mod_privilege` ([`XEP-0356`][124]) but can also be used separately.
 
 ### mod_disco
 
@@ -4823,6 +4875,58 @@ Options:
 `db_type: mnesia|sql|riak`
 
 :   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+
+### mod_privilege
+
+This module is an implementation of ([`XEP-0356`][124]). This extension allows components to have privileged access to other entity data (send messages on behalf of the server, get/set user roster, access presence information). This may be applied for external PEP service.
+
+Options:
+
+`iqdisc: Discipline`
+
+:   This specifies the processing discipline for Privileged Entity
+	(`urn:xmpp:privilege`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
+
+Example:
+
+If you want to grant privileged access to a component, specify it in the component configurations, e.g.:
+
+		#!yaml
+		listen:
+		  ...
+		  -
+		    port: 8888
+		    module: ejabberd_service
+		    hosts:
+		      "sat-pubsub.example.org":
+		        password: "secret"
+		    privilege_access:
+		      roster: "get"
+		      message: "outgoing"
+		  ...
+
+In the example above, the `sat-pubsub.example.org` component can get the roster of every user of the server and send messages on behalf of the server.
+
+#### Permission list
+By default a component does not have any priviliged access. It is worth noting that the permissions listed below give access to data belonging to all server users.
+
+Possible permissions:
+
+* presence
+  * managed_entity: receive server user presence.
+  * roster: the component is allowed to receive the presence of both the users and the contacts in their roster.
+* message
+  * outgoing: the component is allowed to send messages on behalf of either the server or a bare JID of server users. 
+* roster
+  * get: read access to a user's roster.
+  * set: write access to a user's roster.
+  * both: read/write access to a user's roster.
+
+#### Security issue
+Privileged access gives components access to sensitive data, so permission should be granted carefully, only if you trust a component. 
+
+#### Note
+This module is complementary to `mod_delegation` ([`XEP-0355`][123]) but can also be used separately.
 
 ### mod_proxy65
 
@@ -6481,3 +6585,5 @@ Options:
 [120]:  http://xmpp.org/extensions/xep-0363.html
 [121]:  http://xmpp.org/extensions/xep-0013.html
 [122]:  https://xmpp.org/extensions/xep-0369.html
+[123]: (http://xmpp.org/extensions/xep-0355.html
+[124]: (http://xmpp.org/extensions/xep-0356.html
