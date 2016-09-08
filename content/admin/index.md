@@ -1,8 +1,8 @@
 ---
-title: ejabberd for administrators
+title: Overview
 ---
 
-# ejabberd for administrators
+# ejabberd Community Edition
 
 This area contains information on administering your ejabberd
 system.
