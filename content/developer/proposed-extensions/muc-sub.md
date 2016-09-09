@@ -207,12 +207,11 @@ Example: Server replies with success
     to='hag66@shakespeare.example'
     type='result'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
-  <subscribe xmlns='urn:xmpp:mucsub:0'
-             nick='mynick'>
-    <event node='urn:xmpp:mix:nodes:messages' />
-    <event node='urn:xmpp:mix:nodes:affiliations' />
-    <event node='urn:xmpp:mix:nodes:subject' />
-    <event node='urn:xmpp:mix:nodes:config' />
+  <subscribe xmlns='urn:xmpp:mucsub:0'>
+    <event node='urn:xmpp:mucsub:nodes:messages' />
+    <event node='urn:xmpp:mucsub:nodes:affiliations' />
+    <event node='urn:xmpp:mucsub:nodes:subject' />
+    <event node='urn:xmpp:mucsub:nodes:config' />
   </subscribe>
 </iq>
 ~~~
