@@ -5077,11 +5077,49 @@ Options:
 	use when creating a node: add `type=’plugin-name’` attribute to the
 	`create` stanza element.
 
+	The “flat” plugin handles the default behavour and follows standard
+	XEP-0060 implementation.
+
+	The “hometree” plugin allows to manages nodes in a simple tree and
+	name nodes like files on a filesystem. A node Owner can only create
+	node and subnodes with names /home/owner/xxx and /home/domain/owner/xxx.
+	Each “hometree” node can have none, one, or many child nodes and also
+	have items.
+
+	The “pep” plugin adds extention to handle Personal Eventing Protocol
+	([`XEP-0163`](http://xmpp.org/extensions/xep-0163.html)) to the PubSub
+	engine. Adding pep plugin to PubSub make it handle PEP automatically.
+
+	The “mix” plugin is an experimental implementation of
+	Mediated Information eXchange
+	([`XEP-0369`](http://xmpp.org/extensions/xep-0369.html)).
+
+	The “mb” plugin is a PEP microglobing experimentation.
+
+	The “dag” plugin provides experimental support for PubSub Collection
+	Nodes (see dag nodetree bellow).
+
+	The “dispatch” plugin publishes items to node and all child subnodes
+	using the hometree behaviour. Node name must match hometree name
+	requirements. Publishing item to /home/server/user/a also publish
+	the item to node /home/server/user/a/a and /home/server/user/a/b.
+
+	The “online” plugin only cope with online users, by automatically
+	remove subscriptions and nodes of disconnecting users.
+
+	Other experimentale node plugins are provided. Each plugin comes with
+	it's own list of default node configuration and pubsub feature, and
+	can delegate calls to node_flat for default behaviour.
+
 `nodetree: Nodetree`
 
 :   To specify which nodetree to use. If not defined, the default pubsub
 	nodetree is used: “tree”. Only one nodetree can be used per host,
 	and is shared by all node plugins.
+
+	The “tree” nodetree store node configuration and relations on the
+	database. “flat” nodes are stored without any relationship, and
+	“hometree” nodes can have child nodes.
 
 	The “virtual” nodetree does not store nodes on database. This saves
 	resources on systems with tons of nodes. If using the “virtual”
@@ -5135,7 +5173,7 @@ Options:
 	      ...
 
 Example of configuration that uses flat nodes as default, and allows use
-of flat, nodetree and pep nodes:
+of flat, hometree and pep nodes:
 
 	#!yaml
 	modules:
