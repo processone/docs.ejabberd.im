@@ -1,5 +1,6 @@
 ---
 title: Administration API reference
+bodyclass: nocomment
 ---
 
 ## *add_rosteritem* - Add an item to a user's roster (supports SQL)
@@ -1460,6 +1461,175 @@ Create a MUC room name@service in host
 
 
 
+## *create_room_with_opts* - Create a MUC room name@service in host with given options
+
+
+Create a MUC room name@service in host with given options
+
+
+### Arguments:
+- *name* :: binary
+- *service* :: binary
+- *host* :: binary
+- *options* :: {list,{option,{tuple,[{name,binary},{value,binary}]}}}
+
+
+### Result:
+{res,rescode}
+
+### Examples:
+
+* Java
+* Perl
+* XmlRPC
+* JSON
+{: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("create_room_with_opts", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+      put("host", "ccccc");
+      put("options", new Object[] {
+        new HashMap<String, Object>() {{ put("option", new HashMap<String, Object>() {{
+            put("name", "ddddd");
+            put("value", "eeeee");
+          }}) }},
+        new HashMap<String, Object>() {{ put("option", new HashMap<String, Object>() {{
+            put("name", "fffff");
+            put("value", "ggggg");
+          }}) }}
+      });
+    }});
+~~~
+
+* ~~~ perl
+    XMLRPC::Lite->proxy($url)->call("create_room_with_opts", {
+      name => "aaaaa",
+      service => "bbbbb",
+      host => "ccccc",
+      options => [{option => {name => "ddddd", value => "eeeee"}}, {option => {name => "fffff", value => "ggggg"}}]
+    })->results()
+~~~
+
+* ~~~ xml
+    <methodCall>
+      <methodName>create_room_with_opts</methodName>
+      <params>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>name</name>
+                <value>
+                  <string>aaaaa</string>
+                </value>
+              </member>
+              <member>
+                <name>service</name>
+                <value>
+                  <string>bbbbb</string>
+                </value>
+              </member>
+              <member>
+                <name>host</name>
+                <value>
+                  <string>ccccc</string>
+                </value>
+              </member>
+              <member>
+                <name>options</name>
+                <value>
+                  <array>
+                    <data>
+                      <value>
+                        <struct>
+                          <member>
+                            <name>option</name>
+                            <value>
+                              <struct>
+                              <member>
+                                <name>name</name>
+                                <value>
+                                  <string>ddddd</string>
+                                </value>
+                              </member>
+                              <member>
+                                <name>value</name>
+                                <value>
+                                  <string>eeeee</string>
+                                </value>
+                              </member>
+                              </struct>
+                            </value>
+                          </member>
+                        </struct>
+                      </value>
+                      <value>
+                        <struct>
+                          <member>
+                            <name>option</name>
+                            <value>
+                              <struct>
+                              <member>
+                                <name>name</name>
+                                <value>
+                                  <string>fffff</string>
+                                </value>
+                              </member>
+                              <member>
+                                <name>value</name>
+                                <value>
+                                  <string>ggggg</string>
+                                </value>
+                              </member>
+                              </struct>
+                            </value>
+                          </member>
+                        </struct>
+                      </value>
+                    </data>
+                  </array>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+      </params>
+    </methodCall>
+~~~
+
+* ~~~ json
+    POST /api/create_room_with_opts
+    {
+      "name": "aaaaa",
+      "service": "bbbbb",
+      "host": "ccccc",
+      "options": [
+        {
+          "name": "ddddd",
+          "value": "eeeee"
+        },
+        {
+          "name": "fffff",
+          "value": "ggggg"
+        }
+      ]
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+{: .code-samples-tabs}
+
+
+
 ## *create_rooms_file* - Create the rooms indicated in file
 
 
@@ -1588,6 +1758,78 @@ Delete expired offline messages from database
     POST /api/delete_expired_messages
     {
       
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+{: .code-samples-tabs}
+
+
+
+## *delete_mnesia* - Export all tables as SQL queries to a file
+
+
+Export all tables as SQL queries to a file
+
+
+### Arguments:
+- *host* :: string
+
+
+### Result:
+{res,rescode}
+
+### Examples:
+
+* Java
+* Perl
+* XmlRPC
+* JSON
+{: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("delete_mnesia", new HashMap<String, Object>() {{
+      put("host", "aaaaa");
+    }});
+~~~
+
+* ~~~ perl
+    XMLRPC::Lite->proxy($url)->call("delete_mnesia", {
+      host => "aaaaa"
+    })->results()
+~~~
+
+* ~~~ xml
+    <methodCall>
+      <methodName>delete_mnesia</methodName>
+      <params>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>host</name>
+                <value>
+                  <string>aaaaa</string>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+      </params>
+    </methodCall>
+~~~
+
+* ~~~ json
+    POST /api/delete_mnesia
+    {
+      "host": "aaaaa"
     }
     
     HTTP/1.1 200 OK
@@ -2332,816 +2574,10 @@ Dump a table to text file
 
 
 
-## *echo_integer* - Echo Integer
-
-
-Echo Integer
-
-
-### Arguments:
-- *thisinteger* :: integer
-
-
-### Result:
-{thatinteger,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("echo_integer", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("echo_integer", {
-      thisinteger => 1
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>echo_integer</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/echo_integer
-    {
-      "thisinteger": 1
-    }
-    
-    HTTP/1.1 200 OK
-        {"thatinteger": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *echo_integer_list_string* - Echo an integer and List of strings
-
-
-Echo an integer and List of strings
-
-
-### Arguments:
-- *thisinteger* :: integer
-- *thislist* :: {list,{thisstring,string}}
-
-
-### Result:
-{thistuple,{tuple,[{thatinteger,integer},
-                   {thatlist,{list,{thatstring,string}}}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("echo_integer_list_string", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-      put("thislist", new Object[] {
-        new HashMap<String, Object>() {{ put("thisstring", "aaaaa"); }},
-        new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
-      });
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("echo_integer_list_string", {
-      thisinteger => 1,
-      thislist => [{thisstring => "aaaaa"}, {thisstring => "bbbbb"}]
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>echo_integer_list_string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-              <member>
-                <name>thislist</name>
-                <value>
-                  <array>
-                    <data>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisstring</name>
-                            <value>
-                              <string>aaaaa</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisstring</name>
-                            <value>
-                              <string>bbbbb</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                    </data>
-                  </array>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/echo_integer_list_string
-    {
-      "thisinteger": 1,
-      "thislist": [
-        "aaaaa",
-        "bbbbb"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "thatinteger": 1,
-      "thatlist": [
-        "aaaaa",
-        "bbbbb"
-      ]
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *echo_integer_string* - Echo integer and string, in result as a tuple
-
-
-Echo integer and string, in result as a tuple
-
-
-### Arguments:
-- *thisinteger* :: integer
-- *thisstring* :: string
-
-
-### Result:
-{thistuple,{tuple,[{thisinteger,integer},{thisstring,string}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("echo_integer_string", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-      put("thisstring", "aaaaa");
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("echo_integer_string", {
-      thisinteger => 1,
-      thisstring => "aaaaa"
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>echo_integer_string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-              <member>
-                <name>thisstring</name>
-                <value>
-                  <string>aaaaa</string>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/echo_integer_string
-    {
-      "thisinteger": 1,
-      "thisstring": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "thisinteger": 1,
-      "thisstring": "aaaaa"
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *echo_isatils* - Echo integer, string, atom and tuple of integer and list of strings
-
-
-Echo integer, string, atom and tuple of integer and list of strings
-
-
-### Arguments:
-- *thisinteger* :: integer
-- *thisstring* :: string
-- *thisatom* :: atom
-- *thistuple* :: {tuple,[{listlen,integer},{thislist,{list,{contentstring,string}}}]}
-
-
-### Result:
-{results,
-    {tuple,
-        [{thatinteger,integer},
-         {thatstring,string},
-         {thatatom,atom},
-         {thattuple,
-             {tuple,
-                 [{listlen,integer},
-                  {thatlist,{list,{contentstring,string}}}]}}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("echo_isatils", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-      put("thisstring", "aaaaa");
-      put("thisatom", "bbbbb");
-      put("thistuple", new HashMap<String, Object>() {{
-      put("listlen", new Integer(2));
-      put("thislist", new Object[] {
-          new HashMap<String, Object>() {{ put("contentstring", "ccccc"); }},
-          new HashMap<String, Object>() {{ put("contentstring", "ddddd"); }}
-        });
-    }})
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("echo_isatils", {
-      thisinteger => 1,
-      thisstring => "aaaaa",
-      thisatom => "bbbbb",
-      thistuple => {listlen => 2, thislist => [{contentstring => "ccccc"}, {contentstring => "ddddd"}]}
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>echo_isatils</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-              <member>
-                <name>thisstring</name>
-                <value>
-                  <string>aaaaa</string>
-                </value>
-              </member>
-              <member>
-                <name>thisatom</name>
-                <value>
-                  <string>bbbbb</string>
-                </value>
-              </member>
-              <member>
-                <name>thistuple</name>
-                <value>
-                  <struct>
-                  <member>
-                    <name>listlen</name>
-                    <value>
-                      <integer>2</integer>
-                    </value>
-                  </member>
-                  <member>
-                    <name>thislist</name>
-                    <value>
-                      <array>
-                        <data>
-                          <value>
-                            <struct>
-                              <member>
-                                <name>contentstring</name>
-                                <value>
-                                  <string>ccccc</string>
-                                </value>
-                              </member>
-                            </struct>
-                          </value>
-                          <value>
-                            <struct>
-                              <member>
-                                <name>contentstring</name>
-                                <value>
-                                  <string>ddddd</string>
-                                </value>
-                              </member>
-                            </struct>
-                          </value>
-                        </data>
-                      </array>
-                    </value>
-                  </member>
-                  </struct>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/echo_isatils
-    {
-      "thisinteger": 1,
-      "thisstring": "aaaaa",
-      "thisatom": "bbbbb",
-      "thistuple": {
-        "listlen": 2,
-        "thislist": [
-          "ccccc",
-          "ddddd"
-        ]
-      }
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "thatinteger": 1,
-      "thatstring": "aaaaa",
-      "thatatom": "bbbbb",
-      "thattuple": {
-        "listlen": 2,
-        "thatlist": [
-          "ccccc",
-          "ddddd"
-        ]
-      }
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *echo_list_integer* - Echo List of integers
-
-
-Echo List of integers
-
-
-### Arguments:
-- *thislist* :: {list,{thisinteger,integer}}
-
-
-### Result:
-{thatlist,{list,{thatinteger,integer}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("echo_list_integer", new HashMap<String, Object>() {{
-      put("thislist", new Object[] {
-        new HashMap<String, Object>() {{ put("thisinteger", new Integer(1)); }},
-        new HashMap<String, Object>() {{ put("thisinteger", new Integer(2)); }}
-      });
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("echo_list_integer", {
-      thislist => [{thisinteger => 1}, {thisinteger => 2}]
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>echo_list_integer</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thislist</name>
-                <value>
-                  <array>
-                    <data>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisinteger</name>
-                            <value>
-                              <integer>1</integer>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisinteger</name>
-                            <value>
-                              <integer>2</integer>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                    </data>
-                  </array>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/echo_list_integer
-    {
-      "thislist": [
-        1,
-        2
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      1,
-      2
-    ]
-~~~
-{: .code-samples-tabs}
-
-
-
-## *echo_list_string* - Echo List of strings
-
-
-Echo List of strings
-
-
-### Arguments:
-- *thislist* :: {list,{thisstring,string}}
-
-
-### Result:
-{thatlist,{list,{thatstring,string}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("echo_list_string", new HashMap<String, Object>() {{
-      put("thislist", new Object[] {
-        new HashMap<String, Object>() {{ put("thisstring", "aaaaa"); }},
-        new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
-      });
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("echo_list_string", {
-      thislist => [{thisstring => "aaaaa"}, {thisstring => "bbbbb"}]
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>echo_list_string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thislist</name>
-                <value>
-                  <array>
-                    <data>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisstring</name>
-                            <value>
-                              <string>aaaaa</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisstring</name>
-                            <value>
-                              <string>bbbbb</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                    </data>
-                  </array>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/echo_list_string
-    {
-      "thislist": [
-        "aaaaa",
-        "bbbbb"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "aaaaa",
-      "bbbbb"
-    ]
-~~~
-{: .code-samples-tabs}
-
-
-
-## *echo_string* - Echo String
-
-
-Echo String
-
-
-### Arguments:
-- *thisstring* :: string
-
-
-### Result:
-{thatstring,string}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("echo_string", new HashMap<String, Object>() {{
-      put("thisstring", "aaaaa");
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("echo_string", {
-      thisstring => "aaaaa"
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>echo_string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisstring</name>
-                <value>
-                  <string>aaaaa</string>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/echo_string
-    {
-      "thisstring": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-        {"thatstring": "aaaaa"    }
-~~~
-{: .code-samples-tabs}
-
-
-
 ## *export2sql* - Export virtual host information from Mnesia tables to SQL files
 
 
 Export virtual host information from Mnesia tables to SQL files
-
-
-### Arguments:
-- *host* :: string
-- *directory* :: string
-
-
-### Result:
-{res,rescode}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("export2sql", new HashMap<String, Object>() {{
-      put("host", "aaaaa");
-      put("directory", "bbbbb");
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("export2sql", {
-      host => "aaaaa",
-      directory => "bbbbb"
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>export2sql</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>host</name>
-                <value>
-                  <string>aaaaa</string>
-                </value>
-              </member>
-              <member>
-                <name>directory</name>
-                <value>
-                  <string>bbbbb</string>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/export2sql
-    {
-      "host": "aaaaa",
-      "directory": "bbbbb"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
-~~~
-{: .code-samples-tabs}
-
-
-
-## *export_sql* - Export all tables as SQL queries to a file
-
-
-Export all tables as SQL queries to a file
 
 
 ### Arguments:
@@ -3167,14 +2603,14 @@ Export all tables as SQL queries to a file
     XmlRpcClient client = new XmlRpcClient();
     client.setConfig(config);
     
-    client.execute("export_sql", new HashMap<String, Object>() {{
+    client.execute("export2sql", new HashMap<String, Object>() {{
       put("host", "aaaaa");
       put("file", "bbbbb");
     }});
 ~~~
 
 * ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("export_sql", {
+    XMLRPC::Lite->proxy($url)->call("export2sql", {
       host => "aaaaa",
       file => "bbbbb"
     })->results()
@@ -3182,7 +2618,7 @@ Export all tables as SQL queries to a file
 
 * ~~~ xml
     <methodCall>
-      <methodName>export_sql</methodName>
+      <methodName>export2sql</methodName>
       <params>
         <param>
           <value>
@@ -3207,7 +2643,7 @@ Export all tables as SQL queries to a file
 ~~~
 
 * ~~~ json
-    POST /api/export_sql
+    POST /api/export2sql
     {
       "host": "aaaaa",
       "file": "bbbbb"
@@ -3816,7 +3252,7 @@ Get the number of unread offline messages
 
 
 ### Result:
-{res,integer}
+{value,integer}
 
 ### Examples:
 
@@ -3865,7 +3301,7 @@ Get the number of unread offline messages
     }
     
     HTTP/1.1 200 OK
-        {"res": 1    }
+        {"value": 1    }
 ~~~
 {: .code-samples-tabs}
 
@@ -4319,6 +3755,91 @@ Get roster of a local user
         "ask": "iiiii",
         "group": "jjjjj"
       }
+    ]
+~~~
+{: .code-samples-tabs}
+
+
+
+## *get_subscribers* - List subscribers of a MUC conference
+
+
+List subscribers of a MUC conference
+
+
+### Arguments:
+- *name* :: binary
+- *service* :: binary
+
+
+### Result:
+{subscribers,{list,{jid,string}}}
+
+### Examples:
+
+* Java
+* Perl
+* XmlRPC
+* JSON
+{: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("get_subscribers", new HashMap<String, Object>() {{
+      put("name", "aaaaa");
+      put("service", "bbbbb");
+    }});
+~~~
+
+* ~~~ perl
+    XMLRPC::Lite->proxy($url)->call("get_subscribers", {
+      name => "aaaaa",
+      service => "bbbbb"
+    })->results()
+~~~
+
+* ~~~ xml
+    <methodCall>
+      <methodName>get_subscribers</methodName>
+      <params>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>name</name>
+                <value>
+                  <string>aaaaa</string>
+                </value>
+              </member>
+              <member>
+                <name>service</name>
+                <value>
+                  <string>bbbbb</string>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+      </params>
+    </methodCall>
+~~~
+
+* ~~~ json
+    POST /api/get_subscribers
+    {
+      "name": "aaaaa",
+      "service": "bbbbb"
+    }
+    
+    HTTP/1.1 200 OK
+    [
+      "aaaaa",
+      "bbbbb"
     ]
 ~~~
 {: .code-samples-tabs}
@@ -6665,89 +6186,6 @@ Number of outgoing s2s connections on the node
 
 
 
-## *pow* - Return the power of base for exponent
-
-
-This is an example command. The formula is:
- power = base ^ exponent
-
-
-### Arguments:
-- *base* :: integer
-- *exponent* :: integer
-
-
-### Result:
-{power,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("pow", new HashMap<String, Object>() {{
-      put("base", new Integer(1));
-      put("exponent", new Integer(2));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("pow", {
-      base => 1,
-      exponent => 2
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>pow</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>base</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-              <member>
-                <name>exponent</name>
-                <value>
-                  <integer>2</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/pow
-    {
-      "base": 1,
-      "exponent": 2
-    }
-    
-    HTTP/1.1 200 OK
-        {"power": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
 ## *privacy_set* - Send a IQ set privacy stanza for a local account
 
 
@@ -8758,91 +8196,6 @@ Send a stanza as if sent from a c2s session
 
 
 
-## *seq* - Return list of integers between two integers
-
-
-Return list of integers between two integers
-
-
-### Arguments:
-- *from* :: integer
-- *to* :: integer
-
-
-### Result:
-{sequence,{list,{intermediate,integer}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("seq", new HashMap<String, Object>() {{
-      put("from", new Integer(1));
-      put("to", new Integer(2));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("seq", {
-      from => 1,
-      to => 2
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>seq</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>from</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-              <member>
-                <name>to</name>
-                <value>
-                  <integer>2</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/seq
-    {
-      "from": 1,
-      "to": 2
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      1,
-      2
-    ]
-~~~
-{: .code-samples-tabs}
-
-
-
 ## *set_last* - Set last activity information
 
 
@@ -9825,196 +9178,6 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
     
     HTTP/1.1 200 OK
     ""
-~~~
-{: .code-samples-tabs}
-
-
-
-## *splitjid* - Split JID in parts: user, server, resource
-
-
-Split JID in parts: user, server, resource
-
-
-### Arguments:
-- *jid* :: string
-
-
-### Result:
-{jidparts,{tuple,[{user,string},{server,string},{resource,string}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("splitjid", new HashMap<String, Object>() {{
-      put("jid", "aaaaa");
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("splitjid", {
-      jid => "aaaaa"
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>splitjid</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>jid</name>
-                <value>
-                  <string>aaaaa</string>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/splitjid
-    {
-      "jid": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "user": "aaaaa",
-      "server": "bbbbb",
-      "resource": "ccccc"
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *splitjids* - Split JIDs in parts: user, server, resource
-
-
-Split JIDs in parts: user, server, resource
-
-
-### Arguments:
-- *jids* :: {list,{jid,string}}
-
-
-### Result:
-{jidsparts,{list,{jidparts,{tuple,[{user,string},
-                                   {server,string},
-                                   {resource,string}]}}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("splitjids", new HashMap<String, Object>() {{
-      put("jids", new Object[] {
-        new HashMap<String, Object>() {{ put("jid", "aaaaa"); }},
-        new HashMap<String, Object>() {{ put("jid", "bbbbb"); }}
-      });
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("splitjids", {
-      jids => [{jid => "aaaaa"}, {jid => "bbbbb"}]
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>splitjids</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>jids</name>
-                <value>
-                  <array>
-                    <data>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>jid</name>
-                            <value>
-                              <string>aaaaa</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>jid</name>
-                            <value>
-                              <string>bbbbb</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                    </data>
-                  </array>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/splitjids
-    {
-      "jids": [
-        "aaaaa",
-        "bbbbb"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "user": "aaaaa",
-        "server": "bbbbb",
-        "resource": "ccccc"
-      },
-      {
-        "user": "ddddd",
-        "server": "eeeee",
-        "resource": "fffff"
-      }
-    ]
 ~~~
 {: .code-samples-tabs}
 
@@ -11403,18 +10566,21 @@ ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
 
 
 
-## *substrs* - Return list of substrings of length increasing
+## *subscribe_room* - Subscribe to a MUC conference
 
 
-Return list of substrings of length increasing
+Subscribe to a MUC conference
 
 
 ### Arguments:
-- *word* :: string
+- *user* :: binary
+- *nick* :: binary
+- *room* :: binary
+- *nodes* :: binary
 
 
 ### Result:
-{substrings,{list,{miniword,string}}}
+{nodes,{list,{node,string}}}
 
 ### Examples:
 
@@ -11431,28 +10597,52 @@ Return list of substrings of length increasing
     XmlRpcClient client = new XmlRpcClient();
     client.setConfig(config);
     
-    client.execute("substrs", new HashMap<String, Object>() {{
-      put("word", "aaaaa");
+    client.execute("subscribe_room", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("nick", "bbbbb");
+      put("room", "ccccc");
+      put("nodes", "ddddd");
     }});
 ~~~
 
 * ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("substrs", {
-      word => "aaaaa"
+    XMLRPC::Lite->proxy($url)->call("subscribe_room", {
+      user => "aaaaa",
+      nick => "bbbbb",
+      room => "ccccc",
+      nodes => "ddddd"
     })->results()
 ~~~
 
 * ~~~ xml
     <methodCall>
-      <methodName>substrs</methodName>
+      <methodName>subscribe_room</methodName>
       <params>
         <param>
           <value>
             <struct>
               <member>
-                <name>word</name>
+                <name>user</name>
                 <value>
                   <string>aaaaa</string>
+                </value>
+              </member>
+              <member>
+                <name>nick</name>
+                <value>
+                  <string>bbbbb</string>
+                </value>
+              </member>
+              <member>
+                <name>room</name>
+                <value>
+                  <string>ccccc</string>
+                </value>
+              </member>
+              <member>
+                <name>nodes</name>
+                <value>
+                  <string>ddddd</string>
                 </value>
               </member>
             </struct>
@@ -11463,9 +10653,12 @@ Return list of substrings of length increasing
 ~~~
 
 * ~~~ json
-    POST /api/substrs
+    POST /api/subscribe_room
     {
-      "word": "aaaaa"
+      "user": "aaaaa",
+      "nick": "bbbbb",
+      "room": "ccccc",
+      "nodes": "ddddd"
     }
     
     HTTP/1.1 200 OK
@@ -11473,1620 +10666,6 @@ Return list of substrings of length increasing
       "aaaaa",
       "bbbbb"
     ]
-~~~
-{: .code-samples-tabs}
-
-
-
-## *take_integer* - Take Integer in args, give Integer zero
-
-
-Take Integer in args, give Integer zero
-
-
-### Arguments:
-- *thisinteger* :: integer
-
-
-### Result:
-{zero,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("take_integer", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("take_integer", {
-      thisinteger => 1
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>take_integer</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/take_integer
-    {
-      "thisinteger": 1
-    }
-    
-    HTTP/1.1 200 OK
-        {"zero": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *take_integer_string* - Take integer and string, give Integer zero
-
-
-Take integer and string, give Integer zero
-
-
-### Arguments:
-- *thisinteger* :: integer
-- *thisstring* :: string
-
-
-### Result:
-{zero,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("take_integer_string", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-      put("thisstring", "aaaaa");
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("take_integer_string", {
-      thisinteger => 1,
-      thisstring => "aaaaa"
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>take_integer_string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-              <member>
-                <name>thisstring</name>
-                <value>
-                  <string>aaaaa</string>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/take_integer_string
-    {
-      "thisinteger": 1,
-      "thisstring": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-        {"zero": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *take_list_integer* - Take List of integers, give Integer zero
-
-
-Take List of integers, give Integer zero
-
-
-### Arguments:
-- *thislist* :: {list,{thisinteger,integer}}
-
-
-### Result:
-{zero,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("take_list_integer", new HashMap<String, Object>() {{
-      put("thislist", new Object[] {
-        new HashMap<String, Object>() {{ put("thisinteger", new Integer(1)); }},
-        new HashMap<String, Object>() {{ put("thisinteger", new Integer(2)); }}
-      });
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("take_list_integer", {
-      thislist => [{thisinteger => 1}, {thisinteger => 2}]
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>take_list_integer</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thislist</name>
-                <value>
-                  <array>
-                    <data>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisinteger</name>
-                            <value>
-                              <integer>1</integer>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisinteger</name>
-                            <value>
-                              <integer>2</integer>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                    </data>
-                  </array>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/take_list_integer
-    {
-      "thislist": [
-        1,
-        2
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-        {"zero": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *take_list_string* - Take List of strings, give Integer zero
-
-
-Take List of strings, give Integer zero
-
-
-### Arguments:
-- *thislist* :: {list,{thisstring,string}}
-
-
-### Result:
-{zero,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("take_list_string", new HashMap<String, Object>() {{
-      put("thislist", new Object[] {
-        new HashMap<String, Object>() {{ put("thisstring", "aaaaa"); }},
-        new HashMap<String, Object>() {{ put("thisstring", "bbbbb"); }}
-      });
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("take_list_string", {
-      thislist => [{thisstring => "aaaaa"}, {thisstring => "bbbbb"}]
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>take_list_string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thislist</name>
-                <value>
-                  <array>
-                    <data>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisstring</name>
-                            <value>
-                              <string>aaaaa</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                      <value>
-                        <struct>
-                          <member>
-                            <name>thisstring</name>
-                            <value>
-                              <string>bbbbb</string>
-                            </value>
-                          </member>
-                        </struct>
-                      </value>
-                    </data>
-                  </array>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/take_list_string
-    {
-      "thislist": [
-        "aaaaa",
-        "bbbbb"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-        {"zero": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *take_string* - Take String, give Integer zero
-
-
-Take String, give Integer zero
-
-
-### Arguments:
-- *thisstring* :: string
-
-
-### Result:
-{zero,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("take_string", new HashMap<String, Object>() {{
-      put("thisstring", "aaaaa");
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("take_string", {
-      thisstring => "aaaaa"
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>take_string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisstring</name>
-                <value>
-                  <string>aaaaa</string>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/take_string
-    {
-      "thisstring": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-        {"zero": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *take_tuple_2integer* - Take Tuple of two integers, give Integer zero
-
-
-Take Tuple of two integers, give Integer zero
-
-
-### Arguments:
-- *thistuple* :: {tuple,[{thisinteger1,integer},{thisinteger2,integer}]}
-
-
-### Result:
-{zero,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("take_tuple_2integer", new HashMap<String, Object>() {{
-      put("thistuple", new HashMap<String, Object>() {{
-      put("thisinteger1", new Integer(1));
-      put("thisinteger2", new Integer(2));
-    }})
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("take_tuple_2integer", {
-      thistuple => {thisinteger1 => 1, thisinteger2 => 2}
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>take_tuple_2integer</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thistuple</name>
-                <value>
-                  <struct>
-                  <member>
-                    <name>thisinteger1</name>
-                    <value>
-                      <integer>1</integer>
-                    </value>
-                  </member>
-                  <member>
-                    <name>thisinteger2</name>
-                    <value>
-                      <integer>2</integer>
-                    </value>
-                  </member>
-                  </struct>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/take_tuple_2integer
-    {
-      "thistuple": {
-        "thisinteger1": 1,
-        "thisinteger2": 2
-      }
-    }
-    
-    HTTP/1.1 200 OK
-        {"zero": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *take_tuple_2string* - Take Tuple of two strings, give Integer zero
-
-
-Take Tuple of two strings, give Integer zero
-
-
-### Arguments:
-- *thistuple* :: {tuple,[{thisstring1,string},{thisstring2,string}]}
-
-
-### Result:
-{zero,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("take_tuple_2string", new HashMap<String, Object>() {{
-      put("thistuple", new HashMap<String, Object>() {{
-      put("thisstring1", "aaaaa");
-      put("thisstring2", "bbbbb");
-    }})
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("take_tuple_2string", {
-      thistuple => {thisstring1 => "aaaaa", thisstring2 => "bbbbb"}
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>take_tuple_2string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thistuple</name>
-                <value>
-                  <struct>
-                  <member>
-                    <name>thisstring1</name>
-                    <value>
-                      <string>aaaaa</string>
-                    </value>
-                  </member>
-                  <member>
-                    <name>thisstring2</name>
-                    <value>
-                      <string>bbbbb</string>
-                    </value>
-                  </member>
-                  </struct>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/take_tuple_2string
-    {
-      "thistuple": {
-        "thisstring1": "aaaaa",
-        "thisstring2": "bbbbb"
-      }
-    }
-    
-    HTTP/1.1 200 OK
-        {"zero": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_atom* - Tell Atom, give Integer zero
-
-
-Tell Atom, give Integer zero
-
-
-### Arguments:
-- *thisinteger* :: integer
-
-
-### Result:
-{thisatom,atom}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_atom", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_atom", {
-      thisinteger => 1
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_atom</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_atom
-    {
-      "thisinteger": 1
-    }
-    
-    HTTP/1.1 200 OK
-        {"thisatom": "aaaaa"    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_list_3atom* - Tell a list with 3 atoms
-
-
-Tell a list with 3 atoms
-
-
-### Arguments:
-
-
-### Result:
-{thatlist,{list,{thisatom,atom}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_list_3atom", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_list_3atom", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_list_3atom</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_list_3atom
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "aaaaa",
-      "bbbbb"
-    ]
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_list_3integer* - Tell a list with 3 integers
-
-
-Tell a list with 3 integers
-
-
-### Arguments:
-
-
-### Result:
-{thatlist,{list,{thisinteger,integer}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_list_3integer", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_list_3integer", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_list_3integer</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_list_3integer
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      1,
-      2
-    ]
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_list_3string* - Tell a list with 3 strings
-
-
-Tell a list with 3 strings
-
-
-### Arguments:
-
-
-### Result:
-{thatlist,{list,{thisstring,string}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_list_3string", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_list_3string", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_list_3string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_list_3string
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "aaaaa",
-      "bbbbb"
-    ]
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_list_3tuple* - Tell a list with 3 tuples
-
-
-Tell a list with 3 tuples
-
-
-### Arguments:
-
-
-### Result:
-{thatlist,{list,{thistuple,{tuple,[{thisinteger,integer},
-                                   {thistring,string},
-                                   {thisatom,atom}]}}}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_list_3tuple", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_list_3tuple", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_list_3tuple</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_list_3tuple
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "thisinteger": 1,
-        "thistring": "aaaaa",
-        "thisatom": "bbbbb"
-      },
-      {
-        "thisinteger": 2,
-        "thistring": "ccccc",
-        "thisatom": "ddddd"
-      }
-    ]
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_rescode* - Tell rescode
-
-
-Tell rescode
-
-
-### Arguments:
-- *thisinteger* :: integer
-
-
-### Result:
-{res,rescode}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_rescode", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_rescode", {
-      thisinteger => 1
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_rescode</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_rescode
-    {
-      "thisinteger": 1
-    }
-    
-    HTTP/1.1 200 OK
-    ""
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_restuple* - Tell restuple
-
-
-Tell restuple
-
-
-### Arguments:
-- *thisinteger* :: integer
-
-
-### Result:
-{res,restuple}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_restuple", new HashMap<String, Object>() {{
-      put("thisinteger", new Integer(1));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_restuple", {
-      thisinteger => 1
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_restuple</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>thisinteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_restuple
-    {
-      "thisinteger": 1
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_tuple_3atom* - Tell a tuple with 3 atoms
-
-
-Tell a tuple with 3 atoms
-
-
-### Arguments:
-
-
-### Result:
-{thattuple,{tuple,[{first,atom},{second,atom},{third,atom}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_tuple_3atom", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_tuple_3atom", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_tuple_3atom</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_tuple_3atom
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "first": "aaaaa",
-      "second": "bbbbb",
-      "third": "ccccc"
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_tuple_3integer* - Tell a tuple with 3 integers
-
-
-Tell a tuple with 3 integers
-
-
-### Arguments:
-
-
-### Result:
-{thattuple,{tuple,[{first,integer},{second,integer},{third,integer}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_tuple_3integer", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_tuple_3integer", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_tuple_3integer</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_tuple_3integer
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "first": 1,
-      "second": 2,
-      "third": 3
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_tuple_3list* - Tell a tuple with 3 lists
-
-
-Tell a tuple with 3 lists
-
-
-### Arguments:
-
-
-### Result:
-{thattuple,{tuple,[{first,{list,{thisinteger,integer}}},
-                   {second,{list,{thisstring,string}}},
-                   {third,{list,{thisatom,atom}}}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_tuple_3list", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_tuple_3list", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_tuple_3list</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_tuple_3list
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "first": [
-        1,
-        2
-      ],
-      "second": [
-        "aaaaa",
-        "bbbbb"
-      ],
-      "third": [
-        "ccccc",
-        "ddddd"
-      ]
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *tell_tuple_3string* - Tell a tuple with 3 strings
-
-
-Tell a tuple with 3 strings
-
-
-### Arguments:
-
-
-### Result:
-{thattuple,{tuple,[{first,string},{second,string},{third,string}]}}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("tell_tuple_3string", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("tell_tuple_3string", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>tell_tuple_3string</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/tell_tuple_3string
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "first": "aaaaa",
-      "second": "bbbbb",
-      "third": "ccccc"
-    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *this_crashes* - This command crashes: test+5
-
-
-This command crashes: test+5
-
-
-### Arguments:
-- *aninteger* :: integer
-
-
-### Result:
-{result,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("this_crashes", new HashMap<String, Object>() {{
-      put("aninteger", new Integer(1));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("this_crashes", {
-      aninteger => 1
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>this_crashes</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>aninteger</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/this_crashes
-    {
-      "aninteger": 1
-    }
-    
-    HTTP/1.1 200 OK
-        {"result": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *this_wrong_args* - This problematic command defines 2 arguments but function expects 1
-
-
-This problematic command defines 2 arguments but function expects 1
-
-
-### Arguments:
-- *a* :: integer
-- *b* :: integer
-
-
-### Result:
-{result,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("this_wrong_args", new HashMap<String, Object>() {{
-      put("a", new Integer(1));
-      put("b", new Integer(2));
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("this_wrong_args", {
-      a => 1,
-      b => 2
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>this_wrong_args</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-              <member>
-                <name>a</name>
-                <value>
-                  <integer>1</integer>
-                </value>
-              </member>
-              <member>
-                <name>b</name>
-                <value>
-                  <integer>2</integer>
-                </value>
-              </member>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/this_wrong_args
-    {
-      "a": 1,
-      "b": 2
-    }
-    
-    HTTP/1.1 200 OK
-        {"result": 1    }
-~~~
-{: .code-samples-tabs}
-
-
-
-## *this_wrong_return* - This problematic command doesn't give a proper return
-
-
-This problematic command doesn't give a proper return
-
-
-### Arguments:
-
-
-### Result:
-{result,integer}
-
-### Examples:
-
-* Java
-* Perl
-* XmlRPC
-* JSON
-{: .code-samples-labels}
-
-* ~~~ java
-    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-    config.setServerURL(url);
-    
-    XmlRpcClient client = new XmlRpcClient();
-    client.setConfig(config);
-    
-    client.execute("this_wrong_return", new HashMap<String, Object>() {{
-      
-    }});
-~~~
-
-* ~~~ perl
-    XMLRPC::Lite->proxy($url)->call("this_wrong_return", {
-      
-    })->results()
-~~~
-
-* ~~~ xml
-    <methodCall>
-      <methodName>this_wrong_return</methodName>
-      <params>
-        <param>
-          <value>
-            <struct>
-            </struct>
-          </value>
-        </param>
-      </params>
-    </methodCall>
-~~~
-
-* ~~~ json
-    POST /api/this_wrong_return
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-        {"result": 1    }
 ~~~
 {: .code-samples-tabs}
 
@@ -13169,6 +10748,88 @@ Unregister a user
     
     HTTP/1.1 200 OK
     "Success"
+~~~
+{: .code-samples-tabs}
+
+
+
+## *unsubscribe_room* - Unsubscribe from a MUC conference
+
+
+Unsubscribe from a MUC conference
+
+
+### Arguments:
+- *user* :: binary
+- *room* :: binary
+
+
+### Result:
+{res,rescode}
+
+### Examples:
+
+* Java
+* Perl
+* XmlRPC
+* JSON
+{: .code-samples-labels}
+
+* ~~~ java
+    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+    config.setServerURL(url);
+    
+    XmlRpcClient client = new XmlRpcClient();
+    client.setConfig(config);
+    
+    client.execute("unsubscribe_room", new HashMap<String, Object>() {{
+      put("user", "aaaaa");
+      put("room", "bbbbb");
+    }});
+~~~
+
+* ~~~ perl
+    XMLRPC::Lite->proxy($url)->call("unsubscribe_room", {
+      user => "aaaaa",
+      room => "bbbbb"
+    })->results()
+~~~
+
+* ~~~ xml
+    <methodCall>
+      <methodName>unsubscribe_room</methodName>
+      <params>
+        <param>
+          <value>
+            <struct>
+              <member>
+                <name>user</name>
+                <value>
+                  <string>aaaaa</string>
+                </value>
+              </member>
+              <member>
+                <name>room</name>
+                <value>
+                  <string>bbbbb</string>
+                </value>
+              </member>
+            </struct>
+          </value>
+        </param>
+      </params>
+    </methodCall>
+~~~
+
+* ~~~ json
+    POST /api/unsubscribe_room
+    {
+      "user": "aaaaa",
+      "room": "bbbbb"
+    }
+    
+    HTTP/1.1 200 OK
+    ""
 ~~~
 {: .code-samples-tabs}
 
