@@ -1,8 +1,8 @@
 source "http://rubygems.org"
 
-ruby '2.1.5'
+ruby '2.3.1'
 
-gem 'nanoc'      , '~> 4.1'
+gem 'nanoc'      , '~> 4.3.2'
 gem 'builder'
 gem 'kramdown'
 gem 'mime-types' , '~> 1.16'

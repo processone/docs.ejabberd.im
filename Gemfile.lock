@@ -5,24 +5,35 @@ GEM
       rack (>= 1.0.0)
     builder (3.2.2)
     colored (1.2)
+    concurrent-ruby (1.0.2)
     cri (2.7.0)
       colored (~> 1.2)
     daemons (1.2.3)
     eventmachine (1.0.9.1)
     fssm (0.2.10)
+    hamster (3.0.0)
+      concurrent-ruby (~> 1.0)
     kramdown (1.9.0)
     mime-types (1.25.1)
-    mini_portile2 (2.0.0)
-    nanoc (4.1.4)
+    mini_portile2 (2.1.0)
+    nanoc (4.3.2)
       cri (~> 2.3)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+      hamster (~> 3.0)
+      ref (~> 2.0)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
+    nokogiri (1.6.8-x64-mingw32)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
+    pkg-config (1.1.7)
     posix-spawn (0.3.11)
     pygments.rb (0.6.3)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.2.0)
     rack (1.6.4)
     rake (10.5.0)
+    ref (2.0.0)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -32,6 +43,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   adsf
@@ -39,10 +51,16 @@ DEPENDENCIES
   fssm
   kramdown
   mime-types (~> 1.16)
-  nanoc (~> 4.1)
+  nanoc (~> 4.3.2)
   nokogiri
   pygments.rb
   rake
   thin
   yajl-ruby
   yard
+
+RUBY VERSION
+   ruby 2.3.1p112
+
+BUNDLED WITH
+   1.13.1
