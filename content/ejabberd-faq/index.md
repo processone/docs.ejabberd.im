@@ -1,8 +1,5 @@
 ---
 title: ejabberd Frequently Ask Questions (FAQ)
-redirect_from:
-  - /ejabberd-faq/
-  - /get-started/ejabberd-faq/
 ---
 
 # ejabberd FAQ

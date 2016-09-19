@@ -1,8 +1,5 @@
 ---
 title: ejabberd use cases
-redirect_from:
-  - /use-cases/
-  - /get-started/use-cases/
 ---
 
 # ejabberd use cases
