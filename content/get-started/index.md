@@ -42,6 +42,29 @@ richer every day.
 
 Welcome in your journey for ejabberd mastery !
 
+## Options to use ejabberd
+
+ejabberd can be used in different ways. The most common one is to use
+ejabberd Community Edition. This is the standard Open Source version
+that everyone loves: highly scalable and flexible.
+
+Fortunately, if you need more than just the ejabberd platform
+software, ProcessOne can help you with a commercial
+offering. Commercial offering come in two type of packaging:
+
+- ejabberd Business Edition, including features for large companies
+  (enhanced geodistributed companies and mobile support to develop
+  own, rich clients) and world-clas support, that can please even the
+  most demanding businesses, with 24/7 options.
+- ejabberd SaaS being a way to access and benefit of all the features
+  of ejabberd Business Edition at an attractive and scalable
+  price. ejabberd SaaS allows you to keep control of your data thanks
+  to integration API you can implement on your backend to become a
+  data provider for ejabberd SaaS.
+
+Whatever approach you choose, you can hardly make the wrong choice
+with ejabberd.
+
 ## Architecture of an ejabberd service
 
 ejabberd brings configurability, scalability and fault-tolerance to
