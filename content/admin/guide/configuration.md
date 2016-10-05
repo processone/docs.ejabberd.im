@@ -2346,6 +2346,10 @@ The following paramaters are available:
 :   If the connection to the database fails, `ejabberd` waits 30 seconds
 	before retrying. You can modify this interval with this option.
 
+`sql_prepared_statements: Boolean`
+
+:   If you need to disable prepared statements (only supports PostgreSQL)
+
 Example of plain ODBC connection:
 
 	#!yaml
