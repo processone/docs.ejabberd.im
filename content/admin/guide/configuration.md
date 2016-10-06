@@ -374,11 +374,11 @@ are:
 `ejabberd_c2s`
 
 :   Handles c2s connections.  
-    Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`,
-	`max_ack_queue`, `max_fsm_queue`, `max_resume_timeout`,
-	`max_stanza_size`, `resend_on_timeout`, `resume_timeout`, `shaper`,
-	`starttls`, `starttls_required`, `stream_management`, `tls`,
-	`tls_compression`, `zlib`
+    Options: `access`, `ack_timeout`, `certfile`, `ciphers`, `dhfile`,
+	`protocol_options`, `max_ack_queue`, `max_fsm_queue`,
+	`max_resume_timeout`, `max_stanza_size`, `resend_on_timeout`,
+	`resume_timeout`, `shaper`, `starttls`, `starttls_required`,
+	`stream_management`, `tls`, `tls_compression`, `zlib`
 
 `ejabberd_s2s_in`
 
@@ -435,6 +435,14 @@ modules:
 `access: AccessName`
 
 :   This option defines access to the port. The default value is `all`.
+
+`ack_timeout: Seconds|infinity`
+
+:   If `stream_management` is enabled and an
+	[`XEP-0198`](http://xmpp.org/extensions/xep-0198.html) client fails to
+	respond to an acknowledgement request within the specified number of
+	seconds, the connection is closed. The allowed values are positive
+	integers and `infinity`. The default value is `60`.
 
 `backlog: Value`
 
