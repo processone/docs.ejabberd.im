@@ -3637,9 +3637,10 @@ Options:
 
 `host: HostName`
 
-: This option defines the JID for the HTTP upload service. The keyword
-“@HOST@” is replaced with the virtual host name. Default:
-`"upload.@HOST@"`.
+: This option defines the JID for the HTTP upload service. Note that
+this is unrelated to the GET and PUT URLs, and that it's usually not
+necessary to specify this option. The keyword “@HOST@” is
+replaced with the virtual host name. Default: `"upload.@HOST@"`.
 
 `name: Text`
 
@@ -3702,9 +3703,11 @@ the home directory of the user running ejabberd, and the keyword
 `put_url: URL`
 
 : This option specifies the initial part of the PUT URLs used for file
-uploads. The keyword `@HOST@` is replaced with the virtual host name.
-Default: `"http://@HOST@:5444"`. *Note: Different virtual hosts cannot
-use the same PUT URL.*
+uploads. The path component must be matched in the `request_handlers`
+list of the corresponding `ejabberd_http` listener (as shown in the
+example below). The keyword `@HOST@` is replaced with the virtual host
+name. Default: `"http://@HOST@:5444"`. *Note: Different virtual hosts
+cannot use the same PUT URL.*
 
 `get_url: URL`
 
@@ -3751,7 +3754,7 @@ Example:
 	    certfile: "/etc/ejabberd/certificate.pem"
 	    request_handlers:
 	      ...
-	      "upload": mod_http_upload
+	      "/share": mod_http_upload
 	      ...
 	  ...
 
@@ -3759,7 +3762,7 @@ Example:
 	  ...
 	  mod_http_upload:
 	    docroot: "/ejabberd/upload"
-	    put_url: "https://@HOST@:5443/upload"
+	    put_url: "https://@HOST@:5443/share"
 	  ...
 
 ### mod_http_upload_quota
