@@ -377,8 +377,8 @@ are:
     Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`,
 	`max_ack_queue`, `max_fsm_queue`, `max_resume_timeout`,
 	`max_stanza_size`, `resend_on_timeout`, `resume_timeout`, `shaper`,
-	`starttls`, `starttls_required`, `stream_management`, `tls`, `zlib`,
-	`tls_compression`
+	`starttls`, `starttls_required`, `stream_management`, `tls`,
+	`tls_compression`, `zlib`
 
 `ejabberd_s2s_in`
 
