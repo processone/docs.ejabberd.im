@@ -145,7 +145,7 @@ Examples:
 ### Virtual Hosting
 
 When managing several XMPP domains in a single instance, those domains
-are truly independant. It means they can even have different
+are truly independent. It means they can even have different
 configuration parameters.
 
 Options can be defined separately for every virtual host using the
