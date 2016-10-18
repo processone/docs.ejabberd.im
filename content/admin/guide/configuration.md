@@ -4214,6 +4214,11 @@ Module options:
     presence broadcasts are limited to reduce load, traffic and excessive
     presence 'storm' received by participants.
 
+`max_rooms_discoitems: Number`
+
+:   This option defines the maximum number of rooms which can exist in a vhost
+	before an optimization will be applied to return only non-empty rooms
+	in reply to an disco#items iq query.  The default value is 100.
 
 `default_room_options: {OptionName: OptionValue}`
 
