@@ -1,14 +1,11 @@
 ---
-title: ejabberd cluster | ejabberd Installation and Operation Guide
+title: ejabberd Clustering
+toc: true
+menu: Clustering
+order: 80
 ---
 
-# Clustering
-
-* This line is a placeholder to generate the table of contents
-{:toc}
----
-
-## Purpose
+# Purpose
 
 The purpose of ejabberd clustering is to be able to use several
 servers for a single or small group of large domains, for
@@ -21,7 +18,7 @@ different independant servers.
 However, to build reliable service and support large user base,
 clustering is a must have feature.
 
-## How it Works
+# How it Works
 
 A XMPP domain is served by one or more `ejabberd` nodes. These nodes can
 be run on different machines that are connected via a network. They all
@@ -41,7 +38,7 @@ Each `ejabberd` node has the following modules:
 
 -   s2s manager.
 
-### Router
+## Router
 
 This module is the main router of XMPP packets on each node. It routes
 them based on their destination’s domains. It uses a global routing
@@ -49,21 +46,21 @@ table. The domain of the packet’s destination is searched in the routing
 table, and if it is found, the packet is routed to the appropriate
 process. If not, it is sent to the s2s manager.
 
-### Local Router
+## Local Router
 
 This module routes packets which have a destination domain equal to one
 of this server’s host names. If the destination JID has a non-empty user
 part, it is routed to the session manager, otherwise it is processed
 depending on its content.
 
-### Session Manager
+## Session Manager
 
 This module routes packets to local users. It looks up to which user
 resource a packet must be sent via a presence table. Then the packet is
 either routed to the appropriate c2s process, or stored in offline
 storage, or bounced back.
 
-### s2s Manager
+## s2s Manager
 
 This module routes packets to other XMPP servers. First, it checks if an
 opened s2s connection from the domain of the packet’s source to the
@@ -71,7 +68,7 @@ domain of the packet’s destination exists. If that is the case, the s2s
 manager routes the packet to the process serving this connection,
 otherwise a new connection is opened.
 
-## Before you get started
+# Before you get started
 
 Before you start implementing clustering, there are a few things you
 need to take into account:
@@ -84,9 +81,9 @@ need to take into account:
   getting started, it is best to get familiar with the Erlang environment
   as this guide will heavily reference Erlang terms.
 
-## Clustering Setup
+# Clustering Setup
 
-### Adding a node to a cluster
+## Adding a node to a cluster
 
 Suppose you have already configured `ejabberd` on one node named
 `ejabberd01`. Let's create an additional node (`ejabberd02`) and connect them
@@ -116,7 +113,7 @@ together.
 	across all nodes so new nodes can start receiving messages from
 	other nodes and be registered in the routing tables.
 
-### Removing a node from the cluster
+## Removing a node from the cluster
 
 To remove a node from the cluster, it just needs to be shut down. There
 is no specific delay for the cluster to figure out that the node is

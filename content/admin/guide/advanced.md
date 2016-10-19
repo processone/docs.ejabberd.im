@@ -1,10 +1,12 @@
 ---
-title: Advanced Configuration | ejabberd Installation and Operation Guide
+title: Advanced Configuration
+menu: Advanced Configuration
+order: 100
 ---
 
-## Service Load-Balancing
+# Service Load-Balancing
 
-### Domain Load-Balancing Algorithm
+## Domain Load-Balancing Algorithm
 
 `ejabberd` includes an algorithm to load balance the components that are
 plugged on an `ejabberd` cluster. It means that you can plug one or
@@ -20,11 +22,7 @@ If you need a different behaviour, you can change the load balancing
 behaviour with the option `domain_balancing`. The syntax of the option
 is the following:
 
-`domain_balancing: BalancingCriteria`
-
-:  
-
-Several balancing criterias are available:
+**`domain_balancing: BalancingCriteria`**: Several balancing criterias are available:
 
 -   `destination`: the full JID of the packet `to` attribute is used.
 
@@ -39,7 +37,7 @@ Several balancing criterias are available:
 If the value corresponding to the criteria is the same, the same
 component instance in the cluster will be used.
 
-### Load-Balancing Buckets
+## Load-Balancing Buckets
 
 When there is a risk of failure for a given component, domain balancing
 can cause service trouble. If one component is failing the service will
@@ -53,6 +51,4 @@ instances.
 
 The syntax is:
 
-`domain_balancing_component_number: Number`
-
-:  
+**`domain_balancing_component_number: Number`**

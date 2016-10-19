@@ -1,8 +1,8 @@
 ---
-title: ejabberd for developers
+title: ejabberd for Developers
+menu: ejabberd for Developers
+order: 60
 ---
-
-# ejabberd for developers
 
 As a developer, you can customize ejabberd to design almost every type
 of XMPP related type of solutions.

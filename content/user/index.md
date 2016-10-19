@@ -1,8 +1,8 @@
 ---
 title: ejabberd for users
+menu: ejabberd for Users
+order: 80
 ---
-
-# ejabberd for users
 
 As a messaging system, you probably wonders what ejabberd can help you
 with.

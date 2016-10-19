@@ -1,21 +1,21 @@
 ---
 title: Getting started with ejabberd
+menu: Get Started
+order: 10
 ---
 
-# Getting started with ejabberd
-
-## Overview
+# Overview
 
 ejabberd is the de facto XMPP server in the world. The fact that it is
 used to power the largest deployments in the world should not
 intimidate you. ejabberd is equally suitable for small instances.
 
 ejabberd has been designed from the ground-up, since 2002 for robust,
-entreprise deployment. The goal has always been to shoot for the moon
-and that's what made it a long-lasting success.
+entreprise deployment. The goal has always been to shot for the moon
+and that what made it a long-lasting success.
 
 ejabberd is specifically designed for enterprise purposes: it is
-fault-tolerant, can utilize the resources of multiple clustered
+fault-tolerant can utilise the resources of multiple clustered
 machines, and easily scale when more capacity is required (by just
 adding a box/VM).
 
@@ -24,14 +24,14 @@ was supported only by a kind of HTTP polling call BOSH (), the project
 managed to adapt to the recent changes, introducing Websockets
 support, Bosh improvements and a solid mobile stack.
 
-It was developed at a time where the XMPP protocol was still known as
+It was developed at a time where XMPP protocol was still known as
 "Jabber", but fastly adopted the protocol evolution to support the
 various version of the XMPP RFCs. It also encourages innovation and
 experimentation by supporting most, if not all, extensions produced by
 the XSF.
 
 It relies on a dynamic community all over the world. To get an idea of
-existing contributions, you can check the
+existing contributions, you can check
 [ejabberd main repository](https://www.github.com/processone/ejabberd)
 or the repository containing a great amount of
 [contributed extensions](https://github.com/processone/ejabberd-contrib).
@@ -40,9 +40,9 @@ This is possible thanks to a very modular architecture based on a core
 router and an extremely powerful plugin mechanism that is getting
 richer every day.
 
-Welcome in your journey for ejabberd mastery!
+Welcome in your journey for ejabberd mastery !
 
-## Options to use ejabberd
+# Options to use ejabberd
 
 ejabberd can be used in different ways. The most common one is to use
 ejabberd Community Edition. This is the standard Open Source version
@@ -50,11 +50,11 @@ that everyone loves: highly scalable and flexible.
 
 Fortunately, if you need more than just the ejabberd platform
 software, ProcessOne can help you with a commercial
-offering. The commercial offering comes in two types of packaging:
+offering. Commercial offering come in two type of packaging:
 
 - ejabberd Business Edition, including features for large companies
   (enhanced geodistributed companies and mobile support to develop
-  own, rich clients) and world-class support, that can please even the
+  own, rich clients) and world-clas support, that can please even the
   most demanding businesses, with 24/7 options.
 - ejabberd SaaS being a way to access and benefit of all the features
   of ejabberd Business Edition at an attractive and scalable
@@ -65,7 +65,7 @@ offering. The commercial offering comes in two types of packaging:
 Whatever approach you choose, you can hardly make the wrong choice
 with ejabberd.
 
-## Architecture of an ejabberd service
+# Architecture of an ejabberd service
 
 ejabberd brings configurability, scalability and fault-tolerance to
 the core feature of XMPP – routing messages.
@@ -108,7 +108,7 @@ internal Erlang database), but you can opt for other storage:
 And of course, thanks to its API, ejabberd can be customised to work
 with a database chosen by the customer.
 
-## Deploying and managing an ejabberd service
+# Deploying and managing an ejabberd service
 
 ejabberd can be deployed for a number of scenarios fitting end-user /
 developer / customer needs. The default installation setup consists of
@@ -173,7 +173,7 @@ the service. This is a life saver for your uptime.
 
 Welcome to the benefit of Erlang hot-code swapping!
 
-## ejabberd is more than XMPP
+# ejabberd is more than XMPP
 
 Thanks to the modular architecture of ejabberd, the platform is
 becoming a core component for messaging applications.
@@ -197,7 +197,7 @@ Address Translator (NAT) Traversal)
 This makes ejabberd the best XMPP server to support SIP and WebRTC
 based communication tools.
 
-## Helping us in the development process
+# Helping us in the development process
 
 With thousands of more or less official forks, the core ejabberd team,
 supported by ProcessOne, is constantly monitoring and reviewing

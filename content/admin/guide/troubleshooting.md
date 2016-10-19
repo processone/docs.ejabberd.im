@@ -1,63 +1,40 @@
 ---
-title: ejabberd troubleshooting | ejabberd Installation and Operation Guide
+title: Troubleshooting ejabberd
+toc: true
+menu: Troubleshooting
+order: 110
 ---
 
-# Troubleshooting ejabberd
-
-* This line is a placeholder to generate the table of contents
-{:toc}
----
-
-## Log Files
+# Log Files
 
 An `ejabberd` node writes three log files:
 
-`ejabberd.log`
-
-:   is the ejabberd service log, with the messages reported by
+**`ejabberd.log`**:   is the ejabberd service log, with the messages reported by
 	`ejabberd` code
 
-`error.log`
+**`error.log`**:   is the file accumulating error messages from `ejabberd.log`
 
-:   is the file accumulating error messages from `ejabberd.log`
-
-`crash.log`
-
-:   is the Erlang/OTP log, with the crash messages reported by
+**`crash.log`**:   is the Erlang/OTP log, with the crash messages reported by
 	Erlang/OTP using SASL (System Architecture Support Libraries)
 
 The option `loglevel` modifies the verbosity of the file ejabberd.log.
 The syntax:
 
-`loglevel: Level`
-
-:   The standard form to set a global log level.
+**`loglevel: Level`**:   The standard form to set a global log level.
 
 The possible `Level` are:
 
-`0`
+* **`0`**:   No ejabberd log at all (not recommended)
 
-:   No ejabberd log at all (not recommended)
+* **`1`**:   Critical
 
-`1`
+* **`2`**:   Error
 
-:   Critical
+* **`3`**:   Warning
 
-`2`
+* **`4`**:   Info
 
-:   Error
-
-`3`
-
-:   Warning
-
-`4`
-
-:   Info
-
-`5`
-
-:   Debug
+* **`5`**:   Debug
 
 For example, the default configuration is:
 
@@ -67,9 +44,7 @@ Option `log_rate_limit` is useful if you want to protect the logging
 mechanism from being overloaded by excessive amount of log messages. The
 syntax is:
 
-`log_rate_limit: N`
-
-:   Where N is a maximum number of log messages per second. The default
+**`log_rate_limit: N`**:   Where N is a maximum number of log messages per second. The default
 	value is 100.
 
 When the limit is reached the similar warning message is logged:
@@ -80,17 +55,13 @@ By default `ejabberd` rotates the log files when they get grown above a
 certain size. The exact value is controlled by `log_rotate_size` option.
 The syntax is:
 
-`log_rotate_size: N`
-
-:   Where N is the maximum size of a log file in bytes. The default
+**`log_rotate_size: N`**:   Where N is the maximum size of a log file in bytes. The default
 	value is 10485760 (10Mb).
 
 `ejabberd` can also rotates the log files at given date interval. The
 exact value is controlled by `log_rotate_date` option. The syntax is:
 
-`log_rotate_date: D`
-
-:   Where D is a string with syntax is taken from the syntax newsyslog
+**`log_rotate_date: D`**:   Where D is a string with syntax is taken from the syntax newsyslog
 	uses in newsyslog.conf. The default value is `` (no rotation
 	triggered by date).
 
@@ -106,12 +77,10 @@ The option `log_rotate_count` defines the number of rotated files to
 keep by `reopen-log` command. Every such file has a numeric suffix. The
 exact format is:
 
-`log_rotate_count: N`
-
-:   The default value is 1, which means only `ejabberd.log.0`,
+**`log_rotate_count: N`**:   The default value is 1, which means only `ejabberd.log.0`,
 	`error.log.0` and `crash.log.0` will be kept.
 
-## Debug Console
+# Debug Console
 
 The Debug Console is an Erlang shell attached to an already running
 `ejabberd` server. With this Erlang shell, an experienced administrator
@@ -125,7 +94,7 @@ examples in the article
 To exit the shell, close the window or press the keys: control+c
 control+c.
 
-## Watchdog Alerts
+# Watchdog Alerts
 
 `ejabberd` includes a watchdog mechanism that may be useful to
 developers when troubleshooting a problem related to memory usage. If a
@@ -135,9 +104,7 @@ with the option `watchdog_admins` in the `ejabberd` configuration file.
 
 The syntax is:
 
-`watchdog_admins: [JID, ...]`
-
-:  
+**`watchdog_admins: [JID, ...]`**:  
 
 The memory consumed is measured in `words`: a word on 32-bit
 architecture is 4 bytes, and a word on 64-bit architecture is 8 bytes.
@@ -147,9 +114,7 @@ watchdog alert bot.
 
 The syntax is:
 
-`watchdog_large_heap: Number`
-
-:  
+**`watchdog_large_heap: Number`**
 
 Example configuration:
 

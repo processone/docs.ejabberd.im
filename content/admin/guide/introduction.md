@@ -1,8 +1,8 @@
 ---
-title: Introduction | ejabberd Installation and Operation Guide
+title: Introduction
+menu: Introduction
+order: 10
 ---
-
-# Introduction
 
 `ejabberd` is a *free and open source* instant messaging server written in [`Erlang/OTP`][1].
 
@@ -12,7 +12,7 @@ title: Introduction | ejabberd Installation and Operation Guide
 
 `ejabberd` is suitable for small deployments, whether they need to be *scalable* or not, as well as extremely big deployments.
 
-## Key Features
+# Key Features
 
 `ejabberd` is:
 
@@ -43,7 +43,7 @@ title: Introduction | ejabberd Installation and Operation Guide
 	-   XML-based protocol.
 	-   [Many protocols supported][3].
 
-## Additional Features
+# Additional Features
 
 Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 
@@ -52,11 +52,13 @@ Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 	-   Load only the modules you want.
 	-   Extend `ejabberd` with your own custom modules.
 
+
 -   Security
 
 	-   SASL and STARTTLS for c2s and s2s connections.
 	-   STARTTLS and Dialback s2s connections.
 	-   Web Admin accessible via HTTPS secure access.
+
 
 -   Databases
 
@@ -68,11 +70,13 @@ Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 	-   SQLite support.
 	-   Riak NoSQL database support.
 
+
 -   Authentication
 
 	-   Internal Authentication.
 	-   PAM, LDAP, SQL and Riak.
 	-   External Authentication script.
+
 
 -   Others
 

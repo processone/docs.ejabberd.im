@@ -39,7 +39,7 @@ integer corresponding to the version.
 
 Example:
 
-```yaml
+``` yaml
     request_handlers:
       "/api/v1": mod_http_api  # API version 1 handler
       "/v2/api": mod_http_api  # API version 2 handler
@@ -57,6 +57,6 @@ name.
 
 Example:
 
-```bash
+``` bash
 ejabberdctl --version 2 set_loglevel 4
 ```

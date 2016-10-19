@@ -2,12 +2,10 @@
 title: Installing ejabberd development environment on OSX
 ---
 
-# Installing ejabberd development environment on OSX
-
 This short guide will show you how to compile ejabberd from source
 code on Mac OS X, and get users chatting right away.
 
-## Before you start
+# Before you start
 
 ejabberd is supported on Mac OS X 10.6.8 and later. Before you can
 compile and run ejabberd, you also need the following to be installed
@@ -21,7 +19,7 @@ on your system:
   version.
 * Autotools
 
-## Homebrew
+# Homebrew
 
 An easy way to install some of the dependencies is by using a package
 manager, such as [Homebrew](http://brew.sh) – the Homebrew commands
@@ -46,7 +44,7 @@ Please, make sure that for OSX El Capitan you are aware of rootless
 feature and have read Homebrew documentation no that topic:
 [El Capitan & Homebrew](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md)
 
-## Installation
+# Installation
 
 To build and install ejabberd from source code, do the following:
 
@@ -76,7 +74,7 @@ brew link openssl --force
 ~~~
 
 
-## Running ejabberd
+# Running ejabberd
 
 * From your ejabberd build directory, go to the installation directory:  `cd $HOME/my-ejabberd`
 * To start the ejabberd server, run the following command:  `sbin/ejabberdctl start`
@@ -90,7 +88,7 @@ If the server is running, response should be as follow:
 * To connect to the ejabberd console after starting the server:  `sbin/ejabberdctl debug`
 * Alternatively, you can also run the server in interactive mode:  `sbin/ejabberdctl live`
 
-## Registering a user
+# Registering a user
 
 The default XMPP domain served by ejabberd right after the build is
 `localhost`. This is different from the IP address, DNS name of the
@@ -99,7 +97,7 @@ running on your machine with `localhost` XMPP domain, by using your
 computer IP address or DNS name.
 This can prove handy in development phase to get more testers.
 
-##### Adium
+## Adium
 
 Adium is a popular XMPP client on OSX. You can use it 
 
@@ -118,7 +116,7 @@ Registered users wishing to add an existing account to Adium should
 enter the ejabberd server’s IP address in the **Connect Server**
 field on the **Options** tab.
 
-##### Command line
+## Command line
 
 You can register a user with the `ejabberdctl` utility:  
 `ejabberdctl register user domain password`
@@ -126,7 +124,7 @@ You can register a user with the `ejabberdctl` utility:
 For example:  
 `ejabberdctl register user1 localhost myp4ssw0rd`
 
-#### Domains
+# Domains
 
 To use your system’s domain name instead of localhost, edit the
 following ejabberd configuration file:
@@ -160,7 +158,7 @@ hosts:
   - "example2.org"
 ```
 
-#### Get chatting!
+# Get chatting!
 
 Users that are registered on your server can now add their accounts in
 a chat application like Adium (specifying either the server’s IP

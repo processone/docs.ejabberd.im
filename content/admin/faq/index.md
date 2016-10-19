@@ -2,11 +2,9 @@
 title: ejabberd operation FAQ
 ---
 
-# Frequently Asked Questions
+# Multi-User Chat
 
-## Multi-User Chat
-
-### How to list all MUC room on a server
+## How to list all MUC room on a server
 
 Thanks to contributed module 'mod_muc_admin', you can get a better control on the rooms on your server:
 

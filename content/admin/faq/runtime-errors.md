@@ -1,25 +1,22 @@
 ---
-title: Runtime Error Messages | ejabberd operation FAQ
+title: Runtime Error Messages
+toc: true
 ---
 
-# Runtime Error Messages
+# \*\* Too many db tables \*\*
 
-{:toc}
-
-## \*\* Too many db tables \*\*
-
-### Error
+## Error
 
 When running ejabberd, the log shows this error:
 
     ** Too many db tables **
 
-### Explanation
+## Explanation
 
 The number of concurrent ETS and Mnesia tables is limited. If this
 error occurs, it means that you have reached this limit.
 
-### Solution
+## Solution
 
 Read the
 [section about ERL_MAX_ETS_TABLES on the Performance Tuning page](https://www.ejabberd.im/tuning#erl_max_ets_tables).

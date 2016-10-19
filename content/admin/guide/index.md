@@ -1,8 +1,8 @@
 ---
 title: ejabberd Installation and Operation Guide
+menu: Guide
+order: 10
 ---
-
-# ejabberd Installation and Operation Guide
 
 - [Introduction][1]
 - [Installing ejabberd][2]

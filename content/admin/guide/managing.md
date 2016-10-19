@@ -1,14 +1,11 @@
 ---
-title: Managing ejabberd | ejabberd Installation and Operation Guide
+title: Managing an ejabberd server
+toc: true
+menu: Managing
+order: 60
 ---
 
-# Managing an ejabberd server
-
-* This line is a placeholder to generate the table of contents
-{:toc}
----
-
-## ejabberdctl
+# ejabberdctl
 
 With the `ejabberdctl` command line administration script you can
 execute `ejabberdctl commands` (described in the next section,
@@ -33,25 +30,19 @@ If you use Bash, you can get Bash completion by copying the file
 `tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
 Debian, Ubuntu, Fedora and maybe others).
 
-### ejabberdctl Commands
+## ejabberdctl Commands
 
 When `ejabberdctl` is executed without any parameter, it displays the
 available options. If there isn’t an `ejabberd` server running, the
 available parameters are:
 
-`start`
+**`start`**:   Start `ejabberd` in background mode. This is the default method.
 
-:   Start `ejabberd` in background mode. This is the default method.
-
-`debug`
-
-:   Attach an Erlang shell to an already existing `ejabberd` server.
+**`debug`**:   Attach an Erlang shell to an already existing `ejabberd` server.
 	This allows to execute commands interactively in the `ejabberd`
 	server.
 
-`live`
-
-:   Start `ejabberd` in live mode: the shell keeps attached to the
+**`live`**:   Start `ejabberd` in live mode: the shell keeps attached to the
 	started server, showing log messages and allowing to execute
 	interactive commands.
 
@@ -62,29 +53,19 @@ shows the `ejabberdctl commands` described bellow and all the
 
 The `ejabberdctl commands` are:
 
-`help`
-
-:   Get help about ejabberdctl or any available command. Try
+**`help`**:   Get help about ejabberdctl or any available command. Try
 	`ejabberdctl help help`.
 
-`status`
+**`status`**:   Check the status of the `ejabberd` server.
 
-:   Check the status of the `ejabberd` server.
+**`stop`**:   Stop the `ejabberd` server.
 
-`stop`
+**`restart`**:   Restart the `ejabberd` server.
 
-:   Stop the `ejabberd` server.
-
-`restart`
-
-:   Restart the `ejabberd` server.
-
-`mnesia`
-
-:   Get information about the Mnesia database.
+**`mnesia`**:   Get information about the Mnesia database.
 
 
-### Erlang Runtime System
+## Erlang Runtime System
 
 `ejabberd` is an Erlang/OTP application that runs inside an Erlang
 runtime system. This system is configured using environment variables
@@ -96,133 +77,77 @@ variables and command line parameters.
 
 The environment variables:
 
-`EJABBERD_CONFIG_PATH`
+**`EJABBERD_CONFIG_PATH`**:   Path to the ejabberd configuration file.
 
-:   Path to the ejabberd configuration file.
+**`EJABBERD_MSGS_PATH`**:   Path to the directory with translated strings.
 
-`EJABBERD_MSGS_PATH`
+**`EJABBERD_LOG_PATH`**:   Path to the ejabberd service log file.
 
-:   Path to the directory with translated strings.
+**`EJABBERD_SO_PATH`**:   Path to the directory with binary system libraries.
 
-`EJABBERD_LOG_PATH`
+**`EJABBERD_DOC_PATH`**:   Path to the directory with ejabberd documentation.
 
-:   Path to the ejabberd service log file.
+**`EJABBERD_PID_PATH`**:   Path to the PID file that ejabberd can create when started.
 
-`EJABBERD_SO_PATH`
-
-:   Path to the directory with binary system libraries.
-
-`EJABBERD_DOC_PATH`
-
-:   Path to the directory with ejabberd documentation.
-
-`EJABBERD_PID_PATH`
-
-:   Path to the PID file that ejabberd can create when started.
-
-`HOME`
-
-:   Path to the directory that is considered `ejabberd`’s home. This
+**`HOME`**:   Path to the directory that is considered `ejabberd`’s home. This
 	path is used to read the file `.erlang.cookie`.
 
-`ERL_CRASH_DUMP`
+**`ERL_CRASH_DUMP`**:   Path to the file where crash reports will be dumped.
 
-:   Path to the file where crash reports will be dumped.
+**`ERL_EPMD_ADDRESS`**:   IP address where epmd listens for connections (see [epmd](../security/#epmd)).
 
-`ERL_EPMD_ADDRESS`
-
-:   IP address where epmd listens for connections (see [epmd](../security/#epmd)).
-
-`ERL_INETRC`
-
-:   Indicates which IP name resolution to use. If using `-sname`,
+**`ERL_INETRC`**:   Indicates which IP name resolution to use. If using `-sname`,
 	specify either this option or `-kernel inetrc filepath`.
 
-`ERL_MAX_PORTS`
+**`ERL_MAX_PORTS`**:   Maximum number of simultaneously open Erlang ports.
 
-:   Maximum number of simultaneously open Erlang ports.
-
-`ERL_MAX_ETS_TABLES`
-
-:   Maximum number of ETS and Mnesia tables.
+**`ERL_MAX_ETS_TABLES`**:   Maximum number of ETS and Mnesia tables.
 
 The command line parameters:
 
-`-sname ejabberd`
-
-:   The Erlang node will be identified using only the first part of the
+**`-sname ejabberd`**:   The Erlang node will be identified using only the first part of the
 	host name, i.e. other Erlang nodes outside this domain cannot
 	contact this node. This is the preferable option in most cases.
 
-`-name ejabberd`
-
-:   The Erlang node will be fully identified. This is only useful if you
+**`-name ejabberd`**:   The Erlang node will be fully identified. This is only useful if you
 	plan to setup an `ejabberd` cluster with nodes in different
 	networks.
 
-`-kernel inetrc ’/etc/ejabberd/inetrc’`
-
-:   Indicates which IP name resolution to use. If using `-sname`,
+**`-kernel inetrc ’/etc/ejabberd/inetrc’`**:   Indicates which IP name resolution to use. If using `-sname`,
 	specify either this option or `ERL_INETRC`.
 
-`-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210`
-
-:   Define the first and last ports that `epmd` can listen to
+**`-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210`**:   Define the first and last ports that `epmd` can listen to
 	(see [epmd](../security/#epmd)).
 
-`-kernel inet_dist_use_interface { 127,0,0,1 }`
-
-:   Define the IP address where this Erlang node listens for other nodes
+**`-kernel inet_dist_use_interface { 127,0,0,1 }`**:   Define the IP address where this Erlang node listens for other nodes
 	connections (see [epmd](../security/#epmd)).
 
-`-detached`
-
-:   Starts the Erlang system detached from the system console. Useful
+**`-detached`**:   Starts the Erlang system detached from the system console. Useful
 	for running daemons and background processes.
 
-`-noinput`
-
-:   Ensures that the Erlang system never tries to read any input. Useful
+**`-noinput`**:   Ensures that the Erlang system never tries to read any input. Useful
 	for running daemons and background processes.
 
-`-pa /var/lib/ejabberd/ebin`
-
-:   Specify the directory where Erlang binary files (\*.beam) are
+**`-pa /var/lib/ejabberd/ebin`**:   Specify the directory where Erlang binary files (\*.beam) are
 	located.
 
-`-s ejabberd`
+**`-s ejabberd`**:   Tell Erlang runtime system to start the `ejabberd` application.
 
-:   Tell Erlang runtime system to start the `ejabberd` application.
+**`-mnesia dir ’/var/lib/ejabberd/’`**:   Specify the Mnesia database directory.
 
-`-mnesia dir ’/var/lib/ejabberd/’`
-
-:   Specify the Mnesia database directory.
-
-`-sasl sasl_error_logger {file, /var/log/ejabberd/erlang.log}`
-
-:   Path to the Erlang/OTP system log file. SASL here means “System
+**`-sasl sasl_error_logger {file, /var/log/ejabberd/erlang.log}`**:   Path to the Erlang/OTP system log file. SASL here means “System
 	Architecture Support Libraries” not “Simple Authentication and
 	Security Layer”.
 
-`+K [true|false]`
+**`+K [true|false]`**:   Kernel polling.
 
-:   Kernel polling.
+**`-smp [auto|enable|disable]`**:   SMP support.
 
-`-smp [auto|enable|disable]`
+**`+P 250000`**:   Maximum number of Erlang processes.
 
-:   SMP support.
+**`-remsh ejabberd@localhost`**:   Open an Erlang shell in a remote Erlang node.
 
-`+P 250000`
-
-:   Maximum number of Erlang processes.
-
-`-remsh ejabberd@localhost`
-
-:   Open an Erlang shell in a remote Erlang node.
-
-`-hidden`
-
-:   The connections to other nodes are hidden (not published). The
+**`-hidden`**:   The connections to other nodes are hidden (not published). The
 	result is that this node is not considered part of the cluster. This
 	is important when starting a temporary `ctl` or `debug` node.
 
@@ -244,7 +169,7 @@ Other known frontends that can be installed to
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).
 
-### List of ejabberd Commands
+## List of ejabberd Commands
 
 `ejabberd` includes a few ejabberd Commands by default as listed below.
 When more modules are installed, new commands may be available in the
@@ -265,150 +190,90 @@ for them is to use the ejabberdctl script:
 
 The commands included in ejabberd by default are:
 
-`stop_kindly delay announcement`
-
-:   Inform users and rooms, wait, and stop the server. Provide the delay
+**`stop_kindly delay announcement`**:   Inform users and rooms, wait, and stop the server. Provide the delay
 	in seconds, and the announcement quoted.
 
-`registered_vhosts`
+**`registered_vhosts`**:   List all registered vhosts in SERVER
 
-:   List all registered vhosts in SERVER
-
-`reopen_log`
-
-:   Reopen the log files after they were renamed. This can be useful when an
+**`reopen_log`**:   Reopen the log files after they were renamed. This can be useful when an
 	external tool is used for log rotation. See section
 	[Log Files](../troubleshooting/#log-files).
 
-`rotate_log`
+**`rotate_log`**:   Rotate the log files.
 
-:   Rotate the log files.
+**`convert_to_yaml /etc/ejabberd/ejabberd.cfg /etc/ejabberd/ejabberd-converted.yml`**:   Convert an old ejabberd.cfg file to the YAML syntax in a new file.
 
-`convert_to_yaml /etc/ejabberd/ejabberd.cfg /etc/ejabberd/ejabberd-converted.yml`
+**`backup ejabberd.backup`**:   Store internal Mnesia database to a binary backup file.
 
-:   Convert an old ejabberd.cfg file to the YAML syntax in a new file.
-
-`backup ejabberd.backup`
-
-:   Store internal Mnesia database to a binary backup file.
-
-`restore ejabberd.backup`
-
-:   Restore immediately from a binary backup file the internal Mnesia
+**`restore ejabberd.backup`**:   Restore immediately from a binary backup file the internal Mnesia
 	database. This will consume a lot of memory if you have a large
 	database, so better use `install_fallback`.
 
-`install_fallback ejabberd.backup`
-
-:   The binary backup file is installed as fallback: it will be used to
+**`install_fallback ejabberd.backup`**:   The binary backup file is installed as fallback: it will be used to
 	restore the database at the next ejabberd start. This means that,
 	after running this command, you have to restart ejabberd. This
 	command requires less memory than `restore`.
 
-`dump ejabberd.dump`
+**`dump ejabberd.dump`**:   Dump internal Mnesia database to a text file dump.
 
-:   Dump internal Mnesia database to a text file dump.
-
-`load ejabberd.dump`
-
-:   Restore immediately from a text file dump. This is not recommended
+**`load ejabberd.dump`**:   Restore immediately from a text file dump. This is not recommended
 	for big databases, as it will consume much time, memory and
 	processor. In that case it’s preferable to use `backup` and
 	`install_fallback`.
 
-`import_piefxis, export_piefxis, export_piefxis_host`
-
-:   These options can be used to migrate accounts using
+**`import_piefxis, export_piefxis, export_piefxis_host`**:   These options can be used to migrate accounts using
 	[`XEP-0227`](http://xmpp.org/extensions/xep-0227.html) formatted XML
 	files from/to other Jabber/XMPP servers or move users of a vhost to
 	another ejabberd installation. See also
 	[`ejabberd migration kit`](https://support.process-one.net/doc/display/MESSENGER/ejabberd+migration+kit).
 
-`import_file, import_dir`
-
-:   These options can be used to migrate accounts using jabberd1.4
+**`import_file, import_dir`**:   These options can be used to migrate accounts using jabberd1.4
 	formatted XML files. from other Jabber/XMPP servers There exist
 	tutorials to
 	[`migrate from other software to ejabberd`](http://www.ejabberd.im/migrate-to-ejabberd).
 
-`import_prosody import_dir`
-
-:  Import data from Prosody server. `import_dir` is typically `/var/lib/prosody/`.
+**`import_prosody import_dir`**:  Import data from Prosody server. `import_dir` is typically `/var/lib/prosody/`.
    Currently the following data is imported: vcards, accounts, rosters, private data
    (e.g. conference bookmarks), conferences, offline messages and privacy lists.
 
-`set_master nodename`
-
-:   Set master node of the clustered Mnesia tables. If you provide as
+**`set_master nodename`**:   Set master node of the clustered Mnesia tables. If you provide as
 	nodename “self”, this node will be set as its own master.
 
-`mnesia_change_nodename oldnodename newnodename oldbackup newbackup`
+**`mnesia_change_nodename oldnodename newnodename oldbackup newbackup`**:   Change the erlang node name in a backup file
 
-:   Change the erlang node name in a backup file
+**`export2sql virtualhost directory`**:   Export virtual host information from Mnesia tables to SQL files.
 
-`export2sql virtualhost directory`
+**`update_list`**:   List modified modules that can be updated
 
-:   Export virtual host information from Mnesia tables to SQL files.
+**`update module`**:   Update the given module, or use the keyword: all
 
-`update_list`
+**`reload_config`**:   Reload ejabberd configuration file into memory
 
-:   List modified modules that can be updated
-
-`update module`
-
-:   Update the given module, or use the keyword: all
-
-`reload_config`
-
-:   Reload ejabberd configuration file into memory
-
-`delete_expired_messages`
-
-:   This option can be used to delete old messages in offline storage.
+**`delete_expired_messages`**:   This option can be used to delete old messages in offline storage.
 	This might be useful when the number of offline messages is very
 	high.
 
-`delete_old_messages days`
+**`delete_old_messages days`**:   Delete offline messages older than the given days.
 
-:   Delete offline messages older than the given days.
+**`incoming_s2s_number`**:   Number of incoming s2s connections on the node
 
-`incoming_s2s_number`
+**`outgoing_s2s_number`**:   Number of outgoing s2s connections on the node
 
-:   Number of incoming s2s connections on the node
+**`register user host password`**:   Register an account in that domain with the given password.
 
-`outgoing_s2s_number`
+**`unregister user host`**:   Unregister the given account.
 
-:   Number of outgoing s2s connections on the node
+**`registered_users host`**:   List all registered users in HOST
 
-`register user host password`
+**`connected_users`**:   List all established sessions
 
-:   Register an account in that domain with the given password.
+**`connected_users_number`**:   Get the number of established sessions
 
-`unregister user host`
+**`user_resources user host`**:   List user’s connected resources
 
-:   Unregister the given account.
+**`kick_user user host`**:   Disconnect user’s active sessions
 
-`registered_users host`
-
-:   List all registered users in HOST
-
-`connected_users`
-
-:   List all established sessions
-
-`connected_users_number`
-
-:   Get the number of established sessions
-
-`user_resources user host`
-
-:   List user’s connected resources
-
-`kick_user user host`
-
-:   Disconnect user’s active sessions
-
-### Restrict Execution with AccessCommands
+## Restrict Execution with AccessCommands
 
 The frontends can be configured to restrict access to certain commands
 using the `AccessCommands`. In that case, authentication information

@@ -2,8 +2,6 @@
 title: Understanding ejabberd and its dependencies
 ---
 
-# Understanding ejabberd and its dependencies
-
 We wanted to make sure that ejabberd is modular and that parts that
 can be of interest for other Erlang projects can be reused.
 
@@ -12,12 +10,12 @@ and ecosystem, but we are also trying to help even more by reviewing
 your pull requests. Do not hesitate to submit some on any of the many
 repositories mentioned here.
 
-## ejabberd dependencies
+# ejabberd dependencies
 
 ejabberd code based is split among several repositories so effectively
 ejabberd code is much more than what is in its primary repository.
 
-### Required dependencies
+## Required dependencies
 
 The main ejabberd repository is
 [processone/ejabberd](https://github.com/processone/ejabberd)
@@ -77,7 +75,7 @@ Erlang dependencies:
   HyperLogLog, a distinct values estimator, in Erlang. Used for
   analytics.
 
-### Optional dependencies
+## Optional dependencies
 
 Then, we use a few other dependant repositories that may be used if you
 have enabled support in the configure script.
@@ -114,7 +112,7 @@ dependencies downloaded and build in the _deps_ directory.
 As you see, there is much more Erlang code produce at ProcessOne and
 contributed to the Erlang community than just ejabberd repository.
 
-## ejabberd contributions
+# ejabberd contributions
 
 This is not dependencies, but simply modules that you may find nice to
 add to your ejabberd deployment.

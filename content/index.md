@@ -1,9 +1,7 @@
 ---
-title: ejabberd XMPP Messaging Framework Documentation
+title: Welcome to ejabberd, your superpowerful messaging framework
 bodyclass: homepage
 ---
-
-# Welcome to ejabberd, your superpowerful messaging framework
 
 This web site is dedicated to help you use and develop for ejabberd
 XMPP messaging server.

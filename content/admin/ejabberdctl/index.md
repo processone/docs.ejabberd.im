@@ -1,8 +1,8 @@
 ---
 title: ejabberdctl reference
+menu: ejabberdctl Commands
+order: 20
 ---
-
-# ejabberdctl command-line tool reference
 
 Here are main features covered by `ejabberdctl` command-line tool:
 

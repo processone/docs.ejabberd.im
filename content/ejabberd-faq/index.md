@@ -1,16 +1,13 @@
 ---
-title: ejabberd Frequently Ask Questions (FAQ)
+title: ejabberd Frequently Asked Questions (FAQ)
+toc: true
+menu: FAQ
+order: 40
 ---
 
-# ejabberd FAQ
+# Development process
 
-* This line is a placeholder to generate the table of contents
-{:toc}
----
-
-## Development process
-
-### Why is there a commercial version of ejabberd ?
+## Why is there a commercial version of ejabberd?
 
 The needs from corporations and large scale deployments are very
 different from the needs of smaller deployments and community.
@@ -42,13 +39,13 @@ edition customers, ejabberd project itself is a [major contributor to
 Erlang and Elixir community](/developer/repositories/).
 
 
-### Does ProcessOne voluntarily hold some code in ejabberd community to push toward the business edition ?
+## Does ProcessOne voluntarily hold some code in ejabberd community to push toward the business edition?
 
 No. We never do that and have no plan doing so with the code we
 produce and we own.
 
 However, when the code is paid by customer, they retain the ownership
-of the code. Part of our agreement is that the code produce for them
+of the code. Part of our agreement is that the code produced for them
 will be limited to a restricted user base, ejabberd business edition
 until an agreed time expires, generally between 6 months and 1 year.
 
@@ -75,9 +72,9 @@ base.
 This dual model is the core strength of our approach and our secret
 sauce to make sure everyone benefits.
 
-## Performance
+# Performance
 
-### Is ejabberd the most scalable version ?
+## Is ejabberd the most scalable version?
 
 Yes. Definitely. Despite claims that there is small change you can
 make to make it more scalable, we already performed the changes during
@@ -103,7 +100,7 @@ you can handle tens of millions of users on ejabberd systems.
 As a reference, you should read blog post:
 [ejabberd Massive Scalability: 1 Node — 2+ Million Concurrent Users](https://blog.process-one.net/ejabberd-massive-scalability-1node-2-million-concurrent-users/)
 
-### What are the tips to optimize performance ?
+## What are the tips to optimize performance?
 
 Optimisation of XMPP servers performance, including ejabberd, is
 highly dependant on the use case. You really need to find your
@@ -122,9 +119,9 @@ version. Each release of Erlang comes with more optimisation regarding
 locks, especially on SMP server, and using the latest Erlang version
 can also help tremendously.
 
-## Erlang support
+# Erlang support
 
-### Is ejabberd conform to the best Erlang practices ?
+## Is ejabberd conform to the best Erlang practices?
 
 Yes. Our build system is primarily based on rebar. However, as we are
 multiplatform and need to run in many various environments, we rely on a

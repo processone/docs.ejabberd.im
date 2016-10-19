@@ -1,8 +1,9 @@
 ---
-title: ejabberd SQL database schema
+title: ejabberd SQL Database Schema
+toc: true
+menu: SQL Schema
+order: 40
 ---
-
-# ejabberd SQL database schema
 
 This page explains ejabberd SQL database schema.  We present the tables that might be in use, depending on your server configuration, together with a short explanation of the fields involved and their intended use. Tables are presented rougly grouped by related functionality.
 
@@ -17,14 +18,10 @@ Latest version of database schema are available in [ejabberd Github repository](
   schema need testing / feedback and possibly improvement from SQL
   Server users.
 
-#### Tables description
+# Authentication
 
-* Will be replaced with the ToC
-{:toc}
+## Table `users`
 
-## Authentication
-
-### Table `users`
 Contains the information required to authenticate users.
 
 | Field                | Type             | Usage                                                                                   |
@@ -43,9 +40,9 @@ The password are hashed if you use SCRAM authentication. In that case the next f
 | iterationcount       | integer          | support for salted passwords                                                            |
 
 
-## Rosters
+# Rosters
 
-### Table `rosterusers`
+## Table `rosterusers`
 
 This is a quite complex table, used as a store for a quite complex protocol that is the one defined to manage
 rosters and subscriptions on [rfc6121](http://tools.ietf.org/html/rfc6121).  
@@ -80,17 +77,17 @@ users),  it is likely that you only need to care about the  username, jid and ni
 
 
 
-### Table `rostergroups`
+## Table `rostergroups`
 
-### Table `sr_group`
+## Table `sr_group`
 
-### Table `sr_user`
+## Table `sr_user`
 
 
 
-## Messages
+# Messages
 
-### Table `spool`
+## Table `spool`
 Messages sent to users that are offline are stored in this table. 
 Do not confuse this with general message archiving: messages are only temporarly stored in this table, removed as soon as the target user 
 is back online and the pending messages delivered to it.
@@ -105,7 +102,7 @@ is back online and the pending messages delivered to it.
 The seq field is used for sorting, and to easily identify a particular user message.
 
 
-### Table `privacy_list_data`
+## Table `privacy_list_data`
 
 The table is used to store privacy rules.
 
@@ -143,9 +140,9 @@ The table fields are defined as follow:
 
 
 
-## Multiuser Chat Rooms
+# Multiuser Chat Rooms
 
-### Table `muc_room`
+## Table `muc_room`
 It is used to store *persistent* rooms, that is, rooms that must be automatically started with the server.
 
 | Field                | Type             | Usage                                                                                   |
@@ -159,7 +156,7 @@ The opts field is legible, but not mean to be modified directly. It contents dep
 It contains the room configuration and affiliations.
 
 
-### Table `muc_registered`
+## Table `muc_registered`
 Contains a map of user to nicknames.  When a user register a nickname with the conference module, that nick is reserved and can't be used by 
 anyone else, in any room from that conference host.
 
@@ -171,7 +168,7 @@ anyone else, in any room from that conference host.
 | created_at           | timestamp        | Creation date                                                                           |
 
 
-### Table `room_history`
+## Table `room_history`
 This table is used if persistent room history is enabled. If so, recent room history is saved to the DB before ejabberd is stopped, 
 allowing the recent history to survive server restarts.
 
@@ -185,9 +182,9 @@ allowing the recent history to survive server restarts.
 | size                 | integer          | Size in bytes of the xml packet                                                         |
 
 
-## VCard
+# VCard
 
-### Table `vcard`
+## Table `vcard`
 
 The table is used to store raw vCard content for delivery of the vCard
 "as is".
@@ -200,7 +197,7 @@ The table fields are defined as follow:
 | vcard                | text             | Raw Vcard            |
 | created_at           | timestamp        | Record creation date |
 
-### Table `vcard_search`
+## Table `vcard_search`
 
 The table is used to store vCard index on a few of the Vcard field
 used for vCard search in users directory.
@@ -237,9 +234,9 @@ The table fields are defined as follow:
 | orgunit              | string           | Raw organation department name for display    |
 | lorgunit             | string           | Lowercase organisation departement for search |
 
-## Others
+# Others
 
-### Table `last`
+## Table `last`
 This table is used to store the last time the user was seen online.  
 It is defined as follow:
 
@@ -253,7 +250,7 @@ Note that the table is *not* updated while the user has the session open.
 
 
 
-### Table `caps_features`
+## Table `caps_features`
 Ejabberd uses this table to keep a list of the entity capabilities discovered.
 
 | Field                | Type             | Usage                                                                                   |
@@ -266,7 +263,7 @@ Ejabberd uses this table to keep a list of the entity capabilities discovered.
 The subnode field correspond to the 'ver' ("verification string") of XEP-0115. 
 There is one entry in this table for each feature advertised by the given (node,subnode) pair.
 
-### Table `private_storage`
+## Table `private_storage`
 Used for user private data storage.
 
 | Field                | Type             | Usage                                                                                   |

@@ -2,13 +2,11 @@
 title: Understanding ejabberd hosts
 ---
 
-# Understanding ejabberd hosts
-
 The host parameter is very commonly used through ejabberd code
 base. It is very important to understand what it means and how it is
 used.
 
-## Component subdomains
+# Component subdomains
 
 Most XMPP service are reference as subdomain of the main XMPP
 domain. For example, Multi User Chat or Publish-Subscribe are
@@ -29,7 +27,7 @@ in Erlang or Elixir. Some proposed XMPP extensions, like
 [Priviledge Entities](http://www.xmpp.org/extensions/xep-0356.html),
 may grant more priviledges in the future to external components.
 
-## Virtual hosts
+# Virtual hosts
 
 ejabberd fully support virtual hosting. It means that the same
 ejabberd cluster can provide the service for multiple user bases using

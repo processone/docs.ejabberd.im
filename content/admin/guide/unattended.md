@@ -1,8 +1,8 @@
 ---
-title: Unattended installations | ejabberd Installation and Operation Guide
+title: Unattended Installation
+menu: Unattended Installation
+order: 90
 ---
-
-# Unattended installations
 
 Bitrock framework allow unattended install. With this mode, the
 installer will not prompt the user for any information and will
@@ -23,26 +23,20 @@ param1=value1
 param2=value2
 ```
 
-## Available parameters for ejabberd installer
+# Available parameters for ejabberd installer
 
 Installer recognizes those options:
 
---admin \<username\>
-:  sets user name used that should have admin access
+**`--admin <username>`**:  sets user name used that should have admin access
 
---adminpw \<password\>
-:  password used by admin user
+**`--adminpw <password>`**:  password used by admin user
 
---ejabberddomain \<domain\>
-:  domain that should be used XMPP server
+**`--ejabberddomain <domain>`**:  domain that should be used XMPP server
 
---installdir \<path\>
-:  installation directory
+**`--installdir <path>`**:  installation directory
 
---cluster \<0|1\>
-:  setting this to 1 would setup this installation as a part of
+**`--cluster <0|1>`**:  setting this to 1 would setup this installation as a part of
    cluster (by default it's value is assumed 0)
 
---hostname \<name\>
-:  node id used by ejabberd to use as part of erlang node id (has
+**`--hostname <name>`**:  node id used by ejabberd to use as part of erlang node id (has
    only be set when using clustered environment

@@ -1,14 +1,14 @@
 ---
-title: ejabberd for architects
+title: ejabberd for Software Architects
+menu: ejabberd for Architects
+order: 70
 ---
-
-# ejabberd for software architects
 
 This section contains information to help your understand ejabberd
 architecture and will explain how to integrate ejabberd properly into
 your overall infrastructure.
 
-## Overview
+# Overview
 
 ejabberd is a configurable system where modules can be enabled or
 disabled based on customer requirements. Users can connect not only
@@ -27,18 +27,18 @@ communicate with each other.
 
 Here is a high level diagram of ejabberd internal architecture:
 
-[![][image-1]](/images/architect/ejabberd_internals.pdf)
+[![][image-1]](/static/images/architect/ejabberd_internals.pdf)
 
-[*Click for large size PDF*](/images/architect/ejabberd_internals.pdf)
+[*Click for large size PDF*](/static/images/architect/ejabberd_internals.pdf)
 
-## Typical large scale deployments
+# Typical large scale deployments
 
 Here is a diagram for a typical ejabberd large scale deployment. It
 can scale massively and rely on several back-ends.
 
-[![][image-2]](/images/architect/ejabberd_large_scale.pdf)
+[![][image-2]](/static/images/architect/ejabberd_large_scale.pdf)
 
-[*Click for large size PDF*](/images/architect/ejabberd_large_scale.pdf)
+[*Click for large size PDF*](/static/images/architect/ejabberd_large_scale.pdf)
 
 Note that ejabberd ejabberd support a core concept of XMPP:
 Federation. Federation is a mechanism allowing different independing
@@ -47,7 +47,7 @@ purely optional layer, but it can help integrate with the rest of the
 world. It is also sometimes internally by companies to group users in
 subsidiaries or regions.
 
-## Virtual hosting
+# Virtual hosting
 
 If you need to manage several small XMPP domains, ejabberd supports
 virtual hosting. It means you can host as many domain as you want on a
@@ -57,5 +57,5 @@ Instances can be made to be totally independant and invisible for each
 other if needed (or they can communicate as they would through
 federation).
 
-[image-1]:	/images/architect/ejabberd_internals.png
-[image-2]:	/images/architect/ejabberd_large_scale.png
+[image-1]:	/static/images/architect/ejabberd_internals.png
+[image-2]:	/static/images/architect/ejabberd_large_scale.png

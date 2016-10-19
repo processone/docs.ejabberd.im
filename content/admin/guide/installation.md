@@ -1,8 +1,8 @@
 ---
-title: ejabberd Installation and Setup | ejabberd Installation and Operation Guide
+title: ejabberd Installation and Setup
+menu: Installation
+order: 20
 ---
-
-# ejabberd Installation and Setup
 
 You have several options to install ejabberd:
 
@@ -16,9 +16,9 @@ Once installed, you may want to register users and create admin accounts:
 
 ___
 
-## Installing ejabberd with Binary Installer
+# Installing ejabberd with Binary Installer
 
-### Download and running the installer
+## Download and running the installer
 
 Probably the easiest way to install an `ejabberd` instant messaging
 server is using the binary installer published by ProcessOne. The
@@ -73,7 +73,7 @@ directory. Please refer to the section [ejabberdctl][7] for details
 about `ejabberdctl`, and configurable options to fine tune the Erlang
 runtime system.
 
-### Using ejabberd on Microsoft Windows
+## Using ejabberd on Microsoft Windows
 
 The Windows installer also adds ejabberd as a system service, and a
 shortcut to a debug console for experienced administrators. If you
@@ -86,7 +86,7 @@ development, and for example it doesn’t read the file
 On Microsoft Windows, the Erlang processes for ejabberd are named
 `erl.exe` and `epmd.exe`.
 
-## Installing ejabberd with Operating System Specific Packages
+# Installing ejabberd with Operating System Specific Packages
 
 <!-- TODO: Update with mention to our links and RPMs -->
 
@@ -107,14 +107,14 @@ interfere with your existing Erlang version. This is also a good way
 to make sure ejabberd will run with the latest Erlang version. You can
 download the packages from [ejabberd Downloads][1].
 
-## Installing ejabberd from Source Code
+# Installing ejabberd from Source Code
 
 The canonical form for distribution of `ejabberd` stable releases is
 the source code package. Compiling `ejabberd` from source code is
 quite easy in \*nix systems, as long as your system have all the
 dependencies.
 
-### Requirements
+## Requirements
 
 To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 
@@ -129,7 +129,7 @@ To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 -   GNU Iconv 1.8 or higher, for the IRC Transport (mod\_irc). Optional. Not needed on systems with GNU Libc. See section [mod_irc][9].
 -   ImageMagick’s Convert program. Optional. For CAPTCHA challenges. See section [captcha][16].
 
-### Download Source Code
+## Download Source Code
 
 Released versions of `ejabberd` are available on ProcessOne
 [`ejabberd` downloads page][1].
@@ -142,7 +142,7 @@ from the Git repository using the commands:
 	cd ejabberd
 	./autogen.sh
 
-### Compile
+## Compile
 
 To compile `ejabberd` execute the commands:
 
@@ -159,7 +159,7 @@ list run the command:
 	#!console
 	./configure --help
 
-#### Configure options
+### Configure options
 
 Some options that you may be interested in modifying:
 
@@ -220,7 +220,7 @@ Here are other available options, that are experimental and not recommended:
 
 - **`–-enable-hipe`**: Compile natively with HiPE, not recommended.
 
-### Install
+## Install
 
 To install `ejabberd` in the destination directories, run the command:
 
@@ -263,7 +263,7 @@ The files and directories created are, by default:
     - `ejabberd.log`:   ejabberd service log
     - `erlang.log`:   Erlang/OTP system log
 
-### Start
+## Start
 
 You can use the `ejabberdctl` command line administration script to
 start and stop `ejabberd`. If you provided the configure option
@@ -298,9 +298,9 @@ your distribution). Create a system user called `ejabberd`; it will be
 used by the script to start the server. Then you can call
 `/etc/inid.d/ejabberd start` as root to start the server.
 
-### Specific Notes
+## Specific Notes
 
-#### Specific Notes for OSX (Yosemite or El Capitan)
+### Specific Notes for OSX (Yosemite, El Capitan, Sierra)
 
 On OS X, you need to tell ejabberd to use custom OpenSSL, Yaml, iconv
 for the build. The best approach is to use Homebrew(http://brew.sh) to
@@ -328,14 +328,14 @@ feature and have read Homebrew documentation no that topic:
 [El Capitan & Homebrew](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md)
 
 
-#### Specific Notes for BSD
+### Specific Notes for BSD
 
 The command to compile `ejabberd` in BSD systems is:
 
 	#!console
 	gmake
 
-#### Specific Notes for Sun Solaris
+### Specific Notes for Sun Solaris
 
 <!-- TODO: Is this still valid ? -->
 
@@ -358,9 +358,9 @@ And finally install `ejabberd` with:
 	#!console
 	gmake -f Makefile.gi ginstall
 
-## Post-install Operations
+# Post-install Operations
 
-### Creating an XMPP Account for Administration
+## Creating an XMPP Account for Administration
 
 `ejabberd` binary installer prompt you for an admin account. However,
 if you use another way of installing ejabberd you may need to create
@@ -402,7 +402,7 @@ enter the `ejabberd` Web Admin. Here are the steps to create it:
     example: `admin1@example.org`). The reason that you also need to
     enter the suffix, is because `ejabberd`’s virtual hosting support.
 
-### Upgrading ejabberd
+## Upgrading ejabberd
 
 To upgrade an ejabberd installation to a new version, simply uninstall
 the old version, and then install the new one. Of course, it is

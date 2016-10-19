@@ -1,15 +1,14 @@
 ---
-title: Using ejabberd with MySQL | ejabberd documentation
+title: Using ejabberd with MySQL
+toc: true
 ---
-
-# Using ejabberd with MySQL
 
 ejabberd is bundled with native Erlang driver to use MySQL as a
 backend for persistent storage.
 
 Using MySQL as backend is thus extremely straightforward.
 
-## ejabberd installation
+# ejabberd installation
 
 ejabberd packages and binary installers contains all the module needed
 to connect to your MySQL server. You have no extra module to install
@@ -24,12 +23,12 @@ cd ejabberd-source
 ./configure --enable-mysql
 ~~~
 
-## MySQL installation
+# MySQL installation
 
 You need a MySQL server that you can point your ejabberd configuration
 to. The database does not have to be on the same server than ejabberd.
 
-### Requirements
+## Requirements
 
 ejabberd make use of FULLTEXT indexes with InnoDB. Thus, you need
 MySQL 5.6 or greater to use with ejabberd.
@@ -38,7 +37,7 @@ MySQL 5.6 or greater to use with ejabberd.
 can try using older 5.5 version. You may need to adapt MySQL database
 schema to cope with those older MySQL versions.
 
-### MySQL on Linux
+## MySQL on Linux
 
 This documentation will not get into the details of making MySQL
 running on Linux for production. It is dependant on Linux distribution
@@ -46,7 +45,7 @@ and system admistrators preferences and habits.
 
 It is also well documented, so it should not be an issue.
 
-### Amazon RDS compliance
+## Amazon RDS compliance
 
 ejabberd is fully compliant with
 [MySQL on Amazon RDS](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html).
@@ -54,7 +53,7 @@ ejabberd is fully compliant with
 You just need to make sure to use MySQL ersion 5.6 or greater when you
 create your database.
 
-### Example MySQL installation on OSX with homebrew
+## Example MySQL installation on OSX with homebrew
 
 For testing / development, it is common to start experimenting with
 MySQL with Homebrew installation.
@@ -101,9 +100,9 @@ sudo rm -rf /usr/local/var/mysql
 
 -->
 
-## MySQL database creation
+# MySQL database creation
 
-### Create ejabberd user and database
+## Create ejabberd user and database
 
 MySQL admins should use that schema and grant right to a dedicated
 'ejabberd' user (replace password with your desired password):
@@ -140,7 +139,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ~~~
 
-### Download and adapt MySQL schema
+## Download and adapt MySQL schema
 
 The schema files can be found in ejabberd priv directory. MySQL
 default schema is defined in a file called `mysql.sql`.
@@ -179,9 +178,9 @@ From there, you can read it and check that it suites your production
 constrains. You can learn more about the database schema, you can read
 [ejabberd SQL database schema documentation](/developer/sql-schema/).
 
-### Load database schema into your new database
+## Load database schema into your new database
 
-You can load the schema in your new 'ejabberd database with the following command:
+You can load the schema in your new 'ejabberd' database with the following command:
 
 ~~~ bash
 mysql -h localhost -D ejabberd -u ejabberd -p < mysql.sql
@@ -230,13 +229,13 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 
 Your database is now ready to connect with ejabberd.
 
-## ejabberd configuration
+# ejabberd configuration
 
 ejabberd default backend is Mnesia internal database. However,
 ejabberd is extremely flexible and you can decide to use MySQL instead
 on a module-by-module basis.
 
-### Adding MySQL connection configuration to ejabberd config file
+## Adding MySQL connection configuration to ejabberd config file
 
 In `ejabberd.yml`, define your database parameters:
 
@@ -246,13 +245,13 @@ sql_server: "localhost"
 sql_database: "ejabberd"
 sql_username: "ejabberd"
 sql_password: "password"
-# If you want to specify the port:
+## If you want to specify the port:
 sql_port: 3306
 ~~~
 
 Those parameters are mandatory if you want to use MySQL with ejabberd.
 
-### Configure desired authentication backend
+## Configure desired authentication backend
 
 If you decide to store user password in ejabberd, you need to tell
 ejabberd to use MySQL instead of internal database for authentication.
@@ -279,7 +278,7 @@ User testuser@localhost successfully registered
 
 You should now be able to connect XMPP users based on MySQL user base.
 
-### Switch modules to use MySQL instead of Mnesia
+## Switch modules to use MySQL instead of Mnesia
 
 At this stage, only the authentication / user base has been moved to
 MySQL. For data managed by modules, ejabberd still use internal
@@ -308,7 +307,7 @@ default_db: sql
 **Note:** even if you move all the persistent data you can to MySQL,
 Mnesia will still be started and used to manage clustering.
 
-## Migrating data from internal database to MySQL
+# Migrating data from internal database to MySQL
 
 To migrate your data, once you have setup your sql service, you can
 move most of the data to your database.
@@ -347,7 +346,7 @@ configured MySQL database. For example:
 
 You should be set now.
 
-## Getting further
+# Getting further
 
 To get further you can read
 [ejabberd Installation and Operation Guide: Database and LDAP configuration](https://docs.ejabberd.im/admin/guide/configuration/#database-and-ldap-configuration)

@@ -1,8 +1,6 @@
 ---
-title: Global commands interface
+title: ejabberd commands
 ---
-
-# ejabberd commands
 
 By defining command using api available through `ejabberd_commands`
 module, it's possible to add operations that would be available to
@@ -14,9 +12,9 @@ and produced result by filling `#ejabberd_commands` record and
 registering it in dispatcher by calling
 `ejabberd_commands:register_commands([ListOfEjabberdCommandsRecords])`.
 
-## Structure of `#ejabberd_commands` record
+# Structure of `#ejabberd_commands` record
 
-## Writing ejabberd commands supporting OAuth
+# Writing ejabberd commands supporting OAuth
 
 If you have existing commands that you want to make OAuth compliant,
 you can make them OAuth compliant very easily.

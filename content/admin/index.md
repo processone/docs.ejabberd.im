@@ -1,8 +1,8 @@
 ---
-title: Overview
+title: ejabberd for Administrators
+menu: ejabberd for Administrators
+order: 50
 ---
-
-# ejabberd Community Edition
 
 This area contains information on administering your ejabberd
 system.

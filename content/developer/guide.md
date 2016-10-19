@@ -1,3 +1,6 @@
+---
+title: ejabberd developer guide
+---
 # Introduction
 
 `ejabberd` is a *free and open source* instant messaging server
@@ -147,7 +150,7 @@ features:
     - Component support: interface with networks such as AIM, ICQ and
       MSN installing special tranports.
 
-## How it Works
+# How it Works
 
 A XMPP domain is served by one or more `ejabberd` nodes. These nodes
 can be run on different machines that are connected via a network. The
@@ -180,7 +183,7 @@ As ejabberd server is highly extensible, most of the remaining
 features are provided by modules, that need to be enabled in the
 configuration file.
 
-### Router
+## Router
 
 This module is the main router of XMPP packets on each node. It routes
 them based on their destinations domains. It has two tables: local and
@@ -190,21 +193,21 @@ process. If no, then it searches in global table, and is routed to the
 appropriate `ejabberd` node or process. If it does not exists in either
 tables, then it sent to the S2S manager.
 
-### Local Router
+## Local Router
 
 This module routes packets which have a destination domain equal to this
 server name. If destination JID has a non-empty user part, then it
 routed to the session manager, else it is processed depending on it’s
 content.
 
-### Session Manager
+## Session Manager
 
 This module routes packets to local users. It searches for what user
 resource packet must be sent via presence table. If this resource is
 connected to this node, it is routed to C2S process, if it connected via
 another node, then the packet is sent to session manager on that node.
 
-### S2S Manager
+## S2S Manager
 
 This module routes packets to other XMPP servers. First, it checks if an
 open S2S connection from the domain of the packet source to the domain
@@ -213,9 +216,9 @@ then it routes the packet to S2S manager on that node, if it is open on
 this node, then it is routed to the process that serves this connection,
 and if a connection does not exist, then it is opened and registered.
 
-## Authentication
+# Authentication
 
-#### External
+## External
 
 The external authentication script follows
 [`the erlang port driver API`](http://www.erlang.org/doc/tutorial/c_portdriver.html).
@@ -292,7 +295,7 @@ Example python script
             success = setpass(data[1], data[2], data[3])
         to_ejabberd(success)
 
-## XML Representation
+# XML Representation
 
 Each XML stanza is represented as the following tuple:
 
@@ -320,7 +323,7 @@ is represented as the following structure:
              [],
              [{xmlcdata, "test"}]}]}}
 
-## Module `xml`
+# Module `xml`
 
 `element_to_string(El) -> string()`
 
@@ -382,9 +385,9 @@ Module `xml_stream`
 Parses `Str` using XML parser, returns either parsed element or error
 tuple.
 
-## Modules
+# Modules
 
-### Module gen\_iq\_handler
+## Module gen\_iq\_handler
 
 The module `gen_iq_handler` allows to easily write handlers for IQ
 packets of particular XML namespaces that addressed to server or to
@@ -458,7 +461,7 @@ Handler function must have the following type:
                    [{xmlelement, "cputime", [], [{xmlcdata, SCPUTime}]}]}]}
         end.
 
-### Services
+## Services
 
     -module(mod_echo).
 

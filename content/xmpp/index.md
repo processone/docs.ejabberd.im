@@ -18,7 +18,7 @@ XMPP was designed before the advent of realtime web. However, it
 managed to adapt thanks to the following specifications:
 
 * XMPP PubSub is defined in
-  [XEP-0060](http://www.xmpp.org/extensions/xep-0060.html). This is s
+  [XEP-0060](http://www.xmpp.org/extensions/xep-0060.html). This is a 
   very powerful mechanism that define channel based communitation on
   top of XMPP protocol itself. A server can handles millions of
   channels, call Pubsub nodes. Users interested in specific channels

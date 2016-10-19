@@ -1,8 +1,8 @@
 ---
 title: Step-by-step Databases Configuration Guides
+menu: Databases
+order: 40
 ---
-
-# Step-by-step Databases Configuration Guides
 
 Configuration with database and LDAP is explained more generally in
 ejabberd Configuration section:
