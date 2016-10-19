@@ -1,12 +1,10 @@
 # ejabberd Documentation
 
-This repository holds the source code of the ejabberd documentation website, available at [docs.ejabberd.im](https://docs.ejabberd.im). This is an Open Documentation, and you are welcome to submit issues or pull requests in order to improve the docs and benefit the ejabberd community.
+This repository holds the source code of the ejabberd documentation website, available at [docs.ejabberd.im](https://docs.ejabberd.im). This is a community effort and you are welcome to submit issues or pull requests in order to improve the docs and benefit the ejabberd community.
 
 # Contributing
 
 If you want to contribute to this ejabberd documentation, here are some helpful guidelines regarding the syntax:
-
-- please refer to [README-deploy.md](README-deploy.md) on how to create a local testing environment
 
 - use Markdown, specifically the [kramdown flavour](http://kramdown.gettalong.org/syntax.html)
 
