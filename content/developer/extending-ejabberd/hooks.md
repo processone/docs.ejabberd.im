@@ -194,6 +194,7 @@ corresponding hooks parameters is described below.
 * local_send_to_resource_hook(From, To, Packet) -> ok
 * muc_filter_message(Stanza, MUCState, RoomJID, FromJID, FromNick) -> Stanza \| drop
 * muc_filter_presence(Stanza, MUCState, RoomJID, FromJID, FromNick) -> Stanza \| drop
+* muc_invite(RoomJID, RoomConfig, From, To, Reason) -> ok
 * offline_message_hook(From, To, Packet) -> ok
 * presence_probe_hook(From, To, Pid) -> ok
 * privacy_check_packet(Acc, User, Server, PrivacyList, {From, To, Packet}, Dir) -> Auth
@@ -239,7 +240,7 @@ corresponding hooks parameters is described below.
 
 # Hooks parameters data types
 
-* To = From = JID = ServerJID = #jid (see jlib.h)
+* To = From = JID = ServerJID = RoomJID = #jid (see jlib.h)
 * Packet = Payload = {xmlelement, Name, Attrs, SubEl}
 * IQ = #iq (see jlib.h)
 * Error = ?STANZA_ERROR/3 (see jlib.h)
@@ -254,6 +255,7 @@ corresponding hooks parameters is described below.
 * Arg = [string()]
 * Node = [string()]
 * ItemID = string()
+* RoomConfig = #config (see mod_muc_room.hrl)
 * Route = {route, From, To, Packet}
 * RosterItem = #roster (see mod_roster.hrl)
 * Subscription = none \| from \| to \| both \| remove
