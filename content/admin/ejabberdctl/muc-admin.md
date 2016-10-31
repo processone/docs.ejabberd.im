@@ -121,7 +121,7 @@ Send a direct invitation to several JIDs. Password and Message can
 also be: none. Users JIDs are separated with ':'.
 
 ~~~ bash
-ejabberdctl send_direct_invitation room_name password reason jid1[:jid2]
+ejabberdctl send_direct_invitation room_name muc_service password reason jid1[:jid2]
 ~~~
 
 ## Change option for a MUC room
@@ -129,7 +129,7 @@ ejabberdctl send_direct_invitation room_name password reason jid1[:jid2]
 Change an option in a MUC room.
 
 ~~~ bash
-ejabberdctl change_room_option room_name muc_service options_list
+ejabberdctl change_room_option room_name muc_service option value
 ~~~
 
 TODO: add example to show how options list is represented.
