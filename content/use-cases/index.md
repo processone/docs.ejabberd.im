@@ -1,7 +1,7 @@
 ---
 title: ejabberd Use Cases
 menu: Use Cases
-order: 30
+order: 50
 ---
 
 ejabberd is very versatile and is a solid choice to build messaging

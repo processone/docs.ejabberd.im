@@ -98,28 +98,28 @@ Due to complexity of XEP-0060, PubSub engine do successive calls to nodetree and
 Plugin design follows this requirement and divide actions by type of data to allow transient backend implementation without any PubSub engine change.
 
 ## Create Node
-[Create Node](/static/images/pubsub/create_node.png)
+![Create Node](/static/images/pubsub/create_node.png)
 
 ## Delete Node
-[Delete Node](/static/images/pubsub/delete_node.png)
+![Delete Node](/static/images/pubsub/delete_node.png)
 
 ## Subscribe
-[Subscribe](/static/images/pubsub/subscribe.png)
+![Subscribe](/static/images/pubsub/subscribe.png)
 
 ## Unsubscribe
-[Unsubscribe](/static/images/pubsub/unsubscribe.png)
+![Unsubscribe](/static/images/pubsub/unsubscribe.png)
 
 ## Publish item
-[Publish Item](/static/images/pubsub/publish_item.png)
+![Publish Item](/static/images/pubsub/publish_item.png)
 
 ## Delete item
-[Delete Item](/static/images/pubsub/delete_item.png)
+![Delete Item](/static/images/pubsub/delete_item.png)
 
 ## Purge Node
-[Purge Node](/static/images/pubsub/purge_node.png)
+![Purge Node](/static/images/pubsub/purge_node.png)
 
 ## Get item
-[Get Item](/static/images/pubsub/get_item.png)
+![Get Item](/static/images/pubsub/get_item.png)
 
 # Available backends
 Flat, hometree and PEP supports mnesia and SQL backends.

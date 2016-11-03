@@ -1,7 +1,7 @@
 ---
 title: ejabberd and XMPP tutorials
 menu: Tutorials
-order: 20
+order: 40
 ---
 
 *Learning ejabberd and XMPP through videos and hands-on tutorials*

@@ -1,10 +1,8 @@
 ---
 title: Unattended Installation
-menu: Unattended Installation
-order: 90
 ---
 
-Bitrock framework allow unattended install. With this mode, the
+Bitrock framework allow unattended installation. With this mode, the
 installer will not prompt the user for any information and will
 instead use the default settings configured for each of the
 parameters. That way, no input is required from the user during the

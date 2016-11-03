@@ -1,17 +1,18 @@
 ---
 title: ejabberd for Administrators
 menu: ejabberd for Administrators
-order: 50
+order: 20
 ---
 
-This area contains information on administering your ejabberd
-system.
+This area contains information on administering your ejabberd system.
 
-* [ejabberd Installation and Operation Guide](/admin/guide/) provides a full reference
-  information on ejabberd installation, configuration and management.
+Additionally, you can refer to those extra topics:
 
-* [Administration API Reference](/admin/api/) provides documentation
-  for commands available in ejabberdctl, ctl, REST API, XMLRpc etc.
+* [Advanced ejabberd Administration](/admin/guide/) provides guidance on how to
+    handle advanced ejabberd topics.
+
+* [Administration API Reference](/developer/ejabberd-api/admin-api/) provides documentation
+  for commands available in ejabberdctl and ReST API.
 
 * [ejabberdctl Reference](/admin/ejabberdctl/) provides documentation
   for ejabberd server administration command-line tool.

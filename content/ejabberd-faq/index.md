@@ -2,7 +2,7 @@
 title: ejabberd Frequently Asked Questions (FAQ)
 toc: true
 menu: FAQ
-order: 40
+order: 60
 ---
 
 # Development process

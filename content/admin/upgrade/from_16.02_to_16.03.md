@@ -10,9 +10,10 @@ while a previous version of ejabberd is actually running.
 
 ## SQL database upgrade
 
-	#!console
-	mysql -h host -u user database -p << EOF
-	ALTER TABLE users ADD COLUMN serverkey text NOT NULL DEFAULT '';
-	ALTER TABLE users ADD COLUMN salt text NOT NULL DEFAULT '';
-	ALTER TABLE users ADD COLUMN iterationcount integer NOT NULL DEFAULT 0;
-	EOF
+```bash
+mysql -h host -u user database -p << EOF
+ALTER TABLE users ADD COLUMN serverkey text NOT NULL DEFAULT '';
+ALTER TABLE users ADD COLUMN salt text NOT NULL DEFAULT '';
+ALTER TABLE users ADD COLUMN iterationcount integer NOT NULL DEFAULT 0;
+EOF
+```

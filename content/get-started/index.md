@@ -206,6 +206,6 @@ ideas or improvements to make sure ejabberd is always your most solid
 choice in term of scalability, robustness and manageability.
 
 The best way to start developing for ejabberd is to clone, watch and
-star the [project](https://www.github.com/processone/ejabberd) to get
+star the [project](https://www.github.com/processone/ejabberd), to get
 in touch on our developer chatroom (ejabberd@conference.jabber.ru) or
-to join the [forums](http://www.ejabberd.im).
+to join [ejabberd community on StackOverflow](http://stackoverflow.com/questions/tagged/ejabberd?sort=newest).

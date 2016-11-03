@@ -1,7 +1,7 @@
 ---
 title: ejabberd for Developers
 menu: ejabberd for Developers
-order: 60
+order: 30
 ---
 
 As a developer, you can customize ejabberd to design almost every type

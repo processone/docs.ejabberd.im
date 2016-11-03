@@ -1,7 +1,5 @@
 ---
 title: Contributions
-menu: Contributions
-order: 40
 ---
 
 # External authentication

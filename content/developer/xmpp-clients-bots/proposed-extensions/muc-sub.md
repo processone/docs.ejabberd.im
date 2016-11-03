@@ -1,6 +1,9 @@
 ---
 title: Multi-User Chat Subscriptions
+toc: true
 ---
+
+# Motivation
 
 In XMPP, Multi-User Chat rooms design rely on presence. To participate
 in a MUC room, you need to send a presence to the room. When you get
@@ -31,7 +34,7 @@ This approach has many drawbacks:
 2. It does not play well with normal server / cluster operations. If
    you restart the service where the user session is kept, it will
    disappear. You can dump them to disk and recreate them on start,
-   but it means that if the node crashes, your session will be losts
+   but it means that if the node crashes, your session will be lost
    and user will stop receiving messages.
 3. It does not change the fundamental nature of MUC chat room. They
    are still presence-based. It means that if you need to restart the
@@ -50,7 +53,7 @@ and send messages (XEP-0369: Mediated Information eXchange
 comprehensive and the MIX protocol is not yet ready to cover all the
 MUC use cases yet. The goal is to produce an intermediate state that
 is compliant with MUC and leverage most of the MUC features, while
-adding the most basic feature possible to implement the MUC Sub
+adding the most basic feature possible to implement the MUC/Sub
 extension.
 
 This specifications tries to merge ideas to produce a MUC extension
@@ -77,11 +80,11 @@ protocol.
 
 # General principle
 
-The core idea is to expose MUC rooms as pubsub nodes and to introduce
+The core idea is to expose MUC rooms as PubSub nodes and to introduce
 the concept of MUC rooms subscribers.
 
 A user affiliated to a MUC room should be able to subscribe to MUC
-node events and have them routed to his jid, even if he is not a
+node events and have them routed to his JID, even if he is not a
 participant in the room. It means that a user can receive messages
 without having to send presence to the room. In that sense, "joining
 the room" in XEP-0045 becomes more "Being available in the MUC room".
@@ -90,7 +93,7 @@ the room" in XEP-0045 becomes more "Being available in the MUC room".
 
 ## Discovering support on MUC service
 
-You can check if MUC Sub feature is available on MUC service by sending disco info IQ:
+You can check if MUC/Sub feature is available on MUC service by sending Disco Info IQ:
 
 ~~~ xml
 <iq from='hag66@shakespeare.example/pda'
@@ -180,7 +183,7 @@ nodes:
 - urn:xmpp:mucsub:nodes:subject
 - urn:xmpp:mucsub:nodes:system
 
-Example: User Subscribe to MUC/Sub events
+Example: User Subscribes to MUC/Sub events
 
 ~~~ xml
 <iq from='hag66@shakespeare.example'
@@ -218,7 +221,7 @@ Example: Server replies with success
 Subscription is associated with a nick. It will implicitly register the
 nick. Server should otherwise make sure that subscription match the
 user registered nickname in that room.
-In order to change the nick and/or subscription nodes the same request
+In order to change the nick and/or subscription nodes, the same request
 MUST be sent with a different nick or nodes information.
 
 Example: User changes subscription data
@@ -238,7 +241,7 @@ Example: User changes subscription data
 
 # Unsubscribing from a MUC Room
 
-At any time a user can unsubsribe from MUC Room events.
+At any time a user can unsubscribe from MUC Room events.
 
 Example: User unsubscribes from a MUC Room
 
@@ -385,8 +388,8 @@ Example: Server replies with subscriptions list
 </iq>
 ~~~
 
-A moderator can get the list of subscribers by sending <subscriptions/>
-request directly to MUC JID.
+A room moderator can get the list of subscribers by sending `<subscriptions/>`
+request directly to the room JID.
 
 Example: Moderator asks for subscribers list
 
@@ -416,18 +419,18 @@ Example: Server replies with subscribers list
 # Compliance with existing MUC clients
 
 MUC/Sub approach is compliant with existing MUC service and MUC
-clients. MUC clients compliant with XEP-0045 will receive message
-posted by subscribers. They may not see the user presence, but it
+clients. MUC clients compliant with XEP-0045 will receive messages
+posted by subscribers. They may not see the user's presence, but it
 should not be an issue for most clients. Most clients already support
-receiving messages from user that are not currently in MUC room through
+receiving messages from users that are not currently in the MUC room through
 history retrieval.
 
-This approach should also help most client support better integration with
+This approach should also help most clients to support better integration with
 third-party services posting to MUC room through API (as )
 
 However, a server could choose to send presence on behalf of
-subscribers when a user join the MUC (in the xep-0045 sense) so that
-subscriber will be shown in MUC roster of legacy clients.
+subscribers when a user joins the room (in the XEP-0045 sense) so that
+the subscriber will be shown in MUC roster of legacy clients.
 
 # Synchronization of MUC messages: Leveraging MAM support
 
@@ -451,11 +454,11 @@ SaaS for example).
 More generally, it is straightforward to handle them through ejabberd
 developer API to implement custom mechanisms.
 
-Subscription are delivered to online users. If user has no active
-session, serveur can choose to broadcast to user through a push
+Subscriptions are delivered to online users. If the user has no active
+session, the server can choose to broadcast to the user through a push
 notification.
 
-When a session is open, if the server detect that the user has not
+When a session is opened, if the server detects that the user has not
 been recently active, or for any other reason, the server can still
 forward the message to a push notification service to warn the user
 that new messages are available in a MUC room.
