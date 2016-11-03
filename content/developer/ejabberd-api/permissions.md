@@ -5,6 +5,11 @@ menu: API Permissions
 order: 20
 ---
 
+*This page describes the new flexible permission mechanism introduced in
+ejabberd 16.11. This version will be released at end of November 2016, but
+development can already be tried by installing ejabberd master branch from
+source.*
+
 # Configuring permissions to API endpoints
 
 Access to all available endpoints are configured using `api\_permissions` option.
@@ -14,14 +19,15 @@ on who and what are allowed by rules specified inside it.
 
 Basic rule may looks like this:
 
-    #!yaml
-    api_permissions:
-      - "Admin access":
-        - who:
-          - admin
-        - what
-          - "\*"
-          - "!stop"
+``` yaml
+api_permissions:
+  - "Admin access":
+    - who:
+      - admin
+    - what
+      - "\*"
+      - "!stop"
+```
 
 It tells that group named `Admin access` allows all users that are accepted by
 ACL rule `admin` to execute all commands except command `stop`.
@@ -60,30 +66,33 @@ from accepting any command.
 
 ### Examples of `who` rules
 
-    #!yaml
-    - who:
-      - user: "admin@server.com"
-      - ip: "127.0.0.1/8"
+``` yaml
+- who:
+  - user: "admin@server.com"
+  - ip: "127.0.0.1/8"
+```
 
 This will accept user `admin@server.com` or commands originating
 from localhost
 
-    #!yaml
-    - who:
-      - access:
-        - allow:
-          - user: "admin@server.com"
-          - ip: "127.0.0.1/8"
+``` yaml
+- who:
+  - access:
+    - allow:
+      - user: "admin@server.com"
+      - ip: "127.0.0.1/8"
+```
 
 This will allow execution for commands from `admin@server.com` and
 localhost address
 
-    #!yaml
-    - who:
-      - muc_admin
-      - oauth
-        - scope: "can_muc_admin"
-        - muc_admin
+``` yaml
+- who:
+  - muc_admin
+  - oauth
+    - scope: "can_muc_admin"
+    - muc_admin
+```
 
 Those rules will match for users from `muc_admin` ACL both using regular
 authentication and OAuth (but only for tokens created with can_muc_admin scope)
@@ -104,27 +113,30 @@ from accepting any command.
 
 ### Example of `what` rules
 
-    #!yaml
-    - what:
-      - "*"
-      - "!stop"
+``` yaml
+- what:
+  - "*"
+  - "!stop"
+```
 
 This will allow execution of all command except command `stop`
 
-    #!yaml
-    - what:
-      - "status"
-      - "[tag:account]"
+``` yaml
+- what:
+  - "status"
+  - "[tag:account]"
+```
 
 This will allow execution of `status` and commands with tag `session`
 (like `num_resources` or `status_list`)
 
-    #!yaml
-    - what:
-      - "start"
-      - "!*"
+``` yaml
+- what:
+  - "start"
+  - "!*"
+```
 
-This will match no command
+This will match no command.
 
 ## Rules in `from` section
 
@@ -133,28 +145,29 @@ to outside world. Currently those modules are `ejabberd_xmlrpc`, `mod_http_api`
 and `ejabberd_ctl`.
 
 If `from` section is missing from group then all endpoints are accepted,
-if it's specified endpoint must be listed inside it to be allowed to exeucte.
+if it's specified endpoint must be listed inside it to be allowed to execute.
 
 
 ## Examples
 
-    #!yaml
-    api_permissions:
-      "console commands":
-        from:
-          - ejabberd_ctl
-        who: all
-        what: "*"
-      "admin access":
-        who:
-          - admin
-          - oauth:
-            - scope: "ejabberd:admin"
-            - admin
-        what:
-          - "*"
-          - "!stop"
-          - "!start"
+``` yaml
+api_permissions:
+  "console commands":
+    from:
+      - ejabberd_ctl
+    who: all
+    what: "*"
+  "admin access":
+    who:
+      - admin
+      - oauth:
+        - scope: "ejabberd:admin"
+        - admin
+    what:
+      - "*"
+      - "!stop"
+      - "!start"
+```
 
 Rules include in this will allow execution of any command invoked
 by`ejabberdctl` shell command, or all command except `start` and `stop`
