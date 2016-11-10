@@ -184,7 +184,7 @@ Some options that you may be interested in modifying:
   the machine before running `make install`. This account doesn’t need
   an explicit HOME directory, because `/var/lib/ejabberd/` will be
   used by default.
-  **NOTE:** If obnmit this command ejabberd may be run as an unespected
+  **NOTE:** If obmit this command ejabberd may be run as an unespected
   user. If you e.g. later install it with root privilegies it may even
   be executed as root!
 
