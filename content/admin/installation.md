@@ -154,7 +154,7 @@ cd ejabberd
 To compile `ejabberd` execute the commands:
 
 ``` bash
-./configure --enable-mysql
+./configure --enable-mysql -–enable-user=ejabberd
 ```
 
 *Note*: To build ejabberd, you will need Internet access, as
@@ -184,6 +184,9 @@ Some options that you may be interested in modifying:
   the machine before running `make install`. This account doesn’t need
   an explicit HOME directory, because `/var/lib/ejabberd/` will be
   used by default.
+  **NOTE:** If obmit this command ejabberd may be run as an unespected
+  user. If you e.g. later install it with root privilegies it may even
+  be executed as root!
 
 - **`-–enable-pam`**: Enable the PAM authentication method (see section
   [pam][8]).
