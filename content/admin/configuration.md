@@ -3272,7 +3272,7 @@ return an HTTP status code of 200 or 201 and two lines of text/plain
 output. The first line is forwarded to the XMPP client as the PUT URL,
 the second line as the GET URL. In order to reject the request, the
 service should return a status code of 402 (`resource-constraint`), 403
-(`not-allowed`), or 414 (`not-acceptable`). Default: `undefined`.
+(`not-allowed`), or 413 (`not-acceptable`). Default: `undefined`.
 
 **`custom_headers: {Name: Value}`**: This option specifies additional header fields to be included in all
 HTTP responses. Default: `[]`.
