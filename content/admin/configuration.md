@@ -1303,7 +1303,7 @@ following syntax:
 	    acl:
 	      admin:
 	        - user:
-	          "yozhik": "example.org"
+	            "yozhik": "example.org"
 	        - user: "peter@example.org"
 
 **`server: Server`**:   Matches any JID from server `Server`. Example:
