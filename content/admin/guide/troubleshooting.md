@@ -118,7 +118,7 @@ The syntax is:
 
 Example configuration:
 
-	#!yaml
+	
 	watchdog_admins:
 	  - "admin2@localhost"
 	  - "admin2@example.org"
@@ -127,7 +127,7 @@ Example configuration:
 To remove watchdog admins, remove them in the option. To remove all
 watchdog admins, set the option with an empty list:
 
-	#!yaml
+	
 	watchdog_admins: []
 
 [1]:	http://www.ejabberd.im/interconnect-erl-nodes

@@ -2,6 +2,7 @@
 title: ejabberd Use Cases
 menu: Use Cases
 order: 50
+toc: true
 ---
 
 ejabberd is very versatile and is a solid choice to build messaging
@@ -18,14 +19,14 @@ This includes:
 * [Libon](http://www.process-one.net/en/customers/case/libon/)
 * [Nokia OVI Chat](http://en.wikipedia.org/wiki/Ovi_(Nokia))
 * [Roo Kids](http://www.rookidsapp.com): Safe & fun instant messaging app for kids with minimum yet critical parental controls.
-* [Swisscom IO](https://io.swisscom.ch/en/introduction)
-* [Versapp](http://www.versapp.co)
+* [Swisscom IO](https://www.io.swisscom.ch/en/index.html)
+* Versapp
 * [Whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html)
 
 # Gaming
 
 * [Electronic Arts](http://www.ea.com)
-* [FACEIT](https://beta.faceit.com/)
+* [FACEIT](https://www.faceit.com/)
 * [Kixeye](http://www.kixeye.com)
 * [Machine Zone (Game of War)](http://www.machinezone.com)
 * [Nokia nGage](http://en.wikipedia.org/wiki/N-Gage_(service))
@@ -46,7 +47,7 @@ This includes:
 
 # Telecom / Hosting
 
-* [Fastmail](http://blog.fastmail.com/2011/08/)
+* [Fastmail](https://blog.fastmail.com/2011/08/24/new-xmppjabber-server/)
 * GMX
 * Orange
 * [SAPO - Portugal Telecom](https://www.process-one.net/resources/case_studies/ProcessOne_SAPO_Case_Study_v7.pdf)

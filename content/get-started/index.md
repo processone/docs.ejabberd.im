@@ -1,6 +1,8 @@
 ---
 title: Getting started with ejabberd
 menu: Get Started
+categories: ecs
+toc: true
 order: 10
 ---
 
@@ -63,7 +65,13 @@ offering. Commercial offering come in two type of packaging:
   data provider for ejabberd SaaS.
 
 Whatever approach you choose, you can hardly make the wrong choice
-with ejabberd.
+with ejabberd! In every case you can easily integrate ejabberd with
+your existing application using:
+
+* [REST API](/developer/ejabberd-api/) and ejabberdctl command-line tool
+* Mobile libraries for iOS: [XMPPFramework](https://github.com/robbiehanson/XMPPFramework), [Jayme REST API](https://github.com/inaka/Jayme)
+* Mobile libraries for Android: [Smack](https://github.com/igniterealtime/Smack), [Retrofit](https://github.com/square/retrofit)
+* Web library with WebSocket support and fallback to BOSH: [Strophe](http://strophe.im/)
 
 # Architecture of an ejabberd service
 

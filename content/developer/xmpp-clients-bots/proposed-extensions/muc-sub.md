@@ -191,7 +191,8 @@ Example: User Subscribes to MUC/Sub events
     type='set'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
   <subscribe xmlns='urn:xmpp:mucsub:0'
-             nick='mynick'>
+             nick='mynick'
+             password='roompassword'>
     <event node='urn:xmpp:mucsub:nodes:messages' />
     <event node='urn:xmpp:mucsub:nodes:affiliations' />
     <event node='urn:xmpp:mucsub:nodes:subject' />
@@ -201,6 +202,7 @@ Example: User Subscribes to MUC/Sub events
 ~~~
 
 If user is allowed to subscribe, server replies with success.
+The password attribute can be provided when subscribing to a password-protected room.
 
 Example: Server replies with success
 
@@ -239,6 +241,28 @@ Example: User changes subscription data
 </iq>
 ~~~
 
+A room moderator can subscribe another user to MUC Room events
+by providing the user JID as an attribute in the `<subscribe/>` element.
+
+Example: Room moderator subscribes another user
+
+~~~ xml
+<iq from='king@shakespeare.example'
+    to='coven@muc.shakespeare.example'
+    type='set'
+    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
+  <subscribe xmlns='urn:xmpp:mucsub:0'
+             jid='hag66@shakespeare.example'
+             nick='mynick'
+             password='roompassword'>
+    <event node='urn:xmpp:mucsub:nodes:messages' />
+    <event node='urn:xmpp:mucsub:nodes:affiliations' />
+    <event node='urn:xmpp:mucsub:nodes:subject' />
+    <event node='urn:xmpp:mucsub:nodes:config' />
+  </subscribe>
+</iq>
+~~~
+
 # Unsubscribing from a MUC Room
 
 At any time a user can unsubscribe from MUC Room events.
@@ -261,6 +285,21 @@ Example: A MUC Room responds to unsubscribe request
     to='coven@muc.shakespeare.example'
     type='result'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7' />
+~~~
+
+A room moderator can unsubscribe another room user from MUC Room events
+by providing the user JID as an attribute in the `<unsubscribe/>` element.
+
+Example: Room moderator unsubscribes another room user
+
+~~~ xml
+<iq from='king@shakespeare.example'
+    to='coven@muc.shakespeare.example'
+    type='set'
+    id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
+  <unsubscribe xmlns='urn:xmpp:mucsub:0'
+               jid='hag66@shakespeare.example'/>
+</iq>
 ~~~
 
 # Subscriber actions

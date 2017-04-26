@@ -2,6 +2,7 @@
 title: Upgrade Procedure for ejabberd
 menu: Upgrading ejabberd
 categories: ecs
+toc: true
 order: 9
 ---
 
@@ -60,8 +61,13 @@ version indicates you need to also update those tables.
 
 # Specific version upgrade notes
 
+- [Upgrading from ejabberd 17.03 to 17.04](/admin/upgrade/from_17.03_to_17.04/)
+- [Upgrading from ejabberd 17.01 to 17.03](/admin/upgrade/from_17.01_to_17.03/)
+- [Upgrading from ejabberd 16.12 to 17.01](/admin/upgrade/from_16.12_to_17.01/)
+- [Upgrading from ejabberd 16.09 to 16.12](/admin/upgrade/from_16.09_to_16.12/)
 - [Upgrading from ejabberd 16.08 to 16.09](/admin/upgrade/from_16.08_to_16.09/)
 - [Upgrading from ejabberd 16.06 to 16.08](/admin/upgrade/from_16.06_to_16.08/)
 - [Upgrading from ejabberd 16.04 to 16.06](/admin/upgrade/from_16.04_to_16.06/)
 - [Upgrading from ejabberd 16.03 to 16.04](/admin/upgrade/from_16.03_to_16.04/)
 - [Upgrading from ejabberd 16.02 to 16.03](/admin/upgrade/from_16.02_to_16.03/)
+- [Upgrading from ejabberd 2.1.1x to 16.02](/admin/upgrade/from_2.1.1x_to_16.02/)

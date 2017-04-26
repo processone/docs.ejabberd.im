@@ -53,7 +53,7 @@ explicitely disabled X-OAUTH2 with the `disable_sasl_mechanisms`
 option in `ejabberd.yml` file, either at global or at virtual host
 level:
 
-    #!yaml
+    
     disable_sasl_mechanisms: ["X-OAUTH2"]
 
 ## ejabberd listeners
@@ -62,7 +62,6 @@ To enable OAuth support in ejabberd, you need to edit your
 `ejabberd.yml` file to add the following snippets.
 
 1. You first need to expose more HTTP endpoint in `ejabberd_http` modules.
-
     1. `ejabberd_oauth` is the request handler that will allow
        generating token for third-parties (clients, services). It is
        usually exposed on "/oauth" endpoint. This handler is mandatory
@@ -78,7 +77,7 @@ If you want to support commands using the XML-RPC protocol, you can add
 Here is a example of the `listen` section in ejabberd configuration
 file, focusing on HTTP handlers:
 
-    #!yaml
+    
     listen:
       ## To handle ejabberd commands using XML-RPC
       -
@@ -116,41 +115,44 @@ for reference.
 Here are the following available parameters to tweak the behaviour of
 OAuth and the available commands:
 
-- **commands_admin_access**: This option will reference an ejabberd
+- `commands_admin_access`: This option will reference an ejabberd
   access rule that will define the user that will be able to use
   commands that are defined as admin only.
-- **commands**: This option is used to define the list of commands we
+
+- `commands`: This option is used to define the list of commands we
   want to enable through a remote mechanism (ReST or XML-RPC). This is
   a list of `add_commands` and `remove_commands` options. You can
-  either use a complete categories of commands or a list of commands.
+  provide list of either commands or complete categories of commands.
   The `add_commands` and `remove_commands` directives are executed in
   order and you can have several of them to control the precise list
   of commands you want to expose through OAuth.
   Possible categories of commands are:
-
-  - *open*: no auth required for that command. Typically, for generic
+  - `open`: no auth required for that command. Typically, for generic
     service information related commands.
-  - *admin*: Only an admin user can use the method.
-  - *user*: User can use the method to access server level information
+  - `admin`: Only an admin user can use the method.
+  - `user`: User can use the method to access server level information
     (like browse MUC room list as user) or their own data. Admin can
     still use it to access any user data.
-  - *restricted*: Such admin command is not exposed over internet and
+  - `restricted`: Such admin command is not exposed over internet and
     is only available through local secure tool like `ejabberdctl`
     command-line tool.
-- **oauth_expire**: Time during which the token is valid, in
+
+- `oauth_expire`: Time during which the token is valid, in
   seconds. After that amount of time, the token expires and the
   delegated credential cannot be used and is removed from the
   database.
-- **oauth_access**: By default creating OAuth tokens is not allowed.  To define
+
+- `oauth_access`: By default creating OAuth tokens is not allowed.  To define
   which users can create OAuth tokens, you can refer to an ejabberd access rule
   in the `oauth_access` option.  Use `all` to allow everyone to create tokens.
 
 Here is an example, for OAuth specific parameters configuration:
 
-    #!yaml
+    
     commands_admin_access: configure
     commands:
-      - add_commands: user
+      - add_commands:
+        - user
     oauth_expire: 3600
     oauth_access: all
 
@@ -181,20 +183,20 @@ will get an invalid_scope error.
 
 Parameters are described in OAuth 2.0 specification:
 
-- **response_type**: Should be `token`.
-- **client_id**: This is the name of the application that is asking for Oauth token.
-- **scope**: This is the scope of the rights being delegated to the
+- `response_type`: Should be `token`.
+- `client_id`: This is the name of the application that is asking for Oauth token.
+- `scope`: This is the scope of the rights being delegated to the
   application. It will limit the feature the application can perform
   and thus ensure the user is not giving away more right than expected
   by the application. As a developer, you should always limit the
   scope to what you actually need.
-- **redirect_uri**: After token is generated, token is passed to the
+- `redirect_uri`: After token is generated, token is passed to the
   application using the redirect URI. It can obviously work for web
   applications, but also for mobile applications, using a redirect URI
   that the mobile application have registered: Proper code for
   handling the token will thus be executed directly in the mobile
   application.
-- **state**: State parameter is optional and use by client to pass
+- `state`: State parameter is optional and use by client to pass
   information that will be passed as well as state parameter in the
   redirect URI.
 
@@ -221,18 +223,18 @@ For example, redirect URI called by ejabberd can be:
 
 Parameters are described in OAuth specification:
 
-- **access_token**: This is the actual token that the client
+- `access_token`: This is the actual token that the client
   application can use for OAuth authentication.
-- **token_type**: ejabberd supports `bearer` token type.
-- **expires_in**: This is the validity duration of the token, in
+- `token_type`: ejabberd supports `bearer` token type.
+- `expires_in`: This is the validity duration of the token, in
   seconds. When the token expires, a new authorization token will need
   to be generated an approved by the user.
 
 <!--- TODO: Does oauth2 allow token refresh ? Is it implemented or could
   it be implemented in ejabberd ? -->
-- **scope**: Confirms the granted scope to the requesting
+- `scope`: Confirms the granted scope to the requesting
   application. Several scopes can be passed, separated by '+'.
-- **state**: If a state parameter was passed by requesting application
+- `state`: If a state parameter was passed by requesting application
   in authorization_token URL, it will be passed back to the
   application as a parameter of the `redirect_uri` to help with the
   client workflow.
@@ -241,9 +243,9 @@ Parameters are described in OAuth specification:
 
 ## Available default scopes
 
-- **sasl_auth**: This scope is use to generate a token that can login
+- `sasl_auth`: This scope is use to generate a token that can login
   over XMPP using SASL X-OAUTH2 mechanism.
-- **user_get_roster** (*mod_oauth_test*): This scope is used to allow
+- `user_get_roster` (*mod_oauth_test*): This scope is used to allow
   retrieving user roster.
 
 <!--- TODO: As scope are generally provided by commands, which are
@@ -264,7 +266,7 @@ servers support OAuth SASL mechanism.
 When enabled, X-OAUTH2 SASL mechanism is advertised in server stream
 features:
 
-    #!xml
+    
     <stream:features>
       <c xmlns="http://jabber.org/protocol/caps" node="http://www.process-one.net/en/ejabberd/" ver="nM19M+JK0ZBMXK7iJAvKnmDuQus=" hash="sha-1"/>
       <register xmlns="http://jabber.org/features/iq-register"/>
@@ -279,7 +281,7 @@ features:
 Authentication with X-OAUTH2 is done by modifying the SASL auth
 element as follow:
 
-    #!xml
+    
     <auth mechanism='X-OAUTH2'
           xmlns='urn:ietf:params:xml:ns:xmpp-sasl'>
       base64("\0" + user_name + "\0" + oauth_token)
@@ -294,7 +296,7 @@ mechanism, except the token is added instead of the user’s password.
 The response is standard for SASL XMPP authentication. For example, on
 success, server will reply with:
 
-    #!xml
+    
     <success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
 
 ## Using commands with ReST / XML-RPC API
@@ -304,7 +306,7 @@ success, server will reply with:
 To pass your bearer token using ReST API, you need to pass your token
 as Bearer token in Authorization HTTP header:
 
-    #!http
+    
     Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
 
 Using ReST API, authorization is using a bearer token, meaning you do
@@ -323,12 +325,12 @@ act as an admin (See previous reference about access rules).
 To act as an admin from a ReST API call, the HTTP request must contain
 the following header:
 
-    #!http
+    
     X-Admin: true
 
 To act as an admin from an XML-RPC query, the XML-RPC query must contain:
 
-    #!erlang
+    
     {admin,true}
 
 ### ReST JSON example
@@ -339,15 +341,15 @@ as an admin to get any user roster.
 The HTTP endpoint does not take any parameter, so we can just do an
 HTTP post with empty JSON structure list (see `-d` option):
 
-    #!bash
+    
     curl -v -X POST -H "Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx" http://localhost:5280/api/get_roster -d '[]'
 
 For admin queries, add "X-Admin: true" header:
 
-    #!bash
+    
     curl -v -X POST -H "X-Admin: true" -H "Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx" http://localhost:5280/api/get_roster -d '{"user": "test10", "server": "localhost"}'
 
-<!--- There is --oauth2-bearer curl option, which probably should add
+<!--- There is - - oauth2-bearer curl option, which probably should add
       that authorization header, but it does nothing in my curl version -->
 
 ### XML-RPC examples
@@ -357,7 +359,7 @@ as an admin to get any user roster.
 
 Here is an (Erlang) XML-RPC example on how to get your own roster:
 
-    #!erlang
+    
     xmlrpc:call({127, 0, 0, 1}, 4560, "/",
       {call, get_roster, [
         {struct, [{user, "peter"},
@@ -367,7 +369,7 @@ Here is an (Erlang) XML-RPC example on how to get your own roster:
 
 This will lead to sending this XML-RPC payload to server:
 
-    #!xml
+    
     <?xml version="1.0" encoding="UTF-8"?>
     <methodCall>
       <methodName>get_roster</methodName>
@@ -402,7 +404,7 @@ This will lead to sending this XML-RPC payload to server:
 To get roster of other user using admin authorization, this erlang
 XML-RPC code can be used:
 
-    #!erlang
+    
     xmlrpc:call({127, 0, 0, 1}, 4560, "/",
       {call, get_roster, [
         {struct, [{user, "admin"},
@@ -433,7 +435,7 @@ Or this equivalent Python script:
 
 that would send this XML to server:
 
-    #!xml
+    
     <?xml version="1.0" encoding="UTF-8"?>
     <methodCall>
       <methodName>get_roster</methodName>
@@ -500,29 +502,25 @@ You can enable all those commands individually or enable them all at
 once by adding all commands in `admin` policy.
 
 - ejabberd core:
-
-    - *incoming\_s2s\_number* - Number of incoming s2s connections on node
-    - *outgoing\_s2s\_number* - Number of outgoing s2s connections on node
-    - *connected\_users* - List of established sessions
-    - *connected\_users\_number* - Number of established sessions
+    - `incoming_s2s_number` - Number of incoming s2s connections on node
+    - `outgoing_s2s_number` - Number of outgoing s2s connections on node
+    - `connected_users` - List of established sessions
+    - `connected_users_number` - Number of established sessions
 
 - `ejabberd_admin`:
-
-   - *register* - Create a new user
+   - `register` - Create a new user
 
 - `mod_admin_extra`:
-
-    - *num\_active\_users* - Number of users active in the last days
-    - *status\_num\_host* - Number of logged users with given status in host
-    - *status\_num* - Number of logged users with given status
-    - *stats* -  Get statistical value: registered users, online users,
+    - `num_active_users` - Number of users active in the last days
+    - `status_num_host` - Number of logged users with given status in host
+    - `status_num` - Number of logged users with given status
+    - `stats` -  Get statistical value: registered users, online users,
        online users node, uptime seconds
-    - *stats\_host* - Get statistical value per host: registered users,
+    - `stats_host` - Get statistical value per host: registered users,
       online users, online users node, uptime seconds
 
 - `mod_muc_admin`:
-
-    - *muc\_online\_rooms* - List of existing rooms
+    - `muc_online_rooms` - List of existing rooms
 
 ## User and Admin
 
@@ -530,10 +528,8 @@ You can enable all those commands individually or enable them all at
 once by adding all commands in `user` policy.
 
 - ejabberd core:
-
-    - *user\_resources* - List of connected user's resources
+    - `user_resources` - List of connected user's resources
 
 - `mod_admin_extra`:
-
-    - *get\_roster* - Get roster of a local user
-    - *get\_offline\_count* - Number of unread offline messages
+    - `get_roster` - Get roster of a local user
+    - `get_offline_count` - Number of unread offline messages

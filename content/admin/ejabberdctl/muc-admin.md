@@ -54,7 +54,7 @@ ejabberdctl create_room room_name muc_service xmpp_domain
 Destroy a MUC chat room.
 
 ~~~ bash
-ejabberdctl destroy_room room_name muc_service xmpp_domain
+ejabberdctl destroy_room room_name muc_service
 ~~~
 
 ## Create multiple rooms from file

@@ -2,6 +2,7 @@
 title: ejabberd Modules Development
 menu: Modules Development
 order: 10
+toc: true
 ---
 
 # Introduction

@@ -111,7 +111,7 @@ privacy lists. For more details, please read
 [XEP-0016: Privacy Lists, Syntax and Semantics](http://xmpp.org/extensions/xep-0016.html#protocol-syntax). Here
 is an example packet coming from privacy list specification:
 
-    #!xml
+    
     <item
          type='[jid|group|subscription]'
          value='bar'
@@ -169,7 +169,8 @@ anyone else, in any room from that conference host.
 
 
 ## Table `room_history`
-This table is used if persistent room history is enabled. If so, recent room history is saved to the DB before ejabberd is stopped, 
+In ejabberd Business Edition,
+this table is used if persistent room history is enabled. If so, recent room history is saved to the DB before ejabberd is stopped,
 allowing the recent history to survive server restarts.
 
 | Field                | Type             | Usage                                                                                   |

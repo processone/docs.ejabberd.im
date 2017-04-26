@@ -21,7 +21,7 @@ All built-in modules support the `xml:lang` attribute inside IQ queries.
 
 The following example shows the reply to the following query:
 
-	#!xml
+	
 	<iq id='5'
 	    to='example.org'
 	    type='get'

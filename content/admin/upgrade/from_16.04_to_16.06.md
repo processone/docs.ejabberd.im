@@ -12,7 +12,7 @@ Note: this applies only to MySQL. Other backend does not need upgrade.
 
 ## MySQL database upgrade
 
-	#!console
+	
 	mysql -h host -u user database -p << EOF
 	ALTER TABLE users MODIFY opts mediumtext NOT NULL;
 	EOF

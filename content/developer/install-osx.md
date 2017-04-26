@@ -37,7 +37,7 @@ are provided here:
 
 You can install everything with a single command:
 
-    #!console
+    
     brew install git erlang autoconf automake expat openssl libyaml libiconv sqlite 
 
 Please, make sure that for OSX El Capitan you are aware of rootless

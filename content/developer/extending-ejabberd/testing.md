@@ -2,6 +2,7 @@
 title: ejabberd Test Suites
 menu: Testing ejabberd
 order: 60
+toc: true
 ---
 
 ejabberd comes with comprehensive test suite to cover various part of
@@ -20,10 +21,10 @@ various ejabberd backends.
 The test suite is modular and can be run in part, to focus on a group
 of features or a specific backend.
 
-The environment variable CT_BACKEND can be use to define what backend
+The environment variable `CT_BACKEND` can be use to define what backend
 are available.
 
-Possible CT_BACKENDS are:
+Possible `CT_BACKENDS` are:
 
 - mnesia. Technically, Mnesia is included in ejabberd and should
   always be available.
@@ -53,7 +54,7 @@ of groups to test. Possible high level groups to run are:
 - extauth
 - riak
 
-Usually, it is enough to just limit tests with CT_BACKENDS and let the
+Usually, it is enough to just limit tests with `CT_BACKENDS` and let the
 test suite decide to run relevant tests, but you may for example want
 to focus only on a specific backend, skipping the generic `no_db`
 tests.

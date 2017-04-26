@@ -59,21 +59,21 @@ It also allows to query the uptime of an ejabberd server.
 
 ## Enabling
 
-1. Add `mod_last` configuration in `modules` section of the
+Add `mod_last` configuration in `modules` section of the
    configuration file.
 
 It is enabled by default in ejabberd configuration template.
 
 ## Disabling
 
-2. Make sure `mod_last` is not defined or is commented out in ejabberd
+Make sure `mod_last` is not defined or is commented out in ejabberd
    config `modules` section.
    
 No side effect.
 
 ## Module documentation
 
-* [mod_last](/admin/guide/configuration/#modlast)
+* [mod_last](/admin/guide/configuration/#mod-last)
 
 # XEP-0013: Flexible Offline Message Retrieval
 
@@ -104,7 +104,7 @@ message retrieval is enabled in the following cases:
 
 ## Enabling
 
-1. Add `mod_offline` configuration in `modules` section of the
+Add `mod_offline` configuration in `modules` section of the
    configuration file.
 
 It is enabled and can be used by client if mod_offline is
@@ -113,11 +113,11 @@ configuration file template.
 
 ## Disabling
 
-2. Make sure `mod_offline` is not defined or is commented out in
+Make sure `mod_offline` is not defined or is commented out in
    ejabberd config `modules` section.
    
 Side effect: It will disable all offline messages storage.
 
 ## Module documentation
 
-* [mod_offline](/admin/guide/configuration/#modoffline)
+* [mod_offline](/admin/guide/configuration/#mod-offline)

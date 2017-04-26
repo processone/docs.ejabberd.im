@@ -5,7 +5,7 @@ menu: Managing
 order: 60
 ---
 
-# ejabberdctl {#ejabberdctl}
+# ejabberdctl
 
 With the `ejabberdctl` command line administration script you can
 execute `ejabberdctl commands` (described in the next section,
@@ -30,7 +30,7 @@ If you use Bash, you can get Bash completion by copying the file
 `tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
 Debian, Ubuntu, Fedora and maybe others).
 
-## ejabberdctl Commands {#ejabberdctl-commands}
+## ejabberdctl Commands
 
 When `ejabberdctl` is executed without any parameter, it displays the
 available options. If there isn’t an `ejabberd` server running, the
@@ -65,7 +65,7 @@ The `ejabberdctl commands` are:
 **`mnesia`**:   Get information about the Mnesia database.
 
 
-## Erlang Runtime System {#erlang-runtime-system}
+## Erlang Runtime System
 
 `ejabberd` is an Erlang/OTP application that runs inside an Erlang
 runtime system. This system is configured using environment variables
@@ -155,7 +155,7 @@ Note that some characters need to be escaped when used in shell scripts,
 for instance `"` and `{}`. You can find other options in the Erlang
 manual page (`erl -man erl`).
 
-## ejabberd Commands {#ejabberd-commands}
+## ejabberd Commands
 
 An `ejabberd command` is an abstract function identified by a name, with
 a defined number and type of calling arguments and type of result that
@@ -169,7 +169,7 @@ Other known frontends that can be installed to
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).
 
-## List of ejabberd Commands {#list-of-ejabberd-commands}
+## List of ejabberd Commands
 
 `ejabberd` includes a few ejabberd Commands by default as listed below.
 When more modules are installed, new commands may be available in the
@@ -225,8 +225,7 @@ The commands included in ejabberd by default are:
 **`import_piefxis, export_piefxis, export_piefxis_host`**:   These options can be used to migrate accounts using
 	[`XEP-0227`](http://xmpp.org/extensions/xep-0227.html) formatted XML
 	files from/to other Jabber/XMPP servers or move users of a vhost to
-	another ejabberd installation. See also
-	[`ejabberd migration kit`](https://support.process-one.net/doc/display/MESSENGER/ejabberd+migration+kit).
+	another ejabberd installation.
 
 **`import_file, import_dir`**:   These options can be used to migrate accounts using jabberd1.4
 	formatted XML files. from other Jabber/XMPP servers There exist
@@ -274,7 +273,7 @@ The commands included in ejabberd by default are:
 
 **`kick_user user host`**:   Disconnect user’s active sessions
 
-## Restrict Execution with AccessCommands {#restrict-execution-with-accesscommands}
+## Restrict Execution with AccessCommands
 
 The frontends can be configured to restrict access to certain commands
 using the `AccessCommands`. In that case, authentication information
@@ -396,7 +395,7 @@ listen:
         options: []
 ```
 
-## Web Admin {#web-admin}
+## Web Admin
 
 The `ejabberd` Web Admin allows to administer most of `ejabberd` using a
 web browser.
@@ -503,7 +502,7 @@ the system. The file is searched by default in
 be specified in the environment variable `EJABBERD_DOC_PATH`. See
 section [Erlang Runtime System](#erlang-runtime-system).
 
-## Ad-hoc Commands {#ad-hoc-commands}
+## Ad-hoc Commands
 
 If you enable `mod_configure` and `mod_adhoc`, you can perform several
 administrative tasks in `ejabberd` with an XMPP client. The client must
@@ -511,7 +510,7 @@ support Ad-Hoc Commands
 ([`XEP-0050`][1]), and you must
 login in the XMPP server with an account with proper privileges.
 
-## Change Computer Hostname {#change-computer-hostname}
+## Change Computer Hostname
 
 `ejabberd` uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the

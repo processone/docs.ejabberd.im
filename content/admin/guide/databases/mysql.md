@@ -100,6 +100,27 @@ sudo rm -rf /usr/local/var/mysql
 
 -->
 
+## Install with Windows Bash
+
+On Windows you can install MySQL easily like on Linux using Ubuntu Bash:
+
+~~~ bash
+sudo apt-get install mysql-server-5.6
+~~~
+
+After configuration, you can start MySQL with:
+
+~~~ bash
+sudo /etc/init.d/mysql start
+~~~
+
+You can connect on the database with your created admin password:
+
+~~~ bash
+mysql -uroot -ppassword
+~~~
+
+
 # MySQL database creation
 
 ## Create ejabberd user and database

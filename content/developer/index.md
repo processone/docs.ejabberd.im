@@ -21,7 +21,7 @@ ejabberd source is available on Github:
 [ejabberd](https://github.com/processone/ejabberd)
 
 You will need to get familiar with it to start learning about ejabberd
-module writing. The first place to start ? You should read the
+module writing. The first place to start? You should read the
 [echo module](https://github.com/processone/ejabberd/blob/master/src/mod_echo.erl). This
 is one of the simplest possible module for ejabberd.
 
@@ -47,6 +47,6 @@ configure your development environment:
 
 # Customizing ejabberd
 
-* [Development guide](guide/) (Currently being updated)
+* [ejabberd development guide](guide/)
 * [ejabberd modules development](modules/)
 

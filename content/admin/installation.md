@@ -17,7 +17,7 @@ did not use binary installers:
 
 ___
 
-# Installing ejabberd with Binary Installer {#installing-ejabberd-with-binary-installer}
+# Installing ejabberd with Binary Installer
 
 ## Downloading and running the installer
 
@@ -79,7 +79,7 @@ directory. Please refer to the section [ejabberdctl][7] for details
 about `ejabberdctl`, and configurable options to fine tune the Erlang
 runtime system.
 
-## Using ejabberd on Microsoft Windows {#using-ejabberd-on-microsoft-windows}
+## Using ejabberd on Microsoft Windows
 
 The Windows installer also adds ejabberd as a system service, and a
 shortcut to a debug console for experienced administrators. If you
@@ -92,7 +92,7 @@ development, and for example it doesn’t read the file
 On Microsoft Windows, the Erlang processes for ejabberd are named
 `erl.exe` and `epmd.exe`.
 
-# Installing ejabberd with Operating System Specific Packages {#installing-ejabberd-with-operating-system-specific-packages}
+# Installing ejabberd with Operating System Specific Packages
 
 <!-- TODO: Update with mention to our links and RPMs -->
 
@@ -113,7 +113,7 @@ interfere with your existing Erlang version. This is also a good way
 to make sure ejabberd will run with the latest Erlang version. You can
 download the packages from [ejabberd Downloads][1].
 
-# Installing ejabberd from Source Code {#installing-ejabberd-from-source-code}
+# Installing ejabberd from Source Code
 
 The canonical form for distribution of `ejabberd` stable releases is
 the source code package. Compiling `ejabberd` from source code is
@@ -154,11 +154,16 @@ cd ejabberd
 To compile `ejabberd` execute the commands:
 
 ``` bash
-./configure --enable-mysql
+./configure --enable-user=ejabberd --enable-mysql
 ```
 
+This tells the configuration to prepare the installed program
+to run with a user called `ejabberd`, so please create that user
+or tell to use another local user.
+It isn't recommended to run ejabberd with `root` user.
+
 *Note*: To build ejabberd, you will need Internet access, as
- dependencies will by downloaded depending on the selected options in
+ dependencies will by downloaded depending on the selected options.
 
 The build configuration script allows several options. To get the full
 list run the command:
@@ -354,11 +359,11 @@ gmake
 
 You need to have `GNU install`, but it isn’t included in Solaris. It
 can be easily installed if your Solaris system is set up for
-[`blastwave.org`][10] package repository. Make sure `/opt/csw/bin` is
+[`OpenCSW`][10] package repository. Make sure `/opt/csw/bin` is
 in your `PATH` and run:
 
 ``` bash
-pkg-get -i fileutils
+pkg-get -i coreutils
 ```
 
 If that program is called `ginstall`, modify the `ejabberd` `Makefile`
@@ -374,7 +379,7 @@ And finally install `ejabberd` with:
 gmake -f Makefile.gi ginstall
 ```
 
-# Post-install Operations {#post-install-operations}
+# Post-install Operations
 
 ## Creating an XMPP Account for Administration
 
@@ -431,8 +436,8 @@ enter the `ejabberd` Web Admin. Here are the steps to create it:
 [6]:    /admin/guide/security/#epmd
 [7]:    /admin/guide/managing/#ejabberdctl
 [8]:    /admin/guide/configuration/#pam-authentication
-[9]:    /admin/guide/configuration/#modirc
-[10]:	http://www.blastwave.org/
+[9]:    /admin/guide/configuration/#mod-irc
+[10]:	https://www.opencsw.org/
 [11]:	http://www.erlang.org/download.html
 [12]:	http://sourceforge.net/project/showfiles.php?group_id=10127&package_id=11277
 [13]:	http://www.gnu.org/software/libiconv/
@@ -442,4 +447,4 @@ enter the `ejabberd` Web Admin. Here are the steps to create it:
 [17]:   /admin/guide/configuration/#database
 [18]:   /admin/guide/configuration/#relational-databases
 [19]:   /admin/guide/security/#erlang-cookie
-[20]:   /admin/guide/configuration/#mod_register
+[20]:   /admin/guide/configuration/#mod-register

@@ -12,9 +12,9 @@ many ways with many options.
 Do not let this complexity scare you. Most of you will be fine with
 default config file (or light changes).
 
-# Config File Formatting {#config-file-formatting}
+# Config File Formatting
 
-## Yaml Configuration File Format {#yaml-configuration-file-format}
+## Yaml Configuration File Format
 
 The configuration file will be loaded the first time you start
 `ejabberd`. The configuration file name MUST have “.yml” or “.yaml”
@@ -73,14 +73,14 @@ Unknown options are not ignored at the moment in order to make legacy
 third-party modules work.  Make sure you respect indentation (YAML is
 sensitive to this) or you will get pretty cryptic errors.
 
-## Legacy Configuration File {#legacy-configuration-file}
+## Legacy Configuration File
 
 In previous `ejabberd` version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format using
 `convert_to_yaml` command from `ejabberdctl` (see
-[ejabberdctl](../managing/#ejabberdctl)
-and [List of ejabberd Commands](../managing/#list-of-ejabberd-commands)
+[ejabberdctl](../guide/managing/#ejabberdctl)
+and [List of ejabberd Commands](../guide/managing/#list-of-ejabberd-commands)
 for details).
 
 If you want to specify some options using the old Erlang format, you
@@ -88,7 +88,7 @@ can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
 [Include Additional Configuration Files](#include-additional-configuration-files)
 for the option description and a related example in
-[Restrict Execution with AccessCommands](../managing/#restrict-execution-with-accesscommands).
+[Restrict Execution with AccessCommands](../guide/managing/#restrict-execution-with-accesscommands).
 
 If you just want to provide an erlang term inside an option, you can
 use the `> erlangterm.` syntax for embedding erlang terms in a YAML
@@ -109,9 +109,9 @@ file, for example:
 	        function: try_register
 	        arguments: "> [\"user1\", \"localhost\", \"pass\"]."
 
-# Configuring One or Several XMPP Domains {#configuring-one-or-several-xmpp-domains}
+# Configuring One or Several XMPP Domains
 
-## Host Names {#host-names}
+## Host Names
 
 `ejabberd` supports managing several independant XMPP domains on a
 single ejabberd instance, using a feature called virtual hosting.
@@ -139,7 +139,7 @@ Examples:
 		  - "example.com"
 		  - "jabber.somesite.org"
 
-## Virtual Hosting {#virtual-hosting}
+## Virtual Hosting
 
 When managing several XMPP domains in a single instance, those domains
 are truly independant. It means they can even have different
@@ -235,7 +235,7 @@ are also other different modules for some specific virtual hosts:
 
 # Basic Configuration
 
-## Logging {#logging}
+## Logging
 
 `ejabberd` configuration can help a lot by having the right amount of logging set up.
 
@@ -289,7 +289,7 @@ For example:
     hide_sensitive_log_data: false
 
 
-## Listening Ports {#listening-ports}
+## Listening Ports
 
 The option `listen` defines for which ports, addresses and network
 protocols `ejabberd` will listen and what services will be run on them.
@@ -324,9 +324,7 @@ Example:
 ### Port Number, IP Address and Transport Protocol
 
 The port number defines which port to listen for incoming connections.
-It can be a Jabber/XMPP standard port (see section
-[Firewall Settings](../security/#firewall-settings)) or any
-other valid port number.
+It can be a Jabber/XMPP standard port or any other valid port number.
 
 The IP address can be represented as a string. The socket will listen
 only in that network interface. It is possible to specify a generic
@@ -390,15 +388,15 @@ are:
 	`trusted_proxies` (global option), `web_admin`
 
 **`ejabberd_xmlrpc`**:   Handles XML-RPC requests to execute
-	[ejabberd commands](../managing/#ejabberd-commands).
+	[ejabberd commands](../guide/managing/#ejabberd-commands).
 	Options: `access_commands`, `maxsessions`, `timeout`.  
 	For explanations about `access_commands` see
-	[Restrict Execution with AccessCommands](../managing/#restrict-execution-with-accesscommands).
-	Check some [XML-RPC examples](../oauth/#xml-rpc-examples).
+	[Restrict Execution with AccessCommands](../guide/managing/#restrict-execution-with-accesscommands).
+	Check some [XML-RPC examples](../../developer/ejabberd-api/oauth/#xml-rpc-examples).
 	You can find more information in the old
 	[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
 
-### Options {#options}
+### Options
 
 This is a detailed description of each option allowed by the listening
 modules:
@@ -422,7 +420,7 @@ modules:
 	‘`openssl ciphers`’ command.
 
 **`protocol_options: ProtocolOpts`**:   List of general options relating to SSL/TLS. These map to
-	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/ssl/SSL_CTX_set_options.html).
+	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/man1.0.1/ssl/SSL_CTX_set_options.html).
 	For a full list of options available in ejabberd,
 	[`see the source`](https://github.com/processone/tls/blob/master/c_src/options.h).
 	The default entry is: `"no_sslv2"`
@@ -457,17 +455,17 @@ modules:
 	HTTP Bind enables access via HTTP requests to `ejabberd` from behind
 	firewalls which do not allow outgoing sockets on port 5222.
 
-	Remember that you must also install and enable the module
-	mod\_http\_bind.
+Remember that you must also install and enable the module
+mod\_http\_bind.
 
-	If HTTP Bind is enabled, it will be available at
-	`http://server:port/http-bind/`. Be aware that support for HTTP Bind
-	is also needed in the XMPP client. Remark also that HTTP Bind can be
-	interesting to host a web-based XMPP client such as
-	[`JWChat`](http://jwchat.sourceforge.net/) (check the tutorials to
-	install JWChat with ejabberd and an
-	[`embedded local web server`](http://www.ejabberd.im/jwchat-localserver)
-	or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
+If HTTP Bind is enabled, it will be available at
+`http://server:port/http-bind/`. Be aware that support for HTTP Bind
+is also needed in the XMPP client. Remark also that HTTP Bind can be
+interesting to host a web-based XMPP client such as
+[`JWChat`](http://jwchat.sourceforge.net/) (check the tutorials to
+install JWChat with ejabberd and an
+[`embedded local web server`](http://www.ejabberd.im/jwchat-localserver)
+or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 
 **`max_ack_queue: Size`**:   This option specifies the maximum number of unacknowledged stanzas
 	queued for possible retransmission if `stream_management` is
@@ -620,7 +618,7 @@ ejabberd configuration file (outside `listen`):
 	‘`openssl ciphers`’ command.
 
 **`s2s_protocol_options: ProtocolOpts`**:   List of general options relating to SSL/TLS. These map to
-	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/ssl/SSL_CTX_set_options.html).
+	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/man1.0.1/ssl/SSL_CTX_set_options.html).
 	For a full list of options available in ejabberd,
 	[`see the source`](https://github.com/processone/tls/blob/master/c_src/options.h).
 	The default entry is: `"no_sslv2"`
@@ -698,64 +696,66 @@ For example, the following simple configuration defines:
 	service.
 
 -   Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind
-	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../managing/#web-admin). The
+	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../guide/managing/#web-admin). The
 	socket only listens connections to the IP address 127.0.0.1.
 
-	hosts:
-	  - "example.com"
-	  - "example.org"
-	  - "example.net"
-
-	listen:
-	  -
-	    port: 5222
-	    module: ejabberd_c2s
-	    access: c2s
-	    shaper: c2s_shaper
-	    starttls: true
-	    certfile: "/etc/ejabberd/server.pem"
-	    max_stanza_size: 65536
-	  -
-	    port: 5223
-	    module: ejabberd_c2s
-	    access: c2s
-	    shaper: c2s_shaper
-	    tls: true
-	    certfile: "/etc/ejabberd/server.pem"
-	    max_stanza_size: 65536
-	  -
-	    port: 5269
-	    ip: "::"
-	    module: ejabberd_s2s_in
-	    shaper: s2s_shaper
-	    max_stanza_size: 131072
-	  -
-	    port: 3478
-	    transport: udp
-	    module: ejabberd_stun
-	  -
-	    port: 5280
-	    module: ejabberd_http
-	    http_bind: true
-	  -
-	    port: 5281
-	    ip: "127.0.0.1"
-	    module: ejabberd_http
-	    web_admin: true
-	    http_bind: true
-	    tls: true
-	    certfile: "/etc/ejabberd/server.pem"
-
-	s2s_use_starttls: optional
-	s2s_certfile: "/etc/ejabberd/server.pem"
-	host_config:
-	  "example.com":
-	    domain_certfile: "/etc/ejabberd/example_com.pem"
-	outgoing_s2s_families:
-	  - ipv4
-	  - ipv6
-	outgoing_s2s_timeout: 10000
-	trusted_proxies: ["127.0.0.1", "192.168.1.11"]
+	
+			hosts:
+			  - "example.com"
+			  - "example.org"
+			  - "example.net"
+			
+			listen:
+			  -
+			    port: 5222
+			    module: ejabberd_c2s
+			    access: c2s
+			    shaper: c2s_shaper
+			    starttls: true
+			    certfile: "/etc/ejabberd/server.pem"
+			    max_stanza_size: 65536
+			  -
+			    port: 5223
+			    module: ejabberd_c2s
+			    access: c2s
+			    shaper: c2s_shaper
+			    tls: true
+			    certfile: "/etc/ejabberd/server.pem"
+			    max_stanza_size: 65536
+			  -
+			    port: 5269
+			    ip: "::"
+			    module: ejabberd_s2s_in
+			    shaper: s2s_shaper
+			    max_stanza_size: 131072
+			  -
+			    port: 3478
+			    transport: udp
+			    module: ejabberd_stun
+			  -
+			    port: 5280
+			    module: ejabberd_http
+			    http_bind: true
+			  -
+			    port: 5281
+			    ip: "127.0.0.1"
+			    module: ejabberd_http
+			    web_admin: true
+			    http_bind: true
+			    tls: true
+			    certfile: "/etc/ejabberd/server.pem"
+			
+			s2s_use_starttls: optional
+			s2s_certfile: "/etc/ejabberd/server.pem"
+			host_config:
+			  "example.com":
+			    domain_certfile: "/etc/ejabberd/example_com.pem"
+			outgoing_s2s_families:
+			  - ipv4
+			  - ipv6
+			outgoing_s2s_timeout: 10000
+			trusted_proxies: ["127.0.0.1", "192.168.1.11"]
+	
 
 In this example, the following configuration defines that:
 
@@ -771,7 +771,7 @@ In this example, the following configuration defines that:
 
 -   Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
 	all the IPv4 addresses. Note that it is also possible to serve them
-	on different ports. The second example in section [Managing: Web Admin](../managing/#web-admin) shows
+	on different ports. The second example in section [Managing: Web Admin](../guide/managing/#web-admin) shows
 	how exactly this can be done.
 
 -   All users except for the administrators have a traffic of limit
@@ -805,122 +805,124 @@ In this example, the following configuration defines that:
 	checking the `from` attribute in the packets send by this component.
 	The component can send packets in behalf of any users from the
 	server, or even on behalf of any server.
-			
-	acl:
-	  blocked:
-	    user: "bad"
-	  trusted_servers:
-	    server:
-	      - "example.com"
-	      - "jabber.example.org"
-	  xmlrpc_bot:
-	    user:
-	      - "xmlrpc-robot": "example.org"
-	shaper:
-	  normal: 1000
-    shaper_rules:
-	  c2s_shaper:
-	    - none: admin
-	    - normal
-	access_rules:
-	  c2s:
-	    - deny: blocked
-	    - allow
-	  xmlrpc_access:
-	    - allow: xmlrpc_bot
-	  s2s:
-	    - allow: trusted_servers
-	s2s_certfile: "/path/to/ssl.pem"
-	s2s_access: s2s
-	s2s_use_starttls: required_trusted
-	listen:
-	  -
-	    port: 5222
-	    module: ejabberd_c2s
-	    shaper: c2s_shaper
-	    access: c2s
-	  -
-	    ip: "192.168.0.1"
-	    port: 5223
-	    module: ejabberd_c2s
-	    certfile: "/path/to/ssl.pem"
-	    tls: true
-	    access: c2s
-	  -
-	    ip: "FDCA:8AB6:A243:75EF::1"
-	    port: 5223
-	    module: ejabberd_c2s
-	    certfile: "/path/to/ssl.pem"
-	    tls: true
-	    access: c2s
-	  -
-	    port: 5269
-	    module: ejabberd_s2s_in
-	  -
-	    port: 5280
-	    module: ejabberd_http
-	    web_admin: true
-	    http_bind: true
-	  -
-	    port: 4560
-	    module: ejabberd_xmlrpc
-	    access_commands: {}
-	  -
-	    ip: "127.0.0.1"
-	    port: 5233
-	    module: ejabberd_service
-	    hosts:
-	      "aim.example.org":
-	        password: "aimsecret"
-	  -
-	    ip: "::1"
-	    port: 5233
-	    module: ejabberd_service
-	    hosts:
-	      "aim.example.org":
-	        password: "aimsecret"
-	  -
-	    port: 5234
-	    module: ejabberd_service
-	    hosts:
-	      "icq.example.org":
-	        password: "jitsecret"
-	      "sms.example.org":
-	        password: "jitsecret"
-	  -
-	    port: 5235
-	    module: ejabberd_service
-	    hosts:
-	      "msn.example.org":
-	        password: "msnsecret"
-	  -
-	    port: 5236
-	    module: ejabberd_service
-	    password: "yahoosecret"
-	  -
-	    port: 5237
-	    module: ejabberd_service
-	    hosts:
-	      "gg.example.org":
-	        password: "ggsecret"
-	  -
-	    port: 5238
-	    module: ejabberd_service
-	    hosts:
-	      "jmc.example.org":
-	        password: "jmcsecret"
-	  -
-	    port: 5239
-	    module: ejabberd_service
-	    service_check_from: false
-	    hosts:
-	      "custom.example.org":
-	        password: "customsecret"
+
+	
+			acl:
+			  blocked:
+			    user: "bad"
+			  trusted_servers:
+			    server:
+			      - "example.com"
+			      - "jabber.example.org"
+			  xmlrpc_bot:
+			    user:
+			      - "xmlrpc-robot": "example.org"
+			shaper:
+			  normal: 1000
+			shaper_rules:
+			  c2s_shaper:
+			    - none: admin
+			    - normal
+			access_rules:
+			  c2s:
+			    - deny: blocked
+			    - allow
+			  xmlrpc_access:
+			    - allow: xmlrpc_bot
+			  s2s:
+			    - allow: trusted_servers
+			s2s_certfile: "/path/to/ssl.pem"
+			s2s_access: s2s
+			s2s_use_starttls: required_trusted
+			listen:
+			  -
+			    port: 5222
+			    module: ejabberd_c2s
+			    shaper: c2s_shaper
+			    access: c2s
+			  -
+			    ip: "192.168.0.1"
+			    port: 5223
+			    module: ejabberd_c2s
+			    certfile: "/path/to/ssl.pem"
+			    tls: true
+			    access: c2s
+			  -
+			    ip: "FDCA:8AB6:A243:75EF::1"
+			    port: 5223
+			    module: ejabberd_c2s
+			    certfile: "/path/to/ssl.pem"
+			    tls: true
+			    access: c2s
+			  -
+			    port: 5269
+			    module: ejabberd_s2s_in
+			  -
+			    port: 5280
+			    module: ejabberd_http
+			    web_admin: true
+			    http_bind: true
+			  -
+			    port: 4560
+			    module: ejabberd_xmlrpc
+			    access_commands: {}
+			  -
+			    ip: "127.0.0.1"
+			    port: 5233
+			    module: ejabberd_service
+			    hosts:
+			      "aim.example.org":
+			        password: "aimsecret"
+			  -
+			    ip: "::1"
+			    port: 5233
+			    module: ejabberd_service
+			    hosts:
+			      "aim.example.org":
+			        password: "aimsecret"
+			  -
+			    port: 5234
+			    module: ejabberd_service
+			    hosts:
+			      "icq.example.org":
+			        password: "jitsecret"
+			      "sms.example.org":
+			        password: "jitsecret"
+			  -
+			    port: 5235
+			    module: ejabberd_service
+			    hosts:
+			      "msn.example.org":
+			        password: "msnsecret"
+			  -
+			    port: 5236
+			    module: ejabberd_service
+			    password: "yahoosecret"
+			  -
+			    port: 5237
+			    module: ejabberd_service
+			    hosts:
+			      "gg.example.org":
+			        password: "ggsecret"
+			  -
+			    port: 5238
+			    module: ejabberd_service
+			    hosts:
+			      "jmc.example.org":
+			        password: "jmcsecret"
+			  -
+			    port: 5239
+			    module: ejabberd_service
+			    service_check_from: false
+			    hosts:
+			      "custom.example.org":
+			        password: "customsecret"
+	
 
 Note, that for services based in jabberd14 or WPJabber you have to make
 the transports log and do XDB by themselves:
 
-			
+	
 	<!--
 	   You have to add elogger and rlogger entries here when using ejabberd.
 	   In this case the transport will do the logging.
@@ -949,8 +951,9 @@ the transports log and do XDB by themselves:
 	    <spool><jabberd:cmdline flag='s'>/var/spool/jabber</jabberd:cmdline></spool>
 	  </xdb_file>
 	</xdb>
+	
 
-## Authentication {#authentication}
+## Authentication
 
 The option `auth_method` defines the authentication methods that are
 used for user authentication. The syntax is:
@@ -1000,7 +1003,7 @@ strings. The option syntax is:
 
 **`disable_sasl_mechanisms: Mechanism|[Mechanism, ...]`**  
 
-### Internal {#internal}
+### Internal
 
 `ejabberd` uses its internal Mnesia database as the default
 authentication method. The value `internal` will enable the internal
@@ -1266,7 +1269,7 @@ introduces some security issues:
 	Directory, then `/etc/nsswitch.conf` must be configured to use
 	`winbind` as well.
 
-## Access Rules {#access-rules}
+## Access Rules
 
 *This section describes new ACL syntax introduced in ejabberd
 16.06. For old access rule and ACL syntax documentation, please refer
@@ -1303,7 +1306,7 @@ following syntax:
 	    acl:
 	      admin:
 	        - user:
-	          "yozhik": "example.org"
+	            "yozhik": "example.org"
 	        - user: "peter@example.org"
 
 **`server: Server`**:   Matches any JID from server `Server`. Example:
@@ -1558,7 +1561,7 @@ Examples:
 		shaper_rules:
 		  max_s2s_connections: 3
 
-## Shapers {#shapers}
+## Shapers
 
 Shapers enable you to limit connection traffic. The syntax is:
 
@@ -1583,7 +1586,7 @@ Examples:
 		shaper:
 		  fast: 50000
 
-## Default Language {#default-language}
+## Default Language
 
 The option `language` defines the default language of server strings
 that can be seen by XMPP clients. If a XMPP client does not support
@@ -1601,7 +1604,7 @@ For example, to set Russian as default language:
 The page [Internationalization and Localization](../../../developer/localization/)
 provides more details.
 
-## CAPTCHA {#captcha}
+## CAPTCHA
 
 Some `ejabberd` modules can be configured to require a CAPTCHA challenge
 on certain actions. If the client does not support CAPTCHA Forms
@@ -1655,14 +1658,14 @@ Example configuration:
 
 `net_ticktime: 60`
 
-:   This option can be used to tune tick time parameter of
-    net_kernel. It tells `erlang` VM how often nodes should check if
-    intra-node communication was not interruped. This option must have
-    identical value on all nodes, or it will lead to subtle bugs. Usually
-    leaving default value of this is option is best, tweak it only if you
-    know what are you doing.
+This option can be used to tune tick time parameter of
+net_kernel. It tells `erlang` VM how often nodes should check if
+intra-node communication was not interruped. This option must have
+identical value on all nodes, or it will lead to subtle bugs. Usually
+leaving default value of this is option is best, tweak it only if you
+know what are you doing.
 
-## STUN and TURN {#stun-and-turn}
+## STUN and TURN
 
 `ejabberd` is able to act as a stand-alone STUN/TURN server
 ([`RFC 5389`][12]/[`RFC 5766`][13]).
@@ -1767,7 +1770,7 @@ And you should also add these in the case if TURN is enabled:
 	_turn._tcp   IN SRV  0 0 3478 turn.example.com.
 	_turns._tcp  IN SRV  0 0 5349 turn.example.com.
 
-## SIP {#sip}
+## SIP
 
 ### SIP Configuration
 
@@ -1967,7 +1970,7 @@ produces this result after being interpreted:
 	    port: 5280
 	    module: ejabberd_http
 
-# Database and LDAP Configuration {#database-and-ldap-configuration}
+# Database and LDAP Configuration
 
 `ejabberd` uses its internal Mnesia database by default. However, it is
 possible to use a relational database, key-value storage or an LDAP
@@ -2025,7 +2028,7 @@ sections must be set inside a `host_config` for each vhost (see section
 	    sql_password: "password"
 	    auth_method: [sql]
 
-## Relational Databases {#relational-databases}
+## Relational Databases
 
 You need to upload SQL schema to your SQL server. Choose the one from [`this`][118] list.
 
@@ -2116,7 +2119,7 @@ well (see previous sections), and add the module option `db_type: sql`
 or set `default_db: sql` globally if you want to use SQL for all modules.
 
 
-## LDAP {#ldap}
+## LDAP
 
 `ejabberd` has built-in LDAP support. You can authenticate users against
 LDAP server and use LDAP directory as vCard storage.
@@ -2228,9 +2231,9 @@ Available options are:
 	    ldap_dn_filter:
 	      "(&(name=%s)(owner=%D)(user=%u@%d))": ["sn"]
 
-	Since this filter makes additional LDAP lookups, use it only in the
-	last resort: try to define all filter rules in `ldap_filter` if
-	possible.
+Since this filter makes additional LDAP lookups, use it only in the
+last resort: try to define all filter rules in `ldap_filter` if
+possible.
 
 **`{ldap_local_filter, Filter}`**:   If you can’t use `ldap_filter` due to performance reasons (the LDAP
 	server has many users registered), you can use this local filter.
@@ -2318,7 +2321,7 @@ Also we want users to search each other. Let’s see how we can set it up:
 Note that `mod_vcard_ldap` module checks for the existence of the user
 before searching in his information in LDAP.
 
-#### Active Directory {#active-directory}
+#### Active Directory
 
 Active Directory is just an LDAP-server with predefined attributes. A
 sample configuration is shown below:
@@ -2369,7 +2372,7 @@ sample configuration is shown below:
 	      "Email": "EMAIL"
 	  ...
 
-## Riak {#riak}
+## Riak
 
 [`Riak`][35] is a distributed NoSQL key-value data
 store. The actual database access is defined in the options with `riak_`
@@ -2442,7 +2445,7 @@ option of `/etc/riak/app.config` in the section `riak_kv` as follows:
 
 Second, Riak should be pointed to `ejabberd` Erlang binary files
 (\*.beam). As described in
-[Install](../installation/#install), by default those are located in
+[Install](../installation/#source-install), by default those are located in
 `/lib/ejabberd/ebin` directory. So you should add the following to
 `/etc/riak/vm.args`:
 
@@ -2462,7 +2465,7 @@ enable it with Riak admin command:
 riak-admin security enable
 ~~~
 
-## Redis {#redis}
+## Redis
 
 [`Redis`][37] is an advanced key-value cache and store. You can
 use it to store transient data, such as records for C2S (client) sessions.
@@ -2490,13 +2493,13 @@ Example configuration:
 	redis_server: "redis.server.com"
 	redis_db: 1
 
-## Default database configuration {#default-database-configuration}
+## Default database configuration
 
 You can simplify the configuration by setting the default database. This can be done with `default_db` option:
 
 **`default_db: mnesia|sql|riak`**:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
 
-# Session Management {#session-management}
+# Session Management
 
 By default pointers to C2S sessions are kept in Mnesia. You may want to
 use another database backend for this. The option is:
@@ -2504,7 +2507,7 @@ use another database backend for this. The option is:
 **`sm_db_type: mnesia|sql|redis`**:   Note that for `sql` or `redis` you should have them configured. See sections
 	[Relational Databases](#relational-databases) or [Redis](#redis).
 
-# Modules Configuration {#modules-configuration}
+# Modules Configuration
 
 The option `modules` defines the list of modules that will be loaded
 after `ejabberd`’s startup. Each entry in the list is a tuple in which
@@ -2533,58 +2536,59 @@ Examples:
 		  mod_time:      {}
 		  mod_version:   {}
 
-## Modules Overview {#modules-overview}
+## Modules Overview
 
 The following table lists all modules included in `ejabberd`.
 
 | **Module**                                     | **Feature**                                          | **Dependencies**                 |
 |:-----------------------------------------------|:-----------------------------------------------------|:---------------------------------|
 | mod_adhoc                                      | Ad-Hoc Commands ([`XEP-0050`][38])                   |                                  |
-| [mod_announce](#modannounce)                   | Manage announcements                                 | recommends `mod_adhoc`           |
+| [mod_announce](#mod-announce)                  | Manage announcements                                 | recommends `mod_adhoc`           |
+| [mod_block_strangers](#mod-block-strangers)    | Block packets from non-subscribers                   |                                  |
 | mod_blocking                                   | Simple Communications Blocking ([`XEP-0191`][39])    | `mod_privacy`                    |
 | mod_caps                                       | Entity Capabilities ([`XEP-0115`][40])               |                                  |
 | mod_carboncopy                                 | Message Carbons ([`XEP-0280`][41])                   |                                  |
-| [mod_client_state](#modclientstate)            | Filter stanzas for inactive clients                  |                                  |
+| [mod_client_state](#mod-client-state)          | Filter stanzas for inactive clients                  |                                  |
 | mod_configure                                  | Server configuration using Ad-Hoc                    | `mod_adhoc`                      |
-| [mod_delegation](#moddelegation)               | Namespace Delegation ([`XEP-0355`][123])             |                                  |
-| [mod_disco](#moddisco)                         | Service Discovery ([`XEP-0030`][42])                 |                                  |
-| [mod_echo](#modecho)                           | Echoes XMPP stanzas                                  |                                  |
-| [mod_fail2ban](#modfail2ban)                   | Bans IPs that show the malicious signs               |                                  |
-| [mod_http_bind](#modhttpbind)                  | XMPP over Bosh service (HTTP Binding)                |                                  |
-| [mod_http_fileserver](#modhttpfileserver)      | Small HTTP file server                               |                                  |
-| [mod_http_upload](#modhttpupload)              | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
-| [mod_http_upload_quota](#modhttpuploadquota)   | HTTP File Upload Quotas                              | `mod_http_upload`                |
-| [mod_irc](#modirc)                             | IRC transport                                        |                                  |
-| [mod_last](#modlast)                           | Last Activity ([`XEP-0012`][43])                     |                                  |
-| [mod_mam](#modmam)                             | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
-| [mod_mix](#modmix)                             | Mediated Information eXchange ([`XEP-0369`][122])    | `mod_pubsub`                     |
-| [mod_metrics](#modmetrics)                     | Simple metrics handler for runtime statistics        |                                  |
-| [mod_muc](#modmuc)                             | Multi-User Chat ([`XEP-0045`][44])                   |                                  |
+| [mod_delegation](#mod-delegation)              | Namespace Delegation ([`XEP-0355`][123])             |                                  |
+| [mod_disco](#mod-disco)                        | Service Discovery ([`XEP-0030`][42])                 |                                  |
+| [mod_echo](#mod-echo)                          | Echoes XMPP stanzas                                  |                                  |
+| [mod_fail2ban](#mod-fail2ban)                  | Bans IPs that show the malicious signs               |                                  |
+| [mod_http_bind](#mod-http-bind)                | XMPP over Bosh service (HTTP Binding)                |                                  |
+| [mod_http_fileserver](#mod-http-fileserver)    | Small HTTP file server                               |                                  |
+| [mod_http_upload](#mod-http-upload)            | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
+| [mod_http_upload_quota](#mod-http-upload-quota)| HTTP File Upload Quotas                              | `mod_http_upload`                |
+| [mod_irc](#mod-irc)                            | IRC transport                                        |                                  |
+| [mod_last](#mod-last)                          | Last Activity ([`XEP-0012`][43])                     |                                  |
+| [mod_mam](#mod-mam)                            | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
+| [mod_mix](#mod-mix)                            | Mediated Information eXchange ([`XEP-0369`][122])    | `mod_pubsub`                     |
+| [mod_metrics](#mod-metrics)                    | Simple metrics handler for runtime statistics        |                                  |
+| [mod_muc](#mod-muc)                            | Multi-User Chat ([`XEP-0045`][44])                   |                                  |
 | mod_muc_admin                                  | Administrative commands for Multi-User Chat          | `mod_muc`                        |
-| [mod_muc_log](#modmuclog)                      | Multi-User Chat room logging                         | `mod_muc`                        |
-| [mod_multicast](#modmulticast)                 | Extended Stanza Addressing ([`XEP-0033`][109])       |                                  |
-| [mod_offline](#modoffline)                     | Offline message storage ([`XEP-0160`][45])           |                                  |
-| [mod_ping](#modping)                           | XMPP Ping and periodic keepalives ([`XEP-0199`][46]) |                                  |
-| [mod_pres_counter](#modprescounter)            | Detect presence subscription flood                   |                                  |
-| [mod_privacy](#modprivacy)                     | Blocking Communication ([`XEP-0016`][47])            |                                  |
-| [mod_private](#modprivate)                     | Private XML Storage ([`XEP-0049`][48])               |                                  |
-| [mod_privilege](#modprivilege)                 | Privileged Entity ([`XEP-0356`][124])                |                                  |
-| [mod_proxy65](#modproxy65)                     | SOCKS5 Bytestreams ([`XEP-0065`][49])                |                                  |
-| [mod_pubsub](#modpubsub)                       | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51])   | `mod_caps`                       |
-| [mod_register](#modregister)                   | In-Band Registration ([`XEP-0077`][54])              |                                  |
-| [mod_register_web](#modregisterweb)            | Web for Account Registrations                        |                                  |
-| [mod_roster](#modroster)                       | Roster management (XMPP IM)                          |                                  |
-| [mod_service_log](#modservicelog)              | Copy user messages to logger service                 |                                  |
-| [mod_shared_roster](#modsharedroster)          | Shared roster management                             | `mod_roster`                     |
-| [mod_shared_roster_ldap](#modsharedrosterldap) | LDAP Shared roster management                        | `mod_roster`                     |
-| [mod_sic](#modsic)                             | Server IP Check ([`XEP-0279`][55])                   |                                  |
-| [mod_sip](#modsip)                             | SIP Registrar/Proxy ([`RFC 3261`][56])               | `ejabberd_sip`                   |
-| [mod_stats](#modstats)                         | Statistics Gathering ([`XEP-0039`][57])              |                                  |
-| [mod_time](#modtime)                           | Entity Time ([`XEP-0202`][58])                       |                                  |
-| [mod_vcard](#modvcard)                         | vcard-temp ([`XEP-0054`][59])                        |                                  |
-| [mod_vcard_ldap](#modvcardldap)                | vcard-temp ([`XEP-0054`][60])                        | LDAP server                      |
-| [mod_vcard_xupdate](#modvcardxupdate)          | vCard-Based Avatars ([`XEP-0153`][61])               | `mod_vcard`                      |
-| [mod_version](#modversion)                     | Software Version ([`XEP-0092`][62])                  |                                  |
+| [mod_muc_log](#mod-muc-log)                    | Multi-User Chat room logging                         | `mod_muc`                        |
+| [mod_multicast](#mod-multicast)                | Extended Stanza Addressing ([`XEP-0033`][109])       |                                  |
+| [mod_offline](#mod-offline)                    | Offline message storage ([`XEP-0160`][45])           |                                  |
+| [mod_ping](#mod-ping)                          | XMPP Ping and periodic keepalives ([`XEP-0199`][46]) |                                  |
+| [mod_pres_counter](#mod-pres-counter)          | Detect presence subscription flood                   |                                  |
+| [mod_privacy](#mod-privacy)                    | Blocking Communication ([`XEP-0016`][47])            |                                  |
+| [mod_private](#mod-private)                    | Private XML Storage ([`XEP-0049`][48])               |                                  |
+| [mod_privilege](#mod-privilege)                | Privileged Entity ([`XEP-0356`][124])                |                                  |
+| [mod_proxy65](#mod-proxy65)                    | SOCKS5 Bytestreams ([`XEP-0065`][49])                |                                  |
+| [mod_pubsub](#mod-pubsub)                      | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51])   | `mod_caps`                       |
+| [mod_register](#mod-register)                  | In-Band Registration ([`XEP-0077`][54])              |                                  |
+| [mod_register_web](#mod-register-web)          | Web for Account Registrations                        |                                  |
+| [mod_roster](#mod-roster)                      | Roster management (XMPP IM)                          |                                  |
+| [mod_service_log](#mod-service-log)            | Copy user messages to logger service                 |                                  |
+| [mod_shared_roster](#mod-shared-roster)        | Shared roster management                             | `mod_roster`                     |
+| [mod_shared_roster_ldap](#mod-shared-roster-ldap) | LDAP Shared roster management                        | `mod_roster`                     |
+| [mod_sic](#mod-sic)                            | Server IP Check ([`XEP-0279`][55])                   |                                  |
+| [mod_sip](#mod-sip)                            | SIP Registrar/Proxy ([`RFC 3261`][56])               | `ejabberd_sip`                   |
+| [mod_stats](#mod-stats)                        | Statistics Gathering ([`XEP-0039`][57])              |                                  |
+| [mod_time](#mod-time)                          | Entity Time ([`XEP-0202`][58])                       |                                  |
+| [mod_vcard](#mod-vcard)                        | vcard-temp ([`XEP-0054`][59])                        |                                  |
+| [mod_vcard_ldap](#mod-vcard-ldap)              | vcard-temp ([`XEP-0054`][60])                        | LDAP server                      |
+| [mod_vcard_xupdate](#mod-vcard-xupdate)        | vCard-Based Avatars ([`XEP-0153`][61])               | `mod_vcard`                      |
+| [mod_version](#mod-version)                    | Software Version ([`XEP-0092`][62])                  |                                  |
 
 -   (\*) This module requires a supported database. For a list of
 	supported databases, see section [Database and LDAP Configuration](#database-and-ldap-configuration).
@@ -2605,12 +2609,12 @@ You can find more
 work or that they can contain severe bugs and security leaks. Therefore,
 use them at your own risk!
 
-## Common Options {#common-options}
+## Common Options
 
 The following options are used by many modules. Therefore, they are
 described in this separate section.
 
-### iqdisc {#iqdisc}
+### iqdisc
 
 Many modules define handlers for processing IQ queries of different
 namespaces to this server or to a user (e.g. to `example.org` or to
@@ -2683,7 +2687,7 @@ in all of them, the “@HOST@” keyword must be used:
 	    host: "mirror.@HOST@"
 	  ...
 
-## mod_admin_extra {#modadminextra}
+## mod_admin_extra
 
 Available option:
 
@@ -2703,9 +2707,9 @@ by executing `mod_admin_extra` commands:
 	    - allow: adminextraresource
     modules:
       mod_admin_extra:
-	module_resource: "modadminextraf8x,31ad"
-      mod_vcard:
-	access_set: vcard_set
+		module_resource: "modadminextraf8x,31ad"
+	      mod_vcard:
+		access_set: vcard_set
 
 Description of some commands:
 
@@ -2731,22 +2735,22 @@ Description of some commands:
    generated, so he can't login anymore unless a server administrator
    changes him again the password.
 
-   It is possible to define the reason of the ban.  The new password
-   also includes the reason and the date and time of the ban.
+It is possible to define the reason of the ban.  The new password
+also includes the reason and the date and time of the ban.
 
-   For example, if this command is called:
+For example, if this command is called:
 
-			
+	
 		ejabberdctl vhost example.org ban-account boby Spammed several MUC rooms
 
-   then the sessions of the local account which JID is boby@example.org
-   will be kicked, and its password will be set to something like this:
+then the sessions of the local account which JID is boby@example.org
+will be kicked, and its password will be set to something like this:
 
-			
+	
 		BANNED_ACCOUNT--20080425T21:45:07--2176635--Spammed_several_MUC_rooms
 
 
-## mod_announce {#modannounce}
+## mod_announce
 
 This module enables configured users to broadcast announcements and to
 set the message of the day (MOTD). Configured users can perform these
@@ -2765,7 +2769,7 @@ hosts in ejabberd.
 	and connected to several resources, only the resource with the
 	highest priority will receive the message. If the registered user is
 	not connected, the message will be stored offline in assumption that
-	offline storage (see section  [mod_offline](#modoffline)) is enabled.
+	offline storage (see section  [mod_offline](#mod-offline)) is enabled.
 
 **`example.org/announce/online (example.org/announce/all-hosts/online)`**:   The message is sent to all connected users. If the user is online
 	and connected to several resources, all resources will receive the
@@ -2833,7 +2837,22 @@ Note that `mod_announce` can be resource intensive on large deployments
 as it can broadcast lot of messages. This module should be disabled for
 instances of `ejabberd` with hundreds of thousands users.
 
-## mod_client_state {#modclientstate}
+## mod_block_strangers
+
+This module allows to block/log messages comming from an unknown entity.
+If a writing entity is not in your roster, you can let this module drop and/or
+log the message. By default you'll just not receive message from that entity.
+Enable this module if you want to drop SPAM messages.
+
+Options:
+
+**`drop: true|false`**:   This option specifies if strangers messages should
+be dropped or not. The default value is `true`.
+
+**`log: true|false`**:   This option specifies if strangers messages should
+be logged (as info message) in ejabberd logs. The default value is `false`.
+
+## mod_client_state
 
 This module allows for queueing certain types of stanzas when a client
 indicates that the user is not actively using the client right now (see
@@ -2869,7 +2888,7 @@ Example:
 	    queue_presence: true
 	  ...
 
-## mod_delegation {#moddelegation}
+## mod_delegation
 
 This module is an implementation of ([`XEP-0355`][123]). Only admin mode has been implemented by now. Namespace delegation allows external services to handle IQ using specific namespace. This may be applied for external PEP service.
 
@@ -2919,7 +2938,7 @@ Namespace delegation gives components access to sensitive data, so permission sh
 
 This module is complementary to `mod_privilege` ([`XEP-0356`][124]) but can also be used separately.
 
-## mod_disco {#moddisco}
+## mod_disco
 
 This module adds support for Service Discovery
 ([`XEP-0030`][66]). With this
@@ -3018,7 +3037,7 @@ Examples:
 		          - "xmpp:admins@shakespeare.lit"
 		  ...
 
-## mod_echo {#modecho}
+## mod_echo
 
 This module simply echoes any XMPP packet back to the sender. This
 mirror can be of interest for `ejabberd` and XMPP client debugging.
@@ -3040,7 +3059,7 @@ all?
 	    host: "mirror.example.org"
 	  ...
 
-## mod_fail2ban {#modfail2ban}
+## mod_fail2ban
 
 The module bans IPs that show the malicious signs. Currently only C2S
 authentication failures are detected.
@@ -3068,7 +3087,7 @@ Example:
 	    c2s_max_auth_failures: 50
 	  ...
 
-## mod_http_bind {#modhttpbind}
+## mod_http_bind
 
 This module implements XMPP over Bosh (formerly known as HTTP Binding)
 as defined in [`XEP-0124`][69] and
@@ -3128,7 +3147,7 @@ Options:
 	        max_inactivity: 50
 	      ...
 
-## mod_http_fileserver {#modhttpfileserver}
+## mod_http_fileserver
 
 This simple module serves files from the local disk over HTTP.
 
@@ -3193,7 +3212,7 @@ And define it as a handler in the HTTP service:
 	      ...
 	  ...
 
-## mod_http_upload {#modhttpupload}
+## mod_http_upload
 
 This module allows for requesting permissions to upload a file via HTTP
 as described in [`XEP-0363`][120]. If the request is accepted, the
@@ -3272,12 +3291,12 @@ return an HTTP status code of 200 or 201 and two lines of text/plain
 output. The first line is forwarded to the XMPP client as the PUT URL,
 the second line as the GET URL. In order to reject the request, the
 service should return a status code of 402 (`resource-constraint`), 403
-(`not-allowed`), or 414 (`not-acceptable`). Default: `undefined`.
+(`not-allowed`), or 413 (`not-acceptable`). Default: `undefined`.
 
 **`custom_headers: {Name: Value}`**: This option specifies additional header fields to be included in all
 HTTP responses. Default: `[]`.
 
-**`rm_on_unregister: true|false`: This option specifies whether files uploaded by a user should be
+**`rm_on_unregister: true|false`**: This option specifies whether files uploaded by a user should be
 removed when that user is unregistered. Default: `true`.
 
 Example:
@@ -3303,7 +3322,7 @@ Example:
 	    put_url: "https://@HOST@:5443/upload"
 	  ...
 
-## mod_http_upload_quota {#modhttpuploadquota}
+## mod_http_upload_quota
 
 This module adds quota support for `mod_http_upload`.
 
@@ -3347,7 +3366,7 @@ in the following example.
 	    max_days: 100
 	  ...
 
-## mod_http_ws {#modhttpws}
+## mod_http_ws
 
 This module enables xmpp communication over websocket connection as
 described in [`RFC 7395`][71].
@@ -3383,7 +3402,7 @@ is set to 60.
 would be closed. The specified number of seconds must be larger than 0.
 This option is set to 300 by default.
 
-## mod_irc {#modirc}
+## mod_irc
 
 This module is an IRC transport that can be used to join channels on IRC
 servers.
@@ -3467,7 +3486,7 @@ Examples:
 		    host: "irc.example.net"
 		  ...
 
-## mod_last {#modlast}
+## mod_last
 
 ### Description
 
@@ -3504,7 +3523,7 @@ You may want to disable that module depending on several parameters:
 Note that you may want also to purge last activity that is too old to
 limit the storage size of those data.
 
-## mod_mam {#modmam}
+## mod_mam
 
 This module implements Message Archive Management as described in [`XEP-0313`][114]. Versions 0.2 and 0.3 are supported at the moment. Compatible XMPP clients can use it to store their chat history on the server.
 
@@ -3524,7 +3543,7 @@ Options:
 
 **`cache_life_time: Seconds`**:   Lifetime of the cached items in the cache described in the option `cache_size`. The default is 3600 seconds, i.e. one hour.
 
-## mod_mix {#modmix}
+## mod_mix
 
 This module is an experimental implementation Mediated Information
 eXchange (MIX) as descrive in [`XEP-0369`][122]. Our implementation is
@@ -3537,7 +3556,7 @@ To learn more about how to use that feature, you can refer to our
 tutorial:
 [Getting started with XEP-0369: Mediated Information eXchange (MIX) v0.1](/tutorials/mix-010/).
 
-## mod_metrics {#modmetrics}
+## mod_metrics
 
 This module sends events to external backend (by now it only
 supports grapherl). Supported events are: sm_register_connection,
@@ -3551,7 +3570,7 @@ to the configured backend.
 Backend is not configurable yet, by now it requires to be grapherl
 running in localhost and listening to port 11111.
 
-## mod_muc {#modmuc}
+## mod_muc
 
 This module provides a Multi-User Chat
 ([`XEP-0045`][77]) service. Users
@@ -3647,6 +3666,10 @@ Module options:
 	Description can have when configuring the room. The default value is
 	to not limit: `infinity`.
 
+**`max_rooms_discoitems: Number`**:   When there are more rooms than this Number,
+	only the non-empty ones are returned in a Service Discovery query.
+	The default value is: 100.
+
 **`min_message_interval: Number`**:   This option defines the minimum interval between two messages send
 	by an occupant in seconds. This option is global and valid for all
 	rooms. A decimal value can be used. When this option is not defined,
@@ -3726,7 +3749,8 @@ Module options:
 * **`persistent: false|true`**:   The room persists even if the last participant leaves.
 
 * **`public: true|false`**:   The room is public in the list of the MUC service, so it can be
-	    discovered.
+	    discovered. MUC admins and room participants will see private rooms in Service Discovery,
+	    and the room name will have the word: "private".
 
 * **`public_list: true|false`**:   The list of participants is public, without requiring to enter
 	    the room.
@@ -3845,7 +3869,7 @@ Examples:
 		    access_admin: muc_admin
 		  ...
 
-## mod_muc_log {#modmuclog}
+## mod_muc_log
 
 This module enables optional logging of Multi-User Chat (MUC) public
 conversations to HTML. Once you enable this module, users can join a
@@ -3934,7 +3958,7 @@ Options:
 Examples:
 
 -   In the first example any room owner can enable logging, and a custom
-	CSS file will be used (http://example.com/my.css). The names of the
+	CSS file will be used, `http://example.com/my.css`. The names of the
 	log files will contain the full date, and there will be no
 	subdirectories. The log files will be stored in /var/www/muclogs,
 	and the time zone will be GMT/UTC. Finally, the top link will be
@@ -3990,7 +4014,7 @@ Examples:
 		  ...
 
 
-## mod_multicast {#modmulticast}
+## mod_multicast
 
 This module implements a service for Extended Stanza Addressing ([`XEP-0033`][109])
 
@@ -4038,7 +4062,7 @@ Example configuration:
 	     access: multicast
 	     limits: "> [ {local,message,40}, {local,presence,infinite}, {remote,message,150} ]."
 
-## mod_offline {#modoffline}
+## mod_offline
 
 ### Description
 
@@ -4051,7 +4075,7 @@ email works. A user is considered offline if no session presence
 priority > 0 are currently open.
 
 Note that `ejabberdctl` has a command to delete expired messages (see
-section [Managing: ejabberdctl](../managing/#ejabberdctl)).
+section [Managing: ejabberdctl](../guide/managing/#ejabberdctl)).
 
 ### Options
 
@@ -4119,13 +4143,13 @@ You have several approach for a client to learn what happened when it was offlin
   (for example a mobile client) can use it to resync its own history
   with what happened when it was offline. In that case, the client is
   responsible for marking messages it considers new as "unread". See
-  [mod_mam](#modmam).
+  [mod_mam](#mod-mam).
 
 Some clients may rely on offline and/or message archives to catch up
 on messages on reconnect, but client developers should always consider
 interactions with those two modules together.
 
-## mod_ping {#modping}
+## mod_ping
 
 This module implements support for XMPP Ping
 ([`XEP-0199`][82]) and periodic
@@ -4165,7 +4189,7 @@ closed:
 	    timeout_action: kill
 	  ...
 
-## mod_pres_counter {#modprescounter}
+## mod_pres_counter
 
 This module detects flood/spam in presence subscription stanza traffic.
 If a user sends or receives more of those stanzas in a time interval,
@@ -4192,7 +4216,7 @@ subscription stanzas to be sent or received by the users in 60 seconds:
 	    interval: 60
 	  ...
 
-## mod_privacy {#modprivacy}
+## mod_privacy
 
 This module implements
 [XEP-0016: Privacy Lists\`][83]. If
@@ -4216,7 +4240,7 @@ Options:
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
-## mod_private {#modprivate}
+## mod_private
 
 This module adds support for Private XML Storage
 ([`XEP-0049`][85]):
@@ -4235,7 +4259,7 @@ Options:
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
-## mod_privilege {#modprivilege}
+## mod_privilege
 
 This module is an implementation of ([`XEP-0356`][124]). This extension allows components to have privileged access to other entity data (send messages on behalf of the server, get/set user roster, access presence information). This may be applied for external PEP service.
 
@@ -4285,7 +4309,7 @@ Privileged access gives components access to sensitive data, so permission shoul
 ### Note
 This module is complementary to `mod_delegation` ([`XEP-0355`][123]) but can also be used separately.
 
-## mod_proxy65 {#modproxy65}
+## mod_proxy65
 
 This module implements SOCKS5 Bytestreams
 ([`XEP-0065`][88]). It allows
@@ -4370,7 +4394,7 @@ Examples:
 		    shaper: proxy65_shaper
 		  ...
 
-## mod_pubsub {#modpubsub}
+## mod_pubsub
 
 This module offers a Publish-Subscribe Service
 ([`XEP-0060`][89]). The
@@ -4386,9 +4410,9 @@ Options:
 	virtual host with the prefix ‘`pubsub.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
 
-	If you use `mod_pubsub` with `sql` `db_type`, please ensure the
-	prefix contains only one dot, for example ‘`pubsub.`’, or
-	‘`publish.`’,.
+If you use `mod_pubsub` with `sql` `db_type`, please ensure the
+prefix contains only one dot, for example ‘`pubsub.`’, or
+‘`publish.`’,.
 
 **`access_createnode: AccessName`**:   This option restricts which users are allowed to create pubsub nodes
 	using ACL and ACCESS. By default any account in the local ejabberd
@@ -4406,62 +4430,62 @@ Options:
 	use when creating a node: add `type=’plugin-name’` attribute to the
 	`create` stanza element.
 
-	The “flat” plugin handles the default behavour and follows standard
-	XEP-0060 implementation.
+The “flat” plugin handles the default behavour and follows standard
+XEP-0060 implementation.
 
-	The “hometree” plugin allows to manages nodes in a simple tree and
-	name nodes like files on a filesystem. A node Owner can only create
-	node and subnodes with names /home/owner/xxx and /home/domain/owner/xxx.
-	Each “hometree” node can have none, one, or many child nodes and also
-	have items.
+The “hometree” plugin allows to manages nodes in a simple tree and
+name nodes like files on a filesystem. A node Owner can only create
+node and subnodes with names /home/owner/xxx and /home/domain/owner/xxx.
+Each “hometree” node can have none, one, or many child nodes and also
+have items.
 
-	The “pep” plugin adds extention to handle Personal Eventing Protocol
-	([`XEP-0163`](http://xmpp.org/extensions/xep-0163.html)) to the PubSub
-	engine. Adding pep plugin to PubSub make it handle PEP automatically.
+The “pep” plugin adds extention to handle Personal Eventing Protocol
+([`XEP-0163`](http://xmpp.org/extensions/xep-0163.html)) to the PubSub
+engine. Adding pep plugin to PubSub make it handle PEP automatically.
 
-	The “mix” plugin is an experimental implementation of
-	Mediated Information eXchange
-	([`XEP-0369`](http://xmpp.org/extensions/xep-0369.html)).
+The “mix” plugin is an experimental implementation of
+Mediated Information eXchange
+([`XEP-0369`](http://xmpp.org/extensions/xep-0369.html)).
 
-	The “mb” plugin is a PEP microglobing experimentation.
+The “mb” plugin is a PEP microglobing experimentation.
 
-	The “dag” plugin provides experimental support for PubSub Collection
-	Nodes (see dag nodetree bellow).
+The “dag” plugin provides experimental support for PubSub Collection
+Nodes (see dag nodetree bellow).
 
-	The “dispatch” plugin publishes items to node and all child subnodes
-	using the hometree behaviour. Node name must match hometree name
-	requirements. Publishing item to /home/server/user/a also publish
-	the item to node /home/server/user/a/a and /home/server/user/a/b.
+The “dispatch” plugin publishes items to node and all child subnodes
+using the hometree behaviour. Node name must match hometree name
+requirements. Publishing item to /home/server/user/a also publish
+the item to node /home/server/user/a/a and /home/server/user/a/b.
 
-	The “online” plugin only cope with online users, by automatically
-	remove subscriptions and nodes of disconnecting users.
+The “online” plugin only cope with online users, by automatically
+remove subscriptions and nodes of disconnecting users.
 
-	Other experimentale node plugins are provided. Each plugin comes with
-	it's own list of default node configuration and pubsub feature, and
-	can delegate calls to node_flat for default behaviour.
+Other experimentale node plugins are provided. Each plugin comes with
+it's own list of default node configuration and pubsub feature, and
+can delegate calls to node_flat for default behaviour.
 
 **`nodetree: Nodetree`**:   To specify which nodetree to use. If not defined, the default pubsub
 	nodetree is used: “tree”. Only one nodetree can be used per host,
 	and is shared by all node plugins.
 
-	The “tree” nodetree store node configuration and relations on the
-	database. “flat” nodes are stored without any relationship, and
-	“hometree” nodes can have child nodes.
+The “tree” nodetree store node configuration and relations on the
+database. “flat” nodes are stored without any relationship, and
+“hometree” nodes can have child nodes.
 
-	The “virtual” nodetree does not store nodes on database. This saves
-	resources on systems with tons of nodes. If using the “virtual”
-	nodetree, you can only enable those node plugins: [“flat”,“pep”] or
-	[“flat”]; any other plugins configuration will not work. Also, all
-	nodes will have the defaut configuration, and this can not be
-	changed. Using “virtual” nodetree requires to start from a clean
-	database, it will not work if you used the default “tree” nodetree
-	before.
+The “virtual” nodetree does not store nodes on database. This saves
+resources on systems with tons of nodes. If using the “virtual”
+nodetree, you can only enable those node plugins: [“flat”,“pep”] or
+[“flat”]; any other plugins configuration will not work. Also, all
+nodes will have the defaut configuration, and this can not be
+changed. Using “virtual” nodetree requires to start from a clean
+database, it will not work if you used the default “tree” nodetree
+before.
 
-	The “dag” nodetree provides experimental support for PubSub
-	Collection Nodes
-	([`XEP-0248`](http://xmpp.org/extensions/xep-0248.html)). In that
-	case you should also add “dag” node plugin as default, for example:
-	`plugins: [dag,flat,hometree,pep]`
+The “dag” nodetree provides experimental support for PubSub
+Collection Nodes
+([`XEP-0248`](http://xmpp.org/extensions/xep-0248.html)). In that
+case you should also add “dag” node plugin as default, for example:
+`plugins: [dag,flat,hometree,pep]`
 
 **`ignore_pep_from_offline: false|true`**:   To specify whether or not we should get last published PEP items
 	from users in our roster which are offline when we connect. Value is
@@ -4528,7 +4552,7 @@ following example shows previous configuration with SQL usage:
           - "pep"
 	  ...
 
-## mod_register {#modregister}
+## mod_register
 
 This module adds support for In-Band Registration
 ([`XEP-0077`][91]). This protocol
@@ -4661,7 +4685,7 @@ Examples:
 		      - "boss@example.net"
 		  ...
 
-## mod_register_web {modregisterweb}
+## mod_register_web
 
 This module provides a web page where people can:
 
@@ -4706,7 +4730,7 @@ For example, the users of the host `example.org` can visit the page:
 `https://example.org:5281/register/` It is important to include the last
 / character in the URL, otherwise the subpages URL will be incorrect.
 
-## mod_roster {#modroster}
+## mod_roster
 
 This module implements roster management as defined in
 [`RFC 6121: XMPP IM`][92]. It
@@ -4780,7 +4804,7 @@ everybody else cannot modify the roster:
 	    access: roster
 	  ...
 
-## mod_service_log {#modservicelog}
+## mod_service_log
 
 This module adds support for logging end user packets via a XMPP message
 auditing service such as
@@ -4818,7 +4842,7 @@ Examples:
 		      - "bandersnatch.example.org"
 		  ...
 
-## mod_shared_roster {#modsharedroster}
+## mod_shared_roster
 
 This module enables you to create shared roster groups. This means that
 you can create groups of people that can see members from (other) groups
@@ -4926,7 +4950,7 @@ Examples:
 	**Displayed groups**:  `management`, `sales`
 
 
-## mod_shared_roster_ldap {#modsharedrosterldap}
+## mod_shared_roster_ldap
 
 This module lets the server administrator automatically populate users’
 rosters (contact lists) with entries based on users and groups defined
@@ -4963,14 +4987,14 @@ information. All of them are run against the `ldap_base`.
 	mean “the value of the configuration parameter
 	`ldap_SOMETHING`”):
 
-	    (&(&([ldap_memberattr]=[ldap_memberattr_format])([ldap_groupattr]=%g))[ldap_filter])
+	  (&(&([ldap_memberattr]=[ldap_memberattr_format])([ldap_groupattr]=%g))[ldap_filter])
 
-	Subsequently `%u` and `%g` are replaced with a \*.
-	This means that given the defaults, the filter sent to the LDAP
-	server is would be `(&(memberUid=*)(cn=*))`. If however the
-	`ldap_memberattr_format` is something like
-	`uid=%u,ou=People,o=org`, then the filter will be
-	`(&(memberUid=uid=*,ou=People,o=org)(cn=*))`.
+Subsequently `%u` and `%g` are replaced with a \*.
+This means that given the defaults, the filter sent to the LDAP
+server is would be `(&(memberUid=*)(cn=*))`. If however the
+`ldap_memberattr_format` is something like
+`uid=%u,ou=People,o=org`, then the filter will be
+`(&(memberUid=uid=*,ou=People,o=org)(cn=*))`.
 
 **`ldap_gfilter`**:   “Group Filter” – used when retrieving human-readable name (a.k.a.
 	“Display Name”) and the members of a group. See also the parameters
@@ -5009,7 +5033,7 @@ is that you will see messages such as the following in your
 
 These parameters specify the names of the attributes which hold
 interesting data in the entries returned by running filters specified in
-section [Filters](#filters).
+section [Filters](#msrl-filters).
 
 **`ldap_groupattr`**: The name of the attribute that holds the group name, and that is used to
   differentiate between them. Retrieved from results of the “Roster
@@ -5024,8 +5048,8 @@ section [Filters](#filters).
 	Retrieved from results of the “Group Filter”. Defaults to
 	`memberUid`.
 
-	The name of the attribute differs depending on the
-	`objectClass` you use for your group objects, for example:
+The name of the attribute differs depending on the
+`objectClass` you use for your group objects, for example:
 
 		`posixGroup` -> `memberUid`
 		`groupOfNames` -> `member`
@@ -5049,56 +5073,56 @@ These paramters control the behaviour of the module.
 	attribute named by `ldap_memberattr`. Defaults to `%u`,
 	which means that the whole value is the member ID. If you change it
 	to something different, you may also need to specify the User and
-	Group Filters manually — see section [Filters](#filters).
+	Group Filters manually — see section [Filters](#msrl-filters).
 
 **`ldap_memberattr_format_re`**:   A regex for extracting user ID from the value of the attribute named
 	by `ldap_memberattr`.
 
-	An example value
-	`“CN=(\\w*),(OU=.*,)*DC=company,DC=com”`
-	works for user IDs such as the following:
+An example value
+`“CN=(\\w*),(OU=.*,)*DC=company,DC=com”`
+works for user IDs such as the following:
 
-	-   `CN=Romeo,OU=Montague,DC=company,DC=com`
-	-   `CN=Abram,OU=Servants,OU=Montague,DC=company,DC=com`
-	-   `CN=Juliet,OU=Capulet,DC=company,DC=com`
-	-   `CN=Peter,OU=Servants,OU=Capulet,DC=company,DC=com`
+-   `CN=Romeo,OU=Montague,DC=company,DC=com`
+-   `CN=Abram,OU=Servants,OU=Montague,DC=company,DC=com`
+-   `CN=Juliet,OU=Capulet,DC=company,DC=com`
+-   `CN=Peter,OU=Servants,OU=Capulet,DC=company,DC=com`
 
-	In case:
+In case:
 
-	-   the option is unset,
-	-   or the `re` module in unavailable in the current
-	    Erlang environment,
-	-   or the regular expression does not compile,
+-   the option is unset,
+-   or the `re` module in unavailable in the current
+    Erlang environment,
+-   or the regular expression does not compile,
 
-	then instead of a regular expression, a simple format specified by
-	`ldap_memberattr_format` is used. Also, in the last two
-	cases an error message is logged during the module initialization.
+then instead of a regular expression, a simple format specified by
+`ldap_memberattr_format` is used. Also, in the last two
+cases an error message is logged during the module initialization.
 
-	Also, note that in all cases `ldap_memberattr_format`
-	(and `*not*` the regex version) is used for constructing
-	the default “User/Group Filter” — see section [Filters](#filters).
+Also, note that in all cases `ldap_memberattr_format`
+(and `*not*` the regex version) is used for constructing
+the default “User/Group Filter” — see section [Filters](#msrl-filters).
 
 **`ldap_auth_check`**:   Whether the module should check (via the ejabberd authentication
 	subsystem) for existence of each user in the shared LDAP roster. See
-	section [mod_shared_roster_ldap](#modsharedrosterldap) form more information. Set to
+	section [mod_shared_roster_ldap](#mod-shared-roster-ldap) form more information. Set to
 	`off` if you want to disable the check. Defaults to
 	`on`.
 
 **`ldap_user_cache_validity`**:   Number of seconds for which the cache for roster item full names is
 	considered fresh after retrieval. 300 by default. See
-	section [mod_shared_roster_ldap](#modsharedrosterldap) on how it is used during roster
+	section [mod_shared_roster_ldap](#mod-shared-roster-ldap) on how it is used during roster
 	retrieval.
 
 **`ldap_group_cache_validity`**:   Number of seconds for which the cache for group membership is
 	considered fresh after retrieval. 300 by default. See
-	section [mod_shared_roster_ldap](#modsharedrosterldap) on how it is used during roster
+	section [mod_shared_roster_ldap](#mod-shared-roster-ldap) on how it is used during roster
 	retrieval.
 
 ### Connection parameters
 
 The module also accepts the connection parameters, all of which default
 to the top-level parameter of the same name, if unspecified.
-See [LDAP Connection](#ldapconnection)] for more information about them.
+See [LDAP Connection](#ldap-connection)] for more information about them.
 
 ### Retrieving the roster
 
@@ -5239,7 +5263,7 @@ If you use the following example module configuration with it:
 …and connect as user `czesio`, then `ejabberd` will provide
 you with the roster shown in figure [fig:msrl-roster-deep].
 
-## mod_sic {#modsic}
+## mod_sic
 
 This module adds support for Server IP Check
 ([`XEP-0279`][98]). This protocol
@@ -5250,7 +5274,7 @@ Options:
 **`iqdisc: Discipline`**:   This specifies the processing discipline for `urn:xmpp:sic:0` IQ
 	queries (see section [IQ Discipline Option](#iqdisc)).
 
-## mod_sip {#modsip}
+## mod_sip
 
 This module adds SIP proxy/registrar support for the corresponding
 virtual host. Note that it is not enough to just load this module only.
@@ -5321,7 +5345,7 @@ Example complex configuration:
 	        port: 5060
 	  ...
 
-## mod_stats {#modstats}
+## mod_stats
 
 This module adds support for Statistics Gathering
 ([`XEP-0039`][99]). This protocol
@@ -5370,7 +5394,7 @@ send in order to get the statistics. Here they are:
 		  </query>
 		</iq>
 
-## mod_time {#modtime}
+## mod_time
 
 This module features support for Entity Time
 ([`XEP-0202`][101]). By using this
@@ -5381,7 +5405,7 @@ Options:
 **`iqdisc: Discipline`**:   This specifies the processing discipline for Entity Time
 	(`jabber:iq:time`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
-## mod_vcard {#modvcard}
+## mod_vcard
 
 This module allows end users to store and retrieve their vCard, and to
 retrieve other users vCards, as defined in vcard-temp
@@ -5450,7 +5474,7 @@ Examples:
 		    allow_return_all: true
 		  ...
 
-## mod_vcard_ldap {#modvcardldap}
+## mod_vcard_ldap
 
 `ejabberd` can map LDAP attributes to vCard fields. This behaviour is
 implemented in the `mod_vcard_ldap` module. This module does not depend
@@ -5580,11 +5604,11 @@ Examples:
 		## We want to authorize users from 'shadowAccount' object class only
 		ldap_filter: "(objectClass=shadowAccount)"
 
-	Now we want to use users LDAP-info as their vCards. We have four
-	attributes defined in our LDAP schema: `mail` — email address,
-	`givenName` — first name, `sn` — second name, `birthDay` — birthday.
-	Also we want users to search each other. Let’s see how we can set it
-	up:
+Now we want to use users LDAP-info as their vCards. We have four
+attributes defined in our LDAP schema: `mail` — email address,
+`givenName` — first name, `sn` — second name, `birthDay` — birthday.
+Also we want users to search each other. Let’s see how we can set it
+up:
 
 				
 		modules:
@@ -5621,8 +5645,8 @@ Examples:
 		      "Nickname": "NICKNAME"
 		      "Birthday": "BDAY"
 
-	Note that `mod_vcard_ldap` module checks an existence of the user
-	before searching his info in LDAP.
+Note that `mod_vcard_ldap` module checks an existence of the user
+before searching his info in LDAP.
 
 -   `ldap_vcard_map` example:
 
@@ -5651,7 +5675,7 @@ Examples:
 		  "Birthday": "BDAY"
 		  "Nickname": "NICKNAME"
 
-## mod_vcard_xupdate {#modvcardxupdate}
+## mod_vcard_xupdate
 
 The user’s client can store an avatar in the user vCard. The vCard-Based
 Avatars protocol
@@ -5677,7 +5701,7 @@ Options:
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
-## mod_version {#modversion}
+## mod_version
 
 This module implements Software Version
 ([`XEP-0092`][108]). Consequently,
@@ -5775,7 +5799,7 @@ Options:
 [91]:	http://xmpp.org/extensions/xep-0077.html
 [92]:	http://tools.ietf.org/html/rfc6121#section-2
 [93]:	http://xmpp.org/extensions/xep-0237.html
-[95]:	http://www.funkypenguin.info/project/bandersnatch/
+[95]:	https://www.funkypenguin.co.nz/project/bandersnatch/
 [97]:	http://en.wikipedia.org/wiki/Directory_Information_Tree
 [98]:	http://xmpp.org/extensions/xep-0279.html
 [99]:	http://xmpp.org/extensions/xep-0039.html
@@ -5800,5 +5824,5 @@ Options:
 [120]:  http://xmpp.org/extensions/xep-0363.html
 [121]:  http://xmpp.org/extensions/xep-0013.html
 [122]:  https://xmpp.org/extensions/xep-0369.html
-[123]: (http://xmpp.org/extensions/xep-0355.html
-[124]: (http://xmpp.org/extensions/xep-0356.html
+[123]:  http://xmpp.org/extensions/xep-0355.html
+[124]:  http://xmpp.org/extensions/xep-0356.html
