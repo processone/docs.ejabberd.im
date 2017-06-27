@@ -3083,7 +3083,7 @@ Example:
 	modules:
 	  ...
 	  mod_fail2ban:
-	    c2s_auth_block_lifetime: 7200
+	    c2s_auth_ban_lifetime: 7200
 	    c2s_max_auth_failures: 50
 	  ...
 
