@@ -2554,6 +2554,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_disco](#mod-disco)                        | Service Discovery ([`XEP-0030`][42])                 |                                  |
 | [mod_echo](#mod-echo)                          | Echoes XMPP stanzas                                  |                                  |
 | [mod_fail2ban](#mod-fail2ban)                  | Bans IPs that show the malicious signs               |                                  |
+| [mod_http_api](#mod-http-api)                  | Implements REST API for ejabberd using JSON data     |                                  |
 | [mod_http_bind](#mod-http-bind)                | XMPP over Bosh service (HTTP Binding)                |                                  |
 | [mod_http_fileserver](#mod-http-fileserver)    | Small HTTP file server                               |                                  |
 | [mod_http_upload](#mod-http-upload)            | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
@@ -3085,6 +3086,23 @@ Example:
 	  mod_fail2ban:
 	    c2s_auth_block_lifetime: 7200
 	    c2s_max_auth_failures: 50
+	  ...
+
+## mod_http_api
+
+This module implements REST API for ejabberd using JSON data
+
+Options:
+
+**`hide_passwords_in_logfile: true`**:   Replaces plain text passwords in the ejabberd log file with "[FILTERED]".
+
+Example:
+
+
+	modules:
+	  ...
+	  mod_http_api:
+	    hide_passwords_in_logfile: true
 	  ...
 
 ## mod_http_bind
