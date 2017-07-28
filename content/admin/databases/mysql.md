@@ -1,5 +1,6 @@
 ---
 title: Using ejabberd with MySQL
+menu: MySQL
 toc: true
 ---
 

@@ -241,7 +241,7 @@ The commands included in ejabberd by default are:
 
 **`mnesia_change_nodename oldnodename newnodename oldbackup newbackup`**:   Change the erlang node name in a backup file
 
-**`export2sql virtualhost directory`**:   Export virtual host information from Mnesia tables to SQL files.
+**`export2sql virtualhost filepath`**:   Export virtual host information from Mnesia tables to a SQL file.
 
 **`update_list`**:   List modified modules that can be updated
 

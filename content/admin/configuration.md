@@ -382,8 +382,8 @@ are:
 	`turn_port_range`, `turn_max_allocations`, `turn_max_permissions`,
 	`shaper`, `server_name`, `auth_realm`, `auth_type`
 
-**`ejabberd_http`**:   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP Bosh and Websocket with proper request handler configured.
-	Options: `captcha`, `certfile`, `default_host`, `dhfile`, `http_bind`,
+**`ejabberd_http`**:   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP BOSH and Websocket with proper request handler configured.
+	Options: `captcha`, `certfile`, `default_host`, `dhfile`,
 	`request_handlers`, `tls`, `tls_compression`,
 	`trusted_proxies` (global option), `web_admin`
 
@@ -626,7 +626,7 @@ ejabberd configuration file (outside `listen`):
 **`outgoing_s2s_families: [Family, ...]`**:   Specify which address families to try, in what order. By default it
 	first tries connecting with IPv4, if that fails it tries using IPv6.
 
-**`outgoing_s2s_timeout: Timeout`**:   The timeout in milliseconds for outgoing S2S connection attempts.
+**`outgoing_s2s_timeout: Timeout`**:   The timeout in seconds for outgoing S2S connection attempts.
 
 **`s2s_access: Access`**:   The policy for incoming and outgoing s2s connections to other XMPP
 	servers. The default value is `all`.
@@ -1106,15 +1106,13 @@ each virtual host defined in ejabberd:
 The `anonymous` authentication method enables two modes for anonymous
 authentication:
 
-**`Anonymous login:`**:   This is a standard login, that use the classical login and password
+**`Anonymous login`**:   This is a standard login, that use the classical login and password
 	mechanisms, but where password is accepted or preconfigured for all
 	anonymous users. This login is compliant with SASL authentication,
 	password and digest non-SASL authentication, so this option will
 	work with almost all XMPP clients
 
-`SASL Anonymous:`
-
-:   This is a special SASL authentication mechanism that allows to login
+**`SASL Anonymous`**:   This is a special SASL authentication mechanism that allows to login
 	without providing username or password (see
 	[`XEP-0175`](http://xmpp.org/extensions/xep-0175.html)). The main
 	advantage of SASL Anonymous is that the protocol was designed to
@@ -2546,6 +2544,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_announce](#mod-announce)                  | Manage announcements                                 | recommends `mod_adhoc`           |
 | [mod_block_strangers](#mod-block-strangers)    | Block packets from non-subscribers                   |                                  |
 | mod_blocking                                   | Simple Communications Blocking ([`XEP-0191`][39])    | `mod_privacy`                    |
+| [mod_bosh](#mod-bosh)                          | BOSH ([`XEP-0124`][69]) and XMPP over BOSH ([`XEP-0206`][70]) |                         |
 | mod_caps                                       | Entity Capabilities ([`XEP-0115`][40])               |                                  |
 | mod_carboncopy                                 | Message Carbons ([`XEP-0280`][41])                   |                                  |
 | [mod_client_state](#mod-client-state)          | Filter stanzas for inactive clients                  |                                  |
@@ -2554,7 +2553,6 @@ The following table lists all modules included in `ejabberd`.
 | [mod_disco](#mod-disco)                        | Service Discovery ([`XEP-0030`][42])                 |                                  |
 | [mod_echo](#mod-echo)                          | Echoes XMPP stanzas                                  |                                  |
 | [mod_fail2ban](#mod-fail2ban)                  | Bans IPs that show the malicious signs               |                                  |
-| [mod_http_bind](#mod-http-bind)                | XMPP over Bosh service (HTTP Binding)                |                                  |
 | [mod_http_fileserver](#mod-http-fileserver)    | Small HTTP file server                               |                                  |
 | [mod_http_upload](#mod-http-upload)            | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
 | [mod_http_upload_quota](#mod-http-upload-quota)| HTTP File Upload Quotas                              | `mod_http_upload`                |
@@ -2852,6 +2850,67 @@ be dropped or not. The default value is `true`.
 **`log: true|false`**:   This option specifies if strangers messages should
 be logged (as info message) in ejabberd logs. The default value is `false`.
 
+## mod_bosh
+
+This module implements XMPP over BOSH as defined in [`XEP-0124`][69] and [`XEP-0206`][70]. BOSH stands for
+Bidirectional-streams Over Synchronous HTTP. It makes it possible to simulate long lived connections required by XMPP
+over HTTP protocol. In practice, this module makes it possible to use XMPP in a browser without Websocket support and
+more generally to have a way to use XMPP while having to get through an HTTP proxy.
+
+### Enabling BOSH support
+
+`mod_bosh` extends ejabberd’s built in HTTP service with a configurable resource at which this service will be hosted.
+
+To use XMPP over BOSH, enable the module:
+
+	modules:
+	  ...
+	  mod_bosh: {}
+	  ...
+
+and add `mod_bosh` in the HTTP listener service. For example:
+
+	listen:
+	  ...
+	  -
+	    port: 5280
+	    module: ejabberd_http
+	    request_handlers:
+	       "/bosh": mod_bosh
+	    web_admin: true
+	  ...
+
+With this configuration, the module will serve the requests sent to
+`http://example.org:5280/bosh/`
+
+Please, remember that this page is not designed to be used by web browsers, it is used by XMPP clients that support XMPP
+over BOSH.
+
+### Options
+
+- **`{max_inactivity, Seconds}`**:   Define the maximum inactivity period in seconds. Default value is 30
+	seconds. For example, to set 50 seconds:
+
+	    modules:
+	      ...
+	      mod_http_bind:
+	        max_inactivity: 50
+	      ...
+
+<!-- TODO Document options:
+json, max_concat, max_inactivity, max_pause, prebind, ram_db_type,     queue_type, use_cache, cache_size, cache_missed, cache_life_time
+-->
+
+### Discovery
+
+You also need to configure DNS SRV records properly so clients can
+easily discover a BOSH server serving your XMPP domain. Refer to
+[XEP-0159](https://xmpp.org/extensions/xep-0156.html).
+
+Example DNS TXT configuration for BOSH:
+
+    _xmppconnect IN TXT "[ _xmpp-client-xbosh=https://web.example.org:5280/bosh ]"
+
 ## mod_client_state
 
 This module allows for queueing certain types of stanzas when a client
@@ -3083,69 +3142,9 @@ Example:
 	modules:
 	  ...
 	  mod_fail2ban:
-	    c2s_auth_block_lifetime: 7200
+	    c2s_auth_ban_lifetime: 7200
 	    c2s_max_auth_failures: 50
 	  ...
-
-## mod_http_bind
-
-This module implements XMPP over Bosh (formerly known as HTTP Binding)
-as defined in [`XEP-0124`][69] and
-[`XEP-0206`][70]. It extends
-ejabberd’s built in HTTP service with a configurable resource at which
-this service will be hosted.
-
-To use HTTP-Binding, enable the module:
-
-			
-	modules:
-	  ...
-	  mod_http_bind: {}
-	  ...
-
-and add `http_bind` in the HTTP service. For example:
-
-			
-	listen:
-	  ...
-	  -
-	    port: 5280
-	    module: ejabberd_http
-	    http_bind: true
-	    web_admin: true
-	  ...
-
-With this configuration, the module will serve the requests sent to
-`http://example.org:5280/http-bind/` Remember that this page is not
-designed to be used by web browsers, it is used by XMPP clients that
-support XMPP over Bosh.
-
-If you want to set the service in a different URI path or use a
-different module, you can configure it manually using the option
-`request_handlers`. For example:
-
-			
-	listen:
-	  ...
-	  -
-	    port: 5280
-	    module: ejabberd_http
-	    request_handlers:
-	       "/http-bind": mod_http_bind
-	    web_admin: true
-	  ...
-
-Options:
-
-**`{max_inactivity, Seconds}`**:   Define the maximum inactivity period in seconds. Default value is 30
-	seconds. For example, to set 50 seconds:
-
-	    		
-	    modules:
-	      ...
-	      mod_http_bind:
-	        max_inactivity: 50
-	      ...
 
 ## mod_http_fileserver
 
@@ -3371,9 +3370,10 @@ in the following example.
 This module enables xmpp communication over websocket connection as
 described in [`RFC 7395`][71].
 
+### Enabling Websocket support
+
 To enable this module it must have handler added to `request_handlers`
 section of `ejabberd_http` listener:
-
 			
 	listen:
 	  ...
@@ -3389,7 +3389,7 @@ section of `ejabberd_http` listener:
 This module can be configured by using those options that should be
 placed in general section of config file:
 
-**`websocket_ping_interval: Seconds`**: Defines time between pings send by server to client (websocket level
+- **`websocket_ping_interval: Seconds`**: Defines time between pings send by server to client (websocket level
 protocol pings are used for this) to keep connection active. If client
 won't respond to two corresponding pings connection will be assumed as
 closed. Value of `0` can be used to disable it feature. This options
@@ -3398,9 +3398,25 @@ protocol, for older style connections server expects that whitespace
 pings would be used for this purpose. Default value of this option
 is set to 60.
 
-**`websocket_timeout: Seconds`**: Amount of time without any communication after which connection
+- **`websocket_timeout: Seconds`**: Amount of time without any communication after which connection
 would be closed. The specified number of seconds must be larger than 0.
 This option is set to 300 by default.
+
+### Discovery
+
+You also need to configure DNS SRV records properly so clients can
+easily discover Websocket service for your XMPP domain. Refer to
+[XEP-0159](https://xmpp.org/extensions/xep-0156.html).
+
+Example DNS TXT configuration for Websocker:
+
+    _xmppconnect IN TXT "[ _xmpp-client-websocket=wss://web.example.com:443/ws ]"
+
+### Testing websocket
+
+A test client can be found on Github: [Websocket test client](https://github.com/processone/xmpp-websocket-client)
+
+<!-- TODO We should probably embed a test Websocket client on the Websocket info get page. -->
 
 ## mod_irc
 
@@ -4018,23 +4034,34 @@ Examples:
 
 This module implements a service for Extended Stanza Addressing ([`XEP-0033`][109])
 
-Configurable options:
+### Enabling multicast
 
-**`host`**: Define the hostname of the service. Default value: "multicast.SERVER"
+Edit ejabberd.yml and add the module to the list of modules:
 
-**`access`**: Specify who can send packets to the multicast service. Default value: all
+    mod_multicast: []
 
-**`limits`**: Specify a list of custom limits which override the default ones defined in XEP-0033.
-    Limits are defined with this syntax: {Sender_type, Stanza_type, Number}
-    Where:
-    Sender_type can have values: local or remote.
-    Stanza_type can have values: message or presence.
-    Number can be a positive integer or the key word infinite.
-    Default value: []
+### Configurable options
 
-Example configuration:
+- **`host`**: Define the hostname of the service. Default value: "multicast.SERVER"
 
-			
+- **`access`**: Specify who can send packets to the multicast service. Default value: all
+
+- **`limits`**: Specify a list of custom limits which override the default ones defined in XEP-0033.
+    Limits are defined per sender type and stanza type, where:
+  - The sender type can be: local or remote.
+  - The stanza type can be: message or presence.
+  - The number can be a positive integer or the key word infinite.
+  - Default values:
+
+	local:
+	  message: 100
+	  presence: 100
+	remote:
+	  message: 20
+	  presence: 20
+
+### Example configuration
+
 	# Only admins can send packets to multicast service
 	access_rules:
 	  multicast:
@@ -4060,7 +4087,68 @@ Example configuration:
 	  mod_multicast:
 	     host: "multicast.example.org"
 	     access: multicast
-	     limits: "> [ {local,message,40}, {local,presence,infinite}, {remote,message,150} ]."
+	     limits:
+	       local:
+	         message: 40
+	         presence: infinite
+	       remote:
+	         message: 150
+
+### Service check
+
+You have to restart ejabberd after adding or modifying `mod_multicast`conf.
+
+To verify the service is running, login to ejabberd with a XMPP client, open the service discovery and check that
+there's a service called "Multicast".
+
+### How to simulate group chat with multicast
+
+#### For stanza sender
+
+Instead of sending two stanzas, like this:
+
+~~~
+<message to='user2@localhost' type='chat'>
+   <body>Hello, world!</body>
+</message>
+<message to='user3@localhost' type='chat'>
+   <body>Hello, world!</body>
+</message>
+~~~
+
+now you can send a stanza like this:
+
+~~~
+<message to='multicast.localhost' type='chat'>
+   <addresses xmlns='http://jabber.org/protocol/address'>
+       <address type='to' jid='user2@localhost'/>
+       <address type='cc' jid='user3@localhost'/>
+   </addresses>
+   <body>Hello, world!</body>
+</message>
+~~~
+
+#### For the stanza receivers
+
+They will receive something like this:
+
+~~~
+<message from='user1@localhost/tka1'
+        to='user3@localhost'
+        type='chat'>
+  <addresses xmlns='http://jabber.org/protocol/address'>
+    <address type='cc'
+        jid='user3@localhost'/>
+  </addresses>
+  <body>Hello, world!</body>
+</message>
+~~~
+
+The addresses tag let the receiver knows that there were multiple
+recipients and can:
+
+- Display it properly in client interface.
+- Reply to all recipients.
 
 ## mod_offline
 
@@ -5696,10 +5784,6 @@ recalculation, and each presence sent by a client produces hash
 retrieval and a presence stanza rewrite. For this reason, enabling this
 module will introduce a computational overhead in servers with clients
 that change frequently their presence.
-
-Options:
-
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 ## mod_version
 

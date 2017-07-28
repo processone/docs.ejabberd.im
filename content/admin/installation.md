@@ -128,7 +128,7 @@ To compile `ejabberd` on a ‘Unix-like’ operating system, you need:
 -   GCC
 -   Libexpat 1.95 or higher
 -   Libyaml 0.1.4 or higher
--   Erlang/OTP 17.1 or higher
+-   Erlang/OTP 17.5 or higher
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`][4]). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See section [pam][8].
@@ -427,6 +427,27 @@ enter the `ejabberd` Web Admin. Here are the steps to create it:
     example: `admin1@example.org`). The reason that you also need to
     enter the suffix is due to `ejabberd`’s virtual hosting support. You can
     manage several XMPP domain on a single instance.
+
+## Creating Backend Database
+
+By default, ejabberd uses its own database to store runtime data. In many cases
+you may need to let ejabberd use an external SQL database.
+Supported SQL backends are MySQL, PostgreSQL, Sqlite, MSSQL.
+
+When using external database backend, ejabberd does not create schema and tables
+by itself. You must create the schema before you run ejabberd.
+
+- If installing ejabberd from sources, you will find sql script for your backend
+  in the installation directory. By default: `/usr/local/lib/ejabberd/priv/sql`
+
+- If installing ejabberd from Process-One installer, the init scripts are located
+  in the ejabberd's installation path under `<base>/lib/ejabberd*/priv/sql`
+
+See [ejabberd SQL Database Schema](/developer/sql-schema/)
+for details on database schemas.
+See [Step-by-step Databases Configuration Guides](/admin/guide/databases/)
+for detailed setup instructions.
+
 
 [1]:	http://www.process-one.net/en/ejabberd/downloads
 [2]:	http://www.microsoft.com/

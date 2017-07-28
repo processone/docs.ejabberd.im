@@ -3,7 +3,7 @@ title: Upgrade Procedure for ejabberd
 menu: Upgrading ejabberd
 categories: ecs
 toc: true
-order: 9
+order: 15
 ---
 
 This document contains administration procedure for each version upgrade.
@@ -19,8 +19,6 @@ soft upgrade does not work, then you have to fallback to standalone upgrade
 process.
 
 # Generic upgrade process
-
-## Standalone upgrade process
 
 This is the simplest process, and require service restart.
 
@@ -61,6 +59,7 @@ version indicates you need to also update those tables.
 
 # Specific version upgrade notes
 
+- [Upgrading from ejabberd 17.04 to 17.06](/admin/upgrade/from_17.04_to_17.06/)
 - [Upgrading from ejabberd 17.03 to 17.04](/admin/upgrade/from_17.03_to_17.04/)
 - [Upgrading from ejabberd 17.01 to 17.03](/admin/upgrade/from_17.01_to_17.03/)
 - [Upgrading from ejabberd 16.12 to 17.01](/admin/upgrade/from_16.12_to_17.01/)

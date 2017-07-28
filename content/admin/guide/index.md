@@ -1,7 +1,7 @@
 ---
 title: Advanced ejabberd Administration
 menu: Advanced Topics
-order: 10
+order: 20
 ---
 
 - [Configuring ejabberd to support specific XMPP Extensions][11]

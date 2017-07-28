@@ -246,10 +246,10 @@ ejabberd environment. Packaging a module allows you to:
 Now, to do useful stuff, you need to integrate with ejabberd data
 flow. You have two mechanisms available from ejabberd modules:
 
-* [Events and Hooks](/developer/hooks/): This is to handle internal ejabberd triggers and
+* [Events and Hooks](/developer/guide/#hooks): This is to handle internal ejabberd triggers and
   subscribe to them to perform actions or provide data.
 
-* [IQ Handlers](/developer/iq-handlers/): This is a way to register ejabberd module to handle
+* [IQ Handlers](/developer/guide/#iq-handlers): This is a way to register ejabberd module to handle
   XMPP Info Queries. This is the XMPP way to provide new services.
 
 [image-1]:	/static/images/architect/ejabberd_internals.png
