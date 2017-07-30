@@ -1091,6 +1091,13 @@ These are the specific options:
 	be enabled in a host if internal auth is also enabled. If caching is
 	enabled, `mod_last` must be enabled also in that vhost.
 
+**`auth_use_cache: false|true`**:   Starting in *ejabberd 17.06*, caching has received a complete overhaul.
+	Instead of `extauth_cache`, a set of new variables describes cache
+	behaviour, and the default value is now `true`. Note that caching
+	interferes with the ability to maintain multiple passwords per
+	account. So if your authentication mechanism supports
+	application-specific passwords, caching must be disabled.
+
 This example sets external authentication, the extauth script, enables
 caching for 10 minutes, and starts three instances of the script for
 each virtual host defined in ejabberd:
@@ -1100,6 +1107,7 @@ each virtual host defined in ejabberd:
 	extauth_program: "/etc/ejabberd/JabberAuth.class.php"
 	extauth_cache: 600
 	extauth_instances: 3
+	auth_use_cache: false
 
 ### Anonymous Login and SASL Anonymous
 
