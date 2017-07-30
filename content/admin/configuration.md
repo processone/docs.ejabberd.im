@@ -3064,6 +3064,12 @@ all?
 The module bans IPs that show the malicious signs. Currently only C2S
 authentication failures are detected.
 
+Unlike the [standalone program](https://www.fail2ban.org), `mod_fail2ban`
+clears the record of authentication failures `c2s_auth_ban_lifetime`
+seconds after the first failure or on a successful authentication. It
+also does not simply block network traffic, but provides the client with
+a descriptive error message.
+
 Available options:
 
 **`c2s_auth_ban_lifetime: Seconds`**:   The lifetime of the IP ban caused by too many C2S authentication
