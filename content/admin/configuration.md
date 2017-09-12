@@ -5155,7 +5155,7 @@ The name of the attribute differs depending on the
 
 ### Control parameters
 
-These paramters control the behaviour of the module.
+These parameters control the behaviour of the module.
 
 **`ldap_memberattr_format`**:   A globbing format for extracting user ID from the value of the
 	attribute named by `ldap_memberattr`. Defaults to `%u`,
