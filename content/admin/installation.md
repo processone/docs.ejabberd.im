@@ -39,6 +39,17 @@ chmod +x ejabberd-16.09-linux-x86_64-installer.run
 ./ejabberd-16.09-linux-x86_64-installer.run
 ```
 
+On a \*nix system, if you install `ejabberd` as root user or if you
+install it with deb or rpm manager, it will create two directories in the
+root installation directory. Example:
+
+-  `/opt/ejabberd-YY.MM` with YY.MM being the release number will include all
+    binaries, installation logs and configuration example. At uninstallation
+    this directory will be completely removed.
+-  `/opt/ejabberd` is set to `ejabberd` user HOME and will contain all
+    runtime files: effective configuration, database and logs. At uninstallation
+    this directory will NOT be removed.
+
 The installer script support many options, especially for unattended, scripted
 installation. You can read more on installer options on [unattended
 installation](/admin/guide/unattended/).

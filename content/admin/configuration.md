@@ -2436,9 +2436,6 @@ There are several options available:
 
 **`redis_db: N`**:   Redis database number. The default is 0.
 
-**`redis_reconnect_timeout: N`**:   A number of seconds to wait before next connection attempt to the Redis server.
-	The default is 1 second.
-
 **`redis_connect_timeout: N`**:   A number of seconds to wait for the connection to be established to the Redis
 	server. The default is 1 second.
 
@@ -5155,7 +5152,7 @@ The name of the attribute differs depending on the
 
 ### Control parameters
 
-These paramters control the behaviour of the module.
+These parameters control the behaviour of the module.
 
 **`ldap_memberattr_format`**:   A globbing format for extracting user ID from the value of the
 	attribute named by `ldap_memberattr`. Defaults to `%u`,
