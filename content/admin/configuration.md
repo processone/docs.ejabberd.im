@@ -67,7 +67,7 @@ Please, consult `ejabberd.log` for configuration errors. `ejabberd` will
 report syntax related errors, as well as complains about unknown options.
 The later error typically looks like this:
 
-    17:10:52.858 [error] unknown option 'db_typ' for module 'mod_roster' will be likely ignored, available options are: 'access', 'db_type', 'iqdisc', 'managers', 'store_current_id', 'versioning'
+    17:10:52.858 [error] unknown option 'db_typ' for module 'mod_roster' will be likely ignored, available options are: 'access', 'db_type', 'iqdisc', 'store_current_id', 'versioning'
 
 Unknown options are not ignored at the moment in order to make legacy
 third-party modules work.  Make sure you respect indentation (YAML is
@@ -356,9 +356,8 @@ are:
 
 **`ejabberd_c2s`**:   Handles c2s connections.  
     Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`,
-	`max_ack_queue`, `max_fsm_queue`, `max_resume_timeout`,
-	`max_stanza_size`, `resend_on_timeout`, `resume_timeout`, `shaper`,
-	`starttls`, `starttls_required`, `stream_management`, `tls`, `zlib`,
+	`max_fsm_queue`, `max_stanza_size`, `shaper`,
+	`starttls`, `starttls_required`, `tls`, `zlib`,
 	`tls_compression`
 
 **`ejabberd_s2s_in`**:   Handles incoming s2s connections.  
@@ -467,13 +466,6 @@ install JWChat with ejabberd and an
 [`embedded local web server`](http://www.ejabberd.im/jwchat-localserver)
 or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 
-**`max_ack_queue: Size`**:   This option specifies the maximum number of unacknowledged stanzas
-	queued for possible retransmission if `stream_management` is
-	enabled. When the limit is exceeded, the client session is
-	terminated. This option can be specified for `ejabberd_c2s`
-	listeners. The allowed values are positive integers and `infinity`.
-	Default value: `1000`.
-
 **`max_fsm_queue: Size`**:   This option specifies the maximum number of elements in the queue of
 	the FSM (Finite State Machine). Roughly speaking, each message in
 	such queues represents one XML stanza queued to be sent into its
@@ -488,15 +480,6 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
 	’undefined’. Default value: ’undefined’.
-
-**`max_resume_timeout: Seconds`**:   If `stream_management` is enabled, a client may specify the number of
-	seconds until a session times out if the connection is lost. During
-	this period of time, the client may resume the session. This option
-	limits the number of seconds a client is permitted to request. It
-	can be specified for `ejabberd_c2s` listeners, and it must be set to
-	a number equal to or larger than the default `resume_timeout` (see
-	below). By default, it is set to the same value as the
-	`resume_timeout` option.
 
 **`max_stanza_size: Size`**:   This option specifies an approximate maximum size in bytes of XML
 	stanzas. Approximate, because it is calculated with the precision of
@@ -517,27 +500,6 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	    request_handlers:
 	      "/a/b": mod_foo
 	      "/http-bind": mod_http_bind
-
-**`resend_on_timeout: true|false|if_offline`**:   If `stream_management` is enabled and this option is set to `true`,
-	any message stanzas that weren’t acknowledged by the client will
-	be resent on session timeout. This behavior might often be desired,
-	but could have unexpected results under certain circumstances. For
-	example, a message that was sent to two resources might get resent
-	to one of them if the other one timed out. Therefore, the default
-	value for this option is `false`, which tells ejabberd to generate
-	an error message instead. As an alternative, the option may be set
-	to `if_offline`. In this case, unacknowledged messages are resent
-	only if no other resource is online when the session times out.
-	Otherwise, error messages are generated. The option can be specified
-	for `ejabberd_c2s` listeners.
-
-**`resume_timeout: Seconds`**:   This option configures the (default) number of seconds until a session
-	times out if the connection is lost. During this period of time, a
-	client may resume the session if `stream_management` is enabled.
-	(Note that the client may request a different timeout value, see the
-	`max_resume_timeout` option above.) This option can be specified for
-	`ejabberd_c2s` listeners. Setting it to `0` effectively disables
-	session resumption. The default value is `300`.
 
 **`service_check_from: true|false`**:   This option can be used with `ejabberd_service` only.
 	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
@@ -565,11 +527,6 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	certificate file for a specific domain using the global option
 	`domain_certfile`.
 
-**`stream_management: true|false`**:   Setting this option to `false` disables ejabberd’s support for
-	Stream Management
-	([`XEP-0198`](http://xmpp.org/extensions/xep-0198.html)). It can be
-	specified for `ejabberd_c2s` listeners. The default value is `true`.
-
 **`timeout: Integer`**:   Timeout of the connections, expressed in milliseconds. Default: 5000
 
 **`tls: true|false`**:   This option specifies that traffic on the port will be encrypted
@@ -587,8 +544,9 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	`false`.
 
 **`web_admin: true|false`**:   This option enables the Web Admin for `ejabberd` administration
-	which is available at `http://server:port/admin/`. Login and
-	password are the username and password of one of the registered
+	which is available at `http://server:port/admin/`.
+	To login, provide the JID (`username@servername`) and
+	password of one of the registered
 	users who are granted access by the ‘configure’ access rule.
 
 **`zlib: true|false`**:   This option specifies that Zlib stream compression (as defined in
@@ -1080,16 +1038,15 @@ These are the specific options:
 	serve authentication in the virtual host. The default value is the
 	minimum number: 1.
 
-**`extauth_cache: false|CacheTimeInteger`**:   The value `false` disables the caching feature, this is the default.
-	The integer `0` (zero) enables caching for statistics, but doesn’t
-	use that cached information to authenticate users. If another
-	integer value is set, caching is enabled both for statistics and for
-	authentication: the CacheTimeInteger indicates the number of seconds
-	that ejabberd can reuse the authentication information since the
-	user last disconnected, to verify again the user authentication
-	without querying again the extauth script. Note: caching should not
-	be enabled in a host if internal auth is also enabled. If caching is
-	enabled, `mod_last` must be enabled also in that vhost.
+**`auth_use_cache: false|true`**:   Starting in *ejabberd 17.06*, caching has received a complete overhaul.
+	Instead of `extauth_cache`, a set of new variables describes cache
+	behaviour, and the default value is now `true`. Note that caching
+	interferes with the ability to maintain multiple passwords per
+	account. So if your authentication mechanism supports
+	application-specific passwords, caching must be disabled.
+	The options are called `auth_use_cache`, `auth_cache_missed`,
+	`auth_cache_size`, `auth_cache_life_time`,
+	and you can see details in the section [Caching](#caching).
 
 This example sets external authentication, the extauth script, enables
 caching for 10 minutes, and starts three instances of the script for
@@ -1098,8 +1055,8 @@ each virtual host defined in ejabberd:
 			
 	auth_method: [external]
 	extauth_program: "/etc/ejabberd/JabberAuth.class.php"
-	extauth_cache: 600
 	extauth_instances: 3
+	auth_use_cache: false
 
 ### Anonymous Login and SASL Anonymous
 
@@ -2582,6 +2539,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_sic](#mod-sic)                            | Server IP Check ([`XEP-0279`][55])                   |                                  |
 | [mod_sip](#mod-sip)                            | SIP Registrar/Proxy ([`RFC 3261`][56])               | `ejabberd_sip`                   |
 | [mod_stats](#mod-stats)                        | Statistics Gathering ([`XEP-0039`][57])              |                                  |
+| [mod_stream_mgmt](#mod-stream-mgmt)            | Stream Management ([`XEP-0198`][125])                |                                  |
 | [mod_time](#mod-time)                          | Entity Time ([`XEP-0202`][58])                       |                                  |
 | [mod_vcard](#mod-vcard)                        | vcard-temp ([`XEP-0054`][59])                        |                                  |
 | [mod_vcard_ldap](#mod-vcard-ldap)              | vcard-temp ([`XEP-0054`][60])                        | LDAP server                      |
@@ -2685,6 +2643,39 @@ in all of them, the “@HOST@” keyword must be used:
 	    host: "mirror.@HOST@"
 	  ...
 
+
+### Caching
+
+There are several global options to enable caching and configure its behaviour:
+
+**`use_cache: false|true`**:   Enable or disable cache. The default is `true`.
+
+**`cache_missed: false|true`**:   Whether or not to cache missed lookups.
+    When there is an attempt to lookup for a value in a database and this
+    value is not found and the option is set to `true`, this attempt will
+    be cached and no attempts will be performed until the cache expires.
+    Usually you don't want to change it. Default is `true`.
+
+**`cache_size: Items|infinity`**:    A maximum number of items (not memory!) in cache.
+    The rule of thumb, for all tables except rosters, you should set it to
+    the number of maximum online users you expect.
+    For roster multiply this number by 20 or so.
+    If the cache size reaches this threshold, it's fully cleared, i.e.
+    all items are deleted, and the corresponding warning is logged.
+    You should avoid frequent cache clearance, because this degrades performance.
+    The default value is 1000.
+
+**`cache_life_time: Seconds|infinity`**:    The time (in seconds) of a cached item to keep in cache.
+    Once it's expired, the corresponding item is erased from cache.
+    The default value is 3600 seconds, that is one hour.
+
+These options can also be defined specifically in several modules.
+Additionally, some core ejabberd parts support those options,
+like `auth`, `oauth`, `router` and `sm`.
+In those cases, please prepend the option names with the part name,
+for example `router_use_cache`, or `sm_cache_size`.
+
+
 ## mod_admin_extra
 
 Available option:
@@ -2787,6 +2778,8 @@ hosts in ejabberd.
 Options:
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
 **`access: AccessName`**:   This option specifies who is allowed to send announcements and to
 	set the message of the day (by default, nobody is able to send such
@@ -2896,6 +2889,8 @@ over BOSH.
 	      mod_http_bind:
 	        max_inactivity: 50
 	      ...
+
+- **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
 <!-- TODO Document options:
 json, max_concat, max_inactivity, max_pause, prebind, ram_db_type,     queue_type, use_cache, cache_size, cache_missed, cache_life_time
@@ -3122,6 +3117,12 @@ all?
 
 The module bans IPs that show the malicious signs. Currently only C2S
 authentication failures are detected.
+
+Unlike the [standalone program](https://www.fail2ban.org), `mod_fail2ban`
+clears the record of authentication failures `c2s_auth_ban_lifetime`
+seconds after the first failure or on a successful authentication. It
+also does not simply block network traffic, but provides the client with
+a descriptive error message.
 
 Available options:
 
@@ -3519,6 +3520,8 @@ uptime of the `ejabberd` server.
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
+
 ### Example Configuration
 
 ~~~ yaml
@@ -3549,15 +3552,13 @@ Options:
 
 **`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration). Note: If `mnesia` is used, the total size of all MAM archives cannot exceed 2 GB. The `delete_old_mam_messages` command could be run periodically to make sure the `mnesia` data won't grow beyond that limit. To support larger archives, `sql` storage must be used.
 
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
+
 **`default: always|never|roster`**:   The option defines default policy for chat history. When `always` is set every chat message is stored. With `roster` only chat history with contacts from user's roster is stored. `never` fully disables chat history. Note that a client can change its policy via protocol commands. The default is `never`.
 
 **`request_activates_archiving: true|false`**:   If this option is enabled, no messages are stored for a user until his client issued a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual. The default is `false`.
 
 **`assume_mam_usage: true|false`**:   This option determines how ejabberd's stream management code handles unacknowledged messages when the connection is lost. Usually, such messages are either bounced or resent. However, neither is done for messages that were stored in the user's MAM archive if this option is set to `true`. In this case, ejabberd assumes those messages will be retrieved from the archive. The default is `false`.
-
-**`cache_size: Integer`**:   There is a cache which is used to improve performance for retrieving user's policy. This option will allow you to set the size of this cache. The default is 1000 items.
-
-**`cache_life_time: Seconds`**:   Lifetime of the cached items in the cache described in the option `cache_size`. The default is 3600 seconds, i.e. one hour.
 
 ## mod_mix
 
@@ -4328,6 +4329,8 @@ Options:
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
+
 ## mod_private
 
 This module adds support for Private XML Storage
@@ -4346,6 +4349,8 @@ Options:
 	(`jabber:iq:private`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
 ## mod_privilege
 
@@ -4673,19 +4678,22 @@ Options:
 	IP address of the XMPP client. The `AccessName` should be of type
 	`ip`. The default value is `all`.
 
+**`iqdisc: Discipline`**:   This specifies the processing discipline for In-Band Registration
+	(`jabber:iq:register`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
+
 **`password_strength: Entropy`**:   This option sets the minimum informational entropy for passwords.
 	The value `Entropy` is a number of bits of entropy. The recommended
 	minimum is 32 bits. The default is 0, i.e. no checks are performed.
 
-**`welcome_message: {subject: Subject, body: Body}`**:   Set a welcome message that is sent to each newly registered account.
-	The first string is the subject, and the second string is the
-	message body.
+**`redirect_url: URL`**:   This option enables registration redirection as described in
+	[`XEP-0077: In-Band Registration: Redirection`](https://xmpp.org/extensions/xep-0077.html#redirect).
 
 **`registration_watchers: [ JID, ...]`**:   This option defines a list of JIDs which will be notified each time
 	a new account is registered.
 
-**`iqdisc: Discipline`**:   This specifies the processing discipline for In-Band Registration
-	(`jabber:iq:register`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
+**`welcome_message: {subject: Subject, body: Body}`**:   Set a welcome message that is sent to each newly registered account.
+	The first string is the subject, and the second string is the
+	message body.
 
 This module reads also another option defined globally for the server:
 `registration_timeout: Timeout`. This option limits the frequency of
@@ -4771,6 +4779,7 @@ Examples:
 		    registration_watchers:
 		      - "admin1@example.org"
 		      - "boss@example.net"
+		    redirect_url: "http://my.site.org/register"
 		  ...
 
 ## mod_register_web
@@ -4832,6 +4841,8 @@ Options:
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
+
 **`versioning: false|true`**:   Enables Roster Versioning. This option is disabled by default.
 
 **`store_current_id: false|true`**:   If this option is enabled, the current version number is stored on
@@ -4849,16 +4860,6 @@ Options:
 	contacts, or subscribe/unsubscribe presence. By default there aren’t
 	restrictions.
 
-**`managers`**:   List of remote entities that can manage users rosters using Remote
-	Roster Management
-	([`XEP-0321`](http://xmpp.org/extensions/xep-0321.html)). The
-	protocol sections implemented are:
-	`4.2. The remote entity requests current user’s roster`.
-	`4.3. The user updates roster`.
-	`4.4. The remote entity updates the user’s roster`. A remote entity
-	cab only get or modify roster items that have the same domain as the
-	entity. Default value is: `[]`.
-
 This example configuration enables Roster Versioning with storage of
 current id. The ICQ and MSN transports can get ICQ and MSN contacts, add
 them, or remove them for any local account:
@@ -4869,9 +4870,6 @@ them, or remove them for any local account:
 	  mod_roster:
 	    versioning: true
 	    store_current_id: true
-	    managers:
-	     - "icq.example.org"
-	     - "msn.example.org"
 	  ...
 
 With this example configuration, only admins can manage their rosters;
@@ -5054,6 +5052,8 @@ The module accepts the following configuration parameters. Some of them,
 if unspecified, default to the values specified for the top level of
 configuration. This lets you avoid specifying, for example, the bind
 password, in multiple places.
+
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
 #### Filters
 
@@ -5482,6 +5482,54 @@ send in order to get the statistics. Here they are:
 		  </query>
 		</iq>
 
+## mod_stream_mgmt
+
+This module adds support for Stream Management ([`XEP-0198`][125]).
+This protocol allows active management of an XML stream between two XMPP entities,
+including features for stanza acknowledgements and stream resumption.
+
+Options:
+
+**`max_ack_queue: Size`**:   This option specifies the maximum number of unacknowledged stanzas
+	queued for possible retransmission.
+	When the limit is exceeded, the client session is
+	terminated. The allowed values are positive integers and `infinity`.
+	Default value: `1000`.
+
+**`max_resume_timeout: Seconds`**:   A client may specify the number of
+	seconds until a session times out if the connection is lost. During
+	this period of time, the client may resume the session. This option
+	limits the number of seconds a client is permitted to request.
+	It must be set to
+	a number equal to or larger than the default `resume_timeout` (see
+	below). By default, it is set to the same value as the
+	`resume_timeout` option.
+
+**`resend_on_timeout: true|false|if_offline`**:   If this option is set to `true`,
+	any message stanzas that weren’t acknowledged by the client will
+	be resent on session timeout. This behavior might often be desired,
+	but could have unexpected results under certain circumstances. For
+	example, a message that was sent to two resources might get resent
+	to one of them if the other one timed out. Therefore, the default
+	value for this option is `false`, which tells ejabberd to generate
+	an error message instead. As an alternative, the option may be set
+	to `if_offline`. In this case, unacknowledged messages are resent
+	only if no other resource is online when the session times out.
+	Otherwise, error messages are generated.
+
+**`resume_timeout: Seconds`**:   This option configures the (default) number of seconds until a session
+	times out if the connection is lost. During this period of time, a
+	client may resume the session.
+	(Note that the client may request a different timeout value, see the
+	`max_resume_timeout` option above.) Setting it to `0` effectively disables
+	session resumption. The default value is `300`.
+
+**`ack_timeout: Seconds`**: The default value is `60`.
+	Setting it to `infinity` effectively disables the timeout.
+
+**`queue_type: Discipline`**: The default value is `ram`.
+	The accepted values are `ram` and `file`.
+
 ## mod_time
 
 This module features support for Entity Time
@@ -5513,6 +5561,8 @@ Options:
 	(see section [IQ Discipline Option](#iqdisc)).
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
 **`search: true|false`**:   This option specifies whether the search functionality is enabled or
 	not. If disabled, the option `host` will be ignored and the Jabber
@@ -5785,6 +5835,10 @@ retrieval and a presence stanza rewrite. For this reason, enabling this
 module will introduce a computational overhead in servers with clients
 that change frequently their presence.
 
+Supported options:
+
+**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
+
 ## mod_version
 
 This module implements Software Version
@@ -5910,3 +5964,4 @@ Options:
 [122]:  https://xmpp.org/extensions/xep-0369.html
 [123]:  http://xmpp.org/extensions/xep-0355.html
 [124]:  http://xmpp.org/extensions/xep-0356.html
+[125]:  http://xmpp.org/extensions/xep-0198.html

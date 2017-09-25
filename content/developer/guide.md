@@ -999,38 +999,46 @@ Example python script
     #!/usr/bin/python
 
     import sys
-    from struct import *
+    import struct
 
-    def from_ejabberd():
-        input_length = sys.stdin.read(2)
-        (size,) = unpack('>h', input_length)
-        return sys.stdin.read(size).split(':')
+    def read():
+        (pkt_size,) = struct.unpack('>H', sys.stdin.read(2))
+        pkt = sys.stdin.read(pkt_size)
+        cmd = pkt.split(':')[0]
+        if cmd == 'auth':
+            u, s, p = pkt.split(':', 3)[1:]
+            if u == "wrong":
+                write(False)
+            else:
+                write(True)
+        elif cmd == 'isuser':
+            u, s = pkt.split(':', 2)[1:]
+        elif cmd == 'setpass':
+            u, s, p = pkt.split(':', 3)[1:]
+            write(True)
+        elif cmd == 'tryregister':
+            u, s, p = pkt.split(':', 3)[1:]
+            write(True)
+        elif cmd == 'removeuser':
+            u, s = pkt.split(':', 2)[1:]
+            write(True)
+        elif cmd == 'removeuser3':
+            u, s, p = pkt.split(':', 3)[1:]
+            write(True)
+        else:
+            write(False)
+        read()
 
-    def to_ejabberd(bool):
-        answer = 0
-        if bool:
-            answer = 1
-        token = pack('>hh', 2, answer)
-        sys.stdout.write(token)
+    def write(result):
+        if result:
+            sys.stdout.write('\x00\x02\x00\x01')
+        else:
+            sys.stdout.write('\x00\x02\x00\x00')
         sys.stdout.flush()
 
-    def auth(username, server, password):
-        return True
-
-    def isuser(username, server):
-        return True
-
-    def setpass(username, server, password):
-        return True
-
-    while True:
-        data = from_ejabberd()
-        success = False
-        if data[0] == "auth":
-            success = auth(data[1], data[2], data[3])
-        elif data[0] == "isuser":
-            success = isuser(data[1], data[2])
-        elif data[0] == "setpass":
-            success = setpass(data[1], data[2], data[3])
-        to_ejabberd(success)
+    if __name__ == "__main__":
+        try:
+            read()
+        except struct.error:
+            pass
 

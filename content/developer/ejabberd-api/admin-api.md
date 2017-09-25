@@ -4228,10 +4228,10 @@ Stop ejabberd gracefully
 
 
 
-## *stop_all_connections* - Stop all outgoing and incoming connections
+## *stop_s2s_connections* - Stop all outgoing and incoming connections
 
 
-Stop all outgoing and incoming connections
+Stop all s2s outgoing and incoming connections
 
 
 ### Arguments:
@@ -4244,7 +4244,7 @@ Stop all outgoing and incoming connections
 ### Examples:
 
 ~~~ json
-    POST /api/stop_all_connections
+    POST /api/stop_s2s_connections
     {
       
     }
