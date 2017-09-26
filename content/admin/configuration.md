@@ -1048,6 +1048,13 @@ These are the specific options:
 	`auth_cache_size`, `auth_cache_life_time`,
 	and you can see details in the section [Caching](#caching).
 
+**`auth_use_cache: false|true`**:   Starting in *ejabberd 17.06*, caching has received a complete overhaul.
+	Instead of `extauth_cache`, a set of new variables describes cache
+	behaviour, and the default value is now `true`. Note that caching
+	interferes with the ability to maintain multiple passwords per
+	account. So if your authentication mechanism supports
+	application-specific passwords, caching must be disabled.
+
 This example sets external authentication, the extauth script, enables
 caching for 10 minutes, and starts three instances of the script for
 each virtual host defined in ejabberd:
