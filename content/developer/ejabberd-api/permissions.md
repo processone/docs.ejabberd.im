@@ -6,13 +6,11 @@ order: 20
 ---
 
 *This page describes the new flexible permission mechanism introduced in
-ejabberd 16.11. This version will be released at end of November 2016, but
-development can already be tried by installing ejabberd master branch from
-source.*
+ejabberd 16.12.*
 
 # Configuring permissions to API endpoints
 
-Access to all available endpoints are configured using `api\_permissions` option.
+Access to all available endpoints are configured using `api_permissions` option.
 
 It allows to define multiple groups, each one with separate list of filters
 on who and what are allowed by rules specified inside it.
@@ -21,11 +19,11 @@ Basic rule may looks like this:
 
 ``` yaml
 api_permissions:
-  - "Admin access":
+  "admin access":
     - who:
       - admin
     - what
-      - "\*"
+      - "*"
       - "!stop"
 ```
 
