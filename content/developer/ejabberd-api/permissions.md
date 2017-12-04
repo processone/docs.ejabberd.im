@@ -21,11 +21,11 @@ Basic rule may looks like this:
 
 ``` yaml
 api_permissions:
-  - "Admin access":
+  "admin access":
     - who:
       - admin
     - what
-      - "\*"
+      - "*"
       - "!stop"
 ```
 
