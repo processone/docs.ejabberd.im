@@ -6,9 +6,7 @@ order: 20
 ---
 
 *This page describes the new flexible permission mechanism introduced in
-ejabberd 16.11. This version will be released at end of November 2016, but
-development can already be tried by installing ejabberd master branch from
-source.*
+ejabberd 16.12.*
 
 # Configuring permissions to API endpoints
 
