@@ -12,7 +12,7 @@ source.*
 
 # Configuring permissions to API endpoints
 
-Access to all available endpoints are configured using `api\_permissions` option.
+Access to all available endpoints are configured using `api_permissions` option.
 
 It allows to define multiple groups, each one with separate list of filters
 on who and what are allowed by rules specified inside it.
