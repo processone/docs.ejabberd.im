@@ -59,12 +59,10 @@ version indicates you need to also update those tables.
 
 # Specific version upgrade notes
 
-- [Upgrading from ejabberd 17.04 to 17.06](/admin/upgrade/from_17.04_to_17.06/)
-- [Upgrading from ejabberd 17.03 to 17.04](/admin/upgrade/from_17.03_to_17.04/)
-- [Upgrading from ejabberd 17.01 to 17.03](/admin/upgrade/from_17.01_to_17.03/)
-- [Upgrading from ejabberd 16.12 to 17.01](/admin/upgrade/from_16.12_to_17.01/)
-- [Upgrading from ejabberd 16.09 to 16.12](/admin/upgrade/from_16.09_to_16.12/)
-- [Upgrading from ejabberd 16.08 to 16.09](/admin/upgrade/from_16.08_to_16.09/)
+- [Upgrading from ejabberd 17.09 to 17.11](/admin/upgrade/from_17.09_to_17.11/)
+- [Upgrading from ejabberd ≥17.06 and ≤17.08 to 17.09](/admin/upgrade/from_17.06_to_17.09/)
+- [Upgrading from ejabberd 17.03 or 17.04 to 17.06](/admin/upgrade/from_17.03_to_17.06/)
+- [Upgrading from ejabberd ≥16.08 and ≤17.01 to 17.03](/admin/upgrade/from_16.08_to_17.03/)
 - [Upgrading from ejabberd 16.06 to 16.08](/admin/upgrade/from_16.06_to_16.08/)
 - [Upgrading from ejabberd 16.04 to 16.06](/admin/upgrade/from_16.04_to_16.06/)
 - [Upgrading from ejabberd 16.03 to 16.04](/admin/upgrade/from_16.03_to_16.04/)

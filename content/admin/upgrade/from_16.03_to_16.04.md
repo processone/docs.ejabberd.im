@@ -11,9 +11,9 @@ you must follow database upgrade process for 16.03 first.
 Note: this applies only to MySQL. Other backend does not need upgrade.
 
 ## MySQL database upgrade
-
-	
-	mysql -h host -u user database -p << EOF
-	ALTER TABLE users MODIFY serverkey varchar(64) NOT NULL DEFAULT '';
-	ALTER TABLE users MODIFY salt varchar(64) NOT NULL DEFAULT '';
-	EOF
+```bash
+mysql -h host -u user database -p << EOF
+ALTER TABLE users MODIFY serverkey varchar(64) NOT NULL DEFAULT '';
+ALTER TABLE users MODIFY salt varchar(64) NOT NULL DEFAULT '';
+EOF
+```

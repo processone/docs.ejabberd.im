@@ -223,7 +223,6 @@ are also other different modules for some specific virtual hosts:
 	    modules:
 	      mod_echo:
 	        host: "echo-service.one.example.org"
-	      mod_http_bind: {}
 	      mod_logxml: {}
 
 	## Add a module just to vhost two:
@@ -454,11 +453,10 @@ modules:
 	HTTP Bind enables access via HTTP requests to `ejabberd` from behind
 	firewalls which do not allow outgoing sockets on port 5222.
 
-Remember that you must also install and enable the module
-mod\_http\_bind.
+Remember that you must also install and enable the module mod\_bosh
 
-If HTTP Bind is enabled, it will be available at
-`http://server:port/http-bind/`. Be aware that support for HTTP Bind
+If HTTP Bind (BOSH) is enabled, it will be available at
+`http://server:port/bosh/`. Be aware that support for HTTP Bind
 is also needed in the XMPP client. Remark also that HTTP Bind can be
 interesting to host a web-based XMPP client such as
 [`JWChat`](http://jwchat.sourceforge.net/) (check the tutorials to
@@ -494,12 +492,12 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 **`request_handlers: {Path: Module}`**:   To define one or several handlers that will serve HTTP requests. The
 	Path is a string; so the URIs that start with that Path will be
 	served by Module. For example, if you want `mod_foo` to serve the
-	URIs that start with `/a/b/`, and you also want `mod_http_bind` to
-	serve the URIs `/http-bind/`, use this option:
+	URIs that start with `/a/b/`, and you also want `mod_bosh` to
+	serve the URIs `/bosh/`, use this option:
 
 	    request_handlers:
 	      "/a/b": mod_foo
-	      "/http-bind": mod_http_bind
+	      "/bosh": mod_bosh
 
 **`service_check_from: true|false`**:   This option can be used with `ejabberd_service` only.
 	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
@@ -2883,7 +2881,7 @@ over BOSH.
 
 	    modules:
 	      ...
-	      mod_http_bind:
+	      mod_bosh:
 	        max_inactivity: 50
 	      ...
 

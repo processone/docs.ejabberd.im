@@ -11,8 +11,8 @@ you must follow database upgrade process for 16.03 and 16.04 first.
 Note: this applies only to MySQL. Other backend does not need upgrade.
 
 ## MySQL database upgrade
-
-	
-	mysql -h host -u user database -p << EOF
-	ALTER TABLE users MODIFY opts mediumtext NOT NULL;
-	EOF
+```bash
+mysql -h host -u user database -p << EOF
+ALTER TABLE muc_room MODIFY opts mediumtext NOT NULL;
+EOF
+```

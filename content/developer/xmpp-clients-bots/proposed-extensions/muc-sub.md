@@ -179,6 +179,7 @@ nodes:
 - urn:xmpp:mucsub:nodes:presence
 - urn:xmpp:mucsub:nodes:messages
 - urn:xmpp:mucsub:nodes:affiliations
+- urn:xmpp:mucsub:nodes:subscribers
 - urn:xmpp:mucsub:nodes:config
 - urn:xmpp:mucsub:nodes:subject
 - urn:xmpp:mucsub:nodes:system
@@ -346,7 +347,8 @@ leaves.
 
 # Receiving events
 
-Here is as an example message received by a subscriber when a message is posted to a MUC room:
+Here is as an example message received by a subscriber when a message is posted to a MUC room
+when subscriber is subscribed to node urn:xmpp:mucsub:nodes:messages:
 
 ~~~ xml
 <message from="coven@muc.shakespeare.example"
@@ -372,7 +374,8 @@ Here is as an example message received by a subscriber when a message is posted 
 </message>
 ~~~
 
-Presence changes in the MUC room are received wrapped in the same way:
+Presence changes in the MUC room are received wrapped in the same way by
+subscribers which subscribed to node urn:xmpp:mucsub:nodes:presence:
 
 ~~~ xml
 <message from="coven@muc.shakespeare.example"
@@ -395,7 +398,40 @@ Presence changes in the MUC room are received wrapped in the same way:
 </message>
 ~~~
 
-TODO: Describe the mapping of MUC protocol stanzas to MUC/Sub events for configuration updates.
+If subscriber is subscribed to node urn:xmpp:mucsub:nodes:subscribers, message
+will ne sent for every mucsub subscription change.
+When a user becomes a subscriber:
+
+~~~ xml
+<message from="coven@muc.shakespeare.example"
+         to="hag66@shakespeare.example/pda">
+   <event xmlns="http://jabber.org/protocol/pubsub#event">
+     <items node="urn:xmpp:mucsub:nodes:subscribers">
+       <item id="17895981155977588737">
+         <subscribe xmlns="urn:xmpp:mucsub:0" jid="bob@server.com" 
+nick="bob"/>
+       </item>
+     </items>
+   </event>
+</message>
+~~~
+When a user lost its subscription:
+~~~ xml
+<message from="coven@muc.shakespeare.example"
+         to="hag66@shakespeare.example/pda">
+   <event xmlns="http://jabber.org/protocol/pubsub#event">
+     <items node="urn:xmpp:mucsub:nodes:subscribers">
+       <item id="10776102417321261057">
+         <unsubscribe xmlns="urn:xmpp:mucsub:0" jid="bob@server.com" 
+nick="bob"/>
+       </item>
+     </items>
+   </event>
+</message>
+~~~
+
+Note: Sometimes jid in subscribe/unsubscribe event may be missing
+if room is set to anonymous and user is not moderator.
 
 # List of subscriptions
 
