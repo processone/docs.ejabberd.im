@@ -2306,6 +2306,40 @@ List existing rooms ('global' to get all vhosts)
 
 
 
+## *muc_online_rooms_by_regex* - List existing rooms ('global' to get all vhosts) by regex
+
+
+List existing rooms ('global' to get all vhosts) by regex
+
+
+### Arguments:
+- *host* :: string : Server domain where the MUC service is, or 'global' for all
+- *regex* :: string : Regex pattern for room name
+
+
+### Result:
+- *rooms* :: [{jid::string, public::string, participants::integer}]
+
+
+### Examples:
+
+~~~ json
+    POST /api/muc_online_rooms
+    {
+      "host": "example.com",
+      "regex": "^room"
+    }
+
+    HTTP/1.1 200 OK
+    [
+      {"jid": "room1@muc.example.com", "public": "true", "participants": 10},
+      {"jid": "room2@muc.example.com", "public": "false", "participants": 10}
+    ]
+~~~
+
+
+
+
 ## *muc_register_nick* - Register a nick in the MUC service
 
 
