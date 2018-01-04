@@ -4422,10 +4422,11 @@ Options:
 
 **`hostname: HostName`**:   Defines a hostname advertised by the service when establishing a
 	session with clients. This is useful when you run the service behind
-	a NAT. The default is the value of `ip` option. Examples:
-	`proxy.mydomain.org`, `200.150.100.50`. Note that not all clients
-	understand domain names in stream negotiation, so you should think
-	twice before setting domain name in this option.
+	a NAT. The keyword “@HOST@” is replaced with the virtual host name. The
+	default is the value of `ip` option. Examples: `proxy.mydomain.org`,
+	`200.150.100.50`. Note that not all clients understand domain names in
+	stream negotiation, so you should think	twice before setting domain name
+	in this option.
 
 **`auth_type: anonymous|plain`**:   SOCKS5 authentication type. Possible values are `anonymous` and
 	`plain`. Default is `anonymous`.
