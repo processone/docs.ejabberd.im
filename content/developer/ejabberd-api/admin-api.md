@@ -1295,6 +1295,45 @@ Get the list of affiliations of a MUC room
 
 
 
+## *get_room_affiliation* - Get affiliation of a user in MUC room
+
+
+Get affiliation of a user in MUC room
+
+
+### Arguments:
+- *name* :: string : Room name
+- *service* :: string : MUC service
+- *jid* :: string : User JID
+
+
+### Result:
+- *affiliation* :: {username::string, domain::string, affiliation::string} : Affiliation of the user with username, domain and affiliation
+
+
+### Examples:
+
+~~~ json
+    POST /api/get_room_affiliation
+    {
+      "name": "room1",
+      "service": "muc.example.com"
+      "jid": "user1@example.com"
+    }
+    
+    HTTP/1.1 200 OK
+    [
+      {
+        "username": "user1",
+        "domain": "example.com",
+        "affiliation": "member"
+      }
+    ]
+~~~
+
+
+
+
 ## *get_room_occupants* - Get the list of occupants of a MUC room
 
 
