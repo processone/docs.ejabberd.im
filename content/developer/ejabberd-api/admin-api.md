@@ -1308,7 +1308,7 @@ Get affiliation of a user in MUC room
 
 
 ### Result:
-- *affiliation* :: {username::string, domain::string, affiliation::string} : Affiliation of the user with username, domain and affiliation
+- *affiliation* :: {affiliation::string} : Affiliation of the user
 
 
 ### Examples:
@@ -1322,13 +1322,9 @@ Get affiliation of a user in MUC room
     }
     
     HTTP/1.1 200 OK
-    [
-      {
-        "username": "user1",
-        "domain": "example.com",
-        "affiliation": "member"
-      }
-    ]
+    {
+      "affiliation": "member"
+    }
 ~~~
 
 
