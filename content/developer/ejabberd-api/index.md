@@ -30,7 +30,7 @@ All commands can be exposed through interfaces. Available interfaces are:
 - to some extend, XMPP protocol itself through discovery and adhoc commands.
 
 Any module in ejabberd can adds its own command through ejabberd Erlang/Elixir API, making the whole
-system totally extensible. A third-party module can exposes its own command and feel like a real part
+system totally extensible. A third-party module can expose its own command and feel like a real part
 of the system. A module that expose commands makes it possible for server admin to expose it the way he wants.
 
 ejabberd commands are universal, extensible and widely available through various configurable entrypoints.
