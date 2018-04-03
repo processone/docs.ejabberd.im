@@ -326,35 +326,31 @@ used by the script to start the server. Then you can call
 
 ## Specific Notes
 
-### Specific Notes for OSX (Yosemite, El Capitan, Sierra)
+### Specific Notes for OSX
 
-On OS X, you need to tell ejabberd to use custom OpenSSL, Yaml, iconv
-for the build. The best approach is to use [Homebrew](http://brew.sh) to
-install your dependencies:
+Binary installers from ProcessOne does not have Apple Developper signature.
+If OSX complains when you try to install ejabberd with binary installerd with
+message: "ejabberd-installer is damaged and can’t be opened"
+Then you need to disable gatekeeper to be able to install ejabberd:
+
+``` bash
+$ sudo spctl --master-disable
+<install ejabberd>
+$ sudo spctl --master-enable
+```
+
+If compiling from sources on OSX, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
+The best approach is to use [Homebrew](http://brew.sh) to install your dependencies, then
+exports your custom path to let configure and make be aware of them.
 
 ``` bash
 brew install git erlang autoconf automake expat openssl libyaml libiconv sqlite
-```
-
-Here is an example command to build ejabberd with brew-installed
-dependencies:
-
-``` bash
 export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
 export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
 export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
 ./configure --enable-mysql
 make
 ```
-
-Note: Reference to custom OpenSSL needs at the moment to be passed to
-`make` command. This is because make command download, configure and
-build dependencies. The reference is also needed in that context.
-
-Please, make sure that for OSX El Capitan you are aware of rootless
-feature and have read Homebrew documentation no that topic:
-[El Capitan & Homebrew](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md)
-
 
 ### Specific Notes for BSD
 

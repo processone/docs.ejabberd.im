@@ -42,7 +42,7 @@ This is possible thanks to a very modular architecture based on a core
 router and an extremely powerful plugin mechanism that is getting
 richer every day.
 
-Welcome in your journey for ejabberd mastery !
+Welcome in your journey for ejabberd mastery!
 
 # Options to use ejabberd
 
@@ -56,7 +56,7 @@ offering. Commercial offering come in two type of packaging:
 
 - ejabberd Business Edition, including features for large companies
   (enhanced geodistributed companies and mobile support to develop
-  own, rich clients) and world-clas support, that can please even the
+  own, rich clients) and world-class support, that can please even the
   most demanding businesses, with 24/7 options.
 - ejabberd SaaS being a way to access and benefit of all the features
   of ejabberd Business Edition at an attractive and scalable
@@ -98,7 +98,7 @@ different features, including:
 
 The full list of supported protocol and extensions is available on
 [Protocols Supported by ejabberd](http://www.process-one.net/en/ejabberd/protocols/)
-page
+page.
 
 This modular architecture allows high customisability and easy access
 to the required features.

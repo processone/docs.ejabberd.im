@@ -59,6 +59,8 @@ version indicates you need to also update those tables.
 
 # Specific version upgrade notes
 
+- [Upgrading from ejabberd 18.01 to 18.03](/admin/upgrade/from_18.01_to_18.03/)
+- [Upgrading from ejabberd 17.11 to 18.01](/admin/upgrade/from_17.11_to_18.01/)
 - [Upgrading from ejabberd 17.09 to 17.11](/admin/upgrade/from_17.09_to_17.11/)
 - [Upgrading from ejabberd ≥17.06 and ≤17.08 to 17.09](/admin/upgrade/from_17.06_to_17.09/)
 - [Upgrading from ejabberd 17.03 or 17.04 to 17.06](/admin/upgrade/from_17.03_to_17.06/)

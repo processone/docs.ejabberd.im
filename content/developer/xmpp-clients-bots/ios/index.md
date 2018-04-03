@@ -15,7 +15,7 @@ The main library to support XMPP on iOS is
 
 Here is a few topics that you may find useful:
 
-- [Getting started with XMPPFramework](/developer/ios/getting-started-xmppframework/):
+- [Getting started with XMPPFramework](getting-started-xmppframework/):
   This page will help you setup your first iOS XMPPFramework based
   project.
 

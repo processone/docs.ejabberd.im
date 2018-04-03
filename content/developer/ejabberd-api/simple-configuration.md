@@ -32,7 +32,7 @@ Configuring the API that way is very easy. All you need is:
         ip: "127.0.0.1"
       ...
     ```
-2. By defining `api_permissions`, you can then allow HTTP requestis from a specific IP to trigger API commands execution without user credentials:
+2. By defining `api_permissions`, you can then allow HTTP request is from a specific IP to trigger API commands execution without user credentials:
 
     ``` yaml
     api_permissions:
@@ -61,7 +61,7 @@ TODO:
 
 Before being able to interact with ejabberd API, you need to configure
 ejabberd with OAuth support enabled. This is is documented in
-[ejabberd OAuth support](https://docs.ejabberd.im/admin/guide/oauth/).
+[ejabberd OAuth support](/admin/guide/oauth/).
 
 Here are example entries to check / change in your ejabberd
 configuration file:

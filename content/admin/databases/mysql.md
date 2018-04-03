@@ -371,4 +371,4 @@ You should be set now.
 # Getting further
 
 To get further you can read
-[ejabberd Installation and Operation Guide: Database and LDAP configuration](https://docs.ejabberd.im/admin/guide/configuration/#database-and-ldap-configuration)
+[ejabberd Installation and Operation Guide: Database and LDAP configuration](/admin/guide/configuration/#database-and-ldap-configuration)

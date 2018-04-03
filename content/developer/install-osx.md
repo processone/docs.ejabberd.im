@@ -15,7 +15,7 @@ on your system:
   are installed, you can install the Command Line Tools for Xcode,
   available via Xcode or from the Apple Developer website.
 * Git
-* Erlang /OTP R17B or higher. We recommand using Erlang R18B, latest
+* Erlang/OTP 17.5 or higher. We recommand using Erlang 20.2, latest
   version.
 * Autotools
 
@@ -58,7 +58,7 @@ To build and install ejabberd from source code, do the following:
         export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
         export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
         export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-        ./configure --prefix=$HOME/my-ejabberd --enable-mysql
+        ./configure --prefix=$HOME/my-ejabberd --enable-mysql --disable-graphics
         make && make install
 
 Note that the previous command reference the previously installed
@@ -79,12 +79,14 @@ brew link openssl --force
 * From your ejabberd build directory, go to the installation directory:  `cd $HOME/my-ejabberd`
 * To start the ejabberd server, run the following command:  `sbin/ejabberdctl start`
 * To verify that ejabberd is running, enter the following:  `sbin/ejabberdctl status`
-If the server is running, response should be as follow:
-```
-  $ sbin/ejabberdctl status
-  The node ejabberd@localhost is started with status: started
-  ejabberd 14.12.40 is running in that node
-```
+  If the server is running, response should be as follow:
+
+  ```
+    $ sbin/ejabberdctl status
+    The node ejabberd@localhost is started with status: started
+    ejabberd 14.12.40 is running in that node
+  ```
+
 * To connect to the ejabberd console after starting the server:  `sbin/ejabberdctl debug`
 * Alternatively, you can also run the server in interactive mode:  `sbin/ejabberdctl live`
 

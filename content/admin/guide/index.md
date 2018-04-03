@@ -10,18 +10,20 @@ order: 20
 - [Securing ejabberd][5]
 - [Clustering ejabberd][6]
 - [Unattended installation][7]
-- [ejabberdctl command-line tool][13]
+- [ejabberdctl command-line tool][14]
 - [Advanced Configuration][12]
+- [OAuth Configuration][13]
 - [Troubleshooting ejabberd][9]
-- [Contributions][14]
+- [Contributions][15]
 
-[4]:	/admin/guide/managing/
-[5]:	/admin/guide/security/
-[6]:	/admin/guide/clustering/
-[7]:    /admin/guide/unattended/
-[9]:	/admin/guide/troubleshooting/
-[10]:	/admin/guide/databases/
-[11]:   /admin/guide/xep/
-[12]:   /admin/guide/advanced/
-[13]:   /admin/ejabberdctl/
-[14]:   /admin/contrib/
+[4]:    managing/
+[5]:    security/
+[6]:    clustering/
+[7]:    unattended/
+[9]:    troubleshooting/
+[10]:   databases/
+[11]:   xep/
+[12]:   advanced/
+[13]:   oauth/
+[14]:   /admin/ejabberdctl/
+[15]:   /admin/contrib/

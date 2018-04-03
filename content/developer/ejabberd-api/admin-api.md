@@ -5,7 +5,10 @@ menu: Administration API
 order: 40
 ---
 
-## *add_rosteritem* - Add an item to a user's roster (supports ODBC)
+## add_rosteritem
+
+
+Add an item to a user's roster (supports ODBC)
 
 
 Group can be several groups separated by ; for example: "g1;g2;g3"
@@ -46,7 +49,7 @@ Group can be several groups separated by ; for example: "g1;g2;g3"
 
 
 
-## *backup* - Store the database to backup file
+## backup
 
 
 Store the database to backup file
@@ -75,7 +78,7 @@ Store the database to backup file
 
 
 
-## *ban_account* - Ban an account: kick sessions and set random password
+## ban_account
 
 
 Ban an account: kick sessions and set random password
@@ -108,7 +111,7 @@ Ban an account: kick sessions and set random password
 
 
 
-## *change_password* - Change the password of an account
+## change_password
 
 
 Change the password of an account
@@ -141,7 +144,7 @@ Change the password of an account
 
 
 
-## *change_room_option* - Change an option in a MUC room
+## change_room_option
 
 
 Change an option in a MUC room
@@ -176,7 +179,7 @@ Change an option in a MUC room
 
 
 
-## *check_account* - Check if an account exists or not
+## check_account
 
 
 Check if an account exists or not
@@ -207,7 +210,7 @@ Check if an account exists or not
 
 
 
-## *check_password* - Check if a password is correct
+## check_password
 
 
 Check if a password is correct
@@ -240,7 +243,10 @@ Check if a password is correct
 
 
 
-## *check_password_hash* - Check if the password hash is correct
+## check_password_hash
+
+
+Check if the password hash is correct
 
 
 Allowed hash methods: md5, sha.
@@ -275,7 +281,7 @@ Allowed hash methods: md5, sha.
 
 
 
-## *clear_cache* - Clear database cache on all nodes
+## clear_cache
 
 
 Clear database cache on all nodes
@@ -303,7 +309,7 @@ Clear database cache on all nodes
 
 
 
-## *compile* - Recompile and reload Erlang source code file
+## compile
 
 
 Recompile and reload Erlang source code file
@@ -332,7 +338,7 @@ Recompile and reload Erlang source code file
 
 
 
-## *connected_users* - List all established sessions
+## connected_users
 
 
 List all established sessions
@@ -363,7 +369,7 @@ List all established sessions
 
 
 
-## *connected_users_info* - List all established sessions and their information
+## connected_users_info
 
 
 List all established sessions and their information
@@ -401,7 +407,7 @@ List all established sessions and their information
 
 
 
-## *connected_users_number* - Get the number of established sessions
+## connected_users_number
 
 
 Get the number of established sessions
@@ -429,7 +435,7 @@ Get the number of established sessions
 
 
 
-## *connected_users_vhost* - Get the list of established sessions in a vhost
+## connected_users_vhost
 
 
 Get the list of established sessions in a vhost
@@ -461,7 +467,7 @@ Get the list of established sessions in a vhost
 
 
 
-## *convert_to_scram* - Convert the passwords in 'users' ODBC table to SCRAM
+## convert_to_scram
 
 
 Convert the passwords in 'users' ODBC table to SCRAM
@@ -490,7 +496,7 @@ Convert the passwords in 'users' ODBC table to SCRAM
 
 
 
-## *convert_to_yaml* - Convert the input file from Erlang to YAML format
+## convert_to_yaml
 
 
 Convert the input file from Erlang to YAML format
@@ -521,7 +527,7 @@ Convert the input file from Erlang to YAML format
 
 
 
-## *create_room* - Create a MUC room name@service in host
+## create_room
 
 
 Create a MUC room name@service in host
@@ -554,7 +560,7 @@ Create a MUC room name@service in host
 
 
 
-## *create_room_with_opts* - Create a MUC room name@service in host with given options
+## create_room_with_opts
 
 
 Create a MUC room name@service in host with given options
@@ -594,7 +600,10 @@ Create a MUC room name@service in host with given options
 
 
 
-## *create_rooms_file* - Create the rooms indicated in file
+## create_rooms_file
+
+
+Create the rooms indicated in file
 
 
 Provide one room JID per line. Rooms will be created after restart.
@@ -623,7 +632,7 @@ Provide one room JID per line. Rooms will be created after restart.
 
 
 
-## *delete_expired_messages* - Delete expired offline messages from database
+## delete_expired_messages
 
 
 Delete expired offline messages from database
@@ -651,7 +660,7 @@ Delete expired offline messages from database
 
 
 
-## *delete_mnesia* - Delete elements in Mnesia database for a given vhost
+## delete_mnesia
 
 
 Delete elements in Mnesia database for a given vhost
@@ -680,7 +689,7 @@ Delete elements in Mnesia database for a given vhost
 
 
 
-## *delete_old_messages* - Delete offline messages older than DAYS
+## delete_old_messages
 
 
 Delete offline messages older than DAYS
@@ -709,7 +718,10 @@ Delete offline messages older than DAYS
 
 
 
-## *delete_old_users* - Delete users that didn't log in last days, or that never logged
+## delete_old_users
+
+
+Delete users that didn't log in last days, or that never logged
 
 
 To protect admin accounts, configure this for example:
@@ -743,7 +755,10 @@ access_rules:
 
 
 
-## *delete_old_users_vhost* - Delete users that didn't log in last days in vhost, or that never logged
+## delete_old_users_vhost
+
+
+Delete users that didn't log in last days in vhost, or that never logged
 
 
 To protect admin accounts, configure this for example:
@@ -779,7 +794,7 @@ access_rules:
 
 
 
-## *delete_rosteritem* - Delete an item from a user's roster (supports ODBC)
+## delete_rosteritem
 
 
 Delete an item from a user's roster (supports ODBC)
@@ -814,7 +829,7 @@ Delete an item from a user's roster (supports ODBC)
 
 
 
-## *destroy_room* - Destroy a MUC room
+## destroy_room
 
 
 Destroy a MUC room
@@ -845,7 +860,10 @@ Destroy a MUC room
 
 
 
-## *destroy_rooms_file* - Destroy the rooms indicated in file
+## destroy_rooms_file
+
+
+Destroy the rooms indicated in file
 
 
 Provide one room JID per line.
@@ -874,7 +892,7 @@ Provide one room JID per line.
 
 
 
-## *dump* - Dump the database to a text file
+## dump
 
 
 Dump the database to a text file
@@ -903,7 +921,7 @@ Dump the database to a text file
 
 
 
-## *dump_table* - Dump a table to a text file
+## dump_table
 
 
 Dump a table to a text file
@@ -934,7 +952,10 @@ Dump a table to a text file
 
 
 
-## *export2sql* - Export virtual host information from Mnesia tables to SQL file
+## export2sql
+
+
+Export virtual host information from Mnesia tables to SQL file
 
 
 Configure the modules to use SQL, then call this command.
@@ -965,7 +986,7 @@ Configure the modules to use SQL, then call this command.
 
 
 
-## *export_piefxis* - Export data of all users in the server to PIEFXIS files (XEP-0227)
+## export_piefxis
 
 
 Export data of all users in the server to PIEFXIS files (XEP-0227)
@@ -994,7 +1015,7 @@ Export data of all users in the server to PIEFXIS files (XEP-0227)
 
 
 
-## *export_piefxis_host* - Export data of users in a host to PIEFXIS files (XEP-0227)
+## export_piefxis_host
 
 
 Export data of users in a host to PIEFXIS files (XEP-0227)
@@ -1025,7 +1046,7 @@ Export data of users in a host to PIEFXIS files (XEP-0227)
 
 
 
-## *gen_html_doc_for_commands* - Generates html documentation for ejabberd_commands
+## gen_html_doc_for_commands
 
 
 Generates html documentation for ejabberd_commands
@@ -1034,7 +1055,7 @@ Generates html documentation for ejabberd_commands
 ### Arguments:
 - *file* :: string : Path to file where generated documentation should be stored
 - *regexp* :: string : Regexp matching names of commands or modules that will be included inside generated document
-- *examples* :: string : Comma separated list of languages (choosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
+- *examples* :: string : Comma separated list of languages (chosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
 
 
 ### Result:
@@ -1058,7 +1079,7 @@ Generates html documentation for ejabberd_commands
 
 
 
-## *gen_markdown_doc_for_commands* - Generates markdown documentation for ejabberd_commands
+## gen_markdown_doc_for_commands
 
 
 Generates markdown documentation for ejabberd_commands
@@ -1067,7 +1088,7 @@ Generates markdown documentation for ejabberd_commands
 ### Arguments:
 - *file* :: string : Path to file where generated documentation should be stored
 - *regexp* :: string : Regexp matching names of commands or modules that will be included inside generated document
-- *examples* :: string : Comma separated list of languages (choosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
+- *examples* :: string : Comma separated list of languages (chosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
 
 
 ### Result:
@@ -1091,7 +1112,36 @@ Generates markdown documentation for ejabberd_commands
 
 
 
-## *get_cookie* - Get the Erlang cookie of this node
+## get_certificates
+
+
+Gets certificates for all or the specified domains {all|domain1;domain2;...}.
+
+
+### Arguments:
+- *domains* :: string : Domains for which to acquire a certificate
+
+
+### Result:
+- *certificates* :: string
+
+
+### Examples:
+
+~~~ json
+    POST /api/get_certificates
+    {
+      "domains": "all | www.example.com;www.example1.net"
+    }
+    
+    HTTP/1.1 200 OK
+        {"certificates": "aaaaa"}
+~~~
+
+
+
+
+## get_cookie
 
 
 Get the Erlang cookie of this node
@@ -1119,7 +1169,10 @@ Get the Erlang cookie of this node
 
 
 
-## *get_last* - Get last activity information
+## get_last
+
+
+Get last activity information
 
 
 Timestamp is UTC and XEP-0082 format, for example: 2017-02-23T22:25:28.063062Z     ONLINE
@@ -1153,7 +1206,7 @@ Timestamp is UTC and XEP-0082 format, for example: 2017-02-23T22:25:28.063062Z  
 
 
 
-## *get_loglevel* - Get the current loglevel
+## get_loglevel
 
 
 Get the current loglevel
@@ -1185,13 +1238,15 @@ Get the current loglevel
 
 
 
-## *get_offline_count* - Get the number of unread offline messages
+## get_offline_count
 
 
 Get the number of unread offline messages
 
 
 ### Arguments:
+- *user* :: string
+- *server* :: string
 
 
 ### Result:
@@ -1203,7 +1258,8 @@ Get the number of unread offline messages
 ~~~ json
     POST /api/get_offline_count
     {
-      
+      "user": "aaaaa",
+      "server": "bbbbb"
     }
     
     HTTP/1.1 200 OK
@@ -1213,7 +1269,10 @@ Get the number of unread offline messages
 
 
 
-## *get_presence* - Retrieve the resource with highest priority, and its presence (show and status message) for a given user.
+## get_presence
+
+
+Retrieve the resource with highest priority, and its presence (show and status message) for a given user.
 
 
 The 'jid' value contains the user jid with resource.
@@ -1257,7 +1316,7 @@ The 'show' value contains the user presence flag. It can take limited values:
 
 
 
-## *get_room_affiliations* - Get the list of affiliations of a MUC room
+## get_room_affiliations
 
 
 Get the list of affiliations of a MUC room
@@ -1295,7 +1354,7 @@ Get the list of affiliations of a MUC room
 
 
 
-## *get_room_occupants* - Get the list of occupants of a MUC room
+## get_room_occupants
 
 
 Get the list of occupants of a MUC room
@@ -1332,7 +1391,7 @@ Get the list of occupants of a MUC room
 
 
 
-## *get_room_occupants_number* - Get the number of occupants of a MUC room
+## get_room_occupants_number
 
 
 Get the number of occupants of a MUC room
@@ -1363,7 +1422,7 @@ Get the number of occupants of a MUC room
 
 
 
-## *get_room_options* - Get options from a MUC room
+## get_room_options
 
 
 Get options from a MUC room
@@ -1399,13 +1458,15 @@ Get options from a MUC room
 
 
 
-## *get_roster* - Get roster of a local user
+## get_roster
 
 
 Get roster of a local user
 
 
 ### Arguments:
+- *user* :: string
+- *server* :: string
 
 
 ### Result:
@@ -1417,7 +1478,8 @@ Get roster of a local user
 ~~~ json
     POST /api/get_roster
     {
-      
+      "user": "aaaaa",
+      "server": "bbbbb"
     }
     
     HTTP/1.1 200 OK
@@ -1442,7 +1504,7 @@ Get roster of a local user
 
 
 
-## *get_subscribers* - List subscribers of a MUC conference
+## get_subscribers
 
 
 List subscribers of a MUC conference
@@ -1476,7 +1538,7 @@ List subscribers of a MUC conference
 
 
 
-## *get_user_rooms* - Get the list of rooms where this user is occupant
+## get_user_rooms
 
 
 Get the list of rooms where this user is occupant
@@ -1510,7 +1572,10 @@ Get the list of rooms where this user is occupant
 
 
 
-## *get_vcard* - Get content from a vCard field
+## get_vcard
+
+
+Get content from a vCard field
 
 
 Some vcard field names in get/set_vcard are:
@@ -1563,7 +1628,10 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 
 
 
-## *get_vcard2* - Get content from a vCard subfield
+## get_vcard2
+
+
+Get content from a vCard subfield
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
@@ -1618,7 +1686,10 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 
 
 
-## *get_vcard2_multi* - Get multiple contents from a vCard field
+## get_vcard2_multi
+
+
+Get multiple contents from a vCard field
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
@@ -1676,7 +1747,7 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 
 
 
-## *import_dir* - Import users data from jabberd14 spool dir
+## import_dir
 
 
 Import users data from jabberd14 spool dir
@@ -1705,7 +1776,7 @@ Import users data from jabberd14 spool dir
 
 
 
-## *import_file* - Import user data from jabberd14 spool file
+## import_file
 
 
 Import user data from jabberd14 spool file
@@ -1734,7 +1805,7 @@ Import user data from jabberd14 spool file
 
 
 
-## *import_piefxis* - Import users data from a PIEFXIS file (XEP-0227)
+## import_piefxis
 
 
 Import users data from a PIEFXIS file (XEP-0227)
@@ -1763,10 +1834,12 @@ Import users data from a PIEFXIS file (XEP-0227)
 
 
 
-## *import_prosody* - Import data from Prosody
+## import_prosody
 
 
 Import data from Prosody
+Note: this method requires ejabberd compiled with optional tools support
+and package must provide optional luerl dependency.
 
 
 ### Arguments:
@@ -1792,7 +1865,7 @@ Import data from Prosody
 
 
 
-## *incoming_s2s_number* - Number of incoming s2s connections on the node
+## incoming_s2s_number
 
 
 Number of incoming s2s connections on the node
@@ -1820,7 +1893,7 @@ Number of incoming s2s connections on the node
 
 
 
-## *install_fallback* - Install the database from a fallback file
+## install_fallback
 
 
 Install the database from a fallback file
@@ -1849,7 +1922,7 @@ Install the database from a fallback file
 
 
 
-## *join_cluster* - Join this node into the cluster handled by Node
+## join_cluster
 
 
 Join this node into the cluster handled by Node
@@ -1878,7 +1951,7 @@ Join this node into the cluster handled by Node
 
 
 
-## *kick_session* - Kick a user session
+## kick_session
 
 
 Kick a user session
@@ -1913,7 +1986,7 @@ Kick a user session
 
 
 
-## *kick_user* - Disconnect user's active sessions
+## kick_user
 
 
 Disconnect user's active sessions
@@ -1944,7 +2017,10 @@ Disconnect user's active sessions
 
 
 
-## *leave_cluster* - Remove and shutdown Node from the running cluster
+## leave_cluster
+
+
+Remove and shutdown Node from the running cluster
 
 
 This command can be run from any running node of the cluster, even the node to be removed.
@@ -1973,7 +2049,39 @@ This command can be run from any running node of the cluster, even the node to b
 
 
 
-## *list_cluster* - List nodes that are part of the cluster handled by Node
+## list_certificates
+
+
+Lists all curently handled certificates and their respective domains in {plain|verbose} format
+
+
+### Arguments:
+- *option* :: string : Whether to print the whole certificate or just some metadata. Possible values: plain | verbose
+
+
+### Result:
+- *certificates* :: [certificate::string]
+
+
+### Examples:
+
+~~~ json
+    POST /api/list_certificates
+    {
+      "option": "aaaaa"
+    }
+    
+    HTTP/1.1 200 OK
+    [
+      "aaaaa",
+      "bbbbb"
+    ]
+~~~
+
+
+
+
+## list_cluster
 
 
 List nodes that are part of the cluster handled by Node
@@ -2004,7 +2112,7 @@ List nodes that are part of the cluster handled by Node
 
 
 
-## *load* - Restore the database from a text file
+## load
 
 
 Restore the database from a text file
@@ -2033,7 +2141,7 @@ Restore the database from a text file
 
 
 
-## *mnesia_change_nodename* - Change the erlang node name in a backup file
+## mnesia_change_nodename
 
 
 Change the erlang node name in a backup file
@@ -2068,7 +2176,7 @@ Change the erlang node name in a backup file
 
 
 
-## *module_check* - Check the contributed module repository compliance
+## module_check
 
 
 Check the contributed module repository compliance
@@ -2097,7 +2205,7 @@ Check the contributed module repository compliance
 
 
 
-## *module_install* - Compile, install and start an available contributed module
+## module_install
 
 
 Compile, install and start an available contributed module
@@ -2126,7 +2234,7 @@ Compile, install and start an available contributed module
 
 
 
-## *module_uninstall* - Uninstall a contributed module
+## module_uninstall
 
 
 Uninstall a contributed module
@@ -2155,7 +2263,10 @@ Uninstall a contributed module
 
 
 
-## *module_upgrade* - Upgrade the running code of an installed module
+## module_upgrade
+
+
+Upgrade the running code of an installed module
 
 
 In practice, this uninstalls and installs the module
@@ -2184,7 +2295,7 @@ In practice, this uninstalls and installs the module
 
 
 
-## *modules_available* - List the contributed modules available to install
+## modules_available
 
 
 List the contributed modules available to install
@@ -2215,7 +2326,7 @@ List the contributed modules available to install
 
 
 
-## *modules_installed* - List the contributed modules already installed
+## modules_installed
 
 
 List the contributed modules already installed
@@ -2246,7 +2357,10 @@ List the contributed modules already installed
 
 
 
-## *modules_update_specs* - Update the module source code from Git
+## modules_update_specs
+
+
+Update the module source code from Git
 
 
 A connection to Internet is required
@@ -2274,7 +2388,7 @@ A connection to Internet is required
 
 
 
-## *muc_online_rooms* - List existing rooms ('global' to get all vhosts)
+## muc_online_rooms
 
 
 List existing rooms ('global' to get all vhosts)
@@ -2306,16 +2420,58 @@ List existing rooms ('global' to get all vhosts)
 
 
 
-## *muc_register_nick* - Register a nick in the MUC service
+## muc_online_rooms_by_regex
 
 
-Register a nick in the MUC service
+List existing rooms ('global' to get all vhosts) by regex
+
+
+### Arguments:
+- *host* :: string : Server domain where the MUC service is, or 'global' for all
+- *regex* :: string : Regex pattern for room name
+
+
+### Result:
+- *rooms* :: [{jid::string, public::string, participants::integer}] : List of rooms with summary
+
+
+### Examples:
+
+~~~ json
+    POST /api/muc_online_rooms_by_regex
+    {
+      "host": "example.com",
+      "regex": "^prefix"
+    }
+    
+    HTTP/1.1 200 OK
+    [
+      {
+        "jid": "room1@muc.example.com",
+        "public": "true",
+        "participants": 10
+      },
+      {
+        "jid": "room2@muc.example.com",
+        "public": "false",
+        "participants": 10
+      }
+    ]
+~~~
+
+
+
+
+## muc_register_nick
+
+
+Register a nick to a User JID in the MUC service of a server
 
 
 ### Arguments:
 - *nick* :: string : Nick
 - *jid* :: string : User JID
-- *domain* :: string : MUC service
+- *serverhost* :: string : Server Host
 
 
 ### Result:
@@ -2329,7 +2485,7 @@ Register a nick in the MUC service
     {
       "nick": "Tim",
       "jid": "tim@example.org",
-      "domain": "muc.example.org"
+      "serverhost": "example.org"
     }
     
     HTTP/1.1 200 OK
@@ -2339,14 +2495,15 @@ Register a nick in the MUC service
 
 
 
-## *muc_unregister_nick* - Unregister the nick in the MUC service
+## muc_unregister_nick
 
 
-Unregister the nick in the MUC service
+Unregister the nick registered by that account in the MUC service
 
 
 ### Arguments:
-- *nick* :: string
+- *jid* :: string : User JID
+- *serverhost* :: string : MUC service
 
 
 ### Result:
@@ -2358,7 +2515,8 @@ Unregister the nick in the MUC service
 ~~~ json
     POST /api/muc_unregister_nick
     {
-      "nick": "aaaaa"
+      "jid": "tim@example.org",
+      "serverhost": "example.org"
     }
     
     HTTP/1.1 200 OK
@@ -2368,7 +2526,7 @@ Unregister the nick in the MUC service
 
 
 
-## *num_active_users* - Get number of users active in the last days
+## num_active_users
 
 
 Get number of users active in the last days
@@ -2399,7 +2557,7 @@ Get number of users active in the last days
 
 
 
-## *num_resources* - Get the number of resources of a user
+## num_resources
 
 
 Get the number of resources of a user
@@ -2430,7 +2588,7 @@ Get the number of resources of a user
 
 
 
-## *oauth_issue_token* - Issue an oauth token for the given jid
+## oauth_issue_token
 
 
 Issue an oauth token for the given jid
@@ -2467,7 +2625,10 @@ Issue an oauth token for the given jid
 
 
 
-## *oauth_list_tokens* - List oauth tokens, user, scope, and seconds to expire (only Mnesia)
+## oauth_list_tokens
+
+
+List oauth tokens, user, scope, and seconds to expire (only Mnesia)
 
 
 List oauth tokens, their user and scope, and how many seconds remain until expirity
@@ -2508,7 +2669,7 @@ List oauth tokens, their user and scope, and how many seconds remain until expir
 
 
 
-## *oauth_revoke_token* - Revoke authorization for a token (only Mnesia)
+## oauth_revoke_token
 
 
 Revoke authorization for a token (only Mnesia)
@@ -2550,7 +2711,7 @@ Revoke authorization for a token (only Mnesia)
 
 
 
-## *outgoing_s2s_number* - Number of outgoing s2s connections on the node
+## outgoing_s2s_number
 
 
 Number of outgoing s2s connections on the node
@@ -2578,7 +2739,7 @@ Number of outgoing s2s connections on the node
 
 
 
-## *privacy_set* - Send a IQ set privacy stanza for a local account
+## privacy_set
 
 
 Send a IQ set privacy stanza for a local account
@@ -2611,7 +2772,7 @@ Send a IQ set privacy stanza for a local account
 
 
 
-## *private_get* - Get some information from a user private storage
+## private_get
 
 
 Get some information from a user private storage
@@ -2646,7 +2807,7 @@ Get some information from a user private storage
 
 
 
-## *private_set* - Set to the user private storage
+## private_set
 
 
 Set to the user private storage
@@ -2679,7 +2840,10 @@ Set to the user private storage
 
 
 
-## *process_rosteritems* - List/delete rosteritems that match filter (only Mnesia)
+## process_rosteritems
+
+
+List/delete rosteritems that match filter (only Mnesia)
 
 
 Explanation of each argument:
@@ -2743,7 +2907,7 @@ This example will list roster items with subscription 'none', 'from' or 'to' tha
 
 
 
-## *push_alltoall* - Add all the users to all the users of Host in Group
+## push_alltoall
 
 
 Add all the users to all the users of Host in Group
@@ -2774,7 +2938,10 @@ Add all the users to all the users of Host in Group
 
 
 
-## *push_roster* - Push template roster from file to a user
+## push_roster
+
+
+Push template roster from file to a user
 
 
 The text file must contain an erlang term: a list of tuples with username, servername, group and nick. Example:
@@ -2809,7 +2976,10 @@ The text file must contain an erlang term: a list of tuples with username, serve
 
 
 
-## *push_roster_all* - Push template roster from file to all those users
+## push_roster_all
+
+
+Push template roster from file to all those users
 
 
 The text file must contain an erlang term: a list of tuples with username, servername, group and nick. Example:
@@ -2840,7 +3010,7 @@ The text file must contain an erlang term: a list of tuples with username, serve
 
 
 
-## *register* - Register a user
+## register
 
 
 Register a user
@@ -2873,7 +3043,7 @@ Register a user
 
 
 
-## *registered_users* - List all registered users in HOST
+## registered_users
 
 
 List all registered users in HOST
@@ -2905,7 +3075,7 @@ List all registered users in HOST
 
 
 
-## *registered_vhosts* - List all registered vhosts in SERVER
+## registered_vhosts
 
 
 List all registered vhosts in SERVER
@@ -2936,7 +3106,7 @@ List all registered vhosts in SERVER
 
 
 
-## *reload_config* - Reload config file in memory
+## reload_config
 
 
 Reload config file in memory
@@ -2964,7 +3134,35 @@ Reload config file in memory
 
 
 
-## *reopen_log* - Reopen the log files
+## renew_certificates
+
+
+Renews all certificates that are close to expiring
+
+
+### Arguments:
+
+
+### Result:
+- *certificates* :: string
+
+
+### Examples:
+
+~~~ json
+    POST /api/renew_certificates
+    {
+      
+    }
+    
+    HTTP/1.1 200 OK
+        {"certificates": "aaaaa"}
+~~~
+
+
+
+
+## reopen_log
 
 
 Reopen the log files
@@ -2992,7 +3190,7 @@ Reopen the log files
 
 
 
-## *resource_num* - Resource string of a session number
+## resource_num
 
 
 Resource string of a session number
@@ -3025,7 +3223,7 @@ Resource string of a session number
 
 
 
-## *restart* - Restart ejabberd gracefully
+## restart
 
 
 Restart ejabberd gracefully
@@ -3053,7 +3251,7 @@ Restart ejabberd gracefully
 
 
 
-## *restart_module* - Stop an ejabberd module, reload code and start
+## restart_module
 
 
 Stop an ejabberd module, reload code and start
@@ -3087,7 +3285,7 @@ Stop an ejabberd module, reload code and start
 
 
 
-## *restore* - Restore the database from backup file
+## restore
 
 
 Restore the database from backup file
@@ -3116,7 +3314,36 @@ Restore the database from backup file
 
 
 
-## *rooms_unused_destroy* - Destroy the rooms that are unused for many days in host
+## revoke_certificate
+
+
+Revokes the selected certificate
+
+
+### Arguments:
+- *domain_or_file* :: string : The domain or file (in pem format) of the certificate in question {domain:Domain | file:File}
+
+
+### Result:
+- *res* :: string : Raw result string
+
+
+### Examples:
+
+~~~ json
+    POST /api/revoke_certificate
+    {
+      "domain_or_file": "aaaaa"
+    }
+    
+    HTTP/1.1 200 OK
+    "Success"
+~~~
+
+
+
+
+## rooms_unused_destroy
 
 
 Destroy the rooms that are unused for many days in host
@@ -3150,7 +3377,7 @@ Destroy the rooms that are unused for many days in host
 
 
 
-## *rooms_unused_list* - List the rooms that are unused for many days in host
+## rooms_unused_list
 
 
 List the rooms that are unused for many days in host
@@ -3184,7 +3411,7 @@ List the rooms that are unused for many days in host
 
 
 
-## *rotate_log* - Rotate the log files
+## rotate_log
 
 
 Rotate the log files
@@ -3212,7 +3439,10 @@ Rotate the log files
 
 
 
-## *send_direct_invitation* - Send a direct invitation to several destinations
+## send_direct_invitation
+
+
+Send a direct invitation to several destinations
 
 
 Password and Message can also be: none. Users JIDs are separated with : 
@@ -3249,7 +3479,7 @@ Password and Message can also be: none. Users JIDs are separated with :
 
 
 
-## *send_message* - Send a message to a local or remote bare of full JID
+## send_message
 
 
 Send a message to a local or remote bare of full JID
@@ -3286,7 +3516,7 @@ Send a message to a local or remote bare of full JID
 
 
 
-## *send_stanza* - Send a stanza; provide From JID and valid To JID
+## send_stanza
 
 
 Send a stanza; provide From JID and valid To JID
@@ -3319,7 +3549,7 @@ Send a stanza; provide From JID and valid To JID
 
 
 
-## *send_stanza_c2s* - Send a stanza as if sent from a c2s session
+## send_stanza_c2s
 
 
 Send a stanza as if sent from a c2s session
@@ -3354,10 +3584,13 @@ Send a stanza as if sent from a c2s session
 
 
 
-## *set_last* - Set last activity information
+## set_last
 
 
-Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
+Set last activity information
+
+
+Timestamp is the seconds since 1970-01-01 00:00:00 UTC, for example: date +%s
 
 
 ### Arguments:
@@ -3389,7 +3622,7 @@ Timestamp is the seconds since1970-01-01 00:00:00 UTC, for example: date +%s
 
 
 
-## *set_loglevel* - Set the loglevel (0 to 5)
+## set_loglevel
 
 
 Set the loglevel (0 to 5)
@@ -3418,7 +3651,10 @@ Set the loglevel (0 to 5)
 
 
 
-## *set_master* - Set master node of the clustered Mnesia tables
+## set_master
+
+
+Set master node of the clustered Mnesia tables
 
 
 If you provide as nodename "self", this node will be set as its own master.
@@ -3447,7 +3683,7 @@ If you provide as nodename "self", this node will be set as its own master.
 
 
 
-## *set_nickname* - Set nickname in a user's vCard
+## set_nickname
 
 
 Set nickname in a user's vCard
@@ -3480,7 +3716,7 @@ Set nickname in a user's vCard
 
 
 
-## *set_presence* - Set presence of a session
+## set_presence
 
 
 Set presence of a session
@@ -3521,7 +3757,7 @@ Set presence of a session
 
 
 
-## *set_room_affiliation* - Change an affiliation in a MUC room
+## set_room_affiliation
 
 
 Change an affiliation in a MUC room
@@ -3556,7 +3792,10 @@ Change an affiliation in a MUC room
 
 
 
-## *set_vcard* - Set content in a vCard field
+## set_vcard
+
+
+Set content in a vCard field
 
 
 Some vcard field names in get/set_vcard are:
@@ -3611,7 +3850,10 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 
 
 
-## *set_vcard2* - Set content in a vCard subfield
+## set_vcard2
+
+
+Set content in a vCard subfield
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
@@ -3668,7 +3910,10 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 
 
 
-## *set_vcard2_multi* - Set multiple contents in a vCard subfield
+## set_vcard2_multi
+
+
+Set multiple contents in a vCard subfield
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
@@ -3728,7 +3973,10 @@ For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.or
 
 
 
-## *srg_create* - Create a Shared Roster Group
+## srg_create
+
+
+Create a Shared Roster Group
 
 
 If you want to specify several group identifiers in the Display argument,
@@ -3769,7 +4017,7 @@ For example:
 
 
 
-## *srg_delete* - Delete a Shared Roster Group
+## srg_delete
 
 
 Delete a Shared Roster Group
@@ -3800,7 +4048,7 @@ Delete a Shared Roster Group
 
 
 
-## *srg_get_info* - Get info of a Shared Roster Group
+## srg_get_info
 
 
 Get info of a Shared Roster Group
@@ -3840,7 +4088,7 @@ Get info of a Shared Roster Group
 
 
 
-## *srg_get_members* - Get members of a Shared Roster Group
+## srg_get_members
 
 
 Get members of a Shared Roster Group
@@ -3874,7 +4122,7 @@ Get members of a Shared Roster Group
 
 
 
-## *srg_list* - List the Shared Roster Groups in Host
+## srg_list
 
 
 List the Shared Roster Groups in Host
@@ -3906,7 +4154,7 @@ List the Shared Roster Groups in Host
 
 
 
-## *srg_user_add* - Add the JID user@host to the Shared Roster Group
+## srg_user_add
 
 
 Add the JID user@host to the Shared Roster Group
@@ -3941,7 +4189,7 @@ Add the JID user@host to the Shared Roster Group
 
 
 
-## *srg_user_del* - Delete this JID user@host from the Shared Roster Group
+## srg_user_del
 
 
 Delete this JID user@host from the Shared Roster Group
@@ -3976,7 +4224,7 @@ Delete this JID user@host from the Shared Roster Group
 
 
 
-## *stats* - Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds processes
+## stats
 
 
 Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds processes
@@ -4005,7 +4253,7 @@ Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds
 
 
 
-## *stats_host* - Get statistical value for this host: registeredusers onlineusers
+## stats_host
 
 
 Get statistical value for this host: registeredusers onlineusers
@@ -4036,7 +4284,7 @@ Get statistical value for this host: registeredusers onlineusers
 
 
 
-## *status* - Get status of the ejabberd server
+## status
 
 
 Get status of the ejabberd server
@@ -4064,7 +4312,7 @@ Get status of the ejabberd server
 
 
 
-## *status_list* - List of logged users with this status
+## status_list
 
 
 List of logged users with this status
@@ -4101,7 +4349,7 @@ List of logged users with this status
 
 
 
-## *status_list_host* - List of users logged in host with their statuses
+## status_list_host
 
 
 List of users logged in host with their statuses
@@ -4140,7 +4388,7 @@ List of users logged in host with their statuses
 
 
 
-## *status_num* - Number of logged users with this status
+## status_num
 
 
 Number of logged users with this status
@@ -4169,7 +4417,7 @@ Number of logged users with this status
 
 
 
-## *status_num_host* - Number of logged users with this status in host
+## status_num_host
 
 
 Number of logged users with this status in host
@@ -4200,7 +4448,7 @@ Number of logged users with this status in host
 
 
 
-## *stop* - Stop ejabberd gracefully
+## stop
 
 
 Stop ejabberd gracefully
@@ -4228,35 +4476,10 @@ Stop ejabberd gracefully
 
 
 
-## *stop_s2s_connections* - Stop all outgoing and incoming connections
+## stop_kindly
 
 
-Stop all s2s outgoing and incoming connections
-
-
-### Arguments:
-
-
-### Result:
-- *res* :: integer : Status code (0 on success, 1 otherwise)
-
-
-### Examples:
-
-~~~ json
-    POST /api/stop_s2s_connections
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
-~~~
-
-
-
-
-## *stop_kindly* - Inform users and rooms, wait, and stop the server
+Inform users and rooms, wait, and stop the server
 
 
 Provide the delay in seconds, and the announcement quoted, for example: 
@@ -4288,7 +4511,35 @@ ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
 
 
 
-## *subscribe_room* - Subscribe to a MUC conference
+## stop_s2s_connections
+
+
+Stop all s2s outgoing and incoming connections
+
+
+### Arguments:
+
+
+### Result:
+- *res* :: integer : Status code (0 on success, 1 otherwise)
+
+
+### Examples:
+
+~~~ json
+    POST /api/stop_s2s_connections
+    {
+      
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+
+
+
+
+## subscribe_room
 
 
 Subscribe to a MUC conference
@@ -4326,7 +4577,7 @@ Subscribe to a MUC conference
 
 
 
-## *unregister* - Unregister a user
+## unregister
 
 
 Unregister a user
@@ -4357,7 +4608,7 @@ Unregister a user
 
 
 
-## *unsubscribe_room* - Unsubscribe from a MUC conference
+## unsubscribe_room
 
 
 Unsubscribe from a MUC conference
@@ -4388,7 +4639,7 @@ Unsubscribe from a MUC conference
 
 
 
-## *update* - Update the given module, or use the keyword: all
+## update
 
 
 Update the given module, or use the keyword: all
@@ -4417,7 +4668,7 @@ Update the given module, or use the keyword: all
 
 
 
-## *update_list* - List modified modules that can be updated
+## update_list
 
 
 List modified modules that can be updated
@@ -4448,7 +4699,7 @@ List modified modules that can be updated
 
 
 
-## *user_resources* - List user's connected resources
+## user_resources
 
 
 List user's connected resources
@@ -4483,7 +4734,7 @@ List user's connected resources
 
 
 
-## *user_sessions_info* - Get information about all sessions of a user
+## user_sessions_info
 
 
 Get information about all sessions of a user

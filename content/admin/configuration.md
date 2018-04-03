@@ -1554,7 +1554,7 @@ For example, to set Russian as default language:
 			
 	language: "ru"
 
-The page [Internationalization and Localization](../../../developer/localization/)
+The page [Internationalization and Localization](/developer/extending-ejabberd/localization/)
 provides more details.
 
 ## CAPTCHA
@@ -2837,6 +2837,13 @@ be dropped or not. The default value is `true`.
 
 **`log: true|false`**:   This option specifies if strangers messages should
 be logged (as info message) in ejabberd logs. The default value is `false`.
+
+**`allow_local_users: true|false`**:   This option specifies if strangers from
+the same local host should be accepted or not. The default value is `true`.
+
+**`allow_transports: true|false`**:   If set to `true` and some server's JID
+is in user's roster, then messages from any user of this server are
+accepted even if no subscription present. The default value is `true`.
 
 ## mod_bosh
 
@@ -4422,7 +4429,8 @@ Options:
 
 **`hostname: HostName`**:   Defines a hostname advertised by the service when establishing a
 	session with clients. This is useful when you run the service behind
-	a NAT. The default is the value of `ip` option. Examples:
+	a NAT. The keyword “@HOST@” is replaced with the virtual host name.
+	The default is the value of `ip` option. Examples:
 	`proxy.mydomain.org`, `200.150.100.50`. Note that not all clients
 	understand domain names in stream negotiation, so you should think
 	twice before setting domain name in this option.

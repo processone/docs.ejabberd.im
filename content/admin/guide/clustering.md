@@ -106,7 +106,7 @@ together.
 	using the ejabberdctl script:
 
     ~~~ bash
-	$ ejabberdctl join_cluster 'ejabberd@ejabberd01'
+	$ ejabberdctl --no-timeout join_cluster 'ejabberd@ejabberd01'
     ~~~
 
 	This enables ejabberd's internal replications to be launched
