@@ -5082,7 +5082,7 @@ information. All of them are run against the `ldap_base`.
 
 Subsequently `%u` and `%g` are replaced with a \*.
 This means that given the defaults, the filter sent to the LDAP
-server is would be `(&(memberUid=*)(cn=*))`. If however the
+server would be `(&(memberUid=*)(cn=*))`. If however the
 `ldap_memberattr_format` is something like
 `uid=%u,ou=People,o=org`, then the filter will be
 `(&(memberUid=uid=*,ou=People,o=org)(cn=*))`.
