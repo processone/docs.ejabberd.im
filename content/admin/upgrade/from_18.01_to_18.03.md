@@ -16,7 +16,7 @@ You must open an sql client connected to your ejabberd database, and run the
 following commands.
 Note: if your archive table is big, this action may take a while to complete.
 
-### Generic SQL
+### MySQL
 ```bash
 DROP INDEX i_username_timestamp ON archive;
 DROP INDEX i_peer ON archive;
@@ -24,6 +24,22 @@ DROP INDEX i_bare_peer ON archive;
 CREATE INDEX i_username_timestamp USING BTREE ON archive(username(191), timestamp);
 CREATE INDEX i_username_peer USING BTREE ON archive(username(191), peer(191));
 CREATE INDEX i_username_bare_peer USING BTREE ON archive(username(191), bare_peer(191));
+```
+
+### PostgreSQL
+```bash
+DROP INDEX i_peer ON archive;
+DROP INDEX i_bare_peer ON archive;
+CREATE INDEX i_username_peer ON archive USING btree (username, peer);
+CREATE INDEX i_username_bare_peer ON archive USING btree (username, bare_peer);
+```
+
+### Sqlite
+```bash
+DROP INDEX i_peer ON archive;
+DROP INDEX i_bare_peer ON archive;
+CREATE INDEX i_archive_username_peer ON archive (username, peer);
+CREATE INDEX i_archive_username_bare_peer ON archive (username, bare_peer);
 ```
 
 ### MsSql

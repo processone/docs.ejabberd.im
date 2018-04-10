@@ -88,7 +88,14 @@ stop(_Host) ->
     ok.
 ~~~
 
-You can use it by adding it in the config file. Adding the following
+Now you have two ways to compile and install the module:
+If you compiled ejabberd from source code, you can copy that source code file
+with all the other ejabberd source code files, so it will be compiled and installed with them.
+If you installed some compiled ejabberd package, you can create your own module dir, see
+[Managing Your Own Modules](/developer/extending-ejabberd/modules/#managing-your-own-modules).
+
+You can enable your new module by adding it in the ejabberd config file.
+Adding the following
 snippet in the config file will integrate the module in ejabberd
 module lifecycle management. It means the module will be started and
 ejabberd launch and stopped during ejabberd shutdown process:
