@@ -3411,7 +3411,7 @@ You also need to configure DNS SRV records properly so clients can
 easily discover Websocket service for your XMPP domain. Refer to
 [XEP-0159](https://xmpp.org/extensions/xep-0156.html).
 
-Example DNS TXT configuration for Websocker:
+Example DNS TXT configuration for Websocket:
 
     _xmppconnect IN TXT "[ _xmpp-client-websocket=wss://web.example.com:443/ws ]"
 
