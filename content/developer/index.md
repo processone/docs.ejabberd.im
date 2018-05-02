@@ -1,6 +1,6 @@
 ---
 title: ejabberd for Developers
-menu: ejabberd for Developers
+menu: For Developers
 order: 30
 ---
 

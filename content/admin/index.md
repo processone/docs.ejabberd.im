@@ -1,6 +1,6 @@
 ---
 title: ejabberd for Administrators
-menu: ejabberd for Administrators
+menu: For Administrators
 order: 20
 ---
 

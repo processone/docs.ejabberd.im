@@ -3411,7 +3411,7 @@ You also need to configure DNS SRV records properly so clients can
 easily discover Websocket service for your XMPP domain. Refer to
 [XEP-0159](https://xmpp.org/extensions/xep-0156.html).
 
-Example DNS TXT configuration for Websocker:
+Example DNS TXT configuration for Websocket:
 
     _xmppconnect IN TXT "[ _xmpp-client-websocket=wss://web.example.com:443/ws ]"
 
@@ -3647,6 +3647,11 @@ Module options:
 	active rooms as a service message. The administrators can send a
 	groupchat message to the JID of an active room, and the message will
 	be shown in the room as a service message.
+
+**`access_register: AccessName`**:   This option specifies who is allowed to
+	register nickname within the Multi-User Chat service. The default is `all`
+	for backward compatibility, which means that any user is allowed to
+	register any free nick.
 
 **`history_size: Size`**:   A small history of the current discussion is sent to users when they
 	enter the room. With this option you can define the number of

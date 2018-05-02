@@ -1,6 +1,6 @@
 ---
 title: Administration API reference
-bodyclass: nocomment
+toc: true
 menu: Administration API
 order: 40
 ---
