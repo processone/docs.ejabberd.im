@@ -3255,7 +3255,7 @@ included instead. Default: `sha1`.
 **`thumbnail: true|false`**: This option specifies whether ejabberd should create thumbnails of
 uploaded images. If a thumbnail is created, a `<thumbnail/>` element
 that contains the download `<uri/>` and some metadata is returned with
-the PUT response. Default: `true`.
+the PUT response. Default: `false`.
 
 **`file_mode: Mode`**: This option defines the permission bits of uploaded files. The bits
 are specified as an octal number (see the `chmod(1)` manual page) within
