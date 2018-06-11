@@ -2525,6 +2525,8 @@ The following table lists all modules included in `ejabberd`.
 | [mod_privilege](#mod-privilege)                | Privileged Entity ([`XEP-0356`][124])                |                                  |
 | [mod_proxy65](#mod-proxy65)                    | SOCKS5 Bytestreams ([`XEP-0065`][49])                |                                  |
 | [mod_pubsub](#mod-pubsub)                      | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51])   | `mod_caps`                       |
+| [mod_push](#mod-push)                          | Push Notifications ([`XEP-0357`][126])               |                                  |
+| [mod_push_keepalive](#mod-push-keepalive)      | Keep sessions of push clients alive                  | `mod_push`                       |
 | [mod_register](#mod-register)                  | In-Band Registration ([`XEP-0077`][54])              |                                  |
 | [mod_register_web](#mod-register-web)          | Web for Account Registrations                        |                                  |
 | [mod_roster](#mod-roster)                      | Roster management (XMPP IM)                          |                                  |
@@ -4653,6 +4655,73 @@ following example shows previous configuration with SQL usage:
           - "pep"
 	  ...
 
+## mod_push
+
+This module implements the XMPP server's part of the push notification
+solution specified in [`XEP-0357`][126]. It does *not* generate, for
+example, APNS or FCM notifications directly. Instead, it's designed to
+work with so-called "app servers" provided by third-party vendors of
+mobile apps. Those app servers will usually trigger notification
+delivery to the user's mobile device using platform-dependant backend
+services such as FCM or APNS.
+
+Options:
+
+**`include_sender: true|false`**:   If this option is set to `true`, the
+	sender's JID is included with push notifications generated for
+	incoming messages with a body. Default: `false`.
+
+**`include_body: true|false|String`**:   If this option is set to
+	`true`, the message text is included with push notifications
+	generated for incoming messages with a body. The option can
+	instead be set to a static text, in which case the specified
+	text will be included in place of the actual message body. This
+	can be useful to signal the app server whether the notification
+	was triggered by a message with body (as opposed to other types
+	of traffic) without leaking actual message contents. Default:
+	`"New message"`.
+
+**`db_type: mnesia|sql`**:   The type of storage where the module will
+	store push session information. The default is the storage
+	defined by the global option `default_db`, or `mnesia` if
+	omitted. If `sql` is specified, make sure you have configured
+	the database, see the
+	[database](#database-and-ldap-configuration) section.
+
+**`use_cache: false|true`**:   Use this option and related ones as
+	explained in the section on [caching](#caching).
+
+## mod_push_keepalive
+
+This module tries to keep the [stream management](#mod_stream_mgmt)
+session of a disconnected mobile client alive if the client enabled
+[push notifications](#mod_push) for that session. However, the normal
+session resumption timeout is restored once a push notification is
+issued, so the session will be closed if the client doesn't respond to
+push notifications.
+
+Options:
+
+**`resume_timeout: Seconds|undefined`**:   This option specifies the
+	number of seconds until the session of a disconnected push
+	client times out. This timeout is only in effect as long as no
+	push notification is issued. Once that happened, the resumption
+	timeout configured for the [stream management
+	module](#mod_stream_mgmt) is restored. If this option is set to
+	`undefined`, the resumption timeout won't be modified by
+	`mod_push_keepalive`. Default: `259200`.
+
+**`wake_on_start: true|false`**:   If this option is set to `true`,
+	notifications are generated for *all* registered push clients
+	during server startup. This option should *not* be enabled on
+	servers with many push clients as it can generate significant
+	load on the involved push services. Default: `false`.
+
+**`wake_on_timeout: true|false`**:   If this option is set to `true`, a
+	notification is generated shortly before the session would time
+	out as per the `resume_timeout` described above. Default:
+	`true`.
+
 ## mod_register
 
 This module adds support for In-Band Registration
@@ -5973,3 +6042,4 @@ Options:
 [123]:  http://xmpp.org/extensions/xep-0355.html
 [124]:  http://xmpp.org/extensions/xep-0356.html
 [125]:  http://xmpp.org/extensions/xep-0198.html
+[126]:  http://xmpp.org/extensions/xep-0357.html
