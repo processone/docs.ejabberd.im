@@ -220,7 +220,6 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 | archive                 |
 | archive_prefs           |
 | caps_features           |
-| irc_custom              |
 | last                    |
 | motd                    |
 | muc_registered          |

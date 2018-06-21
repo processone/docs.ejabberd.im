@@ -19,7 +19,7 @@ If you want to convert it manually from command line, you can use
 `base64` tool. For example:
 
 ~~~ bash
-base64 -in muc_logo.png > muc_logo.b64
+base64 muc_logo.png > muc_logo.b64
 ~~~
 
 However, when coding the client, you can more likely directly do the

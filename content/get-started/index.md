@@ -6,6 +6,14 @@ toc: true
 order: 10
 ---
 
+- [Quick Start with Binary Installers](/admin/installation/#quick-start) – recommended when starting development on localhost
+  - [Install on Windows](/admin/installation/#install-on-windows)
+  - [Install on Linux](/admin/installation/#install-on-linux)
+  - [Install on macOS](/admin/installation/#install-on-macos)
+- [Install from Source Code](/admin/installation/#install-from-source-code) – recommended for advanced users
+- [Install with Operating System specific packages](/admin/installation/#install-with-os-specific-packages) – recommended for sysops
+- [Post-install operations](/admin/installation/#post-install-operations) – for example, register users and create admin accounts
+
 # Overview
 
 ejabberd is the de facto XMPP server in the world. The fact that it is
@@ -215,5 +223,5 @@ choice in term of scalability, robustness and manageability.
 
 The best way to start developing for ejabberd is to clone, watch and
 star the [project](https://www.github.com/processone/ejabberd), to get
-in touch on our developer chatroom (ejabberd@conference.jabber.ru) or
+in touch on our developer chatroom (ejabberd@conference.process-one.net) or
 to join [ejabberd community on StackOverflow](http://stackoverflow.com/questions/tagged/ejabberd?sort=newest).

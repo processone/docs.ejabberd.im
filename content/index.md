@@ -17,22 +17,31 @@ started on your path to mastery. Whether you are a sysadmin, an
 architect, a developer planning to extend it, or even a simple XMPP
 user, we have something for you here.
 
-<div id="homepage-buttons" class="container-fluid">
+<div id="homepage-buttons" class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <a href="/get-started/" type="button" class="btn btn-lg btn-block">Getting Started</a>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      <a href="/get-started/" type="button" class="btn btn-lg btn-block">
+        <img src="/static/shared/images/icon_gettingstarted.svg" />
+        Get Started
+      </a>
     </div>
-    <div class="col-sm-6">
-      <a href="/admin/installation/" type="button" class="btn btn-lg btn-block">Installation</a>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      <a href="/admin/installation/" type="button" class="btn btn-lg btn-block">
+        <img src="/static/shared/images/icon_installation.svg" />
+        Install
+      </a>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6">
-      <a href="/admin/configuration/" type="button" class="btn btn-lg btn-block">Configuration</a>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      <a href="/admin/configuration/" type="button" class="btn btn-lg btn-block">
+        <img src="/static/shared/images/icon_configuration.svg" />
+        Configure
+      </a>
     </div>
-    <div class="col-sm-6">
-      <a href="/developer/ejabberd-api/" type="button" class="btn btn-lg btn-block">REST API</a>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      <a href="/developer/ejabberd-api/" type="button" class="btn btn-lg btn-block">
+        <img src="/static/shared/images/icon_restapi.svg" />
+        REST API
+      </a>
     </div>
   </div>
 </div>

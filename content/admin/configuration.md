@@ -67,7 +67,7 @@ Please, consult `ejabberd.log` for configuration errors. `ejabberd` will
 report syntax related errors, as well as complains about unknown options.
 The later error typically looks like this:
 
-    17:10:52.858 [error] unknown option 'db_typ' for module 'mod_roster' will be likely ignored, available options are: 'access', 'db_type', 'iqdisc', 'store_current_id', 'versioning'
+    17:10:52.858 [error] unknown option 'db_typ' for module 'mod_roster' will be likely ignored, available options are: 'access', 'db_type', 'store_current_id', 'versioning'
 
 Unknown options are not ignored at the moment in order to make legacy
 third-party modules work.  Make sure you respect indentation (YAML is
@@ -2508,7 +2508,6 @@ The following table lists all modules included in `ejabberd`.
 | [mod_http_fileserver](#mod-http-fileserver)    | Small HTTP file server                               |                                  |
 | [mod_http_upload](#mod-http-upload)            | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
 | [mod_http_upload_quota](#mod-http-upload-quota)| HTTP File Upload Quotas                              | `mod_http_upload`                |
-| [mod_irc](#mod-irc)                            | IRC transport                                        |                                  |
 | [mod_last](#mod-last)                          | Last Activity ([`XEP-0012`][43])                     |                                  |
 | [mod_mam](#mod-mam)                            | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
 | [mod_mix](#mod-mix)                            | Mediated Information eXchange ([`XEP-0369`][122])    | `mod_pubsub`                     |
@@ -2525,6 +2524,8 @@ The following table lists all modules included in `ejabberd`.
 | [mod_privilege](#mod-privilege)                | Privileged Entity ([`XEP-0356`][124])                |                                  |
 | [mod_proxy65](#mod-proxy65)                    | SOCKS5 Bytestreams ([`XEP-0065`][49])                |                                  |
 | [mod_pubsub](#mod-pubsub)                      | Pub-Sub ([`XEP-0060`][50]), PEP ([`XEP-0163`][51])   | `mod_caps`                       |
+| [mod_push](#mod-push)                          | Push Notifications ([`XEP-0357`][126])               |                                  |
+| [mod_push_keepalive](#mod-push-keepalive)      | Keep sessions of push clients alive                  | `mod_push`                       |
 | [mod_register](#mod-register)                  | In-Band Registration ([`XEP-0077`][54])              |                                  |
 | [mod_register_web](#mod-register-web)          | Web for Account Registrations                        |                                  |
 | [mod_roster](#mod-roster)                      | Roster management (XMPP IM)                          |                                  |
@@ -2564,47 +2565,6 @@ use them at your own risk!
 
 The following options are used by many modules. Therefore, they are
 described in this separate section.
-
-### iqdisc
-
-Many modules define handlers for processing IQ queries of different
-namespaces to this server or to a user (e.g. to `example.org` or to
-`user@example.org`). This option defines processing discipline for these
-queries.
-
-The syntax is:
-
-**`iqdisc: Value`**:  Possible `Value` are:
-
-* **`no_queue`**:   All queries of a namespace with this processing discipline are
-	processed directly. This means that the XMPP connection that sends
-	this IQ query gets blocked: no other packets can be processed until
-	this one has been completely processed. Hence this discipline is not
-	recommended if the processing of a query can take a relatively long
-	time.
-
-* **`one_queue`**:   In this case a separate queue is created for the processing of IQ
-	queries of a namespace with this discipline. In addition, the
-	processing of this queue is done in parallel with that of other
-	packets. This discipline is most recommended.
-
-* **`N`**:   N separate queues are created to process the queries. The queries
-	are thus processed in parallel, but in a controlled way.
-
-* **`parallel`**:   For every packet with this discipline a separate Erlang process is
-	spawned. Consequently, all these packets are processed in parallel.
-	Although spawning of Erlang process has a relatively low cost, this
-	can break the server’s normal work, because the Erlang emulator has
-	a limit on the number of processes (32000 by default).
-
-Example:
-
-			
-	modules:
-	  ...
-	  mod_time:
-	    iqdisc: no_queue
-	  ...
 
 ### host
 
@@ -2948,11 +2908,6 @@ Example:
 
 This module is an implementation of ([`XEP-0355`][123]). Only admin mode has been implemented by now. Namespace delegation allows external services to handle IQ using specific namespace. This may be applied for external PEP service.
 
-Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Namespace Delegation
-	(`urn:xmpp:delegation`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
-
 Example:
 
 To use the module add `mod_delegation` to `modules` section:
@@ -3008,11 +2963,6 @@ Discovery protocol if you want them be able to discover the services you
 offer.
 
 Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Service Discovery
-	(`http://jabber.org/protocol/disco#items` and
-	`http://jabber.org/protocol/disco#info`) IQ queries (see
-	section [IQ Discipline Option](#iqdisc)).
 
 **`extra_domains: [Domain, ...]`**:   With this option, you can specify a list of extra domains that are
 	added to the Service Discovery item list.
@@ -3255,7 +3205,7 @@ included instead. Default: `sha1`.
 **`thumbnail: true|false`**: This option specifies whether ejabberd should create thumbnails of
 uploaded images. If a thumbnail is created, a `<thumbnail/>` element
 that contains the download `<uri/>` and some metadata is returned with
-the PUT response. Default: `true`.
+the PUT response. Default: `false`.
 
 **`file_mode: Mode`**: This option defines the permission bits of uploaded files. The bits
 are specified as an octal number (see the `chmod(1)` manual page) within
@@ -3421,90 +3371,6 @@ A test client can be found on Github: [Websocket test client](https://github.com
 
 <!-- TODO We should probably embed a test Websocket client on the Websocket info get page. -->
 
-## mod_irc
-
-This module is an IRC transport that can be used to join channels on IRC
-servers.
-
-End user information:
-
--   A XMPP client with ‘groupchat 1.0’ support or Multi-User Chat
-	support ([`XEP-0045`][72]) is
-	necessary to join IRC channels.
-
--   An IRC channel can be joined in nearly the same way as joining a
-	XMPP Multi-User Chat room. The difference is that the room name will
-	be ‘channel%`irc.example.org`’ in case `irc.example.org` is the IRC
-	server hosting ‘channel’. And of course the host should point to the
-	IRC transport instead of the Multi-User Chat service.
-
--   You can register your nickame by sending ‘IDENTIFY password’ to
-	`nickserver!irc.example.org@irc.jabberserver.org`.
-
--   Entering your password is possible by sending ‘LOGIN nick
-	password’
-	to `nickserver!irc.example.org@irc.jabberserver.org`.
-
--   The IRC transport provides Ad-Hoc Commands
-	([`XEP-0050`][73]) to join a
-	channel, and to set custom IRC username and encoding.
-
--   When using a popular XMPP server, it can occur that no connection
-	can be achieved with some IRC servers because they limit the number
-	of connections from one IP.
-
-Options:
-
-**`host: HostName`**:   This option defines the Jabber ID of the service. If the `host`
-	option is not specified, the Jabber ID will be the hostname of the
-	virtual host with the prefix ‘`irc.`’. The keyword “@HOST@” is
-	replaced at start time with the real virtual host name.
-
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
-
-**`access: AccessName`**:   This option can be used to specify who may use the IRC transport
-	(default value: `all`).
-
-**`default_encoding: Encoding`**:   Set the default IRC encoding. Default value: `iso8859-1`
-
-Examples:
-
--   In the first example, the IRC transport is available on (all) your
-	virtual host(s) with the prefix ‘`irc.`’. Furthermore, anyone is
-	able to use the transport. The default encoding is set to
-	“iso8859-15”.
-
-				
-		modules:
-		  ...
-		  mod_irc:
-		    access: all
-		    default_encoding: "iso8859-15"
-		  ...
-
--   In next example the IRC transport is available with JIDs with prefix
-	`irc-t.net`. Moreover, the transport is only accessible to two users
-	of `example.org`, and any user of `example.com`:
-
-				
-		acl:
-		  paying_customers:
-		    user:
-		      - "customer1": "example.org"
-		      - "customer2": "example.org"
-		    server: "example.com"
-
-		access_rules:
-		  irc_users:
-		    - allow: paying_customers
-
-		modules:
-		  ...
-		  mod_irc:
-		    access: irc_users
-		    host: "irc.example.net"
-		  ...
-
 ## mod_last
 
 ### Description
@@ -3516,9 +3382,6 @@ when a connected user was last active on the server, or to query the
 uptime of the `ejabberd` server.
 
 ### Options
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Last activity
-	(`jabber:iq:last`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
@@ -3549,8 +3412,6 @@ limit the storage size of those data.
 This module implements Message Archive Management as described in [`XEP-0313`][114]. Versions 0.2 and 0.3 are supported at the moment. Compatible XMPP clients can use it to store their chat history on the server.
 
 Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Message Archive Management IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 **`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration). Note: If `mnesia` is used, the total size of all MAM archives cannot exceed 2 GB. The `delete_old_mam_messages` command could be run periodically to make sure the `mnesia` data won't grow beyond that limit. To support larger archives, `sql` storage must be used.
 
@@ -4331,9 +4192,6 @@ to:
 
 Options:
 
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Blocking Communication
-	(`jabber:iq:privacy`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
-
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
@@ -4352,9 +4210,6 @@ This module adds support for Private XML Storage
 
 Options:
 
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Private XML Storage
-	(`jabber:iq:private`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
-
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
@@ -4362,11 +4217,6 @@ Options:
 ## mod_privilege
 
 This module is an implementation of ([`XEP-0356`][124]). This extension allows components to have privileged access to other entity data (send messages on behalf of the server, get/set user roster, access presence information). This may be applied for external PEP service.
-
-Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Privileged Entity
-	(`urn:xmpp:privilege`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 Example:
 
@@ -4653,6 +4503,73 @@ following example shows previous configuration with SQL usage:
           - "pep"
 	  ...
 
+## mod_push
+
+This module implements the XMPP server's part of the push notification
+solution specified in [`XEP-0357`][126]. It does *not* generate, for
+example, APNS or FCM notifications directly. Instead, it's designed to
+work with so-called "app servers" operated by third-party vendors of
+mobile apps. Those app servers will usually trigger notification
+delivery to the user's mobile device using platform-dependant backend
+services such as FCM or APNS.
+
+Options:
+
+**`include_sender: true|false`**:   If this option is set to `true`, the
+	sender's JID is included with push notifications generated for
+	incoming messages with a body. Default: `false`.
+
+**`include_body: true|false|String`**:   If this option is set to
+	`true`, the message text is included with push notifications
+	generated for incoming messages with a body. The option can
+	instead be set to a static text, in which case the specified
+	text will be included in place of the actual message body. This
+	can be useful to signal the app server whether the notification
+	was triggered by a message with body (as opposed to other types
+	of traffic) without leaking actual message contents. Default:
+	`"New message"`.
+
+**`db_type: mnesia|sql`**:   The type of storage where the module will
+	store push session information. The default is the storage
+	defined by the global option `default_db`, or `mnesia` if
+	omitted. If `sql` is specified, make sure you have configured
+	the database, see the
+	[database](#database-and-ldap-configuration) section.
+
+**`use_cache: false|true`**:   Use this option and related ones as
+	explained in the section on [caching](#caching).
+
+## mod_push_keepalive
+
+This module tries to keep the [stream management](#mod_stream_mgmt)
+session of a disconnected mobile client alive if the client enabled
+[push notifications](#mod_push) for that session. However, the normal
+session resumption timeout is restored once a push notification is
+issued, so the session will be closed if the client doesn't respond to
+push notifications.
+
+Options:
+
+**`resume_timeout: Seconds|undefined`**:   This option specifies the
+	number of seconds until the session of a disconnected push
+	client times out. This timeout is only in effect as long as no
+	push notification is issued. Once that happened, the resumption
+	timeout configured for the [stream management
+	module](#mod_stream_mgmt) is restored. If this option is set to
+	`undefined`, the resumption timeout won't be modified by
+	`mod_push_keepalive`. Default: `259200`.
+
+**`wake_on_start: true|false`**:   If this option is set to `true`,
+	notifications are generated for *all* registered push clients
+	during server startup. This option should *not* be enabled on
+	servers with many push clients as it can generate significant
+	load on the involved push services. Default: `false`.
+
+**`wake_on_timeout: true|false`**:   If this option is set to `true`, a
+	notification is generated shortly before the session would time
+	out as per the `resume_timeout` described above. Default:
+	`true`.
+
 ## mod_register
 
 This module adds support for In-Band Registration
@@ -4685,9 +4602,6 @@ Options:
 **`ip_access: AccessName`**:   Define rules to allow or deny account registration depending on the
 	IP address of the XMPP client. The `AccessName` should be of type
 	`ip`. The default value is `all`.
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for In-Band Registration
-	(`jabber:iq:register`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 **`password_strength: Entropy`**:   This option sets the minimum informational entropy for passwords.
 	The value `Entropy` is a number of bits of entropy. The recommended
@@ -4843,9 +4757,6 @@ also supports Roster Versioning
 ([`XEP-0237`][93]).
 
 Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Roster Management
-	(`jabber:iq:roster`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
@@ -5365,11 +5276,6 @@ This module adds support for Server IP Check
 ([`XEP-0279`][98]). This protocol
 enables a client to discover its external IP address.
 
-Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for `urn:xmpp:sic:0` IQ
-	queries (see section [IQ Discipline Option](#iqdisc)).
-
 ## mod_sip
 
 This module adds SIP proxy/registrar support for the corresponding
@@ -5459,12 +5365,6 @@ allows you to retrieve next statistics from your `ejabberd` deployment:
 -   Total number of online users on all virtual hosts
 	(users/all-hosts/online).
 
-Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Statistics Gathering
-	(`http://jabber.org/protocol/stats`) IQ queries (see
-	section [IQ Discipline Option](#iqdisc)).
-
 As there are only a small amount of clients (for example
 [`Tkabber`][100]) and software libraries with
 support for this XEP, a few examples are given of the XML you need to
@@ -5544,11 +5444,6 @@ This module features support for Entity Time
 ([`XEP-0202`][101]). By using this
 XEP, you are able to discover the time at another entity’s location.
 
-Options:
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Entity Time
-	(`jabber:iq:time`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
-
 ## mod_vcard
 
 This module allows end users to store and retrieve their vCard, and to
@@ -5564,9 +5459,6 @@ Options:
 	option is not specified, the Jabber ID will be the hostname of the
 	virtual host with the prefix ‘`vjud.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for `vcard-temp` IQ queries
-	(see section [IQ Discipline Option](#iqdisc)).
 
 **`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
@@ -5650,9 +5542,6 @@ The second group of parameters consists of the following
 	option is not specified, the Jabber ID will be the hostname of the
 	virtual host with the prefix ‘`vjud.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
-
-**`iqdisc: Discipline`**:   This specifies the processing discipline for `vcard-temp` IQ queries
-	(see section [IQ Discipline Option](#iqdisc)).
 
 **`search: true|false`**:   This option specifies whether the search functionality is enabled
 	(value: `true`) or disabled (value: `false`). If disabled, the
@@ -5858,9 +5747,6 @@ Options:
 **`show_os: true|false`**:   Should the operating system be revealed or not. The default value is
 	`true`.
 
-**`iqdisc: Discipline`**:   This specifies the processing discipline for Software Version
-	(`jabber:iq:version`) IQ queries (see section [IQ Discipline Option](#iqdisc)).
-
 [1]:	http://en.wikipedia.org/wiki/YAML
 [2]:	http://www.ejabberd.im/pyaimt
 [3]:	http://www.ejabberd.im/pymsnt
@@ -5973,3 +5859,4 @@ Options:
 [123]:  http://xmpp.org/extensions/xep-0355.html
 [124]:  http://xmpp.org/extensions/xep-0356.html
 [125]:  http://xmpp.org/extensions/xep-0198.html
+[126]:  http://xmpp.org/extensions/xep-0357.html
