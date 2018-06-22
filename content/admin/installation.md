@@ -164,7 +164,7 @@ or tell to use another local user.
 It isn't recommended to run ejabberd with `root` user.
 
 *Note*: To build ejabberd, you will need Internet access, as
- dependencies will by downloaded depending on the selected options.
+ dependencies will be downloaded depending on the selected options.
 
 The build configuration script allows several options. To get the full
 list run the command:
@@ -420,7 +420,7 @@ enter the ejabberd Web Admin. Here are the steps to create it:
   1.  Using `ejabberdctl` (see section [ejabberdctl][7]):
 
       ``` bash
-      ejabberdctl register admin1 example.org FgT5bk3
+      ejabberdctl register admin1 example.org password
       ```
 
   2.  Using an XMPP client and In-Band Registration (see section [mod_register][20]).
