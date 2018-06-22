@@ -69,7 +69,7 @@ You can read more on installer options on [unattended installation](/admin/guide
     - start the installation,
 6. After successful installation, let's launch ejabberd using the Terminal. In the command line, go to the installation folder and execute `./bin/ejabberdctl live`. This will start ejabberd in an interactive live mode with some useful messages printed in the Terminal.
 7. Now you can go to the web dashboard at `http://localhost:5280/admin` and type the username `admin` and the `password` for access. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
-8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall.app` in the directory where it was installed.
+8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall` in the directory where it was installed.
 
 ## Install on macOS
 
@@ -102,57 +102,6 @@ Before you begin installing ejabberd, make sure your Mac allows apps from indent
 2. Start your ejabberd by running `/usr/local/sbin/ejabberdctl live`. This interactive mode prints useful messages in the Terminal. The default domain used by Homebrew's ejabberd is `localhost`.
 3. Create an admin account by running `/usr/local/sbin/ejabberdctl register admin localhost password`. This creates an account `admin@localhost` with the specified `password`.
 4. Now you can go to the web dashboard at `http://localhost:5280/admin` and type the username `admin` and the `password` for access. Without configuration there's not much to see here, therefore the next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
-
-## Starting ejabberd
-
-ejabberd can be started manually at any time, or automatically by
-the operating system at system boot time.
-
-To start and stop ejabberd manually, use the desktop shortcuts
-created by the installer. If the machine doesn’t have a graphical
-system, use the scripts ’start’ and ’stop’ in the ’bin’ directory
-where ejabberd is installed.
-
-<!-- TODO: What about systemd in newer Linux distributions ? -->
-
-## Autostart on Linux
-
-On a \*nix system, if you want ejabberd to be started as daemon at
-boot time, copy `ejabberd.init` from the ’bin’ directory to something
-like `/etc/init.d/ejabberd` (depending on your distribution). Create a
-system user called ejabberd, give it write access to the directories
-`database/` and `logs/`, and set that as home; the script will start
-the server with that user. Then you can call `/etc/inid.d/ejabberd
-start` as root to start the server.
-
-When ejabberd is started, the processes that are started in the system
-are `beam` or `beam.smp`, and also `epmd`. For more information
-regarding `epmd` consult the section relating to [epmd][6].
-
-If ejabberd doesn’t start correctly and a crash dump file is
-generated, there was a severe problem. You can try starting ejabberd
-with the script `bin/live.bat` in Windows, or with the command
-`bin/ejabberdctl live` in other Operating Systems. This way you see
-the error message provided by Erlang and can identify what is exactly
-the problem.
-
-The `ejabberdctl` administration script is included in the `bin`
-directory. Please refer to the section [ejabberdctl][7] for details
-about `ejabberdctl`, and configurable options to fine tune the Erlang
-runtime system.
-
-## Autostart on Windows
-
-The Windows installer also adds ejabberd as a system service, and a
-shortcut to a debug console for experienced administrators. If you
-want ejabberd to be started automatically at boot time, go to the
-Windows service settings and set ejabberd to be automatically
-started. Note that the Windows service is a feature still in
-development, and for example it doesn’t read the file
-`ejabberdctl.cfg`.
-
-On Microsoft Windows, the Erlang processes for ejabberd are named
-`erl.exe` and `epmd.exe`.
 
 # Install from Source Code
 
@@ -316,7 +265,15 @@ The files and directories created are, by default:
 
 ## Starting ejabberd
 
-You can use the `ejabberdctl` command line administration script to
+ejabberd can be started manually at any time, or automatically by
+the operating system at system boot time.
+
+To start and stop ejabberd manually, use the desktop shortcuts
+created by the installer. If the machine doesn’t have a graphical
+system, use the scripts ’start’ and ’stop’ in the ’bin’ directory
+where ejabberd is installed.
+
+You can also use the `ejabberdctl` command line administration script to
 start and stop ejabberd. If you provided the configure option
 `–enable-user=USER` (see [compile](#compile)), you can execute `ejabberdctl`
 with either that system account or root.
@@ -333,22 +290,46 @@ ejabberd is running in that node
 prompt> ejabberdctl stop
 ```
 
-If ejabberd doesn’t start correctly and a crash dump is generated,
-there was a severe problem. You can try starting ejabberd with the
-command `ejabberdctl live` to see the error message provided by Erlang
-and can identify what is exactly the problem.
+If ejabberd doesn’t start correctly and a crash dump file is
+generated, there was a severe problem. You can try starting ejabberd
+with the script `bin/live.bat` in Windows, or with the command
+`bin/ejabberdctl live` in other Operating Systems. This way you see
+the error message provided by Erlang and can identify what is exactly
+the problem.
 
-Please refer to the section [ejabberdctl][7] for details about
-`ejabberdctl`, and configurable options to fine tune the Erlang
+The `ejabberdctl` administration script is included in the `bin`
+directory. Please refer to the section [ejabberdctl][7] for details
+about `ejabberdctl`, and configurable options to fine tune the Erlang
 runtime system.
 
-<!-- TODO: What about systemd -->
+## Autostart on Linux
 
-If you want ejabberd to be started as daemon at boot time, copy
-`ejabberd.init` to something like `/etc/init.d/ejabberd` (depending on
-your distribution). Create a system user called ejabberd; it will be
-used by the script to start the server. Then you can call
-`/etc/inid.d/ejabberd start` as root to start the server.
+On a \*nix system, create a system user called 'ejabberd', give it write access
+to the directories `database/` and `logs/`, and set that as home. If you want
+ejabberd to be started as daemon at boot time with that user, copy
+`ejabberd.init` from the ’bin’ directory to something like
+`/etc/init.d/ejabberd` or (on a systemd distribution) copy `ejabberd.service`
+to `/etc/systemd/system/`, run as root `systemctl daemon-reload` and
+`systemctl enable ejabberd.service`. Then you can call
+`/etc/inid.d/ejabberd start` or (with systemd) `systemctl start ejabberd` as
+root to start the server.
+
+When ejabberd is started, the processes that are started in the system
+are `beam` or `beam.smp`, and also `epmd`. For more information
+regarding `epmd` consult the section relating to [epmd][6].
+
+## Autostart on Windows
+
+The Windows installer also adds ejabberd as a system service, and a
+shortcut to a debug console for experienced administrators. If you
+want ejabberd to be started automatically at boot time, go to the
+Windows service settings and set ejabberd to be automatically
+started. Note that the Windows service is a feature still in
+development, and for example it doesn’t read the file
+`ejabberdctl.cfg`.
+
+On Microsoft Windows, the Erlang processes for ejabberd are named
+`erl.exe` and `epmd.exe`.
 
 ## Specific notes
 
@@ -422,9 +403,6 @@ dependencies and performs basic configuration tasks like creating the
 initial administrator account. Some examples are Debian and
 Gentoo. Consult the resources provided by your Operating System for
 more information.
-
-Usually those packages create a script like `/etc/init.d/ejabberd` to
-start and stop ejabberd as a service at boot time.
 
 ProcessOne now provides RPM and DEB all in one packages as well, since
 ejabberd version 15.06. This is self-sufficient packages also
