@@ -11,7 +11,7 @@ You have several options to install ejabberd:
   - [Install on Windows](#install-on-windows)
   - [Install on Linux](#install-on-linux)
   - [Install on macOS](#install-on-macos)
-- [Install from Source Code](#install-from-source-code) – recommended for advanced users
+- [Install from Source Code](#install-from-source-code) – recommended for advanced users
 - [Install with Operating System specific packages](#install-with-os-specific-packages) – recommended for sysops
 - [Post-install operations](#post-install-operations) – for example, register users and create admin accounts
 
@@ -94,6 +94,18 @@ Before you begin installing ejabberd, make sure your Mac allows apps from indent
 8. Once the installation script finishes, it attempts to start ejabberd. You may see a prompt asking to allow incoming connections to `beam.smp`. **Unless you allow, the installation cannot finish successfully.**
 9. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall.app` in the directory where it was installed. By default, that's `/Apllications/ejabberd-YY.MM/uninstall.app`. The uninstaller will stop your ejabberd server and remove all its files. Log files are left behind, so to completely remove ejabberd, just delete its main folder.
 
+
+Binary Installers of ejabberd prior to version 18.01 did not have an Apple Developer signature.
+If macOS complains when you try to install ejabberd older than 18.01 with binary installer with
+message *"ejabberd-installer is damaged and can’t be opened"* – then you need to temporarily 
+disable gatekeeper to be able to install ejabberd:
+
+``` bash
+$ sudo spctl --master-disable
+<install ejabberd>
+$ sudo spctl --master-enable
+```
+
 ### Using Homebrew
 
 [Homebrew](https://brew.sh) is a package mananger for macOS that aims to port the many Unix & Linux software that is not easily available or compatible. Homebrew installation is simple and the instruction is available on its website.
@@ -161,7 +173,7 @@ list run the command:
 ./configure --help
 ```
 
-### Configuring options
+## Options
 
 Some options that you may be interested in modifying:
 
@@ -172,7 +184,7 @@ Some options that you may be interested in modifying:
   copied when running the `make install` command.
 
 - **`-–enable-user[=USER]`**: Allow this normal system user to execute
-  the ejabberdctl script (see section [ejabberdctl][7]), read the
+  the ejabberdctl script (see section [ejabberdctl][7]), read the
   configuration files, read and write in the spool directory, read and
   write in the log directory. The account user and group must exist in
   the machine before running `make install`. This account doesn’t need
@@ -201,9 +213,6 @@ Some options that you may be interested in modifying:
 
 - **`–-enable-debug`**: Compile with `+debug_info` enabled.
 
-- **`–-enable-nif`**: Replaces some critical Erlang functions with
-  equivalents written in C to improve performance.
-
 - **`–-enable-elixir`**: Build ejabberd with Elixir extension support.
 
 - **`–-enable-all`**: Enable all previous options.
@@ -214,18 +223,11 @@ Some options that you may be interested in modifying:
 
 Here are other available options, that are experimental and not recommended:
 
-- **`–-disable-transient-supervisors`**: Disable the use of Erlang/OTP
-  supervision for transient processes.
-
 - **`–-enable-hipe`**: Compile natively with HiPE, not recommended.
 
 ## Installation
 
-To install ejabberd in the destination directories, run the command:
-
-``` bash
-make install
-```
+To install ejabberd in the destination directories, run the command `make install`.
 
 Note that you probably need administrative privileges in the system to
 install ejabberd.
@@ -249,7 +251,7 @@ The files and directories created are, by default:
     - `lib/`: Binary system libraries (\*.so)
     - `msgs/`:   Translation files (\*.msgs)
 
-- `/sbin/ejabberdctl`: Administration script (see section [ejabberdctl][7])
+- `/sbin/ejabberdctl`: Administration script (see section [ejabberdctl][7])
 
 - `/share/doc/ejabberd/`: Documentation of ejabberd
 
@@ -258,12 +260,78 @@ The files and directories created are, by default:
    - `.erlang.cookie`: Erlang cookie file (see section [cookie][19])
    - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
 
-- `/var/log/ejabberd/`: Log directory (see section [logfiles]):
+- `/var/log/ejabberd/`: Log directory (see section [logfiles]):
 
     - `ejabberd.log`:   ejabberd service log
     - `erlang.log`:   Erlang/OTP system log
 
-## Starting ejabberd
+## Specific notes
+
+### BSD
+
+The command to compile ejabberd in BSD systems is `gmake`.
+
+### macOS
+
+If compiling from sources on macOS, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
+The best approach is to use [Homebrew](http://brew.sh) to install your dependencies, then
+exports your custom path to let configure and make be aware of them.
+
+``` bash
+brew install git erlang autoconf automake expat openssl libyaml libiconv sqlite
+export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
+export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+./configure --enable-mysql
+make
+```
+
+### Sun Solaris
+
+<!-- TODO: Is this still valid ? -->
+
+You need to have `GNU install`, but it isn’t included in Solaris. It
+can be easily installed if your Solaris system is set up for
+[`OpenCSW`][10] package repository. Make sure `/opt/csw/bin` is
+in your `PATH` and run:
+
+``` bash
+pkg-get -i coreutils
+```
+
+If that program is called `ginstall`, modify the ejabberd `Makefile`
+script to suit your system, for example:
+
+``` bash
+cat Makefile | sed s/install/ginstall/ > Makefile.gi
+```
+
+And finally install ejabberd with:
+
+``` bash
+gmake -f Makefile.gi ginstall
+```
+
+# Install with OS specific packages
+
+<!-- TODO: Update with mention to our links and RPMs -->
+
+Some Operating Systems provide a specific ejabberd package adapted
+to the system architecture and libraries. It usually also checks
+dependencies and performs basic configuration tasks like creating the
+initial administrator account. Some examples are Debian and
+Gentoo. Consult the resources provided by your Operating System for
+more information.
+
+ProcessOne now provides RPM and DEB all in one packages as well, since
+ejabberd version 15.06. This is self-sufficient packages also
+containing a minimal Erlang distribution. It ensures that it does not
+interfere with your existing Erlang version. This is also a good way
+to make sure ejabberd will run with the latest Erlang version. You can
+download the packages from [ejabberd official download page][1].
+
+
+# Starting ejabberd
 
 ejabberd can be started manually at any time, or automatically by
 the operating system at system boot time.
@@ -331,85 +399,6 @@ development, and for example it doesn’t read the file
 On Microsoft Windows, the Erlang processes for ejabberd are named
 `erl.exe` and `epmd.exe`.
 
-## Specific notes
-
-### BSD
-
-The command to compile ejabberd in BSD systems is:
-
-``` bash
-gmake
-```
-
-### macOS
-
-Binary installers from ProcessOne does not have Apple Developper signature.
-If macOS complains when you try to install ejabberd with binary installerd with
-message: "ejabberd-installer is damaged and can’t be opened"
-Then you need to disable gatekeeper to be able to install ejabberd:
-
-``` bash
-$ sudo spctl --master-disable
-<install ejabberd>
-$ sudo spctl --master-enable
-```
-
-If compiling from sources on macOS, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
-The best approach is to use [Homebrew](http://brew.sh) to install your dependencies, then
-exports your custom path to let configure and make be aware of them.
-
-``` bash
-brew install git erlang autoconf automake expat openssl libyaml libiconv sqlite
-export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
-export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-./configure --enable-mysql
-make
-```
-
-### Sun Solaris
-
-<!-- TODO: Is this still valid ? -->
-
-You need to have `GNU install`, but it isn’t included in Solaris. It
-can be easily installed if your Solaris system is set up for
-[`OpenCSW`][10] package repository. Make sure `/opt/csw/bin` is
-in your `PATH` and run:
-
-``` bash
-pkg-get -i coreutils
-```
-
-If that program is called `ginstall`, modify the ejabberd `Makefile`
-script to suit your system, for example:
-
-``` bash
-cat Makefile | sed s/install/ginstall/ > Makefile.gi
-```
-
-And finally install ejabberd with:
-
-``` bash
-gmake -f Makefile.gi ginstall
-```
-
-# Install with OS specific packages
-
-<!-- TODO: Update with mention to our links and RPMs -->
-
-Some Operating Systems provide a specific ejabberd package adapted
-to the system architecture and libraries. It usually also checks
-dependencies and performs basic configuration tasks like creating the
-initial administrator account. Some examples are Debian and
-Gentoo. Consult the resources provided by your Operating System for
-more information.
-
-ProcessOne now provides RPM and DEB all in one packages as well, since
-ejabberd version 15.06. This is self-sufficient packages also
-containing a minimal Erlang distribution. It ensures that it does not
-interfere with your existing Erlang version. This is also a good way
-to make sure ejabberd will run with the latest Erlang version. You can
-download the packages from [ejabberd official download page][1].
 
 # Post-install operations
 
@@ -428,13 +417,13 @@ enter the ejabberd Web Admin. Here are the steps to create it:
     `admin1@example.org`. There are two ways to register an XMPP
     account:
 
-	1.  Using `ejabberdctl` (see section [ejabberdctl][7]):
+  1.  Using `ejabberdctl` (see section [ejabberdctl][7]):
 
-	    ``` bash
-	    ejabberdctl register admin1 example.org FgT5bk3
-	    ```
+      ``` bash
+      ejabberdctl register admin1 example.org FgT5bk3
+      ```
 
-	2.  Using an XMPP client and In-Band Registration (see section [mod_register][20]).
+  2.  Using an XMPP client and In-Band Registration (see section [mod_register][20]).
 
 2.  Edit the ejabberd configuration file to give administration
     rights to the XMPP account you created:
@@ -481,20 +470,20 @@ See [Step-by-step Databases Configuration Guides](/admin/guide/databases/)
 for detailed setup instructions.
 
 
-[1]:	http://www.process-one.net/en/ejabberd/downloads
-[2]:	http://www.microsoft.com/
-[3]:	http://cean.process-one.net/
-[4]:	http://xmpp.org/extensions/xep-0138.html
-[5]:	http://www.process-one.net/
+[1]:  http://www.process-one.net/en/ejabberd/downloads
+[2]:  http://www.microsoft.com/
+[3]:  http://cean.process-one.net/
+[4]:  http://xmpp.org/extensions/xep-0138.html
+[5]:  http://www.process-one.net/
 [6]:    /admin/guide/security/#epmd
 [7]:    /admin/guide/managing/#ejabberdctl
 [8]:    /admin/guide/configuration/#pam-authentication
-[10]:	https://www.opencsw.org/
-[11]:	http://www.erlang.org/download.html
-[12]:	http://sourceforge.net/project/showfiles.php?group_id=10127&package_id=11277
-[13]:	http://www.gnu.org/software/libiconv/
-[14]:	http://www.slproweb.com/products/Win32OpenSSL.html
-[15]:	http://www.zlib.net/
+[10]: https://www.opencsw.org/
+[11]: http://www.erlang.org/download.html
+[12]: http://sourceforge.net/project/showfiles.php?group_id=10127&package_id=11277
+[13]: http://www.gnu.org/software/libiconv/
+[14]: http://www.slproweb.com/products/Win32OpenSSL.html
+[15]: http://www.zlib.net/
 [16]:   /admin/guide/configuration/#captcha
 [17]:   /admin/guide/configuration/#database
 [18]:   /admin/guide/configuration/#relational-databases
