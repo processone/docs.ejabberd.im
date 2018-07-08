@@ -598,21 +598,6 @@ ejabberd configuration file (outside `listen`):
 **`s2s_tls_compression: true|false`**:   Whether to enable or disable TLS compression for s2s connections.
 	The default value is `false`.
 
-**`max_fsm_queue: Size`**:   This option specifies the maximum number of elements in the queue of
-	the FSM (Finite State Machine). Roughly speaking, each message in
-	such queues represents one XML stanza queued to be sent into its
-	relevant outgoing stream. If queue size reaches the limit (because,
-	for example, the receiver of stanzas is too slow), the FSM and the
-	corresponding connection (if any) will be terminated and error
-	message will be logged. The reasonable value for this option depends
-	on your hardware configuration. However, there is no much sense to
-	set the size above 1000 elements. This option can be specified for
-	`ejabberd_service` and `ejabberd_c2s` listeners, or also globally
-	for `ejabberd_s2s_out`. If the option is not specified for
-	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
-	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’undefined’.
-
 **`c2s_hibernate: Timeout|hibernate`**:   The timeout in milliseconds before the c2s processes will be hibernated.
     Default value: ’90000’
 
