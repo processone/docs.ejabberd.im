@@ -258,17 +258,17 @@ Here is a few general option to configure logging:
 
 Here are some examples:
 
-- \$D0     rotate every night at midnight
-- \$D23    rotate every day at 23:00 hr
-- \$W0D23  rotate every week on Sunday at 23:00 hr
-- \$W5D16  rotate every week on Friday at 16:00 hr
-- \$M1D0   rotate on the first day of every month at midnight
-- \$M5D6   rotate on every 5th day of the month at 6:00 hr
+- $D0     rotate every night at midnight
+- $D23    rotate every day at 23:00 hr
+- $W0D23  rotate every week on Sunday at 23:00 hr
+- $W5D16  rotate every week on Friday at 16:00 hr
+- $M1D0   rotate on the first day of every month at midnight
+- $M5D6   rotate on every 5th day of the month at 6:00 hr
 
 The values in default configuration file are:
 
     log_rotate_size: 0
-    log_rotate_date: "\$D0"
+    log_rotate_date: "$D0"
     log_rotate_count: 1
 
 **`log_rate_limit: Number`**: This option is used for overload protection: If you want to limit
