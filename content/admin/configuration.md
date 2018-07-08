@@ -947,17 +947,15 @@ authentication ([`XEP-0078`][8]),
 then this option is not respected, and the action performed is
 `closeold`.
 
-The option `fqdn` allows you to define the Fully Qualified Domain Name
+**`fqdn: undefined|FqdnString|[FqdnString]`**:  Allows you to define the Fully Qualified Domain Name
 of the machine, in case it isn’t detected automatically. The FQDN is
 used to authenticate some clients that use the DIGEST-MD5 SASL
-mechanism. The option syntax is:
+mechanism. 
 
-**`fqdn: undefined|FqdnString|[FqdnString]`**:  The option `disable_sasl_mechanisms` specifies a list of SASL mechanisms
+**`disable_sasl_mechanisms: Mechanism|[Mechanism, ...]`**:  Specify a list of SASL mechanisms
 (such as "DIGEST-MD5" or "SCRAM-SHA1") that should *not* be offered to
 the client. The mechanisms can be listed as lowercase or uppercase
-strings. The option syntax is:
-
-**`disable_sasl_mechanisms: Mechanism|[Mechanism, ...]`**  
+strings.
 
 ### Internal
 
