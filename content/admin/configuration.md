@@ -3359,7 +3359,7 @@ This option is set to 300 by default.
 
 You also need to configure DNS SRV records properly so clients can
 easily discover Websocket service for your XMPP domain. Refer to
-[XEP-0159](https://xmpp.org/extensions/xep-0156.html).
+[XEP-0156](https://xmpp.org/extensions/xep-0156.html).
 
 Example DNS TXT configuration for Websocket:
 
