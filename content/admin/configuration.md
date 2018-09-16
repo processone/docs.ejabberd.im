@@ -2862,7 +2862,7 @@ json, max_concat, max_inactivity, max_pause, prebind, ram_db_type,     queue_t
 
 You also need to configure DNS SRV records properly so clients can
 easily discover a BOSH server serving your XMPP domain. Refer to
-[XEP-0159](https://xmpp.org/extensions/xep-0156.html).
+[XEP-0156](https://xmpp.org/extensions/xep-0156.html).
 
 Example DNS TXT configuration for BOSH:
 
