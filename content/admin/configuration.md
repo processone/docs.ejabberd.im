@@ -1859,7 +1859,7 @@ for a value and later use this macro when defining an option.
 A macro is defined with this syntax:
 
 **`define_macro: { ’MACRO’: Value }`**:  The `MACRO` must be surrounded by single quotation marks, and all
-letters in uppercase; check the examples bellow. The `value` can be any
+letters in uppercase; check the examples below. The `value` can be any
 valid arbitrary Erlang term.
 
 The first definition of a macro is preserved, and additional definitions
@@ -2704,7 +2704,7 @@ messages to specific JIDs.
 The Ad-hoc commands are listed in the Server Discovery. For this feature
 to work, `mod_adhoc` must be enabled.
 
-The specific JIDs where messages can be sent are listed bellow. The
+The specific JIDs where messages can be sent are listed below. The
 first JID in each entry will apply only to the specified virtual host
 `example.org`, while the JID between brackets will apply to all virtual
 hosts in ejabberd.
@@ -4401,7 +4401,7 @@ Mediated Information eXchange
 The “mb” plugin is a PEP microglobing experimentation.
 
 The “dag” plugin provides experimental support for PubSub Collection
-Nodes (see dag nodetree bellow).
+Nodes (see dag nodetree below).
 
 The “dispatch” plugin publishes items to node and all child subnodes
 using the hometree behaviour. Node name must match hometree name
