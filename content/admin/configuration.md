@@ -477,7 +477,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	for `ejabberd_s2s_out`. If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’undefined’.
+	’undefined’. Default value: ’5000’.
 
 **`max_stanza_size: Size`**:   This option specifies an approximate maximum size in bytes of XML
 	stanzas. Approximate, because it is calculated with the precision of
@@ -611,7 +611,7 @@ ejabberd configuration file (outside `listen`):
 	for `ejabberd_s2s_out`. If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’undefined’.
+	’undefined’. Default value: ’5000’.
 
 **`c2s_hibernate: Timeout|hibernate`**:   The timeout in milliseconds before the c2s processes will be hibernated.
     Default value: ’90000’
