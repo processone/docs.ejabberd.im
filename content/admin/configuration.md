@@ -628,7 +628,11 @@ ejabberd configuration file (outside `listen`):
 **`trusted_proxies: all | [IpString]`**:   Specify what proxies are trusted when an HTTP request contains the
 	header `X-Forwarded-For` You can specify `all` to allow all proxies,
 	or specify a list of IPs in string format. The default value is:
-	`["127.0.0.1"]`
+	`["127.0.0.1"]`. This allows, if enabled, to be able to know the real IP of the request, for admin purpose,
+	or security configuration (for example using [mod_fail2ban](#mod-fail2ban)))
+	**Important:** The proxy MUST be configured to set the `X-Forwarded-For` header if you enable this option as,
+	otherwise, the client can set it itself and as a result the IP value cannot be trusted for security rules in
+	ejabberd.
 
 ### Examples
 
