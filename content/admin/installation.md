@@ -410,7 +410,7 @@ you can probably skip this step.
 However, if you use another way of installing ejabberd you may need to create an
 admin XMPP account.
 
-You need an XMPP account and grant him administrative privileges to
+You need an XMPP account with administrative privileges to
 enter the ejabberd Web Admin. Here are the steps to create it:
 
 1.  Register an XMPP account on your ejabberd server, for example

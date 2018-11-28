@@ -987,8 +987,8 @@ the users passwords are stored:
 	`SASL PLAIN` and `SASL SCRAM-SHA-1`.
 
 When you enable SCRAM password format for internal storage, if you try
-to authenticate a user that had his password already stored in plain
-text, his password will be automatically converted to SCRAM format. It
+to authenticate a user that had their password already stored in plain
+text, their password will be automatically converted to SCRAM format. It
 means database is converted as you use it.
 
 If you want to convert your Mnesia database all at once, you can look
@@ -2254,7 +2254,7 @@ Also we want users to search each other. Let’s see how we can set it up:
 	    ldap_filter: ""
 	    ## Now we want to define vCard pattern
 	    ldap_vcard_map:
-	     "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+	     "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
 	     "GIVEN": {"%s": ["givenName"]}
 	     "FAMILY": {"%s": ["sn"]}
 	     "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
@@ -2276,7 +2276,7 @@ Also we want users to search each other. Let’s see how we can set it up:
 	  ...
 
 Note that `mod_vcard_ldap` module checks for the existence of the user
-before searching in his information in LDAP.
+before searching their information in LDAP.
 
 #### Active Directory
 
@@ -2679,9 +2679,9 @@ Description of some commands:
 		ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
 
 **`ban-account`**:  This command kicks all the connected sessions of the account from the
-   server.  It also changes his password to another randomly
-   generated, so he can't login anymore unless a server administrator
-   changes him again the password.
+   server.  It also changes their password to a randomly
+   generated one, so they can't login anymore unless a server administrator
+   changes their password again.
 
 It is possible to define the reason of the ban.  The new password
 also includes the reason and the date and time of the ban.
@@ -3423,7 +3423,7 @@ Options:
 
 **`default: always|never|roster`**:   The option defines default policy for chat history. When `always` is set every chat message is stored. With `roster` only chat history with contacts from user's roster is stored. `never` fully disables chat history. Note that a client can change its policy via protocol commands. The default is `never`.
 
-**`request_activates_archiving: true|false`**:   If this option is enabled, no messages are stored for a user until his client issued a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual. The default is `false`.
+**`request_activates_archiving: true|false`**:   If this option is enabled, no messages are stored for a user until their client issue a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual. The default is `false`.
 
 **`assume_mam_usage: true|false`**:   This option determines how ejabberd's stream management code handles unacknowledged messages when the connection is lost. Usually, such messages are either bounced or resent. However, neither is done for messages that were stored in the user's MAM archive if this option is set to `true`. In this case, ejabberd assumes those messages will be retrieved from the archive. The default is `false`.
 
@@ -3507,7 +3507,7 @@ Module options:
 
 **`access_admin: AccessName`**:   This option specifies who is allowed to administrate the Multi-User
 	Chat service. The default value is `none`, which means that only the
-	room creator can administer his room. The administrators can send a
+	room creator can administer their room. The administrators can send a
 	normal message to the service JID, and it will be shown in all
 	active rooms as a service message. The administrators can send a
 	groupchat message to the JID of an active room, and the message will
@@ -3612,9 +3612,9 @@ Module options:
 	    other occupants. Note that the room moderators can always see
 	    the real JIDs of the occupants.
 
-* **`captcha_protected: false|true`**:   When a user tries to join a room where he has no affiliation
-	    (not owner, admin or member), the room requires him to fill a
-	    CAPTCHA challenge (see section [CAPTCHA](#captcha)) in order to accept her
+* **`captcha_protected: false|true`**:   When a user tries to join a room where they have no affiliation
+	    (not owner, admin or member), the room requires them to fill a
+	    CAPTCHA challenge (see section [CAPTCHA](#captcha)) in order to accept their
 	    join in the room.
 
 * **`logging: false|true`**:   The public messages are logged using `mod_muc_log`.
@@ -3655,7 +3655,7 @@ Examples:
 -   In the first example everyone is allowed to use the Multi-User Chat
 	service. Everyone will also be able to create new rooms but only the
 	user `admin@example.org` is allowed to administrate any room. In
-	this example he is also a global administrator. When
+	this example they are also a global administrator. When
 	`admin@example.org` sends a message such as ‘Tomorrow, the XMPP
 	server will be moved to new hardware. This will involve service
 	breakdowns around 23:00 UMT. We apologise for this inconvenience.’
@@ -4049,7 +4049,7 @@ global option `default_db`, or `mnesia` if omitted. If `sql` or
 **`access_max_user_messages: AccessName`**: This option defines which access rule (atom) will be enforced to
 	limit the maximum number of offline messages that a user can have
 	(quota).  When a user has too many offline messages, any new
-	messages that he receive are discarded, and a resource-constraint
+	messages that they receive are discarded, and a resource-constraint
 	error is returned to the sender. The default value is
 	`max_user_offline_messages`.  Then you can define an access rule
 	with a syntax similar to `max_user_sessions` (see
@@ -4625,7 +4625,7 @@ This module reads also another option defined globally for the server:
 `registration_timeout: Timeout`. This option limits the frequency of
 registration from a given IP or username. So, a user that tries to
 register a new account from the same IP address or JID during this
-number of seconds after his previous registration will receive an error
+number of seconds after their previous registration will receive an error
 `resource-constraint` with the explanation: “Users are not allowed to
 register accounts so quickly”. The timeout is expressed in seconds, and
 it must be an integer. To disable this limitation, instead of an integer
@@ -4779,7 +4779,7 @@ Options:
 
 **`access`**:   This option can be configured to specify rules to restrict roster
 	management. If a rule returns ‘deny’ on the requested user name,
-	that user cannot modify his personal roster: not add/remove/modify
+	that user cannot modify their personal roster: not add/remove/modify
 	contacts, or subscribe/unsubscribe presence. By default there aren’t
 	restrictions.
 
@@ -5664,7 +5664,7 @@ up:
 		    ldap_uids: {"mail": "%u@mail.example.org"}
 		    ## Now we want to define vCard pattern
 		    ldap_vcard_map:
-		      "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+		      "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
 		      "FIRST": {"%s": ["givenName"]}
 		      "LAST": {"%s": ["sn"]}
 		      "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
@@ -5685,13 +5685,13 @@ up:
 		      "Birthday": "BDAY"
 
 Note that `mod_vcard_ldap` module checks an existence of the user
-before searching his info in LDAP.
+before searching their info in LDAP.
 
 -   `ldap_vcard_map` example:
 
 				
 		ldap_vcard_map:
-		  "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+		  "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
 		  "FN": {"%s": ["displayName"]}
 		  "CTRY": {"Russia": []}
 		  "EMAIL": {"%u@%d": []}

@@ -53,7 +53,7 @@ Main ejabberd module: [mod_last.erl](https://github.com/processone/ejabberd/blob
 ## Comment
 
 This extension is optional. It allows the server to send back
-information about when the user disconnected his last session.
+information about when the user disconnected their last session.
 
 It also allows to query the uptime of an ejabberd server.
 

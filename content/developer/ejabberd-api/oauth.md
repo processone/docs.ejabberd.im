@@ -204,8 +204,8 @@ Directing the user to this URL will present an authentication form
 summarizing what is the app requiring the token and the scope / rights
 that are going to be granted.
 
-The user can then put his login and password to confirm that he
-accepts granting delegating rights and confirms the token generation.
+The user can then put their login and password to confirm that they
+accept granting delegating rights and confirm the token generation.
 If the provided credentials are valid, the browser or webview will
 redirect the user to the redirect_uri, to actually let ejabberd pass
 the token to the app that requested it. It can be either a Web app or

@@ -42,7 +42,7 @@ This approach has many drawbacks:
    clients, they are expected to join the MUC room again. However, for
    mobile clients, it cannot happens until user reopens the
    app. Moreover, it means that on new session start, user client is
-   expected to join all the MUC room he wants to keep track of on
+   expected to join all the MUC rooms they want to keep track of on
    connect.
 
 This specification tries to solve those issues by keeping most of
@@ -84,7 +84,7 @@ The core idea is to expose MUC rooms as PubSub nodes and to introduce
 the concept of MUC rooms subscribers.
 
 A user affiliated to a MUC room should be able to subscribe to MUC
-node events and have them routed to his JID, even if he is not a
+node events and have them routed to their JID, even if they are not a
 participant in the room. It means that a user can receive messages
 without having to send presence to the room. In that sense, "joining
 the room" in XEP-0045 becomes more "Being available in the MUC room".
@@ -331,7 +331,7 @@ No need to join it after you connect. As a subscriber, you can send messages at 
 
 ## Joining a MUC Room
 
-If a user wants to be present in the room, he just have to join the room as defined in XEP-0045.
+If a user wants to be present in the room, they just have to join the room as defined in XEP-0045.
 
 A subscriber MAY decide to join a conference
 (in the [XEP-0045](http://xmpp.org/extensions/xep-0045.html) sense).
@@ -435,7 +435,7 @@ if room is set to anonymous and user is not moderator.
 
 # List of subscriptions
 
-A user can query the MUC service to get his list of
+A user can query the MUC service to get their list of
 subscriptions.
 
 Example: User asks for subscriptions list
@@ -510,7 +510,7 @@ the subscriber will be shown in MUC roster of legacy clients.
 # Synchronization of MUC messages: Leveraging MAM support
 
 To be friendly with mobile, the MAM service should allow a user to
-connect and easily resync his history for all MUC subscriptions.
+connect and easily resync their history for all MUC subscriptions.
 
 Thanks to ability to get the list of all the existing subscription, client
 can get a starting point to interact with MAM service to resync history.
