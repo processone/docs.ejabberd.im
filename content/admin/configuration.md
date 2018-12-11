@@ -366,7 +366,7 @@ are:
 	[`external component`](http://www.ejabberd.im/tutorials-transports)
 	(as defined in the Jabber Component Protocol
 	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).  
-	Options: `access`, `hosts`, `max_fsm_queue`, `password`, `service_check_from`,
+	Options: `access`, `hosts`, `max_fsm_queue`, `password`, `check_from`,
 	`shaper_rule`
 
 **`ejabberd_sip`**:   Handles SIP requests as defined in
@@ -499,7 +499,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	      "/a/b": mod_foo
 	      "/bosh": mod_bosh
 
-**`service_check_from: true|false`**:   This option can be used with `ejabberd_service` only.
+**`check_from: true|false`**:   This option can be used with `ejabberd_service` only.
 	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
 	the domain must match the hostname of the component. If this option
 	is set to `false`, `ejabberd` will allow the component to send
@@ -873,7 +873,7 @@ In this example, the following configuration defines that:
 			  -
 			    port: 5239
 			    module: ejabberd_service
-			    service_check_from: false
+			    check_from: false
 			    hosts:
 			      "custom.example.org":
 			        password: "customsecret"
