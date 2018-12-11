@@ -3173,8 +3173,7 @@ And define it as a handler in the HTTP service:
 This module allows for requesting permissions to upload a file via HTTP
 as described in [`XEP-0363`][120]. If the request is accepted, the
 client receives a URL for uploading the file and another URL from which
-that file can later be downloaded. If an image file is uploaded, the
-server (by default) also creates a thumbnail.
+that file can later be downloaded.
 
 In order to use this module, it must be configured as a
 `request_handler` for an `ejabberd_http` listener.
