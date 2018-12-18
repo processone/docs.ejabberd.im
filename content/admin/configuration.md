@@ -3536,7 +3536,7 @@ Module options:
 	occupants was reached. The default limit is 5.
 
 **`max_user_conferences: Number`**:   This option defines the maximum number of rooms that any given user
-	can join. The default value is 10. This option is used to prevent
+	can join. The default value is 100. This option is used to prevent
 	possible abuses. Note that this is a soft limit: some users can
 	sometimes join more conferences in cluster configurations.
 
