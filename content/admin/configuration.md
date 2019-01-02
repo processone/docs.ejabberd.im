@@ -3505,6 +3505,10 @@ Module options:
 	By default any account in the local ejabberd server is allowed to
 	modify that option.
 
+**`access_mam: AccessName`**:   To configure who is allowed to modify the ’mam’ room option.
+	By default any account in the local ejabberd server is allowed to
+	modify that option.
+
 **`access_admin: AccessName`**:   This option specifies who is allowed to administrate the Multi-User
 	Chat service. The default value is `none`, which means that only the
 	room creator can administer his room. The administrators can send a
