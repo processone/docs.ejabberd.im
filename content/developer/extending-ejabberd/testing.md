@@ -83,7 +83,7 @@ expected values.
 
 We have another level of test available that focus on unit
 testing. Those tests are written in Elixir. Each module is tested
-independantly with tests that do not require a full ejabberd to
+independently with tests that do not require a full ejabberd to
 run. Only the needed service are started.
 
 To be able to run those test you need to build ejabberd with Elixir and development tools support. This can be done at build time with following configure command:
@@ -101,7 +101,7 @@ make quicktest
 # Dependency tests
 
 ejabberd depends on a lot of dependent module. Each dependency can be
-tested independantly, by checking them out and running their own test
+tested independently, by checking them out and running their own test
 suite directly.
 
 # Test status

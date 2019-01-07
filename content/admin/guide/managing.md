@@ -33,7 +33,7 @@ Debian, Ubuntu, Fedora and maybe others).
 ## ejabberdctl Commands
 
 When `ejabberdctl` is executed without any parameter, it displays the
-available options. If there isn’t an `ejabberd` server running, the
+available options. If there isn't an `ejabberd` server running, the
 available parameters are:
 
 **`start`**:   Start `ejabberd` in background mode. This is the default method.
@@ -468,7 +468,6 @@ Example configurations:
       port: 5280
       module: ejabberd_http
       web_admin: true
-      http_poll: true
     ...
   ```
 
@@ -485,7 +484,6 @@ Example configurations:
     - 
       port: 5280
       module: ejabberd_http
-      http_poll: true
     - 
       ip: "192.168.1.1"
       port: 5282
@@ -559,14 +557,14 @@ NEWFILE=/tmp/new.backup
     ejabberdctl --node $OLDNODE stop
     ```
 
-4.  Make sure there aren’t files in the Mnesia spool dir. For example:
+4.  Make sure there aren't files in the Mnesia spool dir. For example:
 
     ``` bash
     mkdir /var/lib/ejabberd/oldfiles
     mv /var/lib/ejabberd/*.* /var/lib/ejabberd/oldfiles/
     ```
 
-5.  Start ejabberd. There isn’t any need to specify the node name
+5.  Start ejabberd. There isn't any need to specify the node name
 	anymore:
 
     ``` bash

@@ -42,7 +42,7 @@ schema to cope with those older MySQL versions.
 
 This documentation will not get into the details of making MySQL
 running on Linux for production. It is dependant on Linux distribution
-and system admistrators preferences and habits.
+and system administrators preferences and habits.
 
 It is also well documented, so it should not be an issue.
 
@@ -51,7 +51,7 @@ It is also well documented, so it should not be an issue.
 ejabberd is fully compliant with
 [MySQL on Amazon RDS](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html).
 
-You just need to make sure to use MySQL ersion 5.6 or greater when you
+You just need to make sure to use MySQL version 5.6 or greater when you
 create your database.
 
 ## Example MySQL installation on OSX with homebrew
@@ -76,7 +76,7 @@ You can manually start server with:
 mysql.server start
 ~~~
 
-To connect to your local MySQL sercer using `mysql` command-line,
+To connect to your local MySQL server using `mysql` command-line,
 assuming you kept the default set up, use:
 
 ~~~ bash

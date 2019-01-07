@@ -1,4 +1,4 @@
 ---
-redirect: /developer/xmpp-clients-bots/proposed-extensions/muc-sub/
+redirect: /developer/xmpp-clients-bots/extensions/muc-sub/
 ---
 

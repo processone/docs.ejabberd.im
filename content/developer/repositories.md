@@ -50,7 +50,7 @@ Erlang dependencies:
 * [processone/fast_tls](https://github.com/processone/fast_tls):
   Erlang native driver for TLS / SSL. It is build for performance
   and is more scalable that Erlang SSL driver. If your Erlang server
-  is handling heavy load and is using TLS, we strongly recommand you
+  is handling heavy load and is using TLS, we strongly recommend you
   check / compare with this driver.
 * [processone/esip](https://github.com/processone/esip):
   ProcessOne SIP protocol support to add SIP-based voice capabilities
@@ -65,7 +65,7 @@ Erlang dependencies:
   This is extra Erlang modules developed for ejabberd but that can
   be useful in other Erlang applications.
 * [processone/p1_logger](https://github.com/processone/p1_logger):
-  Logger wrapper to allow selecting your prefered logger at build
+  Logger wrapper to allow selecting your preferred logger at build
   time.
 * [basho/lager](https://github.com/basho/lager): Erlang logger module.
 * [DeadZen/goldrush](https://github.com/DeadZen/goldrush): Small

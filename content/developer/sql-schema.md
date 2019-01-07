@@ -5,7 +5,7 @@ menu: SQL Schema
 order: 40
 ---
 
-This page explains ejabberd SQL database schema.  We present the tables that might be in use, depending on your server configuration, together with a short explanation of the fields involved and their intended use. Tables are presented rougly grouped by related functionality.
+This page explains ejabberd SQL database schema.  We present the tables that might be in use, depending on your server configuration, together with a short explanation of the fields involved and their intended use. Tables are presented roughly grouped by related functionality.
 
 Consider this document a work in progress, not all tables are documented yet.
 
@@ -89,7 +89,7 @@ users),  it is likely that you only need to care about the  username, jid and ni
 
 ## Table `spool`
 Messages sent to users that are offline are stored in this table. 
-Do not confuse this with general message archiving: messages are only temporarly stored in this table, removed as soon as the target user 
+Do not confuse this with general message archiving: messages are only temporarily stored in this table, removed as soon as the target user 
 is back online and the pending messages delivered to it.
 
 | Field                | Type             | Usage                                                                                   |
@@ -232,8 +232,8 @@ The table fields are defined as follow:
 | lemail               | string           | Lowercase email for search                    |
 | orgname              | string           | Raw organisation name for display             |
 | lorgname             | string           | Lowercase organisation name for search        |
-| orgunit              | string           | Raw organation department name for display    |
-| lorgunit             | string           | Lowercase organisation departement for search |
+| orgunit              | string           | Raw organisation department name for display    |
+| lorgunit             | string           | Lowercase organisation department for search |
 
 # Others
 

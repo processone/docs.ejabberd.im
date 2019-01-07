@@ -12,8 +12,8 @@ servers for a single or small group of large domains, for
 fault-tolerance and scalability.
 
 Note that you do not necessarily need clustering if you want to run
-two large domains independantly. You may simply want to run two
-different independant servers.
+two large domains independently. You may simply want to run two
+different independent servers.
 
 However, to build reliable service and support large user base,
 clustering is a must have feature.
@@ -139,3 +139,11 @@ $ ejabberdctl leave_cluster 'ejabberd@ejabberd02'
 
 The removed node must be running while calling leave_cluster to make
 it permanently removed. It's then immediately stopped.
+
+## Restarting cluster nodes
+
+Ejabberd Community Server uses mnesia internal database to manage cluster
+and internode synchronisation. As a result, you may restart ejabberd nodes
+as long as there is at least one running node. If you stop the last running
+node of a cluster, you MUST restart that node first in order to get a running
+service back.

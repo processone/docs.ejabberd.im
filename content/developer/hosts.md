@@ -21,15 +21,15 @@ Components can be written in any programming language. ejabberd
 supports
 [XEP-0114: Jabber Component Protocol](http://www.xmpp.org/extensions/xep-0114.html).
 
-Note the the external component have limited rights on the XMPP
+Note the external component have limited rights on the XMPP
 server. As such, it is less powerful than an ejabberd module written
 in Erlang or Elixir. Some proposed XMPP extensions, like
 [Priviledge Entities](http://www.xmpp.org/extensions/xep-0356.html),
-may grant more priviledges in the future to external components.
+may grant more privileges in the future to external components.
 
 # Virtual hosts
 
 ejabberd fully support virtual hosting. It means that the same
 ejabberd cluster can provide the service for multiple user bases using
-a single deployment. Each virtual hosts is totally independant from
+a single deployment. Each virtual hosts is totally independent from
 the other domain. They can have a different configurations.

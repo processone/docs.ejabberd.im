@@ -30,10 +30,10 @@ to understand.
 
 ## Requirements
 
-In order to read and undestand the guide you must be pretty fluent with
+In order to read and understand the guide you must be pretty fluent with
 Erlang programming language and understand basics of the XMPP protocol:
 there is no detailed explanation of Erlang syntax and/or features and
-it's assumed that you're familar with such terms as `xml stream`,
+it's assumed that you're familiar with such terms as `xml stream`,
 `stanza`, `c2s`, `s2s` and so on. If you see these words for the first
 time in your life you're unlikely to understand the guide.
 
@@ -391,7 +391,7 @@ large value for `N` because picking up a process from the pool has
 `O(N)` complexity. Anyway, in practice, seems like there is no much
 benefit to set `N` larger than `50`.
 - `parallel`: for every matching IQ a process is created to execute the
-handler. The descipline is not recommended because uncontrolled
+handler. This discipline is not recommended because uncontrolled
 processes creation is in general a bad idea.
 
 ## Hooks
@@ -418,14 +418,14 @@ argument to the "hooked" functions, thus, the function from
 C2SState})`, the function from `mod_privacy.erl` will be called as
 `mod_privacy:user_send_packet({Stanza, C2SState})` and so on.
 
-There are two types of hooks: _with_ an accumlator and _without_ an
+There are two types of hooks: _with_ an accumulator and _without_ an
 accumulator.
 
 - a hook with an accumulator, as its name suggests, accumulates some
 state during execution of a list of associated functions: the first
 argument of the hooked function will always be an accumulator and the
 function must return the new value for the accumulator (whether it's
-modifed or not) in the form of `NewAcc` or `{stop, NewAcc}`. If `{stop, NewAcc}`
+modified or not) in the form of `NewAcc` or `{stop, NewAcc}`. If `{stop, NewAcc}`
 is returned, a hook is considered evaluated and next functions
 in its associated list are not called. Otherwise, the new value
 `NewAcc` is passed to the next function in the associated list. An
@@ -537,7 +537,7 @@ module is about to start and `Opts` is an option list (typically
 defined in the `modules` section of `ejabberd.yml`). The function is
 executed when a module is being started. It is intended to initialize a
 module. This is a good place to register hooks and IQ handlers, as well
-as to create an inital state of a module (if needed). The function
+as to create an initial state of a module (if needed). The function
 should return either `ok` or `{ok, pid()}`.
 - `Module:stop(Host)` where `Host` is a virtual host. The function is
 executed when a module is being stopped. It is intended to make some
@@ -755,7 +755,7 @@ xmpp:decode(El :: xmlel(), Namespace :: binary(), [Option]) -> xmpp_element()`
 where the only supported `Option` is `ignore_els`: with this option lazy decoding
 is performed. By default, full decoding is applied, i.e. all known sub-elements get
 decoded. `Namespace` is a "top-level" namespace: it should be provided only if
-`<<"xmlns">>` attribute is omitted in `El`, othewise decoding would fail (see below).
+`<<"xmlns">>` attribute is omitted in `El`, otherwise decoding would fail (see below).
 
 There is also `xmpp:decode(El :: xmlel()) -> xmpp_element()` function, which is
 a short-hand for `xmpp:decode(El, ?NS_CLIENT, [])` (where `?NS_CLIENT` is a
@@ -889,7 +889,7 @@ always more convenient (except pattern matching).
 ### Text elements
 
 Some `xmpp_element()`s has fields defined in `[#text{}]` format. The example
-is `#message.body` and `#presence.status` fields. To avoid writting a lot
+is `#message.body` and `#presence.status` fields. To avoid writing a lot
 of extracting code the following functions can be used: `xmpp:mk_text/1,2` to
 convert some binary text written in some language into `[#text{}]` term,
 or `xmpp:get_text/1,2` to extract binary text from the `[#text{}]` element

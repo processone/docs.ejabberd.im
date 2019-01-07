@@ -10,7 +10,7 @@ You may have to apply few changes if you are upgrading from ejabberd 17.03 or
 ## ejabberdctl script
 
 Due to a major refactor of the ejabberdctl script, which also remove
-all bashismes, you should check your packaging and your system's version of
+all bashisms, you should check your packaging and your system's version of
 ejabberdctl script. While old script still works, you are encouraged to use
 the new one. This may depends on media you install ejabberd from.
 

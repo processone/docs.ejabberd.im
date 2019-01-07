@@ -25,7 +25,7 @@ is a small name server included in Erlang/OTP and used by Erlang
 programs when establishing distributed Erlang communications. `ejabberd`
 needs `epmd` to use `ejabberdctl` and also when clustering `ejabberd`
 nodes. This small program is automatically started by Erlang, and is
-never stopped. If `ejabberd` is stopped, and there aren’t any other
+never stopped. If `ejabberd` is stopped, and there aren't any other
 Erlang programs running in the system, you can safely stop `epmd` if you
 want.
 
@@ -34,7 +34,7 @@ the script `ejabberdctl` starts a new Erlang node and connects to the
 Erlang node that holds `ejabberd`. In order for this communication to
 work, `epmd` must be running and listening for name requests in the port
 4369. You should block the port 4369 in the firewall in such a way that
-only the programs in your machine can access it. or configure the option
+only the programs in your machine can access it, or configure the option
 `ERL_EPMD_ADDRESS` in the file `ejabberdctl.cfg`.
 
 If you build a cluster of several `ejabberd` instances, each `ejabberd`
@@ -42,7 +42,7 @@ instance is called an `ejabberd` node. Those `ejabberd` nodes use a
 special Erlang communication method to build the cluster, and EPMD is
 again needed listening in the port 4369. So, if you plan to build a
 cluster of `ejabberd` nodes you must open the port 4369 for the machines
-involved in the cluster. Remember to block the port so Internet doesn’t
+involved in the cluster. Remember to block the port so Internet doesn't
 have access to it.
 
 Once an Erlang node solved the node name of another Erlang node using

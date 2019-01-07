@@ -31,7 +31,7 @@ All commands can be exposed through interfaces. Available interfaces are:
 
 Any module in ejabberd can adds its own command through ejabberd Erlang/Elixir API, making the whole
 system totally extensible. A third-party module can expose its own command and feel like a real part
-of the system. A module that exposes commands makes it possible for server admin to expose it the way he wants.
+of the system. A module that exposes commands makes it possible for server admin to expose it the way they want.
 
 ejabberd commands are universal, extensible and widely available through various configurable entrypoints.
 
@@ -53,7 +53,7 @@ An admin ejabberd ReST API requires:
   Two mechanisms are available to access the HTTP API:
 
     - Basic authentication. This mechanism is enabled by default.
-    - OAuth 2.0 token based authentication. It has to be explicitely added to the config file.
+    - OAuth 2.0 token based authentication. It has to be explicitly added to the config file.
 
 # Learning the basics
 

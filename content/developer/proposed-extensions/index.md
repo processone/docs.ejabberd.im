@@ -1,4 +1,4 @@
 ---
-redirect: /developer/xmpp-clients-bots/proposed-extensions/
+redirect: /developer/xmpp-clients-bots/extensions/
 ---
 

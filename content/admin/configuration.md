@@ -113,7 +113,7 @@ file, for example:
 
 ## Host Names
 
-`ejabberd` supports managing several independant XMPP domains on a
+`ejabberd` supports managing several independent XMPP domains on a
 single ejabberd instance, using a feature called virtual hosting.
 
 The option `hosts` defines a list containing one or more domains that
@@ -142,7 +142,7 @@ Examples:
 ## Virtual Hosting
 
 When managing several XMPP domains in a single instance, those domains
-are truly independant. It means they can even have different
+are truly independent. It means they can even have different
 configuration parameters.
 
 Options can be defined separately for every virtual host using the
@@ -258,17 +258,17 @@ Here is a few general option to configure logging:
 
 Here are some examples:
 
-- \$D0     rotate every night at midnight
-- \$D23    rotate every day at 23:00 hr
-- \$W0D23  rotate every week on Sunday at 23:00 hr
-- \$W5D16  rotate every week on Friday at 16:00 hr
-- \$M1D0   rotate on the first day of every month at midnight
-- \$M5D6   rotate on every 5th day of the month at 6:00 hr
+- $D0     rotate every night at midnight
+- $D23    rotate every day at 23:00 hr
+- $W0D23  rotate every week on Sunday at 23:00 hr
+- $W5D16  rotate every week on Friday at 16:00 hr
+- $M1D0   rotate on the first day of every month at midnight
+- $M5D6   rotate on every 5th day of the month at 6:00 hr
 
 The values in default configuration file are:
 
     log_rotate_size: 0
-    log_rotate_date: "\$D0"
+    log_rotate_date: "$D0"
     log_rotate_count: 1
 
 **`log_rate_limit: Number`**: This option is used for overload protection: If you want to limit
@@ -314,7 +314,6 @@ Example:
 	    port: 5222
 	    module: ejabberd_c2s
 	    starttls: true
-	    certfile: "/path/to/certfile.pem"
 	  -
 	    port: 5269
 	    module: ejabberd_s2s_in
@@ -354,7 +353,7 @@ The available modules, their purpose and the options allowed by each one
 are:
 
 **`ejabberd_c2s`**:   Handles c2s connections.  
-    Options: `access`, `certfile`, `ciphers`, `dhfile`, `protocol_options`,
+    Options: `access`, `ciphers`, `dhfile`, `protocol_options`,
 	`max_fsm_queue`, `max_stanza_size`, `shaper`,
 	`starttls`, `starttls_required`, `tls`, `zlib`,
 	`tls_compression`
@@ -366,7 +365,7 @@ are:
 	[`external component`](http://www.ejabberd.im/tutorials-transports)
 	(as defined in the Jabber Component Protocol
 	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).  
-	Options: `access`, `hosts`, `max_fsm_queue`, `password`, `service_check_from`,
+	Options: `access`, `hosts`, `max_fsm_queue`, `password`, `check_from`,
 	`shaper_rule`
 
 **`ejabberd_sip`**:   Handles SIP requests as defined in
@@ -381,7 +380,7 @@ are:
 	`shaper`, `server_name`, `auth_realm`, `auth_type`
 
 **`ejabberd_http`**:   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP BOSH and Websocket with proper request handler configured.
-	Options: `captcha`, `certfile`, `default_host`, `dhfile`,
+	Options: `captcha`, `default_host`, `dhfile`,
 	`request_handlers`, `tls`, `tls_compression`,
 	`trusted_proxies` (global option), `web_admin`
 
@@ -419,9 +418,7 @@ modules:
 
 **`protocol_options: ProtocolOpts`**:   List of general options relating to SSL/TLS. These map to
 	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/man1.0.1/ssl/SSL_CTX_set_options.html).
-	For a full list of options available in ejabberd,
-	[`see the source`](https://github.com/processone/tls/blob/master/c_src/options.h).
-	The default entry is: `"no_sslv2"`
+	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
 
 **`default_host: undefined|HostName`**:   If the HTTP request received by ejabberd contains the HTTP header
 	`Host` with an ambiguous virtual host that doesn’t match any one
@@ -477,7 +474,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	for `ejabberd_s2s_out`. If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’undefined’.
+	’undefined’. Default value: ’5000’.
 
 **`max_stanza_size: Size`**:   This option specifies an approximate maximum size in bytes of XML
 	stanzas. Approximate, because it is calculated with the precision of
@@ -499,7 +496,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	      "/a/b": mod_foo
 	      "/bosh": mod_bosh
 
-**`service_check_from: true|false`**:   This option can be used with `ejabberd_service` only.
+**`check_from: true|false`**:   This option can be used with `ejabberd_service` only.
 	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
 	the domain must match the hostname of the component. If this option
 	is set to `false`, `ejabberd` will allow the component to send
@@ -515,15 +512,11 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	section [Shapers](#shapers)). The recommended value is `fast`.
 
 **`starttls: true|false`**:   This option specifies that STARTTLS encryption is available on
-	connections to the port. You should also set the `certfile` option.
-	You can define a certificate file for a specific domain using the
-	global option `domain_certfile`.
+	connections to the port. You should also set the `certfiles` option.
 
 **`starttls_required: true|false`**:   This option specifies that STARTTLS encryption is required on
 	connections to the port. No unencrypted connections will be allowed.
-	You should also set the `certfile` option. You can define a
-	certificate file for a specific domain using the global option
-	`domain_certfile`.
+	You should also set the `certfiles` option.
 
 **`timeout: Integer`**:   Timeout of the connections, expressed in milliseconds. Default: 5000
 
@@ -535,11 +528,16 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	method is STARTTLS on port 5222, as defined
 	[`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
 	which can be enabled in `ejabberd` with the option `starttls`. If
-	this option is set, you should also set the `certfile` option. The
+	this option is set, you should also set the `certfiles` or the `certfile` option. The
 	option `tls` can also be used in `ejabberd_http` to support HTTPS.
 
 **`tls_compression: true|false`**:   Whether to enable or disable TLS compression. The default value is
 	`false`.
+
+**`use_proxy_protocol: true|false`**:   Is this listener accessed by proxy service that is using
+    proxy protocol for supplying real IP addresses to ejabberd server. You can read about this protocol
+    in [Proxy protocol specification](http://www.haproxy.org/download/1.8/doc/proxy-protocol.txt).
+    The default value of this option is`false`.
 
 **`web_admin: true|false`**:   This option enables the Web Admin for `ejabberd` administration
 	which is available at `http://server:port/admin/`.
@@ -553,6 +551,14 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 
 There are some additional global options that can be specified in the
 ejabberd configuration file (outside `listen`):
+
+**`certfiles: List of paths`**: The option accepts a list of file
+  paths (optionally with wildcards) containing either PEM certificates
+  or PEM private keys. At startup, ejabberd sorts the certificates,
+  finds matching private keys and rebuilds full certificates
+  chains. Use this option when enabling options like `starttls` or
+  `tls` in listeners `ejabberd_c2s`, `ejabberd_s2s` or
+  `ejabberd_http`.
 
 **`s2s_use_starttls: false|optional|required|required_trusted`**:   This option defines if s2s connections don’t use STARTTLS
 	encryption; if STARTTLS can be used optionally; if STARTTLS is
@@ -575,9 +581,7 @@ ejabberd configuration file (outside `listen`):
 
 **`s2s_protocol_options: ProtocolOpts`**:   List of general options relating to SSL/TLS. These map to
 	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/man1.0.1/ssl/SSL_CTX_set_options.html).
-	For a full list of options available in ejabberd,
-	[`see the source`](https://github.com/processone/tls/blob/master/c_src/options.h).
-	The default entry is: `"no_sslv2"`
+	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
 
 **`outgoing_s2s_families: [Family, ...]`**:   Specify which address families to try, in what order. By default it
 	first tries connecting with IPv4, if that fails it tries using IPv6.
@@ -598,21 +602,6 @@ ejabberd configuration file (outside `listen`):
 **`s2s_tls_compression: true|false`**:   Whether to enable or disable TLS compression for s2s connections.
 	The default value is `false`.
 
-**`max_fsm_queue: Size`**:   This option specifies the maximum number of elements in the queue of
-	the FSM (Finite State Machine). Roughly speaking, each message in
-	such queues represents one XML stanza queued to be sent into its
-	relevant outgoing stream. If queue size reaches the limit (because,
-	for example, the receiver of stanzas is too slow), the FSM and the
-	corresponding connection (if any) will be terminated and error
-	message will be logged. The reasonable value for this option depends
-	on your hardware configuration. However, there is no much sense to
-	set the size above 1000 elements. This option can be specified for
-	`ejabberd_service` and `ejabberd_c2s` listeners, or also globally
-	for `ejabberd_s2s_out`. If the option is not specified for
-	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
-	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’undefined’.
-
 **`c2s_hibernate: Timeout|hibernate`**:   The timeout in milliseconds before the c2s processes will be hibernated.
     Default value: ’90000’
 
@@ -629,7 +618,7 @@ ejabberd configuration file (outside `listen`):
 	header `X-Forwarded-For` You can specify `all` to allow all proxies,
 	or specify a list of IPs in string format. The default value is:
 	`["127.0.0.1"]`. This allows, if enabled, to be able to know the real IP of the request, for admin purpose,
-	or security configuration (for example using [mod_fail2ban](#mod-fail2ban)))
+	or security configuration (for example using [mod_fail2ban](#mod-fail2ban))).
 	**Important:** The proxy MUST be configured to set the `X-Forwarded-For` header if you enable this option as,
 	otherwise, the client can set it itself and as a result the IP value cannot be trusted for security rules in
 	ejabberd.
@@ -665,6 +654,10 @@ For example, the following simple configuration defines:
 			  - "example.org"
 			  - "example.net"
 			
+			certfiles:
+			  - "/etc/ejabberd/server.pem"
+			  - "/etc/ejabberd/example_com.pem"
+
 			listen:
 			  -
 			    port: 5222
@@ -672,7 +665,6 @@ For example, the following simple configuration defines:
 			    access: c2s
 			    shaper: c2s_shaper
 			    starttls: true
-			    certfile: "/etc/ejabberd/server.pem"
 			    max_stanza_size: 65536
 			  -
 			    port: 5223
@@ -680,7 +672,6 @@ For example, the following simple configuration defines:
 			    access: c2s
 			    shaper: c2s_shaper
 			    tls: true
-			    certfile: "/etc/ejabberd/server.pem"
 			    max_stanza_size: 65536
 			  -
 			    port: 5269
@@ -703,13 +694,8 @@ For example, the following simple configuration defines:
 			    web_admin: true
 			    http_bind: true
 			    tls: true
-			    certfile: "/etc/ejabberd/server.pem"
 			
 			s2s_use_starttls: optional
-			s2s_certfile: "/etc/ejabberd/server.pem"
-			host_config:
-			  "example.com":
-			    domain_certfile: "/etc/ejabberd/example_com.pem"
 			outgoing_s2s_families:
 			  - ipv4
 			  - ipv6
@@ -791,7 +777,8 @@ In this example, the following configuration defines that:
 			    - allow: xmlrpc_bot
 			  s2s:
 			    - allow: trusted_servers
-			s2s_certfile: "/path/to/ssl.pem"
+			certfiles:
+			  - "/path/to/ssl.pem"
 			s2s_access: s2s
 			s2s_use_starttls: required_trusted
 			listen:
@@ -804,14 +791,12 @@ In this example, the following configuration defines that:
 			    ip: "192.168.0.1"
 			    port: 5223
 			    module: ejabberd_c2s
-			    certfile: "/path/to/ssl.pem"
 			    tls: true
 			    access: c2s
 			  -
 			    ip: "FDCA:8AB6:A243:75EF::1"
 			    port: 5223
 			    module: ejabberd_c2s
-			    certfile: "/path/to/ssl.pem"
 			    tls: true
 			    access: c2s
 			  -
@@ -873,7 +858,7 @@ In this example, the following configuration defines that:
 			  -
 			    port: 5239
 			    module: ejabberd_service
-			    service_check_from: false
+			    check_from: false
 			    hosts:
 			      "custom.example.org":
 			        password: "customsecret"
@@ -951,17 +936,17 @@ authentication ([`XEP-0078`][8]),
 then this option is not respected, and the action performed is
 `closeold`.
 
-The option `fqdn` allows you to define the Fully Qualified Domain Name
-of the machine, in case it isn’t detected automatically. The FQDN is
+**`fqdn: undefined|FqdnString|[FqdnString]`**:
+Allows you to define the Fully Qualified Domain Name
+of the machine, in case it isn't detected automatically. The FQDN is
 used to authenticate some clients that use the DIGEST-MD5 SASL
-mechanism. The option syntax is:
+mechanism.
 
-**`fqdn: undefined|FqdnString|[FqdnString]`**:  The option `disable_sasl_mechanisms` specifies a list of SASL mechanisms
+**`disable_sasl_mechanisms: Mechanism|[Mechanism, ...]`**:
+Specify a list of SASL mechanisms
 (such as "DIGEST-MD5" or "SCRAM-SHA1") that should *not* be offered to
 the client. The mechanisms can be listed as lowercase or uppercase
-strings. The option syntax is:
-
-**`disable_sasl_mechanisms: Mechanism|[Mechanism, ...]`**  
+strings.
 
 ### Internal
 
@@ -986,9 +971,12 @@ the users passwords are stored:
 	`plain` anymore. This format allows clients to authenticate using:
 	`SASL PLAIN` and `SASL SCRAM-SHA-1`.
 
+For details about the client-server communication when using SCRAM-SHA-1,
+refer to [SASL and SCRAM-SHA-1](https://wiki.xmpp.org/web/SASLandSCRAM-SHA-1).
+
 When you enable SCRAM password format for internal storage, if you try
-to authenticate a user that had his password already stored in plain
-text, his password will be automatically converted to SCRAM format. It
+to authenticate a user that had their password already stored in plain
+text, their password will be automatically converted to SCRAM format. It
 means database is converted as you use it.
 
 If you want to convert your Mnesia database all at once, you can look
@@ -1387,7 +1375,7 @@ sections, and each section can contain any number of acl rules
 (as defined in [previous section](#acl-definition), it recognizes
 one additional rule `acl: RuleName` that matches when acl rule
 named `RuleName` matches). If no rule or definition is defined, the
-rule `all` is applyed.
+rule `all` is applied.
 
 Definition's `- allow` and `- deny` sections are processed in top
 to bottom order, and first one for which all listed acl rules matches
@@ -1414,7 +1402,7 @@ definitions where short or long version are used:
 If you define specific Access rights in a virtual host, remember that
 the globally defined Access rights have precedence over those. This
 means that, in case of conflict, the Access granted or denied in the
-global server is used and the Access of a virtual host doesn’t have
+global server is used and the Access of a virtual host doesn't have
 effect.
 
 Example:
@@ -1617,7 +1605,7 @@ Example configuration:
 
 This option can be used to tune tick time parameter of
 net_kernel. It tells `erlang` VM how often nodes should check if
-intra-node communication was not interruped. This option must have
+intra-node communication was not interrupted. This option must have
 identical value on all nodes, or it will lead to subtle bugs. Usually
 leaving default value of this is option is best, tweak it only if you
 know what are you doing.
@@ -1769,7 +1757,7 @@ them.
 Next you need to configure DNS SIP records for your virtual domains.
 Refer to [`RFC 3263`][22] for the
 detailed explanation. Simply put, you should add NAPTR and SRV records
-for your domains. Skip NAPTR configuration if your DNS provider doesn’t
+for your domains. Skip NAPTR configuration if your DNS provider doesn't
 support this type of records. It’s not fatal, however, highly
 recommended.
 
@@ -1804,7 +1792,7 @@ The basic syntax is:
 It is possible to specify suboptions using the full syntax:
 
 **`include_config_file: { Filename: [Suboption, ...] }`**:  The filename can be indicated either as an absolute path, or relative to
-the main `ejabberd` configuration file. It isn’t possible to use
+the main `ejabberd` configuration file. It isn't possible to use
 wildcards. The file must exist and be readable.
 
 The allowed suboptions are:
@@ -1863,7 +1851,7 @@ for a value and later use this macro when defining an option.
 A macro is defined with this syntax:
 
 **`define_macro: { ’MACRO’: Value }`**:  The `MACRO` must be surrounded by single quotation marks, and all
-letters in uppercase; check the examples bellow. The `value` can be any
+letters in uppercase; check the examples below. The `value` can be any
 valid arbitrary Erlang term.
 
 The first definition of a macro is preserved, and additional definitions
@@ -1873,7 +1861,7 @@ Macros are processed after additional configuration files have been
 included, so it is possible to use macros that are defined in
 configuration files included before the usage.
 
-It isn’t possible to use a macro in the definition of another macro.
+It isn't possible to use a macro in the definition of another macro.
 
 This example shows the basic usage of a macro:
 
@@ -1987,13 +1975,27 @@ sections must be set inside a `host_config` for each vhost (see section
 
 ## Relational Databases
 
+There are two schemas usable for ejabberd. The default lecacy schema allows to
+store one XMPP domain into one ejabberd database. The 'new' schema allows to
+handle several XMPP domains in a single ejabberd database. Using this new schema
+is best when serving several XMPP domains and/or changing domains from time to
+time. This avoid need to manage several databases and handle complex
+configuration changes.
+
 You need to upload SQL schema to your SQL server. Choose the one from [`this`][118] list.
+If you are using MySQL and choose the default schema, use `mysql.sql`. If you
+are using PostgreSQL and need the new schema, use `pg.new.sql`.
+
+If you choose the new schema, you MUST add an extra line into `ejabberd.yml`
+configuration file to enable the feature:
+
+	new_sql_schema: true
 
 The actual database access is defined in the options with `sql_`
 prefix. The values are used to define if we want to use ODBC, or one of
 the two native interface available, PostgreSQL or MySQL.
 
-The following paramaters are available:
+The following parameters are available:
 
 **`sql_type: mysql | pgsql | odbc | mssql | sqlite`**:   The type of an SQL connection. The default is `odbc`.
 
@@ -2060,7 +2062,7 @@ You can authenticate users against an SQL database, see the option
 The option `auth_password_format` is supported,
 for details see section [Internal](#internal).
 Please note that if you use SQL auth method and set SCRAM format,
-old plain passwords tha may be stored in the database are not
+old plain passwords that may be stored in the database are not
 automatically scrammed. For that, you can execute the command:
 
 			
@@ -2237,7 +2239,8 @@ Also we want users to search each other. Let’s see how we can set it up:
 			
 	modules:
 	  ...
-	  mod_vcard_ldap:
+	  mod_vcard:
+	    db_type: ldap
 	    ## We use the same server and port, but want to bind anonymously because
 	    ## our LDAP server accepts anonymous requests to
 	    ## "ou=AddressBook,dc=example,dc=org" subtree.
@@ -2254,7 +2257,7 @@ Also we want users to search each other. Let’s see how we can set it up:
 	    ldap_filter: ""
 	    ## Now we want to define vCard pattern
 	    ldap_vcard_map:
-	     "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+	     "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
 	     "GIVEN": {"%s": ["givenName"]}
 	     "FAMILY": {"%s": ["sn"]}
 	     "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
@@ -2275,8 +2278,8 @@ Also we want users to search each other. Let’s see how we can set it up:
 	      "Birthday": "BDAY"
 	  ...
 
-Note that `mod_vcard_ldap` module checks for the existence of the user
-before searching in his information in LDAP.
+Note that `mod_vcard` with LDAP backend checks for the existence of the user
+before searching their information in LDAP.
 
 #### Active Directory
 
@@ -2294,7 +2297,8 @@ sample configuration is shown below:
 
 	modules:
 	  ...
-	  mod_vcard_ldap:
+	  mod_vcard:
+	    db_type: ldap
 	    ldap_vcard_map:
 	      "NICKNAME": {"%u": []}
 	      "GIVEN": {"%s": ["givenName"]}
@@ -2542,7 +2546,6 @@ The following table lists all modules included in `ejabberd`.
 | [mod_stream_mgmt](#mod-stream-mgmt)            | Stream Management ([`XEP-0198`][125])                |                                  |
 | [mod_time](#mod-time)                          | Entity Time ([`XEP-0202`][58])                       |                                  |
 | [mod_vcard](#mod-vcard)                        | vcard-temp ([`XEP-0054`][59])                        |                                  |
-| [mod_vcard_ldap](#mod-vcard-ldap)              | vcard-temp ([`XEP-0054`][60])                        | LDAP server                      |
 | [mod_vcard_xupdate](#mod-vcard-xupdate)        | vCard-Based Avatars ([`XEP-0153`][61])               | `mod_vcard`                      |
 | [mod_version](#mod-version)                    | Software Version ([`XEP-0092`][62])                  |                                  |
 
@@ -2643,7 +2646,7 @@ Available option:
     This is only useful in the vcard set and get commands.
     The default value is "mod_admin_extra".
 
-In this example configuration, the users vcards can only be modified
+In this example configuration, the users vCards can only be modified
 by executing `mod_admin_extra` commands:
 
     		
@@ -2679,9 +2682,9 @@ Description of some commands:
 		ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
 
 **`ban-account`**:  This command kicks all the connected sessions of the account from the
-   server.  It also changes his password to another randomly
-   generated, so he can't login anymore unless a server administrator
-   changes him again the password.
+   server.  It also changes their password to a randomly
+   generated one, so they can't login anymore unless a server administrator
+   changes their password again.
 
 It is possible to define the reason of the ban.  The new password
 also includes the reason and the date and time of the ban.
@@ -2708,7 +2711,7 @@ messages to specific JIDs.
 The Ad-hoc commands are listed in the Server Discovery. For this feature
 to work, `mod_adhoc` must be enabled.
 
-The specific JIDs where messages can be sent are listed bellow. The
+The specific JIDs where messages can be sent are listed below. The
 first JID in each entry will apply only to the specified virtual host
 `example.org`, while the JID between brackets will apply to all virtual
 hosts in ejabberd.
@@ -2789,7 +2792,7 @@ instances of `ejabberd` with hundreds of thousands users.
 
 ## mod_block_strangers
 
-This module allows to block/log messages comming from an unknown entity.
+This module allows to block/log messages coming from an unknown entity.
 If a writing entity is not in your roster, you can let this module drop and/or
 log the message. By default you'll just not receive message from that entity.
 Enable this module if you want to drop SPAM messages.
@@ -2866,7 +2869,7 @@ json, max_concat, max_inactivity, max_pause, prebind, ram_db_type,     queue_t
 
 You also need to configure DNS SRV records properly so clients can
 easily discover a BOSH server serving your XMPP domain. Refer to
-[XEP-0159](https://xmpp.org/extensions/xep-0156.html).
+[XEP-0156](https://xmpp.org/extensions/xep-0156.html).
 
 Example DNS TXT configuration for BOSH:
 
@@ -3103,6 +3106,11 @@ Example:
 	    c2s_max_auth_failures: 50
 	  ...
 
+*Warning*: You should not use `mod_fail2ban` behind a proxy or load balancer. ejabberd will see the failures as coming
+from the load balancer and, when the threshold of auth failures is reached, will reject all connections coming from the
+load balancer. You can lock all your user base out of ejabberd when using `mod_fail2ban` behind a proxy.
+
+
 ## mod_http_fileserver
 
 This simple module serves files from the local disk over HTTP.
@@ -3173,8 +3181,7 @@ And define it as a handler in the HTTP service:
 This module allows for requesting permissions to upload a file via HTTP
 as described in [`XEP-0363`][120]. If the request is accepted, the
 client receives a URL for uploading the file and another URL from which
-that file can later be downloaded. If an image file is uploaded, the
-server (by default) also creates a thumbnail.
+that file can later be downloaded.
 
 In order to use this module, it must be configured as a
 `request_handler` for an `ejabberd_http` listener.
@@ -3258,13 +3265,15 @@ removed when that user is unregistered. Default: `true`.
 Example:
 
 			
+	certfiles:
+	  - "/etc/ejabberd/certificate.pem"
+
 	listen:
 	  ...
 	  -
 	    port: 5443
 	    module: ejabberd_http
 	    tls: true
-	    certfile: "/etc/ejabberd/certificate.pem"
 	    request_handlers:
 	      ...
 	      "upload": mod_http_upload
@@ -3324,7 +3333,7 @@ in the following example.
 
 ## mod_http_ws
 
-This module enables xmpp communication over websocket connection as
+This module enables XMPP communication over Websocket connection as
 described in [`RFC 7395`][71].
 
 ### Enabling Websocket support
@@ -3346,11 +3355,11 @@ section of `ejabberd_http` listener:
 This module can be configured by using those options that should be
 placed in general section of config file:
 
-- **`websocket_ping_interval: Seconds`**: Defines time between pings send by server to client (websocket level
+- **`websocket_ping_interval: Seconds`**: Defines time between pings send by server to client (Websocket level
 protocol pings are used for this) to keep connection active. If client
 won't respond to two corresponding pings connection will be assumed as
 closed. Value of `0` can be used to disable it feature. This options
-do make server send pings only for connections using rfc compilant
+do make server send pings only for connections using rfc compliant
 protocol, for older style connections server expects that whitespace
 pings would be used for this purpose. Default value of this option
 is set to 60.
@@ -3363,13 +3372,13 @@ This option is set to 300 by default.
 
 You also need to configure DNS SRV records properly so clients can
 easily discover Websocket service for your XMPP domain. Refer to
-[XEP-0159](https://xmpp.org/extensions/xep-0156.html).
+[XEP-0156](https://xmpp.org/extensions/xep-0156.html).
 
 Example DNS TXT configuration for Websocket:
 
     _xmppconnect IN TXT "[ _xmpp-client-websocket=wss://web.example.com:443/ws ]"
 
-### Testing websocket
+### Testing Websocket
 
 A test client can be found on Github: [Websocket test client](https://github.com/processone/xmpp-websocket-client)
 
@@ -3405,7 +3414,7 @@ You may want to disable that module depending on several parameters:
 - **Privacy:** You may not want to store the last presence of your users
   in database.
 - **Performance:** If you have usage pattern with large spike of
-  disconneect, you may want to disable that module to limit trafic
+  disconnect, you may want to disable that module to limit traffic
   spike on your `mod_last` database backend.
 
 Note that you may want also to purge last activity that is too old to
@@ -3417,23 +3426,53 @@ This module implements Message Archive Management as described in [`XEP-0313`][1
 
 Options:
 
-**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration). Note: If `mnesia` is used, the total size of all MAM archives cannot exceed 2 GB. The `delete_old_mam_messages` command could be run periodically to make sure the `mnesia` data won't grow beyond that limit. To support larger archives, `sql` storage must be used.
+**`assume_mam_usage: true|false`**: This option determines how
+  ejabberd's stream management code handles unacknowledged messages
+  when the connection is lost. Usually, such messages are either
+  bounced or resent. However, neither is done for messages that were
+  stored in the user's MAM archive if this option is set to `true`. In
+  this case, ejabberd assumes those messages will be retrieved from
+  the archive. The default is `false`.
 
-**`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
+**`compress_xml: true|false`**: When enabled, new messages added to
+  archives are compressed using a custom compression algorithm (for
+  details see the [`ejabberd 18.12 release
+  notes`](https://blog.process-one.net/ejabberd-18-12/)). This feature
+  works only with `db_type: sql`. The default value is `false`.
 
-**`default: always|never|roster`**:   The option defines default policy for chat history. When `always` is set every chat message is stored. With `roster` only chat history with contacts from user's roster is stored. `never` fully disables chat history. Note that a client can change its policy via protocol commands. The default is `never`.
+**`db_type: mnesia|sql`**: Define the type of storage where the module
+  will create the tables and store user information. The default is
+  the storage defined by the global option `default_db`, or `mnesia`
+  if omitted. If `sql` value is defined, make sure you have defined
+  the database, see [database](#database-and-ldap-configuration).
+  Note: If `mnesia` is used, the total size of all MAM archives cannot
+  exceed 2 GB. The `delete_old_mam_messages` command could be run
+  periodically to make sure the `mnesia` data won't grow beyond that
+  limit. To support larger archives, `sql` storage must be used.
 
-**`request_activates_archiving: true|false`**:   If this option is enabled, no messages are stored for a user until his client issued a MAM request, regardless of the value of the `default` option. Once the server received a request, that user's messages are archived as usual. The default is `false`.
+**`default: always|never|roster`**: The option defines default policy
+  for chat history. When `always` is set every chat message is
+  stored. With `roster` only chat history with contacts from user's
+  roster is stored. `never` fully disables chat history. Note that a
+  client can change its policy via protocol commands. The default is
+  `never`.
 
-**`assume_mam_usage: true|false`**:   This option determines how ejabberd's stream management code handles unacknowledged messages when the connection is lost. Usually, such messages are either bounced or resent. However, neither is done for messages that were stored in the user's MAM archive if this option is set to `true`. In this case, ejabberd assumes those messages will be retrieved from the archive. The default is `false`.
+**`request_activates_archiving: true|false`**: If this option is
+  enabled, no messages are stored for a user until their client issue
+  a MAM request, regardless of the value of the `default` option. Once
+  the server received a request, that user's messages are archived as
+  usual. The default is `false`.
+
+**`use_cache: false|true`**: Use this option and related ones as
+  explained in section [Caching](#caching).
 
 ## mod_mix
 
 This module is an experimental implementation Mediated Information
-eXchange (MIX) as descrive in [`XEP-0369`][122]. Our implementation is
-base on version 0.1.
+eXchange (MIX) as described in [`XEP-0369`][122]. Our implementation is
+based on version 0.1.
 
-To feature will be added to ejabberd 16.03 as an experimental feature
+This feature was added in ejabberd 16.03 as an experimental feature
 and is not yet ready to use in production.
 
 To learn more about how to use that feature, you can refer to our
@@ -3507,7 +3546,7 @@ Module options:
 
 **`access_admin: AccessName`**:   This option specifies who is allowed to administrate the Multi-User
 	Chat service. The default value is `none`, which means that only the
-	room creator can administer his room. The administrators can send a
+	room creator can administer their room. The administrators can send a
 	normal message to the service JID, and it will be shown in all
 	active rooms as a service message. The administrators can send a
 	groupchat message to the JID of an active room, and the message will
@@ -3536,7 +3575,7 @@ Module options:
 	occupants was reached. The default limit is 5.
 
 **`max_user_conferences: Number`**:   This option defines the maximum number of rooms that any given user
-	can join. The default value is 10. This option is used to prevent
+	can join. The default value is 100. This option is used to prevent
 	possible abuses. Note that this is a soft limit: some users can
 	sometimes join more conferences in cluster configurations.
 
@@ -3589,7 +3628,10 @@ Module options:
 
 **`default_room_options: {OptionName: OptionValue}`**:   This module option allows to define the desired default room
 	options. Note that the creator of a room can modify the options of
-	his room at any time using an XMPP client with MUC capability. The
+	his room at any time using an XMPP client with MUC capability.
+	All of those room options can be set to `true` or `false`, except
+	`password` and `title` which are strings, and `max_users` that is
+	integer. The
 	available room options and the default values are:
 
 * **`allow_change_subj: true|false`**:   Allow occupants to change the subject.
@@ -3599,6 +3641,9 @@ Module options:
 * **`allow_private_messages_from_visitors: anyone|moderators|nobody`**:   Visitors can send private messages to other occupants.
 
 * **`allow_query_users: true|false`**:   Occupants can send IQ queries to other occupants.
+
+* **`allow_subscription: true|false`**:   Allow users to subscribe to room events as described in
+	[`Multi-User Chat Subscriptions`](https://docs.ejabberd.im/developer/xmpp-clients-bots/proposed-extensions/muc-sub/).
 
 * **`allow_user_invites: false|true`**:   Allow occupants to send invitations.
 
@@ -3612,10 +3657,13 @@ Module options:
 	    other occupants. Note that the room moderators can always see
 	    the real JIDs of the occupants.
 
-* **`captcha_protected: false|true`**:   When a user tries to join a room where he has no affiliation
-	    (not owner, admin or member), the room requires him to fill a
-	    CAPTCHA challenge (see section [CAPTCHA](#captcha)) in order to accept her
+* **`captcha_protected: false|true`**:   When a user tries to join a room where they have no affiliation
+	    (not owner, admin or member), the room requires them to fill a
+	    CAPTCHA challenge (see section [CAPTCHA](#captcha)) in order to accept their
 	    join in the room.
+
+* **`lang: Language`**:   Preferred language for the discussions in the room.
+	    The language format should conform to RFC 5646.
 
 * **`logging: false|true`**:   The public messages are logged using `mod_muc_log`.
 
@@ -3637,6 +3685,9 @@ Module options:
 
 * **`persistent: false|true`**:   The room persists even if the last participant leaves.
 
+* **`presence_broadcast: [moderator, participant, visitor]`**:   List of roles for which presence is broadcasted.
+	The list can contain one or several of: moderator, participant, visitor.
+
 * **`public: true|false`**:   The room is public in the list of the MUC service, so it can be
 	    discovered. MUC admins and room participants will see private rooms in Service Discovery,
 	    and the room name will have the word: "private".
@@ -3646,16 +3697,12 @@ Module options:
 
 * **`title: Room Title`**:   A human-readable title of the room.
 
-	All of those room options can be set to `true` or `false`, except
-	`password` and `title` which are strings, and `max_users` that is
-	integer.
-
 Examples:
 
 -   In the first example everyone is allowed to use the Multi-User Chat
 	service. Everyone will also be able to create new rooms but only the
 	user `admin@example.org` is allowed to administrate any room. In
-	this example he is also a global administrator. When
+	this example they are also a global administrator. When
 	`admin@example.org` sends a message such as ‘Tomorrow, the XMPP
 	server will be moved to new hardware. This will involve service
 	breakdowns around 23:00 UMT. We apologise for this inconvenience.’
@@ -3753,6 +3800,7 @@ Examples:
 		      allow_query_users: true
 		      allow_private_messages: true
 		      members_by_default: false
+		      presence_broadcast: [visitor, moderator]
 		      title: "New chatroom"
 		      anonymous: false
 		    access_admin: muc_admin
@@ -3969,7 +4017,7 @@ Edit ejabberd.yml and add the module to the list of modules:
 
 ### Service check
 
-You have to restart ejabberd after adding or modifying `mod_multicast`conf.
+You have to restart ejabberd after adding or modifying `mod_multicast` configuration.
 
 To verify the service is running, login to ejabberd with a XMPP client, open the service discovery and check that
 there's a service called "Multicast".
@@ -4049,7 +4097,7 @@ global option `default_db`, or `mnesia` if omitted. If `sql` or
 **`access_max_user_messages: AccessName`**: This option defines which access rule (atom) will be enforced to
 	limit the maximum number of offline messages that a user can have
 	(quota).  When a user has too many offline messages, any new
-	messages that he receive are discarded, and a resource-constraint
+	messages that they receive are discarded, and a resource-constraint
 	error is returned to the sender. The default value is
 	`max_user_offline_messages`.  Then you can define an access rule
 	with a syntax similar to `max_user_sessions` (see
@@ -4243,7 +4291,7 @@ If you want to grant privileged access to a component, specify it in the compone
 In the example above, the `sat-pubsub.example.org` component can get the roster of every user of the server and send messages on behalf of the server.
 
 ### Permission list
-By default a component does not have any priviliged access. It is worth noting that the permissions listed below give access to data belonging to all server users.
+By default a component does not have any privileged access. It is worth noting that the permissions listed below give access to data belonging to all server users.
 
 Possible permissions:
 
@@ -4307,7 +4355,7 @@ Options:
 
 Examples:
 
--   The simpliest configuration of the module:
+-   The simplest configuration of the module:
 
 				
 		modules:
@@ -4385,7 +4433,7 @@ prefix contains only one dot, for example ‘`pubsub.`’, or
 	use when creating a node: add `type=’plugin-name’` attribute to the
 	`create` stanza element.
 
-The “flat” plugin handles the default behavour and follows standard
+The “flat” plugin handles the default behaviour and follows standard
 XEP-0060 implementation.
 
 The “hometree” plugin allows to manages nodes in a simple tree and
@@ -4405,7 +4453,7 @@ Mediated Information eXchange
 The “mb” plugin is a PEP microglobing experimentation.
 
 The “dag” plugin provides experimental support for PubSub Collection
-Nodes (see dag nodetree bellow).
+Nodes (see dag nodetree below).
 
 The “dispatch” plugin publishes items to node and all child subnodes
 using the hometree behaviour. Node name must match hometree name
@@ -4415,7 +4463,7 @@ the item to node /home/server/user/a/a and /home/server/user/a/b.
 The “online” plugin only cope with online users, by automatically
 remove subscriptions and nodes of disconnecting users.
 
-Other experimentale node plugins are provided. Each plugin comes with
+Other experimental node plugins are provided. Each plugin comes with
 it's own list of default node configuration and pubsub feature, and
 can delegate calls to node_flat for default behaviour.
 
@@ -4431,7 +4479,7 @@ The “virtual” nodetree does not store nodes on database. This saves
 resources on systems with tons of nodes. If using the “virtual”
 nodetree, you can only enable those node plugins: [“flat”,“pep”] or
 [“flat”]; any other plugins configuration will not work. Also, all
-nodes will have the defaut configuration, and this can not be
+nodes will have the default configuration, and this can not be
 changed. Using “virtual” nodetree requires to start from a clean
 database, it will not work if you used the default “tree” nodetree
 before.
@@ -4453,7 +4501,7 @@ case you should also add “dag” node plugin as default, for example:
 	and allows to raise user connection rate. The cost is memory usage,
 	as every item is stored in memory.
 
-**`default_node_config: Config`**:   To override default node configuration, regradless of node plugin. Value
+**`default_node_config: Config`**:   To override default node configuration, regardless of node plugin. Value
 	is a list of key-value definition. Node configuration still uses
 	default configuration defined by node plugin, and overrides any items
 	by value defined in this configurable list.
@@ -4593,12 +4641,10 @@ Options:
 	registration and unregistration of that user name is denied. There
 	are no restrictions by default.
 
-**`access_from: AccessName`**:   By default, `ejabberd` doesn’t allow to register new accounts from
+**`access_from: AccessName`**:   By default, `ejabberd` doesn't allow to register new accounts from
 	s2s or existing c2s sessions. You can change it by defining access
 	rule in this option. Use with care: allowing registration from s2s
 	leads to uncontrolled massive accounts creation by rogue users.
-	Additionally, if set to 'none', then In Band Registration is not
-	advertised as a stream feature.
 
 **`captcha_protected: false|true`**:   Protect registrations with CAPTCHA (see section [CAPTCHA](#captcha)). The
 	default is `false`.
@@ -4625,7 +4671,7 @@ This module reads also another option defined globally for the server:
 `registration_timeout: Timeout`. This option limits the frequency of
 registration from a given IP or username. So, a user that tries to
 register a new account from the same IP address or JID during this
-number of seconds after his previous registration will receive an error
+number of seconds after their previous registration will receive an error
 `resource-constraint` with the explanation: “Users are not allowed to
 register accounts so quickly”. The timeout is expressed in seconds, and
 it must be an integer. To disable this limitation, instead of an integer
@@ -4734,13 +4780,16 @@ handler:
 	  - "localhost"
 	  - "example.org"
 	  - "example.com"
+
+	certfiles:
+	  - "/etc/ejabberd/certificate.pem"
+
 	listen:
 	  ...
 	  -
 	    port: 5281
 	    module: ejabberd_http
 	    register: true
-	    certfile: "/etc/ejabberd/certificate.pem"
 	    tls: true
 	  ...
 
@@ -4766,7 +4815,7 @@ Options:
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
-**`versioning: false|true`**:   Enables Roster Versioning. This option is disabled by default.
+**`versioning: false|true`**:   Enables Roster Versioning. This option is disabled by default. We use a [simplified version of roster versioning](/developer/xmpp-clients-bots/extensions/roster-versioning/).
 
 **`store_current_id: false|true`**:   If this option is enabled, the current version number is stored on
 	the database. If disabled, the version number is calculated on the
@@ -4779,7 +4828,7 @@ Options:
 
 **`access`**:   This option can be configured to specify rules to restrict roster
 	management. If a rule returns ‘deny’ on the requested user name,
-	that user cannot modify his personal roster: not add/remove/modify
+	that user cannot modify their personal roster: not add/remove/modify
 	contacts, or subscribe/unsubscribe presence. By default there aren’t
 	restrictions.
 
@@ -4864,7 +4913,7 @@ where the group is created.
 
 It still allows the users to have / add their own contacts, as it does
 not replace the standard roster. Instead, the shared roster contacts
-are merged to the revelant users at retrieval time. The standard user
+are merged to the relevant users at retrieval time. The standard user
 rosters thus stay unmodified.
 
 Special values like @all@ and @online@ will help populating the shared
@@ -5464,7 +5513,14 @@ Options:
 	virtual host with the prefix ‘`vjud.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql|riak|ldap`**: Define the type of storage where
+  the module will create the tables and store user information. The
+  default is the storage defined by the global option `default_db`, or
+  `mnesia` if omitted. If `sql` or `riak` value is defined, make sure
+  you have defined the database, see
+  [database](#database-and-ldap-configuration). If `ldap` value is
+  defined, check its specific options, see [vCards in
+  LDAP](#vcards-in-ldap).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
@@ -5516,11 +5572,12 @@ Examples:
 		    allow_return_all: true
 		  ...
 
-## mod_vcard_ldap
+### vCards in LDAP
 
-`ejabberd` can map LDAP attributes to vCard fields. This behaviour is
-implemented in the `mod_vcard_ldap` module. This module does not depend
-on the authentication method (see [LDAP Authentication](#ldap-authentication)).
+`ejabberd` can map LDAP attributes to vCard fields. This feature is
+enabled when the `mod_vcard` module is configured with `db_type:
+ldap`. Notice that it does not depend on the authentication method
+(see [LDAP Authentication](#ldap-authentication)).
 
 Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
@@ -5528,7 +5585,7 @@ stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
 [`RFC 3062`][104].
 
-The `mod_vcard_ldap` module has its own optional parameters. The first
+This feature has its own optional parameters. The first
 group of parameters has the same meaning as the top-level LDAP
 parameters to set the authentication method: `ldap_servers`,
 `ldap_port`, `ldap_rootdn`, `ldap_password`, `ldap_base`, `ldap_uids`,
@@ -5539,8 +5596,7 @@ set, `ejabberd` will look for the top-level option with the same name.
 
 
 
-The second group of parameters consists of the following
-`mod_vcard_ldap`-specific options:
+The second group of parameters consists of the following `mod_vcard`-specific options:
 
 **`host: HostName`**:   This option defines the Jabber ID of the service. If the `host`
 	option is not specified, the Jabber ID will be the hostname of the
@@ -5651,7 +5707,8 @@ up:
 
 				
 		modules:
-		  mod_vcard_ldap:
+		  mod_vcard:
+		    db_type: ldap
 		    ## We use the same server and port, but want to bind anonymously because
 		    ## our LDAP server accepts anonymous requests to
 		    ## "ou=AddressBook,dc=example,dc=org" subtree.
@@ -5664,7 +5721,7 @@ up:
 		    ldap_uids: {"mail": "%u@mail.example.org"}
 		    ## Now we want to define vCard pattern
 		    ldap_vcard_map:
-		      "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+		      "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
 		      "FIRST": {"%s": ["givenName"]}
 		      "LAST": {"%s": ["sn"]}
 		      "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
@@ -5684,14 +5741,14 @@ up:
 		      "Nickname": "NICKNAME"
 		      "Birthday": "BDAY"
 
-Note that `mod_vcard_ldap` module checks an existence of the user
-before searching his info in LDAP.
+Note that `mod_vcard` with LDAP backend checks an existence of the user
+before searching their info in LDAP.
 
 -   `ldap_vcard_map` example:
 
 				
 		ldap_vcard_map:
-		  "NICKNAME": {"%u": []} # just use user's part of JID as his nickname
+		  "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
 		  "FN": {"%s": ["displayName"]}
 		  "CTRY": {"Russia": []}
 		  "EMAIL": {"%u@%d": []}

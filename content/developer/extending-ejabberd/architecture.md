@@ -22,7 +22,7 @@ the other elements are plugins that can be adapted, enhanced or
 replaced to build a custom solution tailored to your needs.
 
 ejabberd support a core concept of XMPP: Federation. Federation is a
-mechanism allowing different independing XMPP servers and clusters to
+mechanism allowing different independent XMPP servers and clusters to
 communicate with each other.
 
 Here is a high level diagram of ejabberd internal architecture:
@@ -41,7 +41,7 @@ can scale massively and rely on several back-ends.
 [*Click for large size PDF*](/static/images/architect/ejabberd_large_scale.pdf)
 
 Note that ejabberd ejabberd support a core concept of XMPP:
-Federation. Federation is a mechanism allowing different independing
+Federation. Federation is a mechanism allowing different independent
 XMPP servers and clusters to communicate with each other. This is a
 purely optional layer, but it can help integrate with the rest of the
 world. It is also sometimes internally by companies to group users in
@@ -53,7 +53,7 @@ If you need to manage several small XMPP domains, ejabberd supports
 virtual hosting. It means you can host as many domain as you want on a
 single ejabberd deployment.
 
-Instances can be made to be totally independant and invisible for each
+Instances can be made to be totally independent and invisible for each
 other if needed (or they can communicate as they would through
 federation).
 

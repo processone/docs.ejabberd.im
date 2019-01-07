@@ -21,7 +21,7 @@ used to power the largest deployments in the world should not
 intimidate you. ejabberd is equally suitable for small instances.
 
 ejabberd has been designed from the ground-up, since 2002 for robust,
-entreprise deployment. The goal has always been to shot for the moon
+enterprise deployment. The goal has always been to shot for the moon
 and that what made it a long-lasting success.
 
 ejabberd is specifically designed for enterprise purposes: it is
@@ -118,7 +118,7 @@ connecting anonymous users, when required.
 For storing persistent data, ejabberd uses Mnesia (the distributed
 internal Erlang database), but you can opt for other storage:
 
-* SQL databases like MySQL or Postgres
+* SQL databases like MySQL or PostgreSQL
 * NoSQL databases like Riak (also written in Erlang)
 
 And of course, thanks to its API, ejabberd can be customised to work
@@ -165,7 +165,7 @@ is recommended to start asking advices from day 1 to an
 solution design are harder to fix once the project is in production.
 
 If the service requires a cluster of more than 10 nodes, we recommend
-not relying on Mnesia clusting mode. Many solutions are available, the
+not relying on Mnesia clustering mode. Many solutions are available, the
 easiest and more inexpensive being to rely on
 [ejabberd Software-as-a-Service](http://www.process-one.net/en/ejabberd/saas/)
 approach.

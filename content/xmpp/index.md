@@ -19,7 +19,7 @@ managed to adapt thanks to the following specifications:
 
 * XMPP PubSub is defined in
   [XEP-0060](http://www.xmpp.org/extensions/xep-0060.html). This is a
-  very powerful mechanism that define channel based communitation on
+  very powerful mechanism that define channel based communication on
   top of XMPP protocol itself. A server can handles millions of
   channels, call Pubsub nodes. Users interested in specific channels
   can subscribe to nodes. When data need to be send to a given

@@ -49,7 +49,7 @@ in ejabberd.
 
 If `ejabberd_oauth` HTTP request handlers is not enabled, there is no
 way to generate token from outside ejabberd. However, you can still
-explicitely disabled X-OAUTH2 with the `disable_sasl_mechanisms`
+explicitly disabled X-OAUTH2 with the `disable_sasl_mechanisms`
 option in `ejabberd.yml` file, either at global or at virtual host
 level:
 
@@ -72,7 +72,7 @@ To enable OAuth support in ejabberd, you need to edit your
        endpoint. It is optional.
 
 If you want to support commands using the XML-RPC protocol, you can add
-`ejabberd_xmlrpc` as a specific listener on a seperate port.
+`ejabberd_xmlrpc` as a specific listener on a separate port.
 
 Here is a example of the `listen` section in ejabberd configuration
 file, focusing on HTTP handlers:
@@ -156,7 +156,7 @@ Here is an example, for OAuth specific parameters configuration:
     oauth_expire: 3600
     oauth_access: all
 
-In the previous example, tokens expire after an hour. All commands in categorie
+In the previous example, tokens expire after an hour. All commands in category
 `user` are exposed. All users can create tokens, and admin access is granted to
 users that can pass the `configure` access rule defined in the config file.
 
@@ -204,8 +204,8 @@ Directing the user to this URL will present an authentication form
 summarizing what is the app requiring the token and the scope / rights
 that are going to be granted.
 
-The user can then put his login and password to confirm that he
-accepts granting delegating rights and confirms the token generation.
+The user can then put their login and password to confirm that they
+accept granting delegating rights and confirm the token generation.
 If the provided credentials are valid, the browser or webview will
 redirect the user to the redirect_uri, to actually let ejabberd pass
 the token to the app that requested it. It can be either a Web app or

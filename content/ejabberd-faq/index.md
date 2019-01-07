@@ -125,7 +125,7 @@ can also help tremendously.
 
 Yes. Our build system is primarily based on rebar. However, as we are
 multiplatform and need to run in many various environments, we rely on a
-toolchain that can detect required library dependancies using
+toolchain that can detect required library dependencies using
 autotools.
 
 This gives developers and admins the best of both worlds. A very

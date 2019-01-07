@@ -93,7 +93,7 @@ Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 	- Support for web clients: Support for [XMPP subprotocol for Websocket][9] and [`HTTP Binding (BOSH)`][10] services.
 	-   IRC transport.
 	-   SIP support.
-	-   Component support: interface with networks such as AIM, ICQ and MSN installing special tranports.
+	-   Component support: interface with networks such as AIM, ICQ and MSN installing special transports.
 
 [1]:	http://www.erlang.org/
 [2]:	http://tools.ietf.org/html/rfc3490

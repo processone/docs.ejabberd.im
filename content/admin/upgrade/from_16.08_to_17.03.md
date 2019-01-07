@@ -10,7 +10,7 @@ PubSub support before starting ejabberd 17.03.
 
 ## MySQL database upgrade
 
-If you're running MySQL, this change in not mandatory but highly recommanded
+If you're running MySQL, this change in not mandatory but highly recommended
 
 ```bash
 mysql -h host -u user database -p << EOF

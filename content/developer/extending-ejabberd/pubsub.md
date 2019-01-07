@@ -154,7 +154,7 @@ Simple plugin would just call `node_flat` and override some defaults such as:
 - Write your own tests on publish or create node, forbids explicit access to items, etc...
 
 # Clustering
-Ejabberd's implementation tends to cover most generic and standard uses. It's good for common use, but far from optimal for edges or specific cases.
+ejabberd's implementation tends to cover most generic and standard uses. It's good for common use, but far from optimal for edges or specific cases.
 Nodes, affiliations, subscriptions and items are stored in a replicated database.
 Each ejabberd node have access to all the data.
 Each ejabberd node handles part of the load, but keep locking database cluster wide on node records write (pubsub_node)

@@ -15,7 +15,7 @@ on your system:
   are installed, you can install the Command Line Tools for Xcode,
   available via Xcode or from the Apple Developer website.
 * Git
-* Erlang/OTP 17.5 or higher. We recommand using Erlang 20.2, latest
+* Erlang/OTP 19 or higher. We recommend using Erlang 20.2, latest
   version.
 * Autotools
 
@@ -27,6 +27,7 @@ are provided here:
 
 * Git: `brew install git`
 * Erlang /OTP: `brew install erlang`
+* Elixir: `brew install elixir`
 * Autoconf: `brew install autoconf`
 * Automake: `brew install automake`
 * Openssl: `brew install openssl`
@@ -34,15 +35,13 @@ are provided here:
 * Libyaml: `brew install libyaml`
 * Libiconv: `brew install libiconv`
 * Sqlite: `brew install sqlite`
+* GD: `brew install gd`
+* Rebar: `brew install rebar rebar3`
 
 You can install everything with a single command:
 
     
-    brew install git erlang autoconf automake expat openssl libyaml libiconv sqlite 
-
-Please, make sure that for OSX El Capitan you are aware of rootless
-feature and have read Homebrew documentation no that topic:
-[El Capitan & Homebrew](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/El_Capitan_and_Homebrew.md)
+    brew install erlang elixir openssl expat libyaml libiconv libgd sqlite rebar rebar3 automake autoconf 
 
 # Installation
 
@@ -58,21 +57,11 @@ To build and install ejabberd from source code, do the following:
         export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
         export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
         export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-        ./configure --prefix=$HOME/my-ejabberd --enable-mysql --disable-graphics
+        ./configure --prefix=$HOME/my-ejabberd --enable-sqlite
         make && make install
 
 Note that the previous command reference the previously installed
 dependencies from [Homebrew](http://brew.sh).
-
-The exports are sometimes needed to help the build chain find the
-libraries installed by Homebrew, not the one provided by OSX.
-
-However, often, it is just enough to for for Homebrew update its symlinks for OpenSSL:
-
-~~~ bash
-brew link openssl --force
-~~~
-
 
 # Running ejabberd
 
