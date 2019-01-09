@@ -468,13 +468,12 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	for example, the receiver of stanzas is too slow), the FSM and the
 	corresponding connection (if any) will be terminated and error
 	message will be logged. The reasonable value for this option depends
-	on your hardware configuration. However, there is no much sense to
-	set the size above 1000 elements. This option can be specified for
+	on your hardware configuration. This option can be specified for
 	`ejabberd_service` and `ejabberd_c2s` listeners, or also globally
 	for `ejabberd_s2s_out`. If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’5000’.
+	’undefined’. Default value: ’10000’.
 
 **`max_stanza_size: Size`**:   This option specifies an approximate maximum size in bytes of XML
 	stanzas. Approximate, because it is calculated with the precision of
