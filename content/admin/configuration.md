@@ -3669,7 +3669,7 @@ Module options:
 
 * **`mam: false|true`**:   Enable message archiving. Implies `mod_mam` is enabled.
 
-* **`max_users: 200`**:   Maximum number of occupants in the room.
+* **`max_users: Number`**:   Maximum number of occupants in the room. The default value is 200.
 
 * **`members_by_default: true|false`**:   The occupants that enter the room are participants by default,
 	    so they have ’voice’.
