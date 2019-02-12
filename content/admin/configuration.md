@@ -158,7 +158,7 @@ Examples:
 
 				
 		host_config:
-		  "example.net"
+		  "example.net":
 		    auth_method: internal
 		  "example.com":
 		    auth_method: ldap
