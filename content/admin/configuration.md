@@ -5379,10 +5379,10 @@ Example complex configuration:
 	  ...
 	  mod_sip:
 	    always_record_route: false
-	    record_route: sip:example.com;lr
+	    record_route: "sip:example.com"
 	    routes:
-	      - sip:example.com;lr
-	      - sip:sip.example.com;lr
+	      - "sip:example.com"
+	      - "sip:sip.example.com"
 	    flow_timeout_udp: 30
 	    flow_timeout_tcp: 130
 	    via:
