@@ -2014,6 +2014,18 @@ The following parameters are available:
 **`sql_password: String`**:   The password. The default is empty string. The option is valid
 	for `mysql`, `pgsql` and `mssql`.
 
+**`sql_ssl: Boolean`**:   use ssl if not set plain tcp. The default disabled. The option is valid
+	for `pgsql`.
+
+**`sql_ssl_verify: Boolean`**:   if set verify ssl connect. The default disabled. The option is valid
+	for `pgsql`.
+
+**`sql_ssl_cafile: String`**:  The path to a CA certificate file. The default none. The option is valid
+	for `pgsql`.
+
+**`sql_ssl_certfile: String`**:  The path to a client/authentication certificate file. The default none. The option is valid
+	for `pgsql`.
+
 **`sql_pool_size: N`**:   By default `ejabberd` opens 10 connections to the database for each
 	virtual host. You can change this number by using this option.
 
