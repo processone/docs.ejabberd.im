@@ -4711,15 +4711,23 @@ Examples:
 	or delete accounts, but allows existing accounts to change the
 	password:
 
-				
+			
+		acl:
+		  loopback:
+		    ip:
+		      - "127.0.0.0/8"
+
 		access_rules:
 		  register:
-		    - deny
-
+		    - allow
+		  trusted_network:
+		    - allow: loopback
+		    
 		modules:
 		  ...
 		  mod_register:
 		    access: register
+		    ip_access: trusted_network
 		  ...
 
 -   This configuration disables all In-Band Registration functionality:
