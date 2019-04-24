@@ -4718,15 +4718,12 @@ Examples:
 		      - "127.0.0.0/8"
 
 		access_rules:
-		  register:
-		    - allow
 		  trusted_network:
 		    - allow: loopback
 		    
 		modules:
 		  ...
 		  mod_register:
-		    access: register
 		    ip_access: trusted_network
 		  ...
 
