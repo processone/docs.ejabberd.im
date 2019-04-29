@@ -3262,6 +3262,8 @@ HTTP responses. Default: `[]`.
 **`rm_on_unregister: true|false`**: This option specifies whether files uploaded by a user should be
 removed when that user is unregistered. Default: `true`.
 
+**`external_secret: "text"`**: This option makes it possible to offload all HTTP Upload processing to a separate HTTP server. Both ejabberd and the HTTP server should share this secret and behave exactly as described at [Prosody's mod_http_upload_external](https://modules.prosody.im/mod_http_upload_external.html) in the 'Implementation' section. Default: `undefined`.
+
 Example:
 
 			
@@ -3285,6 +3287,16 @@ Example:
 	  mod_http_upload:
 	    docroot: "/ejabberd/upload"
 	    put_url: "https://@HOST@:5443/upload"
+	  ...
+
+And using a separate HTTP server to host the files:
+
+
+	modules:
+  	  ...
+	  mod_http_upload:
+	    put_url: "https://separate.http.server/upload"
+	    external_secret: "foo bar baz"
 	  ...
 
 ## mod_http_upload_quota
