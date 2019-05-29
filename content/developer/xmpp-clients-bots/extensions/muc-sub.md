@@ -282,8 +282,8 @@ Example: User unsubscribes from a MUC Room
 Example: A MUC Room responds to unsubscribe request
 
 ~~~ xml
-<iq from='hag66@shakespeare.example'
-    to='coven@muc.shakespeare.example'
+<iq from='coven@muc.shakespeare.example'
+    to='hag66@shakespeare.example'
     type='result'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7' />
 ~~~
@@ -470,10 +470,10 @@ Example: Server replies with subscriptions list
 </iq>
 ~~~
 
-A room moderator can get the list of subscribers by sending `<subscriptions/>`
-request directly to the room JID.
+A subscriber or room moderator can get the list of subscribers by sending
+`<subscriptions/>` request directly to the room JID.
 
-Example: Moderator asks for subscribers list
+Example: Asks for subscribers list
 
 ~~~ xml
 <iq from='hag66@shakespeare.example'

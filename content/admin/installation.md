@@ -44,7 +44,7 @@ You can read more on installer options on [unattended installation](/admin/guide
     - start the installation,
     - when asked by the Windows Firewall prompt, you can both times click "Cancel",
 6. After successful install, you should see on your Desktop two new shortcuts: "Start ejabberd" and "Stop ejabberd". **To start or stop ejabberd, righ-click on each shortcut and select "Run as Administrator", then confirm the Windows dialog by clicking "Yes".**
-7. After starting ejabberd, a welcome screen should open in your default browser. You can go to the web dashboard at `http://localhost:5280/admin` and type the username `admin` and the `password` for access. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
+7. After starting ejabberd, a welcome screen should open in your default browser. You can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@domain` (or `admin@localhost` as above). Then fill the password field with that account's `password`. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
 8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall.exe` in the directory where it was installed. By default, that's `\Program Files\ejabberd-YY.MM\uninstall.app`. The uninstaller will stop your ejabberd server and remove all its files. Log files may be left behind, so to completely remove ejabberd, just delete its main folder.
 
 ## Install on Linux
@@ -68,7 +68,7 @@ You can read more on installer options on [unattended installation](/admin/guide
     - selecting if this ejabberd instance will be part of a cluster: for simple local install, just select "No",
     - start the installation,
 6. After successful installation, let's launch ejabberd using the Terminal. In the command line, go to the installation folder and execute `./bin/ejabberdctl live`. This will start ejabberd in an interactive live mode with some useful messages printed in the Terminal.
-7. Now you can go to the web dashboard at `http://localhost:5280/admin` and type the username `admin` and the `password` for access. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
+7. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@domain` (or `admin@localhost` as above). Then fill the password field with that account's `password`. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
 8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall` in the directory where it was installed.
 
 ## Install on macOS
@@ -113,7 +113,7 @@ $ sudo spctl --master-enable
 1. Once you have Homebrew installed, open Terminal. Run `brew install ejabberd`. This should install the latest or at most the one-before-latest version of ejabberd. The installation directory should be reported at the end of this process, but usually the main executable is stored at `/usr/local/sbin/ejabberdctl`.
 2. Start your ejabberd by running `/usr/local/sbin/ejabberdctl live`. This interactive mode prints useful messages in the Terminal. The default domain used by Homebrew's ejabberd is `localhost`.
 3. Create an admin account by running `/usr/local/sbin/ejabberdctl register admin localhost password`. This creates an account `admin@localhost` with the specified `password`.
-4. Now you can go to the web dashboard at `http://localhost:5280/admin` and type the username `admin` and the `password` for access. Without configuration there's not much to see here, therefore the next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
+4. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@localhost`, then fill the password field with that account's `password`. Without configuration there's not much to see here, therefore the next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
 
 # Install from Source Code
 
@@ -130,7 +130,7 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   GCC
 -   Libexpat 1.95 or higher
 -   Libyaml 0.1.4 or higher
--   Erlang/OTP 17.5 or higher
+-   Erlang/OTP 19.1 or higher. We recommend using Erlang OTP 21.2.
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`][4]). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See section [pam][8].

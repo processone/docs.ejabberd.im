@@ -11,9 +11,10 @@ your schema may not have been updated already.
 If your users are using bookmarks, you also must migrate them to PEP before
 starting the service.
 
-If you're using ProcessOne installers, you MUST be aware API and all web
-ports are now using TLS, and served on port 5443 instead of 5280.
-If you're a packager, we highly recommend to apply this change as well.
+If you're using ProcessOne installers, you must be aware API and all web
+ports can use TLS, and served on port 5443 instead of 5280 in this case.
+Using TLS requires you to generate a valid certificate.
+If you're a packager, we recommend to apply this change when possible.
 
 ## Bookmarks and XEP-0411
 

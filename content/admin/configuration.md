@@ -158,7 +158,7 @@ Examples:
 
 				
 		host_config:
-		  "example.net"
+		  "example.net":
 		    auth_method: internal
 		  "example.com":
 		    auth_method: ldap
@@ -450,7 +450,8 @@ modules:
 	HTTP Bind enables access via HTTP requests to `ejabberd` from behind
 	firewalls which do not allow outgoing sockets on port 5222.
 
-Remember that you must also install and enable the module mod\_bosh
+Remember that you must also install and enable the module `mod\_bosh`,
+and the `ejabberd_c2s` listener must be available too.
 
 If HTTP Bind (BOSH) is enabled, it will be available at
 `http://server:port/bosh/`. Be aware that support for HTTP Bind
@@ -468,13 +469,12 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	for example, the receiver of stanzas is too slow), the FSM and the
 	corresponding connection (if any) will be terminated and error
 	message will be logged. The reasonable value for this option depends
-	on your hardware configuration. However, there is no much sense to
-	set the size above 1000 elements. This option can be specified for
+	on your hardware configuration. This option can be specified for
 	`ejabberd_service` and `ejabberd_c2s` listeners, or also globally
 	for `ejabberd_s2s_out`. If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’5000’.
+	’undefined’. Default value: ’10000’.
 
 **`max_stanza_size: Size`**:   This option specifies an approximate maximum size in bytes of XML
 	stanzas. Approximate, because it is calculated with the precision of
@@ -495,6 +495,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	    request_handlers:
 	      "/a/b": mod_foo
 	      "/bosh": mod_bosh
+	      "/mqtt": mod_mqtt
 
 **`check_from: true|false`**:   This option can be used with `ejabberd_service` only.
 	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
@@ -549,6 +550,8 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	[`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)) is available
 	on connections to the port.
 
+### Global Options
+
 There are some additional global options that can be specified in the
 ejabberd configuration file (outside `listen`):
 
@@ -559,6 +562,29 @@ ejabberd configuration file (outside `listen`):
   chains. Use this option when enabling options like `starttls` or
   `tls` in listeners `ejabberd_c2s`, `ejabberd_s2s` or
   `ejabberd_http`.
+
+**`c2s_cafile: Path`**: Full path to a file containing one or more CA
+  certificates in PEM format.  All client certificates should be
+  signed by one of these root CA certificates and should contain the
+  corresponding JID(s) in `subjectAltName` field.
+
+**`c2s_ciphers: Ciphers`**: OpenSSL ciphers list in the same format
+  accepted by ‘`openssl ciphers`’ command.
+
+**`c2s_dhfile: Path`**: Full path to a file containing custom DH
+  parameters. Such a file could be created with the command `openssl
+  dhparam -out dh.pem 2048`. If this option is not specified, default
+  parameters will be used, which might not provide the same level of
+  security as using custom parameters.
+
+**`c2s_protocol_options: ProtocolOpts`**: List of general options
+  relating to SSL/TLS. These map to [`OpenSSL’s
+  set_options()`](https://www.openssl.org/docs/man1.0.1/ssl/SSL_CTX_set_options.html).
+  The default entry is:
+  `"no_sslv3|cipher_server_preference|no_compression"`
+
+**`c2s_tls_compression: true|false`**: Whether to enable or disable
+  TLS compression for c2s connections.  The default value is `false`.
 
 **`s2s_use_starttls: false|optional|required|required_trusted`**:   This option defines if s2s connections don’t use STARTTLS
 	encryption; if STARTTLS can be used optionally; if STARTTLS is
@@ -589,7 +615,10 @@ ejabberd configuration file (outside `listen`):
 **`outgoing_s2s_timeout: Timeout`**:   The timeout in seconds for outgoing S2S connection attempts.
 
 **`s2s_access: Access`**:   The policy for incoming and outgoing s2s connections to other XMPP
-	servers. The default value is `all`.
+	servers. The default value is `all`. You can disable connections to other servers (federation)
+	here by setting it to `none`, but this will not block other locally hosted servers as, for performance
+	reasons, they are connected internally and not via the s2s module. To block even those you might
+	need to use an additional module, for example [`mod_isolation`](https://gist.github.com/zinid/2525b45610422838c87b88f2847f9bfe).
 
 **`s2s_dns_timeout: Timeout`**:   The timeout in seconds for DNS resolving. The default value is `10`.
 
@@ -718,7 +747,7 @@ In this example, the following configuration defines that:
 -   Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
 	all the IPv4 addresses. Note that it is also possible to serve them
 	on different ports. The second example in section [Managing: Web Admin](../guide/managing/#web-admin) shows
-	how exactly this can be done.
+	how exactly this can be done. A request handler to serve MQTT over Websocket is also defined.
 
 -   All users except for the administrators have a traffic of limit
 	1,000Bytes/second
@@ -807,6 +836,8 @@ In this example, the following configuration defines that:
 			    module: ejabberd_http
 			    web_admin: true
 			    http_bind: true
+			    request_handlers:
+                  "/mqtt": mod_mqtt
 			  -
 			    port: 4560
 			    module: ejabberd_xmlrpc
@@ -2014,6 +2045,18 @@ The following parameters are available:
 **`sql_password: String`**:   The password. The default is empty string. The option is valid
 	for `mysql`, `pgsql` and `mssql`.
 
+**`sql_ssl: Boolean`**:   use ssl if not set plain tcp.
+	The default value is `false`. The option is valid for `pgsql`.
+
+**`sql_ssl_verify: Boolean`**:   if set verify ssl connect.
+	The default value is `false`. The option is valid for `pgsql`.
+
+**`sql_ssl_cafile: String`**:  The path to a CA certificate file.
+	By default the option is not set. The option is valid for `pgsql`.
+
+**`sql_ssl_certfile: String`**:  The path to a client/authentication certificate file.
+	By default the option is not set. The option is valid for `pgsql`.
+
 **`sql_pool_size: N`**:   By default `ejabberd` opens 10 connections to the database for each
 	virtual host. You can change this number by using this option.
 
@@ -2504,7 +2547,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_announce](#mod-announce)                  | Manage announcements                                 | recommends `mod_adhoc`           |
 | [mod_block_strangers](#mod-block-strangers)    | Block packets from non-subscribers                   |                                  |
 | mod_blocking                                   | Simple Communications Blocking ([`XEP-0191`][39])    | `mod_privacy`                    |
-| [mod_bosh](#mod-bosh)                          | BOSH ([`XEP-0124`][69]) and XMPP over BOSH ([`XEP-0206`][70]) |                         |
+| [mod_bosh](#mod-bosh)                          | BOSH ([`XEP-0124`][69]) and XMPP over BOSH ([`XEP-0206`][70]) | `ejabberd_c2s` listener |
 | mod_caps                                       | Entity Capabilities ([`XEP-0115`][40])               |                                  |
 | mod_carboncopy                                 | Message Carbons ([`XEP-0280`][41])                   |                                  |
 | [mod_client_state](#mod-client-state)          | Filter stanzas for inactive clients                  |                                  |
@@ -2830,9 +2873,15 @@ To use XMPP over BOSH, enable the module:
 	  mod_bosh: {}
 	  ...
 
-and add `mod_bosh` in the HTTP listener service. For example:
+and add `mod_bosh` in the HTTP listener service, together with `ejabberd_c2s`. For example:
 
 	listen:
+	  -
+	    port: 5222
+	    module: ejabberd_c2s
+	    max_stanza_size: 65536
+	    shaper: c2s_shaper
+	    access: c2s
 	  ...
 	  -
 	    port: 5280
@@ -2917,32 +2966,34 @@ This module is an implementation of ([`XEP-0355`][123]). Only admin mode has bee
 
 Example:
 
-To use the module add `mod_delegation` to `modules` section:
-
-				
-		modules:
-		  ...
-		  mod_delegation: {}
-		  ...
-
-If you want to delegate namespaces to a component, specify them in the component configurations, e.g.:
+To use the module add `mod_delegation` to `modules` section. If you want to delegate namespaces to a component, specify them in the namespaces option, and associate them to a access rule, e.g.:
 
 
-				
-		listen:
-		  ...
-		  -
-		    port: 8888
-		    module: ejabberd_service
-		    hosts:
-		      "sat-pubsub.example.org":
-		        password: "secret"
-		    delegations:
+		module:
+		...
+		  mod_delegation:
+		    namespaces:
 		      "urn:xmpp:mam:1":
-		        filtering: ["node"]
+		         filtering: ["node"]
+		         access: external_mam
 		      "http://jabber.org/protocol/pubsub":
-		        filtering: []
+		      access: external_pubsub
 		  ...
+
+You'll also have to define the access rules to allow the component to handle the namespaces:
+
+		 access:
+		 ...
+		   external_pubsub:
+		     external_component: allow
+		   external_mam:
+		     external_component: allow
+
+		 acl:
+		 ...
+		   external_component:
+		     server:
+		       - "sat-pubsub.example.org"
 
 In the example above `sat-pubsub.example.org` will receive all `pubsub` requests and all `MAM` requests with the `node` filtering attribute presented in `<query/>`.
 
@@ -3262,6 +3313,12 @@ HTTP responses. Default: `[]`.
 **`rm_on_unregister: true|false`**: This option specifies whether files uploaded by a user should be
 removed when that user is unregistered. Default: `true`.
 
+**`external_secret: "text"`**: This option makes it possible to offload
+all HTTP Upload processing to a separate HTTP server. Both ejabberd and
+the HTTP server should share this secret and behave exactly as described
+at [Prosody's mod_http_upload_external](https://modules.prosody.im/mod_http_upload_external.html)
+in the 'Implementation' section. Default: `undefined`.
+
 Example:
 
 			
@@ -3285,6 +3342,16 @@ Example:
 	  mod_http_upload:
 	    docroot: "/ejabberd/upload"
 	    put_url: "https://@HOST@:5443/upload"
+	  ...
+
+And using a separate HTTP server to host the files:
+
+
+	modules:
+	  ...
+	  mod_http_upload:
+	    put_url: "https://separate.http.server/upload"
+	    external_secret: "foo bar baz"
 	  ...
 
 ## mod_http_upload_quota
@@ -3331,7 +3398,7 @@ in the following example.
 	    max_days: 100
 	  ...
 
-## mod_http_ws
+## ejabberd_http_ws
 
 This module enables XMPP communication over Websocket connection as
 described in [`RFC 7395`][71].
@@ -3354,6 +3421,13 @@ section of `ejabberd_http` listener:
 
 This module can be configured by using those options that should be
 placed in general section of config file:
+
+- **`websocket_origin: ignore|URL`**: This option enables validation for `"Origin"` header
+to protect against connections from other domains than given in config.
+In this way, the lower layer load balancer can get chosen for a specific
+ejabberd implementation while still providing a secure websocket connection.
+Default value of this option is `ignore`.
+Example value of URL: `"https://test.example.org:8081"`
 
 - **`websocket_ping_interval: Seconds`**: Defines time between pings send by server to client (Websocket level
 protocol pings are used for this) to keep connection active. If client
@@ -3465,6 +3539,11 @@ Options:
 
 **`use_cache: false|true`**: Use this option and related ones as
   explained in section [Caching](#caching).
+  
+**`user_mucsub_from_muc_archive: false|true`**: this option is used
+to enable storage optimization when using MucSub on large chat rooms along
+with MAM. The default is `false` (disabled), to keep former behaviour as 
+default.
 
 ## mod_mix
 
@@ -3541,6 +3620,10 @@ Module options:
 	local ejabberd server is allowed to create rooms.
 
 **`access_persistent: AccessName`**:   To configure who is allowed to modify the ’persistent’ room option.
+	By default any account in the local ejabberd server is allowed to
+	modify that option.
+
+**`access_mam: AccessName`**:   To configure who is allowed to modify the ’mam’ room option.
 	By default any account in the local ejabberd server is allowed to
 	modify that option.
 
@@ -3669,7 +3752,7 @@ Module options:
 
 * **`mam: false|true`**:   Enable message archiving. Implies `mod_mam` is enabled.
 
-* **`max_users: 200`**:   Maximum number of occupants in the room.
+* **`max_users: Number`**:   Maximum number of occupants in the room. The default value is 200.
 
 * **`members_by_default: true|false`**:   The occupants that enter the room are participants by default,
 	    so they have ’voice’.
@@ -4112,6 +4195,21 @@ global option `default_db`, or `mnesia` if omitted. If `sql` or
 **`pool_size: Size`**: This option specifies the size of the worker pool for storing
 	offline messages. The allowed values are positive integers.
 	Default value: `16`.
+	
+**`bounce_groupchat: false|true`**: This option is use the disable an optimisation that avoids bouncing error messages 
+when groupchat messages could not be stored as offline. It will reduce chat room load, without any drawback in standard 
+use cases. You may change default value only if you have a custom module which uses offline hook after mod_offline. 
+This option  can be useful for both standard MUC and MucSub, but the bounce is much more likely to happen in the
+context of MucSub, so it is even more important to have it on large MucSub services.The default is `false`, meaning 
+the optimisation is enabled.
+
+**`use_mam_for_storage: false|true`*: This is an experimetal option. Enabling this option will make mod_offline not 
+use the former spool table for storing MucSub offline messages, but will use the archive table instead. This use of 
+the archive table is cleaner and it makes it possible for clients to slowly drop the former offline use case and rely 
+on message archive instead. It also further reduce the storage required when you enabled MucSub. Enabling this option 
+has a known drawback for the moment: most of flexible message retrieval queries don’t work (those that allow 
+retrieval/deletion of messages by id), but this specification is not widely used. The default value is `false` to 
+keep former behaviour as default and ensure this option is disabled.
 
 ### Example Configuration
 
@@ -5379,10 +5477,10 @@ Example complex configuration:
 	  ...
 	  mod_sip:
 	    always_record_route: false
-	    record_route: sip:example.com;lr
+	    record_route: "sip:example.com;lr"
 	    routes:
-	      - sip:example.com;lr
-	      - sip:sip.example.com;lr
+	      - "sip:example.com;lr"
+	      - "sip:sip.example.com;lr"
 	    flow_timeout_udp: 30
 	    flow_timeout_tcp: 130
 	    via:

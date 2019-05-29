@@ -5,6 +5,7 @@ order: 20
 ---
 
 - [Configuring ejabberd to support specific XMPP Extensions][11]
+- [MQTT Support][16]
 - [Step-by-step Databases Configuration][10]
 - [Managing an ejabberd server][4]
 - [Securing ejabberd][5]
@@ -27,3 +28,4 @@ order: 20
 [13]:   oauth/
 [14]:   /admin/ejabberdctl/
 [15]:   /admin/contrib/
+[16]:   mqtt/

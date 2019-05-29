@@ -17,7 +17,10 @@ done as follow:
     git clone https://github.com/processone/ejabberd.git
     ~~~
 
-2. Build ejabberd with `mix` like any standard Elixir project:
+2. Make sure you have all dependencies installed. For example, on MacOS, you need to use Homebrew and [set up your 
+   environment](https://docs.ejabberd.im/admin/installation/#macos).    
+
+3. Build ejabberd with `mix` like any standard Elixir project:
 
     ~~~ python
     cd ejabberd/
@@ -25,19 +28,16 @@ done as follow:
     mix compile
     ~~~
 
-3. Configure ejabberd. You can create `config/ejabberd.yml` file from scratch or, as shown, start from a template one:
+4. Configure ejabberd. You can create `config/ejabberd.yml` file from scratch or, as shown, start from a template one:
 
     ~~~ python
-    (cd config; wget https://gist.githubusercontent.com/mremond/383666d563025e86adfe/raw/723dfa50c955c112777f3361b4f2067b76a55d7b/ejabberd.yml)
+    (cd config; wget https://gist.githubusercontent.com/mremond/e3a05f7a18f87c4c5145547a3fd3e9e1/raw/a412004b37c7fa7f1d1f7179b4cc73045b9b8da9/ejabberd.yml)
     ~~~
 
-4. Create `log` directory, as defined in `config/config.exs`:
+5. Adapt configuration file to your needs. You can modify the standard `config/ejabberd.yml` file or use 
+the experimental Elixir config file `config/ejabberd.exs`. To use it, change the file to use in `config/config.exs`.
 
-    ~~~ python
-    mkdir log
-    ~~~
-
-5. Start ejabberd with standard Elixir tools:
+6. Start ejabberd with standard Elixir tools:
 
     ~~~ python
     iex -S mix
@@ -128,27 +128,18 @@ through the following steps, starting with creating a new Elixir app with mix:
      defmodule Ejapp.Mixfile do
      ...
        defp deps do
-         [{:ejabberd, "~> 16.6"}]
+         [{:ejabberd, "~> 19.2"}]
        end
      end
      ~~~
 
-1. Start ejabberd application from `mix.exs` when your app is started, after Elixir logger:
-
-     ~~~ elixir
-     defmodule Ejapp.Mixfile do
-     ...
-       def application do
-         [applications: [:logger, :ejabberd]]
-       end
-     ...
-     end
-     ~~~
+1. As you added ejabberd as a dependency, there is *no need* to explicitely start it in extra_applications list with 
+latest Elixir and `mix` versions. ejabberd start will be properly inferred by `mix` and started accordingly.
 
 1. Create or get ejabberd config file:
 
      ~~~ bash
-     (cd config; wget https://gist.githubusercontent.com/mremond/383666d563025e86adfe/raw/723dfa50c955c112777f3361b4f2067b76a55d7b/ejabberd.yml)
+     (cd config; wget https://gist.githubusercontent.com/mremond/e3a05f7a18f87c4c5145547a3fd3e9e1/raw/a412004b37c7fa7f1d1f7179b4cc73045b9b8da9/ejabberd.yml)
      ~~~
 
 1. Define ejabberd configuration reference in `config/config.exs`:
