@@ -589,8 +589,10 @@ ejabberd configuration file (outside `listen`):
 **`s2s_use_starttls: false|optional|required|required_trusted`**:   This option defines if s2s connections don’t use STARTTLS
 	encryption; if STARTTLS can be used optionally; if STARTTLS is
 	required to establish the connection; or if STARTTLS is required and
-	the remote certificate must be valid and trusted. The default value
-	is to not use STARTTLS: `false`.
+	the remote certificate must be valid and trusted. Do note that
+	`required_trusted` is deprecated and will be unsupported in future
+	releases. Instead, set it to `required` and make sure `mod_s2s_dialback`
+	is *NOT* loaded. The default value is to not use STARTTLS: `false`.
 
 **`s2s_certfile: Path`**:   Full path to a file containing a SSL certificate.
 
