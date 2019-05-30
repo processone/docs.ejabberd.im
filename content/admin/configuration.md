@@ -6023,4 +6023,5 @@ Options:
 [123]:  http://xmpp.org/extensions/xep-0355.html
 [124]:  http://xmpp.org/extensions/xep-0356.html
 [125]:  http://xmpp.org/extensions/xep-0198.html
+[126]:  http://xmpp.org/extensions/xep-0357.html
 [127]:  http://xmpp.org/extensions/xep-0220.html
