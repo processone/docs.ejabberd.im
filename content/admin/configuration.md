@@ -3549,9 +3549,9 @@ default.
 
 This module is an experimental implementation Mediated Information
 eXchange (MIX) as described in [`XEP-0369`][122]. Our implementation is
-based on version 0.1.
+based on version 0.13.0.
 
-This feature was added in ejabberd 16.03 as an experimental feature
+This feature was updated in ejabberd 19.02 as an experimental feature
 and is not yet ready to use in production.
 
 To learn more about how to use that feature, you can refer to our
