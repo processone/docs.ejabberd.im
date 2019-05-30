@@ -4960,6 +4960,11 @@ everybody else cannot modify the roster:
 	    access: roster
 	  ...
 
+## mod_s2s_dialback
+
+This module adds support for the Server Dialback protocol ([`XEP-0220`][127])
+to provide identity verification based on DNS.
+
 ## mod_service_log
 
 This module adds support for logging end user packets via a XMPP message
@@ -6018,4 +6023,4 @@ Options:
 [123]:  http://xmpp.org/extensions/xep-0355.html
 [124]:  http://xmpp.org/extensions/xep-0356.html
 [125]:  http://xmpp.org/extensions/xep-0198.html
-[126]:  http://xmpp.org/extensions/xep-0357.html
+[127]:  http://xmpp.org/extensions/xep-0220.html
