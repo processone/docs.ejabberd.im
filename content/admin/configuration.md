@@ -4809,15 +4809,10 @@ Examples:
 	or delete accounts, but allows existing accounts to change the
 	password:
 
-				
-		access_rules:
-		  register:
-		    - deny
-
 		modules:
 		  ...
 		  mod_register:
-		    access: register
+		    access: none
 		  ...
 
 -   This configuration disables all In-Band Registration functionality:
