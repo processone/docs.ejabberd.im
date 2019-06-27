@@ -106,6 +106,7 @@ If you want to use new MQTT feature, you need to create a table:
 ```sql
 CREATE TABLE mqtt_pub (
     username varchar(191) NOT NULL,
+    server_host varchar(191) NOT NULL,
     resource varchar(191) NOT NULL,
     topic text NOT NULL,
     qos tinyint NOT NULL,
@@ -116,7 +117,7 @@ CREATE TABLE mqtt_pub (
     correlation_data blob NOT NULL,
     user_properties blob NOT NULL,
     expiry int unsigned NOT NULL,
-    UNIQUE KEY i_mqtt_topic (topic(191))
+    UNIQUE KEY i_mqtt_topic_server (topic(191))
 );
 ```
 
@@ -264,6 +265,7 @@ If you want to use new MQTT feature, you need to create a table:
 ```sql
 CREATE TABLE mqtt_pub (
     username text NOT NULL,
+    server_host text NOT NULL,
     resource text NOT NULL,
     topic text NOT NULL,
     qos smallint NOT NULL,
@@ -276,5 +278,5 @@ CREATE TABLE mqtt_pub (
     expiry bigint NOT NULL
 );
 
-CREATE UNIQUE INDEX i_mqtt_topic ON mqtt_pub (topic);
+CREATE UNIQUE INDEX i_mqtt_topic_server ON mqtt_pub (topic);
 ```
