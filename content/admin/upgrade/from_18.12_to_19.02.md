@@ -184,6 +184,7 @@ If you want to use new MQTT feature, you need to create a table:
 ```sql
 CREATE TABLE mqtt_pub (
     username text NOT NULL,
+    server_host text NOT NULL,
     resource text NOT NULL,
     topic text NOT NULL,
     qos smallint NOT NULL,
@@ -196,7 +197,7 @@ CREATE TABLE mqtt_pub (
     expiry bigint NOT NULL
 );
 
-CREATE UNIQUE INDEX i_mqtt_topic ON mqtt_pub (topic);
+CREATE UNIQUE INDEX i_mqtt_topic_server ON mqtt_pub (topic, server_host);
 ```
 
 ### SQLite
