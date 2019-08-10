@@ -417,7 +417,7 @@ modules:
 	‘`openssl ciphers`’ command.
 
 **`protocol_options: ProtocolOpts`**:   List of general options relating to SSL/TLS. These map to
-	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/man1.0.1/ssl/SSL_CTX_set_options.html).
+	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_options.html).
 	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
 
 **`default_host: undefined|HostName`**:   If the HTTP request received by ejabberd contains the HTTP header
