@@ -417,10 +417,10 @@ XML-RPC code can be used:
 
 Or this equivalent Python script:
 
-    import xmlrpclib
+    from xmlrpc import client
 
     server_url = 'http://127.0.0.1:4560'
-    server = xmlrpclib.ServerProxy(server_url)
+    server = client.ServerProxy(server_url)
 
     LOGIN = {'user': 'admin', 'server': 'example.com',
 	'token': '0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L',
@@ -431,7 +431,7 @@ Or this equivalent Python script:
 	return fn(LOGIN, data)
 
     result = calling('get_roster', {'user':'peter', 'server':'example.com'})
-    print result
+    print(result)
 
 that would send this XML to server:
 
