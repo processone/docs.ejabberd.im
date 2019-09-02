@@ -48,6 +48,8 @@ means that a module must provide the following API:
 ~~~ erlang
 start(Host, Opts) -> ok
 stop(Host) -> ok
+depends(Host, Opts) -> []
+mod_options(Host) -> []
 ~~~
 
 Parameters are:
@@ -77,7 +79,7 @@ The following code shows the simplest possible module.
 -include("logger.hrl").
 
 %% gen_mod API callbacks
--export([start/2, stop/1]).
+-export([start/2, stop/1, depends/2, mod_options/1]).
 
 start(_Host, _Opts) ->
     ?INFO_MSG("Hello, ejabberd world!", []),
@@ -86,6 +88,12 @@ start(_Host, _Opts) ->
 stop(_Host) ->
     ?INFO_MSG("Bye bye, ejabberd world!", []),
     ok.
+
+depends(_Host, _Opts) ->
+    [].
+
+mod_options(_Host) ->
+    [].
 ~~~
 
 Now you have two ways to compile and install the module:

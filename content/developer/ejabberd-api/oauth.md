@@ -415,8 +415,9 @@ XML-RPC code can be used:
                   {server, "example.com"}]}]},
       false, 60000, "Host: localhost\r\n", []).
 
-Or this equivalent Python script:
+This is an equivalent Python 2 script:
 
+    
     import xmlrpclib
 
     server_url = 'http://127.0.0.1:4560'
@@ -433,7 +434,26 @@ Or this equivalent Python script:
     result = calling('get_roster', {'user':'peter', 'server':'example.com'})
     print result
 
-that would send this XML to server:
+And this is an equivalent Python 3 script:
+
+    
+    from xmlrpc import client
+
+    server_url = 'http://127.0.0.1:4560'
+    server = client.ServerProxy(server_url)
+
+    LOGIN = {'user': 'admin', 'server': 'example.com',
+	'token': '0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L',
+	'admin': True}
+
+    def calling(command, data):
+	fn = getattr(server, command)
+	return fn(LOGIN, data)
+
+    result = calling('get_roster', {'user':'peter', 'server':'example.com'})
+    print(result)
+
+Those calls would send this XML to server:
 
     
     <?xml version="1.0" encoding="UTF-8"?>

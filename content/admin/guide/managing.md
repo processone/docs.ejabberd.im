@@ -162,9 +162,10 @@ a defined number and type of calling arguments and type of result that
 is registered in the `ejabberd_commands` service. Those commands can be
 defined in any Erlang module and executed using any valid frontend.
 
-`ejabberd` includes two frontends to execute `ejabberd commands`: the
-script `ejabberdctl` (see [ejabberdctl](#ejabberdctl)) and the `ejabberd_xmlrpc`
-listener (see [Listening Ports](../configuration/#listening-ports)).
+`ejabberd` includes three frontends to execute `ejabberd commands`:
+the script `ejabberdctl` (see [ejabberdctl](#ejabberdctl)),
+the `ejabberd_xmlrpc` listener (see [Listening Ports](../configuration/#listening-ports))
+and `mod_http_api` (see [mod_http_api](../configuration/#mod-http-api)).
 Other known frontends that can be installed to
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).

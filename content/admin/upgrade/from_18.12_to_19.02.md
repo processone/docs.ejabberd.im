@@ -26,7 +26,7 @@ modules:
 
 ## Database
 
-If you want to use lastest MIX (XEP-0369) with an SQL backend then
+If you want to use latest MIX (XEP-0369) with an SQL backend then
 you have to create new tables.
 
 If you have issues using PEP and MySQL, you should update your schema.
@@ -101,7 +101,29 @@ CREATE UNIQUE INDEX i_mix_pam ON mix_pam (username(191), channel(191), service(1
 CREATE INDEX i_mix_pam_u ON mix_pam (username(191));
 ```
 
-If you want to use new MQTT feature, you need to create a table:
+If you want to use new MQTT feature, you need to create a table.
+
+If you're using the new schema (`new_sql_schema`):
+
+```sql
+CREATE TABLE mqtt_pub (
+    username varchar(191) NOT NULL,
+    server_host varchar(191) NOT NULL,
+    resource varchar(191) NOT NULL,
+    topic text NOT NULL,
+    qos tinyint NOT NULL,
+    payload blob NOT NULL,
+    payload_format tinyint NOT NULL,
+    content_type text NOT NULL,
+    response_topic text NOT NULL,
+    correlation_data blob NOT NULL,
+    user_properties blob NOT NULL,
+    expiry int unsigned NOT NULL,
+    UNIQUE KEY i_mqtt_topic_server (topic(191))
+);
+```
+
+If you're using the old schema:
 
 ```sql
 CREATE TABLE mqtt_pub (
@@ -179,7 +201,30 @@ CREATE UNIQUE INDEX i_mix_pam ON mix_pam (username, channel, service);
 CREATE INDEX i_mix_pam_us ON mix_pam (username);
 ```
 
-If you want to use new MQTT feature, you need to create a table:
+If you want to use new MQTT feature, you need to create a table.
+
+If you're using the new schema (`new_sql_schema`):
+
+```sql
+CREATE TABLE mqtt_pub (
+    username text NOT NULL,
+    server_host text NOT NULL,
+    resource text NOT NULL,
+    topic text NOT NULL,
+    qos smallint NOT NULL,
+    payload bytea NOT NULL,
+    payload_format smallint NOT NULL,
+    content_type text NOT NULL,
+    response_topic text NOT NULL,
+    correlation_data bytea NOT NULL,
+    user_properties bytea NOT NULL,
+    expiry bigint NOT NULL
+);
+
+CREATE UNIQUE INDEX i_mqtt_topic_server ON mqtt_pub (topic, server_host);
+```
+
+If you're using the old schema:
 
 ```sql
 CREATE TABLE mqtt_pub (
@@ -196,7 +241,7 @@ CREATE TABLE mqtt_pub (
     expiry bigint NOT NULL
 );
 
-CREATE UNIQUE INDEX i_mqtt_topic ON mqtt_pub (topic);
+CREATE UNIQUE INDEX i_mqtt_topic ON mqtt_pub (topic, server_host);
 ```
 
 ### SQLite
@@ -258,7 +303,30 @@ CREATE UNIQUE INDEX i_mix_pam ON mix_pam (username, channel, service);
 CREATE INDEX i_mix_pam_us ON mix_pam (username);
 ```
 
-If you want to use new MQTT feature, you need to create a table:
+If you want to use new MQTT feature, you need to create a table.
+
+If you're using the new schema (`new_sql_schema`):
+
+```sql
+CREATE TABLE mqtt_pub (
+    username text NOT NULL,
+    server_host text NOT NULL,
+    resource text NOT NULL,
+    topic text NOT NULL,
+    qos smallint NOT NULL,
+    payload blob NOT NULL,
+    payload_format smallint NOT NULL,
+    content_type text NOT NULL,
+    response_topic text NOT NULL,
+    correlation_data blob NOT NULL,
+    user_properties blob NOT NULL,
+    expiry bigint NOT NULL
+);
+
+CREATE UNIQUE INDEX i_mqtt_topic_server ON mqtt_pub (topic);
+```
+
+If you're using the old schema:
 
 ```sql
 CREATE TABLE mqtt_pub (

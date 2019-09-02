@@ -49,6 +49,7 @@ This includes:
 
 * [Fastmail](https://blog.fastmail.com/2011/08/24/new-xmppjabber-server/)
 * GMX
+* [Mailfence](https://blog.mailfence.com/mailfence-groups/)
 * Orange
 * [SAPO - Portugal Telecom](https://www.process-one.net/resources/case_studies/ProcessOne_SAPO_Case_Study_v7.pdf)
 

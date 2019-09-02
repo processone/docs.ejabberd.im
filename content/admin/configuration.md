@@ -417,7 +417,7 @@ modules:
 	‘`openssl ciphers`’ command.
 
 **`protocol_options: ProtocolOpts`**:   List of general options relating to SSL/TLS. These map to
-	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/man1.0.1/ssl/SSL_CTX_set_options.html).
+	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_options.html).
 	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
 
 **`default_host: undefined|HostName`**:   If the HTTP request received by ejabberd contains the HTTP header
@@ -589,8 +589,10 @@ ejabberd configuration file (outside `listen`):
 **`s2s_use_starttls: false|optional|required|required_trusted`**:   This option defines if s2s connections don’t use STARTTLS
 	encryption; if STARTTLS can be used optionally; if STARTTLS is
 	required to establish the connection; or if STARTTLS is required and
-	the remote certificate must be valid and trusted. The default value
-	is to not use STARTTLS: `false`.
+	the remote certificate must be valid and trusted. Do note that
+	`required_trusted` is deprecated and will be unsupported in future
+	releases. Instead, set it to `required` and make sure `mod_s2s_dialback`
+	is *NOT* loaded. The default value is to not use STARTTLS: `false`.
 
 **`s2s_certfile: Path`**:   Full path to a file containing a SSL certificate.
 
@@ -1244,6 +1246,27 @@ introduces some security issues:
 -   If you use `pam_winbind` to authorise against a Windows Active
 	Directory, then `/etc/nsswitch.conf` must be configured to use
 	`winbind` as well.
+
+### JWT Authentication
+
+`ejabberd` supports authentication using JSON Web Token (JWT).  When enabled,
+clients send signed tokens instead of passwords, which are checked using a
+private key specified in the `jwt_key` option.  JWT payload must look like
+this:
+
+    {
+      "jid": "test@example.org",
+      "exp": 1564436511
+    }
+
+Options:
+
+**`jwt_key: Path`**:   Full path to a file containing the JWT private key.
+
+Example:
+
+	auth_method: jwt
+	jwt_key: "/path/to/jwt/key"
 
 ## Access Rules
 
@@ -2556,6 +2579,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_disco](#mod-disco)                        | Service Discovery ([`XEP-0030`][42])                 |                                  |
 | [mod_echo](#mod-echo)                          | Echoes XMPP stanzas                                  |                                  |
 | [mod_fail2ban](#mod-fail2ban)                  | Bans IPs that show the malicious signs               |                                  |
+| [mod_http_api](#mod-http-api)                  | REST API for ejabberd using JSON data                |                                  |
 | [mod_http_fileserver](#mod-http-fileserver)    | Small HTTP file server                               |                                  |
 | [mod_http_upload](#mod-http-upload)            | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
 | [mod_http_upload_quota](#mod-http-upload-quota)| HTTP File Upload Quotas                              | `mod_http_upload`                |
@@ -2580,6 +2604,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_register](#mod-register)                  | In-Band Registration ([`XEP-0077`][54])              |                                  |
 | [mod_register_web](#mod-register-web)          | Web for Account Registrations                        |                                  |
 | [mod_roster](#mod-roster)                      | Roster management (XMPP IM)                          |                                  |
+| [mod_s2s_dialback](#mod-s2s-dialback)          | Server Dialback ([`XEP-0220`][127])                  |                                  |
 | [mod_service_log](#mod-service-log)            | Copy user messages to logger service                 |                                  |
 | [mod_shared_roster](#mod-shared-roster)        | Shared roster management                             | `mod_roster`                     |
 | [mod_shared_roster_ldap](#mod-shared-roster-ldap) | LDAP Shared roster management                        | `mod_roster`                     |
@@ -2982,12 +3007,12 @@ To use the module add `mod_delegation` to `modules` section. If you want to dele
 
 You'll also have to define the access rules to allow the component to handle the namespaces:
 
-		 access:
+		 access_rules:
 		 ...
 		   external_pubsub:
-		     external_component: allow
-		   external_mam:
-		     external_component: allow
+		          - allow: external_component
+	       external_mam:
+		          - allow: external_component
 
 		 acl:
 		 ...
@@ -3161,6 +3186,65 @@ Example:
 from the load balancer and, when the threshold of auth failures is reached, will reject all connections coming from the
 load balancer. You can lock all your user base out of ejabberd when using `mod_fail2ban` behind a proxy.
 
+## mod_http_api
+
+This module provides a ReST API to call ejabberd commands using JSON data.
+
+To start using it, simply add it as a request handler, for example:
+
+			
+	listen:
+	  -
+	    port: 5280
+	    module: ejabberd_http
+	    request_handlers:
+	      "/api": mod_http_api
+
+To use a specific API version N, add a vN element in the URL path, like:
+
+			
+	      "/api/v2": mod_http_api
+
+Access rights are defined with those global options:
+
+			
+	commands_admin_access: configure
+	commands:
+	  - add_commands: user
+
+`add_commands` allows exporting a class of commands, from
+
+-   `open`: methods that are not risky and can be called without any access check
+
+-   `restricted`: the same, but will appear only in ejabberdctl list. This is the default.
+
+-   `admin`: auth is required with XMLRPC and HTTP API and checked for admin privileges, works as usual in ejabberdctl.
+
+-   `user`: can be used through XMLRPC and HTTP API, even by user. Only admin can use the commands for other users.
+
+Then, to run a command, send a POST request to the following URL:
+`http://localhost:5280/api/<command_name>`
+
+It's also possible to enable unrestricted access to some commands from group
+of IP addresses by using option `admin_ip_access` by having fragment like
+this in configuration file:
+
+			
+	modules:
+	  mod_http_api:
+	    admin_ip_access: admin_ip_access_rule
+	
+	access:
+	  admin_ip_access_rule:
+	    admin_ip_acl:
+	      - command1
+	      - command2
+	      ## use `all` to give access to all commands
+	
+	acl:
+	  admin_ip_acl:
+	    ip:
+	      - "127.0.0.1/8"
 
 ## mod_http_fileserver
 
@@ -3549,10 +3633,10 @@ default.
 
 This module is an experimental implementation Mediated Information
 eXchange (MIX) as described in [`XEP-0369`][122]. Our implementation is
-based on version 0.1.
+based on version 0.13.0.
 
-This feature was added in ejabberd 16.03 as an experimental feature
-and is not yet ready to use in production.
+This feature was added in ejabberd 16.03 as an experimental feature,
+updated in 19.02, and is not yet ready to use in production.
 
 To learn more about how to use that feature, you can refer to our
 tutorial:
@@ -4366,32 +4450,18 @@ Options:
 
 ## mod_privilege
 
-This module is an implementation of ([`XEP-0356`][124]). This extension allows components to have privileged access to other entity data (send messages on behalf of the server, get/set user roster, access presence information). This may be applied for external PEP service.
-
-Example:
-
-If you want to grant privileged access to a component, specify it in the component configurations, e.g.:
-
-				
-		listen:
-		  ...
-		  -
-		    port: 8888
-		    module: ejabberd_service
-		    hosts:
-		      "sat-pubsub.example.org":
-		        password: "secret"
-		    privilege_access:
-		      roster: "get"
-		      message: "outgoing"
-		  ...
-
-In the example above, the `sat-pubsub.example.org` component can get the roster of every user of the server and send messages on behalf of the server.
+This module is an implementation of ([`XEP-0356`][124]). This extension allows components to have privileged access to
+other entity data (send messages on behalf of the server or on behalf of a user, get/set user roster, access presence
+information, etc.). This may be used to write powerful external components, for example implementing an external PEP
+([XEP-0163: Personal Eventing Protocol](https://xmpp.org/extensions/xep-0163.html)) or MAM 
+([XEP-0313: Message Archive Management](https://xmpp.org/extensions/xep-0313.html)) service.
 
 ### Permission list
-By default a component does not have any privileged access. It is worth noting that the permissions listed below give access to data belonging to all server users.
 
-Possible permissions:
+By default a component does not have any privileged access. It is worth noting that the permissions listed below
+grant access to the component to a specific data type for all users of the domain.
+
+When configuring `mod_privilege` module, here are the available permissions:
 
 * presence
   * managed_entity: receive server user presence.
@@ -4402,11 +4472,76 @@ Possible permissions:
   * get: read access to a user's roster.
   * set: write access to a user's roster.
   * both: read/write access to a user's roster.
+  
+You grant access to the component by providing an ACL to apply to that permission or `all` to give that access level to all
+authenticated components. 
+
+### Example
+
+If you want to grant privileged access to a component, specify it in the module configurations, e.g.:
+
+```yaml
+module:
+...
+  mod_privilege:
+    roster:
+      get: all
+    presence:
+      managed_entity: all
+    message:
+      outgoing: all
+```
+
+In the example above, the `sat-pubsub.example.org` component can get the roster of every user of the server and send
+messages on behalf of the server.
+
+Note: You need to make sure you have a listener configured to connect your component. Check the
+[listener](#listening-ports) section for more information.
+
+Here is a more complete example, with ACL and support for namespace delegation
+([XEP-0355](https://xmpp.org/extensions/xep-0355.html)):
+
+```yaml
+listen:
+...
+  - port: 8888
+    module: ejabberd_service
+    hosts:
+      "sat-pubsub.example.org":
+        password: "mypass"
+        
+acl:
+...
+  external_component:
+    server:
+      - "sat-pubsub.example.org"
+
+access_rules:
+...
+  external_pubsub:
+    - allow: external_component
+
+module:
+...
+  mod_delegation:
+    namespaces:
+      "http://jabber.org/protocol/pubsub":
+         access: external_pubsub
+  mod_privilege:
+    roster:
+      get: external_pubsub
+    presence:
+      managed_entity: external_pubsub
+    message:
+      outgoing: external_pubsub
+```
 
 ### Security issue
+
 Privileged access gives components access to sensitive data, so permission should be granted carefully, only if you trust a component. 
 
 ### Note
+
 This module is complementary to `mod_delegation` ([`XEP-0355`][123]) but can also be used separately.
 
 ## mod_proxy65
@@ -4959,6 +5094,11 @@ everybody else cannot modify the roster:
 	  mod_roster:
 	    access: roster
 	  ...
+
+## mod_s2s_dialback
+
+This module adds support for the Server Dialback protocol ([`XEP-0220`][127])
+to provide identity verification based on DNS.
 
 ## mod_service_log
 
@@ -5553,7 +5693,12 @@ Options:
 	queued for possible retransmission.
 	When the limit is exceeded, the client session is
 	terminated. The allowed values are positive integers and `infinity`.
-	Default value: `1000`.
+	You should be careful when setting this value as it should not be set too low,
+	otherwise, you could killed sessions in loop, before they get the chance to finish
+	proper session initiation. It should definitely be set higher that the size of the
+	offline queue (for example at least 3 times the value of the max offline queue and never
+	lower than 1000). 
+	Default value: `5000`.
 
 **`max_resume_timeout: Seconds`**:   A client may specify the number of
 	seconds until a session times out if the connection is lost. During
@@ -6019,3 +6164,4 @@ Options:
 [124]:  http://xmpp.org/extensions/xep-0356.html
 [125]:  http://xmpp.org/extensions/xep-0198.html
 [126]:  http://xmpp.org/extensions/xep-0357.html
+[127]:  http://xmpp.org/extensions/xep-0220.html
