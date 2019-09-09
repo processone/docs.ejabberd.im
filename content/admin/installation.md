@@ -280,9 +280,9 @@ exports your custom path to let configure and make be aware of them.
 ``` bash
 brew install git erlang elixir openssl expat libyaml libiconv libgd sqlite rebar rebar3 automake autoconf 
 export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
-export CFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
+export CFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/include -I/usr/local/opt/expat/include"
 export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"
-./configure --enable-sqlite
+./configure
 make
 ```
 
