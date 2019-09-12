@@ -2583,6 +2583,7 @@ The following table lists all modules included in `ejabberd`.
 | [mod_http_fileserver](#mod-http-fileserver)    | Small HTTP file server                               |                                  |
 | [mod_http_upload](#mod-http-upload)            | HTTP File Upload ([`XEP-0363`][120])                 |                                  |
 | [mod_http_upload_quota](#mod-http-upload-quota)| HTTP File Upload Quotas                              | `mod_http_upload`                |
+| [mod_jidprep](#mod-jidprep)                    | JID Prep ([`XEP-0328`][128])                         |                                  |
 | [mod_last](#mod-last)                          | Last Activity ([`XEP-0012`][43])                     |                                  |
 | [mod_mam](#mod-mam)                            | Message Archive Management ([`XEP-0313`][114])       | `mod_mam`                        |
 | [mod_mix](#mod-mix)                            | Mediated Information eXchange ([`XEP-0369`][122])    | `mod_pubsub`                     |
@@ -3541,6 +3542,19 @@ Example DNS TXT configuration for Websocket:
 A test client can be found on Github: [Websocket test client](https://github.com/processone/xmpp-websocket-client)
 
 <!-- TODO We should probably embed a test Websocket client on the Websocket info get page. -->
+
+## mod_jidprep
+
+This module allows XMPP clients to ask the server to normalize a JID as
+per the rules specified in [`RFC 6122: XMPP Address Format`][129]. This
+might be useful for clients in certain constrained environments, or for
+testing purposes.
+
+Options:
+
+**`access: AccessName`**:   This option defines which access rule will be
+	used to control who is allowed to use this service. The default
+	is `local`.
 
 ## mod_last
 
@@ -6165,3 +6179,5 @@ Options:
 [125]:  http://xmpp.org/extensions/xep-0198.html
 [126]:  http://xmpp.org/extensions/xep-0357.html
 [127]:  http://xmpp.org/extensions/xep-0220.html
+[128]:  https://xmpp.org/extensions/xep-0328.html
+[129]:  https://tools.ietf.org/html/rfc6122
