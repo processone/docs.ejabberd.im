@@ -134,7 +134,7 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`][4]). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See section [pam][8].
--   ImageMagick’s Convert program. Optional. For CAPTCHA challenges. See section [captcha][16].
+-   ImageMagick’s Convert program and Ghostscript fonts. Optional. For CAPTCHA challenges. See section [captcha][16].
 
 ## Downloading
 
