@@ -1871,31 +1871,26 @@ The file is in a subdirectory from where the main configuration file is.
 	  "./example.org/additional_not_listen.yml":
 	    disallow: [listen]
 
-In this example, `ejabberd.yml` defines some ACL and Access rules, and
-later includes another file with additional rules:
+Please notice that options already defined in the main configuration file cannot be redefined in the included configuration files. But you can use `host_config` and `append_host_config` as usual (see [Virtual Hosting](#virtual-hosting)).
 
-			
+In this example, `ejabberd.yml` defines some ACL for the whole ejabberd server, and later includes another file:
+
 	acl:
 	  admin:
 	    user:
-	      - "admin": "localhost"
-	access_rules:
-	  announce:
-	    - allow: admin
+	      - admin@localhost
 	include_config_file:
-	  "/etc/ejabberd/acl_and_access.yml":
-	    allow_only:
-	      - acl
-	      - access_rules
+	  "/etc/ejabberd/acl.yml"
 
-and content of the file `acl_and_access.yml` can be, for example:
+The file `acl.yml` can add additional administrators to one of the virtual hosts:
 
-			
-	acl:
-	  admin:
-	    user:
-	      - "bob": "localhost"
-	      - "jan": "localhost"
+	append_host_config:
+	  localhost:
+	    acl:
+	      admin:
+	        user:
+	          - bob@localhost
+	          - jan@localhost
 
 ## Option Macros in Configuration File
 
