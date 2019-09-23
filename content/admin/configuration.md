@@ -1263,10 +1263,25 @@ Options:
 
 **`jwt_key: Path`**:   Full path to a file containing the JWT private key.
 
+**`jwt_auth_only_rule: AccessName`**:   The accounts that match this access rule can authenticate only using JWT, even if ejabberd is configured to support other auth methods too.
+
 Example:
 
 	auth_method: jwt
 	jwt_key: "/path/to/jwt/key"
+
+In this example, admins can use both JWT and plain passwords, while the rest of users can use only JWT.
+
+	# the order is important here, don't use [sql, jwt]
+	auth_method: [jwt, sql]
+	
+	access_rules:
+	  ...
+	  jwt_only:
+	    deny: admin
+	    allow: all
+	
+	jwt_auth_only_rule: jwt_only
 
 ## Access Rules
 
