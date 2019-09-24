@@ -94,18 +94,6 @@ Here are the dependencies for Elixir support:
 * [yrashk/rebar_elixir_plugin](https://github.com/yrashk/rebar_elixir_plugin):
   Plugin for rebar build tool to support Elixir modules compilation.
 
-Here are the dependencies for Riak support:
-
-* [basho/riak-erlang-client](https://github.com/basho/riak-erlang-client):
-  Erlang client for Riak database.
-* [basho/riak_pb](https://github.com/basho/riak_pb): Riak Protocol
-  Buffer Messages. Used by both Riak client and Riak server.
-* [basho/erlang_protobuffs](https://github.com/basho/erlang_protobuffs):
-  An implementation of Google's Protocol Buffers for Erlang. This is
-  the low level protocol used by Riak database.
-* [eproxus/meck](https://github.com/eproxus/meck): Mock library used
-  to write Erlang protobuffs test suite.
-
 After you have build ejabberd from source, you will find all the
 dependencies downloaded and build in the _deps_ directory.
 

@@ -35,7 +35,6 @@ Possible `CT_BACKENDS` are:
   in ejabberd at compile time.
 - ldap
 - extauth
-- riak
 
 **Note:** We assume that you have also build ejabberd with proper
 backend support. Please, check `configure` build options to make sure
@@ -52,7 +51,6 @@ of groups to test. Possible high level groups to run are:
 - pgsql
 - sqlite
 - extauth
-- riak
 
 Usually, it is enough to just limit tests with `CT_BACKENDS` and let the
 test suite decide to run relevant tests, but you may for example want
@@ -62,7 +60,7 @@ tests.
 Example commands to run the XMPP end-to-end test suite are:
 
 ~~~ bash
-CT_BACKENDS=riak,mnesia rebar ct suites=ejabberd
+CT_BACKENDS=mnesia rebar ct suites=ejabberd
 CT_BACKENDS=mnesia rebar ct suites=ejabberd groups=mnesia
 CT_BACKENDS=mnesia rebar ct suites=ejabberd groups=generic
 ~~~

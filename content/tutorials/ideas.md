@@ -19,8 +19,6 @@ Volunteers ?
 
 * Configuring ejabberd with Postgres
 
-* Configuring ejabberd with RIAK
-
 * Using Lager backend to centralize log cluster storage
 
 Inspiration:

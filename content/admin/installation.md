@@ -23,8 +23,8 @@ includes a stripped down version of Erlang. As such, when using
 ejabberd installer, you do not need to install Erlang separately.
 
 These tutorials assume installation on `localhost` for development purposes.
-In this document, when mentioning `ejabberd-YY.MM`, we assume `YY.MM` 
-is the release number, for example 18.01. Also note that the installer 
+In this document, when mentioning `ejabberd-YY.MM`, we assume `YY.MM`
+is the release number, for example 18.01. Also note that the installer
 scripts support many options useful for production or unattended, scripted installation.
 You can read more on installer options on [unattended installation](/admin/guide/unattended/).
 
@@ -97,7 +97,7 @@ Before you begin installing ejabberd, make sure your Mac allows apps from identi
 
 Binary Installers of ejabberd prior to version 18.01 did not have an Apple Developer signature.
 If macOS complains when you try to install ejabberd older than 18.01 with binary installer with
-message *"ejabberd-installer is damaged and can’t be opened"* – then you need to temporarily 
+message *"ejabberd-installer is damaged and can’t be opened"* – then you need to temporarily
 disable gatekeeper to be able to install ejabberd:
 
 ``` bash
@@ -202,8 +202,6 @@ Some options that you may be interested in modifying:
 
 - **`-–enable-sqlite`**: Enable SQLite support (see section [databases][18]).
 
-- **`–-enable-riak`**: Enable Riak database support (see section [databases][18]).
-
 - **`-–enable-redis`**: Enable Redis support to use for external session storage.
 
 - **`-–enable-zlib`**: Enable Stream Compression (XEP-0138) using zlib.
@@ -278,7 +276,7 @@ The best approach is to use [Homebrew](http://brew.sh) to install your dependenc
 exports your custom path to let configure and make be aware of them.
 
 ``` bash
-brew install git erlang elixir openssl expat libyaml libiconv libgd sqlite rebar rebar3 automake autoconf 
+brew install git erlang elixir openssl expat libyaml libiconv libgd sqlite rebar rebar3 automake autoconf
 export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib"
 export CFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/include -I/usr/local/opt/expat/include"
 export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include"

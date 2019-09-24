@@ -1,5 +1,5 @@
 ---
-title: Configuring ejabberd 
+title: Configuring ejabberd
 toc: true
 menu: Configuration
 order: 3
@@ -94,7 +94,7 @@ If you just want to provide an erlang term inside an option, you can
 use the `> erlangterm.` syntax for embedding erlang terms in a YAML
 file, for example:
 
-			
+
 	modules:
 	  mod_cron:
 	    tasks:
@@ -128,12 +128,12 @@ Examples:
 
 -   Serving one domain:
 
-				
+
 		hosts: ["example.org"]
 
 -   Serving three domains:
 
-				
+
 		hosts:
 		  - "example.net"
 		  - "example.com"
@@ -156,7 +156,7 @@ Examples:
 	while domain `example.com` is using the LDAP server running on the
 	domain `localhost` to perform authentication:
 
-				
+
 		host_config:
 		  "example.net":
 		    auth_method: internal
@@ -174,7 +174,7 @@ Examples:
 	domain `example.com` is using the LDAP servers running on the
 	domains `localhost` and `otherhost`:
 
-				
+
 		host_config:
 		  "example.net":
 		    auth_method: sql
@@ -200,7 +200,7 @@ the same syntax.
 In this example three virtual hosts have some similar modules, but there
 are also other different modules for some specific virtual hosts:
 
-			
+
 	## This ejabberd server has three vhosts:
 	hosts:
 	  - "one.example.org"
@@ -304,11 +304,11 @@ elements:
 
 The option syntax is:
 
-**`[Listener, ...]`**:  
+**`[Listener, ...]`**:
 
 Example:
 
-			
+
 	listen:
 	  -
 	    port: 5222
@@ -352,29 +352,29 @@ The transport protocol can be `tcp` or `udp`. Default is `tcp`.
 The available modules, their purpose and the options allowed by each one
 are:
 
-**`ejabberd_c2s`**:   Handles c2s connections.  
+**`ejabberd_c2s`**:   Handles c2s connections.
     Options: `access`, `ciphers`, `dhfile`, `protocol_options`,
 	`max_fsm_queue`, `max_stanza_size`, `shaper`,
 	`starttls`, `starttls_required`, `tls`, `zlib`,
 	`tls_compression`
 
-**`ejabberd_s2s_in`**:   Handles incoming s2s connections.  
+**`ejabberd_s2s_in`**:   Handles incoming s2s connections.
     Options: `max_stanza_size`, `shaper`, `tls_compression`
 
 **`ejabberd_service`**:   Interacts with an
 	[`external component`](http://www.ejabberd.im/tutorials-transports)
 	(as defined in the Jabber Component Protocol
-	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).  
+	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).
 	Options: `access`, `hosts`, `max_fsm_queue`, `password`, `check_from`,
 	`shaper_rule`
 
 **`ejabberd_sip`**:   Handles SIP requests as defined in
-	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).  
+	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).
 	Options: `certfile`, `tls`
 
 **`ejabberd_stun`**:   Handles STUN/TURN requests as defined in
 	[`RFC 5389`](http://tools.ietf.org/html/rfc5389) and
-	[`RFC 5766`](http://tools.ietf.org/html/rfc5766).  
+	[`RFC 5766`](http://tools.ietf.org/html/rfc5766).
 	Options: `certfile`, `tls`, `use_turn`, `turn_ip`,
 	`turn_port_range`, `turn_max_allocations`, `turn_max_permissions`,
 	`shaper`, `server_name`, `auth_realm`, `auth_type`
@@ -386,7 +386,7 @@ are:
 
 **`ejabberd_xmlrpc`**:   Handles XML-RPC requests to execute
 	[ejabberd commands](../guide/managing/#ejabberd-commands).
-	Options: `access_commands`, `maxsessions`, `timeout`.  
+	Options: `access_commands`, `maxsessions`, `timeout`.
 	For explanations about `access_commands` see
 	[Restrict Execution with AccessCommands](../guide/managing/#restrict-execution-with-accesscommands).
 	Check some [XML-RPC examples](../../developer/ejabberd-api/oauth/#xml-rpc-examples).
@@ -679,12 +679,12 @@ For example, the following simple configuration defines:
 	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../guide/managing/#web-admin). The
 	socket only listens connections to the IP address 127.0.0.1.
 
-	
+
 			hosts:
 			  - "example.com"
 			  - "example.org"
 			  - "example.net"
-			
+
 			certfiles:
 			  - "/etc/ejabberd/server.pem"
 			  - "/etc/ejabberd/example_com.pem"
@@ -725,14 +725,14 @@ For example, the following simple configuration defines:
 			    web_admin: true
 			    http_bind: true
 			    tls: true
-			
+
 			s2s_use_starttls: optional
 			outgoing_s2s_families:
 			  - ipv4
 			  - ipv6
 			outgoing_s2s_timeout: 10000
 			trusted_proxies: ["127.0.0.1", "192.168.1.11"]
-	
+
 
 In this example, the following configuration defines that:
 
@@ -783,7 +783,7 @@ In this example, the following configuration defines that:
 	The component can send packets in behalf of any users from the
 	server, or even on behalf of any server.
 
-	
+
 			acl:
 			  blocked:
 			    user: "bad"
@@ -895,12 +895,12 @@ In this example, the following configuration defines that:
 			    hosts:
 			      "custom.example.org":
 			        password: "customsecret"
-	
+
 
 Note, that for services based in jabberd14 or WPJabber you have to make
 the transports log and do XDB by themselves:
 
-	
+
 	<!--
 	   You have to add elogger and rlogger entries here when using ejabberd.
 	   In this case the transport will do the logging.
@@ -929,7 +929,7 @@ the transports log and do XDB by themselves:
 	    <spool><jabberd:cmdline flag='s'>/var/spool/jabber</jabberd:cmdline></spool>
 	  </xdb_file>
 	</xdb>
-	
+
 
 ## Authentication
 
@@ -938,7 +938,7 @@ used for user authentication. The syntax is:
 
 `[Method, ...]`
 
-:  
+:
 
 The following authentication methods are supported by `ejabberd`:
 
@@ -1021,7 +1021,7 @@ Examples:
 -   To use internal authentication on `example.org` and LDAP
 	authentication on `example.net`:
 
-				
+
 		host_config:
 		  "example.org":
 		    auth_method: [internal]
@@ -1031,7 +1031,7 @@ Examples:
 -   To use internal authentication with hashed passwords on all virtual
 	hosts:
 
-				
+
 		auth_method: internal
 		auth_password_format: scram
 
@@ -1075,7 +1075,7 @@ This example sets external authentication, the extauth script, enables
 caching for 10 minutes, and starts three instances of the script for
 each virtual host defined in ejabberd:
 
-			
+
 	auth_method: [external]
 	extauth_program: "/etc/ejabberd/JabberAuth.class.php"
 	extauth_instances: 3
@@ -1124,13 +1124,13 @@ Examples:
 
 -   To enable anonymous login on all virtual hosts:
 
-				
+
 		auth_method: [anonymous]
 		anonymous_protocol: login_anon
 
 -   Similar as previous example, but limited to `public.example.org`:
 
-				
+
 		host_config:
 		  "public.example.org":
 		    auth_method: [anonymous]
@@ -1139,7 +1139,7 @@ Examples:
 -   To enable anonymous login and internal authentication on a virtual
 	host:
 
-				
+
 		host_config:
 		  "public.example.org":
 		    auth_method:
@@ -1149,7 +1149,7 @@ Examples:
 
 -   To enable SASL Anonymous on a virtual host:
 
-				
+
 		host_config:
 		  "public.example.org":
 		    auth_method: [anonymous]
@@ -1157,7 +1157,7 @@ Examples:
 
 -   To enable SASL Anonymous and anonymous login on a virtual host:
 
-				
+
 		host_config:
 		  "public.example.org":
 		    auth_method: [anonymous]
@@ -1166,7 +1166,7 @@ Examples:
 -   To enable SASL Anonymous, anonymous login, and internal
 	authentication on a virtual host:
 
-				
+
 		host_config:
 		  "public.example.org":
 		    auth_method:
@@ -1184,7 +1184,7 @@ There are more configuration examples and XMPP client example stanzas in
 X, NetBSD and Solaris. PAM authentication is disabled by default, so you
 have to configure and compile `ejabberd` with PAM support enabled:
 
-			
+
 	./configure --enable-pam && make install
 
 Options:
@@ -1198,7 +1198,7 @@ Options:
 	Default is `username`.
 
 Example:
-			
+
 	auth_method: [pam]
 	pam_service: "ejabberd"
 
@@ -1213,7 +1213,7 @@ introduces some security issues:
 	`ejabberd` to this file and remove all other permissions from it.
 	Execute with root privileges:
 
-				
+
 		chown root:ejabberd /var/lib/ejabberd/priv/bin/epam
 		chmod 4750 /var/lib/ejabberd/priv/bin/epam
 
@@ -1274,13 +1274,13 @@ In this example, admins can use both JWT and plain passwords, while the rest of 
 
 	# the order is important here, don't use [sql, jwt]
 	auth_method: [jwt, sql]
-	
+
 	access_rules:
 	  ...
 	  jwt_only:
 	    deny: admin
 	    allow: all
-	
+
 	jwt_auth_only_rule: jwt_only
 
 ## Access Rules
@@ -1301,14 +1301,14 @@ following syntax:
 `ACLType: ACLValue` can be one of the following:
 
 **`all`**:   Matches all JIDs. Example:
-	    		
+
 	    acl:
 	      world: all
 
 **`user: Username`**:   Matches the user with the name `Username` on any of the local virtual host.
 	Example:
 
-	    		
+
 	    acl:
 	      admin:
 	        user: "yozhik"
@@ -1316,7 +1316,7 @@ following syntax:
 **`user: {Username: Server} | Jid`**:   Matches the user with the JID `Username@Server` and any resource.
 	Example:
 
-	    		
+
 	    acl:
 	      admin:
 	        - user:
@@ -1325,13 +1325,13 @@ following syntax:
 
 **`server: Server`**:   Matches any JID from server `Server`. Example:
 
-	    		
+
 	    acl:
 	      exampleorg:
 	        server: "example.org"
 
 **`resource: Resource`**:   Matches any JID with a resource `Resource`. Example:
-	    		
+
 	    acl:
 	      mucklres:
 	        resource: "muckl"
@@ -1339,7 +1339,7 @@ following syntax:
 **`shared_group: Groupname`**:   Matches any member of a Shared Roster Group with name `Groupname` in
 	the virtual host. Example:
 
-	    		
+
 	    acl:
 	      techgroupmembers:
 	        shared_group: "techteam"
@@ -1347,7 +1347,7 @@ following syntax:
 **`shared_group: {Groupname: Server}`**:   Matches any member of a Shared Roster Group with name `Groupname` in
 	the virtual host `Server`. Example:
 
-	    		
+
 	    acl:
 	      techgroupmembers:
 	        shared_group:
@@ -1355,7 +1355,7 @@ following syntax:
 
 **`ip: Network`**:   Matches any IP address from the `Network`. Example:
 
-	    		
+
 	    acl:
 	      loopback:
 	        ip:
@@ -1365,7 +1365,7 @@ following syntax:
 **`user_regexp: Regexp`**:   Matches any local user with a name that matches `Regexp` on local
 	virtual hosts. Example:
 
-	    		
+
 	    acl:
 	      tests:
 	        user_regexp: "^test[0-9]*$"
@@ -1373,7 +1373,7 @@ following syntax:
 **`user_regexp: {Regexp: Server} | JidRegexp`**:   Matches any user with a name that matches `Regexp` at server
 	`Server`. Example:
 
-	    		
+
 	    acl:
 	      tests:
 	        user_regexp:
@@ -1382,14 +1382,14 @@ following syntax:
 
 **`server_regexp: Regexp`**:   Matches any JID from the server that matches `Regexp`. Example:
 
-	    		
+
 	    acl:
 	      icq:
 	        server_regexp: "^icq\\."
 
 **`resource_regexp: Regexp`**:   Matches any JID with a resource that matches `Regexp`. Example:
 
-	    		
+
 	    acl:
 	      icq:
 	        resource_regexp: "^laptop\\."
@@ -1397,7 +1397,7 @@ following syntax:
 **`node_regexp: {UserRegexp: ServerRegexp}`**:   Matches any user with a name that matches `UserRegexp` at any server
 	that matches `ServerRegexp`. Example:
 
-	    		
+
 	    acl:
 	      yozhik:
 	        node_regexp:
@@ -1405,13 +1405,13 @@ following syntax:
 
 <!-- TODO: explain remaining parameters -->
 
-**`user_glob: Glob`**:  
+**`user_glob: Glob`**:
 
-**`user_glob: {Glob: Server}`**:  
+**`user_glob: {Glob: Server}`**:
 
-**`server_glob: Glob`**:  
+**`server_glob: Glob`**:
 
-**`resource_glob: Glob`**:  
+**`resource_glob: Glob`**:
 
 **`node_glob: {UserGlob: ServerGlob}`**:   This is the same as above. However, it uses shell glob patterns
 instead of regexp. These patterns can have the following special
@@ -1454,7 +1454,7 @@ To simplify configuration two shortcut version are available:
 `- allow: acl` and `- allow`, example below shows equivalent
 definitions where short or long version are used:
 
-    		
+
     access_rules:
       a_short: admin
       a_long:
@@ -1476,7 +1476,7 @@ effect.
 
 Example:
 
-      		
+
       access_rules:
         configure:
           - allow: admin
@@ -1520,7 +1520,7 @@ should be used.
 
 Examples:
 
-    		
+
     shaper_rules:
       connections_limit:
         - 10:
@@ -1550,7 +1550,7 @@ The syntax is:
 This example limits the number of sessions per user to 5 for all users,
 and to 10 for admins:
 
-			
+
 	shaper_rules:
 	  max_user_sessions:
 	    - 10: admin
@@ -1571,7 +1571,7 @@ Examples:
 
 -   Allow up to 3 connections with each remote server:
 
-				
+
 		shaper_rules:
 		  max_s2s_connections: 3
 
@@ -1589,14 +1589,14 @@ Examples:
 -   To define a shaper named ‘`normal`’ with traffic speed limited to
 	1,000bytes/second:
 
-				
+
 		shaper:
 		  normal: 1000
 
 -   To define a shaper named ‘`fast`’ with traffic speed limited to
 	50,000bytes/second:
 
-				
+
 		shaper:
 		  fast: 50000
 
@@ -1612,7 +1612,7 @@ The option syntax is:
 translation file `Language.msg` in `ejabberd`’s `msgs` directory.
 
 For example, to set Russian as default language:
-			
+
 	language: "ru"
 
 The page [Internationalization and Localization](/developer/extending-ejabberd/localization/)
@@ -1652,7 +1652,7 @@ Additionally, an `ejabberd_http` listener must be enabled with the
 
 Example configuration:
 
-			
+
 	hosts: ["example.org"]
 
 	captcha_cmd: "/lib/ejabberd/priv/bin/captcha.sh"
@@ -1734,7 +1734,7 @@ You should configure `ejabberd_stun` listening module as described in
 
 Example configuration with disabled TURN functionality (STUN only):
 
-			
+
 	listen:
 	  ...
 	  -
@@ -1753,7 +1753,7 @@ Example configuration with disabled TURN functionality (STUN only):
 Example configuration with TURN functionality. Note that STUN is always
 enabled if TURN is enabled. Here, only UDP section is shown:
 
-			
+
 	listen:
 	  ...
 	  -
@@ -1800,7 +1800,7 @@ would fail.
 Example configuration with standard ports (as per
 [`RFC 3261`][20]):
 
-			
+
 	listen:
 	  ...
 	  -
@@ -1929,7 +1929,7 @@ It isn't possible to use a macro in the definition of another macro.
 
 This example shows the basic usage of a macro:
 
-			
+
 	define_macro:
 	  'LOG_LEVEL_NUMBER': 5
 	loglevel: 'LOG_LEVEL_NUMBER'
@@ -1938,7 +1938,7 @@ The resulting option interpreted by `ejabberd` is: `loglevel: 5`.
 
 This example shows that values can be any arbitrary Erlang term:
 
-			
+
 	define_macro:
 	  'USERBOB':
 	    user:
@@ -1948,7 +1948,7 @@ This example shows that values can be any arbitrary Erlang term:
 
 The resulting option interpreted by `ejabberd` is:
 
-			
+
 	acl:
 	  admin:
 	    user:
@@ -1956,7 +1956,7 @@ The resulting option interpreted by `ejabberd` is:
 
 This complex example:
 
-			
+
 	define_macro:
 	  'NUMBER_PORT_C2S': 5222
 	  'NUMBER_PORT_HTTP': 5280
@@ -1970,7 +1970,7 @@ This complex example:
 
 produces this result after being interpreted:
 
-			
+
 	listen:
 	  -
 	    port: 5222
@@ -2003,8 +2003,6 @@ The following databases are supported by `ejabberd`:
 
 -   [`SQLite`][119]
 
--   [`Riak`][28]
-
 -   [`Redis`][29] (only for transient data)
 
 The following LDAP servers are tested with `ejabberd`:
@@ -2027,7 +2025,7 @@ virtual hosts. For that purpose, the options described in the next
 sections must be set inside a `host_config` for each vhost (see section
 [Virtual Hosting](#virtual-hosting)). For example:
 
-			
+
 	host_config:
 	  "public.example.org":
 	    sql_type: pgsql
@@ -2107,12 +2105,12 @@ The following parameters are available:
 
 Example of plain ODBC connection:
 
-			
+
 	sql_server: "DSN=database;UID=ejabberd;PWD=password"
 
 Example of MySQL connection:
 
-			
+
 	sql_type: mysql
 	sql_server: "server.company.com"
 	sql_port: 3306 # the default
@@ -2128,7 +2126,7 @@ For now, MS SQL is only supported in Unix-like OS'es. You need to have
 Also, in some cases you need to add machine name to `sql_username`, especially
 when you have `sql_server` defined as an IP address, e.g.:
 
-			
+
 	sql_type: mssql
 	sql_server: "1.2.3.4"
 	...
@@ -2145,7 +2143,7 @@ Please note that if you use SQL auth method and set SCRAM format,
 old plain passwords that may be stored in the database are not
 automatically scrammed. For that, you can execute the command:
 
-			
+
 	ejabberdctl convert_to_scram example.org
 
 ### SQL Storage
@@ -2216,7 +2214,7 @@ Parameters:
 
 Example:
 
-			
+
 	auth_method: [ldap]
 	ldap_servers:
 	  - "ldap1.example.org"
@@ -2266,7 +2264,7 @@ Available options are:
 	FilterAttrs attributes and `%D` is replaced by Distinguished Name.
 	By default `ldap_dn_filter` is undefined. Example:
 
-	    		
+
 	    ldap_dn_filter:
 	      "(&(name=%s)(owner=%D)(user=%u@%d))": ["sn"]
 
@@ -2296,7 +2294,7 @@ connection to the LDAP server is encrypted using TLS, and using the
 custom port 6123. Corresponding authentication section should looks like
 this:
 
-			
+
 	## Authentication method
 	auth_method: [ldap]
 	## DNS name of our LDAP server
@@ -2316,7 +2314,7 @@ attributes defined in our LDAP schema: `mail` — email address,
 `givenName` — first name, `sn` — second name, `birthDay` — birthday.
 Also we want users to search each other. Let’s see how we can set it up:
 
-			
+
 	modules:
 	  ...
 	  mod_vcard:
@@ -2366,7 +2364,7 @@ before searching their information in LDAP.
 Active Directory is just an LDAP-server with predefined attributes. A
 sample configuration is shown below:
 
-			
+
 	auth_method: [ldap]
 	ldap_servers: ["office.org"]  # List of LDAP servers
 	ldap_base: "DC=office,DC=org" # Search base of LDAP directory
@@ -2413,99 +2411,6 @@ sample configuration is shown below:
 	      "Email": "EMAIL"
 	  ...
 
-## Riak
-
-[`Riak`][35] is a distributed NoSQL key-value data
-store. The actual database access is defined in the options with `riak_`
-prefix.
-
-### Riak Connection
-
-The following paramaters are available:
-
-**`riak_server: String`**:   A hostname of the Riak server. The default is `localhost`.
-
-**`riak_port: Port`**:   The port where the Riak server is accepting connections for Protocol
-Buffer (PBC). The default is 8087.
-
-**`riak_pool_size: N`**:   By default `ejabberd` opens 10 connections to the Riak server. You can
-change this number by using this option.
-
-**`riak_start_interval: N`**:   If the connection to the Riak server fails, `ejabberd` waits 30
-seconds before retrying. You can modify this interval with this
-option.
-
-Example configuration:
-
-			
-	riak_server: "riak.server.com"
-	riak_port: 9097
-
-Starting from ejabberd 16.03, Riak security and authentication is
-supported. It can be configured with the following additional
-parameters:
-
-**`riak_cacertfile: String`**:   Path to Riak `ca.pem` (i.e. "/path/to/ca.pem")
-
-**`riak_username: String`**:   Username to use to authenticate on Riak database.
-
-**`riak_password: String`**:   Password to use to authenticate on Riak database.
-
-
-### Riak Storage
-
-Several `ejabberd` modules can be used to store information in Riak
-database. Refer to the corresponding module documentation to see if it
-supports such ability. To enable storage to Riak database, just make
-sure that your database is running well (see the next section), and add
-the module option `db_type: riak` or set `default_db: riak` globally
-if you want to use Riak for all modules.
-
-### Riak Configuration
-
-First, you need to configure Riak to use
-[`LevelDB`][36] as a database backend.
-
-If you are using Riak 2.x and higher, configure `storage_backend` option
-of `/etc/riak/riak.conf` as follows:
-
-			
-	...
-	storage_backend = leveldb
-	...
-
-If you are using Riak 1.4.x and older, configure `storage_backend`
-option of `/etc/riak/app.config` in the section `riak_kv` as follows:
-
-			
-	...
-	 {riak_kv, [
-	            ...
-	            {storage_backend, riak_kv_eleveldb_backend},
-	...
-
-Second, Riak should be pointed to `ejabberd` Erlang binary files
-(\*.beam). As described in
-[Install](../installation/#source-install), by default those are located in
-`/lib/ejabberd/ebin` directory. So you should add the following to
-`/etc/riak/vm.args`:
-
-			
-	...
-	## Path to ejabberd beams in order to make map/reduce
-	-pz /lib/ejabberd/ebin
-	...
-
-Important notice: make sure Riak has at least read access to that
-directory. Otherwise its startup will likely fail.
-
-Starting from version 16.03, Riak authentication is supported. You can
-enable it with Riak admin command:
-
-~~~ bash
-riak-admin security enable
-~~~
-
 ## Redis
 
 [`Redis`][37] is an advanced key-value cache and store. You can
@@ -2514,7 +2419,7 @@ There are several options available:
 
 **`redis_server: String`**:   A hostname of the Redis server. The default is `localhost`.
 
-**`redis_port: Port`**:   The port where the Redis server is accepting connections. The default 
+**`redis_port: Port`**:   The port where the Redis server is accepting connections. The default
 	is 6379.
 
 **`redis_password: String`**:   The password to the Redis server. The default is an empty string,
@@ -2527,7 +2432,7 @@ There are several options available:
 
 Example configuration:
 
-			
+
 	redis_server: "redis.server.com"
 	redis_db: 1
 
@@ -2535,7 +2440,7 @@ Example configuration:
 
 You can simplify the configuration by setting the default database. This can be done with `default_db` option:
 
-**`default_db: mnesia|sql|riak`**:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
+**`default_db: mnesia|sql`**:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
 
 # Session Management
 
@@ -2561,14 +2466,14 @@ Examples:
 -   In this example only the module `mod_echo` is loaded and no module
 	options are specified between the square brackets:
 
-				
+
 		modules:
 		  mod_echo: {}
 
 -   In the second example the modules `mod_echo`, `mod_time`, and
 	`mod_version` are loaded without options.
 
-				
+
 		modules:
 		  mod_echo:      {}
 		  mod_time:      {}
@@ -2639,7 +2544,7 @@ You can see which database backend each module needs by looking at the
 suffix:
 
 -   No suffix, this means that the module uses Erlang’s built-in
-	database Mnesia as backend, Riak key-value store or SQL database
+	database Mnesia as backend or SQL database
 	(see [Database and LDAP Configuration](#database-and-ldap-configuration)).
 
 -   ‘\_ldap’, this means that the module needs an LDAP server as
@@ -2663,7 +2568,7 @@ module.
 
 The syntax is:
 
-**`host: HostName`**:  
+**`host: HostName`**:
 
 If you include the keyword “@HOST@” in the HostName, it is replaced at
 start time with the real virtual host string.
@@ -2671,7 +2576,7 @@ start time with the real virtual host string.
 This example configures the echo module to provide its echoing service
 in the Jabber ID `mirror.example.org`:
 
-			
+
 	modules:
 	  ...
 	  mod_echo:
@@ -2681,7 +2586,7 @@ in the Jabber ID `mirror.example.org`:
 However, if there are several virtual hosts and this module is enabled
 in all of them, the “@HOST@” keyword must be used:
 
-			
+
 	modules:
 	  ...
 	  mod_echo:
@@ -2732,7 +2637,7 @@ Available option:
 In this example configuration, the users vCards can only be modified
 by executing `mod_admin_extra` commands:
 
-    		
+
     acl:
       adminextraresource:
 	    - resource: "modadminextraf8x,31ad"
@@ -2753,7 +2658,7 @@ Description of some commands:
      - Other OS: on the same directory where the .beam files are.
    Example content for the roster file:
 
-			
+
 		[{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
 		 {<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
 		 {<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
@@ -2761,7 +2666,7 @@ Description of some commands:
 **`srg-create`**:  If you want to put a group Name with blankspaces, use the characters
    "' and '" to define when the Name starts and ends. For example:
 
-			
+
 		ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
 
 **`ban-account`**:  This command kicks all the connected sessions of the account from the
@@ -2774,13 +2679,13 @@ also includes the reason and the date and time of the ban.
 
 For example, if this command is called:
 
-	
+
 		ejabberdctl vhost example.org ban-account boby Spammed several MUC rooms
 
 then the sessions of the local account which JID is boby@example.org
 will be kicked, and its password will be set to something like this:
 
-	
+
 		BANNED_ACCOUNT--20080425T21:45:07--2176635--Spammed_several_MUC_rooms
 
 
@@ -2822,7 +2727,7 @@ hosts in ejabberd.
 
 Options:
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
@@ -2834,7 +2739,7 @@ Examples:
 
 -   Only administrators can send announcements:
 
-				
+
 		access_rules:
 		  announce:
 		    - allow: admin
@@ -2848,7 +2753,7 @@ Examples:
 
 -   Administrators as well as the direction can send announcements:
 
-				
+
 		acl:
 		  direction:
 		    user:
@@ -2991,7 +2896,7 @@ Options:
 
 Example:
 
-			
+
 	modules:
 	  ...
 	  mod_client_state:
@@ -3078,7 +2983,7 @@ Examples:
 
 -   To serve a link to the Jabber User Directory on `jabber.org`:
 
-				
+
 		modules:
 		  ...
 		  mod_disco:
@@ -3087,7 +2992,7 @@ Examples:
 
 -   To serve a link to the transports on another server:
 
-				
+
 		modules:
 		  ...
 		  mod_disco:
@@ -3098,7 +3003,7 @@ Examples:
 
 -   To serve a link to a few friendly servers:
 
-				
+
 		modules:
 		  ...
 		  mod_disco:
@@ -3111,7 +3016,7 @@ Examples:
 	address on the main server, and admin addresses for both the main
 	server and the vJUD service:
 
-				
+
 		modules:
 		  ...
 		  mod_disco:
@@ -3156,7 +3061,7 @@ Options:
 Example: Mirror, mirror, on the wall, who is the most beautiful of them
 all?
 
-			
+
 	modules:
 	  ...
 	  mod_echo:
@@ -3189,7 +3094,7 @@ Available options:
 
 Example:
 
-			
+
 	modules:
 	  ...
 	  mod_fail2ban:
@@ -3207,7 +3112,7 @@ This module provides a ReST API to call ejabberd commands using JSON data.
 
 To start using it, simply add it as a request handler, for example:
 
-			
+
 	listen:
 	  -
 	    port: 5280
@@ -3217,12 +3122,12 @@ To start using it, simply add it as a request handler, for example:
 
 To use a specific API version N, add a vN element in the URL path, like:
 
-			
+
 	      "/api/v2": mod_http_api
 
 Access rights are defined with those global options:
 
-			
+
 	commands_admin_access: configure
 	commands:
 	  - add_commands: user
@@ -3244,18 +3149,18 @@ It's also possible to enable unrestricted access to some commands from group
 of IP addresses by using option `admin_ip_access` by having fragment like
 this in configuration file:
 
-			
+
 	modules:
 	  mod_http_api:
 	    admin_ip_access: admin_ip_access_rule
-	
+
 	access:
 	  admin_ip_access_rule:
 	    admin_ip_acl:
 	      - command1
 	      - command2
 	      ## use `all` to give access to all commands
-	
+
 	acl:
 	  admin_ip_acl:
 	    ip:
@@ -3293,7 +3198,7 @@ This example configuration will serve the files from the local directory
 this example a new content type `ogg` is defined, `png` is redefined,
 and `jpg` definition is deleted. To use this module you must enable it:
 
-			
+
 	modules:
 	  ...
 	  mod_http_fileserver:
@@ -3314,7 +3219,7 @@ and `jpg` definition is deleted. To use this module you must enable it:
 
 And define it as a handler in the HTTP service:
 
-			
+
 	listen:
 	  ...
 	  -
@@ -3420,7 +3325,7 @@ in the 'Implementation' section. Default: `undefined`.
 
 Example:
 
-			
+
 	certfiles:
 	  - "/etc/ejabberd/certificate.pem"
 
@@ -3481,7 +3386,7 @@ Note: It's not necessary to specify the `access_hard_quota` and
 stick to the default names and just specify access rules such as those
 in the following example.
 
-			
+
 	shaper_rules:
 	  ...
 	  soft_upload_quota:
@@ -3506,7 +3411,7 @@ described in [`RFC 7395`][71].
 
 To enable this module it must have handler added to `request_handlers`
 section of `ejabberd_http` listener:
-			
+
 	listen:
 	  ...
 	  -
@@ -3582,7 +3487,7 @@ uptime of the `ejabberd` server.
 
 ### Options
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
@@ -3651,10 +3556,10 @@ Options:
 
 **`use_cache: false|true`**: Use this option and related ones as
   explained in section [Caching](#caching).
-  
+
 **`user_mucsub_from_muc_archive: false|true`**: this option is used
 to enable storage optimization when using MucSub on large chat rooms along
-with MAM. The default is `false` (disabled), to keep former behaviour as 
+with MAM. The default is `false` (disabled), to keep former behaviour as
 default.
 
 ## mod_mix
@@ -3722,7 +3627,7 @@ Module options:
 	virtual host with the prefix ‘`conference.`’. The keyword “@HOST@”
 	is replaced at start time with the real virtual host name.
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`access: AccessName`**:   You can specify who is allowed to use the Multi-User Chat service.
 	By default everyone is allowed to use it.
@@ -3904,7 +3809,7 @@ Examples:
 	to `conference.example.org`, it will be displayed in all active
 	rooms. In this example the history feature is disabled.
 
-				
+
 		acl:
 		  admin:
 		    user:
@@ -3935,7 +3840,7 @@ Examples:
 	the feature is enabled and the default value of 20 history messages
 	will be send to the users.
 
-				
+
 		acl:
 		  paying_customers:
 		    user:
@@ -3969,7 +3874,7 @@ Examples:
 	Room Description to 300 characters. No ACLs are defined, but some
 	user restriction could be added as well:
 
-				
+
 		modules:
 		  ...
 		  mod_muc:
@@ -3984,7 +3889,7 @@ Examples:
 -   This example shows how to use `default_room_options` to make sure
 	the newly created rooms have by default those options.
 
-				
+
 		modules:
 		  ...
 		  mod_muc:
@@ -4096,7 +4001,7 @@ Examples:
 	and the time zone will be GMT/UTC. Finally, the top link will be
 	`<a href="http://www.jabber.ru/">Jabber.ru</a>`.
 
-				
+
 		access_rules:
 		  - muc: allow
 
@@ -4122,7 +4027,7 @@ Examples:
 	will be used. Finally, the top link will be the default
 	`<a href="/">Home</a>`.
 
-				
+
 		acl:
 		  admin:
 		    user:
@@ -4283,10 +4188,9 @@ section [Managing: ejabberdctl](../guide/managing/#ejabberdctl)).
 
 ### Options
 
-**`db_type: mnesia|sql|riak`**: Define the type of storage where the module will create the tables
+**`db_type: mnesia|sql`**: Define the type of storage where the module will create the tables
 and store user information. The default is the storage defined by the
-global option `default_db`, or `mnesia` if omitted. If `sql` or
-`riak` value is defined, make sure you have defined the database, see
+global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see
 [database](#database-and-ldap-configuration).
 
 **`access_max_user_messages: AccessName`**: This option defines which access rule (atom) will be enforced to
@@ -4307,20 +4211,20 @@ global option `default_db`, or `mnesia` if omitted. If `sql` or
 **`pool_size: Size`**: This option specifies the size of the worker pool for storing
 	offline messages. The allowed values are positive integers.
 	Default value: `16`.
-	
-**`bounce_groupchat: false|true`**: This option is use the disable an optimisation that avoids bouncing error messages 
-when groupchat messages could not be stored as offline. It will reduce chat room load, without any drawback in standard 
-use cases. You may change default value only if you have a custom module which uses offline hook after mod_offline. 
+
+**`bounce_groupchat: false|true`**: This option is use the disable an optimisation that avoids bouncing error messages
+when groupchat messages could not be stored as offline. It will reduce chat room load, without any drawback in standard
+use cases. You may change default value only if you have a custom module which uses offline hook after mod_offline.
 This option  can be useful for both standard MUC and MucSub, but the bounce is much more likely to happen in the
-context of MucSub, so it is even more important to have it on large MucSub services.The default is `false`, meaning 
+context of MucSub, so it is even more important to have it on large MucSub services.The default is `false`, meaning
 the optimisation is enabled.
 
-**`use_mam_for_storage: false|true`*: This is an experimetal option. Enabling this option will make mod_offline not 
-use the former spool table for storing MucSub offline messages, but will use the archive table instead. This use of 
-the archive table is cleaner and it makes it possible for clients to slowly drop the former offline use case and rely 
-on message archive instead. It also further reduce the storage required when you enabled MucSub. Enabling this option 
-has a known drawback for the moment: most of flexible message retrieval queries don’t work (those that allow 
-retrieval/deletion of messages by id), but this specification is not widely used. The default value is `false` to 
+**`use_mam_for_storage: false|true`*: This is an experimetal option. Enabling this option will make mod_offline not
+use the former spool table for storing MucSub offline messages, but will use the archive table instead. This use of
+the archive table is cleaner and it makes it possible for clients to slowly drop the former offline use case and rely
+on message archive instead. It also further reduce the storage required when you enabled MucSub. Enabling this option
+has a known drawback for the moment: most of flexible message retrieval queries don’t work (those that allow
+retrieval/deletion of messages by id), but this specification is not widely used. The default value is `false` to
 keep former behaviour as default and ensure this option is disabled.
 
 ### Example Configuration
@@ -4329,7 +4233,7 @@ This example allows power users to have as much as 5000 offline
 messages, administrators up to 2000, and all the other users up to
 100.
 
-			
+
 	acl:
 	  admin:
 	    user:
@@ -4399,7 +4303,7 @@ to client connections that are inactive for 4 minutes, and if a client
 does not answer to the ping in less than 32 seconds, its connection is
 closed:
 
-			
+
 	modules:
 	  ...
 	  mod_ping:
@@ -4427,7 +4331,7 @@ Configuration options:
 This example enables the module, and allows up to 5 presence
 subscription stanzas to be sent or received by the users in 60 seconds:
 
-			
+
 	modules:
 	  ...
 	  mod_pres_counter:
@@ -4454,7 +4358,7 @@ to:
 
 Options:
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
@@ -4472,7 +4376,7 @@ This module adds support for Private XML Storage
 
 Options:
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
@@ -4481,7 +4385,7 @@ Options:
 This module is an implementation of ([`XEP-0356`][124]). This extension allows components to have privileged access to
 other entity data (send messages on behalf of the server or on behalf of a user, get/set user roster, access presence
 information, etc.). This may be used to write powerful external components, for example implementing an external PEP
-([XEP-0163: Personal Eventing Protocol](https://xmpp.org/extensions/xep-0163.html)) or MAM 
+([XEP-0163: Personal Eventing Protocol](https://xmpp.org/extensions/xep-0163.html)) or MAM
 ([XEP-0313: Message Archive Management](https://xmpp.org/extensions/xep-0313.html)) service.
 
 ### Permission list
@@ -4495,14 +4399,14 @@ When configuring `mod_privilege` module, here are the available permissions:
   * managed_entity: receive server user presence.
   * roster: the component is allowed to receive the presence of both the users and the contacts in their roster.
 * message
-  * outgoing: the component is allowed to send messages on behalf of either the server or a bare JID of server users. 
+  * outgoing: the component is allowed to send messages on behalf of either the server or a bare JID of server users.
 * roster
   * get: read access to a user's roster.
   * set: write access to a user's roster.
   * both: read/write access to a user's roster.
-  
+
 You grant access to the component by providing an ACL to apply to that permission or `all` to give that access level to all
-authenticated components. 
+authenticated components.
 
 ### Example
 
@@ -4537,7 +4441,7 @@ listen:
     hosts:
       "sat-pubsub.example.org":
         password: "mypass"
-        
+
 acl:
 ...
   external_component:
@@ -4566,7 +4470,7 @@ module:
 
 ### Security issue
 
-Privileged access gives components access to sensitive data, so permission should be granted carefully, only if you trust a component. 
+Privileged access gives components access to sensitive data, so permission should be granted carefully, only if you trust a component.
 
 ### Note
 
@@ -4618,7 +4522,7 @@ Examples:
 
 -   The simplest configuration of the module:
 
-				
+
 		modules:
 		  ...
 		  mod_proxy65: {}
@@ -4626,7 +4530,7 @@ Examples:
 
 -   More complicated configuration.
 
-				
+
 		acl:
 		  admin:
 		    user:
@@ -4771,7 +4675,7 @@ case you should also add “dag” node plugin as default, for example:
 	on given PEP namespace. The following example will use node\_tune
 	instead of node\_pep for every PEP node with tune namespace:
 
-	    		
+
 	    modules:
 	      ...
 	      mod_pubsub:
@@ -4782,7 +4686,7 @@ case you should also add “dag” node plugin as default, for example:
 Example of configuration that uses flat nodes as default, and allows use
 of flat, hometree and pep nodes:
 
-			
+
 	modules:
 	  ...
 	  mod_pubsub:
@@ -4802,7 +4706,7 @@ Using relational database requires using mod\_pubsub with db_type
 `sql`. Only flat, hometree and pep plugins supports SQL. The
 following example shows previous configuration with SQL usage:
 
-			
+
 	modules:
 	  ...
       mod_pubsub:
@@ -4943,7 +4847,7 @@ Examples:
 -   Next example prohibits the registration of too short account names,
 	and allows to create accounts only to clients of the local network:
 
-				
+
 		acl:
 		  loopback:
 		    ip:
@@ -4972,7 +4876,7 @@ Examples:
 	or delete accounts, but allows existing accounts to change the
 	password:
 
-				
+
 		modules:
 		  ...
 		  mod_register:
@@ -4982,7 +4886,7 @@ Examples:
 -   This configuration disables all In-Band Registration functionality:
 	create, delete accounts and change password:
 
-				
+
 		modules:
 		  ...
 		  ## mod_register:
@@ -4992,7 +4896,7 @@ Examples:
 -   Define the welcome message and two registration watchers. Also
 	define a registration timeout of one hour:
 
-				
+
 		registration_timeout: 3600
 		modules:
 		  ...
@@ -5032,7 +4936,7 @@ Options:
 This example configuration shows how to enable the module and the web
 handler:
 
-			
+
 	hosts:
 	  - "localhost"
 	  - "example.org"
@@ -5068,7 +4972,7 @@ also supports Roster Versioning
 
 Options:
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
@@ -5093,7 +4997,7 @@ This example configuration enables Roster Versioning with storage of
 current id. The ICQ and MSN transports can get ICQ and MSN contacts, add
 them, or remove them for any local account:
 
-			
+
 	modules:
 	  ...
 	  mod_roster:
@@ -5104,7 +5008,7 @@ them, or remove them for any local account:
 With this example configuration, only admins can manage their rosters;
 everybody else cannot modify the roster:
 
-			
+
 	acl:
 	  admin:
 	    user:
@@ -5142,7 +5046,7 @@ Examples:
 -   To log all end user packets to the Bandersnatch service running on
 	`bandersnatch.example.com`:
 
-				
+
 		modules:
 		  ...
 		  mod_service_log:
@@ -5153,7 +5057,7 @@ Examples:
 	`bandersnatch.example.com` and the backup service on
 	`bandersnatch.example.org`:
 
-				
+
 		modules:
 		  ...
 		  mod_service_log:
@@ -5188,7 +5092,7 @@ enabled.
 
 Options:
 
-**`db_type: mnesia|sql|riak`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` or `riak` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
+**`db_type: mnesia|sql`**:   Define the type of storage where the module will create the tables and store user information. The default is the storage defined by the global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, make sure you have defined the database, see [database](#database-and-ldap-configuration).
 
 Shared roster groups can be edited *only* via the Web Admin. Each group
 has a unique identification and the following parameters:
@@ -5347,7 +5251,7 @@ An example where it is the case is OpenLDAP and
 is that you will see messages such as the following in your
 `slapd.log`:
 
-			
+
 	get_filter: unknown filter type=130
 	filter="(&(?=undefined)(?=undefined)(something=else))"
 
@@ -5544,7 +5448,7 @@ Such layout has a few downsides, including:
 This however seems to be a common DIT layout, so the module keeps
 supporting it. You can use the following configuration…
 
-			
+
 	modules:
 	  ...
 	  mod_shared_roster_ldap:
@@ -5567,7 +5471,7 @@ different subtrees, but it’s not a requirement.
 
 If you use the following example module configuration with it:
 
-			
+
 	modules:
 	  ...
 	  mod_shared_roster_ldap:
@@ -5600,7 +5504,7 @@ section [SIP](#sip) for the full explanation.
 
 Example configuration:
 
-			
+
 	modules:
 	  ...
 	  mod_sip: {}
@@ -5636,7 +5540,7 @@ Options:
 
 Example complex configuration:
 
-			
+
 	modules:
 	  ...
 	  mod_sip:
@@ -5688,7 +5592,7 @@ send in order to get the statistics. Here they are:
 -   You can request the number of online users on the current virtual
 	host (`example.org`) by sending:
 
-				
+
 		<iq to='example.org' type='get'>
 		  <query xmlns='http://jabber.org/protocol/stats'>
 		    <stat name='users/online'/>
@@ -5698,7 +5602,7 @@ send in order to get the statistics. Here they are:
 -   You can request the total number of registered users on all virtual
 	hosts by sending:
 
-				
+
 		<iq to='example.org' type='get'>
 		  <query xmlns='http://jabber.org/protocol/stats'>
 		    <stat name='users/all-hosts/total'/>
@@ -5721,7 +5625,7 @@ Options:
 	otherwise, you could killed sessions in loop, before they get the chance to finish
 	proper session initiation. It should definitely be set higher that the size of the
 	offline queue (for example at least 3 times the value of the max offline queue and never
-	lower than 1000). 
+	lower than 1000).
 	Default value: `5000`.
 
 **`max_resume_timeout: Seconds`**:   A client may specify the number of
@@ -5780,10 +5684,10 @@ Options:
 	virtual host with the prefix ‘`vjud.`’. The keyword “@HOST@” is
 	replaced at start time with the real virtual host name.
 
-**`db_type: mnesia|sql|riak|ldap`**: Define the type of storage where
+**`db_type: mnesia|sql|ldap`**: Define the type of storage where
   the module will create the tables and store user information. The
   default is the storage defined by the global option `default_db`, or
-  `mnesia` if omitted. If `sql` or `riak` value is defined, make sure
+  `mnesia` if omitted. If `sql` value is defined, make sure
   you have defined the database, see
   [database](#database-and-ldap-configuration). If `ldap` value is
   defined, check its specific options, see [vCards in
@@ -5816,7 +5720,7 @@ Examples:
 	people do an empty search, and only users from the current host will
 	be returned:
 
-				
+
 		modules:
 		  ...
 		  mod_vcard:
@@ -5830,7 +5734,7 @@ Examples:
 	limited, and that all virtual hosts will be searched instead of only
 	the current one:
 
-				
+
 		modules:
 		  ...
 		  mod_vcard:
@@ -5957,7 +5861,7 @@ Examples:
 	directory. Corresponding authentication section should looks like
 	this:
 
-				
+
 		## authentication method
 		auth_method: ldap
 		## DNS name of our LDAP server
@@ -5972,7 +5876,7 @@ attributes defined in our LDAP schema: `mail` — email address,
 Also we want users to search each other. Let’s see how we can set it
 up:
 
-				
+
 		modules:
 		  mod_vcard:
 		    db_type: ldap
@@ -6013,7 +5917,7 @@ before searching their info in LDAP.
 
 -   `ldap_vcard_map` example:
 
-				
+
 		ldap_vcard_map:
 		  "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
 		  "FN": {"%s": ["displayName"]}
@@ -6023,7 +5927,7 @@ before searching their info in LDAP.
 
 -   `ldap_search_fields` example:
 
-				
+
 		ldap_search_fields:
 		  "User": "uid"
 		  "Full Name": "displayName"
@@ -6031,7 +5935,7 @@ before searching their info in LDAP.
 
 -   `ldap_search_reported` example:
 
-				
+
 		ldap_search_reported:
 		  "Full Name": "FN"
 		  "Email": "EMAIL"
@@ -6102,14 +6006,12 @@ Options:
 [25]:	http://www.mysql.com/
 [26]:	http://en.wikipedia.org/wiki/Open_Database_Connectivity
 [27]:	http://www.postgresql.org/
-[28]:	http://basho.com/riak/
 [29]:	http://redis.io/
 [30]:	http://www.microsoft.com/activedirectory/
 [31]:	http://www.openldap.org/
 [32]:	http://www.communigate.com/
 [33]:	http://tools.ietf.org/html/rfc3062
 [34]:	http://tools.ietf.org/html/rfc4515
-[35]:	http://basho.com/riak/
 [36]:	http://en.wikipedia.org/wiki/LevelDB
 [37]:	http://redis.io/
 [38]:	http://xmpp.org/extensions/xep-0050.html

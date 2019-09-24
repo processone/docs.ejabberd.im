@@ -68,13 +68,12 @@ Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 	-   ODBC data storage support.
 	-   Microsoft SQL Server support.
 	-   SQLite support.
-	-   Riak NoSQL database support.
 
 
 -   Authentication
 
 	-   Internal Authentication.
-	-   PAM, LDAP, SQL and Riak.
+	-   PAM, LDAP and SQL.
 	-   External Authentication script.
 
 

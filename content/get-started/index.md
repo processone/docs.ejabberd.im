@@ -116,10 +116,8 @@ databases (Mnesia, SQL), LDAP or external scripts. It also allows
 connecting anonymous users, when required.
 
 For storing persistent data, ejabberd uses Mnesia (the distributed
-internal Erlang database), but you can opt for other storage:
-
-* SQL databases like MySQL or PostgreSQL
-* NoSQL databases like Riak (also written in Erlang)
+internal Erlang database), but you can opt for SQL database
+like MySQL or PostgreSQL
 
 And of course, thanks to its API, ejabberd can be customised to work
 with a database chosen by the customer.
