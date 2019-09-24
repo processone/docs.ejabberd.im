@@ -22,41 +22,7 @@ extension. This helps ejabberd to differentiate between the new and
 legacy file formats (see
 section [Legacy Configuration File](#legacy-configuration-file)).
 
-The configuration file is written in [`YAML`][1]. However, different
-scalars are treated as different types:
-
--   unquoted or single-quoted strings. The type is called `atom()` in
-	this document. Examples: `dog`, `'Jupiter'`, `'3.14159'`, `YELLOW`.
-
--   numeric literals. The type is called `integer()`, `float()` or, if
-	both are allowed, `number()`. Examples: `3`, `-45.0`, `.0`
-
--   double-quoted or folded strings. The type is called `string()`.
-	Examples of a double-quoted string: `"Lizzard"`, `"orange"`,
-	`"3.14159"`. Examples of a folded string:
-
-		> Art thou not Romeo,
-		  and a Montague?
-
-		| Neither, fair saint,
-		  if either thee dislike.
-
-	For associative arrays (“mappings”) and lists you can use both
-	outline indentation and compact syntax (aka “JSON style”). For
-	example, the following is equivalent:
-
-		{param1: ["val1", "val2"], param2: ["val3", "val4"]}
-
-	and
-
-		param1:
-		  - "val1"
-		  - "val2"
-		param2:
-		  - "val3"
-		  - "val4"
-
-	Note that both styles are used in this document.
+The configuration file is written in [`YAML`][1].
 
 Note that `ejabberd` never edits the configuration file. If you are
 changing parameter from web admin interface, you will need to apply
@@ -64,13 +30,8 @@ them to configuration file manually. This is to prevent messing up
 with your config file comments, syntax, etc.
 
 Please, consult `ejabberd.log` for configuration errors. `ejabberd` will
-report syntax related errors, as well as complains about unknown options.
-The later error typically looks like this:
-
-    17:10:52.858 [error] unknown option 'db_typ' for module 'mod_roster' will be likely ignored, available options are: 'access', 'db_type', 'store_current_id', 'versioning'
-
-Unknown options are not ignored at the moment in order to make legacy
-third-party modules work.  Make sure you respect indentation (YAML is
+report syntax related errors, as well as complains about unknown options
+and invalid values. Make sure you respect indentation (YAML is
 sensitive to this) or you will get pretty cryptic errors.
 
 ## Legacy Configuration File
@@ -90,25 +51,6 @@ can set them in an additional cfg file, and include it using the
 for the option description and a related example in
 [Restrict Execution with AccessCommands](../guide/managing/#restrict-execution-with-accesscommands).
 
-If you just want to provide an erlang term inside an option, you can
-use the `> erlangterm.` syntax for embedding erlang terms in a YAML
-file, for example:
-
-
-	modules:
-	  mod_cron:
-	    tasks:
-	      - time: 10
-	        units: seconds
-	        module: mnesia
-	        function: info
-	        arguments: "> []."
-	      - time: 3
-	        units: seconds
-	        module: ejabberd_auth
-	        function: try_register
-	        arguments: "> [\"user1\", \"localhost\", \"pass\"]."
-
 # Configuring One or Several XMPP Domains
 
 ## Host Names
@@ -122,22 +64,22 @@ The option `hosts` defines a list containing one or more domains that
 Of course, the `hosts` list can contain just one domain if you do not
 want to host multiple XMPP domains on the same instance.
 
-The syntax is: `["HostName1", "Hostname2"]`
+The syntax is: `[HostName1, Hostname2]`
 
 Examples:
 
 -   Serving one domain:
 
 
-		hosts: ["example.org"]
+		hosts: [example.org]
 
 -   Serving three domains:
 
 
 		hosts:
-		  - "example.net"
-		  - "example.com"
-		  - "jabber.somesite.org"
+		  - example.net
+		  - example.com
+		  - jabber.somesite.org
 
 ## Virtual Hosting
 
@@ -158,14 +100,14 @@ Examples:
 
 
 		host_config:
-		  "example.net":
+		  example.net:
 		    auth_method: internal
-		  "example.com":
+		  example.com:
 		    auth_method: ldap
 		    ldap_servers:
-		      - "localhost"
+		      - localhost
 		    ldap_uids:
-		      - "uid"
+		      - uid
 		    ldap_rootdn: "dc=localdomain"
 		    ldap_rootdn: "dc=example,dc=com"
 		    ldap_password: ""
@@ -176,17 +118,17 @@ Examples:
 
 
 		host_config:
-		  "example.net":
+		  example.net:
 		    auth_method: sql
 		    sql_type: odbc
 		    sql_server: "DSN=ejabberd;UID=ejabberd;PWD=ejabberd"
-		  "example.com":
+		  example.com:
 		    auth_method: ldap
 		    ldap_servers:
-		      - "localhost"
-		      - "otherhost"
+		      - localhost
+		      - otherhost
 		    ldap_uids:
-		      - "uid"
+		      - uid
 		    ldap_rootdn: "dc=localdomain"
 		    ldap_rootdn: "dc=example,dc=com"
 		    ldap_password: ""
@@ -203,9 +145,9 @@ are also other different modules for some specific virtual hosts:
 
 	## This ejabberd server has three vhosts:
 	hosts:
-	  - "one.example.org"
-	  - "two.example.org"
-	  - "three.example.org"
+	  - one.example.org
+	  - two.example.org
+	  - three.example.org
 
 	## Configuration of modules that are common to all vhosts
 	modules:
@@ -219,18 +161,18 @@ are also other different modules for some specific virtual hosts:
 
 	## Add some modules to vhost one:
 	append_host_config:
-	  "one.example.org":
+	  one.example.org:
 	    modules:
-	      mod_echo:
-	        host: "echo-service.one.example.org"
-	      mod_logxml: {}
+	      mod_muc:
+	        host: conference.one.example.org
+	      mod_ping: {}
 
 	## Add a module just to vhost two:
 	append_host_config:
-	  "two.example.org":
+	  two.example.org:
 	    modules:
-	      mod_echo:
-	        host: "mirror.two.example.org"
+	      mod_muc:
+	        host: conference.two.example.org
 
 # Basic Configuration
 
@@ -380,9 +322,9 @@ are:
 	`shaper`, `server_name`, `auth_realm`, `auth_type`
 
 **`ejabberd_http`**:   Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP BOSH and Websocket with proper request handler configured.
-	Options: `captcha`, `default_host`, `dhfile`,
+	Options: `default_host`, `dhfile`,
 	`request_handlers`, `tls`, `tls_compression`,
-	`trusted_proxies` (global option), `web_admin`
+	`trusted_proxies` (global option)
 
 **`ejabberd_xmlrpc`**:   Handles XML-RPC requests to execute
 	[ejabberd commands](../guide/managing/#ejabberd-commands).
@@ -405,13 +347,6 @@ modules:
 	server is going to handle lots of new incoming connections as they
 	may be dropped if there is no space in the queue (and ejabberd was
 	not able to accept them immediately). Default value is 5.
-
-**`captcha: true|false`**:   Simple web page that allows a user to fill a CAPTCHA challenge (see
-	section [CAPTCHA](#captcha)).
-
-**`certfile: Path`**:   Full path to a file containing the default SSL certificate. To
-	define a certificate file specific for a given domain, use the
-	global option `domain_certfile`.
 
 **`ciphers: Ciphers`**:   OpenSSL ciphers list in the same format accepted by
 	‘`openssl ciphers`’ command.
@@ -443,12 +378,6 @@ modules:
 	already provides the host in its packets; in that case, you can simply
 	provide the password option that will be used for all the hosts
 	(see port 5236 definition in the example below).
-
-**`http_bind: true|false`**:   This option enables HTTP Binding
-	([`XEP-0124`](http://xmpp.org/extensions/xep-0124.html) and
-	[`XEP-0206`](http://xmpp.org/extensions/xep-0206.html)) support.
-	HTTP Bind enables access via HTTP requests to `ejabberd` from behind
-	firewalls which do not allow outgoing sockets on port 5222.
 
 Remember that you must also install and enable the module `mod\_bosh`,
 and the `ejabberd_c2s` listener must be available too.
@@ -493,9 +422,9 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	serve the URIs `/bosh/`, use this option:
 
 	    request_handlers:
-	      "/a/b": mod_foo
-	      "/bosh": mod_bosh
-	      "/mqtt": mod_mqtt
+	      /a/b: mod_foo
+	      /bosh: mod_bosh
+	      /mqtt: mod_mqtt
 
 **`check_from: true|false`**:   This option can be used with `ejabberd_service` only.
 	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
@@ -513,11 +442,11 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	section [Shapers](#shapers)). The recommended value is `fast`.
 
 **`starttls: true|false`**:   This option specifies that STARTTLS encryption is available on
-	connections to the port. You should also set the `certfiles` option.
+	connections to the port. You should also set the `certfiles` option or configure ACME.
 
 **`starttls_required: true|false`**:   This option specifies that STARTTLS encryption is required on
 	connections to the port. No unencrypted connections will be allowed.
-	You should also set the `certfiles` option.
+	You should also set the `certfiles` option or configure ACME.
 
 **`timeout: Integer`**:   Timeout of the connections, expressed in milliseconds. Default: 5000
 
@@ -529,7 +458,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	method is STARTTLS on port 5222, as defined
 	[`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
 	which can be enabled in `ejabberd` with the option `starttls`. If
-	this option is set, you should also set the `certfiles` or the `certfile` option. The
+	this option is set, you should also set the `certfiles` option or configure ACME. The
 	option `tls` can also be used in `ejabberd_http` to support HTTPS.
 
 **`tls_compression: true|false`**:   Whether to enable or disable TLS compression. The default value is
@@ -539,12 +468,6 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
     proxy protocol for supplying real IP addresses to ejabberd server. You can read about this protocol
     in [Proxy protocol specification](http://www.haproxy.org/download/1.8/doc/proxy-protocol.txt).
     The default value of this option is`false`.
-
-**`web_admin: true|false`**:   This option enables the Web Admin for `ejabberd` administration
-	which is available at `http://server:port/admin/`.
-	To login, provide the JID (`username@servername`) and
-	password of one of the registered
-	users who are granted access by the ‘configure’ access rule.
 
 **`zlib: true|false`**:   This option specifies that Zlib stream compression (as defined in
 	[`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)) is available
@@ -594,15 +517,10 @@ ejabberd configuration file (outside `listen`):
 	releases. Instead, set it to `required` and make sure `mod_s2s_dialback`
 	is *NOT* loaded. The default value is to not use STARTTLS: `false`.
 
-**`s2s_certfile: Path`**:   Full path to a file containing a SSL certificate.
-
 **`s2s_dhfile: Path`**:   Full path to a file containing custom DH parameters. Such a file could be
 	created with the command `openssl dhparam -out dh.pem 2048`. If this
 	option is not specified, default parameters will be used, which might
 	not provide the same level of security as using custom parameters.
-
-**`domain_certfile: Path`**:   Full path to the file containing the SSL certificate for a specific
-	domain.
 
 **`s2s_ciphers: Ciphers`**:   OpenSSL ciphers list in the same format accepted by
 	‘`openssl ciphers`’ command.
@@ -632,18 +550,6 @@ ejabberd configuration file (outside `listen`):
 
 **`s2s_tls_compression: true|false`**:   Whether to enable or disable TLS compression for s2s connections.
 	The default value is `false`.
-
-**`c2s_hibernate: Timeout|hibernate`**:   The timeout in milliseconds before the c2s processes will be hibernated.
-    Default value: ’90000’
-
-**`receiver_hibernate: Timeout|hibernate`**:   The timeout in milliseconds before the receiver processes will be hibernated.
-    Default value: ’90000’
-
-**`route_subdomains: local|s2s`**:   Defines if ejabberd must route stanzas directed to subdomains
-	locally (compliant with
-	[`RFC 6120 Local Domain rules`](http://xmpp.org/rfcs/rfc6120.html\#rules-local)),
-	or to foreign server using S2S (compliant with
-	[`RFC 6120 Remote Domain rules`](http://xmpp.org/rfcs/rfc6120.html\#rules-remote)).
 
 **`trusted_proxies: all | [IpString]`**:   Specify what proxies are trusted when an HTTP request contains the
 	header `X-Forwarded-For` You can specify `all` to allow all proxies,
@@ -681,13 +587,13 @@ For example, the following simple configuration defines:
 
 
 			hosts:
-			  - "example.com"
-			  - "example.org"
-			  - "example.net"
+			  - example.com
+			  - example.org
+			  - example.net
 
 			certfiles:
-			  - "/etc/ejabberd/server.pem"
-			  - "/etc/ejabberd/example_com.pem"
+			  - /etc/ejabberd/server.pem
+			  - /etc/ejabberd/example_com.pem
 
 			listen:
 			  -
@@ -717,21 +623,23 @@ For example, the following simple configuration defines:
 			  -
 			    port: 5280
 			    module: ejabberd_http
-			    http_bind: true
+			    request_handlers:
+			      /bosh: mod_bosh
 			  -
 			    port: 5281
-			    ip: "127.0.0.1"
+			    ip: 127.0.0.1
 			    module: ejabberd_http
-			    web_admin: true
-			    http_bind: true
 			    tls: true
+			    request_handlers:
+			      /admin: ejabberd_web_admin
+			      /bosh: mod_bosh
 
 			s2s_use_starttls: optional
 			outgoing_s2s_families:
 			  - ipv4
 			  - ipv6
 			outgoing_s2s_timeout: 10000
-			trusted_proxies: ["127.0.0.1", "192.168.1.11"]
+			trusted_proxies: [127.0.0.1, 192.168.1.11]
 
 
 In this example, the following configuration defines that:
@@ -786,14 +694,14 @@ In this example, the following configuration defines that:
 
 			acl:
 			  blocked:
-			    user: "bad"
+			    user: bad
 			  trusted_servers:
 			    server:
-			      - "example.com"
-			      - "jabber.example.org"
+			      - example.com
+			      - jabber.example.org
 			  xmlrpc_bot:
 			    user:
-			      - "xmlrpc-robot": "example.org"
+			      - xmlrpc-robot@example.org
 			shaper:
 			  normal: 1000
 			shaper_rules:
@@ -809,7 +717,7 @@ In this example, the following configuration defines that:
 			  s2s:
 			    - allow: trusted_servers
 			certfiles:
-			  - "/path/to/ssl.pem"
+			  - /path/to/ssl.pem
 			s2s_access: s2s
 			s2s_use_starttls: required_trusted
 			listen:
@@ -819,7 +727,7 @@ In this example, the following configuration defines that:
 			    shaper: c2s_shaper
 			    access: c2s
 			  -
-			    ip: "192.168.0.1"
+			    ip: 192.168.0.1
 			    port: 5223
 			    module: ejabberd_c2s
 			    tls: true
@@ -836,65 +744,65 @@ In this example, the following configuration defines that:
 			  -
 			    port: 5280
 			    module: ejabberd_http
-			    web_admin: true
-			    http_bind: true
 			    request_handlers:
-                  "/mqtt": mod_mqtt
+			      /admin: ejabberd_web_admin
+			      /bosh: mod_bosh
+                              /mqtt: mod_mqtt
 			  -
 			    port: 4560
 			    module: ejabberd_xmlrpc
 			    access_commands: {}
 			  -
-			    ip: "127.0.0.1"
+			    ip: 127.0.0.1
 			    port: 5233
 			    module: ejabberd_service
 			    hosts:
-			      "aim.example.org":
-			        password: "aimsecret"
+			      aim.example.org:
+			        password: aimsecret
 			  -
 			    ip: "::1"
 			    port: 5233
 			    module: ejabberd_service
 			    hosts:
-			      "aim.example.org":
-			        password: "aimsecret"
+			      aim.example.org:
+			        password: aimsecret
 			  -
 			    port: 5234
 			    module: ejabberd_service
 			    hosts:
-			      "icq.example.org":
-			        password: "jitsecret"
-			      "sms.example.org":
-			        password: "jitsecret"
+			      icq.example.org:
+			        password: jitsecret
+			      sms.example.org:
+			        password: jitsecret
 			  -
 			    port: 5235
 			    module: ejabberd_service
 			    hosts:
-			      "msn.example.org":
-			        password: "msnsecret"
+			      msn.example.org:
+			        password: msnsecret
 			  -
 			    port: 5236
 			    module: ejabberd_service
-			    password: "yahoosecret"
+			    password: yahoosecret
 			  -
 			    port: 5237
 			    module: ejabberd_service
 			    hosts:
-			      "gg.example.org":
-			        password: "ggsecret"
+			      gg.example.org:
+			        password: ggsecret
 			  -
 			    port: 5238
 			    module: ejabberd_service
 			    hosts:
-			      "jmc.example.org":
-			        password: "jmcsecret"
+			      jmc.example.org:
+			        password: jmcsecret
 			  -
 			    port: 5239
 			    module: ejabberd_service
 			    check_from: false
 			    hosts:
-			      "custom.example.org":
-			        password: "customsecret"
+			      custom.example.org:
+			        password: customsecret
 
 
 Note, that for services based in jabberd14 or WPJabber you have to make
@@ -1023,9 +931,9 @@ Examples:
 
 
 		host_config:
-		  "example.org":
+		  example.org:
 		    auth_method: [internal]
-		  "example.net":
+		  example.net:
 		    auth_method: [ldap]
 
 -   To use internal authentication with hashed passwords on all virtual
@@ -1077,7 +985,7 @@ each virtual host defined in ejabberd:
 
 
 	auth_method: [external]
-	extauth_program: "/etc/ejabberd/JabberAuth.class.php"
+	extauth_program: /etc/ejabberd/JabberAuth.class.php
 	extauth_instances: 3
 	auth_use_cache: false
 
@@ -1132,7 +1040,7 @@ Examples:
 
 
 		host_config:
-		  "public.example.org":
+		  public.example.org:
 		    auth_method: [anonymous]
 		    anonymous_protoco: login_anon
 
@@ -1141,7 +1049,7 @@ Examples:
 
 
 		host_config:
-		  "public.example.org":
+		  public.example.org:
 		    auth_method:
 		      - internal
 		      - anonymous
@@ -1151,7 +1059,7 @@ Examples:
 
 
 		host_config:
-		  "public.example.org":
+		  public.example.org:
 		    auth_method: [anonymous]
 		    anonymous_protocol: sasl_anon
 
@@ -1159,7 +1067,7 @@ Examples:
 
 
 		host_config:
-		  "public.example.org":
+		  public.example.org:
 		    auth_method: [anonymous]
 		    anonymous_protocol: both
 
@@ -1168,7 +1076,7 @@ Examples:
 
 
 		host_config:
-		  "public.example.org":
+		  public.example.org:
 		    auth_method:
 		      - internal
 		      - anonymous
@@ -1200,7 +1108,7 @@ Options:
 Example:
 
 	auth_method: [pam]
-	pam_service: "ejabberd"
+	pam_service: ejabberd
 
 Though it is quite easy to set up PAM support in `ejabberd`, PAM itself
 introduces some security issues:
@@ -1268,7 +1176,7 @@ Options:
 Example:
 
 	auth_method: jwt
-	jwt_key: "/path/to/jwt/key"
+	jwt_key: /path/to/jwt/key
 
 In this example, admins can use both JWT and plain passwords, while the rest of users can use only JWT.
 
@@ -1311,7 +1219,7 @@ following syntax:
 
 	    acl:
 	      admin:
-	        user: "yozhik"
+	        user: yozhik
 
 **`user: {Username: Server} | Jid`**:   Matches the user with the JID `Username@Server` and any resource.
 	Example:
@@ -1320,21 +1228,21 @@ following syntax:
 	    acl:
 	      admin:
 	        - user:
-	            "yozhik": "example.org"
-	        - user: "peter@example.org"
+	            yozhik@example.org
+	        - user: peter@example.org
 
 **`server: Server`**:   Matches any JID from server `Server`. Example:
 
 
 	    acl:
 	      exampleorg:
-	        server: "example.org"
+	        server: example.org
 
 **`resource: Resource`**:   Matches any JID with a resource `Resource`. Example:
 
 	    acl:
 	      mucklres:
-	        resource: "muckl"
+	        resource: muckl
 
 **`shared_group: Groupname`**:   Matches any member of a Shared Roster Group with name `Groupname` in
 	the virtual host. Example:
@@ -1342,7 +1250,7 @@ following syntax:
 
 	    acl:
 	      techgroupmembers:
-	        shared_group: "techteam"
+	        shared_group: techteam
 
 **`shared_group: {Groupname: Server}`**:   Matches any member of a Shared Roster Group with name `Groupname` in
 	the virtual host `Server`. Example:
@@ -1351,7 +1259,7 @@ following syntax:
 	    acl:
 	      techgroupmembers:
 	        shared_group:
-	          "techteam": "example.org"
+	          techteam: example.org
 
 **`ip: Network`**:   Matches any IP address from the `Network`. Example:
 
@@ -1359,7 +1267,7 @@ following syntax:
 	    acl:
 	      loopback:
 	        ip:
-	          - "127.0.0.0/8"
+	          - 127.0.0.0/8
 	          - "::1"
 
 **`user_regexp: Regexp`**:   Matches any local user with a name that matches `Regexp` on local
@@ -1377,7 +1285,7 @@ following syntax:
 	    acl:
 	      tests:
 	        user_regexp:
-	          - "^test1": "example.org"
+	          - "^test1": example.org
 	          - "^test2@example.org"
 
 **`server_regexp: Regexp`**:   Matches any JID from the server that matches `Regexp`. Example:
@@ -1488,18 +1396,18 @@ Example:
           - deny:
             - acl: banned_forever
           - deny:
-            - ip: "222.111.222.111/32"
+            - ip: 222.111.222.111/32
           - deny:
-            - ip: "111.222.111.222/32"
+            - ip: 111.222.111.222/32
           - allow
         xmlrpc_access:
           - allow:
-            - user: "peter@example.com"
+            - user: peter@example.com
           - allow:
-            - user: "ivone@example.com"
+            - user: ivone@example.com
           - allow:
-            - user: "bot@example.com"
-            - ip: "10.0.0.0/24"
+            - user: bot@example.com
+            - ip: 10.0.0.0/24
 
 The following `AccessName` are pre-defined:
 
@@ -1524,7 +1432,7 @@ Examples:
     shaper_rules:
       connections_limit:
         - 10:
-          - user: "peter@example.com"
+          - user: peter@example.com
         - 100: admin
         - 5
       download_speed:
@@ -1613,7 +1521,7 @@ translation file `Language.msg` in `ejabberd`’s `msgs` directory.
 
 For example, to set Russian as default language:
 
-	language: "ru"
+	language: ru
 
 The page [Internationalization and Localization](/developer/extending-ejabberd/localization/)
 provides more details.
@@ -1637,35 +1545,26 @@ The configurable options are:
 **`captcha_cmd: Path`**:   Full path to a script that generates the image. The default value
 	disables the feature: `undefined`
 
-**`captcha_host: ProtocolHostPort`**:   ProtocolHostPort is a string with the host, and optionally the
-	Protocol and Port number. It must identify where ejabberd listens
-	for CAPTCHA requests. The URL sent to the user is formed by:
-	`Protocol://Host:Port/captcha/` The default value is: protocol
-	`http`, the first hostname configured, and port `80`. If you specify
-	a port number that does not match exactly an ejabberd listener
-	(because you are using a reverse proxy or other port-forwarding
-	tool), then you must specify the transfer protocol, as seen in the
-	example below.
-
-Additionally, an `ejabberd_http` listener must be enabled with the
-`captcha` option. See section [Listening Module](#listening-module).
+**`captcha_url: URL`**:  An URL where CAPTCHA requests should be sent.
+        You need to configure request_handlers for ejabberd_http listener as well.
 
 Example configuration:
 
 
-	hosts: ["example.org"]
+	hosts: [example.org]
 
-	captcha_cmd: "/lib/ejabberd/priv/bin/captcha.sh"
-	captcha_host: "example.org:5280"
-	## captcha_host: "https://example.org:443"
-	## captcha_host: "http://example.com"
+	captcha_cmd: /lib/ejabberd/priv/bin/captcha.sh
+	captcha_url: http://example.org:5280/captcha
+	## captcha_url: https://example.org:443/captcha
+	## captcha_url: http://example.com/captcha
 
 	listen:
 	  ...
 	  -
 	    port: 5280
 	    module: ejabberd_http
-	    captcha: true
+	    request_handlers:
+	      /captcha: ejabberd_captcha
 	  ...
 
 ## Node settings
@@ -1677,7 +1576,7 @@ net_kernel. It tells `erlang` VM how often nodes should check if
 intra-node communication was not interrupted. This option must have
 identical value on all nodes, or it will lead to subtle bugs. Usually
 leaving default value of this is option is best, tweak it only if you
-know what are you doing.
+know what you are doing.
 
 ## STUN and TURN
 
@@ -1747,7 +1646,7 @@ Example configuration with disabled TURN functionality (STUN only):
 	  -
 	    port: 5349
 	    module: ejabberd_stun
-	    certfile: "/etc/ejabberd/server.pem"
+	    certfile: /etc/ejabberd/server.pem
 	  ...
 
 Example configuration with TURN functionality. Note that STUN is always
@@ -1760,7 +1659,7 @@ enabled if TURN is enabled. Here, only UDP section is shown:
 	    port: 3478
 	    transport: udp
 	    use_turn: true
-	    turn_ip: "10.20.30.1"
+	    turn_ip: 10.20.30.1
 	    module: ejabberd_stun
 	  ...
 
@@ -1814,7 +1713,7 @@ Example configuration with standard ports (as per
 	    port: 5061
 	    module: ejabberd_sip
 	    tls: true
-	    certfile: "/etc/ejabberd/server.pem"
+	    certfile: /etc/ejabberd/server.pem
 	  ...
 
 Note that there is no StartTLS support in SIP and
@@ -1876,14 +1775,14 @@ The allowed suboptions are:
 
 This is a basic example:
 
-	include_config_file: "/etc/ejabberd/additional.yml"
+	include_config_file: /etc/ejabberd/additional.yml
 
 In this example, the included file is not allowed to contain a `listen`
 option. If such an option is present, the option will not be accepted.
 The file is in a subdirectory from where the main configuration file is.
 
 	include_config_file:
-	  "./example.org/additional_not_listen.yml":
+	  ./example.org/additional_not_listen.yml:
 	    disallow: [listen]
 
 Please notice that options already defined in the main configuration file cannot be redefined in the included configuration files. But you can use `host_config` and `append_host_config` as usual (see [Virtual Hosting](#virtual-hosting)).
@@ -1895,7 +1794,7 @@ In this example, `ejabberd.yml` defines some ACL for the whole ejabberd server, 
 	    user:
 	      - admin@localhost
 	include_config_file:
-	  "/etc/ejabberd/acl.yml"
+	  /etc/ejabberd/acl.yml
 
 The file `acl.yml` can add additional administrators to one of the virtual hosts:
 
@@ -1914,37 +1813,36 @@ for a value and later use this macro when defining an option.
 
 A macro is defined with this syntax:
 
-**`define_macro: { ’MACRO’: Value }`**:  The `MACRO` must be surrounded by single quotation marks, and all
-letters in uppercase; check the examples below. The `value` can be any
-valid arbitrary Erlang term.
+**`define_macro: { ’MACRO’: Value }`**:  Defines a macro. The `value` can be any
+valid arbitrary YAML value. For convenience, it's recommended to define
+a macro name in capital letters.
 
-The first definition of a macro is preserved, and additional definitions
-of the same macro are forgotten.
+Duplicated macros are not allowed.
 
 Macros are processed after additional configuration files have been
 included, so it is possible to use macros that are defined in
 configuration files included before the usage.
 
-It isn't possible to use a macro in the definition of another macro.
+It is possible to use a macro in the definition of another macro.
 
 This example shows the basic usage of a macro:
 
 
 	define_macro:
-	  'LOG_LEVEL_NUMBER': 5
-	loglevel: 'LOG_LEVEL_NUMBER'
+	  LOG_LEVEL_NUMBER: 5
+	loglevel: LOG_LEVEL_NUMBER
 
 The resulting option interpreted by `ejabberd` is: `loglevel: 5`.
 
-This example shows that values can be any arbitrary Erlang term:
+This example shows that values can be any arbitrary YAML value:
 
 
 	define_macro:
-	  'USERBOB':
+	  USERBOB:
 	    user:
-	      - "bob": "localhost"
+	      - bob@localhost
 	acl:
-	  admin: 'USERBOB'
+	  admin: USERBOB
 
 The resulting option interpreted by `ejabberd` is:
 
@@ -1952,20 +1850,20 @@ The resulting option interpreted by `ejabberd` is:
 	acl:
 	  admin:
 	    user:
-	      - "bob": "localhost"
+	      - bob@localhost
 
 This complex example:
 
 
 	define_macro:
-	  'NUMBER_PORT_C2S': 5222
-	  'NUMBER_PORT_HTTP': 5280
+	  NUMBER_PORT_C2S: 5222
+	  NUMBER_PORT_HTTP: 5280
 	listen:
 	  -
-	    port: 'NUMBER_PORT_C2S'
+	    port: NUMBER_PORT_C2S
 	    module: ejabberd_c2s
 	  -
-	    port: 'NUMBER_PORT_HTTP'
+	    port: NUMBER_PORT_HTTP
 	    module: ejabberd_http
 
 produces this result after being interpreted:
@@ -2027,12 +1925,12 @@ sections must be set inside a `host_config` for each vhost (see section
 
 
 	host_config:
-	  "public.example.org":
+	  public.example.org:
 	    sql_type: pgsql
-	    sql_server: "localhost"
-	    sql_database: "database-public-example-org"
-	    sql_username: "ejabberd"
-	    sql_password: "password"
+	    sql_server: localhost
+	    sql_database: database-public-example-org
+	    sql_username: ejabberd
+	    sql_password: password
 	    auth_method: [sql]
 
 ## Relational Databases
@@ -2112,10 +2010,10 @@ Example of MySQL connection:
 
 
 	sql_type: mysql
-	sql_server: "server.company.com"
+	sql_server: server.company.com
 	sql_port: 3306 # the default
-	sql_database: "mydb"
-	sql_username: "user1"
+	sql_database: mydb
+	sql_username: user1
 	sql_password: "**********"
 	sql_pool_size: 5
 
@@ -2128,9 +2026,9 @@ when you have `sql_server` defined as an IP address, e.g.:
 
 
 	sql_type: mssql
-	sql_server: "1.2.3.4"
+	sql_server: 1.2.3.4
 	...
-	sql_username: "user1@host"
+	sql_username: user1@host
 
 ### SQL Authentication
 
@@ -2217,7 +2115,7 @@ Example:
 
 	auth_method: [ldap]
 	ldap_servers:
-	  - "ldap1.example.org"
+	  - ldap1.example.org
 	ldap_port: 389
 	ldap_rootdn: "cn=Manager,dc=domain,dc=org"
 	ldap_password: "**********"
@@ -2266,21 +2164,11 @@ Available options are:
 
 
 	    ldap_dn_filter:
-	      "(&(name=%s)(owner=%D)(user=%u@%d))": ["sn"]
+	      "(&(name=%s)(owner=%D)(user=%u@%d))": [sn]
 
 Since this filter makes additional LDAP lookups, use it only in the
 last resort: try to define all filter rules in `ldap_filter` if
 possible.
-
-**`{ldap_local_filter, Filter}`**:   If you can’t use `ldap_filter` due to performance reasons (the LDAP
-	server has many users registered), you can use this local filter.
-	The local filter checks an attribute in ejabberd, not in LDAP, so
-	this limits the load on the LDAP directory. The default filter is:
-	`undefined`. Example values:
-
-	    {ldap_local_filter, {notequal, {"accountStatus",["disabled"]}}}.
-	    {ldap_local_filter, {equal, {"accountStatus",["enabled"]}}}.
-	    {ldap_local_filter, undefined}.
 
 ### LDAP Examples
 
@@ -2298,10 +2186,10 @@ this:
 	## Authentication method
 	auth_method: [ldap]
 	## DNS name of our LDAP server
-	ldap_servers: ["ldap.example.org"]
+	ldap_servers: [ldap.example.org]
 	## Bind to LDAP server as "cn=Manager,dc=example,dc=org" with password "secret"
 	ldap_rootdn: "cn=Manager,dc=example,dc=org"
-	ldap_password: "secret"
+	ldap_password: secret
 	ldap_encrypt: tls
 	ldap_port: 6123
 	## Define the user's base
@@ -2329,31 +2217,31 @@ Also we want users to search each other. Let’s see how we can set it up:
 	    ## uidattr: user's part of JID is located in the "mail" attribute
 	    ## uidattr_format: common format for our emails
 	    ldap_uids:
-	      "mail": "%u@mail.example.org"
+	      mail: "%u@mail.example.org"
 	    ## We have to define empty filter here, because entries in addressbook does not
 	    ## belong to shadowAccount object class
 	    ldap_filter: ""
 	    ## Now we want to define vCard pattern
 	    ldap_vcard_map:
-	     "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
-	     "GIVEN": {"%s": ["givenName"]}
-	     "FAMILY": {"%s": ["sn"]}
-	     "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
-	     "EMAIL": {"%s": ["mail"]}
-	     "BDAY": {"%s": ["birthDay"]}]}
+	     NICKNAME: {"%u": []} # just use user's part of JID as their nickname
+	     GIVEN: {"%s": [givenName]}
+	     FAMILY: {"%s": [sn]}
+	     FN: {"%s, %s": [sn, givenName]} # example: "Smith, John"
+	     EMAIL: {"%s": [mail]}
+	     BDAY: {"%s": [birthDay]}]}
 	    ## Search form
 	    ldap_search_fields:
-	      "User": "%u"
-	      "Name": "givenName"
-	      "Family Name": "sn"
-	      "Email": "mail"
-	      "Birthday": "birthDay"
+	      User: "%u"
+	      Name: givenName
+	      "Family Name": sn
+	      Email: mail
+	      Birthday: birthDay
 	    ## vCard fields to be reported
 	    ## Note that JID is always returned with search results
 	    ldap_search_reported:
-	      "Full Name": "FN"
-	      "Nickname": "NICKNAME"
-	      "Birthday": "BDAY"
+	      "Full Name": FN
+	      Nickname: NICKNAME
+	      Birthday: BDAY
 	  ...
 
 Note that `mod_vcard` with LDAP backend checks for the existence of the user
@@ -2366,11 +2254,11 @@ sample configuration is shown below:
 
 
 	auth_method: [ldap]
-	ldap_servers: ["office.org"]  # List of LDAP servers
+	ldap_servers: [office.org]  # List of LDAP servers
 	ldap_base: "DC=office,DC=org" # Search base of LDAP directory
 	ldap_rootdn: "CN=Administrator,CN=Users,DC=office,DC=org" # LDAP manager
 	ldap_password: "*******" # Password to LDAP manager
-	ldap_uids: ["sAMAccountName"]
+	ldap_uids: [sAMAccountName]
 	ldap_filter: "(memberOf=*)"
 
 	modules:
@@ -2378,37 +2266,37 @@ sample configuration is shown below:
 	  mod_vcard:
 	    db_type: ldap
 	    ldap_vcard_map:
-	      "NICKNAME": {"%u": []}
-	      "GIVEN": {"%s": ["givenName"]}
-	      "MIDDLE": {"%s": ["initials"]}
-	      "FAMILY": {"%s": ["sn"]}
-	      "FN": {"%s": ["displayName"]}
-	      "EMAIL": {"%s": ["mail"]}
-	      "ORGNAME": {"%s": ["company"]}
-	      "ORGUNIT": {"%s": ["department"]}
-	      "CTRY": {"%s": ["c"]}
-	      "LOCALITY": {"%s": ["l"]}
-	      "STREET": {"%s": ["streetAddress"]}
-	      "REGION": {"%s": ["st"]}
-	      "PCODE": {"%s": ["postalCode"]}
-	      "TITLE": {"%s": ["title"]}
-	      "URL": {"%s": ["wWWHomePage"]}
-	      "DESC": {"%s": ["description"]}
-	      "TEL": {"%s": ["telephoneNumber"]}]}
+	      NICKNAME: {"%u": []}
+	      GIVEN: {"%s": [givenName]}
+	      MIDDLE: {"%s": [initials]}
+	      FAMILY: {"%s": [sn]}
+	      FN: {"%s": [displayName]}
+	      EMAIL: {"%s": [mail]}
+	      ORGNAME: {"%s": [company]}
+	      ORGUNIT: {"%s": [department]}
+	      CTRY: {"%s": [c]}
+	      LOCALITY: {"%s": [l]}
+	      STREET: {"%s": [streetAddress]}
+	      REGION: {"%s": [st]}
+	      PCODE: {"%s": [postalCode]}
+	      TITLE: {"%s": [title]}
+	      URL: {"%s": [wWWHomePage]}
+	      DESC: {"%s": [description]}
+	      TEL: {"%s": [telephoneNumber]}]}
 	    ldap_search_fields:
-	      "User": "%u"
-	      "Name": "givenName"
-	      "Family Name": "sn"
-	      "Email": "mail"
-	      "Company": "company"
-	      "Department": "department"
-	      "Role": "title"
-	      "Description": "description"
-	      "Phone": "telephoneNumber"
+	      User: "%u"
+	      Name: givenName
+	      "Family Name": sn
+	      Email: mail
+	      Company: company
+	      Department: department
+	      Role: title
+	      Description: description
+	      Phone: telephoneNumber
 	    ldap_search_reported:
-	      "Full Name": "FN"
-	      "Nickname": "NICKNAME"
-	      "Email": "EMAIL"
+	      "Full Name": FN
+	      Nickname: NICKNAME
+	      Email: EMAIL
 	  ...
 
 ## Redis
@@ -2433,7 +2321,7 @@ There are several options available:
 Example configuration:
 
 
-	redis_server: "redis.server.com"
+	redis_server: redis.server.com
 	redis_db: 1
 
 ## Default database configuration
@@ -2463,19 +2351,19 @@ The syntax is:
 
 Examples:
 
--   In this example only the module `mod_echo` is loaded and no module
+-   In this example only the module `mod_muc` is loaded and no module
 	options are specified between the square brackets:
 
 
 		modules:
-		  mod_echo: {}
+		  mod_muc: {}
 
--   In the second example the modules `mod_echo`, `mod_time`, and
+-   In the second example the modules `mod_muc`, `mod_time`, and
 	`mod_version` are loaded without options.
 
 
 		modules:
-		  mod_echo:      {}
+		  mod_muc:       {}
 		  mod_time:      {}
 		  mod_version:   {}
 
@@ -2496,7 +2384,6 @@ The following table lists all modules included in `ejabberd`.
 | mod_configure                                  | Server configuration using Ad-Hoc                    | `mod_adhoc`                      |
 | [mod_delegation](#mod-delegation)              | Namespace Delegation ([`XEP-0355`][123])             |                                  |
 | [mod_disco](#mod-disco)                        | Service Discovery ([`XEP-0030`][42])                 |                                  |
-| [mod_echo](#mod-echo)                          | Echoes XMPP stanzas                                  |                                  |
 | [mod_fail2ban](#mod-fail2ban)                  | Bans IPs that show the malicious signs               |                                  |
 | [mod_http_api](#mod-http-api)                  | REST API for ejabberd using JSON data                |                                  |
 | [mod_http_fileserver](#mod-http-fileserver)    | Small HTTP file server                               |                                  |
@@ -2573,14 +2460,14 @@ The syntax is:
 If you include the keyword “@HOST@” in the HostName, it is replaced at
 start time with the real virtual host string.
 
-This example configures the echo module to provide its echoing service
-in the Jabber ID `mirror.example.org`:
+This example configures the MUC module to provide its service
+in the Jabber ID `conference.example.org`:
 
 
 	modules:
 	  ...
-	  mod_echo:
-	    host: "mirror.example.org"
+	  mod_muc:
+	    host: conference.example.org
 	  ...
 
 However, if there are several virtual hosts and this module is enabled
@@ -2589,8 +2476,8 @@ in all of them, the “@HOST@” keyword must be used:
 
 	modules:
 	  ...
-	  mod_echo:
-	    host: "mirror.@HOST@"
+	  mod_muc:
+	    host: "conference.@HOST@"
 	  ...
 
 
@@ -2757,11 +2644,11 @@ Examples:
 		acl:
 		  direction:
 		    user:
-		      "big_boss": "example.org"
-		      "assistant": "example.org"
+		      big_boss@example.org
+		      assistant@example.org
 		  admin:
 		    user:
-		      "admin": "example.org"
+		      admin@example.org
 		access_rules:
 		  announce:
 		    - allow: admin
@@ -2800,6 +2687,10 @@ the same local host should be accepted or not. The default value is `true`.
 is in user's roster, then messages from any user of this server are
 accepted even if no subscription present. The default value is `true`.
 
+**`captcha: true|false`**: Whether to generate CAPTCHA or not in response
+to messages from strangers. See also section [CAPTCHA](#captcha). The
+default value is `false`.
+
 ## mod_bosh
 
 This module implements XMPP over BOSH as defined in [`XEP-0124`][69] and [`XEP-0206`][70]. BOSH stands for
@@ -2832,8 +2723,8 @@ and add `mod_bosh` in the HTTP listener service, together with `ejabberd_c2s`. F
 	    port: 5280
 	    module: ejabberd_http
 	    request_handlers:
-	       "/bosh": mod_bosh
-	    web_admin: true
+	       /bosh: mod_bosh
+	       /admin: ejabberd_web_admin
 	  ...
 
 With this configuration, the module will serve the requests sent to
@@ -2919,10 +2810,10 @@ To use the module add `mod_delegation` to `modules` section. If you want to dele
 		  mod_delegation:
 		    namespaces:
 		      "urn:xmpp:mam:1":
-		         filtering: ["node"]
+		         filtering: [node]
 		         access: external_mam
 		      "http://jabber.org/protocol/pubsub":
-		      access: external_pubsub
+		         access: external_pubsub
 		  ...
 
 You'll also have to define the access rules to allow the component to handle the namespaces:
@@ -2938,7 +2829,7 @@ You'll also have to define the access rules to allow the component to handle the
 		 ...
 		   external_component:
 		     server:
-		       - "sat-pubsub.example.org"
+		       - sat-pubsub.example.org
 
 In the example above `sat-pubsub.example.org` will receive all `pubsub` requests and all `MAM` requests with the `node` filtering attribute presented in `<query/>`.
 
@@ -2987,7 +2878,7 @@ Examples:
 		modules:
 		  ...
 		  mod_disco:
-		    extra_domains: ["users.jabber.org"]
+		    extra_domains: [users.jabber.org]
 		  ...
 
 -   To serve a link to the transports on another server:
@@ -2997,8 +2888,8 @@ Examples:
 		  ...
 		  mod_disco:
 		    extra_domains:
-		      - "icq.example.com"
-		      - "msn.example.com"
+		      - icq.example.com
+		      - msn.example.com
 		  ...
 
 -   To serve a link to a few friendly servers:
@@ -3008,8 +2899,8 @@ Examples:
 		  ...
 		  mod_disco:
 		    extra_domains:
-		      - "example.org"
-		      - "example.com"
+		      - example.org
+		      - example.com
 		  ...
 
 -   With this configuration, all services show abuse addresses, feedback
@@ -3023,50 +2914,28 @@ Examples:
 		    server_info:
 		      -
 		        modules: all
-		        name: "abuse-addresses"
-		        urls: ["mailto:abuse@shakespeare.lit"]
+		        name: abuse-addresses
+		        urls: [mailto:abuse@shakespeare.lit]
 		      -
 		        modules: [mod_muc]
 		        name: "Web chatroom logs"
-		        urls: ["http://www.example.org/muc-logs"]
+		        urls: [http://www.example.org/muc-logs]
 		      -
 		        modules: [mod_disco]
-		        name: "feedback-addresses"
+		        name: feedback-addresses
 		        urls:
-		          - "http://shakespeare.lit/feedback.php"
-		          - "mailto:feedback@shakespeare.lit"
-		          - "xmpp:feedback@shakespeare.lit"
+		          - http://shakespeare.lit/feedback.php
+		          - mailto:feedback@shakespeare.lit
+		          - xmpp:feedback@shakespeare.lit
 		      -
 		        modules:
 		          - mod_disco
 		          - mod_vcard
-		        name: "admin-addresses"
+		        name: admin-addresses
 		        urls:
-		          - "mailto:xmpp@shakespeare.lit"
-		          - "xmpp:admins@shakespeare.lit"
+		          - mailto:xmpp@shakespeare.lit
+		          - xmpp:admins@shakespeare.lit
 		  ...
-
-## mod_echo
-
-This module simply echoes any XMPP packet back to the sender. This
-mirror can be of interest for `ejabberd` and XMPP client debugging.
-
-Options:
-
-**`host: HostName`**:   This option defines the Jabber ID of the service. If the `host`
-	option is not specified, the Jabber ID will be the hostname of the
-	virtual host with the prefix ‘`echo.`’. The keyword “@HOST@” is
-	replaced at start time with the real virtual host name.
-
-Example: Mirror, mirror, on the wall, who is the most beautiful of them
-all?
-
-
-	modules:
-	  ...
-	  mod_echo:
-	    host: "mirror.example.org"
-	  ...
 
 ## mod_fail2ban
 
@@ -3118,12 +2987,12 @@ To start using it, simply add it as a request handler, for example:
 	    port: 5280
 	    module: ejabberd_http
 	    request_handlers:
-	      "/api": mod_http_api
+	      /api: mod_http_api
 
 To use a specific API version N, add a vN element in the URL path, like:
 
 
-	      "/api/v2": mod_http_api
+	      /api/v2: mod_http_api
 
 Access rights are defined with those global options:
 
@@ -3164,7 +3033,7 @@ this in configuration file:
 	acl:
 	  admin_ip_acl:
 	    ip:
-	      - "127.0.0.1/8"
+	      - 127.0.0.1/8
 
 ## mod_http_fileserver
 
@@ -3202,19 +3071,19 @@ and `jpg` definition is deleted. To use this module you must enable it:
 	modules:
 	  ...
 	  mod_http_fileserver:
-	    docroot: "/var/www"
-	    accesslog: "/var/log/ejabberd/access.log"
+	    docroot: /var/www
+	    accesslog: /var/log/ejabberd/access.log
 	    directory_indices:
-	      - "index.html"
-	      - "main.htm"
+	      - index.html
+	      - main.htm
 	    custom_headers:
-	      "X-Powered-By": "Erlang/OTP"
-	      "X-Fry": "It's a widely-believed fact!"
+	      X-Powered-By: Erlang/OTP
+	      X-Fry: "It's a widely-believed fact!"
 	    content_types:
-	      ".ogg": "audio/ogg"
-	      ".png": "image/png"
-	      ".jpg": undefined
-	    default_content_type: "text/html"
+	      .ogg: audio/ogg
+	      .png: image/png
+	      .jpg: undefined
+	    default_content_type: text/html
 	  ...
 
 And define it as a handler in the HTTP service:
@@ -3227,7 +3096,7 @@ And define it as a handler in the HTTP service:
 	    module: ejabberd_http
 	    request_handlers:
 	      ...
-	      "/pub/archive": mod_http_fileserver
+	      /pub/archive: mod_http_fileserver
 	      ...
 	  ...
 
@@ -3245,10 +3114,10 @@ Options:
 
 **`host: HostName`**: This option defines the JID for the HTTP upload service. The keyword
 “@HOST@” is replaced with the virtual host name. Default:
-`"upload.@HOST@"`.
+`upload.@HOST@`.
 
 **`name: Text`**: This option defines the Service Discovery name for the HTTP upload
-service. Default: `"HTTP File Upload"`.
+service. Default: `HTTP File Upload`.
 
 **`access: AccessName`**: This option defines the access rule to limit who is permitted to use
 the HTTP upload service. The default value is `local`. If no access rule
@@ -3327,7 +3196,7 @@ Example:
 
 
 	certfiles:
-	  - "/etc/ejabberd/certificate.pem"
+	  - /etc/ejabberd/certificate.pem
 
 	listen:
 	  ...
@@ -3337,14 +3206,14 @@ Example:
 	    tls: true
 	    request_handlers:
 	      ...
-	      "upload": mod_http_upload
+	      upload: mod_http_upload
 	      ...
 	  ...
 
 	modules:
 	  ...
 	  mod_http_upload:
-	    docroot: "/ejabberd/upload"
+	    docroot: /ejabberd/upload
 	    put_url: "https://@HOST@:5443/upload"
 	  ...
 
@@ -3354,7 +3223,7 @@ And using a separate HTTP server to host the files:
 	modules:
 	  ...
 	  mod_http_upload:
-	    put_url: "https://separate.http.server/upload"
+	    put_url: https://separate.http.server/upload
 	    external_secret: "foo bar baz"
 	  ...
 
@@ -3419,7 +3288,7 @@ section of `ejabberd_http` listener:
 	    module: ejabberd_http
 	    request_handlers:
 	      ...
-	      "/xmpp": ejabberd_http_ws
+	      /xmpp: ejabberd_http_ws
 	      ...
 	  ...
 
@@ -3813,7 +3682,7 @@ Examples:
 		acl:
 		  admin:
 		    user:
-		      - "admin": "example.org"
+		      - admin@example.org
 
 		access_rules:
 		  muc_admin:
@@ -3844,12 +3713,12 @@ Examples:
 		acl:
 		  paying_customers:
 		    user:
-		      - "customer1": "example.net"
-		      - "customer2": "example.com"
-		      - "customer3": "example.org"
+		      - customer1@example.net
+		      - customer2@example.com
+		      - customer3@example.org
 		  admin:
 		    user:
-		      - "admin": "example.org"
+		      - admin@example.org
 
 		access_rules:
 		  muc_admin
@@ -4009,14 +3878,14 @@ Examples:
 		  ...
 		  mod_muc_log:
 		    access_log: muc
-		    cssfile: "http://example.com/my.css"
+		    cssfile: http://example.com/my.css
 		    dirtype: plain
 		    dirname: room_jid
-		    outdir: "/var/www/muclogs"
+		    outdir: /var/www/muclogs
 		    timezone: universal
 		    spam_prevention: true
 		    top_link:
-		      "http://www.jabber.ru/": "Jabber.ru"
+		      http://www.jabber.ru/: Jabber.ru
 		  ...
 
 -   In the second example only `admin1@example.org` and
@@ -4031,8 +3900,8 @@ Examples:
 		acl:
 		  admin:
 		    user:
-		      - "admin1": "example.org"
-		      - "admin2": "example.net"
+		      - admin1@example.org
+		      - admin2@example.net
 		access_rules:
 		  muc_log:
 		    - allow: admin
@@ -4046,7 +3915,7 @@ Examples:
 		    file_permissions:
 		      mode: 644
 		      group: 33
-		    outdir: "/var/www/muclogs"
+		    outdir: /var/www/muclogs
 		    timezone: local
 		  ...
 
@@ -4106,7 +3975,7 @@ Edit ejabberd.yml and add the module to the list of modules:
 
 	modules:
 	  mod_multicast:
-	     host: "multicast.example.org"
+	     host: multicast.example.org
 	     access: multicast
 	     limits:
 	       local:
@@ -4219,7 +4088,7 @@ This option  can be useful for both standard MUC and MucSub, but the bounce is m
 context of MucSub, so it is even more important to have it on large MucSub services.The default is `false`, meaning
 the optimisation is enabled.
 
-**`use_mam_for_storage: false|true`*: This is an experimetal option. Enabling this option will make mod_offline not
+**`use_mam_for_storage: false|true`**: This is an experimetal option. Enabling this option will make mod_offline not
 use the former spool table for storing MucSub offline messages, but will use the archive table instead. This use of
 the archive table is cleaner and it makes it possible for clients to slowly drop the former offline use case and rely
 on message archive instead. It also further reduce the storage required when you enabled MucSub. Enabling this option
@@ -4237,12 +4106,12 @@ messages, administrators up to 2000, and all the other users up to
 	acl:
 	  admin:
 	    user:
-	      - "admin1": "localhost"
-	      - "admin2": "example.org"
+	      - admin1@localhost
+	      - admin2@example.org
 	  poweruser:
 	    user:
-	      - "bob": "example.org"
-	      - "jane": "example.org"
+	      - bob@example.org
+	      - jane@example.org
 
 	shaper_rules:
 	  max_user_offline_messages:
@@ -4439,14 +4308,14 @@ listen:
   - port: 8888
     module: ejabberd_service
     hosts:
-      "sat-pubsub.example.org":
-        password: "mypass"
+      sat-pubsub.example.org:
+        password: mypass
 
 acl:
 ...
   external_component:
     server:
-      - "sat-pubsub.example.org"
+      - sat-pubsub.example.org
 
 access_rules:
 ...
@@ -4534,10 +4403,10 @@ Examples:
 		acl:
 		  admin:
 		    user:
-		      - "admin": "example.org"
+		      - admin@example.org
 		  proxy_users:
 		    server:
-		      - "example.org"
+		      - example.org
 
 		access_rules:
 		  proxy65_access:
@@ -4553,9 +4422,9 @@ Examples:
 		modules:
 		  ...
 		  mod_proxy65:
-		    host: "proxy1.example.org"
+		    host: proxy1.example.org
 		    name: "File Transfer Proxy"
-		    ip: "200.150.100.1"
+		    ip: 200.150.100.1
 		    port: 7778
 		    max_connections: 5
 		    access: proxy65_access
@@ -4598,62 +4467,36 @@ prefix contains only one dot, for example ‘`pubsub.`’, or
 	use when creating a node: add `type=’plugin-name’` attribute to the
 	`create` stanza element.
 
-The “flat” plugin handles the default behaviour and follows standard
-XEP-0060 implementation.
+   - `flat` plugin handles the default behaviour and follows standard
+      XEP-0060 implementation.
 
-The “hometree” plugin allows to manages nodes in a simple tree and
-name nodes like files on a filesystem. A node Owner can only create
-node and subnodes with names /home/owner/xxx and /home/domain/owner/xxx.
-Each “hometree” node can have none, one, or many child nodes and also
-have items.
-
-The “pep” plugin adds extention to handle Personal Eventing Protocol
-([`XEP-0163`](http://xmpp.org/extensions/xep-0163.html)) to the PubSub
-engine. Adding pep plugin to PubSub make it handle PEP automatically.
-
-The “mix” plugin is an experimental implementation of
-Mediated Information eXchange
-([`XEP-0369`](http://xmpp.org/extensions/xep-0369.html)).
-
-The “mb” plugin is a PEP microglobing experimentation.
-
-The “dag” plugin provides experimental support for PubSub Collection
-Nodes (see dag nodetree below).
-
-The “dispatch” plugin publishes items to node and all child subnodes
-using the hometree behaviour. Node name must match hometree name
-requirements. Publishing item to /home/server/user/a also publish
-the item to node /home/server/user/a/a and /home/server/user/a/b.
-
-The “online” plugin only cope with online users, by automatically
-remove subscriptions and nodes of disconnecting users.
-
-Other experimental node plugins are provided. Each plugin comes with
-it's own list of default node configuration and pubsub feature, and
-can delegate calls to node_flat for default behaviour.
+   - `pep` plugin adds extention to handle Personal Eventing Protocol
+     ([`XEP-0163`](http://xmpp.org/extensions/xep-0163.html)) to the PubSub
+     engine. Adding pep plugin to PubSub make it handle PEP automatically.
 
 **`nodetree: Nodetree`**:   To specify which nodetree to use. If not defined, the default pubsub
-	nodetree is used: “tree”. Only one nodetree can be used per host,
+	nodetree is used: `tree`. Only one nodetree can be used per host,
 	and is shared by all node plugins.
 
-The “tree” nodetree store node configuration and relations on the
-database. “flat” nodes are stored without any relationship, and
-“hometree” nodes can have child nodes.
+   - `tree` nodetree store node configuration and relations on the
+     database. `flat` nodes are stored without any relationship, and
+     `hometree` nodes can have child nodes.
 
-The “virtual” nodetree does not store nodes on database. This saves
-resources on systems with tons of nodes. If using the “virtual”
-nodetree, you can only enable those node plugins: [“flat”,“pep”] or
-[“flat”]; any other plugins configuration will not work. Also, all
-nodes will have the default configuration, and this can not be
-changed. Using “virtual” nodetree requires to start from a clean
-database, it will not work if you used the default “tree” nodetree
-before.
+   - `virtual` nodetree does not store nodes on database. This saves
+     resources on systems with tons of nodes. If using the `virtual`
+     nodetree, you can only enable those node plugins: [`flat`, `pep`] or
+     [`flat`]; any other plugins configuration will not work. Also, all
+     nodes will have the default configuration, and this can not be
+     changed. Using “virtual” nodetree requires to start from a clean
+     database, it will not work if you used the default “tree” nodetree
+     before.
 
-The “dag” nodetree provides experimental support for PubSub
-Collection Nodes
-([`XEP-0248`](http://xmpp.org/extensions/xep-0248.html)). In that
-case you should also add “dag” node plugin as default, for example:
-`plugins: [dag,flat,hometree,pep]`
+   - `dag` nodetree provides experimental support for PubSub
+     Collection Nodes
+     ([`XEP-0248`](http://xmpp.org/extensions/xep-0248.html)). In that
+     case you should also add “dag” node plugin as default, for example:
+
+        plugins: [flat,pep]
 
 **`ignore_pep_from_offline: false|true`**:   To specify whether or not we should get last published PEP items
 	from users in our roster which are offline when we connect. Value is
@@ -4680,7 +4523,7 @@ case you should also add “dag” node plugin as default, for example:
 	      ...
 	      mod_pubsub:
 	        pep_mapping:
-	          "http://jabber.org/protocol/tune": "tune"
+	          http://jabber.org/protocol/tune: tune
 	      ...
 
 Example of configuration that uses flat nodes as default, and allows use
@@ -4697,9 +4540,8 @@ of flat, hometree and pep nodes:
 	      notify_retract: false
 	      max_items: 4
 	    plugins:
-	      - "flat"
-	      - "hometree"
-	      - "pep"
+	      - flat
+	      - pep
 	  ...
 
 Using relational database requires using mod\_pubsub with db_type
@@ -4715,9 +4557,8 @@ following example shows previous configuration with SQL usage:
         ignore_pep_from_offline: true
         last_item_cache: false
         plugins:
-          - "flat"
-          - "hometree"
-          - "pep"
+          - flat
+          - pep
 	  ...
 
 ## mod_push
@@ -4818,7 +4659,7 @@ Options:
 	IP address of the XMPP client. The `AccessName` should be of type
 	`ip`. The default value is `all`.
 
-**`password_strength: Entropy`**:   This option sets the minimum informational entropy for passwords.
+**`password_strength: Entropy`**:   This option sets the minimum Shannon entropy for passwords.
 	The value `Entropy` is a number of bits of entropy. The recommended
 	minimum is 32 bits. The default is 0, i.e. no checks are performed.
 
@@ -4851,7 +4692,7 @@ Examples:
 		acl:
 		  loopback:
 		    ip:
-		      - "127.0.0.0/8"
+		      - 127.0.0.0/8
 		      - "::1"
 		  shortname:
 		    user_glob:
@@ -4910,9 +4751,9 @@ Examples:
 
 		        Bye
 		    registration_watchers:
-		      - "admin1@example.org"
-		      - "boss@example.net"
-		    redirect_url: "http://my.site.org/register"
+		      - admin1@example.org
+		      - boss@example.net
+		    redirect_url: http://my.site.org/register
 		  ...
 
 ## mod_register_web
@@ -4938,20 +4779,21 @@ handler:
 
 
 	hosts:
-	  - "localhost"
-	  - "example.org"
-	  - "example.com"
+	  - localhost
+	  - example.org
+	  - example.com
 
 	certfiles:
-	  - "/etc/ejabberd/certificate.pem"
+	  - /etc/ejabberd/certificate.pem
 
 	listen:
 	  ...
 	  -
 	    port: 5281
 	    module: ejabberd_http
-	    register: true
 	    tls: true
+	    request_handlers:
+	      /register: mod_register_web
 	  ...
 
 	modules:
@@ -5012,7 +4854,7 @@ everybody else cannot modify the roster:
 	acl:
 	  admin:
 	    user:
-	      - "sarah": "example.org"
+	      - sarah@example.org
 	access_rules:
 	  roster:
 	    - allow: admin
@@ -5050,7 +4892,7 @@ Examples:
 		modules:
 		  ...
 		  mod_service_log:
-		    loggers: ["bandersnatch.example.com"]
+		    loggers: [bandersnatch.example.com]
 		  ...
 
 -   To log all end user packets to the Bandersnatch service running on
@@ -5062,8 +4904,8 @@ Examples:
 		  ...
 		  mod_service_log:
 		    loggers:
-		      - "bandersnatch.example.com"
-		      - "bandersnatch.example.org"
+		      - bandersnatch.example.com
+		      - bandersnatch.example.org
 		  ...
 
 ## mod_shared_roster
@@ -5454,10 +5296,10 @@ supporting it. You can use the following configuration…
 	  mod_shared_roster_ldap:
 	    ldap_base: "ou=flat,dc=nodomain"
 	    ldap_rfilter: "(objectClass=inetOrgPerson)"
-	    ldap_groupattr: "ou"
-	    ldap_memberattr: "cn"
+	    ldap_groupattr: ou
+	    ldap_memberattr: cn
 	    ldap_filter: "(objectClass=inetOrgPerson)"
-	    ldap_userdesc: "displayName"
+	    ldap_userdesc: displayName
 	  ...
 
 …to be provided with a roster as shown in figure [fig:msrl-roster-flat]
@@ -5479,11 +5321,11 @@ If you use the following example module configuration with it:
 	    ldap_rfilter: "(objectClass=groupOfUniqueNames)"
 	    ldap_filter: ""
 	    ldap_gfilter: "(&(objectClass=groupOfUniqueNames)(cn=%g))"
-	    ldap_groupdesc: "description"
-	    ldap_memberattr: "uniqueMember"
+	    ldap_groupdesc: description
+	    ldap_memberattr: uniqueMember
 	    ldap_memberattr_format: "cn=%u,ou=people,ou=deep,dc=nodomain"
 	    ldap_ufilter: "(&(objectClass=inetOrgPerson)(cn=%u))"
-	    ldap_userdesc: "displayName"
+	    ldap_userdesc: displayName
 	  ...
 
 …and connect as user `czesio`, then `ejabberd` will provide
@@ -5554,15 +5396,15 @@ Example complex configuration:
 	    via:
 	      -
 	        type: tls
-	        host: "sip-tls.example.com"
+	        host: sip-tls.example.com
 	        port: 5061
 	      -
 	        type: tcp
-	        host: "sip-tcp.example.com"
+	        host: sip-tcp.example.com
 	        port: 5060
 	      -
 	        type: udp
-	        host: "sip-udp.example.com"
+	        host: sip-udp.example.com
 	        port: 5060
 	  ...
 
@@ -5794,26 +5636,26 @@ The second group of parameters consists of the following `mod_vcard`-specific op
 	with the user part of a JID, and `%d` will be replaced with the
 	domain part of a JID. The default is:
 
-	    "NICKNAME": {"%u": []}
-	    "FN": {"%s": ["displayName"]}
-	    "LAST": {"%s": ["sn"]}
-	    "FIRST": {"%s": ["givenName"]}
-	    "MIDDLE": {"%s": ["initials"]}
-	    "ORGNAME": {"%s": ["o"]}
-	    "ORGUNIT": {"%s": ["ou"]}
-	    "CTRY": {"%s": ["c"]}
-	    "LOCALITY": {"%s": ["l"]}
-	    "STREET": {"%s": ["street"]}
-	    "REGION": {"%s": ["st"]}
-	    "PCODE": {"%s": ["postalCode"]}
-	    "TITLE": {"%s": ["title"]}
-	    "URL": {"%s": ["labeleduri"]}
-	    "DESC": {"%s": ["description"]}
-	    "TEL": {"%s": ["telephoneNumber"]}
-	    "EMAIL": {"%s": ["mail"]}
-	    "BDAY": {"%s": ["birthDay"]}
-	    "ROLE": {"%s": ["employeeType"]}
-	    "PHOTO": {"%s": ["jpegPhoto"]}
+	    NICKNAME: {"%u": []}
+	    FN: {"%s": [displayName]}
+	    LAST: {"%s": [sn]}
+	    FIRST: {"%s": [givenName]}
+	    MIDDLE: {"%s": [initials]}
+	    ORGNAME: {"%s": [o]}
+	    ORGUNIT: {"%s": [ou]}
+	    CTRY: {"%s": [c]}
+	    LOCALITY: {"%s": [l]}
+	    STREET: {"%s": [street]}
+	    REGION: {"%s": [st]}
+	    PCODE: {"%s": [postalCode]}
+	    TITLE: {"%s": [title]}
+	    URL: {"%s": [labeleduri]}
+	    DESC: {"%s": [description]}
+	    TEL: {"%s": [telephoneNumber]}
+	    EMAIL: {"%s": [mail]}
+	    BDAY: {"%s": [birthDay]}
+	    ROLE: {"%s": [employeeType]}
+	    PHOTO: {"%s": [jpegPhoto]}
 
 **`ldap_search_fields: {Name: Attribute, ...}`**:   This option defines the search form and the LDAP attributes to
 	search within. `Name` is the name of a search form field which will
@@ -5821,18 +5663,18 @@ The second group of parameters consists of the following `mod_vcard`-specific op
 	`msgs/*.msg` for available words). `Attribute` is the LDAP attribute
 	or the pattern `%u`. The default is:
 
-	    "User": "%u"
-	    "Full Name": "displayName"
-	    "Given Name": "givenName"
-	    "Middle Name": "initials"
-	    "Family Name": "sn"
-	    "Nickname": "%u"
-	    "Birthday": "birthDay"
-	    "Country": "c"
-	    "City": "l"
-	    "Email": "mail"
-	    "Organization Name": "o"
-	    "Organization Unit": "ou"
+	    User: "%u"
+	    "Full Name": displayName
+	    "Given Name": givenName
+	    "Middle Name": initials
+	    "Family Name": sn
+	    Nickname: "%u"
+	    Birthday: birthDay
+	    Country: c
+	    City: l
+	    Email: mail
+	    "Organization Name": o
+	    "Organization Unit": ou
 
 **`ldap_search_reported: {SearchField: VcardField}, ...}`**:   This option defines which search fields should be reported.
 	`SearchField` is the name of a search form field which will be
@@ -5840,17 +5682,17 @@ The second group of parameters consists of the following `mod_vcard`-specific op
 	`msgs/*.msg` for available words). `VcardField` is the vCard field
 	name defined in the `ldap_vcard_map` option. The default is:
 
-	    "Full Name": "FN"
-	    "Given Name": "FIRST"
-	    "Middle Name": "MIDDLE"
-	    "Family Name": "LAST"
-	    "Nickname": "NICKNAME"
-	    "Birthday": "BDAY"
-	    "Country": "CTRY"
-	    "City": "LOCALITY"
-	    "Email": "EMAIL"
-	    "Organization Name": "ORGNAME"
-	    "Organization Unit": "ORGUNIT"
+	    "Full Name": FN
+	    "Given Name": FIRST
+	    "Middle Name": MIDDLE
+	    "Family Name": LAST
+	    "Nickname": NICKNAME
+	    "Birthday": BDAY
+	    "Country": CTRY
+	    "City": LOCALITY
+	    "Email": EMAIL
+	    "Organization Name": ORGNAME
+	    "Organization Unit": ORGUNIT
 
 Examples:
 
@@ -5866,7 +5708,7 @@ Examples:
 		auth_method: ldap
 		## DNS name of our LDAP server
 		ldap_servers:
-		  - "ldap.example.org"
+		  - ldap.example.org
 		## We want to authorize users from 'shadowAccount' object class only
 		ldap_filter: "(objectClass=shadowAccount)"
 
@@ -5892,25 +5734,25 @@ up:
 		    ldap_uids: {"mail": "%u@mail.example.org"}
 		    ## Now we want to define vCard pattern
 		    ldap_vcard_map:
-		      "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
-		      "FIRST": {"%s": ["givenName"]}
-		      "LAST": {"%s": ["sn"]}
-		      "FN": {"%s, %s": ["sn", "givenName"]} # example: "Smith, John"
-		      "EMAIL": {"%s": ["mail"]}
-		      "BDAY": {"%s": ["birthDay"]}
+		      NICKNAME: {"%u": []} # just use user's part of JID as their nickname
+		      FIRST: {"%s": [givenName]}
+		      LAST: {"%s": [sn]}
+		      FN: {"%s, %s": [sn, givenName]} # example: "Smith, John"
+		      EMAIL: {"%s": [mail]}
+		      BDAY: {"%s": [birthDay]}
 		    ## Search form
 		    ldap_search_fields:
-		      "User": "%u"
-		      "Name": "givenName"
-		      "Family Name": "sn"
-		      "Email": "mail"
-		      "Birthday": "birthDay"
+		      User: "%u"
+		      Name: givenName
+		      "Family Name": sn
+		      Email: mail
+		      Birthday: birthDay
 		    ## vCard fields to be reported
 		    ## Note that JID is always returned with search results
 		    ldap_search_reported:
-		      "Full Name": "FN"
-		      "Nickname": "NICKNAME"
-		      "Birthday": "BDAY"
+		      "Full Name": FN
+		      Nickname: NICKNAME
+		      Birthday: BDAY
 
 Note that `mod_vcard` with LDAP backend checks an existence of the user
 before searching their info in LDAP.
@@ -5919,28 +5761,28 @@ before searching their info in LDAP.
 
 
 		ldap_vcard_map:
-		  "NICKNAME": {"%u": []} # just use user's part of JID as their nickname
-		  "FN": {"%s": ["displayName"]}
-		  "CTRY": {"Russia": []}
-		  "EMAIL": {"%u@%d": []}
-		  "DESC": {"%s\n%s": ["title", "description"]}
+		  NICKNAME: {"%u": []} # just use user's part of JID as their nickname
+		  FN: {"%s": [displayName]}
+		  CTRY: {Russia: []}
+		  EMAIL: {"%u@%d": []}
+		  DESC: {"%s\n%s": [title, description]}
 
 -   `ldap_search_fields` example:
 
 
 		ldap_search_fields:
-		  "User": "uid"
-		  "Full Name": "displayName"
-		  "Email": "mail"
+		  User: uid
+		  "Full Name": displayName
+		  Email: mail
 
 -   `ldap_search_reported` example:
 
 
 		ldap_search_reported:
-		  "Full Name": "FN"
-		  "Email": "EMAIL"
-		  "Birthday": "BDAY"
-		  "Nickname": "NICKNAME"
+		  "Full Name": FN
+		  Email: EMAIL
+		  Birthday: BDAY
+		  Nickname: NICKNAME
 
 ## mod_vcard_xupdate
 
