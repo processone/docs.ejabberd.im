@@ -442,11 +442,11 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	section [Shapers](#shapers)). The recommended value is `fast`.
 
 **`starttls: true|false`**:   This option specifies that STARTTLS encryption is available on
-	connections to the port. You should also set the `certfiles` option or configure ACME.
+	connections to the port. You should also set the `certfiles` option or configure [ACME](#acme).
 
 **`starttls_required: true|false`**:   This option specifies that STARTTLS encryption is required on
 	connections to the port. No unencrypted connections will be allowed.
-	You should also set the `certfiles` option or configure ACME.
+	You should also set the `certfiles` option or configure [ACME](#acme).
 
 **`timeout: Integer`**:   Timeout of the connections, expressed in milliseconds. Default: 5000
 
@@ -458,8 +458,8 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	method is STARTTLS on port 5222, as defined
 	[`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
 	which can be enabled in `ejabberd` with the option `starttls`. If
-	this option is set, you should also set the `certfiles` option or configure ACME. The
-	option `tls` can also be used in `ejabberd_http` to support HTTPS.
+	this option is set, you should also set the `certfiles` option or configure [ACME](#acme).
+	The option `tls` can also be used in `ejabberd_http` to support HTTPS.
 
 **`tls_compression: true|false`**:   Whether to enable or disable TLS compression. The default value is
 	`false`.
@@ -477,6 +477,8 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 
 There are some additional global options that can be specified in the
 ejabberd configuration file (outside `listen`):
+
+**`acme`**: Automated SSL certificate management. See section [ACME](#acme).
 
 **`certfiles: List of paths`**: The option accepts a list of file
   paths (optionally with wildcards) containing either PEM certificates
@@ -838,6 +840,144 @@ the transports log and do XDB by themselves:
 	  </xdb_file>
 	</xdb>
 
+## ACME
+
+[ACME](https://tools.ietf.org/html/rfc8555) is used to automatically obtain SSL
+certificates for the domains served by ejabberd, which means that
+certificate requests and renewals are performed to some CA server (aka "ACME server")
+in a fully automated mode. The automated mode is enabled by default.
+However, since ACME requires HTTP challenges
+(i.e. an ACME server will connect to ejabberd server on HTTP port 80 during certificate issuance),
+some configuration of ejabberd is still required. Namely, an HTTP listener for `ejabberd_http`
+module should be configured on non-TLS port with so called "ACME well known" request handler:
+
+    listen:
+      ...
+      -
+        module: ejabberd_http
+        port: 5280
+        request_handlers:
+          /.well-known/acme-challenge: ejabberd_acme
+          ...
+      ...
+
+Note that the ACME protocol **requires** challenges to be sent on port 80. Since this is a privileged
+port, ejabberd cannot listen on it directly without root privileges. Thus you need some mechanism
+to forward port 80 to the port defined by the listener (port 5280 in the example above). There are
+several ways to do this: using NAT, setcap (Linux only), or HTTP front-ends (e.g. `sslh`, `nginx`,
+`haproxy` and so on). Pick one that fits your installation the best, but **DON'T** run ejabberd as root.
+
+If you see errors in the logs with ACME server problem reports, it's **highly** recommended to change `ca_url`
+option of section `acme` to the URL pointing to some staging ACME environment, fix the problems until you obtain
+a certificate, and then change the URL back and retry using `request-certificate` ejabberdctl command
+(see below). This is needed because ACME servers typically have rate limits, preventing you from requesting
+certificates too rapidly and you can get stuck for several hours or even days.
+By default, ejabberd uses [Let's Encrypt](https://letsencrypt.org) authority.
+Thus, the default value of `ca_url` option is `https://acme-v02.api.letsencrypt.org/directory`
+and the staging URL will be `https://acme-staging-v02.api.letsencrypt.org/directory`:
+
+    acme:
+      ## Staging environment
+      ca_url: https://acme-staging-v02.api.letsencrypt.org/directory
+      ## Production environment (the default):
+      # ca_url: https://acme-v02.api.letsencrypt.org/directory
+
+The automated mode can be disabled by setting `auto` option of section `acme` to `false`:
+
+    acme:
+      auto: false
+      ...
+
+In this case automated renewals are still enabled, however, in order to request a new certificate,
+you need to run `request-certificate` ejabberdctl command:
+
+    $ ejabberdctl request-certificate all
+
+If you only want to request certificates for a subset of the domains, run:
+
+    $ ejabberdctl request-certificate domain.tld,pubsub.domain.tld,server.com,conference.server.com,...
+
+You can view the certificates obtained using ACME:
+
+    $ ejabberdctl list-certificates
+    domain.tld /path/to/cert/file1 true
+    server.com /path/to/cert/file2 false
+    ...
+
+The output is mostly self-explained: every line contains the domain, the corresponding certificate file,
+and whether this certificate file is used or not. A certificate might not be used for several reasons:
+mostly because ejabberd detects a better certificate (i.e. not expired, or having a longer lifetime).
+It's recommended to revoke unused certificates if they are not yet expired (see below).
+
+At any point you can revoke a certificate: pick the certificate file from the listing above and run:
+
+    $ ejabberdctl revoke-certificate /path/to/cert/file
+
+If the commands return errors, consult the log files for details.
+
+### Available ACME options
+
+**`ca_url`**: The ACME directory URL used as an entry point for the ACME server.
+   The default value is `https://acme-v02.api.letsencrypt.org/directory` - the
+   directory URL of [Let's Encrypt](https://letsencrypt.org) authority.
+
+**`contact`**: A list of contact addresses (typically emails) where an ACME server
+   will send notifications when problems occur. The default is an empty list which
+   means an ACME server will send no notices.
+
+**`auto`**: Whether to automatically request certificates for all configured domains
+   (that yet have no a certificate) on server start or configuration reload.
+   The default is `true`.
+
+**`cert_type`**: A type of a certificate key. Available values are `ec` and `rsa`
+   for EC and RSA certificates respectively. It's better to have RSA certificates
+   for the purpose of backward compatibility with legacy clients and servers,
+   thus the default is `rsa`.
+
+Example:
+
+    acme:
+      ca_url: https://acme-v02.api.letsencrypt.org/directory
+      contact:
+        - mailto:admin@domain.tld
+        - mailto:bot@domain.tld
+      auto: true
+      cert_type: rsa
+
+
+### ACME implementation details
+
+In nutshell, certification requests are performed in two phases. Firstly, ejabberd
+creates an account at the ACME server. That is an EC private key. Secondly,
+a certificate is requested. In the case of a revocation, no account is
+used - only a cerificate in question is needed. All information is stored under
+`acme` directory inside spool directory of ejabberd (typically `/var/lib/ejabberd`).
+An example content of the directory is the following:
+```
+$ tree /var/lib/ejabberd
+/var/lib/ejabberd
+├── acme
+│   ├── account.key
+│   └── live
+│       ├── 251ce180d964e98a2f18b65504df2ab7c55943e2
+│       └── 93816a8429ebbaa75574eb3f59d4a806b67d6917
+...
+```
+Here, `account.key` is the EC private key used to identify the ACME account.
+You can inspect its content using `openssl` command:
+```
+$ openssl ec -text -noout -in /var/lib/ejabberd/acme/account.key
+```
+Obtained certificates are stored under `acme/live` directory.
+You can inspect any of the certificates using `openssl` command as well:
+```
+$ openssl x509 -text -noout -in /var/lib/ejabberd/acme/live/251ce180d964e98a2f18b65504df2ab7c55943e2
+```
+In the case of errors, you can delete the whole `acme` directory - ejabberd
+will recreate its content on next certification request. However, don't delete it
+too frequently - usually there is a rate limit on the number of accounts and
+certificates an ACME server creates. In particular, for [Let's Encrypt](https://letsencrypt.org)
+the limits are described [here](https://letsencrypt.org/docs/rate-limits).
 
 ## Authentication
 
