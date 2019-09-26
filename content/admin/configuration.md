@@ -4001,6 +4001,10 @@ Options:
 **`top_link: {URL: Text}`**:   With this option you can customize the link on the top right corner
 	of each log file. The default value is `{/, Home}`.
 
+**`url: URL`**: A top level URL where a client is able to access logs of a particular conference.
+        The conference name is appended to the URL if `dirname` is `room_name` or
+	a conference JID is appended to the URL if `dirname` is `room_jid`.
+
 Examples:
 
 -   In the first example any room owner can enable logging, and a custom
@@ -4058,6 +4062,29 @@ Examples:
 		    outdir: /var/www/muclogs
 		    timezone: local
 		  ...
+
+- In the third example log files are served by `mod_http_fileserver` module and
+    are available at `https://domain.tld:5443/chatlogs`:
+
+          listen:
+            ...
+            -
+              module: ejabberd_http
+              port: 5443
+              tls: true
+              request_hanlers:
+                /chatlogs: mod_http_fileserver
+                ...
+
+          modules:
+            ...
+            mod_http_fileserver:
+              docroot: /var/www/muclogs
+              ...
+            mod_muc_log:
+              url: https://domain.tld:5443/chatlogs
+              outdir: /var/www/muclogs
+              ...
 
 
 ## mod_multicast
