@@ -26,6 +26,9 @@ used for specific results. This can be used by other scripts to
 determine automatically if a command succeeded or failed, for example
 using: `echo $?`
 
+To restrict what commands can be executed;
+see [API Permissions](/developer/ejabberd-api/permissions/).
+
 If you use Bash, you can get Bash completion by copying the file
 `tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
 Debian, Ubuntu, Fedora and maybe others).
@@ -65,7 +68,7 @@ The `ejabberdctl commands` are:
 **`mnesia`**:   Get information about the Mnesia database.
 
 
-## Erlang Runtime System
+# Erlang Runtime System
 
 `ejabberd` is an Erlang/OTP application that runs inside an Erlang
 runtime system. This system is configured using environment variables
@@ -155,7 +158,7 @@ Note that some characters need to be escaped when used in shell scripts,
 for instance `"` and `{}`. You can find other options in the Erlang
 manual page (`erl -man erl`).
 
-## ejabberd Commands
+# ejabberd Commands
 
 An `ejabberd command` is an abstract function identified by a name, with
 a defined number and type of calling arguments and type of result that
@@ -170,11 +173,16 @@ Other known frontends that can be installed to
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).
 
+You probably want to restrict what commands can be executed, how and who;
+for that matter see [API Permissions](/developer/ejabberd-api/permissions/).
+
 ## List of ejabberd Commands
 
 `ejabberd` includes a few ejabberd Commands by default as listed below.
 When more modules are installed, new commands may be available in the
-frontends.
+frontends, see
+[Administration API Commands](/developer/ejabberd-api/admin-api/)
+for a more detailed list of commands.
 
 The easiest way to get a list of the available commands, and get help
 for them is to use the ejabberdctl script:
@@ -276,129 +284,7 @@ The commands included in ejabberd by default are:
 
 **`kick_user user host`**:   Disconnect user’s active sessions
 
-## Restrict Execution with AccessCommands
-
-The frontends can be configured to restrict access to certain commands
-using the `AccessCommands`. In that case, authentication information
-must be provided.
-
-In each frontend the `AccessCommands` option is defined in a different
-place. But in all cases the option syntax is the same:
-
-``` yaml
-access_commands:
-  Access:
-    commands:
-      - CommandName
-      - CommandName
-      - ...
-    options:
-      ArgumentName: ArgumentValue
-      ArgumentName: ArgumentValue
-      ...
-```
-
-Before ejabberd 15.09 the default value was to not define any restriction:
-`[]`. After 15.09 by default the list of allowed commands depends on `commands`
-global option (see
-section [OAuth specific parameters](../oauth/#oauth-specific-parameters)).  The
-authentication information is provided when executing a command, and is
-Username, Hostname and Password or OAuth token of a local XMPP account that has
-permission to execute the corresponding command. This means that the account
-must be registered in the local ejabberd, because the information will be
-verified.
-
-Instead of specifying a list of allowed commands, `commands` option can have
-the `all` value to allow all commands.
-
-When one or several access restrictions are defined and the
-authentication information is provided, each restriction is verified
-until one matches completely: the account matches the Access rule, the
-command name is listed in CommandNames, and the provided arguments do
-not contradict Arguments.
-
-As an example to understand the syntax, let’s suppose those options:
-
-``` yaml
-hosts:
-  - "localhost"
-acl:
-  bots:
-    user:
-      - "robot1": "example.org"
-access:
-  commaccess:
-    bots: allow
-```
-
-This list of access restrictions allows only `robot1@example.org` to
-execute all commands:
-
-``` yaml
-access_commands:
-  commaccess:
-    commands: all
-    options: []
-```
-
-See another list of restrictions (the corresponding ACL and ACCESS are
-not shown):
-
-``` yaml
-access_commands:
-  # This bot can execute all commands:
-  bot:
-    commands: all
-    options: []
-  # This bot can only execute the command 'dump'. No argument restriction:
-  bot_backups:
-    commands:
-      - dump
-    options: []
-  # This bot can execute all commands,
-  # but if a 'host' argument is provided, it must be "example.org":
-  bot_all_example:
-    commands: all
-    options:
-      host: "example.org"
-  # This bot can only execute the command 'register',
-  # and if argument 'host' is provided, it must be "example.org":
-  bot_reg_example:
-    commands:
-      - register
-    options:
-      host: "example.org"
-  # This bot can execute the commands 'register' and 'unregister',
-  # if argument host is provided, it must be "test.org":
-  bot_reg_test:
-    commands:
-      - register
-      - unregister
-    options:
-      host: "test.org"
-```
-
-An example of complete `ejabberd_xmlrpc` configuration:
-
-``` yaml
-listen:
-  -
-    port: 4560
-    module: ejabberd_xmlrpc
-    maxsessions: 10
-    timeout: 5000
-    access_commands:
-      xmlrpc:
-        commands:
-          - register
-          - change_password
-          - send_message
-          - registered_users
-          - unregister
-        options: []
-```
-
-## Web Admin
+# Web Admin
 
 The `ejabberd` Web Admin allows to administer most of `ejabberd` using a
 web browser.
@@ -503,7 +389,7 @@ the system. The file is searched by default in
 be specified in the environment variable `EJABBERD_DOC_PATH`. See
 section [Erlang Runtime System](#erlang-runtime-system).
 
-## Ad-hoc Commands
+# Ad-hoc Commands
 
 If you enable `mod_configure` and `mod_adhoc`, you can perform several
 administrative tasks in `ejabberd` with an XMPP client. The client must
@@ -511,7 +397,7 @@ support Ad-Hoc Commands
 ([`XEP-0050`][1]), and you must
 login in the XMPP server with an account with proper privileges.
 
-## Change Computer Hostname
+# Change Computer Hostname
 
 `ejabberd` uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
