@@ -15,7 +15,7 @@ Access to all available endpoints are configured using `api_permissions` option.
 It allows to define multiple groups, each one with separate list of filters
 on who and what are allowed by rules specified inside it.
 
-Basic rule may looks like this:
+Basic rule looks like this:
 
 ``` yaml
 api_permissions:
@@ -64,14 +64,18 @@ from accepting any command.
 
 ### Examples of `who` rules
 
+This accepts user `admin@server.com` or commands originating
+from localhost:
+
 ``` yaml
 - who:
   - user: "admin@server.com"
   - ip: "127.0.0.1/8"
 ```
 
-This will accept user `admin@server.com` or commands originating
-from localhost
+This only allows execution of a command if it's invoked by user
+`admin@server.com` and comes from localhost address.
+If one of those restrictions isn't satisfied, execution will fail:
 
 ``` yaml
 - who:
@@ -81,8 +85,8 @@ from localhost
       - ip: "127.0.0.1/8"
 ```
 
-This will allow execution for commands from `admin@server.com` and
-localhost address
+Those rules match for users from `muc_admin` ACL both using regular
+authentication and OAuth (but only for tokens created with `can_muc_admin` scope):
 
 ``` yaml
 - who:
@@ -91,9 +95,6 @@ localhost address
     - scope: "can_muc_admin"
     - muc_admin
 ```
-
-Those rules will match for users from `muc_admin` ACL both using regular
-authentication and OAuth (but only for tokens created with can_muc_admin scope)
 
 ## Rules in `what` section
 
@@ -111,13 +112,16 @@ from accepting any command.
 
 ### Example of `what` rules
 
+This allows execution of all commands except command `stop`:
+
 ``` yaml
 - what:
   - "*"
   - "!stop"
 ```
 
-This will allow execution of all command except command `stop`
+This allows execution of `status` and commands with tag `session`
+(like `num_resources` or `status_list`):
 
 ``` yaml
 - what:
@@ -125,16 +129,13 @@ This will allow execution of all command except command `stop`
   - "[tag:account]"
 ```
 
-This will allow execution of `status` and commands with tag `session`
-(like `num_resources` or `status_list`)
+This matches no command:
 
 ``` yaml
 - what:
   - "start"
   - "!*"
 ```
-
-This will match no command.
 
 ## Rules in `from` section
 
@@ -147,6 +148,11 @@ if it's specified endpoint must be listed inside it to be allowed to execute.
 
 
 ## Examples
+
+Those rules allow execution of any command invoked
+by `ejabberdctl` shell command, or all command except `start` and `stop`
+for users in ACL admin, with regular authentication or `ejabberd:admin`
+scoped OAuth tokens.
 
 ``` yaml
 api_permissions:
@@ -166,8 +172,3 @@ api_permissions:
       - "!stop"
       - "!start"
 ```
-
-Rules include in this will allow execution of any command invoked
-by`ejabberdctl` shell command, or all command except `start` and `stop`
-for users in ACL admin, with regular authentication or `ejabberd:admin`
-scoped OAuth tokens.
