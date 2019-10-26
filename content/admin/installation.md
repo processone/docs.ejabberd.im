@@ -50,13 +50,13 @@ You can read more on installer options on [unattended installation](/admin/guide
 ## Install on Linux
 
 1. Go to [ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/) on ProcessOne website.
-2. Download the "Linux x86 64-bits Intel Installer".
+2. Download the "Linux x86 64-bits Installer".
 3. **Right-click on the downloaded file and select "Properties". Click on the "Permissions" tab and tick the box that says "Allow executing file as program".**
 4. Now you are able to double-click the file to execute it and start the installer.
    You can also set the installer as executable and start it using the command line:
    ``` bash
-   chmod +x ejabberd-YY.MM-linux-x86_64-installer.run
-   ./ejabberd-YY.MM-linux-x86_64-installer.run
+   chmod +x ejabberd-YY.MM-linux-x64.run
+   ./ejabberd-YY.MM-linux-x64.run
    ```
 
 5. Select the installer language you prefer, then click "Forward" to go through necessary installation steps:
