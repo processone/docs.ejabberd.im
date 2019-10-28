@@ -50,7 +50,7 @@ available parameters are:
 	interactive commands.
 
 If there is an `ejabberd` server running in the system, `ejabberdctl`
-shows the `ejabberdctl commands` described bellow and all the
+shows the `ejabberdctl commands` described below and all the
 `ejabberd commands` available in that server (see
 [List of ejabberd Commands](#list-of-ejabberd-commands)).
 
