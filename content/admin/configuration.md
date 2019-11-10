@@ -540,7 +540,7 @@ ejabberd configuration file (outside `listen`):
 	servers. The default value is `all`. You can disable connections to other servers (federation)
 	here by setting it to `none`, but this will not block other locally hosted servers as, for performance
 	reasons, they are connected internally and not via the s2s module. To block even those you might
-	need to use an additional module, for example [`mod_isolation`](https://gist.github.com/zinid/2525b45610422838c87b88f2847f9bfe).
+	need to use an additional module, for example [`mod_isolation`](https://github.com/processone/ejabberd-contrib/tree/master/mod_isolation).
 
 **`s2s_dns_timeout: Timeout`**:   The timeout in seconds for DNS resolving. The default value is `10`.
 
