@@ -2667,15 +2667,15 @@ by executing `mod_admin_extra` commands:
 
     acl:
       adminextraresource:
-	    - resource: "modadminextraf8x,31ad"
+        - resource: "modadminextraf8x,31ad"
     access_rules:
       vcard_set:
-	    - allow: adminextraresource
+        - allow: adminextraresource
     modules:
       mod_admin_extra:
-		module_resource: "modadminextraf8x,31ad"
-	      mod_vcard:
-		access_set: vcard_set
+        module_resource: "modadminextraf8x,31ad"
+      mod_vcard:
+        access_set: vcard_set
 
 Description of some commands:
 
@@ -2962,7 +2962,7 @@ You'll also have to define the access rules to allow the component to handle the
 		 ...
 		   external_pubsub:
 		          - allow: external_component
-	       external_mam:
+		   external_mam:
 		          - allow: external_component
 
 		 acl:
@@ -4578,7 +4578,7 @@ Examples:
 		access_rules:
 		  proxy65_access:
 		    - allow: proxy_users
-        shaper_rules:
+		shaper_rules:
 		  proxy65_shaper:
 		    - none: admin
 		    - proxyrate: proxy_users
@@ -4718,14 +4718,14 @@ following example shows previous configuration with SQL usage:
 
 	modules:
 	  ...
-      mod_pubsub:
-        db_type: sql
-        access_createnode: pubsub_createnode
-        ignore_pep_from_offline: true
-        last_item_cache: false
-        plugins:
-          - flat
-          - pep
+	  mod_pubsub:
+	    db_type: sql
+	    access_createnode: pubsub_createnode
+	    ignore_pep_from_offline: true
+	    last_item_cache: false
+	    plugins:
+	      - flat
+	      - pep
 	  ...
 
 ## mod_push

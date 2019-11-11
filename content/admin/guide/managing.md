@@ -334,11 +334,11 @@ Example configurations:
     "example.com":
       acl:
         admin:
-  	user:
-  	  - "admin": "example.com"
+          user:
+            - "admin": "example.com"
         viewers:
-  	user:
-  	  - "reviewer": "example.com"
+          user:
+            - "reviewer": "example.com"
   
   access:
     configure:

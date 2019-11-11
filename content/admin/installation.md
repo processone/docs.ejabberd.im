@@ -400,7 +400,7 @@ enter the ejabberd Web Admin. Here are the steps to create it:
 2.  Edit the ejabberd configuration file to give administration
     rights to the XMPP account you created:
 
-    ``` bash
+    ``` yaml
     acl:
       admin:
         user:
