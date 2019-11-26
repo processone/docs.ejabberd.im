@@ -2091,6 +2091,10 @@ The following parameters are available:
 **`sql_start_interval: N`**:   If the connection to the database fails, `ejabberd` waits 30 seconds
 	before retrying. You can modify this interval with this option.
 
+**`sql_prepared_statements: Boolean`**:  If you need to disable prepared
+	statements.  The default value is `true`.  The option is valid for
+	`pgsql`.
+
 Example of plain ODBC connection:
 
 			
