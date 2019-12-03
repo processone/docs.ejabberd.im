@@ -2572,6 +2572,7 @@ The following table lists all modules included in `ejabberd`.
 |:-----------------------------------------------|:-----------------------------------------------------|:---------------------------------|
 | mod_adhoc                                      | Ad-Hoc Commands ([`XEP-0050`][38])                   |                                  |
 | [mod_announce](#mod-announce)                  | Manage announcements                                 | recommends `mod_adhoc`           |
+| mod_avatar                                      | User Avatar to vCard-Based Avatars Conversion ([`XEP-0398`][128]) | `mod_vcard`, `mod_vcard_xupdate`, `mod_pubsub` |
 | [mod_block_strangers](#mod-block-strangers)    | Block packets from non-subscribers                   |                                  |
 | mod_blocking                                   | Simple Communications Blocking ([`XEP-0191`][39])    | `mod_privacy`                    |
 | [mod_bosh](#mod-bosh)                          | BOSH ([`XEP-0124`][69]) and XMPP over BOSH ([`XEP-0206`][70]) | `ejabberd_c2s` listener |
@@ -6169,3 +6170,4 @@ Options:
 [125]:  http://xmpp.org/extensions/xep-0198.html
 [126]:  http://xmpp.org/extensions/xep-0357.html
 [127]:  http://xmpp.org/extensions/xep-0220.html
+[128]:  https://xmpp.org/extensions/xep-0398.html
