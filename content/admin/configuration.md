@@ -3373,7 +3373,7 @@ the home directory of the user running ejabberd, and the keyword
 
 **`put_url: URL`**: This option specifies the initial part of the PUT URLs used for file
 uploads. The keyword `@HOST@` is replaced with the virtual host name.
-Default: `"http://@HOST@:5444"`. *Note: Different virtual hosts cannot
+Default: `"https://@HOST@:5443"`. *Note: Different virtual hosts cannot
 use the same PUT URL.*
 
 **`get_url: URL`**: This option specifies the initial part of the GET URLs used for
