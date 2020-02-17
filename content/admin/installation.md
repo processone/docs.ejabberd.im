@@ -130,7 +130,7 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   GCC
 -   Libexpat 1.95 or higher
 -   Libyaml 0.1.4 or higher
--   Erlang/OTP 19.1 or higher. We recommend using Erlang OTP 21.2.
+-   Erlang/OTP 19.3 or higher. We recommend using Erlang OTP 21.2.
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`][4]). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See section [pam][8].
@@ -147,7 +147,6 @@ from the Git repository using the commands:
 ``` bash
 git clone git://github.com/processone/ejabberd.git ejabberd
 cd ejabberd
-./autogen.sh
 ```
 
 ## Compilation
@@ -155,7 +154,9 @@ cd ejabberd
 To compile ejabberd execute the commands:
 
 ``` bash
+./autogen.sh
 ./configure --enable-user=ejabberd --enable-mysql
+make
 ```
 
 This tells the configuration to prepare the installed program
