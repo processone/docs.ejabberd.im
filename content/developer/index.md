@@ -22,7 +22,7 @@ ejabberd source is available on Github:
 
 You will need to get familiar with it to start learning about ejabberd
 module writing. The first place to start? You should read the
-[echo module](https://github.com/processone/ejabberd/blob/master/src/mod_echo.erl). This
+[time module](https://github.com/processone/ejabberd/blob/master/src/mod_time.erl). This
 is one of the simplest possible module for ejabberd.
 
 Another great source of inspiration and knowledge is to read the
