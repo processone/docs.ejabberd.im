@@ -21,36 +21,36 @@ used to power the largest deployments in the world should not
 intimidate you. ejabberd is equally suitable for small instances.
 
 ejabberd has been designed from the ground-up, since 2002 for robust,
-enterprise deployment. The goal has always been to shot for the moon
-and that what made it a long-lasting success.
+enterprise deployment. The goal has always been to shoot for the moon
+and this is what made it a long-lasting success.
 
 ejabberd is specifically designed for enterprise purposes: it is
-fault-tolerant can utilise the resources of multiple clustered
-machines, and easily scale when more capacity is required (by just
+fault-tolerant, can utilise the resources of multiple clustered
+machines, and can easily scale when more capacity is required (by just
 adding a box/VM).
 
-Designed at a moment where clients were mostly for desktop and when
-was supported only by a kind of HTTP polling call BOSH (), the project
-managed to adapt to the recent changes, introducing Websockets
-support, Bosh improvements and a solid mobile stack.
+Designed at a moment when clients were mostly desktops that
+only supported a kind of HTTP polling call BOSH, the project
+managed to adapt to recent changes by introducing support for
+Websockets, Bosh improvements, and a solid mobile stack.
 
-It was developed at a time where XMPP protocol was still known as
-"Jabber", but fastly adopted the protocol evolution to support the
-various version of the XMPP RFCs. It also encourages innovation and
+It was developed at a time when XMPP was still known as
+"Jabber", but quickly adopted an evolution process in order to support
+the various versions of XMPP RFCs. It now encourages innovation and
 experimentation by supporting most, if not all, extensions produced by
 the XSF.
 
-It relies on a dynamic community all over the world. To get an idea of
+ejabberd relies on a dynamic community all over the world. To get an idea of
 existing contributions, you can check
 [ejabberd main repository](https://www.github.com/processone/ejabberd)
 or the repository containing a great amount of
 [contributed extensions](https://github.com/processone/ejabberd-contrib).
 
-This is possible thanks to a very modular architecture based on a core
+This is possible thanks to a modular architecture based on a core
 router and an extremely powerful plugin mechanism that is getting
 richer every day.
 
-Welcome in your journey for ejabberd mastery!
+Welcome to the beginning of your journey of ejabberd mastery!
 
 # Options to use ejabberd
 
