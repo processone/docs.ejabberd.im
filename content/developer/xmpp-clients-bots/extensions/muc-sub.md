@@ -433,7 +433,7 @@ nick="bob"/>
 Note: Sometimes jid in subscribe/unsubscribe event may be missing
 if room is set to anonymous and user is not moderator.
 
-# List of subscriptions
+# Getting List of subscribed rooms
 
 A user can query the MUC service to get their list of
 subscriptions.
@@ -469,6 +469,8 @@ Example: Server replies with subscriptions list
   </subscriptions>
 </iq>
 ~~~
+
+# Getting list of subscribers of a room
 
 A subscriber or room moderator can get the list of subscribers by sending
 `<subscriptions/>` request directly to the room JID.
