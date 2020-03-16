@@ -3310,7 +3310,10 @@ must match the `put_url`.* Setting it to a different value only makes
 sense if an external web server or `mod_http_fileserver` is used to
 serve the uploaded files.
 
-**`service_url: URL`**: If a `service_url` is specified, upload slot requests are forwarded to
+**`service_url: URL`**:
+WARNING: **The `service_url` option is deprecated** and will be unsupported
+in future releases, better use the `external_secret` option instead.
+If a `service_url` is specified, upload slot requests are forwarded to
 this external service instead of being handled by `mod_http_upload`
 itself. Whenever an upload slot request is accepted as per the `access`
 rule, a HTTP GET query with `jid`, `name`, `size`, and `content_type`
