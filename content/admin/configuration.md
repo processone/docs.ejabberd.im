@@ -2115,7 +2115,7 @@ The following parameters are available:
 	for `mysql`, `pgsql` and `mssql`.
 
 **`sql_ssl: Boolean`**:   use ssl if not set plain tcp.
-	The default value is `false`. The option is valid for `pgsql`.
+	The default value is `false`. The option is valid for `pgsql` and `mysql`.
 
 **`sql_ssl_verify: Boolean`**:   if set verify ssl connect.
 	The default value is `false`. The option is valid for `pgsql`.
