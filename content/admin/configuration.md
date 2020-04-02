@@ -1025,7 +1025,7 @@ mechanism.
 
 **`disable_sasl_mechanisms: Mechanism|[Mechanism, ...]`**:
 Specify a list of SASL mechanisms
-(such as "DIGEST-MD5" or "SCRAM-SHA1") that should *not* be offered to
+(such as "DIGEST-MD5", "SCRAM-SHA1" or "X-OAUTH2") that should *not* be offered to
 the client. The mechanisms can be listed as lowercase or uppercase
 strings.
 
