@@ -182,6 +182,40 @@ allowing the recent history to survive server restarts.
 | created_at           | timestamp        | Creation date                                                                           |
 | size                 | integer          | Size in bytes of the xml packet                                                         |
 
+## Table `muc_online_room`
+This table is used to store rooms that actually exists in the memory of the server.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| name                 | string           | Room name                                                                                |
+| host                 | string           | Hostname of the conference component                                                           |
+| node              | string           | Erlang node where the room is                                                             |
+| pid         | string          | Pid of the thread running the room                                                  |
+
+## Table `muc_online_users`
+This table is used to store MucSub subscriptions.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| username                 | string           | User
+| server                 | string           | Hostname of the user                                                           |
+| resource               | string           | User resource                                                             |
+| name         | string          | Name of the room                                                  |
+| host         | string          | Hostname of the conference component                                                  |
+| node         | string          | Erlang node                                                  |
+
+## Table `muc_room_subscribers`
+This table is used to store MucSub subscriptions.
+
+| Field                | Type             | Usage                                                                                   |
+| -------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| room                 | string           | Room name                                                                                |
+| host                 | string           | Hostname of the conference component                                                           |
+| jid               | string           | User jid                                                             |
+| nick         | string          | User nick                                                  |
+| nodes         | string          | MucSub nodes                                                  |
+| created_at           | timestamp        | Creation date                                                                           |
+
 
 # VCard
 
