@@ -408,8 +408,9 @@ When a user becomes a subscriber:
    <event xmlns="http://jabber.org/protocol/pubsub#event">
      <items node="urn:xmpp:mucsub:nodes:subscribers">
        <item id="17895981155977588737">
-         <subscribe xmlns="urn:xmpp:mucsub:0" jid="bob@server.com" 
-nick="bob"/>
+         <subscribe xmlns="urn:xmpp:mucsub:0"
+                    jid="bob@server.com"
+                    nick="bob"/>
        </item>
      </items>
    </event>
@@ -422,8 +423,9 @@ When a user lost its subscription:
    <event xmlns="http://jabber.org/protocol/pubsub#event">
      <items node="urn:xmpp:mucsub:nodes:subscribers">
        <item id="10776102417321261057">
-         <unsubscribe xmlns="urn:xmpp:mucsub:0" jid="bob@server.com" 
-nick="bob"/>
+         <unsubscribe xmlns="urn:xmpp:mucsub:0"
+                      jid="bob@server.com"
+                      nick="bob"/>
        </item>
      </items>
    </event>
