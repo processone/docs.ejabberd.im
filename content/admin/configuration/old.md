@@ -1,8 +1,6 @@
 ---
-title: Configuring ejabberd
+title: Configuring ejabberd (Old document)
 toc: true
-menu: Configuration
-order: 3
 ---
 
 Here are the main entry points to learn more about ejabberd
