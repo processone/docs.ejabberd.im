@@ -1077,7 +1077,8 @@ mod\_mqtt
 ---------
 
 This module adds support for the MQTT protocol version *3.1.1* and
-*5.0*.
+*5.0*. Remember to configure *mod\_mqtt* in *modules* and *listen*
+sections.
 
 __Available options:__
 
@@ -2439,7 +2440,7 @@ This module provides a web page where users can:
  -   Delete an existing account on the server.
 
 This module supports CAPTCHA image to register a new account. To enable
-this feature, configure the options *captcha\_cmd* and *captcha\_host*,
+this feature, configure the options *captcha\_cmd* and *captcha\_url*,
 which are documented in the section with top-level options.
 
 As an example usage, the users of the host *example.org* can visit the

@@ -218,10 +218,13 @@ A list of authentication methods to use. If several methods are defined,
 authentication is considered successful as long as authentication of at
 least one of the methods succeeds. The default value is *\[mnesia\]*.
 
-**auth\_opts**  
-This option is used by the contributed module *ejabberd\_auth\_http*
-that can be installed from the *ejabberd-contrib* Git repository. Please
-refer to that module’s README file for details about this option.
+## auth\_opts
+
+*\[Option, ...\]*  
+
+This is used by the contributed module *ejabberd\_auth\_http* that can
+be installed from the *ejabberd-contrib* Git repository. Please refer to
+that module’s README file for details.
 
 ## auth\_password\_format
 
@@ -357,7 +360,10 @@ Full path to a script that generates CAPTCHA images. There is no default
 value: when this option is not set, CAPTCHA functionality is completely
 disabled.
 
-**captcha\_host**  
+## captcha\_host
+
+*String*  
+
 Deprecated. Use *captcha\_url* instead.
 
 ## captcha\_limit
@@ -785,8 +791,8 @@ JID. For example, "%<u@example>.org". If the value is in the form of
 
 *\[Options, ...\]*  
 
-The option for listeners configuration. See [Listeners](#listeners)
-section of this document for details.
+The option for listeners configuration. See the [Listen
+Modules](../listen/) section for details.
 
 ## log\_rotate\_count
 
@@ -828,8 +834,8 @@ value is *10000*.
 
 *{Module: Options}*  
 
-The option for modules configuration. See [Modules](#modules) section of
-this document for details.
+The option for modules configuration. See [Modules](../modules/)
+section for details.
 
 ## negotiation\_timeout
 
