@@ -69,28 +69,35 @@ are:
 
 Handles c2s connections.
 
-[hosts](../toplevel/#hosts),
-
-Options: [11access](../listen-options/#access),
+Options:
+[access](../listen-options/#access),
+[cafile](../listen-options/#cafile),
 [ciphers](../listen-options/#ciphers),
- [dhfile](../listen-options/#dhfile),
-[protocol_options](../listen-options/#protocol-options),
+[dhfile](../listen-options/#dhfile),
 [max_fsm_queue](../listen-options/#max-fsm-queue),
 [max_stanza_size](../listen-options/#max-stanza-size),
+[protocol_options](../listen-options/#protocol-options),
 [shaper](../listen-options/#shaper),
 [starttls](../listen-options/#starttls),
 [starttls_required](../listen-options/#starttls-required),
 [tls](../listen-options/#tls),
-[zlib](../listen-options/#zlib),
-[tls_compression](../listen-options/#tls-compression)
+[tls_compression](../listen-options/#tls-compression),
+[tls_verify](../listen-options/#tls-verify),
+[zlib](../listen-options/#zlib).
 
 ## ejabberd_s2s_in
 
 Handles incoming s2s connections.
 
-Options: 
+Options:
+[cafile](../listen-options/#cafile),
+[ciphers](../listen-options/#ciphers),
+[dhfile](../listen-options/#dhfile),
+[max_fsm_queue](../listen-options/#max-fsm-queue),
 [max_stanza_size](../listen-options/#max-stanza-size),
+[protocol_options](../listen-options/#protocol-options),
 [shaper](../listen-options/#shaper),
+[tls](../listen-options/#tls),
 [tls_compression](../listen-options/#tls-compression).
 
 ## ejabberd_service
@@ -101,12 +108,22 @@ Interacts with an
 	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).
 
 Options:
-[22access](../listen-options/#access),
+[access](../listen-options/#access),
+[cafile](../listen-options/#cafile),
+[certfile](../listen-options/#certfile),
+[check_from](../listen-options/#check-from),
+[ciphers](../listen-options/#ciphers),
+[dhfile](../listen-options/#dhfile),
+[global_routes](../listen-options/#global-routes),
 [hosts](../listen-options/#hosts),
 [max_fsm_queue](../listen-options/#max-fsm-queue),
+[max_stanza_size](../listen-options/#max-stanza-size),
 [password](../listen-options/#password),
-[check_from](../listen-options/#check-from),
-[shaper_rule](../listen-options/#shaper-rule).
+[protocol_options](../listen-options/#protocol-options),
+[shaper](../listen-options/#shaper),
+[shaper_rule](../listen-options/#shaper-rule),
+[tls](../listen-options/#tls),
+[tls_compression](../listen-options/#tls-compression).
 
 ## ejabberd_sip
 
@@ -123,27 +140,48 @@ Handles STUN/TURN requests as defined in
 	[`RFC 5389`](http://tools.ietf.org/html/rfc5389) and
 	[`RFC 5766`](http://tools.ietf.org/html/rfc5766).
 
-Options:
+For the specific module options, please check the
+[ejabberd_stun](../listen/#ejabberd-stun) section:
+`auth_realm`,
+`auth_type`,
+`server_name`,
+`turn_ip`,
+`turn_max_allocations`,
+`turn_max_permissions`,
+`turn_max_port`,
+`turn_min_port`,
+`use_turn`.
+
+General listener options:
 [certfile](../listen-options/#certfile),
-[tls](../listen-options/#tls),
-[use_turn](../listen-options/#use-turn),
-[turn_ip](../listen-options/#turn-ip),
-[turn_port_range](../listen-options/#turn-port-range),
-[turn_max_allocations](../listen-options/#turn-max-allocations),
-[turn_max_permissions](../listen-options/#turn-max-permissions),
 [shaper](../listen-options/#shaper),
-[server_name](../listen-options/#server-name),
-[auth_realm](../listen-options/#auth-realm),
-[auth_type](../listen-options/#auth-type).
+[tls](../listen-options/#tls),
 
 ## ejabberd_http
 
-Handles incoming HTTP connections. This module is responsible for serving Web Admin, but also XMPP BOSH and Websocket with proper request handler configured.
+Handles incoming HTTP connections.
+
+With the proper request handlers configured, this serves HTTP services like
+[ACME](../basic/#acme),
+[API](../modules/#mod-http-api),
+[BOSH](../modules/#mod-bosh),
+[CAPTCHA](../basic/#captcha),
+[Fileserver](../modules/#mod-http-fileserver),
+[OAuth](../../../developer/ejabberd-api/oauth/),
+[Upload](../modules/#mod-http-upload),
+[WebAdmin](../../guide/managing/#web-admin),
+[WebSocket](../listen/#ejabberd-http-ws),
+[XMP-RPC](../listen/#ejabberd-xmlrpc).
 
 Options:
+[cafile](../listen-options/#cafile),
+[ciphers](../listen-options/#ciphers),
+[custom_headers](../listen-options/#custom-headers),
 [default_host](../listen-options/#default-host),
 [dhfile](../listen-options/#dhfile),
+[protocol_options](../listen-options/#protocol-options),
 [request_handlers](../listen-options/#request-handlers),
+[tag](../listen-options/#tag),
 [tls](../listen-options/#tls),
 [tls_compression](../listen-options/#tls-compression),
 and the [trusted_proxies](../toplevel/#trusted-proxies) top-level option.
@@ -151,18 +189,31 @@ and the [trusted_proxies](../toplevel/#trusted-proxies) top-level option.
 ## ejabberd_xmlrpc
 
 Handles XML-RPC requests to execute
-	[ejabberd commands](../../guide/managing/#ejabberd-commands).
-
-Options:
-[access_commands](../listen-options/#access-commands),
-[maxsessions](../listen-options/#maxsessions),
-[timeout](../listen-options/#timeout).
+[ejabberd commands](../../guide/managing/#ejabberd-commands).
 
 For explanations about `access_commands` see
-	[Restrict Execution with AccessCommands](../../guide/managing/#restrict-execution-with-accesscommands).
-	Check some [XML-RPC examples](../../../developer/ejabberd-api/oauth/#xml-rpc-examples).
-	You can find more information in the old
-	[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
+[Restrict Execution with AccessCommands](../../guide/managing/#restrict-execution-with-accesscommands).
+Check some [XML-RPC examples](../../../developer/ejabberd-api/oauth/#xml-rpc-examples).
+You can find more information in the old
+[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
+
+Options:
+`access_commands` (TODO: Document how to use that option).
+
+## mod_mqtt
+
+Support for MQTT requires configuring `mod_mqtt` both in the
+[listen](../toplevel/#listen) and the
+[modules](../toplevel/#modules) sections.
+Check the [mod_mqtt modules options](../modules/#mod-mqtt).
+Check the advanded documentation in [MQTT Support](../../guide/mqtt/).
+
+Listen options:
+[max_fsm_queue](../listen-options/#max-fsm-queue),
+[max_payload_size](../listen-options/#max-payload-size),
+[tls](../listen-options/#tls),
+[tls_verify](../listen-options/#tls-verify).
+
 
 # ejabberd_stun
 
@@ -333,14 +384,12 @@ SIP authentication does not support SCRAM. As such, it is not possible
 to use `mod_sip` to authenticate when ejabberd has been set to encrypt
 password with SCRAM.
 
-# HTTP Request Handlers
-
-## ejabberd_http_ws
+# ejabberd_http_ws
 
 This module enables XMPP communication over Websocket connection as
 described in [`RFC 7395`](http://tools.ietf.org/html/rfc7395).
 
-### Enabling Websocket support
+## Enabling Websocket support
 
 To enable this module it must have handler added to `request_handlers`
 section of `ejabberd_http` listener:
@@ -359,7 +408,7 @@ section of `ejabberd_http` listener:
 This module can be configured by using those options that should be
 placed in general section of config file: websocket\_origin, websocket\_ping\_interval, websocket\_timeout.
 
-### Discovery
+## Discovery
 
 You also need to configure DNS SRV records properly so clients can
 easily discover Websocket service for your XMPP domain. Refer to
@@ -369,7 +418,7 @@ Example DNS TXT configuration for Websocket:
 
     _xmppconnect IN TXT "[ _xmpp-client-websocket=wss://web.example.com:443/ws ]"
 
-### Testing Websocket
+## Testing Websocket
 
 A test client can be found on Github: [Websocket test client](https://github.com/processone/xmpp-websocket-client)
 
