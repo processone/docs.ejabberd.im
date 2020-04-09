@@ -24,6 +24,33 @@ The backlog value defines the maximum length that the queue of
 	may be dropped if there is no space in the queue (and ejabberd was
 	not able to accept them immediately). Default value is 5.
 
+## cafile
+
+*Path*
+
+Path to a file of CA root certificates.
+The default is to use system defined file if possible.
+
+## certfile
+
+*Path*
+
+Path to the certificate file.
+Only makes sense when the `tls` options is set.
+
+## check_from
+
+*true | false*
+
+This option can be used with `ejabberd_service` only.
+	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
+	the domain must match the hostname of the component. If this option
+	is set to `false`, `ejabberd` will allow the component to send
+	stanzas with any arbitrary domain in the ’from’ attribute. Only use
+	this option if you are completely sure about it. The default value
+	is `true`, to be compliant with
+	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html).
+
 ## ciphers
 
 *Ciphers*
@@ -31,17 +58,16 @@ The backlog value defines the maximum length that the queue of
 OpenSSL ciphers list in the same format accepted by
 	‘`openssl ciphers`’ command.
 
-## protocol_options
+## custom_headers
 
-*ProtocolOpts*
+*{Name: Value}*
 
-List of general options relating to SSL/TLS. These map to
-	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_options.html).
-	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
+Specify additional HTTP headers to be included in all HTTP responses.
+Default value is: `[]`
 
 ## default_host
 
-*undefined|HostName*
+*undefined | HostName*
 
 If the HTTP request received by ejabberd contains the HTTP header
 	`Host` with an ambiguous virtual host that doesn’t match any one
@@ -58,6 +84,20 @@ Full path to a file containing custom parameters for Diffie-Hellman key
 	`openssl dhparam -out dh.pem 2048`. If this option is not specified,
 	default parameters will be used, which might not provide the same level
 	of security as using custom parameters.
+
+## global_routes
+
+*true | false*
+
+This option emulates legacy behaviour which registers all routes
+defined in `hosts` on a component connected. This behaviour
+is considered harmful in the case when it's desired to multiplex
+different components on the same port, so, to disable it,
+set `global_routes` to `false`.
+
+The default value is `true`,
+e.g. legacy behaviour is emulated: the only reason for this is
+to maintain backward compatibility with existing deployments.
 
 ## hosts
 
@@ -105,6 +145,14 @@ This option specifies the maximum number of elements in the queue of
 	configured value is used. The allowed values are integers and
 	’undefined’. Default value: ’10000’.
 
+## max_payload_size
+
+*Size*
+
+Specify the maximum payload size in bytes.
+It can be either an integer or the word `infinity`.
+The default value is `infinity`.
+
 ## max_stanza_size
 
 *Size*
@@ -123,6 +171,14 @@ This option specifies an approximate maximum size in bytes of XML
 
 Specify the password to verify an external component that connects to the port.
 
+## protocol_options
+
+*ProtocolOpts*
+
+List of general options relating to SSL/TLS. These map to
+	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_options.html).
+	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
+
 ## request_handlers
 
 *{Path: Module}*
@@ -138,47 +194,58 @@ To define one or several handlers that will serve HTTP requests. The
 	      /bosh: mod_bosh
 	      /mqtt: mod_mqtt
 
-## check_from
-
-*true|false*
-
-This option can be used with `ejabberd_service` only.
-	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
-	the domain must match the hostname of the component. If this option
-	is set to `false`, `ejabberd` will allow the component to send
-	stanzas with any arbitrary domain in the ’from’ attribute. Only use
-	this option if you are completely sure about it. The default value
-	is `true`, to be compliant with
-	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html).
-
 ## shaper
 
-*none|ShaperName*
+*none | ShaperName*
 
 This option defines a shaper for the port (see section [Shapers](#shapers)).
 	The default value is `none`.
 
 ## shaper_rule
 
-*none|ShaperRule*
+*none | ShaperRule*
 
 This option defines a shaper rule for the `ejabberd_service` (see
 	section [Shapers](#shapers)). The recommended value is `fast`.
 
 ## starttls
 
-*true|false*
+*true | false*
 
 This option specifies that STARTTLS encryption is available on
 	connections to the port. You should also set the `certfiles` option or configure [ACME](#acme).
 
 ## starttls_required
 
-*true|false*
+*true | false*
 
 This option specifies that STARTTLS encryption is required on
 	connections to the port. No unencrypted connections will be allowed.
 	You should also set the `certfiles` option or configure [ACME](#acme).
+
+## tag
+
+*String*
+
+Allow specifying a tag in a `listen` section
+and later use it to have a special `api_permission` just for it.
+
+For example:
+
+	    listen:
+	      -
+	        port: 4000
+	        module: ejabberd_http
+	        tag: "magic_listener"
+
+	    api_permissions:
+	      "magic_access":
+	        from:
+	          - tag: "magic_listener"
+	        who: all
+	        what: "*"
+
+The default value is the empty string: `""`.
 
 ## timeout
 
@@ -188,7 +255,7 @@ Timeout of the connections, expressed in milliseconds. Default: 5000
 
 ## tls
 
-*true|false*
+*true | false*
 
 This option specifies that traffic on the port will be encrypted
 	using SSL immediately after connecting. This was the traditional
@@ -203,14 +270,22 @@ This option specifies that traffic on the port will be encrypted
 
 ## tls_compression
 
-*true|false*
+*true | false*
 
 Whether to enable or disable TLS compression. The default value is
 	`false`.
 
+## tls_verify
+
+*false | true*
+
+This option specifies whether to verify the certificate or not when TLS is enabled. 
+
+The default value is `false`, which means no checks are performed.
+
 ## use_proxy_protocol
 
-*true|false*
+*true | false*
 
 Is this listener accessed by proxy service that is using
     proxy protocol for supplying real IP addresses to ejabberd server. You can read about this protocol
@@ -219,7 +294,7 @@ Is this listener accessed by proxy service that is using
 
 ## zlib
 
-*true|false*
+*true | false*
 
 This option specifies that Zlib stream compression (as defined in
 	[`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)) is available
