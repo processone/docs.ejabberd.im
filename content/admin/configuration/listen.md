@@ -129,8 +129,11 @@ Options:
 
 Handles SIP requests as defined in
 	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).
+	
+For the specific module options, please check the 
+[ejabberd_sip](../listen/#ejabberd-sip-1) section.
 
-Options:
+General listener options:
 [certfile](../listen-options/#certfile),
 [tls](../listen-options/#tls).
 
@@ -141,7 +144,7 @@ Handles STUN/TURN requests as defined in
 	[`RFC 5766`](http://tools.ietf.org/html/rfc5766).
 
 For the specific module options, please check the
-[ejabberd_stun](../listen/#ejabberd-stun) section:
+[ejabberd_stun](../listen/#ejabberd-stun-1) section:
 `auth_realm`,
 `auth_type`,
 `server_name`,
@@ -406,7 +409,7 @@ section of `ejabberd_http` listener:
 	  ...
 
 This module can be configured by using those options that should be
-placed in general section of config file: websocket\_origin, websocket\_ping\_interval, websocket\_timeout.
+placed in general section of config file: [websocket\_origin](../toplevel/#websocket-origin), [websocket\_ping\_interval](../toplevel/#websocket-ping-interval), [websocket\_timeout](../toplevel/#websocket-timeout).
 
 ## Discovery
 
