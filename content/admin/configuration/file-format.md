@@ -31,8 +31,8 @@ In previous `ejabberd` version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format using
 `convert_to_yaml` command from `ejabberdctl` (see
-[ejabberdctlqqqq](../../guide/managing/#ejabberdctl)
-and [List of ejabberd Commands](../../guide/managing/#list-of-ejabberd-commands)
+[ejabberdctl](/admin/guide/managing/#ejabberdctl)
+and [List of ejabberd Commands](/admin/guide/managing/#list-of-ejabberd-commands)
 for details).
 
 If you want to specify some options using the old Erlang format, you
@@ -40,12 +40,12 @@ can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
 [Include Additional Configuration Files](#include-additional-configuration-files)
 for the option description and a related example in
-[Restrict Execution with AccessCommands](../../guide/managing/#restrict-execution-with-accesscommands).
+[Restrict Execution with AccessCommands](/admin/guide/managing/#restrict-execution-with-accesscommands).
 
 
 # Include Additional Files
 
-The option [include_config_file](../toplevel/#include-config-file)
+The option [include_config_file](/admin/configuration/toplevel/#include-config-file)
  in a configuration file instructs
 `ejabberd` to include other configuration files immediately.
 
@@ -61,7 +61,7 @@ The file is in a subdirectory from where the main configuration file is.
 	  ./example.org/additional_not_listen.yml:
 	    disallow: [listen]
 
-Please notice that options already defined in the main configuration file cannot be redefined in the included configuration files. But you can use `host_config` and `append_host_config` as usual (see [Virtual Hosting](../basic/#virtual-hosting)).
+Please notice that options already defined in the main configuration file cannot be redefined in the included configuration files. But you can use `host_config` and `append_host_config` as usual (see [Virtual Hosting](/admin/configuration/basic/#virtual-hosting)).
 
 In this example, `ejabberd.yml` defines some ACL for the whole ejabberd server, and later includes another file:
 
@@ -87,7 +87,7 @@ The file `acl.yml` can add additional administrators to one of the virtual hosts
 In the `ejabberd` configuration file, it is possible to define a macro
 for a value and later use this macro when defining an option.
 
-A macro is defined using the [define_macro](../toplevel/#define-macro) option.
+A macro is defined using the [define_macro](/admin/configuration/toplevel/#define-macro) option.
 
 This example shows the basic usage of a macro:
 

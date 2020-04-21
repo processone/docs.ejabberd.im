@@ -60,8 +60,8 @@ cat server.crt server.key > mqtt.pem
 ### Adding MQTT service in ejabberd.yml
 
 Enabling it is as simple as adding `mod_mqtt` in ejabberd modules list and adding one or two listeners.
-For details see [mod_mqtt modules options](../../configuration/modules/#mod-mqtt)
-and [mod_mqtt listen options](../../configuration/listen/#mod-mqtt).
+For details see [mod_mqtt modules options](/admin/configuration/modules/#mod-mqtt)
+and [mod_mqtt listen options](/admin/configuration/listen/#mod-mqtt).
 Example configuration:
 
 ```yaml

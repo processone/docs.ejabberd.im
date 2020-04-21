@@ -14,13 +14,13 @@ default config file (or light changes).
 
 Sections:
 
-- [File Format](file-format/)
-- [Basic Configuration](basic/): hosts, acl, logging...
-- [Authentication](authentication/): auth_method
-- [Database and LDAP](database-ldap/)
-- [Listen Modules](listen/): c2s, s2s, http, sip, stun, xmlrpc...
-- [Listen Options](listen-options/)
-- [Top-Level Options](toplevel/)
-- [Modules Options](modules/)
+- [File Format](/admin/configuration/file-format/)
+- [Basic Configuration](/admin/configuration/basic/): hosts, acl, logging...
+- [Authentication](/admin/configuration/authentication/): auth_method
+- [Database and LDAP](/admin/configuration/database-ldap/)
+- [Listen Modules](/admin/configuration/listen/): c2s, s2s, http, sip, stun, xmlrpc...
+- [Listen Options](/admin/configuration/listen-options/)
+- [Top-Level Options](/admin/configuration/toplevel/)
+- [Modules Options](/admin/configuration/modules/)
 
-There's also a copy of the old [Configuration](old/) document which was used up to ejabberd 20.03.
+There's also a copy of the old [Configuration](/admin/configuration/old/) document which was used up to ejabberd 20.03.

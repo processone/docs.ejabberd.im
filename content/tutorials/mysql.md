@@ -370,4 +370,4 @@ You should be set now.
 # Getting further
 
 To get further you can read the ejabberd Configuration section about
-[Database and LDAP](../../admin/configuration/database-ldap/)
+[Database and LDAP](/admin/configuration/database-ldap/)

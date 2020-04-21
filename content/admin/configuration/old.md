@@ -38,8 +38,8 @@ In previous `ejabberd` version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format using
 `convert_to_yaml` command from `ejabberdctl` (see
-[ejabberdctl](../../guide/managing/#ejabberdctl)
-and [List of ejabberd Commands](../../guide/managing/#list-of-ejabberd-commands)
+[ejabberdctl](/admin/guide/managing/#ejabberdctl)
+and [List of ejabberd Commands](/admin/guide/managing/#list-of-ejabberd-commands)
 for details).
 
 If you want to specify some options using the old Erlang format, you
@@ -47,7 +47,7 @@ can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
 [Include Additional Configuration Files](#include-additional-configuration-files)
 for the option description and a related example in
-[Restrict Execution with AccessCommands](../../guide/managing/#restrict-execution-with-accesscommands).
+[Restrict Execution with AccessCommands](/admin/guide/managing/#restrict-execution-with-accesscommands).
 
 # Configuring One or Several XMPP Domains
 
@@ -325,11 +325,11 @@ are:
 	`trusted_proxies` (global option)
 
 **`ejabberd_xmlrpc`**:   Handles XML-RPC requests to execute
-	[ejabberd commands](../../guide/managing/#ejabberd-commands).
+	[ejabberd commands](/admin/guide/managing/#ejabberd-commands).
 	Options: `access_commands`, `maxsessions`, `timeout`.
 	For explanations about `access_commands` see
-	[Restrict Execution with AccessCommands](../../guide/managing/#restrict-execution-with-accesscommands).
-	Check some [XML-RPC examples](../../../../developer/ejabberd-api/oauth/#xml-rpc-examples).
+	[Restrict Execution with AccessCommands](/admin/guide/managing/#restrict-execution-with-accesscommands).
+	Check some [XML-RPC examples](/developer/ejabberd-api/oauth/#xml-rpc-examples).
 	You can find more information in the old
 	[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
 
@@ -582,7 +582,7 @@ For example, the following simple configuration defines:
 	service.
 
 -   Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind
-	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../../guide/managing/#web-admin). The
+	(BOSH) and the Web Admin as explained in [Managing: Web Admin](/admin/guide/managing/#web-admin). The
 	socket only listens connections to the IP address 127.0.0.1.
 
 
@@ -656,7 +656,7 @@ In this example, the following configuration defines that:
 
 -   Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
 	all the IPv4 addresses. Note that it is also possible to serve them
-	on different ports. The second example in section [Managing: Web Admin](../../guide/managing/#web-admin) shows
+	on different ports. The second example in section [Managing: Web Admin](/admin/guide/managing/#web-admin) shows
 	how exactly this can be done. A request handler to serve MQTT over Websocket is also defined.
 
 -   All users except for the administrators have a traffic of limit
@@ -4222,7 +4222,7 @@ email works. A user is considered offline if no session presence
 priority > 0 are currently open.
 
 Note that `ejabberdctl` has a command to delete expired messages (see
-section [Managing: ejabberdctl](../../guide/managing/#ejabberdctl)).
+section [Managing: ejabberdctl](/admin/guide/managing/#ejabberdctl)).
 
 ### Options
 

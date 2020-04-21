@@ -70,35 +70,35 @@ are:
 Handles c2s connections.
 
 Options:
-[access](../listen-options/#access),
-[cafile](../listen-options/#cafile),
-[ciphers](../listen-options/#ciphers),
-[dhfile](../listen-options/#dhfile),
-[max_fsm_queue](../listen-options/#max-fsm-queue),
-[max_stanza_size](../listen-options/#max-stanza-size),
-[protocol_options](../listen-options/#protocol-options),
-[shaper](../listen-options/#shaper),
-[starttls](../listen-options/#starttls),
-[starttls_required](../listen-options/#starttls-required),
-[tls](../listen-options/#tls),
-[tls_compression](../listen-options/#tls-compression),
-[tls_verify](../listen-options/#tls-verify),
-[zlib](../listen-options/#zlib).
+[access](/admin/configuration/listen-options/#access),
+[cafile](/admin/configuration/listen-options/#cafile),
+[ciphers](/admin/configuration/listen-options/#ciphers),
+[dhfile](/admin/configuration/listen-options/#dhfile),
+[max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
+[max_stanza_size](/admin/configuration/listen-options/#max-stanza-size),
+[protocol_options](/admin/configuration/listen-options/#protocol-options),
+[shaper](/admin/configuration/listen-options/#shaper),
+[starttls](/admin/configuration/listen-options/#starttls),
+[starttls_required](/admin/configuration/listen-options/#starttls-required),
+[tls](/admin/configuration/listen-options/#tls),
+[tls_compression](/admin/configuration/listen-options/#tls-compression),
+[tls_verify](/admin/configuration/listen-options/#tls-verify),
+[zlib](/admin/configuration/listen-options/#zlib).
 
 ## ejabberd_s2s_in
 
 Handles incoming s2s connections.
 
 Options:
-[cafile](../listen-options/#cafile),
-[ciphers](../listen-options/#ciphers),
-[dhfile](../listen-options/#dhfile),
-[max_fsm_queue](../listen-options/#max-fsm-queue),
-[max_stanza_size](../listen-options/#max-stanza-size),
-[protocol_options](../listen-options/#protocol-options),
-[shaper](../listen-options/#shaper),
-[tls](../listen-options/#tls),
-[tls_compression](../listen-options/#tls-compression).
+[cafile](/admin/configuration/listen-options/#cafile),
+[ciphers](/admin/configuration/listen-options/#ciphers),
+[dhfile](/admin/configuration/listen-options/#dhfile),
+[max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
+[max_stanza_size](/admin/configuration/listen-options/#max-stanza-size),
+[protocol_options](/admin/configuration/listen-options/#protocol-options),
+[shaper](/admin/configuration/listen-options/#shaper),
+[tls](/admin/configuration/listen-options/#tls),
+[tls_compression](/admin/configuration/listen-options/#tls-compression).
 
 ## ejabberd_service
 
@@ -108,22 +108,22 @@ Interacts with an
 	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).
 
 Options:
-[access](../listen-options/#access),
-[cafile](../listen-options/#cafile),
-[certfile](../listen-options/#certfile),
-[check_from](../listen-options/#check-from),
-[ciphers](../listen-options/#ciphers),
-[dhfile](../listen-options/#dhfile),
-[global_routes](../listen-options/#global-routes),
-[hosts](../listen-options/#hosts),
-[max_fsm_queue](../listen-options/#max-fsm-queue),
-[max_stanza_size](../listen-options/#max-stanza-size),
-[password](../listen-options/#password),
-[protocol_options](../listen-options/#protocol-options),
-[shaper](../listen-options/#shaper),
-[shaper_rule](../listen-options/#shaper-rule),
-[tls](../listen-options/#tls),
-[tls_compression](../listen-options/#tls-compression).
+[access](/admin/configuration/listen-options/#access),
+[cafile](/admin/configuration/listen-options/#cafile),
+[certfile](/admin/configuration/listen-options/#certfile),
+[check_from](/admin/configuration/listen-options/#check-from),
+[ciphers](/admin/configuration/listen-options/#ciphers),
+[dhfile](/admin/configuration/listen-options/#dhfile),
+[global_routes](/admin/configuration/listen-options/#global-routes),
+[hosts](/admin/configuration/listen-options/#hosts),
+[max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
+[max_stanza_size](/admin/configuration/listen-options/#max-stanza-size),
+[password](/admin/configuration/listen-options/#password),
+[protocol_options](/admin/configuration/listen-options/#protocol-options),
+[shaper](/admin/configuration/listen-options/#shaper),
+[shaper_rule](/admin/configuration/listen-options/#shaper-rule),
+[tls](/admin/configuration/listen-options/#tls),
+[tls_compression](/admin/configuration/listen-options/#tls-compression).
 
 ## ejabberd_sip
 
@@ -131,11 +131,11 @@ Handles SIP requests as defined in
 	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).
 	
 For the specific module options, please check the 
-[ejabberd_sip](../listen/#ejabberd-sip-1) section.
+[ejabberd_sip](/admin/configuration/listen/#ejabberd-sip-1) section.
 
 General listener options:
-[certfile](../listen-options/#certfile),
-[tls](../listen-options/#tls).
+[certfile](/admin/configuration/listen-options/#certfile),
+[tls](/admin/configuration/listen-options/#tls).
 
 ## ejabberd_stun
 
@@ -144,7 +144,7 @@ Handles STUN/TURN requests as defined in
 	[`RFC 5766`](http://tools.ietf.org/html/rfc5766).
 
 For the specific module options, please check the
-[ejabberd_stun](../listen/#ejabberd-stun-1) section:
+[ejabberd_stun](/admin/configuration/listen/#ejabberd-stun-1) section:
 `auth_realm`,
 `auth_type`,
 `server_name`,
@@ -156,47 +156,47 @@ For the specific module options, please check the
 `use_turn`.
 
 General listener options:
-[certfile](../listen-options/#certfile),
-[shaper](../listen-options/#shaper),
-[tls](../listen-options/#tls),
+[certfile](/admin/configuration/listen-options/#certfile),
+[shaper](/admin/configuration/listen-options/#shaper),
+[tls](/admin/configuration/listen-options/#tls),
 
 ## ejabberd_http
 
 Handles incoming HTTP connections.
 
 With the proper request handlers configured, this serves HTTP services like
-[ACME](../basic/#acme),
-[API](../modules/#mod-http-api),
-[BOSH](../modules/#mod-bosh),
-[CAPTCHA](../basic/#captcha),
-[Fileserver](../modules/#mod-http-fileserver),
-[OAuth](../../../developer/ejabberd-api/oauth/),
-[Upload](../modules/#mod-http-upload),
-[WebAdmin](../../guide/managing/#web-admin),
-[WebSocket](../listen/#ejabberd-http-ws),
-[XMP-RPC](../listen/#ejabberd-xmlrpc).
+[ACME](/admin/configuration/basic/#acme),
+[API](/admin/configuration/modules/#mod-http-api),
+[BOSH](/admin/configuration/modules/#mod-bosh),
+[CAPTCHA](/admin/configuration/basic/#captcha),
+[Fileserver](/admin/configuration/modules/#mod-http-fileserver),
+[OAuth](/developer/ejabberd-api/oauth/),
+[Upload](/admin/configuration/modules/#mod-http-upload),
+[WebAdmin](/admin/guide/managing/#web-admin),
+[WebSocket](/admin/configuration/listen/#ejabberd-http-ws),
+[XMP-RPC](/admin/configuration/listen/#ejabberd-xmlrpc).
 
 Options:
-[cafile](../listen-options/#cafile),
-[ciphers](../listen-options/#ciphers),
-[custom_headers](../listen-options/#custom-headers),
-[default_host](../listen-options/#default-host),
-[dhfile](../listen-options/#dhfile),
-[protocol_options](../listen-options/#protocol-options),
-[request_handlers](../listen-options/#request-handlers),
-[tag](../listen-options/#tag),
-[tls](../listen-options/#tls),
-[tls_compression](../listen-options/#tls-compression),
-and the [trusted_proxies](../toplevel/#trusted-proxies) top-level option.
+[cafile](/admin/configuration/listen-options/#cafile),
+[ciphers](/admin/configuration/listen-options/#ciphers),
+[custom_headers](/admin/configuration/listen-options/#custom-headers),
+[default_host](/admin/configuration/listen-options/#default-host),
+[dhfile](/admin/configuration/listen-options/#dhfile),
+[protocol_options](/admin/configuration/listen-options/#protocol-options),
+[request_handlers](/admin/configuration/listen-options/#request-handlers),
+[tag](/admin/configuration/listen-options/#tag),
+[tls](/admin/configuration/listen-options/#tls),
+[tls_compression](/admin/configuration/listen-options/#tls-compression),
+and the [trusted_proxies](/admin/configuration/toplevel/#trusted-proxies) top-level option.
 
 ## ejabberd_xmlrpc
 
 Handles XML-RPC requests to execute
-[ejabberd commands](../../guide/managing/#ejabberd-commands).
+[ejabberd commands](/admin/guide/managing/#ejabberd-commands).
 
 For explanations about `access_commands` see
-[Restrict Execution with AccessCommands](../../guide/managing/#restrict-execution-with-accesscommands).
-Check some [XML-RPC examples](../../../developer/ejabberd-api/oauth/#xml-rpc-examples).
+[Restrict Execution with AccessCommands](/admin/guide/managing/#restrict-execution-with-accesscommands).
+Check some [XML-RPC examples](/developer/ejabberd-api/oauth/#xml-rpc-examples).
 You can find more information in the old
 [`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
 
@@ -206,16 +206,16 @@ Options:
 ## mod_mqtt
 
 Support for MQTT requires configuring `mod_mqtt` both in the
-[listen](../toplevel/#listen) and the
-[modules](../toplevel/#modules) sections.
-Check the [mod_mqtt modules options](../modules/#mod-mqtt).
-Check the advanded documentation in [MQTT Support](../../guide/mqtt/).
+[listen](/admin/configuration/toplevel/#listen) and the
+[modules](/admin/configuration/toplevel/#modules) sections.
+Check the [mod_mqtt modules options](/admin/configuration/modules/#mod-mqtt).
+Check the advanded documentation in [MQTT Support](/admin/guide/mqtt/).
 
 Listen options:
-[max_fsm_queue](../listen-options/#max-fsm-queue),
-[max_payload_size](../listen-options/#max-payload-size),
-[tls](../listen-options/#tls),
-[tls_verify](../listen-options/#tls-verify).
+[max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
+[max_payload_size](/admin/configuration/listen-options/#max-payload-size),
+[tls](/admin/configuration/listen-options/#tls),
+[tls_verify](/admin/configuration/listen-options/#tls-verify).
 
 
 # ejabberd_stun
@@ -409,7 +409,7 @@ section of `ejabberd_http` listener:
 	  ...
 
 This module can be configured by using those options that should be
-placed in general section of config file: [websocket\_origin](../toplevel/#websocket-origin), [websocket\_ping\_interval](../toplevel/#websocket-ping-interval), [websocket\_timeout](../toplevel/#websocket-timeout).
+placed in general section of config file: [websocket\_origin](/admin/configuration/toplevel/#websocket-origin), [websocket\_ping\_interval](/admin/configuration/toplevel/#websocket-ping-interval), [websocket\_timeout](/admin/configuration/toplevel/#websocket-timeout).
 
 ## Discovery
 
@@ -450,7 +450,7 @@ For example, the following simple configuration defines:
 	service.
 
 -   Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind
-	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../../guide/managing/#web-admin). The
+	(BOSH) and the Web Admin as explained in [Managing: Web Admin](/admin/guide/managing/#web-admin). The
 	socket only listens connections to the IP address 127.0.0.1.
 
 
@@ -524,7 +524,7 @@ In this example, the following configuration defines that:
 
 -   Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
 	all the IPv4 addresses. Note that it is also possible to serve them
-	on different ports. The second example in section [Managing: Web Admin](../../guide/managing/#web-admin) shows
+	on different ports. The second example in section [Managing: Web Admin](/admin/guide/managing/#web-admin) shows
 	how exactly this can be done. A request handler to serve MQTT over Websocket is also defined.
 
 -   All users except for the administrators have a traffic of limit

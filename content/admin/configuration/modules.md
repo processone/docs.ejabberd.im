@@ -32,12 +32,7 @@ Details for some commands:
     randomly generated one, so they can’t login anymore unless a server
     administrator changes their password again. It is possible to define
     the reason of the ban. The new password also includes the reason and
-    the date and time of the ban. For example, if this command is
-    called: *ejabberdctl vhost example.org ban-account boby "Spammed
-    rooms"*, then the sessions of the local account which JID is
-    <boby@example.org> will be kicked, and its password will be set to
-    something like this:
-    *BANNED\_ACCOUNT—20080425T21:45:07—2176635—Spammed\_rooms*
+    the date and time of the ban. See an example below.
 
  -   *pushroster* (and *pushroster-all*): The roster file must be placed,
     if using Windows, on the directory where you installed ejabberd:
@@ -47,8 +42,7 @@ Details for some commands:
 
  -   *srg-create*: If you want to put a group Name with blankspaces, use
     the characters "' and '" to define when the Name starts and ends.
-    For example: *ejabberdctl srg-create g1 example.org "'Group number
-    1\\*" this\_is\_g1 g1'
+    See an example below.
 
 __Available options:__
 
@@ -79,6 +73,17 @@ Content of roster file for *pushroster* command:
     [{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
     {<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
     {<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
+
+With this call, the sessions of the local account which JID is
+<boby@example.org> will be kicked, and its password will be set to
+something like
+*BANNED\_ACCOUNT—20080425T21:45:07—2176635—Spammed\_rooms*
+
+    ejabberdctl vhost example.org ban-account boby "Spammed rooms"
+
+Call to srg-create using double-quotes and single-quotes:
+
+    ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
 
 mod\_admin\_update\_sql
 -----------------------
@@ -2707,11 +2712,11 @@ password in multiple places.
  -   Connection parameters: The module also accepts the connection
     parameters, all of which default to the top-level parameter of the
     same name, if unspecified. See [LDAP
-    Connection](../database-ldap/#ldap-connection) section for
+    Connection](/admin/configuration/database-ldap/#ldap-connection) section for
     more information about them.
 
 Check also the [Configuration
-examples](../database-ldap/#configuration-examples) section to
+examples](/admin/configuration/database-ldap/#configuration-examples) section to
 get details about retrieving the roster, and configuration examples
 including Flat DIT and Deep DIT.
 
@@ -2751,7 +2756,7 @@ only.
 - **ldap\_filter**  
 Additional filter which is AND-ed together with "User Filter" and "Group
 Filter". For more information check the LDAP
-[Filters](../database-ldap/#filters) section.
+[Filters](/admin/configuration/database-ldap/#filters) section.
 
 - **ldap\_gfilter**  
 "Group Filter", used when retrieving human-readable name (a.k.a.
@@ -2788,7 +2793,7 @@ section Filters.
 - **ldap\_memberattr\_format\_re**  
 A regex for extracting user ID from the value of the attribute named by
 *ldap\_memberattr*. Check the LDAP [Control
-Parameters](../database-ldap/#control-parameters) section.
+Parameters](/admin/configuration/database-ldap/#control-parameters) section.
 
 - **ldap\_password**  
 Same as top-level *ldap\_password* option, but applied to this module
@@ -2831,7 +2836,7 @@ only.
 "User Filter", used for retrieving the human-readable name of roster
 entries (usually full names of people in the roster). See also the
 parameters *ldap\_userdesc* and *ldap\_useruid*. For more information
-check the LDAP [Filters](../database-ldap/#filters) section.
+check the LDAP [Filters](/admin/configuration/database-ldap/#filters) section.
 
 - **ldap\_uids**  
 Same as top-level *ldap\_uids* option, but applied to this module only.

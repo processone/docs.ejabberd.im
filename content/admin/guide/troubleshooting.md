@@ -71,7 +71,7 @@ when you need to rotate the files, rename and then reopen them. You can
 either use an external tool for log rotation and the ejabberdctl command
 `reopen-log` to reopen the log files, or the ejabberdctl command
 `rotate-log` to perform both steps (please refer to section [ejabberd
-Commands](../managing/#ejabberd-commands)).
+Commands](/admin/guide/managing/#ejabberd-commands)).
 
 The option `log_rotate_count` defines the number of rotated files to
 keep by `reopen-log` command. Every such file has a numeric suffix. The

@@ -5,7 +5,7 @@ menu: Top-Level Options
 order: 80
 ---
 
-This section describes top level options of ejabberd 20.03.22
+This section describes top level options of ejabberd 20.03.37
 
 ## access\_rules
 
@@ -792,7 +792,7 @@ JID. For example, "%<u@example>.org". If the value is in the form of
 *\[Options, ...\]*  
 
 The option for listeners configuration. See the [Listen
-Modules](../listen/) section for details.
+Modules](/admin/configuration/listen/) section for details.
 
 ## log\_rotate\_count
 
@@ -834,7 +834,7 @@ value is *10000*.
 
 *{Module: Options}*  
 
-The option for modules configuration. See [Modules](../modules/)
+The option for modules configuration. See [Modules](/admin/configuration/modules/)
 section for details.
 
 ## negotiation\_timeout

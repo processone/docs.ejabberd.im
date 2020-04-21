@@ -19,7 +19,7 @@ The following databases are supported by `ejabberd`:
 
 -   [`Mnesia`](http://www.erlang.org/doc/apps/mnesia/index.html)
 
--   [`MySQL`](http://www.mysql.com/). Check the tutorial [Using ejabberd with MySQL](../../../tutorials/mysql/)
+-   [`MySQL`](http://www.mysql.com/). Check the tutorial [Using ejabberd with MySQL](/tutorials/mysql/)
 
 -   Any [`ODBC`](http://en.wikipedia.org/wiki/Open_Database_Connectivity) compatible database
 
@@ -44,12 +44,12 @@ The following LDAP servers are tested with `ejabberd`:
 	your success with a not-listed server so that we can list it here.
 
 Important note about virtual hosting: if you define several domains in
-ejabberd.yml (see section [Host Names](../basic/#host-names)), you probably want that each
+ejabberd.yml (see section [Host Names](/admin/configuration/basic/#host-names)), you probably want that each
 virtual host uses a different configuration of database, authentication
 and storage, so that usernames do not conflict and mix between different
 virtual hosts. For that purpose, the options described in the next
-sections must be set inside a [host_config](../toplevel/#host-config) for each vhost (see section
-[Virtual Hosting](../basic/#virtual-hosting)). For example:
+sections must be set inside a [host_config](/admin/configuration/toplevel/#host-config) for each vhost (see section
+[Virtual Hosting](/admin/configuration/basic/#virtual-hosting)). For example:
 
 
 	host_config:
@@ -92,20 +92,20 @@ the two native interface available, PostgreSQL or MySQL.
 
 To configure SQL there are several top-level options:
 
-- [sql_type](../toplevel/#sql-type)
-- [sql_server](../toplevel/#sql-server)
-- [sql_port](../toplevel/#sql-port)
-- [sql_database](../toplevel/#sql-database)
-- [sql_username](../toplevel/#sql-username)
-- [sql_password](../toplevel/#sql-password)
-- [sql_ssl](../toplevel/#sql-ssl)
-- [sql_ssl_verify](../toplevel/#sql-ssl-verify)
-- [sql_ssl_cafile](../toplevel/#sql-ssl-cafile)
-- [sql_ssl_certfile](../toplevel/#sql-ssl-certfile)
-- [sql_pool_size](../toplevel/#sql-pool-size)
-- [sql_keepalive_interval](../toplevel/#sql-keepalive-interval)
-- [sql_start_interval](../toplevel/#sql-start-interval)
-- [sql_prepared_statements](../toplevel/#sql-prepared-statements)
+- [sql_type](/admin/configuration/toplevel/#sql-type)
+- [sql_server](/admin/configuration/toplevel/#sql-server)
+- [sql_port](/admin/configuration/toplevel/#sql-port)
+- [sql_database](/admin/configuration/toplevel/#sql-database)
+- [sql_username](/admin/configuration/toplevel/#sql-username)
+- [sql_password](/admin/configuration/toplevel/#sql-password)
+- [sql_ssl](/admin/configuration/toplevel/#sql-ssl)
+- [sql_ssl_verify](/admin/configuration/toplevel/#sql-ssl-verify)
+- [sql_ssl_cafile](/admin/configuration/toplevel/#sql-ssl-cafile)
+- [sql_ssl_certfile](/admin/configuration/toplevel/#sql-ssl-certfile)
+- [sql_pool_size](/admin/configuration/toplevel/#sql-pool-size)
+- [sql_keepalive_interval](/admin/configuration/toplevel/#sql-keepalive-interval)
+- [sql_start_interval](/admin/configuration/toplevel/#sql-start-interval)
+- [sql_prepared_statements](/admin/configuration/toplevel/#sql-prepared-statements)
 
 Example of plain ODBC connection:
 
@@ -204,15 +204,15 @@ authentication and other for regular calls.
 
 To configure the LDAP connection there are these top-level options:
 
-- [ldap_servers](../toplevel/#ldap-servers)
-- [ldap_encrypt](../toplevel/#ldap-encrypt)
-- [ldap_tls_verify](../toplevel/#ldap-tls-verify)
-- [ldap_tls_cacertfile](../toplevel/#ldap-tls-cacertfile)
-- [ldap_tls_depth](../toplevel/#ldap-tls-depth)
-- [ldap_port](../toplevel/#ldap-port)
-- [ldap_rootdn](../toplevel/#ldap-rootdn)
-- [ldap_password](../toplevel/#ldap-password)
-- [ldap_deref_aliases](../toplevel/#ldap-deref-aliases)
+- [ldap_servers](/admin/configuration/toplevel/#ldap-servers)
+- [ldap_encrypt](/admin/configuration/toplevel/#ldap-encrypt)
+- [ldap_tls_verify](/admin/configuration/toplevel/#ldap-tls-verify)
+- [ldap_tls_cacertfile](/admin/configuration/toplevel/#ldap-tls-cacertfile)
+- [ldap_tls_depth](/admin/configuration/toplevel/#ldap-tls-depth)
+- [ldap_port](/admin/configuration/toplevel/#ldap-port)
+- [ldap_rootdn](/admin/configuration/toplevel/#ldap-rootdn)
+- [ldap_password](/admin/configuration/toplevel/#ldap-password)
+- [ldap_deref_aliases](/admin/configuration/toplevel/#ldap-deref-aliases)
 
 Example:
 
@@ -231,12 +231,12 @@ LDAP implementation does not support SASL authentication.
 
 To configure LDAP authentication there are these top-level options:
 
-- [ldap_base](../toplevel/#ldap-base)
-- [ldap_uids](../toplevel/#ldap-uids)
-- [ldap_uidattr](../toplevel/#ldap-uidattr)
-- [ldap_uidattr_format](../toplevel/#ldap-uidattr-format)
-- [ldap_filter](../toplevel/#ldap-filter)
-- [ldap_dn_filter](../toplevel/#ldap-dn-filter)
+- [ldap_base](/admin/configuration/toplevel/#ldap-base)
+- [ldap_uids](/admin/configuration/toplevel/#ldap-uids)
+- [ldap_uidattr](/admin/configuration/toplevel/#ldap-uidattr)
+- [ldap_uidattr_format](/admin/configuration/toplevel/#ldap-uidattr-format)
+- [ldap_filter](/admin/configuration/toplevel/#ldap-filter)
+- [ldap_dn_filter](/admin/configuration/toplevel/#ldap-dn-filter)
 
 ## LDAP Examples
 
@@ -369,7 +369,7 @@ sample configuration is shown below:
 
 ## Shared Roster in LDAP
 
-Since [mod_shared_roster_ldap](../modules/#mod-shared-roster-ldap) has a few complex options,
+Since [mod_shared_roster_ldap](/admin/configuration/modules/#mod-shared-roster-ldap) has a few complex options,
 some of them are documented with more detail here:
 
 ### Filters
@@ -590,7 +590,7 @@ you with the roster shown in figure [fig:msrl-roster-deep].
 
 ## vCard in LDAP
 
-Since LDAP may be complex to configure in [mod_vcard](../modules/#mod-vcard),
+Since LDAP may be complex to configure in [mod_vcard](/admin/configuration/modules/#mod-vcard),
 this section provides more details.
 
 `ejabberd` can map LDAP attributes to vCard fields. This feature is

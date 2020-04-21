@@ -62,7 +62,7 @@ edition and the users of the community edition:
 
 - This is fair for the community as the community edition users know
   they will benefit from new extremely advanced features in a not to
-  long future. For example, [websocket module](../admin/configuration/listen/#ejabberd-http-ws) was contributed to
+  long future. For example, [websocket module](/admin/configuration/listen/#ejabberd-http-ws) was contributed to
   ejabberd community as part of this process.
 
 This is the model we have found to be fair to our all user base and

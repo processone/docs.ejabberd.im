@@ -97,7 +97,7 @@ The environment variables:
 
 **`ERL_CRASH_DUMP`**:   Path to the file where crash reports will be dumped.
 
-**`ERL_EPMD_ADDRESS`**:   IP address where epmd listens for connections (see [epmd](../security/#epmd)).
+**`ERL_EPMD_ADDRESS`**:   IP address where epmd listens for connections (see [epmd](/admin/guide/security/#epmd)).
 
 **`ERL_INETRC`**:   Indicates which IP name resolution to use. If using `-sname`,
 	specify either this option or `-kernel inetrc filepath`.
@@ -120,10 +120,10 @@ The command line parameters:
 	specify either this option or `ERL_INETRC`.
 
 **`-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210`**:   Define the first and last ports that `epmd` can listen to
-	(see [epmd](../security/#epmd)).
+	(see [epmd](/admin/guide/security/#epmd)).
 
 **`-kernel inet_dist_use_interface { 127,0,0,1 }`**:   Define the IP address where this Erlang node listens for other nodes
-	connections (see [epmd](../security/#epmd)).
+	connections (see [epmd](/admin/guide/security/#epmd)).
 
 **`-detached`**:   Starts the Erlang system detached from the system console. Useful
 	for running daemons and background processes.
@@ -166,9 +166,9 @@ is registered in the `ejabberd_commands` service. Those commands can be
 defined in any Erlang module and executed using any valid frontend.
 
 `ejabberd` includes three frontends to execute `ejabberd commands`:
-the script `ejabberdctl` (see [ejabberdctl](#ejabberdctl)),
-the `ejabberd_xmlrpc` listener (see [Listening Ports](../configuration/#listening-ports))
-and `mod_http_api` (see [mod_http_api](../configuration/#mod-http-api)).
+the script [ejabberdctl](#ejabberdctl),
+the [ejabberd_xmlrpc](/admin/configuration/listen/#ejabberd-xmlrpc) listener 
+and [mod_http_api](/admin/configuration/modules/#mod-http-api).
 Other known frontends that can be installed to
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).
@@ -207,7 +207,7 @@ The commands included in ejabberd by default are:
 
 **`reopen_log`**:   Reopen the log files after they were renamed. This can be useful when an
 	external tool is used for log rotation. See section
-	[Log Files](../troubleshooting/#log-files).
+	[Log Files](/admin/guide/troubleshooting/#log-files).
 
 **`rotate_log`**:   Rotate the log files.
 
@@ -289,10 +289,12 @@ The commands included in ejabberd by default are:
 The `ejabberd` Web Admin allows to administer most of `ejabberd` using a
 web browser.
 
-This feature is enabled by default: a `ejabberd_http` listener with the
-option `web_admin` (see [Listening Ports](../configuration/#listening-ports))
-is included in the listening
-ports. Then you can open `http://server:port/admin/` in your favourite
+This feature is enabled by default: a 
+[ejabberd_http](/admin/configuration/listen/#ejabberd-http)
+listener with the option
+[request_handlers](/admin/configuration/listen-options/#request-handlers)
+ serving ejabberd_web_admin
+Then you can open `http://server:port/admin/` in your favourite
 web browser. You will be asked to enter the username (the *full* Jabber
 ID) and password of an `ejabberd` user with administrator rights. After
 authentication you will see a page similar to the following screen.
@@ -354,7 +356,8 @@ Example configurations:
     -
       port: 5280
       module: ejabberd_http
-      web_admin: true
+      request_handlers:
+        /admin: ejabberd_web_admin
     ...
   ```
 
@@ -377,7 +380,8 @@ Example configurations:
       module: ejabberd_http
       certfile: "/usr/local/etc/server.pem"
       tls: true
-      web_admin: true
+      request_handlers:
+        /admin: ejabberd_web_admin
     ...
   ```
 
@@ -401,7 +405,7 @@ login in the XMPP server with an account with proper privileges.
 
 `ejabberd` uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
-Erlang node in it (see section [Erlang Node Name](../security/#erlang-node-name)). The name of an Erlang node
+Erlang node in it (see section [Erlang Node Name](/admin/guide/security/#erlang-node-name)). The name of an Erlang node
 includes the hostname of the computer. So, the name of the Erlang node
 changes if you change the name of the machine in which `ejabberd` runs,
 or when you move `ejabberd` to a different machine.

@@ -5,7 +5,7 @@ menu: Authentication
 order: 50
 ---
 
-The toplevel option [auth_method](../toplevel/#auth-method)
+The toplevel option [auth_method](/admin/configuration/toplevel/#auth-method)
 defines the authentication methods that are
 used for user authentication. The syntax is:
 
@@ -17,9 +17,9 @@ The following authentication methods are supported by `ejabberd`:
 
 -   external — See section [External Script](#external-script).
 
--   ldap — See section  [LDAP](../database-ldap/#ldap-autentication).
+-   ldap — See section  [LDAP](/admin/configuration/database-ldap/#ldap-autentication).
 
--   sql — See section [Relational Databases](../database-ldap/#relational-databases).
+-   sql — See section [Relational Databases](/admin/configuration/database-ldap/#relational-databases).
 
 -   anonymous — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 
@@ -32,8 +32,8 @@ When the option is omitted, ejabberd will rely upon the default database which i
 Account creation is only supported by internal, external and sql methods.
 
 Other toplevel options that are relevant to the authentication configuration:
-[disable_sasl_mechanisms](../toplevel/#disable_sasl_mechanisms)
-[fqdn](../toplevel/#fqdn)
+[disable_sasl_mechanisms](/admin/configuration/toplevel/#disable_sasl_mechanisms)
+[fqdn](/admin/configuration/toplevel/#fqdn)
 
 # Internal
 
@@ -42,7 +42,7 @@ authentication method. The value `internal` will enable the internal
 authentication method.
 
 It is possible to use the option
-[auth_password_format](../toplevel/#auth_password_format)
+[auth_password_format](/admin/configuration/toplevel/#auth_password_format)
 to store the password in SCRAM format.
 
 For details about the client-server communication when using SCRAM-SHA-1,
@@ -95,9 +95,9 @@ script are described in the `ejabberd Developers Guide`. There are also
 
 Options:
 
-- [extauth_pool_name](../toplevel/#extauth-pool-name)
-- [extauth_pool_size](../toplevel/#extauth-pool-size)
-- [extauth_program](../toplevel/#extauth-program)
+- [extauth_pool_name](/admin/configuration/toplevel/#extauth-pool-name)
+- [extauth_pool_size](/admin/configuration/toplevel/#extauth-pool-size)
+- [extauth_program](/admin/configuration/toplevel/#extauth-program)
 
 Starting in *ejabberd 17.06*, caching has received a complete overhaul.
 	Instead of `extauth_cache`, a set of new variables describes cache
@@ -106,10 +106,10 @@ Starting in *ejabberd 17.06*, caching has received a complete overhaul.
 	account. So if your authentication mechanism supports
 	application-specific passwords, caching must be disabled.
 	Those options are:
-[auth_use_cache](../toplevel/#auth-use-cache),
-[auth_cache_missed](../toplevel/#auth-cache-missed),
-[auth_cache_size](../toplevel/#auth-cache_size), and
-[auth_cache_life_time](../toplevel/#auth-cache-life-time).
+[auth_use_cache](/admin/configuration/toplevel/#auth-use-cache),
+[auth_cache_missed](/admin/configuration/toplevel/#auth-cache-missed),
+[auth_cache_size](/admin/configuration/toplevel/#auth-cache_size), and
+[auth_cache_life_time](/admin/configuration/toplevel/#auth-cache-life-time).
 
 This example sets external authentication, the extauth script, enables
 caching for 10 minutes, and starts three instances of the script for
@@ -143,11 +143,11 @@ authentication:
 	protocol.
 
 The anonymous authentication method can be configured with the following
-options. Remember that you can use the [host_config](../toplevel/#host-config) option to set
-virtual host specific options (see section [Virtual Hosting](../basic/#virtual-hosting)):
+options. Remember that you can use the [host_config](/admin/configuration/toplevel/#host-config) option to set
+virtual host specific options (see section [Virtual Hosting](/admin/configuration/basic/#virtual-hosting)):
 
-- [allow_multiple_connections](../toplevel/#allow-multiple-connections)
-- [anonymous_protocol](../toplevel/#anonymous-protocol)
+- [allow_multiple_connections](/admin/configuration/toplevel/#allow-multiple-connections)
+- [anonymous_protocol](/admin/configuration/toplevel/#anonymous-protocol)
 
 Examples:
 
@@ -218,8 +218,8 @@ have to configure and compile `ejabberd` with PAM support enabled:
 
 Options:
 
-- [pam_service](../toplevel/#pam-service)
-- [pam_userinfotype](../toplevel/#pam_userinfotype)
+- [pam_service](/admin/configuration/toplevel/#pam-service)
+- [pam_userinfotype](/admin/configuration/toplevel/#pam_userinfotype)
 
 Example:
 
@@ -275,7 +275,7 @@ introduces some security issues:
 
 `ejabberd` supports authentication using JSON Web Token (JWT).  When enabled,
 clients send signed tokens instead of passwords, which are checked using a
-private key specified in the [jwt_key](../toplevel/#jwt-key) option.
+private key specified in the [jwt_key](/admin/configuration/toplevel/#jwt-key) option.
 JWT payload must look like this:
 
     {
@@ -285,9 +285,9 @@ JWT payload must look like this:
 
 Options:
 
-- [jwt_key](../toplevel/#jwt-key)
-- [jwt_auth_only_rule](../toplevel/#jwt-auth-only-rule)
-- [jwt_jid_field](../toplevel/#jwt-jid-field)
+- [jwt_key](/admin/configuration/toplevel/#jwt-key)
+- [jwt_auth_only_rule](/admin/configuration/toplevel/#jwt-auth-only-rule)
+- [jwt_jid_field](/admin/configuration/toplevel/#jwt-jid-field)
 
 Example:
 
