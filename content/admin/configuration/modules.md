@@ -17,7 +17,7 @@ module and is only needed by some of the other modules.
 __Available options:__
 
 - **report\_commands\_node**: *true | false*  
-Provide the Commands item in the Service Disvocery. Default value:
+Provide the Commands item in the Service Discovery. Default value:
 *false*.
 
 mod\_admin\_extra
@@ -1667,9 +1667,10 @@ works. A user is considered offline if no session presence priority &gt;
 
 > **Note**
 >
-> *ejabberdctl* has a command to delete expired messages (see
-> chapterhttps://docs.ejabberd.im/admin/guide/managing\[Managing an
-> ejabberd server\] in online documentation.
+> *ejabberdctl* has a command to delete expired messages (see chapter
+> [Managing an ejabberd
+> server](https://docs.ejabberd.im/admin/guide/managing) in online
+> documentation.
 
 __Available options:__
 
@@ -1716,7 +1717,7 @@ Whether or not to store groupchat messages. The default value is
 Same as top-level *use\_cache* option, but applied to this module only.
 
 - **use\_mam\_for\_storage**: *true | false*  
-This is an experimetal option. Enabling this option will make
+This is an experimental option. Enabling this option will make
 *mod\_offline* not use the former spool table for storing MucSub offline
 messages, but will use the archive table instead. This use of the
 archive table is cleaner and it makes it possible for clients to slowly

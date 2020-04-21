@@ -332,7 +332,7 @@ Example:
 In nutshell, certification requests are performed in two phases. Firstly, ejabberd
 creates an account at the ACME server. That is an EC private key. Secondly,
 a certificate is requested. In the case of a revocation, no account is
-used - only a cerificate in question is needed. All information is stored under
+used - only a certificate in question is needed. All information is stored under
 `acme` directory inside spool directory of ejabberd (typically `/var/lib/ejabberd`).
 An example content of the directory is the following:
 ```

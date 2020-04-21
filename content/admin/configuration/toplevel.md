@@ -415,7 +415,7 @@ only available value so far is *mnesia*.
 *\[Node, ...\]*  
 
 A list of Erlang nodes to connect on ejabberd startup. This option is
-mostly intended for ejabberd customization and sofisticated setups. The
+mostly intended for ejabberd customization and sophisticated setups. The
 default value is an empty list.
 
 ## default\_db
@@ -862,7 +862,7 @@ default value is *1* minute.
 
 Whether to use *new* SQL schema. All schemas are located at
 <https://github.com/processone/ejabberd/tree/20.03/sql>. There are two
-schemas available. The default lecacy schema allows to store one XMPP
+schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*
 schema is best when serving several XMPP domains and/or changing domains

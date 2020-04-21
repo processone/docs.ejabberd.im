@@ -69,7 +69,7 @@ You can simplify the configuration by setting the default database. This can be 
 
 # Relational Databases
 
-There are two schemas usable for ejabberd. The default lecacy schema allows to
+There are two schemas usable for ejabberd. The default legacy schema allows to
 store one XMPP domain into one ejabberd database. The 'new' schema allows to
 handle several XMPP domains in a single ejabberd database. Using this new schema
 is best when serving several XMPP domains and/or changing domains from time to
