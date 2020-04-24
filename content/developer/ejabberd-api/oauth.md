@@ -2,7 +2,6 @@
 title: OAuth Support
 toc: true
 menu: OAuth Support
-order: 30
 ---
 
 # Introduction

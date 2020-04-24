@@ -1,5 +1,6 @@
 ---
 title: Understanding ejabberd hosts
+menu: Hosts
 ---
 
 The host parameter is very commonly used through ejabberd code

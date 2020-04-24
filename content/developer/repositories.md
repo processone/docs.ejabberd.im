@@ -1,5 +1,6 @@
 ---
 title: Understanding ejabberd and its dependencies
+menu: Repositories
 ---
 
 We wanted to make sure that ejabberd is modular and that parts that

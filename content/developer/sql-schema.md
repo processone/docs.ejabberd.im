@@ -2,7 +2,6 @@
 title: ejabberd SQL Database Schema
 toc: true
 menu: SQL Schema
-order: 40
 ---
 
 This page explains ejabberd SQL database schema.  We present the tables that might be in use, depending on your server configuration, together with a short explanation of the fields involved and their intended use. Tables are presented roughly grouped by related functionality.

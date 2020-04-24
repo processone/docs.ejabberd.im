@@ -1,6 +1,7 @@
 ---
 title: ejabberd developer guide
 toc: true
+menu: Internal Guide
 ---
 
 # Introduction

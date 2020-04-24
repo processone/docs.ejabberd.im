@@ -1,5 +1,8 @@
 ---
-title: API versioning
+title: API Versioning
+menu: API Versioning
+order: 20
+toc: true
 ---
 
 # Introduction

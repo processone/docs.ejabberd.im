@@ -1,7 +1,6 @@
 ---
 title: XMPP clients & bots
 menu: XMPP clients & bots
-order: 10
 ---
 
 As an XMPP developer, you will have to learn the basic of the XMPP protocol to
