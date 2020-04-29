@@ -176,7 +176,7 @@ list run the command:
 
 ## Options
 
-Some options that you may be interested in modifying:
+There are many options to modify the default compilation behaviour:
 
 - **`-–bindir=/`**: Specify the path to the user executables
   (where `epmd` and `iex` are available).
@@ -192,37 +192,67 @@ Some options that you may be interested in modifying:
   an explicit HOME directory, because `/var/lib/ejabberd/` will be
   used by default.
 
-- **`-–enable-pam`**: Enable the PAM authentication method (see section
-  [pam][8]).
+- **`-–enable-group[=USER]`**: Similar to the previous option, but for
+  system groups.
 
-- **`-–enable-tools`**: Enable the use of development tools.
+- **`–-enable-all`**: Enable many of the database and dependencies
+    options described here, this is useful for Dialyzer checks:
+    --enable-debug --enable-elixir --enable-mysql --enable-odbc
+    --enable-pam --enable-pgsql --enable-redis --enable-sip
+    --enable-sqlite --enable-stun --enable-tools --enable-zlib
 
-- **`-–enable-mysql`**: Enable MySQL support (see section [databases][18]).
+- **`–-disable-debug`**: Compile without `+debug_info`.
 
-- **`-–enable-pgsql`**: Enable PostgreSQL support (see section [databases][18]).
+- **`–-enable-elixir`**: Build ejabberd with Elixir extension support.
 
-- **`-–enable-sqlite`**: Enable SQLite support (see section [databases][18]).
+- **`–-disable-erlang-version-check`**: Don't check Erlang/OTP version.
 
-- **`-–enable-redis`**: Enable Redis support to use for external session storage.
+- **`-–enable-full-xml`**: Use XML features in XMPP stream (ex:
+    CDATA). This requires XML compliant clients).
 
-- **`-–enable-zlib`**: Enable Stream Compression (XEP-0138) using zlib.
+- **`–-enable-hipe`**: Compile natively with HiPE. This is an
+    experimental feature, and not recommended.
 
 - **`-–enable-lager`**: Use lager Erlang logging tool instead of
   standard error logger.
 
-- **`–-enable-debug`**: Compile with `+debug_info` enabled.
+- **`--enable-latest-deps`**: Makes rebar use latest versions of
+  dependencies developed alongside ejabberd instead of version
+  specified in rebar.config. Should be only used when developing
+  ejabberd.
 
-- **`–-enable-elixir`**: Build ejabberd with Elixir extension support.
+- **`-–enable-mssql`**: Enable Microsoft SQL Server support, this
+    option requires --enable-odbc (see section [databases][18]).
 
-- **`–-enable-all`**: Enable all previous options.
+- **`-–enable-mysql`**: Enable MySQL support (see section [databases][18]).
 
-- **`--enable-latest-deps`**: Makes rebar use latest versions of dependences developed
-  alongside ejabberd instead of version specified in rebar.config. Should be only used
-  when developing ejabberd.
+- **`-–enable-new-sql-schema`**: Use new SQL schema.
 
-Here are other available options, that are experimental and not recommended:
+- **`-–enable-odbc`**: Enable pure ODBC support.
 
-- **`–-enable-hipe`**: Compile natively with HiPE, not recommended.
+- **`-–enable-pam`**: Enable the PAM authentication method (see section
+  [pam][8]).
+
+- **`-–enable-pgsql`**: Enable PostgreSQL support (see section [databases][18]).
+
+- **`-–enable-redis`**: Enable Redis support to use for external
+    session storage.
+
+- **`-–enable-roster-gateway-workaround`**: Turn on workaround for
+    processing gateway subscriptions.
+
+- **`-–enable-sip`**: Enable SIP support.
+
+- **`-–enable-sqlite`**: Enable SQLite support (see section [databases][18]).
+
+- **`-–disable-stun`**: Disable STUN/TURN support.
+
+- **`--enable-system-deps`**: Makes rebar use locally installed
+    dependencies instead of downloading them.
+
+- **`-–enable-tools`**: Enable the use of development tools.
+
+- **`-–disable-zlib`**: Disable Stream Compression (XEP-0138) using zlib.
 
 ## Installation
 
