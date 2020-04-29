@@ -5,7 +5,7 @@ menu: Modules Options
 order: 95
 ---
 
-This section describes options of all modules in ejabberd 20.03.37
+This section describes options of all modules in ejabberd 20.04
 
 mod\_adhoc
 ----------
@@ -186,12 +186,11 @@ to format in *To*. The value of *From* can also be *default*, which is
 match-all rule. NOTE: the list of supported formats is detected at
 compile time depending on the image libraries installed in the system.
 
-In this example avatars in WebP format are converted to JPEG, all other
-formats are converted to PNG:
+    **Example**:
 
-    convert:
-      webp: jpg
-      default: png
+        convert:
+          webp: jpg
+          default: png
 
 - **rate\_limit**: *Number*  
 Limit any given JID by the number of avatars it is able to convert per
@@ -472,32 +471,32 @@ element in the list is constructed from the following options:
  -   **urls**: *\[URI, ...\]* A list of contact URIs, such as HTTP URLs,
     XMPP URIs and so on.
 
-- **Example**:
+    **Example**:
 
-    server_info:
-      -
-        modules: all
-        name: abuse-addresses
-        urls: [mailto:abuse@shakespeare.lit]
-      -
-        modules: [mod_muc]
-        name: "Web chatroom logs"
-        urls: [http://www.example.org/muc-logs]
-      -
-        modules: [mod_disco]
-        name: feedback-addresses
-        urls:
-          - http://shakespeare.lit/feedback.php
-          - mailto:feedback@shakespeare.lit
-          - xmpp:feedback@shakespeare.lit
-      -
-        modules:
-          - mod_disco
-          - mod_vcard
-        name: admin-addresses
-        urls:
-          - mailto:xmpp@shakespeare.lit
-          - xmpp:admins@shakespeare.lit
+        server_info:
+          -
+            modules: all
+            name: abuse-addresses
+            urls: [mailto:abuse@shakespeare.lit]
+          -
+            modules: [mod_muc]
+            name: "Web chatroom logs"
+            urls: [http://www.example.org/muc-logs]
+          -
+            modules: [mod_disco]
+            name: feedback-addresses
+            urls:
+              - http://shakespeare.lit/feedback.php
+              - mailto:feedback@shakespeare.lit
+              - xmpp:feedback@shakespeare.lit
+          -
+            modules:
+              - mod_disco
+              - mod_vcard
+            name: admin-addresses
+            urls:
+              - mailto:xmpp@shakespeare.lit
+              - xmpp:admins@shakespeare.lit
 
 mod\_fail2ban
 -------------
@@ -565,24 +564,24 @@ recorded if this option is not specified.
 - **content\_types**: *{Extension: Type}*  
 Specify mappings of extension to content type. There are several content
 types already defined. With this option you can add new definitions or
-modify existing ones.
+modify existing ones. The default values are:
 
-The default value is shown in the example below:
+    **Example**:
 
-    content_types:
-      .css: text/css
-      .gif: image/gif
-      .html: text/html
-      .jar: application/java-archive
-      .jpeg: image/jpeg
-      .jpg: image/jpeg
-      .js: text/javascript
-      .png: image/png
-      .svg: image/svg+xml
-      .txt: text/plain
-      .xml: application/xml
-      .xpi: application/x-xpinstall
-      .xul: application/vnd.mozilla.xul+xml
+        content_types:
+          .css: text/css
+          .gif: image/gif
+          .html: text/html
+          .jar: application/java-archive
+          .jpeg: image/jpeg
+          .jpg: image/jpeg
+          .js: text/javascript
+          .png: image/png
+          .svg: image/svg+xml
+          .txt: text/plain
+          .xml: application/xml
+          .xpi: application/x-xpinstall
+          .xul: application/vnd.mozilla.xul+xml
 
 - **custom\_headers**: *{Name: Value}*  
 Indicate custom HTTP headers to be included in all responses. There are
@@ -1284,12 +1283,12 @@ using an XMPP client with MUC capability. The *Options* are:
     contain one or several of: *moderator*, *participant*, *visitor*.
     The default value is shown in the example below:
 
-    **Example**:
+        **Example**:
 
-        presence_broadcast:
-          - moderator
-          - participant
-          - visitor
+            presence_broadcast:
+              - moderator
+              - participant
+              - visitor
 
  -   **public**: *true | false* The room is public in the list of the MUC
     service, so it can be discovered. MUC admins and room participants
@@ -1535,11 +1534,11 @@ Define the permissions that must be used when creating the log files:
 the number of the mode, and the numeric id of the group that will own
 the files. The default value is shown in the example below:
 
-- **Example**:
+    **Example**:
 
-    file_permissions:
-      mode: 644
-      group: 33
+        file_permissions:
+          mode: 644
+          group: 33
 
 - **outdir**: *Path*  
 This option sets the full path to the directory in which the HTML files
@@ -1561,10 +1560,10 @@ value is *local*.
 With this option you can customize the link on the top right corner of
 each log file. The default value is shown in the example below:
 
-- **Example**:
+    **Example**:
 
-    top_link:
-      /: Home
+        top_link:
+          /: Home
 
 - **url**: *URL*  
 A top level *URL* where a client can access logs of a particular
@@ -2134,12 +2133,12 @@ defined in this configurable list.
 - **force\_node\_config**: *List of Node and the list of its Key:Value*  
 Define the configuration for given nodes. The default value is: *\[\]*.
 
-- **Example**:
+    **Example**:
 
-    force_node_config:
-      ## Avoid buggy clients to make their bookmarks public
-      storage:bookmarks:
-        access_model: whitelist
+        force_node_config:
+          ## Avoid buggy clients to make their bookmarks public
+          storage:bookmarks:
+            access_model: whitelist
 
 - **host**  
 Deprecated. Use *hosts* instead.
@@ -3029,6 +3028,120 @@ client may resume its session. Note that the client may request a
 different timeout value, see the *max\_resume\_timeout* option. Setting
 it to *0* effectively disables session resumption. The default value is
 *5* minutes.
+
+mod\_stun\_disco
+----------------
+
+This module allows XMPP clients to discover STUN/TURN services and to
+obtain temporary credentials for using them as per [XEP-0215: External
+Service Discovery](https://xmpp.org/extensions/xep-0215.html).
+
+__Available options:__
+
+- **access**: *AccessName*  
+This option defines which access rule will be used to control who is
+allowed to discover STUN/TURN services and to request temporary
+credentials. The default value is *local*.
+
+- **credentials\_lifetime**: *timeout()*  
+The lifetime of temporary credentails offered to clients. If a lifetime
+longer than the default value of *10* minutes is specified, it’s
+strongly recommended to also specify a *secret* (see below).
+
+- **offer\_local\_services**: *true | false*  
+This option specifies whether local STUN/TURN services configured as
+ejabberd listeners should be announced automatically. Note that this
+will not include TLS-enabled services, which must be configured manually
+using the *services* option (see below). For non-anonymous TURN
+services, temporary credentials will be offered to the client. The
+default value is *true*.
+
+- **secret**: *Text*  
+The secret used for generating temporary credentials. If this option
+isn’t specified, a secret will be auto-generated. However, a secret must
+be specified if non-anonymous TURN services running on other ejabberd
+nodes and/or external TURN *services* are configured. Also note that
+auto-generated secrets are lost when the node is restarted, which
+invalidates any credentials offered before the restart. Therefore, the
+*credentials\_lifetime* should not exceed a few minutes if no *secret*
+is specified.
+
+- **services**: *\[Service, ...\]*  
+The list of services offered to clients. This list can include STUN/TURN
+services running on any ejabberd node and/or external services. However,
+if any listed TURN service not running on the local ejabberd node
+requires authentication, a *secret* must be specified explicitly, and
+must be shared with that service. This will only work with ejabberd’s
+built-in STUN/TURN server and with external servers that support the
+same [REST API For Access To TURN
+Services](https://tools.ietf.org/html/draft-uberti-behave-turn-rest-00).
+Unless the *offer\_local\_services* is set to *false*, the explicitly
+listed services will be offered in addition to those announced
+automatically.
+
+ -   **host**: *Host* The host name or IPv4 address the STUN/TURN service
+    is listening on. For non-TLS services, it’s recommended to specify
+    an IPv4 address (to avoid additional DNS lookup latency on the
+    client side). For TLS services, the host name (or possible IPv4
+    address) should match the certificate. Specifying the *host* option
+    is mandatory.
+
+ -   **port**: *1..65535* The port number the STUN/TURN service is
+    listening on. The default port number is 3478 for non-TLS services
+    and 5349 for TLS services.
+
+ -   **restricted**: *true | false* This option determines whether
+    temporary credentials for accessing the service are offered. The
+    default is *false* for STUN/STUNS services and *true* for TURN/TURNS
+    services.
+
+ -   **transport**: *tcp | udp* The transport protocol supported by the
+    service. The default is *udp* for non-TLS services and *tcp* for TLS
+    services.
+
+ -   **type**: *stun | turn | stuns | turns* The type of service. Must be
+    *stun* or *turn* for non-TLS services, *stuns* or *turns* for TLS
+    services. The default type is *stun*.
+
+    **Example**:
+
+        services:
+          -
+            host: 203.0.113.3
+            port: 3478
+            type: stun
+            transport: udp
+            restricted: false
+          -
+            host: 203.0.113.3
+            port: 3478
+            type: turn
+            transport: udp
+            restricted: true
+          -
+            host: 203.0.113.3
+            port: 3478
+            type: stun
+            transport: tcp
+            restricted: false
+          -
+            host: 203.0.113.3
+            port: 3478
+            type: turn
+            transport: tcp
+            restricted: true
+          -
+            host: server.example.com
+            port: 5349
+            type: stuns
+            transport: tcp
+            restricted: false
+          -
+            host: server.example.com
+            port: 5349
+            type: turns
+            transport: tcp
+            restricted: true
 
 mod\_time
 ---------

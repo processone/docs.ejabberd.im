@@ -5,7 +5,7 @@ menu: Top-Level Options
 order: 80
 ---
 
-This section describes top level options of ejabberd 20.03.37
+This section describes top level options of ejabberd 20.04
 
 ## access\_rules
 
@@ -861,7 +861,7 @@ default value is *1* minute.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/20.03/sql>. There are two
+<https://github.com/processone/ejabberd/tree/20.04/sql>. There are two
 schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*
