@@ -456,7 +456,7 @@ enter the ejabberd Web Admin. Here are the steps to create it:
 
 By default, ejabberd uses its own database to store runtime data. In many cases
 you may need to let ejabberd use an external SQL database.
-Supported SQL backends are MySQL, PostgreSQL, Sqlite, MSSQL.
+Supported SQL backends are MS SQL, MySQL, PostgreSQL, SQLite.
 
 When using external database backend, ejabberd does not create schema and tables
 by itself. You must create the schema before you run ejabberd.

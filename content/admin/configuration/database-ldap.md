@@ -17,28 +17,28 @@ storage systems for modules, and so forth.
 
 The following databases are supported by `ejabberd`:
 
--   [`Mnesia`](http://www.erlang.org/doc/apps/mnesia/index.html)
+-   [`Mnesia`](https://erlang.org/doc/apps/mnesia/)
 
--   [`MySQL`](http://www.mysql.com/). Check the tutorial [Using ejabberd with MySQL](/tutorials/mysql/)
+-   [`MS SQL Server/SQL Azure`](https://www.microsoft.com/sql-server)
 
--   Any [`ODBC`](http://en.wikipedia.org/wiki/Open_Database_Connectivity) compatible database
+-   [`MySQL`](https://www.mysql.com/) Check the tutorial [Using ejabberd with MySQL](/tutorials/mysql/)
 
--   [`PostgreSQL`](http://www.postgresql.org/)
+-   Any [`ODBC`](https://en.wikipedia.org/wiki/Open_Database_Connectivity) compatible database
 
--   [`MS SQL Server/SQL Azure`](https://en.wikipedia.org/wiki/Microsoft_SQL_Server)
+-   [`PostgreSQL`](https://www.postgresql.org/)
 
--   [`SQLite`](https://www.sqlite.org)
+-   [`Redis`](https://redis.io/) (only for transient data)
 
--   [`Redis`](http://redis.io/)(only for transient data)
+-   [`SQLite`](https://sqlite.org/)
 
 The following LDAP servers are tested with `ejabberd`:
 
--   [`Active Directory`](http://www.microsoft.com/activedirectory/)(see
+-   [`Active Directory`](https://www.microsoft.com/activedirectory) (see
 	section [Active Directory](#active-directory))
 
--   [`OpenLDAP`](http://www.openldap.org/)
+-   [`CommuniGate Pro`](https://communigate.com/)
 
--   [`CommuniGate Pro`](http://www.communigate.com/)
+-   [`OpenLDAP`](https://openldap.org/)
 
 -   Normally any LDAP compatible server should work; inform us about
 	your success with a not-listed server so that we can list it here.
@@ -77,7 +77,7 @@ time. This avoid need to manage several databases and handle complex
 configuration changes.
 
 You need to upload SQL schema to your SQL server.
-Choose the one from [`this`](http://www.unixodbc.org) list.
+Choose the one from [`this`](http://www.unixodbc.org/) list.
 If you are using MySQL and choose the default schema, use `mysql.sql`. If you
 are using PostgreSQL and need the new schema, use `pg.new.sql`.
 
@@ -123,69 +123,6 @@ Example of MySQL connection:
 	sql_password: "**********"
 	sql_pool_size: 5
 
-# Redis
-
-[`Redis`](http://redis.io/) is an advanced key-value cache and store. You can
-use it to store transient data, such as records for C2S (client) sessions.
-There are several options available:
-
-**`redis_server: String`**:   A hostname of the Redis server. The default is `localhost`.
-
-**`redis_port: Port`**:   The port where the Redis server is accepting connections. The default
-	is 6379.
-
-**`redis_password: String`**:   The password to the Redis server. The default is an empty string,
-	i.e. no password.
-
-**`redis_db: N`**:   Redis database number. The default is 0.
-
-**`redis_connect_timeout: N`**:   A number of seconds to wait for the connection to be established to the Redis
-	server. The default is 1 second.
-
-Example configuration:
-
-
-	redis_server: redis.server.com
-	redis_db: 1
-
-# Microsoft SQL
-
-For now, MS SQL is only supported in Unix-like OS'es. You need to have
-[`FreeTDS`](http://www.freetds.org) and
-[`unixODBC`](http://www.unixodbc.org) installed on your machine.
-Also, in some cases you need to add machine name to `sql_username`, especially
-when you have `sql_server` defined as an IP address, e.g.:
-
-
-	sql_type: mssql
-	sql_server: 1.2.3.4
-	...
-	sql_username: user1@host
-
-## SQL Authentication
-
-You can authenticate users against an SQL database, see the option
-`auth_method` in section [Authentication](#authentication).
-
-The option `auth_password_format` is supported,
-for details see section [Internal](#internal).
-Please note that if you use SQL auth method and set SCRAM format,
-old plain passwords that may be stored in the database are not
-automatically scrammed. For that, you can execute the command:
-
-
-	ejabberdctl convert_to_scram example.org
-
-## SQL Storage
-
-An ODBC compatible database also can be used to store information into
-from several `ejabberd` modules. See section [Modules Overview](#modules-overview) to see which
-modules can be used with relational databases like MySQL. To enable
-storage to your database, just make sure that your database is running
-well (see previous sections), and add the module option `db_type: sql`
-or set `default_db: sql` globally if you want to use SQL for all modules.
-
-
 # LDAP
 
 `ejabberd` has built-in LDAP support. You can authenticate users against
@@ -195,7 +132,7 @@ Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
 stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
-[`RFC 3062`](http://tools.ietf.org/html/rfc3062).
+[`RFC 3062`](https://tools.ietf.org/html/rfc3062).
 
 ## LDAP Connection
 
@@ -521,7 +458,7 @@ following algorithm is used:
 ### Configuration examples
 
 Since there are many possible
-[`DIT`](http://en.wikipedia.org/wiki/Directory_Information_Tree)
+[`DIT`](https://en.wikipedia.org/wiki/Directory_Information_Tree)
 layouts, it will probably be easiest to understand how to configure the
 module by looking at an example for a given DIT (or one resembling it).
 
@@ -602,7 +539,7 @@ Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
 stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
-[`RFC 3062`](http://tools.ietf.org/html/rfc3062).
+[`RFC 3062`](https://tools.ietf.org/html/rfc3062).
 
 This feature has its own optional parameters. The first
 group of parameters has the same meaning as the top-level LDAP
@@ -702,4 +639,67 @@ before searching their info in LDAP.
 		  Email: EMAIL
 		  Birthday: BDAY
 		  Nickname: NICKNAME
+
+# Microsoft SQL
+
+For now, MS SQL is only supported in Unix-like OS'es. You need to have
+[`FreeTDS`](https://www.freetds.org/) and
+[`unixODBC`](http://www.unixodbc.org/) installed on your machine.
+Also, in some cases you need to add machine name to `sql_username`, especially
+when you have `sql_server` defined as an IP address, e.g.:
+
+
+	sql_type: mssql
+	sql_server: 1.2.3.4
+	...
+	sql_username: user1@host
+
+## SQL Authentication
+
+You can authenticate users against an SQL database, see the option
+`auth_method` in section [Authentication](#authentication).
+
+The option `auth_password_format` is supported,
+for details see section [Internal](#internal).
+Please note that if you use SQL auth method and set SCRAM format,
+old plain passwords that may be stored in the database are not
+automatically scrammed. For that, you can execute the command:
+
+
+	ejabberdctl convert_to_scram example.org
+
+## SQL Storage
+
+An ODBC compatible database also can be used to store information into
+from several `ejabberd` modules. See section [Modules Overview](#modules-overview) to see which
+modules can be used with relational databases like MySQL. To enable
+storage to your database, just make sure that your database is running
+well (see previous sections), and add the module option `db_type: sql`
+or set `default_db: sql` globally if you want to use SQL for all modules.
+
+
+# Redis
+
+[`Redis`](https://redis.io/) is an advanced key-value cache and store. You can
+use it to store transient data, such as records for C2S (client) sessions.
+There are several options available:
+
+**`redis_server: String`**:   A hostname of the Redis server. The default is `localhost`.
+
+**`redis_port: Port`**:   The port where the Redis server is accepting connections. The default
+	is 6379.
+
+**`redis_password: String`**:   The password to the Redis server. The default is an empty string,
+	i.e. no password.
+
+**`redis_db: N`**:   Redis database number. The default is 0.
+
+**`redis_connect_timeout: N`**:   A number of seconds to wait for the connection to be established to the Redis
+	server. The default is 1 second.
+
+Example configuration:
+
+
+	redis_server: redis.server.com
+	redis_db: 1
 

@@ -302,19 +302,19 @@ are:
     Options: `max_stanza_size`, `shaper`, `tls_compression`
 
 **`ejabberd_service`**:   Interacts with an
-	[`external component`](http://www.ejabberd.im/tutorials-transports)
+	[`external component`](https://ejabberd.im/tutorials-transports)
 	(as defined in the Jabber Component Protocol
-	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).
+	([`XEP-0114`](https://xmpp.org/extensions/xep-0114.html)).
 	Options: `access`, `hosts`, `max_fsm_queue`, `password`, `check_from`,
 	`shaper_rule`
 
 **`ejabberd_sip`**:   Handles SIP requests as defined in
-	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).
+	[`RFC 3261`](https://tools.ietf.org/html/rfc3261).
 	Options: `certfile`, `tls`
 
 **`ejabberd_stun`**:   Handles STUN/TURN requests as defined in
-	[`RFC 5389`](http://tools.ietf.org/html/rfc5389) and
-	[`RFC 5766`](http://tools.ietf.org/html/rfc5766).
+	[`RFC 5389`](https://tools.ietf.org/html/rfc5389) and
+	[`RFC 5766`](https://tools.ietf.org/html/rfc5766).
 	Options: `certfile`, `tls`, `use_turn`, `turn_ip`,
 	`turn_port_range`, `turn_max_allocations`, `turn_max_permissions`,
 	`shaper`, `server_name`, `auth_realm`, `auth_type`
@@ -331,7 +331,7 @@ are:
 	[Restrict Execution with AccessCommands](/admin/guide/managing/#restrict-execution-with-accesscommands).
 	Check some [XML-RPC examples](/developer/ejabberd-api/oauth/#xml-rpc-examples).
 	You can find more information in the old
-	[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
+	[`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc).
 
 ### Options
 
@@ -386,8 +386,8 @@ is also needed in the XMPP client. Remark also that HTTP Bind can be
 interesting to host a web-based XMPP client such as
 [`JWChat`](http://jwchat.sourceforge.net/) (check the tutorials to
 install JWChat with ejabberd and an
-[`embedded local web server`](http://www.ejabberd.im/jwchat-localserver)
-or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
+[`embedded local web server`](https://ejabberd.im/jwchat-localserver)
+or [`Apache`](https://ejabberd.im/jwchat-apache)).
 
 **`max_fsm_queue: Size`**:   This option specifies the maximum number of elements in the queue of
 	the FSM (Finite State Machine). Roughly speaking, each message in
@@ -425,13 +425,13 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	      /mqtt: mod_mqtt
 
 **`check_from: true|false`**:   This option can be used with `ejabberd_service` only.
-	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
+	[`XEP-0114`](https://xmpp.org/extensions/xep-0114.html) requires that
 	the domain must match the hostname of the component. If this option
 	is set to `false`, `ejabberd` will allow the component to send
 	stanzas with any arbitrary domain in the ’from’ attribute. Only use
 	this option if you are completely sure about it. The default value
 	is `true`, to be compliant with
-	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html).
+	[`XEP-0114`](https://xmpp.org/extensions/xep-0114.html).
 
 **`shaper: none|ShaperName`**:   This option defines a shaper for the port (see section [Shapers](#shapers)).
 	The default value is `none`.
@@ -454,7 +454,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
 	5223 for client-to-server communications. But this method is
 	nowadays deprecated and not recommended. The preferable encryption
 	method is STARTTLS on port 5222, as defined
-	[`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
+	[`RFC 6120: XMPP Core`](https://xmpp.org/rfcs/rfc6120.html#tls),
 	which can be enabled in `ejabberd` with the option `starttls`. If
 	this option is set, you should also set the `certfiles` option or configure [ACME](#acme).
 	The option `tls` can also be used in `ejabberd_http` to support HTTPS.
@@ -468,7 +468,7 @@ or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
     The default value of this option is`false`.
 
 **`zlib: true|false`**:   This option specifies that Zlib stream compression (as defined in
-	[`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)) is available
+	[`XEP-0138`](https://xmpp.org/extensions/xep-0138.html)) is available
 	on connections to the port.
 
 ### Global Options
@@ -1040,7 +1040,7 @@ the users passwords are stored:
 	because the passwords can be read if your database gets compromised.
 	This is the default value. This format allows clients to
 	authenticate using: the old Jabber Non-SASL
-	([`XEP-0078`](http://xmpp.org/extensions/xep-0078.html)),
+	([`XEP-0078`](https://xmpp.org/extensions/xep-0078.html)),
 	`SASL PLAIN`, `SASL DIGEST-MD5`, and `SASL SCRAM-SHA-1`.
 
 **`scram`**:   The password is not stored, only some information that allows to
@@ -1140,7 +1140,7 @@ authentication:
 
 **`SASL Anonymous`**:   This is a special SASL authentication mechanism that allows to login
 	without providing username or password (see
-	[`XEP-0175`](http://xmpp.org/extensions/xep-0175.html)). The main
+	[`XEP-0175`](https://xmpp.org/extensions/xep-0175.html)). The main
 	advantage of SASL Anonymous is that the protocol was designed to
 	give the user a login. This is useful to avoid in some case, where
 	the server has many users already logged or registered and when it
@@ -2029,26 +2029,26 @@ The following databases are supported by `ejabberd`:
 
 -   [`Mnesia`][24]
 
+-   [`MS SQL Server/SQL Azure`][115]
+
 -   [`MySQL`][25]
 
 -   [`Any ODBC compatible database`][26]
 
 -   [`PostgreSQL`][27]
 
--   [`MS SQL Server/SQL Azure`][115]
+-   [`Redis`][29] (only for transient data)
 
 -   [`SQLite`][119]
-
--   [`Redis`][29] (only for transient data)
 
 The following LDAP servers are tested with `ejabberd`:
 
 -   [`Active Directory`][30] (see
 	section [Active Directory](#active-directory))
 
--   [`OpenLDAP`][31]
-
 -   [`CommuniGate Pro`][32]
+
+-   [`OpenLDAP`][31]
 
 -   Normally any LDAP compatible server should work; inform us about
 	your success with a not-listed server so that we can list it here.
@@ -2914,7 +2914,7 @@ the client becomes active again.
 Options:
 
 **`queue_chat_states: true|false`**:   Queue “standalone” chat state notifications (as defined in
-	[`XEP-0085`](http://xmpp.org/extensions/xep-0085.html)) while a
+	[`XEP-0085`](https://xmpp.org/extensions/xep-0085.html)) while a
 	client indicates inactivity. The default value is `true`.
 
 **`queue_pep: true|false`**:   Queue PEP notifications while a client is inactive. When the queue is
@@ -3002,7 +3002,7 @@ Options:
 
 **`server_info: [ { modules: Modules, name: Name, urls: [URL, ...] } ]`**:   Specify additional information about the server, as described in
 	Contact Addresses for XMPP Services
-	([`XEP-0157`](http://xmpp.org/extensions/xep-0157.html)). `Modules`
+	([`XEP-0157`](https://xmpp.org/extensions/xep-0157.html)). `Modules`
 	can be the keyword ‘all’, in which case the information is reported
 	in all the services; or a list of `ejabberd` modules, in which case
 	the information is only specified for the services provided by those
@@ -4244,7 +4244,7 @@ global option `default_db`, or `mnesia` if omitted. If `sql` value is defined, m
 	value is `unless_chat_state`, which tells ejabberd to store messages
 	even if they lack the `<body/>` element, *unless* they only contain a
 	chat state notification (as defined in
-	[`XEP-0085`](http://xmpp.org/extensions/xep-0085.html)).
+	[`XEP-0085`](https://xmpp.org/extensions/xep-0085.html)).
 
 **`pool_size: Size`**: This option specifies the size of the worker pool for storing
 	offline messages. The allowed values are positive integers.
@@ -4640,7 +4640,7 @@ prefix contains only one dot, for example ‘`pubsub.`’, or
       XEP-0060 implementation.
 
    - `pep` plugin adds extention to handle Personal Eventing Protocol
-     ([`XEP-0163`](http://xmpp.org/extensions/xep-0163.html)) to the PubSub
+     ([`XEP-0163`](https://xmpp.org/extensions/xep-0163.html)) to the PubSub
      engine. Adding pep plugin to PubSub make it handle PEP automatically.
 
 **`nodetree: Nodetree`**:   To specify which nodetree to use. If not defined, the default pubsub
@@ -4662,7 +4662,7 @@ prefix contains only one dot, for example ‘`pubsub.`’, or
 
    - `dag` nodetree provides experimental support for PubSub
      Collection Nodes
-     ([`XEP-0248`](http://xmpp.org/extensions/xep-0248.html)). In that
+     ([`XEP-0248`](https://xmpp.org/extensions/xep-0248.html)). In that
      case you should also add “dag” node plugin as default, for example:
 
         plugins: [flat,pep]
@@ -5524,7 +5524,7 @@ Example configuration:
 Options:
 
 **`record_route: SIP_URI`**:   When the option `always_record_route` is set or when SIP outbound is
-	utilized [`RFC 5626`](http://tools.ietf.org/html/rfc5626),
+	utilized [`RFC 5626`](https://tools.ietf.org/html/rfc5626),
 	`ejabberd` inserts `Record-Route` header field with this `SIP_URI`
 	into a SIP message. The default is SIP URI constructed from the
 	virtual host.
@@ -5797,7 +5797,7 @@ The second group of parameters consists of the following `mod_vcard`-specific op
 
 **`ldap_vcard_map: {Name: {Pattern, LDAPattributes}, ...}`**:   With this option you can set the table that maps LDAP attributes to
 	vCard fields. `Name` is the type name of the vCard as defined in
-	[`RFC 2426`](http://tools.ietf.org/html/rfc2426). `Pattern` is a
+	[`RFC 2426`](https://tools.ietf.org/html/rfc2426). `Pattern` is a
 	string which contains pattern variables `%u`, `%d` or `%s`.
 	`LDAPattributes` is the list containing LDAP attributes. The pattern
 	variables `%s` will be sequentially replaced with the values of LDAP
@@ -5990,118 +5990,118 @@ Options:
 **`show_os: true|false`**:   Should the operating system be revealed or not. The default value is
 	`true`.
 
-[1]:	http://en.wikipedia.org/wiki/YAML
-[2]:	http://www.ejabberd.im/pyaimt
-[3]:	http://www.ejabberd.im/pymsnt
-[4]:	http://www.ejabberd.im/yahoo-transport-2
-[5]:	http://www.ejabberd.im/jabber-gg-transport
-[6]:	http://www.ejabberd.im/jmc
-[7]:	http://tools.ietf.org/html/rfc6120#section-7.7.2.2
-[8]:	http://xmpp.org/extensions/xep-0078.html
-[9]:	http://www.ejabberd.im/extauth
-[10]:	http://www.ejabberd.im/Anonymous-users-support
-[11]:	http://xmpp.org/extensions/xep-0158.html
-[12]:	http://tools.ietf.org/html/rfc5389
-[13]:	http://tools.ietf.org/html/rfc5766
-[14]:	http://tools.ietf.org/html/rfc5245
-[15]:	http://xmpp.org/extensions/xep-0176.html
-[16]:	http://tools.ietf.org/html/rfc5389#section-9
-[17]:	http://tools.ietf.org/html/rfc5389
-[18]:	http://tools.ietf.org/html/rfc5766#section-6
-[19]:	http://tools.ietf.org/html/rfc5766
-[20]:	http://tools.ietf.org/html/rfc3261
-[21]:	http://en.wikipedia.org/wiki/Server_Name_Indication
-[22]:	http://tools.ietf.org/html/rfc3263
-[23]:	http://tools.ietf.org/html/rfc3261
-[24]:	http://www.erlang.org/doc/apps/mnesia/index.html
-[25]:	http://www.mysql.com/
-[26]:	http://en.wikipedia.org/wiki/Open_Database_Connectivity
-[27]:	http://www.postgresql.org/
-[29]:	http://redis.io/
-[30]:	http://www.microsoft.com/activedirectory/
-[31]:	http://www.openldap.org/
-[32]:	http://www.communigate.com/
-[33]:	http://tools.ietf.org/html/rfc3062
-[34]:	http://tools.ietf.org/html/rfc4515
-[36]:	http://en.wikipedia.org/wiki/LevelDB
-[37]:	http://redis.io/
-[38]:	http://xmpp.org/extensions/xep-0050.html
-[39]:	http://xmpp.org/extensions/xep-0191.html
-[40]:	http://xmpp.org/extensions/xep-0115.html
-[41]:	http://xmpp.org/extensions/xep-0280.html
-[42]:	http://xmpp.org/extensions/xep-0030.html
-[43]:	http://xmpp.org/extensions/xep-0012.html
-[44]:	http://xmpp.org/extensions/xep-0045.html
-[45]:	http://xmpp.org/extensions/xep-0160.html
-[46]:	http://xmpp.org/extensions/xep-0199.html
-[47]:	http://xmpp.org/extensions/xep-0016.html
-[48]:	http://xmpp.org/extensions/xep-0049.html
-[49]:	http://xmpp.org/extensions/xep-0065.html
-[50]:	http://xmpp.org/extensions/xep-0060.html
-[51]:	http://xmpp.org/extensions/xep-0163.html
-[54]:	http://xmpp.org/extensions/xep-0077.html
-[55]:	http://xmpp.org/extensions/xep-0279.html
-[56]:	http://tools.ietf.org/html/rfc3261
-[57]:	http://xmpp.org/extensions/xep-0039.html
-[58]:	http://xmpp.org/extensions/xep-0202.html
-[59]:	http://xmpp.org/extensions/xep-0054.html
-[60]:	http://xmpp.org/extensions/xep-0054.html
-[61]:	http://xmpp.org/extensions/xep-0153.html
-[62]:	http://xmpp.org/extensions/xep-0092.html
-[63]:	http://www.ejabberd.im/contributions
-[65]:	http://xmpp.org/extensions/xep-0352.html
-[66]:	http://xmpp.org/extensions/xep-0030.html
-[67]:	http://xmpp.org/extensions/xep-0011.html
-[68]:	http://xmpp.org/extensions/xep-0094.html
-[69]:	http://xmpp.org/extensions/xep-0124.html
-[70]:	http://xmpp.org/extensions/xep-0206.html
-[71]:	http://tools.ietf.org/html/rfc7395
-[72]:	http://xmpp.org/extensions/xep-0045.html
-[73]:	http://xmpp.org/extensions/xep-0050.html
-[75]:	http://xmpp.org/extensions/xep-0012.html
-[77]:	http://xmpp.org/extensions/xep-0045.html
-[79]:	http://xmpp.org/rfcs/rfc5122.html
-[80]:	http://xmpp.org/extensions/xep-0160.html
-[82]:	http://xmpp.org/extensions/xep-0199.html
-[83]:	http://www.xmpp.org/extensions/xep-0016.html
-[85]:	http://xmpp.org/extensions/xep-0049.html
-[86]:	http://xmpp.org/extensions/xep-0048.html
-[88]:	http://xmpp.org/extensions/xep-0065.html
-[89]:	http://xmpp.org/extensions/xep-0060.html
-[90]:	http://xmpp.org/extensions/xep-0163.html
-[91]:	http://xmpp.org/extensions/xep-0077.html
-[92]:	http://tools.ietf.org/html/rfc6121#section-2
-[93]:	http://xmpp.org/extensions/xep-0237.html
+[1]:	https://en.wikipedia.org/wiki/YAML
+[2]:	https://ejabberd.im/pyaimt
+[3]:	https://ejabberd.im/pymsnt
+[4]:	https://ejabberd.im/yahoo-transport-2
+[5]:	https://ejabberd.im/jabber-gg-transport
+[6]:	https://ejabberd.im/jmc
+[7]:	https://tools.ietf.org/html/rfc6120#section-7.7.2.2
+[8]:	https://xmpp.org/extensions/xep-0078.html
+[9]:	https://ejabberd.im/extauth
+[10]:	https://ejabberd.im/Anonymous-users-support
+[11]:	https://xmpp.org/extensions/xep-0158.html
+[12]:	https://tools.ietf.org/html/rfc5389
+[13]:	https://tools.ietf.org/html/rfc5766
+[14]:	https://tools.ietf.org/html/rfc5245
+[15]:	https://xmpp.org/extensions/xep-0176.html
+[16]:	https://tools.ietf.org/html/rfc5389#section-9
+[17]:	https://tools.ietf.org/html/rfc5389
+[18]:	https://tools.ietf.org/html/rfc5766#section-6
+[19]:	https://tools.ietf.org/html/rfc5766
+[20]:	https://tools.ietf.org/html/rfc3261
+[21]:	https://en.wikipedia.org/wiki/Server_Name_Indication
+[22]:	https://tools.ietf.org/html/rfc3263
+[23]:	https://tools.ietf.org/html/rfc3261
+[24]:	https://erlang.org/doc/apps/mnesia/
+[25]:	https://www.mysql.com/
+[26]:	https://en.wikipedia.org/wiki/Open_Database_Connectivity
+[27]:	https://www.postgresql.org/
+[29]:	https://redis.io/
+[30]:	https://www.microsoft.com/activedirectory
+[31]:	https://openldap.org/
+[32]:	https://communigate.com/
+[33]:	https://tools.ietf.org/html/rfc3062
+[34]:	https://tools.ietf.org/html/rfc4515
+[36]:	https://en.wikipedia.org/wiki/LevelDB
+[37]:	https://redis.io/
+[38]:	https://xmpp.org/extensions/xep-0050.html
+[39]:	https://xmpp.org/extensions/xep-0191.html
+[40]:	https://xmpp.org/extensions/xep-0115.html
+[41]:	https://xmpp.org/extensions/xep-0280.html
+[42]:	https://xmpp.org/extensions/xep-0030.html
+[43]:	https://xmpp.org/extensions/xep-0012.html
+[44]:	https://xmpp.org/extensions/xep-0045.html
+[45]:	https://xmpp.org/extensions/xep-0160.html
+[46]:	https://xmpp.org/extensions/xep-0199.html
+[47]:	https://xmpp.org/extensions/xep-0016.html
+[48]:	https://xmpp.org/extensions/xep-0049.html
+[49]:	https://xmpp.org/extensions/xep-0065.html
+[50]:	https://xmpp.org/extensions/xep-0060.html
+[51]:	https://xmpp.org/extensions/xep-0163.html
+[54]:	https://xmpp.org/extensions/xep-0077.html
+[55]:	https://xmpp.org/extensions/xep-0279.html
+[56]:	https://tools.ietf.org/html/rfc3261
+[57]:	https://xmpp.org/extensions/xep-0039.html
+[58]:	https://xmpp.org/extensions/xep-0202.html
+[59]:	https://xmpp.org/extensions/xep-0054.html
+[60]:	https://xmpp.org/extensions/xep-0054.html
+[61]:	https://xmpp.org/extensions/xep-0153.html
+[62]:	https://xmpp.org/extensions/xep-0092.html
+[63]:	https://ejabberd.im/contributions
+[65]:	https://xmpp.org/extensions/xep-0352.html
+[66]:	https://xmpp.org/extensions/xep-0030.html
+[67]:	https://xmpp.org/extensions/xep-0011.html
+[68]:	https://xmpp.org/extensions/xep-0094.html
+[69]:	https://xmpp.org/extensions/xep-0124.html
+[70]:	https://xmpp.org/extensions/xep-0206.html
+[71]:	https://tools.ietf.org/html/rfc7395
+[72]:	https://xmpp.org/extensions/xep-0045.html
+[73]:	https://xmpp.org/extensions/xep-0050.html
+[75]:	https://xmpp.org/extensions/xep-0012.html
+[77]:	https://xmpp.org/extensions/xep-0045.html
+[79]:	https://xmpp.org/rfcs/rfc5122.html
+[80]:	https://xmpp.org/extensions/xep-0160.html
+[82]:	https://xmpp.org/extensions/xep-0199.html
+[83]:	https://xmpp.org/extensions/xep-0016.html
+[85]:	https://xmpp.org/extensions/xep-0049.html
+[86]:	https://xmpp.org/extensions/xep-0048.html
+[88]:	https://xmpp.org/extensions/xep-0065.html
+[89]:	https://xmpp.org/extensions/xep-0060.html
+[90]:	https://xmpp.org/extensions/xep-0163.html
+[91]:	https://xmpp.org/extensions/xep-0077.html
+[92]:	https://tools.ietf.org/html/rfc6121#section-2
+[93]:	https://xmpp.org/extensions/xep-0237.html
 [95]:	https://www.funkypenguin.co.nz/project/bandersnatch/
-[97]:	http://en.wikipedia.org/wiki/Directory_Information_Tree
-[98]:	http://xmpp.org/extensions/xep-0279.html
-[99]:	http://xmpp.org/extensions/xep-0039.html
+[97]:	https://en.wikipedia.org/wiki/Directory_Information_Tree
+[98]:	https://xmpp.org/extensions/xep-0279.html
+[99]:	https://xmpp.org/extensions/xep-0039.html
 [100]:	http://tkabber.jabber.ru/
-[101]:	http://xmpp.org/extensions/xep-0202.html
-[102]:	http://xmpp.org/extensions/xep-0054.html
-[104]:	http://tools.ietf.org/html/rfc3062
-[105]:	http://xmpp.org/extensions/xep-0153.html
-[106]:	http://xmpp.org/extensions/xep-0153.html
-[108]:	http://xmpp.org/extensions/xep-0092.html
-[109]:	http://xmpp.org/extensions/xep-0033.html
+[101]:	https://xmpp.org/extensions/xep-0202.html
+[102]:	https://xmpp.org/extensions/xep-0054.html
+[104]:	https://tools.ietf.org/html/rfc3062
+[105]:	https://xmpp.org/extensions/xep-0153.html
+[106]:	https://xmpp.org/extensions/xep-0153.html
+[108]:	https://xmpp.org/extensions/xep-0092.html
+[109]:	https://xmpp.org/extensions/xep-0033.html
 [110]:  /admin/guide/managing/#ejabberdctl
 [111]:  /admin/guide/managing/#list-of-ejabberd-commands
 [112]:  /admin/guide/configuration/#include-additional-configuration-files
 [113]:  /admin/guide/managing/#restrict-execution-with-accesscommands
-[114]:  http://xmpp.org/extensions/xep-0313.html
-[115]:  https://en.wikipedia.org/wiki/Microsoft_SQL_Server
-[116]:  http://www.freetds.org
-[117]:  http://www.unixodbc.org
+[114]:  https://xmpp.org/extensions/xep-0313.html
+[115]:  https://www.microsoft.com/sql-server
+[116]:  https://www.freetds.org/
+[117]:  http://www.unixodbc.org/
 [118]:  https://github.com/processone/ejabberd/tree/master/sql
-[119]:  https://www.sqlite.org
-[120]:  http://xmpp.org/extensions/xep-0363.html
-[121]:  http://xmpp.org/extensions/xep-0013.html
+[119]:  https://sqlite.org/
+[120]:  https://xmpp.org/extensions/xep-0363.html
+[121]:  https://xmpp.org/extensions/xep-0013.html
 [122]:  https://xmpp.org/extensions/xep-0369.html
-[123]:  http://xmpp.org/extensions/xep-0355.html
-[124]:  http://xmpp.org/extensions/xep-0356.html
-[125]:  http://xmpp.org/extensions/xep-0198.html
-[126]:  http://xmpp.org/extensions/xep-0357.html
-[127]:  http://xmpp.org/extensions/xep-0220.html
+[123]:  https://xmpp.org/extensions/xep-0355.html
+[124]:  https://xmpp.org/extensions/xep-0356.html
+[125]:  https://xmpp.org/extensions/xep-0198.html
+[126]:  https://xmpp.org/extensions/xep-0357.html
+[127]:  https://xmpp.org/extensions/xep-0220.html
 [128]:  https://xmpp.org/extensions/xep-0328.html
 [129]:  https://tools.ietf.org/html/rfc6122
 [130]:  https://xmpp.org/extensions/xep-0398.html

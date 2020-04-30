@@ -10,10 +10,10 @@ Consider this document a work in progress, not all tables are documented yet.
 
 Latest version of database schema are available in [ejabberd Github repository](https://github.com/processone/ejabberd):
 
+* [MS SQL Server schema](https://github.com/processone/ejabberd/blob/master/sql/mssql.sql)
 * [MySQL schema](https://github.com/processone/ejabberd/blob/master/sql/mysql.sql)
 * [Postgres schema](https://github.com/processone/ejabberd/blob/master/sql/pg.sql)
-* [SQLite schema](https://github.com/processone/ejabberd/blob/master/sql/lite.sql)
-* [MS SQL Server schema](https://github.com/processone/ejabberd/blob/master/sql/mssql.sql). This
+* [SQLite schema](https://github.com/processone/ejabberd/blob/master/sql/lite.sql). This
   schema need testing / feedback and possibly improvement from SQL
   Server users.
 
