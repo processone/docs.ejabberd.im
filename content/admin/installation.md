@@ -5,7 +5,7 @@ toc: true
 order: 2
 ---
 
-You have several options to install ejabberd:
+There are several ways to install ejabberd:
 
 - [Quick Start with Binary Installers](#quick-start) – recommended when starting development on localhost
   - [Install on Windows](#install-on-windows)
@@ -31,8 +31,8 @@ You can read more on installer options on [unattended installation](/admin/guide
 ## Install on Windows
 
 1. Go to [ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/) on ProcessOne website.
-2. Download the "Windows 64-bits Installer".
-3. Double-click the `ejabberd-YY.MM-windows-installer.exe` to start the installer.
+2. Download the installer for Windows 7 / 2008 64-bits or newer: "Windows Installer".
+3. Double-click the `ejabberd-YY.MM-installer.exe` to start the installer.
 4. On the Windows Security dialog, Allow this application to install.
 5. Select the installer language you prefer, then click "Next" to go through necessary installation steps:
     - accepting the license agreement,
@@ -43,7 +43,7 @@ You can read more on installer options on [unattended installation](/admin/guide
     - selecting if this ejabberd instance will be part of a cluster: for simple local install, just select "No",
     - start the installation,
     - when asked by the Windows Firewall prompt, you can both times click "Cancel",
-6. After successful install, you should see on your Desktop two new shortcuts: "Start ejabberd" and "Stop ejabberd". **To start or stop ejabberd, righ-click on each shortcut and select "Run as Administrator", then confirm the Windows dialog by clicking "Yes".**
+6. After successful install, you should see on your Desktop two new shortcuts: "Start ejabberd" and "Stop ejabberd". To start or stop ejabberd, righ-click on each shortcut and select **"Run as Administrator"**, then confirm the Windows dialog by clicking "Yes".
 7. After starting ejabberd, a welcome screen should open in your default browser. You can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@domain` (or `admin@localhost` as above). Then fill the password field with that account's `password`. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
 8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall.exe` in the directory where it was installed. By default, that's `\Program Files\ejabberd-YY.MM\uninstall.app`. The uninstaller will stop your ejabberd server and remove all its files. Log files may be left behind, so to completely remove ejabberd, just delete its main folder.
 
@@ -132,14 +132,14 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   Libyaml 0.1.4 or higher
 -   Erlang/OTP 19.3 or higher. We recommend using Erlang OTP 21.2.
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
--   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`][4]). Optional.
--   PAM library. Optional. For Pluggable Authentication Modules (PAM). See section [pam][8].
--   ImageMagick’s Convert program and Ghostscript fonts. Optional. For CAPTCHA challenges. See section [captcha][16].
+-   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)). Optional.
+-   PAM library. Optional. For Pluggable Authentication Modules (PAM). See [PAM Authentication](/admin/configuration/authentication/#pam-authentication) section.
+-   ImageMagick’s Convert program and Ghostscript fonts. Optional. For CAPTCHA challenges. See section [CAPTCHA](/admin/configuration/basic/#captcha).
 
 ## Downloading
 
 Released versions of ejabberd are available on ProcessOne
-[ejabberd official download page][1].
+[ejabberd official download page](http://www.process-one.net/en/ejabberd/downloads).
 
 Alternatively, the latest development source code can be retrieved
 from the Git repository using the commands:
@@ -185,7 +185,7 @@ There are many options to modify the default compilation behaviour:
   copied when running the `make install` command.
 
 - **`-–enable-user[=USER]`**: Allow this normal system user to execute
-  the ejabberdctl script (see section [ejabberdctl][7]), read the
+  the ejabberdctl script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)), read the
   configuration files, read and write in the spool directory, read and
   write in the log directory. The account user and group must exist in
   the machine before running `make install`. This account doesn't need
@@ -222,18 +222,17 @@ There are many options to modify the default compilation behaviour:
   ejabberd.
 
 - **`-–enable-mssql`**: Enable Microsoft SQL Server support, this
-    option requires --enable-odbc (see section [databases][18]).
+    option requires --enable-odbc (see [Supported storages][18]).
 
-- **`-–enable-mysql`**: Enable MySQL support (see section [databases][18]).
+- **`-–enable-mysql`**: Enable MySQL support (see [Supported storages][18]).
 
 - **`-–enable-new-sql-schema`**: Use new SQL schema.
 
 - **`-–enable-odbc`**: Enable pure ODBC support.
 
-- **`-–enable-pam`**: Enable the PAM authentication method (see section
-  [pam][8]).
+- **`-–enable-pam`**: Enable the PAM authentication method (see [PAM Authentication](/admin/configuration/authentication/#pam-authentication) section).
 
-- **`-–enable-pgsql`**: Enable PostgreSQL support (see section [databases][18]).
+- **`-–enable-pgsql`**: Enable PostgreSQL support (see [Supported storages][18]).
 
 - **`-–enable-redis`**: Enable Redis support to use for external
     session storage.
@@ -243,7 +242,7 @@ There are many options to modify the default compilation behaviour:
 
 - **`-–enable-sip`**: Enable SIP support.
 
-- **`-–enable-sqlite`**: Enable SQLite support (see section [databases][18]).
+- **`-–enable-sqlite`**: Enable SQLite support (see [Supported storages][18]).
 
 - **`-–disable-stun`**: Disable STUN/TURN support.
 
@@ -280,13 +279,13 @@ The files and directories created are, by default:
     - `lib/`: Binary system libraries (\*.so)
     - `msgs/`:   Translation files (\*.msgs)
 
-- `/sbin/ejabberdctl`: Administration script (see section [ejabberdctl][7])
+- `/sbin/ejabberdctl`: Administration script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)).
 
 - `/share/doc/ejabberd/`: Documentation of ejabberd
 
 - `/var/lib/ejabberd/`: Spool directory:
 
-   - `.erlang.cookie`: Erlang cookie file (see section [cookie][19])
+   - `.erlang.cookie`: Erlang cookie file (see section [cookie](/admin/guide/security/#erlang-cookie))
    - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
 
 - `/var/log/ejabberd/`: Log directory (see section [logfiles]):
@@ -331,7 +330,8 @@ ejabberd version 15.06. This is self-sufficient packages also
 containing a minimal Erlang distribution. It ensures that it does not
 interfere with your existing Erlang version. This is also a good way
 to make sure ejabberd will run with the latest Erlang version. You can
-download the packages from [ejabberd official download page][1].
+download the packages from the
+[ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/).
 
 
 # Starting ejabberd
@@ -346,7 +346,7 @@ where ejabberd is installed.
 
 You can also use the `ejabberdctl` command line administration script to
 start and stop ejabberd. If you provided the configure option
-`–enable-user=USER` (see [compile](#compile)), you can execute `ejabberdctl`
+`–enable-user=USER` (see compilation [options](#options)), you can execute `ejabberdctl`
 with either that system account or root.
 
 Usage example:
@@ -369,7 +369,9 @@ the error message provided by Erlang and can identify what is exactly
 the problem.
 
 The `ejabberdctl` administration script is included in the `bin`
-directory. Please refer to the section [ejabberdctl][7] for details
+directory. Please refer to the section
+[ejabberdctl](/admin/guide/managing/#ejabberdctl)
+for details
 about `ejabberdctl`, and configurable options to fine tune the Erlang
 runtime system.
 
@@ -387,7 +389,8 @@ root to start the server.
 
 When ejabberd is started, the processes that are started in the system
 are `beam` or `beam.smp`, and also `epmd`. For more information
-regarding `epmd` consult the section relating to [epmd][6].
+regarding `epmd` consult the section relating to
+[epmd](/admin/guide/security/#epmd).
 
 ## Autostart on Windows
 
@@ -420,13 +423,13 @@ enter the ejabberd Web Admin. Here are the steps to create it:
     `admin1@example.org`. There are two ways to register an XMPP
     account:
 
-  1.  Using `ejabberdctl` (see section [ejabberdctl][7]):
+  1.  Using an XMPP client and In-Band Registration (see section (/admin/configuration/modules/#mod-register)).
+
+  2.  Using `ejabberdctl` (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)):
 
       ``` bash
       ejabberdctl register admin1 example.org password
       ```
-
-  2.  Using an XMPP client and In-Band Registration (see section [mod_register][20]).
 
 2.  Edit the ejabberd configuration file to give administration
     rights to the XMPP account you created:
@@ -469,26 +472,4 @@ by itself. You must create the schema before you run ejabberd.
 
 See [ejabberd SQL Database Schema](/developer/sql-schema/)
 for details on database schemas.
-See [Step-by-step Databases Configuration Guides](/admin/guide/databases/)
-for detailed setup instructions.
 
-
-[1]:  http://www.process-one.net/en/ejabberd/downloads
-[2]:  http://www.microsoft.com/
-[3]:  http://cean.process-one.net/
-[4]:  http://xmpp.org/extensions/xep-0138.html
-[5]:  http://www.process-one.net/
-[6]:    /admin/guide/security/#epmd
-[7]:    /admin/guide/managing/#ejabberdctl
-[8]:    /admin/guide/configuration/#pam-authentication
-[10]: https://www.opencsw.org/
-[11]: http://www.erlang.org/download.html
-[12]: http://sourceforge.net/project/showfiles.php?group_id=10127&package_id=11277
-[13]: http://www.gnu.org/software/libiconv/
-[14]: http://www.slproweb.com/products/Win32OpenSSL.html
-[15]: http://www.zlib.net/
-[16]:   /admin/guide/configuration/#captcha
-[17]:   /admin/guide/configuration/#database
-[18]:   /admin/guide/configuration/#relational-databases
-[19]:   /admin/guide/security/#erlang-cookie
-[20]:   /admin/guide/configuration/#mod-register
