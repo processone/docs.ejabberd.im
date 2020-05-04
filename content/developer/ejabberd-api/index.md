@@ -25,11 +25,13 @@ ejabberd operations are organised around the concept of commands. ejabberd stand
 
 All commands can be exposed through interfaces. Available interfaces are: 
 
-- ejabberdctl command-line tool,
-- ejabberd ReST API and ejabberd XML-RPC API,
-- to some extend, XMPP protocol itself through discovery and adhoc commands.
+- [ejabberdctl](/admin/guide/managing/#ejabberdctl) command-line tool,
+- [mod_http_api](/admin/configuration/modules/#mod-http-api) for ReST calls using JSON data,
+- [ejabberd_xmlrpc](/admin/configuration/listen/#ejabberd-xmlrpc) for XML-RPC calls,
+- to some extend, XMPP protocol itself through discovery and adhoc commands, using
+  [mod_configure](/admin/configuration/modules/#mod-configure).
 
-Any module in ejabberd can adds its own command through ejabberd Erlang/Elixir API, making the whole
+Any module in ejabberd can add its own command through ejabberd Erlang/Elixir API, making the whole
 system totally extensible. A third-party module can expose its own command and feel like a real part
 of the system. A module that exposes commands makes it possible for server admin to expose it the way they want.
 
