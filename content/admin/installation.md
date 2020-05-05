@@ -378,14 +378,18 @@ runtime system.
 ## Autostart on Linux
 
 On a \*nix system, create a system user called 'ejabberd', give it write access
-to the directories `database/` and `logs/`, and set that as home. If you want
-ejabberd to be started as daemon at boot time with that user, copy
-`ejabberd.init` from the ’bin’ directory to something like
-`/etc/init.d/ejabberd` or (on a systemd distribution) copy `ejabberd.service`
-to `/etc/systemd/system/`, run as root `systemctl daemon-reload` and
-`systemctl enable ejabberd.service`. Then you can call
-`/etc/inid.d/ejabberd start` or (with systemd) `systemctl start ejabberd` as
-root to start the server.
+to the directories `database/` and `logs/`, and set that as home.
+
+If you want ejabberd to be started as daemon at boot time with that user,
+copy `ejabberd.init` from the `bin` directory to something like `/etc/init.d/ejabberd`.
+Then you can call `/etc/inid.d/ejabberd start` to start the server.
+
+Or if you have a systemd distribution:
+
+1. copy `ejabberd.service` to `/etc/systemd/system/`
+2. run `systemctl daemon-reload`
+3. run `systemctl enable ejabberd.service`
+4. To start the server, you can run `systemctl start ejabberd`
 
 When ejabberd is started, the processes that are started in the system
 are `beam` or `beam.smp`, and also `epmd`. For more information
