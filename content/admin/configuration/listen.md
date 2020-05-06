@@ -189,20 +189,6 @@ Options:
 [tls_compression](/admin/configuration/listen-options/#tls-compression),
 and the [trusted_proxies](/admin/configuration/toplevel/#trusted-proxies) top-level option.
 
-## ejabberd_xmlrpc
-
-Handles XML-RPC requests to execute
-[ejabberd commands](/admin/guide/managing/#ejabberd-commands).
-
-For explanations about `access_commands` see
-[Restrict Execution with AccessCommands](/admin/guide/managing/#restrict-execution-with-accesscommands).
-Check some [XML-RPC examples](/developer/ejabberd-api/oauth/#xml-rpc-examples).
-You can find more information in the old
-[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
-
-Options:
-`access_commands` (TODO: Document how to use that option).
-
 ## mod_mqtt
 
 Support for MQTT requires configuring `mod_mqtt` both in the
@@ -427,6 +413,78 @@ A test client can be found on Github: [Websocket test client](https://github.com
 
 <!-- TODO We should probably embed a test Websocket client on the Websocket info get page. -->
 
+# ejabberd_xmlrpc
+
+Handles XML-RPC requests to execute
+[ejabberd commands](/admin/guide/managing/#ejabberd-commands).
+It is configured as a request handler in
+[ejabberd_http](/admin/configuration/listen/#ejabberd-http).
+
+By default there is no restriction to who can execute what commands,
+so it is strongly recommended that you configure restrictions using
+[API Permissions](https://docs.ejabberd.im/developer/ejabberd-api/permissions/).
+
+This is the minimum configuration required to enable the feature:
+
+    listen:
+      -
+        port: 4560
+        module: ejabberd_http
+        request_handlers:
+          /: ejabberd_xmlrpc
+
+Example Python script:
+
+    import xmlrpclib
+    server = xmlrpclib.Server('http://127.0.0.1:4560/');
+    params = {}
+    params["host"] = "localhost"
+    print server.registered_users(params)
+
+This example configuration adds some restrictions:
+
+    listen:
+      -
+        port: 5281
+        ip: "::"
+        module: ejabberd_http
+        request_handlers:
+          /api: mod_http_api
+          /xmlrpc: ejabberd_xmlrpc
+
+    api_permissions:
+      "some XMLRPC commands":
+        from: ejabberd_xmlrpc
+        who:
+          - ip: 127.0.0.1
+          - user: user1@localhost
+        what:
+          - registered_users
+          - connected_users_number
+
+With that configuration, it is possible to execute two specific commands using
+`ejabberd_xmlrpc`, with two access restrictions. Example Python script:
+
+    import xmlrpclib
+    server = xmlrpclib.Server('http://127.0.0.1:5281/xmlrpc')
+    LOGIN = {'user':'user1',
+             'server':'localhost',
+             'password':'mypass11',
+             'admin':True}
+    def calling(command, data):
+        fn = getattr(server, command)
+        return fn(LOGIN, data)
+    print calling('registered_users', {'host':'localhost'})
+
+It's possible to use OAuth for authentication instead of plain password, see
+[OAuth Support](/developer/ejabberd-api/oauth/).
+
+In ejabberd 20.03 and older, it was possible to configure `ejabberd_xmlrpc` as a
+listener, see the old document for reference and example configuration:
+[Listening Module](/admin/configuration/old/#listening-module).
+
+Just for reference, there's also the old
+[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
 
 # Examples
 

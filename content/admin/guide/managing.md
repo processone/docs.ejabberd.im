@@ -167,7 +167,7 @@ defined in any Erlang module and executed using any valid frontend.
 
 `ejabberd` includes three frontends to execute `ejabberd commands`:
 the script [ejabberdctl](#ejabberdctl),
-the [ejabberd_xmlrpc](/admin/configuration/listen/#ejabberd-xmlrpc) listener 
+the [ejabberd_xmlrpc](/admin/configuration/listen/#ejabberd-xmlrpc) request handler
 and [mod_http_api](/admin/configuration/modules/#mod-http-api).
 Other known frontends that can be installed to
 execute ejabberd commands in different ways are: `mod_rest` (HTTP POST

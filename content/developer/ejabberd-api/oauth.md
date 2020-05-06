@@ -81,8 +81,9 @@ file, focusing on HTTP handlers:
       ## To handle ejabberd commands using XML-RPC
       -
         port: 4560
-        module: ejabberd_xmlrpc
-        access_commands: {}
+        module: ejabberd_http
+        request_handlers:
+          /: ejabberd_xmlrpc
       -
         port: 5280
         module: ejabberd_http
@@ -422,16 +423,16 @@ This is an equivalent Python 2 script:
     server_url = 'http://127.0.0.1:4560'
     server = xmlrpclib.ServerProxy(server_url)
 
-    LOGIN = {'user': 'admin', 'server': 'example.com',
-	'token': '0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L',
-	'admin': True}
+    LOGIN = {'user': 'admin',
+             'server': 'example.com',
+             'token': '0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L',
+             'admin': True}
 
     def calling(command, data):
 	fn = getattr(server, command)
 	return fn(LOGIN, data)
 
-    result = calling('get_roster', {'user':'peter', 'server':'example.com'})
-    print result
+    print calling('get_roster', {'user':'peter', 'server':'example.com'})
 
 And this is an equivalent Python 3 script:
 
@@ -441,9 +442,10 @@ And this is an equivalent Python 3 script:
     server_url = 'http://127.0.0.1:4560'
     server = client.ServerProxy(server_url)
 
-    LOGIN = {'user': 'admin', 'server': 'example.com',
-	'token': '0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L',
-	'admin': True}
+    LOGIN = {'user': 'admin',
+             'server': 'example.com',
+             'token': '0n6LaEjyAOxVDyZChzZfoKMYxc8uUk6L',
+             'admin': True}
 
     def calling(command, data):
 	fn = getattr(server, command)
