@@ -36,7 +36,8 @@ The default is to use system defined file if possible.
 *Path*
 
 Path to the certificate file.
-Only makes sense when the `tls` options is set.
+Only makes sense when the `tls` options is set. If
+        this option is not set, you should set the `certfiles` option or configure [ACME](#acme).
 
 ## check_from
 
