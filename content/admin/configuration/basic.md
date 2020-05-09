@@ -230,7 +230,8 @@ certificate requests and renewals are performed to some CA server (aka "ACME ser
 in a fully automated mode. The automated mode is enabled by default.
 However, since ACME requires HTTP challenges
 (i.e. an ACME server will connect to ejabberd server on HTTP port 80 during certificate issuance),
-some configuration of ejabberd is still required. Namely, an HTTP listener for `ejabberd_http`
+some configuration of ejabberd is still required. Namely, an HTTP listener for
+[ejabberd_http](/admin/configuration/listen/#ejabberd-http) listen
 module should be configured on non-TLS port with so called "ACME well known" request handler:
 
     listen:
@@ -250,7 +251,8 @@ several ways to do this: using NAT, setcap (Linux only), or HTTP front-ends (e.g
 `haproxy` and so on). Pick one that fits your installation the best, but **DON'T** run ejabberd as root.
 
 If you see errors in the logs with ACME server problem reports, it's **highly** recommended to change `ca_url`
-option of section `acme` to the URL pointing to some staging ACME environment, fix the problems until you obtain
+option in the [`acme`](/admin/configuration/toplevel/#acme) top-level option
+to the URL pointing to some staging ACME environment, fix the problems until you obtain
 a certificate, and then change the URL back and retry using `request-certificate` ejabberdctl command
 (see below). This is needed because ACME servers typically have rate limits, preventing you from requesting
 certificates too rapidly and you can get stuck for several hours or even days.
@@ -264,7 +266,8 @@ and the staging URL will be `https://acme-staging-v02.api.letsencrypt.org/direct
       ## Production environment (the default):
       # ca_url: https://acme-v02.api.letsencrypt.org/directory
 
-The automated mode can be disabled by setting `auto` option of section `acme` to `false`:
+The automated mode can be disabled by setting `auto` option to `false`
+in the [`acme`](/admin/configuration/toplevel/#acme) top-level option:
 
     acme:
       auto: false

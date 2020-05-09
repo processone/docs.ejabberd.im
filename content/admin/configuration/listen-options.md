@@ -36,8 +36,10 @@ The default is to use system defined file if possible.
 *Path*
 
 Path to the certificate file.
-Only makes sense when the `tls` options is set. If
-        this option is not set, you should set the `certfiles` option or configure [ACME](#acme).
+Only makes sense when the `tls` options is set.
+If this option is not set, you should set the
+[`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
+or configure [ACME](/admin/configuration/basic/#acme).
 
 ## check_from
 
@@ -214,15 +216,19 @@ This option defines a shaper rule for the `ejabberd_service` (see
 *true | false*
 
 This option specifies that STARTTLS encryption is available on
-	connections to the port. You should also set the `certfiles` option or configure [ACME](#acme).
+connections to the port. You should also set the
+[`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
+or configure [ACME](/admin/configuration/basic/#acme).
 
 ## starttls_required
 
 *true | false*
 
 This option specifies that STARTTLS encryption is required on
-	connections to the port. No unencrypted connections will be allowed.
-	You should also set the `certfiles` option or configure [ACME](#acme).
+connections to the port. No unencrypted connections will be allowed.
+You should also set the
+[`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
+or configure [ACME](/admin/configuration/basic/#acme).
 
 ## tag
 
@@ -266,7 +272,9 @@ This option specifies that traffic on the port will be encrypted
 	method is STARTTLS on port 5222, as defined
 	[`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
 	which can be enabled in `ejabberd` with the option `starttls`. If
-	this option is set, you should also set the `certfiles` option or configure [ACME](#acme).
+	this option is set, you should also set the
+        [`certfiles`](/admin/configuration/toplevel/#certfiles) top-level
+        option or configure [ACME](/admin/configuration/basic/#acme).
 	The option `tls` can also be used in `ejabberd_http` to support HTTPS.
 
 ## tls_compression
