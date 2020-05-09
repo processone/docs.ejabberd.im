@@ -109,7 +109,7 @@ mapping *{ACLType: ACLValue}*. These can be one of the following:
 
 *Options*  
 
-ACME configuration. ACME is used to automatically obtain SSL
+[ACME](/admin/configuration/basic/#acme) configuration, to automatically obtain SSL
 certificates for the domains served by ejabberd, which means that
 certificate requests and renewals are performed to some CA server (aka
 "ACME server") in a fully automated mode. The *Options* are:

@@ -3079,12 +3079,11 @@ Unless the *offer\_local\_services* is set to *false*, the explicitly
 listed services will be offered in addition to those announced
 automatically.
 
- -   **host**: *Host* The host name or IPv4 address the STUN/TURN service
-    is listening on. For non-TLS services, it’s recommended to specify
-    an IPv4 address (to avoid additional DNS lookup latency on the
-    client side). For TLS services, the host name (or possible IPv4
-    address) should match the certificate. Specifying the *host* option
-    is mandatory.
+ -   **host**: *Host* The hostname or IP address the STUN/TURN service is
+    listening on. For non-TLS services, it’s recommended to specify an
+    IP address (to avoid additional DNS lookup latency on the client
+    side). For TLS services, the hostname (or IP address) should match
+    the certificate. Specifying the *host* option is mandatory.
 
  -   **port**: *1..65535* The port number the STUN/TURN service is
     listening on. The default port number is 3478 for non-TLS services
