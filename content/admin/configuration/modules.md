@@ -303,6 +303,21 @@ Same as *default\_ram\_db* but applied to this module only.
 - **use\_cache**: *true | false*  
 Same as top-level *use\_cache* option, but applied to this module only.
 
+__**Example**:__
+
+    listen:
+      -
+        port: 5222
+        module: ejabberd_c2s
+      -
+        port: 5443
+        module: ejabberd_http
+        request_handlers:
+          /bosh: mod_bosh
+
+    modules:
+      mod_bosh: {}
+
 mod\_caps
 ---------
 

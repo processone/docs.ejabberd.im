@@ -118,18 +118,6 @@ The external Jabber component that connects to this
 	provide the password option that will be used for all the hosts
 	(see port 5236 definition in the example below).
 
-Remember that you must also install and enable the module `mod\_bosh`,
-and the `ejabberd_c2s` listener must be available too.
-
-If HTTP Bind (BOSH) is enabled, it will be available at
-`http://server:port/bosh/`. Be aware that support for HTTP Bind
-is also needed in the XMPP client. Remark also that HTTP Bind can be
-interesting to host a web-based XMPP client such as
-[`JWChat`](http://jwchat.sourceforge.net/) (check the tutorials to
-install JWChat with ejabberd and an
-[`embedded local web server`](http://www.ejabberd.im/jwchat-localserver)
-or [`Apache`](http://www.ejabberd.im/jwchat-apache)).
-
 ## max_fsm_queue
 
 *Size*
