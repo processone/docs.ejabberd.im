@@ -227,7 +227,15 @@ Example configuration:
 [ACME](https://tools.ietf.org/html/rfc8555) is used to automatically obtain SSL
 certificates for the domains served by ejabberd, which means that
 certificate requests and renewals are performed to some CA server (aka "ACME server")
-in a fully automated mode. The automated mode is enabled by default.
+in a fully automated mode.
+
+## Setting up ACME
+
+In ejabberd, ACME is configured using the
+[`acme`](/admin/configuration/toplevel/#acme)
+top-level option, check there available options an example configuration.
+
+The automated mode is enabled by default.
 However, since ACME requires HTTP challenges
 (i.e. an ACME server will connect to ejabberd server on HTTP port 80 during certificate issuance),
 some configuration of ejabberd is still required. Namely, an HTTP listener for
@@ -299,36 +307,6 @@ At any point you can revoke a certificate: pick the certificate file from the li
     $ ejabberdctl revoke-certificate /path/to/cert/file
 
 If the commands return errors, consult the log files for details.
-
-## Available ACME options
-
-**`ca_url`**: The ACME directory URL used as an entry point for the ACME server.
-   The default value is `https://acme-v02.api.letsencrypt.org/directory` - the
-   directory URL of [Let's Encrypt](https://letsencrypt.org) authority.
-
-**`contact`**: A list of contact addresses (typically emails) where an ACME server
-   will send notifications when problems occur. The default is an empty list which
-   means an ACME server will send no notices.
-
-**`auto`**: Whether to automatically request certificates for all configured domains
-   (that yet have no a certificate) on server start or configuration reload.
-   The default is `true`.
-
-**`cert_type`**: A type of a certificate key. Available values are `ec` and `rsa`
-   for EC and RSA certificates respectively. It's better to have RSA certificates
-   for the purpose of backward compatibility with legacy clients and servers,
-   thus the default is `rsa`.
-
-Example:
-
-    acme:
-      ca_url: https://acme-v02.api.letsencrypt.org/directory
-      contact:
-        - mailto:admin@domain.tld
-        - mailto:bot@domain.tld
-      auto: true
-      cert_type: rsa
-
 
 ## ACME implementation details
 
