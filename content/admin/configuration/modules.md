@@ -2893,9 +2893,9 @@ virtual host.
 > **Note**
 >
 > It is not enough to just load this module. You should also configure
-> listeners and DNS records properly. See section
-> [SIP](https://docs.ejabberd.im/admin/configuration/#sip) of the
-> Configuration Guide for details.
+> listeners and DNS records properly. For details see the section about
+> the [ejabberd\_sip](/admin/configuration/listen/#ejabberd-sip) listen module in
+> the ejabberd Documentation.
 
 __Available options:__
 

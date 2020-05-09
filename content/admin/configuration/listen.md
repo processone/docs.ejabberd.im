@@ -130,8 +130,9 @@ Options:
 Handles SIP requests as defined in
 	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).
 	
-For the specific module options, please check the 
-[ejabberd_sip](/admin/configuration/listen/#ejabberd-sip-1) section.
+For details please check the
+[ejabberd_sip](/admin/configuration/listen/#ejabberd-sip-1)
+and [mod_sip](/admin/configuration/modules/#mod-sip) sections.
 
 General listener options:
 [certfile](/admin/configuration/listen-options/#certfile),
@@ -312,13 +313,16 @@ And you should also add these in the case if TURN is enabled:
 
 ## SIP Configuration
 
-`ejabberd` has built-in SIP support. In order to activate it you need to
-add listeners for it, configure DNS properly and enable `mod_sip` for
-the desired virtual host.
+`ejabberd` has built-in SIP support. To activate this feature,
+add the [`ejabberd_sip`](#ejabberd-sip) listen module, enable
+[`mod_sip`](/admin/configuration/modules/#mod-sip) module
+for the desired virtual host, and configure DNS properly.
 
 To add a listener you should configure `ejabberd_sip` listening module
-as described in [Listen Modules](#listen) section. If option `tls` is specified, option
-`certfile` must be specified as well, otherwise incoming TLS connections
+as described in [Listen](#listen-option) section.
+If option [`tls`](/admin/configuration/listen-options/#tls) is specified,
+option [`certfile`](/admin/configuration/listen-options/#certfile)
+must be specified as well, otherwise incoming TLS connections
 would fail.
 
 Example configuration with standard ports (as per

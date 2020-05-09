@@ -36,7 +36,8 @@ The default is to use system defined file if possible.
 *Path*
 
 Path to the certificate file.
-Only makes sense when the `tls` options is set.
+Only makes sense when the [`tls`](#tls)
+options is set.
 If this option is not set, you should set the
 [`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
 or configure [ACME](/admin/configuration/basic/#acme).
@@ -45,7 +46,8 @@ or configure [ACME](/admin/configuration/basic/#acme).
 
 *true | false*
 
-This option can be used with `ejabberd_service` only.
+This option can be used with
+[`ejabberd_service`](/admin/configuration/listen/#ejabberd-service) only.
 	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
 	the domain must match the hostname of the component. If this option
 	is set to `false`, `ejabberd` will allow the component to send
@@ -74,7 +76,9 @@ Default value is: `[]`
 
 If the HTTP request received by ejabberd contains the HTTP header
 	`Host` with an ambiguous virtual host that doesn’t match any one
-	defined in ejabberd (see [Host Names](#host-names)), then this configured HostName
+	defined in ejabberd (see
+        [Host Names](/admin/configuration/basic/#host-names)),
+        then this configured HostName
 	is set as the request Host. The default value of this option is:
 	`undefined`.
 
@@ -93,7 +97,8 @@ Full path to a file containing custom parameters for Diffie-Hellman key
 *true | false*
 
 This option emulates legacy behaviour which registers all routes
-defined in `hosts` on a component connected. This behaviour
+defined in [`hosts`](/admin/configuration/toplevel/#hosts)
+on a component connected. This behaviour
 is considered harmful in the case when it's desired to multiplex
 different components on the same port, so, to disable it,
 set `global_routes` to `false`.
@@ -107,7 +112,8 @@ to maintain backward compatibility with existing deployments.
 *{Hostname: [HostOption, ...]}*
 
 The external Jabber component that connects to this
-	`ejabberd_service` can serve one or more hostnames. As `HostOption`
+[`ejabberd_service`](/admin/configuration/listen/#ejabberd-service)
+can serve one or more hostnames. As `HostOption`
 	you can define options for the component; currently the only allowed
 	option is the password required to the component when attempt to
 	connect to ejabberd: `password: Secret`. Note that you
@@ -130,8 +136,11 @@ This option specifies the maximum number of elements in the queue of
 	corresponding connection (if any) will be terminated and error
 	message will be logged. The reasonable value for this option depends
 	on your hardware configuration. This option can be specified for
-	`ejabberd_service` and `ejabberd_c2s` listeners, or also globally
-	for `ejabberd_s2s_out`. If the option is not specified for
+        [`ejabberd_service`](/admin/configuration/listen/#ejabberd-service)
+        and [`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
+        listeners, or also globally for
+        [`ejabberd_s2s_out`](/admin/configuration/listen/#ejabberd-s2s-out).
+        If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
 	’undefined’. Default value: ’10000’.
@@ -174,7 +183,8 @@ List of general options relating to SSL/TLS. These map to
 
 *{Path: Module}*
 
-To define one or several handlers that will serve HTTP requests. The
+To define one or several handlers that will serve HTTP requests in
+[`ejabberd_http`](/admin/configuration/listen/#ejabberd-http). The
 	Path is a string; so the URIs that start with that Path will be
 	served by Module. For example, if you want `mod_foo` to serve the
 	URIs that start with `/a/b/`, and you also want `mod_bosh` to
@@ -189,15 +199,18 @@ To define one or several handlers that will serve HTTP requests. The
 
 *none | ShaperName*
 
-This option defines a shaper for the port (see section [Shapers](#shapers)).
+This option defines a shaper for the port (see section 
+[Shapers](/admin/configuration/basic/#shapers)).
 	The default value is `none`.
 
 ## shaper_rule
 
 *none | ShaperRule*
 
-This option defines a shaper rule for the `ejabberd_service` (see
-	section [Shapers](#shapers)). The recommended value is `fast`.
+This option defines a shaper rule for
+[`ejabberd_service`](/admin/configuration/listen/#ejabberd-service) (see
+section [Shapers](/admin/configuration/basic/#shapers)).
+The recommended value is `fast`.
 
 ## starttls
 
@@ -223,7 +236,9 @@ or configure [ACME](/admin/configuration/basic/#acme).
 *String*
 
 Allow specifying a tag in a `listen` section
-and later use it to have a special `api_permission` just for it.
+and later use it to have a special
+[`api_permissions`](/admin/configuration/toplevel/#api_permissions)
+just for it.
 
 For example:
 
@@ -259,11 +274,16 @@ This option specifies that traffic on the port will be encrypted
 	nowadays deprecated and not recommended. The preferable encryption
 	method is STARTTLS on port 5222, as defined
 	[`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
-	which can be enabled in `ejabberd` with the option `starttls`. If
-	this option is set, you should also set the
+	which can be enabled in `ejabberd` with the option
+        [`starttls`](#starttls).
+
+If this option is set, you should also set the
         [`certfiles`](/admin/configuration/toplevel/#certfiles) top-level
         option or configure [ACME](/admin/configuration/basic/#acme).
-	The option `tls` can also be used in `ejabberd_http` to support HTTPS.
+
+The option `tls` can also be used in
+        [`ejabberd_http`](/admin/configuration/listen/#ejabberd-http)
+        to support HTTPS.
 
 ## tls_compression
 
