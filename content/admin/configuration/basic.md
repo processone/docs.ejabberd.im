@@ -185,7 +185,7 @@ provides more details.
 
 Some `ejabberd` modules can be configured to require a CAPTCHA challenge
 on certain actions. If the client does not support CAPTCHA Forms
-([`XEP-0158`](http://xmpp.org/extensions/xep-0158.html), a web link is
+([`XEP-0158`](http://xmpp.org/extensions/xep-0158.html)), a web link is
 provided so the user can fill the challenge in a web browser.
 
 An example script is provided that generates the image using
