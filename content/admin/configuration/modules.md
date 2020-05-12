@@ -27,20 +27,20 @@ This module provides additional administrative commands.
 
 Details for some commands:
 
- -   *ban-acount*: This command kicks all the connected sessions of the
+-   *ban-acount*: This command kicks all the connected sessions of the
     account from the server. It also changes their password to a
     randomly generated one, so they can’t login anymore unless a server
     administrator changes their password again. It is possible to define
     the reason of the ban. The new password also includes the reason and
     the date and time of the ban. See an example below.
 
- -   *pushroster* (and *pushroster-all*): The roster file must be placed,
+-   *pushroster*: (and *pushroster-all*) The roster file must be placed,
     if using Windows, on the directory where you installed ejabberd:
     C:/Program Files/ejabberd or similar. If you use other Operating
     System, place the file on the same directory where the .beam files
     are installed. See below an example roster file.
 
- -   *srg-create*: If you want to put a group Name with blankspaces, use
+-   *srg-create*: If you want to put a group Name with blankspaces, use
     the characters "' and '" to define when the Name starts and ends.
     See an example below.
 
@@ -114,29 +114,29 @@ JID in each entry will apply only to the specified virtual host
 example.org, while the JID between brackets will apply to all virtual
 hosts in ejabberd:
 
- -   example.org/announce/all (example.org/announce/all-hosts/all):: The
+-   example.org/announce/all (example.org/announce/all-hosts/all):: The
     message is sent to all registered users. If the user is online and
     connected to several resources, only the resource with the highest
     priority will receive the message. If the registered user is not
     connected, the message will be stored offline in assumption that
     offline storage (see *mod\_offline*) is enabled.
 
- -   example.org/announce/online
+-   example.org/announce/online
     (example.org/announce/all-hosts/online):: The message is sent to all
     connected users. If the user is online and connected to several
     resources, all resources will receive the message.
 
- -   example.org/announce/motd (example.org/announce/all-hosts/motd)::
+-   example.org/announce/motd (example.org/announce/all-hosts/motd)::
     The message is set as the message of the day (MOTD) and is sent to
     users when they login. In addition the message is sent to all
     connected users (similar to announce/online).
 
- -   example.org/announce/motd/update
+-   example.org/announce/motd/update
     (example.org/announce/all-hosts/motd/update):: The message is set as
     message of the day (MOTD) and is sent to users when they login. The
     message is not sent to any currently connected user.
 
- -   example.org/announce/motd/delete
+-   example.org/announce/motd/delete
     (example.org/announce/all-hosts/motd/delete):: Any message sent to
     this JID removes the existing message of the day (MOTD).
 
@@ -420,10 +420,12 @@ __Available options:__
 If you want to delegate namespaces to a component, specify them in this
 option, and associate them to an access rule. The *Options* are:
 
- -   **access**: *AccessName* The option defines which components are
+ - **access**: *AccessName*  
+   The option defines which components are
     allowed for namespace delegation. The default value is *none*.
 
- -   **filtering**: *Attributes* The list of attributes. Currently not
+ - **filtering**: *Attributes*  
+   The list of attributes. Currently not
     used.
 
 __Examples:__
@@ -475,15 +477,18 @@ Specify additional information about the server, as described in
 Services](https://xmpp.org/extensions/xep-0157.html). Every *Info*
 element in the list is constructed from the following options:
 
- -   **modules**: *all | \[Module, ...\]* The value can be the keyword
+ - **modules**: *all | \[Module, ...\]*  
+   The value can be the keyword
     *all*, in which case the information is reported in all the
     services, or a list of ejabberd modules, in which case the
     information is only specified for the services provided by those
     modules.
 
- -   **name**: *Name* Any arbitrary name of the contact.
+ - **name**: *Name*  
+   Any arbitrary name of the contact.
 
- -   **urls**: *\[URI, ...\]* A list of contact URIs, such as HTTP URLs,
+ - **urls**: *\[URI, ...\]*  
+   A list of contact URIs, such as HTTP URLs,
     XMPP URIs and so on.
 
     **Example**:
@@ -989,23 +994,23 @@ This module sends events to external backend (by now only
 [grapherl](https://github.com/processone/grapherl) is supported).
 Supported events are:
 
- -   sm\_register\_connection
+-   sm\_register\_connection
 
- -   sm\_remove\_connection
+-   sm\_remove\_connection
 
- -   user\_send\_packet
+-   user\_send\_packet
 
- -   user\_receive\_packet
+-   user\_receive\_packet
 
- -   s2s\_send\_packet
+-   s2s\_send\_packet
 
- -   s2s\_receive\_packet
+-   s2s\_receive\_packet
 
- -   register\_user
+-   register\_user
 
- -   remove\_user
+-   remove\_user
 
- -   offline\_message
+-   offline\_message
 
 When enabled, every call to these hooks triggers a counter event to be
 sent to the external backend.
@@ -1219,81 +1224,100 @@ This option allows to define the desired default room options. Note that
 the creator of a room can modify the options of his room at any time
 using an XMPP client with MUC capability. The *Options* are:
 
- -   **allow\_change\_subj**: *true | false* Allow occupants to change
+ - **allow\_change\_subj**: *true | false*  
+   Allow occupants to change
     the subject. The default value is *true*.
 
- -   **allow\_private\_messages**: *true | false* Occupants can send
+ - **allow\_private\_messages**: *true | false*  
+   Occupants can send
     private messages to other occupants. The default value is *true*.
 
- -   **allow\_private\_messages\_from\_visitors**: *anyone | moderators |
+ - **allow\_private\_messages\_from\_visitors**: *anyone | moderators |
     nobody* Visitors can send private messages to other occupants. The
     default value is *anyone* which means visitors can send private
     messages to any occupant.
 
- -   **allow\_query\_users**: *true | false* Occupants can send IQ
+ - **allow\_query\_users**: *true | false*  
+   Occupants can send IQ
     queries to other occupants. The default value is *true*.
 
- -   **allow\_subscription**: *true | false* Allow users to subscribe to
+ - **allow\_subscription**: *true | false*  
+   Allow users to subscribe to
     room events as described in [Multi-User Chat
     Subscriptions](https://docs.ejabberd.im/developer/xmpp-clients-bots/extensions/muc-sub/).
     The default value is *false*.
 
- -   **allow\_user\_invites**: *true | false* Allow occupants to send
+ - **allow\_user\_invites**: *true | false*  
+   Allow occupants to send
     invitations. The default value is *false*.
 
- -   **allow\_visitor\_nickchange**: *true | false* Allow visitors to
+ - **allow\_visitor\_nickchange**: *true | false*  
+   Allow visitors to
     change nickname. The default value is *true*.
 
- -   **allow\_visitor\_status**: *true | false* Allow visitors to send
+ - **allow\_visitor\_status**: *true | false*  
+   Allow visitors to send
     status text in presence updates. If disallowed, the status text is
     stripped before broadcasting the presence update to all the room
     occupants. The default value is *true*.
 
- -   **anonymous**: *true | false* The room is anonymous: occupants don’t
+ - **anonymous**: *true | false*  
+   The room is anonymous: occupants don’t
     see the real JIDs of other occupants. Note that the room moderators
     can always see the real JIDs of the occupants. The default value is
     *true*.
 
- -   **captcha\_protected**: *true | false* When a user tries to join a
+ - **captcha\_protected**: *true | false*  
+   When a user tries to join a
     room where they have no affiliation (not owner, admin or member),
     the room requires them to fill a CAPTCHA challenge (see section
     [CAPTCHA](https://docs.ejabberd.im/admin/configuration/#captcha) in
     order to accept their join in the room. The default value is
     *false*.
 
- -   **lang**: *Language* Preferred language for the discussions in the
+ - **lang**: *Language*  
+   Preferred language for the discussions in the
     room. The language format should conform to RFC 5646. There is no
     value by default.
 
- -   **logging**: *true | false* The public messages are logged using
+ - **logging**: *true | false*  
+   The public messages are logged using
     *mod\_muc\_log*. The default value is *false*.
 
- -   **mam**: *true | false* Enable message archiving. Implies mod\_mam
+ - **mam**: *true | false*  
+   Enable message archiving. Implies mod\_mam
     is enabled. The default value is *false*.
 
- -   **max\_users**: *Number* Maximum number of occupants in the room.
+ - **max\_users**: *Number*  
+   Maximum number of occupants in the room.
     The default value is *200*.
 
- -   **members\_by\_default**: *true | false* The occupants that enter
+ - **members\_by\_default**: *true | false*  
+   The occupants that enter
     the room are participants by default, so they have "voice". The
     default value is *true*.
 
- -   **members\_only**: *true | false* Only members of the room can
+ - **members\_only**: *true | false*  
+   Only members of the room can
     enter. The default value is *false*.
 
- -   **moderated**: *true | false* Only occupants with "voice" can send
+ - **moderated**: *true | false*  
+   Only occupants with "voice" can send
     public messages. The default value is *true*.
 
- -   **password**: *Password* Password of the room. Implies option
+ - **password**: *Password*  
+   Password of the room. Implies option
     *password\_protected* set to *true*. There is no default value.
 
- -   **password\_protected**: *true | false* The password is required to
+ - **password\_protected**: *true | false*  
+   The password is required to
     enter the room. The default value is *false*.
 
- -   **persistent**: *true | false* The room persists even if the last
+ - **persistent**: *true | false*  
+   The room persists even if the last
     participant leaves. The default value is *false*.
 
- -   **presence\_broadcast**: *\[moderator | participant | visitor,
+ - **presence\_broadcast**: *\[moderator | participant | visitor,
     ...\]* List of roles for which presence is broadcasted. The list can
     contain one or several of: *moderator*, *participant*, *visitor*.
     The default value is shown in the example below:
@@ -1305,15 +1329,18 @@ using an XMPP client with MUC capability. The *Options* are:
               - participant
               - visitor
 
- -   **public**: *true | false* The room is public in the list of the MUC
+ - **public**: *true | false*  
+   The room is public in the list of the MUC
     service, so it can be discovered. MUC admins and room participants
     will see private rooms in Service Discovery if their XMPP client
     supports this feature. The default value is *true*.
 
- -   **public\_list**: *true | false* The list of participants is public,
+ - **public\_list**: *true | false*  
+   The list of participants is public,
     without requiring to enter the room. The default value is *true*.
 
- -   **title**: *Room Title* A human-readable title of the room. There is
+ - **title**: *Room Title*  
+   A human-readable title of the room. There is
     no default value
 
 - **hibernation\_timeout**: *infinity | Seconds*  
@@ -1487,30 +1514,30 @@ set the option to enable room logging.
 
 Features:
 
- -   Room details are added on top of each page: room title, JID, author,
+-   Room details are added on top of each page: room title, JID, author,
     subject and configuration.
 
- -   The room JID in the generated HTML is a link to join the room (using
+-   The room JID in the generated HTML is a link to join the room (using
     XMPP URI).
 
- -   Subject and room configuration changes are tracked and displayed.
+-   Subject and room configuration changes are tracked and displayed.
 
- -   Joins, leaves, nick changes, kicks, bans and */me* are tracked and
+-   Joins, leaves, nick changes, kicks, bans and */me* are tracked and
     displayed, including the reason if available.
 
- -   Generated HTML files are XHTML 1.0 Transitional and CSS compliant.
+-   Generated HTML files are XHTML 1.0 Transitional and CSS compliant.
 
- -   Timestamps are self-referencing links.
+-   Timestamps are self-referencing links.
 
- -   Links on top for quicker navigation: Previous day, Next day, Up.
+-   Links on top for quicker navigation: Previous day, Next day, Up.
 
- -   CSS is used for style definition, and a custom CSS file can be used.
+-   CSS is used for style definition, and a custom CSS file can be used.
 
- -   URLs on messages and subjects are converted to hyperlinks.
+-   URLs on messages and subjects are converted to hyperlinks.
 
- -   Timezone used on timestamps is shown on the log files.
+-   Timezone used on timestamps is shown on the log files.
 
- -   A custom link can be added on top of each page.
+-   A custom link can be added on top of each page.
 
 The module depends on *mod\_muc*.
 
@@ -1611,20 +1638,21 @@ the real virtual host name. The default value is *multicast.@HOST@*.
 Specify a list of custom limits which override the default ones defined
 in XEP-0033. Limits are defined per sender type and stanza type, where:
 
- -   The sender type can be: *local* or *remote*.
+ - *sender* can be: *local* or *remote*.
 
- -   The stanza type can be: *message* or *presence*.
+ - *stanza* can be: *message* or *presence*.
 
- -   The number can be a positive integer or the key word *infinite*.
+ - *number* can be a positive integer or *infinite*.
 
-    Default values:
+        **Example**:
 
-        local:
-          message: 100
-          presence: 100
-        remote:
-          message: 20
-          presence: 20
+            # Default values:
+            local:
+              message: 100
+              presence: 100
+            remote:
+              message: 20
+              presence: 20
 
 - **name**  
 Service name to provide in the Info query to the Service Discovery.
@@ -1944,7 +1972,8 @@ __Available options:__
 This option defines permissions for messages. By default no permissions
 are given. The *Options* are:
 
- -   **outgoing**: *AccessName* The option defines an access rule for
+ - **outgoing**: *AccessName*  
+   The option defines an access rule for
     sending outgoing messages by the component. The default value is
     *none*.
 
@@ -1952,11 +1981,13 @@ are given. The *Options* are:
 This option defines permissions for presences. By default no permissions
 are given. The *Options* are:
 
- -   **managed\_entity**: *AccessName* An access rule that gives
+ - **managed\_entity**: *AccessName*  
+   An access rule that gives
     permissions to the component to receive server presences. The
     default value is *none*.
 
- -   **roster**: *AccessName* An access rule that gives permissions to
+ - **roster**: *AccessName*  
+   An access rule that gives permissions to
     the component to receive the presence of both the users and the
     contacts in their roster. The default value is *none*.
 
@@ -1964,13 +1995,16 @@ are given. The *Options* are:
 This option defines roster permissions. By default no permissions are
 given. The *Options* are:
 
- -   **both**: *AccessName* Sets read/write access to a user’s roster.
+ - **both**: *AccessName*  
+   Sets read/write access to a user’s roster.
     The default value is *none*.
 
- -   **get**: *AccessName* Sets read access to a user’s roster. The
+ - **get**: *AccessName*  
+   Sets read access to a user’s roster. The
     default value is *none*.
 
- -   **set**: *AccessName* Sets write access to a user’s roster. The
+ - **set**: *AccessName*  
+   Sets write access to a user’s roster. The
     default value is *none*.
 
 __**Example**:__
@@ -2200,11 +2234,11 @@ To specify which nodetree to use. If not defined, the default pubsub
 nodetree is used: *tree*. Only one nodetree can be used per host, and is
 shared by all node plugins.
 
- -   *tree* nodetree store node configuration and relations on the
+ - *tree* nodetree store node configuration and relations on the
     database. *flat* nodes are stored without any relationship, and
     *hometree* nodes can have child nodes.
 
- -   *virtual* nodetree does not store nodes on database. This saves
+ - *virtual* nodetree does not store nodes on database. This saves
     resources on systems with tons of nodes. If using the *virtual*
     nodetree, you can only enable those node plugins: *\[flat, pep\]* or
     *\[flat\]*; any other plugins configuration will not work. Also, all
@@ -2213,23 +2247,23 @@ shared by all node plugins.
     database, it will not work if you used the default *tree* nodetree
     before.
 
- -   *dag* nodetree provides experimental support for PubSub Collection
+ - *dag* nodetree provides experimental support for PubSub Collection
     Nodes (XEP-0248). In that case you should also add *dag* node plugin
     as default, for example: *plugins: \[flat,pep\]*
 
 - **pep\_mapping**: *List of Key:Value*  
 This allows to define a list of key-value to choose defined node plugins
-on given PEP namespace.
+on given PEP namespace. The following example will use *node\_tune*
+instead of *node\_pep* for every PEP node with the tune namespace:
 
-The following example will use *node\_tune* instead of *node\_pep* for
-every PEP node with the tune namespace:
+    **Example**:
 
-    modules:
-      ...
-      mod_pubsub:
-        pep_mapping:
-          http://jabber.org/protocol/tune: tune
-      ...
+        modules:
+          ...
+          mod_pubsub:
+            pep_mapping:
+              http://jabber.org/protocol/tune: tune
+          ...
 
 - **plugins**: *\[Plugin, ...\]*  
 To specify which pubsub node plugins to use. The first one in the list
@@ -2238,10 +2272,10 @@ list is: *\[flat\]*. PubSub clients can define which plugin to use when
 creating a node: add *type='plugin-name*' attribute to the *create*
 stanza element.
 
- -   *flat* plugin handles the default behaviour and follows standard
+ - *flat* plugin handles the default behaviour and follows standard
     XEP-0060 implementation.
 
- -   *pep* plugin adds extention to handle Personal Eventing Protocol
+ - *pep* plugin adds extention to handle Personal Eventing Protocol
     (XEP-0163) to the PubSub engine. Adding pep allows to handle PEP
     automatically.
 
@@ -2390,11 +2424,11 @@ This module adds support for [XEP-0077: In-Band
 Registration](https://xmpp.org/extensions/xep-0077.html). This protocol
 enables end users to use a XMPP client to:
 
- -   Register a new account on the server.
+-   Register a new account on the server.
 
- -   Change the password from an existing account on the server.
+-   Change the password from an existing account on the server.
 
- -   Delete an existing account on the server.
+-   Delete an existing account on the server.
 
 This module reads also another option defined globally for the server:
 *registration\_timeout*. Please check that option documentation in the
@@ -2453,11 +2487,11 @@ mod\_register\_web
 
 This module provides a web page where users can:
 
- -   Register a new account on the server.
+-   Register a new account on the server.
 
- -   Change the password from an existing account on the server.
+-   Change the password from an existing account on the server.
 
- -   Delete an existing account on the server.
+-   Delete an existing account on the server.
 
 This module supports CAPTCHA image to register a new account. To enable
 this feature, configure the options *captcha\_cmd* and *captcha\_url*,
@@ -2609,11 +2643,11 @@ Shared roster groups can be edited via the Web Admin, and some API
 commands called *srg\_\**. Each group has a unique name and those
 parameters:
 
- -   Label: Used in the rosters where this group is displayed.
+-   Label: Used in the rosters where this group is displayed.
 
- -   Description: of the group, which has no effect.
+-   Description: of the group, which has no effect.
 
- -   Members: A list of JIDs of group members, entered one per line in
+-   Members: A list of JIDs of group members, entered one per line in
     the Web Admin. The special member directive *@all@* represents all
     the registered users in the virtual host; which is only recommended
     for a small server with just a few hundred users. The special member
@@ -2621,7 +2655,7 @@ parameters:
     host. With those two directives, the actual list of members in those
     shared rosters is generated dynamically at retrieval time.
 
- -   Displayed: A list of groups that will be in the rosters of this
+-   Displayed: A list of groups that will be in the rosters of this
     group’s members. A group of other vhost can be identified with
     *groupid@vhost*.
 
@@ -2708,23 +2742,23 @@ unspecified, default to the values specified for the top level of
 configuration. This lets you avoid specifying, for example, the bind
 password in multiple places.
 
- -   Filters: *ldap\_rfilter*, *ldap\_ufilter*, *ldap\_gfilter*,
+-   Filters: *ldap\_rfilter*, *ldap\_ufilter*, *ldap\_gfilter*,
     *ldap\_filter*. These options specify LDAP filters used to query for
     shared roster information. All of them are run against the
     ldap\_base.
 
- -   Attributes: *ldap\_groupattr*, *ldap\_groupdesc*,
+-   Attributes: *ldap\_groupattr*, *ldap\_groupdesc*,
     *ldap\_memberattr*, *ldap\_userdesc*, *ldap\_useruid*. These options
     specify the names of the attributes which hold interesting data in
     the entries returned by running filters specified with the filter
     options.
 
- -   Control parameters: *ldap\_auth\_check*,
+-   Control parameters: *ldap\_auth\_check*,
     *ldap\_group\_cache\_validity*, *ldap\_memberattr\_format*,
     *ldap\_memberattr\_format\_re*, *ldap\_user\_cache\_validity*. These
     parameters control the behaviour of the module.
 
- -   Connection parameters: The module also accepts the connection
+-   Connection parameters: The module also accepts the connection
     parameters, all of which default to the top-level parameter of the
     same name, if unspecified. See [LDAP
     Connection](/admin/configuration/database-ldap/#ldap-connection) section for
@@ -2961,16 +2995,16 @@ Gathering](https://xmpp.org/extensions/xep-0039.html). This protocol
 allows you to retrieve the following statistics from your ejabberd
 server:
 
- -   Total number of registered users on the current virtual host
+-   Total number of registered users on the current virtual host
     (users/total).
 
- -   Total number of registered users on all virtual hosts
+-   Total number of registered users on all virtual hosts
     (users/all-hosts/total).
 
- -   Total number of online users on the current virtual host
+-   Total number of online users on the current virtual host
     (users/online).
 
- -   Total number of online users on all virtual hosts
+-   Total number of online users on all virtual hosts
     (users/all-hosts/online).
 
 > **Note**
@@ -3059,9 +3093,12 @@ allowed to discover STUN/TURN services and to request temporary
 credentials. The default value is *local*.
 
 - **credentials\_lifetime**: *timeout()*  
-The lifetime of temporary credentails offered to clients. If a lifetime
-longer than the default value of *10* minutes is specified, it’s
-strongly recommended to also specify a *secret* (see below).
+The lifetime of temporary credentials offered to clients. If ejabberd’s
+built-in TURN service is used, TURN relays allocated using temporary
+credentials will be terminated shortly after the credentials expired.
+The default value is *12* hours. Note that restarting the ejabberd node
+invalidates any temporary credentials offered before the restart unless
+a *secret* is specified (see below).
 
 - **offer\_local\_services**: *true | false*  
 This option specifies whether local STUN/TURN services configured as
@@ -3074,12 +3111,12 @@ default value is *true*.
 - **secret**: *Text*  
 The secret used for generating temporary credentials. If this option
 isn’t specified, a secret will be auto-generated. However, a secret must
-be specified if non-anonymous TURN services running on other ejabberd
-nodes and/or external TURN *services* are configured. Also note that
-auto-generated secrets are lost when the node is restarted, which
-invalidates any credentials offered before the restart. Therefore, the
-*credentials\_lifetime* should not exceed a few minutes if no *secret*
-is specified.
+be specified explicitly if non-anonymous TURN services running on other
+ejabberd nodes and/or external TURN *services* are configured. Also note
+that auto-generated secrets are lost when the node is restarted, which
+invalidates any credentials offered before the restart. Therefore, it’s
+recommended to explicitly specify a secret if clients cache retrieved
+credentials (for later use) across service restarts.
 
 - **services**: *\[Service, ...\]*  
 The list of services offered to clients. This list can include STUN/TURN
@@ -3094,26 +3131,31 @@ Unless the *offer\_local\_services* is set to *false*, the explicitly
 listed services will be offered in addition to those announced
 automatically.
 
- -   **host**: *Host* The hostname or IP address the STUN/TURN service is
+ - **host**: *Host*  
+   The hostname or IP address the STUN/TURN service is
     listening on. For non-TLS services, it’s recommended to specify an
     IP address (to avoid additional DNS lookup latency on the client
     side). For TLS services, the hostname (or IP address) should match
     the certificate. Specifying the *host* option is mandatory.
 
- -   **port**: *1..65535* The port number the STUN/TURN service is
+ - **port**: *1..65535*  
+   The port number the STUN/TURN service is
     listening on. The default port number is 3478 for non-TLS services
     and 5349 for TLS services.
 
- -   **restricted**: *true | false* This option determines whether
+ - **restricted**: *true | false*  
+   This option determines whether
     temporary credentials for accessing the service are offered. The
     default is *false* for STUN/STUNS services and *true* for TURN/TURNS
     services.
 
- -   **transport**: *tcp | udp* The transport protocol supported by the
+ - **transport**: *tcp | udp*  
+   The transport protocol supported by the
     service. The default is *udp* for non-TLS services and *tcp* for TLS
     services.
 
- -   **type**: *stun | turn | stuns | turns* The type of service. Must be
+ - **type**: *stun | turn | stuns | turns*  
+   The type of service. Must be
     *stun* or *turn* for non-TLS services, *stuns* or *turns* for TLS
     services. The default type is *stun*.
 

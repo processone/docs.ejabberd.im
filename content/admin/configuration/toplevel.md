@@ -56,48 +56,60 @@ from other parts of the configuration file, for example in
 *access\_rules* option. The rules of *ACLName* are represented by
 mapping *{ACLType: ACLValue}*. These can be one of the following:
 
--   **ip**: *Network* The rule matches any IP address from the
+-   **ip**: *Network*  
+    The rule matches any IP address from the
     *Network*.
 
--   **node\_glob**: *Pattern* Same as *node\_regexp*, but matching is
+-   **node\_glob**: *Pattern*  
+    Same as *node\_regexp*, but matching is
     performed on a specified *Pattern* according to the rules used by
     the Unix shell.
 
--   **node\_regexp**: *user\_regexp@server\_regexp* The rule matches any
+-   **node\_regexp**: *user\_regexp@server\_regexp*  
+    The rule matches any
     JID with node part matching regular expression *user\_regexp* and
     server part matching regular expression *server\_regexp*.
 
--   **resource**: *Resource* The rule matches any JID with a resource
+-   **resource**: *Resource*  
+    The rule matches any JID with a resource
     *Resource*.
 
--   **resource\_glob**: *Pattern* Same as *resource\_regexp*, but
+-   **resource\_glob**: *Pattern*  
+    Same as *resource\_regexp*, but
     matching is performed on a specified *Pattern* according to the
     rules used by the Unix shell.
 
--   **resource\_regexp**: *Regexp* The rule matches any JID with a
+-   **resource\_regexp**: *Regexp*  
+    The rule matches any JID with a
     resource that matches regular expression *Regexp*.
 
--   **server**: *Server* The rule matches any JID from server *Server*.
+-   **server**: *Server*  
+    The rule matches any JID from server *Server*.
     The value of *Server* must be a valid hostname or an IP address.
 
--   **server\_glob**: *Pattern* Same as *server\_regexp*, but matching
+-   **server\_glob**: *Pattern*  
+    Same as *server\_regexp*, but matching
     is performed on a specified *Pattern* according to the rules used by
     the Unix shell.
 
--   **server\_regexp**: *Regexp* The rule matches any JID from the
+-   **server\_regexp**: *Regexp*  
+    The rule matches any JID from the
     server that matches regular expression *Regexp*.
 
--   **user**: *Username* If *Username* is in the form of "user@server",
+-   **user**: *Username*  
+    If *Username* is in the form of "user@server",
     the rule matches a JID against this value. Otherwise, if *Username*
     is in the form of "user", the rule matches any JID that has
     *Username* in the node part as long as the server part of this JID
     is any virtual host served by ejabberd.
 
--   **user\_glob**: *Pattern* Same as *user\_regexp*, but matching is
+-   **user\_glob**: *Pattern*  
+    Same as *user\_regexp*, but matching is
     performed on a specified *Pattern* according to the rules used by
     the Unix shell.
 
--   **user\_regexp**: *Regexp* If *Regexp* is in the form of
+-   **user\_regexp**: *Regexp*  
+    If *Regexp* is in the form of
     "regexp@server", the rule matches any JID with node part matching
     regular expression "regexp" as long as the server part of this JID
     is equal to "server". If *Regexp* is in the form of "regexp", the
@@ -114,23 +126,27 @@ certificates for the domains served by ejabberd, which means that
 certificate requests and renewals are performed to some CA server (aka
 "ACME server") in a fully automated mode. The *Options* are:
 
--   **auto**: *true | false* Whether to automatically request
+-   **auto**: *true | false*  
+    Whether to automatically request
     certificates for all configured domains (that yet have no a
     certificate) on server start or configuration reload. The default is
     *true*.
 
--   **ca\_url**: *URL* The ACME directory URL used as an entry point for
+-   **ca\_url**: *URL*  
+    The ACME directory URL used as an entry point for
     the ACME server. The default value is
     <https://acme-v02.api.letsencrypt.org/directory> - the directory URL
     of Let’s Encrypt authority.
 
--   **cert\_type**: *rsa | ec* A type of a certificate key. Available
+-   **cert\_type**: *rsa | ec*  
+    A type of a certificate key. Available
     values are *ec* and *rsa* for EC and RSA certificates respectively.
     It’s better to have RSA certificates for the purpose of backward
     compatibility with legacy clients and servers, thus the default is
     *rsa*.
 
--   **contact**: *\[Contact, ...\]* A list of contact addresses
+-   **contact**: *\[Contact, ...\]*  
+    A list of contact addresses
     (typically emails) where an ACME server will send notifications when
     problems occur. The value of *Contact* must be in the form of
     "scheme:address" (e.g. "mailto:user@domain.tld"). The default is an
@@ -479,7 +495,8 @@ automatically distributed. The algorithm to deliver messages to the
 component(s) can be specified by this option. For any component
 connected as *Domain*, available *Options* are:
 
--   **component\_number**: *2..1000* The number of components to
+-   **component\_number**: *2..1000*  
+    The number of components to
     balance.
 
 -   **type**: *random | source | destination | bare\_source |
@@ -604,12 +621,14 @@ Read additional configuration from *Filename*. If the value is provided
 in *{Filename: Options}* format, the *Options* must be one of the
 following:
 
--   **allow\_only**: *\[OptionName, ...\]* Allows only the usage of
+-   **allow\_only**: *\[OptionName, ...\]*  
+    Allows only the usage of
     those options in the included file *Filename*. The options that do
     not match this criteria are not accepted. The default value is to
     include all options.
 
--   **disallow**: *\[OptionName, ...\]* Disallows the usage of those
+-   **disallow**: *\[OptionName, ...\]*  
+    Disallows the usage of those
     options in the included file *Filename*. The options that match this
     criteria are not accepted. The default value is an empty list.
 
