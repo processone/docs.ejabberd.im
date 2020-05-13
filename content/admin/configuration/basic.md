@@ -638,26 +638,43 @@ Examples:
 
 # Shapers
 
-Shapers enable you to limit connection traffic. The syntax is:
+Shapers enable you to limit connection traffic. The basic syntax is:
 
-**`shaper: { ShaperName: Rate }`**:  where `Rate` stands for the maximum allowed incoming rate in bytes per
+**`shaper: { ShaperName: Rate }`**
+
+where `Rate` stands for the maximum allowed incoming rate in bytes per
 second. When a connection exceeds this limit, `ejabberd` stops reading
 from the socket until the average rate is again below the allowed
 maximum.
 
-Examples:
+This example defines a shaper with name `normal` that limits traffic speed to
+1,000bytes/second, and another shaper with name `fast` that limits traffic
+speed to 50,000bytes/second:
 
--   To define a shaper named ‘`normal`’ with traffic speed limited to
-	1,000bytes/second:
+    shaper:
+      normal: 1000
+      fast: 50000
 
+You can use the full syntax to set the `BurstSize` too:
 
-		shaper:
-		  normal: 1000
+**`shaper: { ShaperName: { rate: Rate, burst_size: BurstSize}}`**
 
--   To define a shaper named ‘`fast`’ with traffic speed limited to
-	50,000bytes/second:
+With `BurstSize` you can allow client to send more data, but its amount can be
+clamped reasonably. Each connection is allowed to send `BurstSize` of data
+before processing is delayed, and that amount is replenished by `Rate` each
+second, but never more than what `BurstSize` allows.
+This allows the client to send quite a bit of data at once, but still have
+limited amount of data to send on constant basis.
 
+In this example, the `normal` shaper has `Rate` set to `1000`
+and the `BurstSize` takes that same value.
+The `not_normal` shaper has the same `Rate` that before,
+and sets a higher `BurstSize`:
 
-		shaper:
-		  fast: 50000
+    shaper:
+      normal: 1000
+      not_normal:
+        rate: 1000
+        burst_size: 20000
+
 
