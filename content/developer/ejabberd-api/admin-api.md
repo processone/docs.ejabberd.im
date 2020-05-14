@@ -1736,24 +1736,12 @@ Get content from a vCard field
 
 
 Some vcard field names in get/set_vcard are:
- FN		- Full Name
- NICKNAME	- Nickname
- BDAY		- Birthday
- TITLE		- Work: Position
- ROLE		- Work: Role
-Some vcard field names and subnames in get/set_vcard2 are:
- N FAMILY	- Family name
- N GIVEN	- Given name
- N MIDDLE	- Middle name
- ADR CTRY	- Address: Country
- ADR LOCALITY	- Address: City
- TEL HOME      - Telephone: Home
- TEL CELL      - Telephone: Cellphone
- TEL WORK      - Telephone: Work
- TEL VOICE     - Telephone: Voice
- EMAIL USERID	- E-Mail Address
- ORG ORGNAME	- Work: Company
- ORG ORGUNIT	- Work: Department
+
+* FN           - Full Name
+* NICKNAME     - Nickname
+* BDAY         - Birthday
+* TITLE        - Work: Position
+* ROLE         - Work: Role
 
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
@@ -1792,25 +1780,20 @@ Get content from a vCard subfield
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
- N FAMILY	- Family name
- N GIVEN	- Given name
- N MIDDLE	- Middle name
- ADR CTRY	- Address: Country
- ADR LOCALITY	- Address: City
- TEL HOME      - Telephone: Home
- TEL CELL      - Telephone: Cellphone
- TEL WORK      - Telephone: Work
- TEL VOICE     - Telephone: Voice
- EMAIL USERID	- E-Mail Address
- ORG ORGNAME	- Work: Company
- ORG ORGUNIT	- Work: Department
 
-Some vcard field names in get/set_vcard are:
- FN		- Full Name
- NICKNAME	- Nickname
- BDAY		- Birthday
- TITLE		- Work: Position
- ROLE		- Work: Role
+* N FAMILY     - Family name
+* N GIVEN      - Given name
+* N MIDDLE     - Middle name
+* ADR CTRY     - Address: Country
+* ADR LOCALITY - Address: City
+* TEL HOME     - Telephone: Home
+* TEL CELL     - Telephone: Cellphone
+* TEL WORK     - Telephone: Work
+* TEL VOICE    - Telephone: Voice
+* EMAIL USERID - E-Mail Address
+* ORG ORGNAME  - Work: Company
+* ORG ORGUNIT  - Work: Department
+
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
@@ -1850,25 +1833,20 @@ Get multiple contents from a vCard field
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
- N FAMILY	- Family name
- N GIVEN	- Given name
- N MIDDLE	- Middle name
- ADR CTRY	- Address: Country
- ADR LOCALITY	- Address: City
- TEL HOME      - Telephone: Home
- TEL CELL      - Telephone: Cellphone
- TEL WORK      - Telephone: Work
- TEL VOICE     - Telephone: Voice
- EMAIL USERID	- E-Mail Address
- ORG ORGNAME	- Work: Company
- ORG ORGUNIT	- Work: Department
 
-Some vcard field names in get/set_vcard are:
- FN		- Full Name
- NICKNAME	- Nickname
- BDAY		- Birthday
- TITLE		- Work: Position
- ROLE		- Work: Role
+* N FAMILY     - Family name
+* N GIVEN      - Given name
+* N MIDDLE     - Middle name
+* ADR CTRY     - Address: Country
+* ADR LOCALITY - Address: City
+* TEL HOME     - Telephone: Home
+* TEL CELL     - Telephone: Cellphone
+* TEL WORK     - Telephone: Work
+* TEL VOICE    - Telephone: Voice
+* EMAIL USERID - E-Mail Address
+* ORG ORGNAME  - Work: Company
+* ORG ORGUNIT  - Work: Department
+
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
@@ -4177,24 +4155,12 @@ Set content in a vCard field
 
 
 Some vcard field names in get/set_vcard are:
- FN		- Full Name
- NICKNAME	- Nickname
- BDAY		- Birthday
- TITLE		- Work: Position
- ROLE		- Work: Role
-Some vcard field names and subnames in get/set_vcard2 are:
- N FAMILY	- Family name
- N GIVEN	- Given name
- N MIDDLE	- Middle name
- ADR CTRY	- Address: Country
- ADR LOCALITY	- Address: City
- TEL HOME      - Telephone: Home
- TEL CELL      - Telephone: Cellphone
- TEL WORK      - Telephone: Work
- TEL VOICE     - Telephone: Voice
- EMAIL USERID	- E-Mail Address
- ORG ORGNAME	- Work: Company
- ORG ORGUNIT	- Work: Department
+
+* FN           - Full Name
+* NICKNAME     - Nickname
+* BDAY         - Birthday
+* TITLE        - Work: Position
+* ROLE         - Work: Role
 
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
@@ -4235,25 +4201,20 @@ Set content in a vCard subfield
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
- N FAMILY	- Family name
- N GIVEN	- Given name
- N MIDDLE	- Middle name
- ADR CTRY	- Address: Country
- ADR LOCALITY	- Address: City
- TEL HOME      - Telephone: Home
- TEL CELL      - Telephone: Cellphone
- TEL WORK      - Telephone: Work
- TEL VOICE     - Telephone: Voice
- EMAIL USERID	- E-Mail Address
- ORG ORGNAME	- Work: Company
- ORG ORGUNIT	- Work: Department
 
-Some vcard field names in get/set_vcard are:
- FN		- Full Name
- NICKNAME	- Nickname
- BDAY		- Birthday
- TITLE		- Work: Position
- ROLE		- Work: Role
+* N FAMILY     - Family name
+* N GIVEN      - Given name
+* N MIDDLE     - Middle name
+* ADR CTRY     - Address: Country
+* ADR LOCALITY - Address: City
+* TEL HOME     - Telephone: Home
+* TEL CELL     - Telephone: Cellphone
+* TEL WORK     - Telephone: Work
+* TEL VOICE    - Telephone: Voice
+* EMAIL USERID - E-Mail Address
+* ORG ORGNAME  - Work: Company
+* ORG ORGUNIT  - Work: Department
+
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
@@ -4295,25 +4256,20 @@ Set multiple contents in a vCard subfield
 
 
 Some vcard field names and subnames in get/set_vcard2 are:
- N FAMILY	- Family name
- N GIVEN	- Given name
- N MIDDLE	- Middle name
- ADR CTRY	- Address: Country
- ADR LOCALITY	- Address: City
- TEL HOME      - Telephone: Home
- TEL CELL      - Telephone: Cellphone
- TEL WORK      - Telephone: Work
- TEL VOICE     - Telephone: Voice
- EMAIL USERID	- E-Mail Address
- ORG ORGNAME	- Work: Company
- ORG ORGUNIT	- Work: Department
 
-Some vcard field names in get/set_vcard are:
- FN		- Full Name
- NICKNAME	- Nickname
- BDAY		- Birthday
- TITLE		- Work: Position
- ROLE		- Work: Role
+* N FAMILY     - Family name
+* N GIVEN      - Given name
+* N MIDDLE     - Middle name
+* ADR CTRY     - Address: Country
+* ADR LOCALITY - Address: City
+* TEL HOME     - Telephone: Home
+* TEL CELL     - Telephone: Cellphone
+* TEL WORK     - Telephone: Work
+* TEL VOICE    - Telephone: Voice
+* EMAIL USERID - E-Mail Address
+* ORG ORGNAME  - Work: Company
+* ORG ORGUNIT  - Work: Department
+
 For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
