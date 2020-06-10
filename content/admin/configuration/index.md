@@ -12,7 +12,13 @@ many ways with many options.
 Do not let this complexity scare you. Most of you will be fine with
 default config file (or light changes).
 
-Sections:
+Tutorials for first-time users:
+
+- [How to move to ejabberd XMPP server](https://www.process-one.net/blog/how-to-move-the-office-to-real-time-im-on-ejabberd/)
+- [How to set up ejabberd video & voice calling (STUN/TURN)](https://www.process-one.net/blog/how-to-set-up-ejabberd-video-voice-calling/)
+- [How to configure ejabberd to get 100% in XMPP compliance test](https://www.process-one.net/blog/how-to-configure-ejabberd-to-get-100-in-xmpp-compliance-test/)
+
+Detailed documentation in sections:
 
 - [File Format](/admin/configuration/file-format/)
 - [Basic Configuration](/admin/configuration/basic/): hosts, acl, logging...
