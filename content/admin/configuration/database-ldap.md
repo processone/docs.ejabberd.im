@@ -17,28 +17,28 @@ storage systems for modules, and so forth.
 
 The following databases are supported by `ejabberd`:
 
--   [`Mnesia`](http://www.erlang.org/doc/apps/mnesia/index.html)
+-   [`Mnesia`](https://erlang.org/doc/apps/mnesia/)
 
--   [`MySQL`](http://www.mysql.com/). Check the tutorial [Using ejabberd with MySQL](/tutorials/mysql/)
+-   [`MySQL`](https://www.mysql.com/). Check the tutorial [Using ejabberd with MySQL](/tutorials/mysql/)
 
--   Any [`ODBC`](http://en.wikipedia.org/wiki/Open_Database_Connectivity) compatible database
+-   Any [`ODBC`](https://en.wikipedia.org/wiki/Open_Database_Connectivity) compatible database
 
--   [`PostgreSQL`](http://www.postgresql.org/)
+-   [`PostgreSQL`](https://www.postgresql.org/)
 
--   [`MS SQL Server/SQL Azure`](https://en.wikipedia.org/wiki/Microsoft_SQL_Server)
+-   [`MS SQL Server/SQL Azure`](https://www.microsoft.com/sql-server)
 
--   [`SQLite`](https://www.sqlite.org)
+-   [`SQLite`](https://sqlite.org/)
 
--   [`Redis`](http://redis.io/)(only for transient data)
+-   [`Redis`](https://redis.io/)(only for transient data)
 
 The following LDAP servers are tested with `ejabberd`:
 
--   [`Active Directory`](http://www.microsoft.com/activedirectory/)(see
+-   [`Active Directory`](https://www.microsoft.com/activedirectory)(see
 	section [Active Directory](#active-directory))
 
--   [`OpenLDAP`](http://www.openldap.org/)
+-   [`OpenLDAP`](https://openldap.org/)
 
--   [`CommuniGate Pro`](http://www.communigate.com/)
+-   [`CommuniGate Pro`](https://communigate.com/)
 
 -   Normally any LDAP compatible server should work; inform us about
 	your success with a not-listed server so that we can list it here.
@@ -77,7 +77,7 @@ time. This avoid need to manage several databases and handle complex
 configuration changes.
 
 You need to upload SQL schema to your SQL server.
-Choose the one from [`this`](http://www.unixodbc.org) list.
+Choose the one from [`this`](https://www.unixodbc.org/) list.
 If you are using MySQL and choose the default schema, use `mysql.sql`. If you
 are using PostgreSQL and need the new schema, use `pg.new.sql`.
 
@@ -125,7 +125,7 @@ Example of MySQL connection:
 
 # Redis
 
-[`Redis`](http://redis.io/) is an advanced key-value cache and store. You can
+[`Redis`](https://redis.io/) is an advanced key-value cache and store. You can
 use it to store transient data, such as records for C2S (client) sessions.
 There are several options available:
 
@@ -151,8 +151,8 @@ Example configuration:
 # Microsoft SQL
 
 For now, MS SQL is only supported in Unix-like OS'es. You need to have
-[`FreeTDS`](http://www.freetds.org) and
-[`unixODBC`](http://www.unixodbc.org) installed on your machine.
+[`FreeTDS`](https://www.freetds.org/) and
+[`unixODBC`](https://www.unixodbc.org/) installed on your machine.
 Also, in some cases you need to add machine name to `sql_username`, especially
 when you have `sql_server` defined as an IP address, e.g.:
 
@@ -195,7 +195,7 @@ Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
 stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
-[`RFC 3062`](http://tools.ietf.org/html/rfc3062).
+[`RFC 3062`](https://tools.ietf.org/html/rfc3062).
 
 ## LDAP Connection
 
@@ -521,7 +521,7 @@ following algorithm is used:
 ### Configuration examples
 
 Since there are many possible
-[`DIT`](http://en.wikipedia.org/wiki/Directory_Information_Tree)
+[`DIT`](https://en.wikipedia.org/wiki/Directory_Information_Tree)
 layouts, it will probably be easiest to understand how to configure the
 module by looking at an example for a given DIT (or one resembling it).
 
@@ -602,7 +602,7 @@ Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
 stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
-[`RFC 3062`](http://tools.ietf.org/html/rfc3062).
+[`RFC 3062`](https://tools.ietf.org/html/rfc3062).
 
 This feature has its own optional parameters. The first
 group of parameters has the same meaning as the top-level LDAP
