@@ -296,7 +296,7 @@ Also we want users to search each other. Let’s see how we can set it up:
 	     FAMILY: {"%s": [sn]}
 	     FN: {"%s, %s": [sn, givenName]} # example: "Smith, John"
 	     EMAIL: {"%s": [mail]}
-	     BDAY: {"%s": [birthDay]}]}
+	     BDAY: {"%s": [birthDay]}
 	    ## Search form
 	    ldap_search_fields:
 	      User: "%u"
@@ -350,7 +350,7 @@ sample configuration is shown below:
 	      TITLE: {"%s": [title]}
 	      URL: {"%s": [wWWHomePage]}
 	      DESC: {"%s": [description]}
-	      TEL: {"%s": [telephoneNumber]}]}
+	      TEL: {"%s": [telephoneNumber]}
 	    ldap_search_fields:
 	      User: "%u"
 	      Name: givenName

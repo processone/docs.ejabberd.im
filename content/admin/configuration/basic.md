@@ -60,7 +60,6 @@ Examples:
 		    ldap_uids:
 		      - uid
 		    ldap_rootdn: "dc=localdomain"
-		    ldap_rootdn: "dc=example,dc=com"
 		    ldap_password: ""
 
 -   Domain `example.net` is using SQL to perform authentication while
@@ -80,7 +79,6 @@ Examples:
 		      - otherhost
 		    ldap_uids:
 		      - uid
-		    ldap_rootdn: "dc=localdomain"
 		    ldap_rootdn: "dc=example,dc=com"
 		    ldap_password: ""
 
@@ -111,16 +109,14 @@ are also other different modules for some specific virtual hosts:
 	  mod_last:      {}
 	  mod_version:   {}
 
-	## Add some modules to vhost one:
 	append_host_config:
+	  ## Add some modules to vhost one:
 	  one.example.org:
 	    modules:
 	      mod_muc:
 	        host: conference.one.example.org
 	      mod_ping: {}
-
-	## Add a module just to vhost two:
-	append_host_config:
+	  ## Add a module just to vhost two:
 	  two.example.org:
 	    modules:
 	      mod_muc:

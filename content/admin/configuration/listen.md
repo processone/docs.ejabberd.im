@@ -677,7 +677,7 @@ In this example, the following configuration defines that:
 			    request_handlers:
 			      /admin: ejabberd_web_admin
 			      /bosh: mod_bosh
-                              /mqtt: mod_mqtt
+			      /mqtt: mod_mqtt
 			  -
 			    port: 4560
 			    module: ejabberd_xmlrpc
