@@ -444,7 +444,7 @@ Default persistent storage for ejabberd. Modules and other components
 
 ## default\_ram\_db
 
-*mnesia | sql | redis*  
+*mnesia | redis | sql*  
 
 Default volatile (in-memory) storage for ejabberd. Modules and other
 components (e.g. session management) may have its own value. The default
@@ -1135,7 +1135,7 @@ set, the value from *cache\_size* will be used.
 
 ## router\_db\_type
 
-*mnesia | sql | redis*  
+*mnesia | redis | sql*  
 
 Database backend to use for routing information. The default value is
 picked from *default\_ram\_db* option, or if it’s not set, *mnesia* will
@@ -1339,7 +1339,7 @@ If not set, the value from *cache\_size* will be used.
 
 ## sm\_db\_type
 
-*mnesia | sql | redis*  
+*mnesia | redis | sql*  
 
 Database backend to use for client sessions information. The default
 value is picked from *default\_ram\_db* option, or if it’s not set,
@@ -1468,7 +1468,7 @@ default value is *30* seconds.
 
 ## sql\_type
 
-*mysql | pgsql | sqlite | mssql | odbc*  
+*mssql | mysql | odbc | pgsql | sqlite*  
 
 The type of an SQL connection. The default is *odbc*.
 

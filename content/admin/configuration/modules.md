@@ -3175,23 +3175,17 @@ automatically.
             transport: udp
             restricted: true
           -
-            host: 203.0.113.3
+            host: 2001:db8::3
             port: 3478
             type: stun
-            transport: tcp
+            transport: udp
             restricted: false
           -
-            host: 203.0.113.3
+            host: 2001:db8::3
             port: 3478
             type: turn
-            transport: tcp
+            transport: udp
             restricted: true
-          -
-            host: server.example.com
-            port: 5349
-            type: stuns
-            transport: tcp
-            restricted: false
           -
             host: server.example.com
             port: 5349
