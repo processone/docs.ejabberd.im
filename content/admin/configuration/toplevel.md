@@ -5,7 +5,7 @@ menu: Top-Level Options
 order: 80
 ---
 
-This section describes top level options of ejabberd 20.04
+> This section describes top level options of ejabberd 20.04. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
 
 ## access\_rules
 

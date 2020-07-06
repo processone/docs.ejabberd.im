@@ -5,6 +5,8 @@ menu: Listen Modules
 order: 50
 ---
 
+> This section describes the most recent ejabberd version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+
 # Listen Option
 
 The **listen option** defines for which ports, addresses and network
