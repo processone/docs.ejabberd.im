@@ -303,7 +303,8 @@ This option specifies whether to verify the certificate or not when TLS is enabl
 The default value is `false`, which means no checks are performed.
 
 The certificate will be checked against trusted CA roots, either defined at the operation system level or defined in the
- listener [`cafile`](#cafile). If trusted, it will accept the jid that is embedded in the certificate.
+ listener [`cafile`](#cafile). If trusted, it will accept the jid that is embedded in the certificate in the
+ `subjectAltName` field of that certificate.
 
 ## use_proxy_protocol
 
