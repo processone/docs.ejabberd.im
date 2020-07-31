@@ -33,6 +33,14 @@ The backlog value defines the maximum length that the queue of
 Path to a file of CA root certificates.
 The default is to use system defined file if possible.
 
+This option is useful to define the file for a specific port listener.
+To set a file for all client listeners or for specific vhosts, you can use the
+[`c2s_cafile`](/admin/configuration/toplevel/#c2s-cafile) top-level option.
+To set a file for all server connections, you can use the
+[`s2s_cafile`](/admin/configuration/toplevel/#s2s-cafile) top-level option
+or the
+[`ca_file`](/admin/configuration/toplevel/#ca-file) top-level option.
+
 ## certfile
 
 *Path*

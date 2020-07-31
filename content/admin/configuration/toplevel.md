@@ -272,7 +272,14 @@ set, the value from *use\_cache* will be used.
 Full path to a file containing one or more CA certificates in PEM
 format. All client certificates should be signed by one of these root CA
 certificates and should contain the corresponding JID(s) in
-subjectAltName field. There is no default value.
+*subjectAltName* field. There is no default value.
+
+You can use [host\_config](/admin/configuration/toplevel/#host-config) to specify
+this option per-vhost.
+
+To set a specific file per listener, use the listener’s
+[cafile](/admin/configuration/listen-options/#cafile) option. Please notice that
+*c2s\_cafile* overrides the listener’s *cafile* option.
 
 ## c2s\_ciphers
 
@@ -328,6 +335,9 @@ default value is *false*.
 
 Path to a file of CA root certificates. The default is to use system
 defined file if possible.
+
+For server conections, this *ca\_file* option is overriden by the
+[s2s\_cafile](/admin/configuration/toplevel/#s2s-cafile) option.
 
 ## cache\_life\_time
 
@@ -1168,8 +1178,11 @@ value is *all* which means no restrictions are applied.
 *Path*  
 
 A path to a file with CA root certificates that will be used to
-authenticate s2s connections. If not set the value of *ca\_file* will be
-used.
+authenticate s2s connections. If not set, the value of
+[ca\_file](/admin/configuration/toplevel/#ca-file) will be used.
+
+You can use [host\_config](/admin/configuration/toplevel/#host-config) to specify
+this option per-vhost.
 
 ## s2s\_ciphers
 
