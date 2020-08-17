@@ -58,5 +58,5 @@ CREATE INDEX [archive_timestamp] ON [archive] (timestamp)
 ## ejabberd configuration
 
 There are many new configuration option. We highly recommend to read details
-on [release blogpost](https://blog.process-one.net/ejabberd-18-03/)
+on [release blogpost](https://www.process-one.net/blog/ejabberd-18-03/)
 for good understanding of changes that may impact your configuration.

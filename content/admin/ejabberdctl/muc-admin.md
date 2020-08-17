@@ -161,4 +161,4 @@ Get the list of affiliations of a MUC room.
 ejabberdctl get_room_affiliations room_name muc_service
 ~~~
 
-[1]:	https://blog.process-one.net/ejabberd-15-04/
+[1]:	https://www.process-one.net/blog/ejabberd-15-04/

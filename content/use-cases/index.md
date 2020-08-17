@@ -55,7 +55,7 @@ This includes:
 
 # Customer chat / CRM
 
-* [CoBrowser.net](https://www.cobrowser.net): [Coder Interview](https://blog.process-one.net/code-as-craft-interview-cobrowser-net/).
+* [CoBrowser.net](https://www.cobrowser.net): [Coder Interview](https://www.process-one.net/blog/code-as-craft-interview-cobrowser-net/).
 * [iAdvize](http://www.iadvize.com/)
 * [LiveHelpercChat](https://livehelperchat.com): [Blog post: Full XMPP chat support for ejabberd](https://livehelperchat.com/full-xmpp-chat-support-for-ejabberd-423a.html)
 
@@ -83,7 +83,7 @@ This includes:
 
 # Push alerts
 
-* [Nokia push notifications](https://blog.process-one.net/sea_beyond_2011_talk_7_jukka_alakontiola_on_nokia_push_notifications/)
+* [Nokia push notifications](https://www.process-one.net/blog/sea_beyond_2011_talk_7_jukka_alakontiola_on_nokia_push_notifications/)
 * [Notify.me](http://highscalability.com/blog/2008/10/27/notifyme-architecture-synchronicity-kills.html)
 
 # Dating

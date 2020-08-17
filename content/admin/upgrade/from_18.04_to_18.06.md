@@ -5,7 +5,7 @@ title: Upgrade to ejabberd 18.06
 # Ejabberd upgrade process
 
 There are few option changes in this version. Please check the blogpost:
-https://blog.process-one.net/ejabberd-18-06/
+https://www.process-one.net/blog/ejabberd-18-06/
 
 Note: Starting with ejabberd 18.06, ejabberd will not ignore unknown options
 and doesn't allow to have options with malformed values. The rationale for

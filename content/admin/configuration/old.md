@@ -3539,7 +3539,7 @@ Options:
 **`compress_xml: true|false`**: When enabled, new messages added to
   archives are compressed using a custom compression algorithm (for
   details see the [`ejabberd 18.12 release
-  notes`](https://blog.process-one.net/ejabberd-18-12/)). This feature
+  notes`](https://www.process-one.net/blog/ejabberd-18-12/)). This feature
   works only with `db_type: sql`. The default value is `false`.
 
 **`db_type: mnesia|sql`**: Define the type of storage where the module

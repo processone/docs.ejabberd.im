@@ -98,7 +98,7 @@ you can handle tens of millions of users on ejabberd systems.
 ... And we are still improving :)
 
 As a reference, you should read blog post:
-[ejabberd Massive Scalability: 1 Node — 2+ Million Concurrent Users](https://blog.process-one.net/ejabberd-massive-scalability-1node-2-million-concurrent-users/)
+[ejabberd Massive Scalability: 1 Node — 2+ Million Concurrent Users](https://www.process-one.net/blog/ejabberd-massive-scalability-1node-2-million-concurrent-users/)
 
 ## What are the tips to optimize performance?
 
