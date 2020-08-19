@@ -69,6 +69,8 @@ You can simplify the configuration by setting the default database. This can be 
 
 # Relational Databases
 
+## Default and New Schemas
+
 There are two schemas usable for ejabberd. The default legacy schema allows to
 store one XMPP domain into one ejabberd database. The 'new' schema allows to
 handle several XMPP domains in a single ejabberd database. Using this new schema
@@ -76,15 +78,33 @@ is best when serving several XMPP domains and/or changing domains from time to
 time. This avoid need to manage several databases and handle complex
 configuration changes.
 
-You need to upload SQL schema to your SQL server.
-Choose the one from [`this`](https://www.unixodbc.org/) list.
-If you are using MySQL and choose the default schema, use `mysql.sql`. If you
-are using PostgreSQL and need the new schema, use `pg.new.sql`.
+For example, if you are using MySQL and choose the default schema, use `mysql.sql`.
+If you are using PostgreSQL and need the new schema, use `pg.new.sql`.
 
 If you choose the new schema, you MUST add an extra line into `ejabberd.yml`
-configuration file to enable the feature:
+configuration file using the
+[new_sql_schema](/admin/configuration/toplevel/#new-sql-schema) top-level option
+to enable the feature:
 
 	new_sql_schema: true
+
+If you already have a PostgreSQL database with the default schema and contents,
+you can upgrade it to the new schema.
+Right now, only PostgreSQL database can be upgraded.
+For that, enable the
+[mod_admin_update_sql](/admin/configuration/modules/#mod-admin-update-sql)
+module in your ejabberd configuration:
+
+	new_sql_schema: true
+	modules:
+	  mod_admin_update_sql: {}
+
+then restart ejabberd, and finally execute the
+[update_sql](/developer/ejabberd-api/admin-api/#update-sql) command:
+
+	ejabberdctl update_sql
+
+## SQL Options
 
 The actual database access is defined in the options with `sql_`
 prefix. The values are used to define if we want to use ODBC, or one of
