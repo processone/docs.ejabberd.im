@@ -88,9 +88,10 @@ Call to srg-create using double-quotes and single-quotes:
 mod\_admin\_update\_sql
 -----------------------
 
-This module can be used to update existing SQL database from *old* to
-*new* schema. When the module is loaded use *update\_sql* ejabberdctl
-command.
+This module can be used to update existing SQL database from the default
+to the new schema. Check the section [Default and New
+Schemas](/admin/configuration/database-ldap/#default-and-new-schemas) for details.
+When the module is loaded use *update\_sql* ejabberdctl command.
 
 The module has no options.
 
@@ -2195,8 +2196,8 @@ Deprecated. Use *hosts* instead.
 - **hosts**: *\[Host, ...\]*  
 This option defines the Jabber IDs of the service. If the *hosts* option
 is not specified, the only Jabber ID will be the hostname of the virtual
-host with the prefix "vjud.". The keyword *@HOST@* is replaced with the
-real virtual host name.
+host with the prefix "pubsub.". The keyword *@HOST@* is replaced with
+the real virtual host name.
 
 - **ignore\_pep\_from\_offline**: *false | true*  
 To specify whether or not we should get last published PEP items from
@@ -2246,10 +2247,6 @@ shared by all node plugins.
     changed. Using *virtual* nodetree requires to start from a clean
     database, it will not work if you used the default *tree* nodetree
     before.
-
- - *dag* nodetree provides experimental support for PubSub Collection
-    Nodes (XEP-0248). In that case you should also add *dag* node plugin
-    as default, for example: *plugins: \[flat,pep\]*
 
 - **pep\_mapping**: *List of Key:Value*  
 This allows to define a list of key-value to choose defined node plugins
