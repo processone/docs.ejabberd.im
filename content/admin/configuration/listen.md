@@ -151,7 +151,9 @@ For the specific module options, please check the
 `auth_realm`,
 `auth_type`,
 `server_name`,
-`turn_ip`,
+`turn_blacklist`,
+`turn_ipv4_address`,
+`turn_ipv6_address`,
 `turn_max_allocations`,
 `turn_max_permissions`,
 `turn_max_port`,
@@ -228,9 +230,18 @@ The specific configurable options are:
 **`use_turn: true|false`**:   Enables/disables TURN (media relay) functionality. The default is
 	`false`.
 
-**`turn_ip: String`**:   The IPv4 address advertised by your TURN server. The address should
-	not be NAT’ed or firewalled. There is not default, so you should set
-	this option explicitly. Implies `use_turn`.
+**`turn_blacklist: String | [String,...]`**:   Specify one or more IP addresses and/or subnet
+	addresses/masks. The TURN server will refuse to relay traffic from/to
+	blacklisted IP addresses. By default, Teredo and 6to4 addresses are
+	blacklisted, as mandated by RFC 6156 (section 9.1).
+
+**`turn_ipv4_address: String`**:   The IPv4 address advertised by your TURN server.
+	The address should not be NAT’ed or firewalled. There is not default,
+	so you should set this option explicitly. Implies `use_turn`.
+
+**`turn_ipv6_address: String`**:   The IPv6 address advertised by your TURN server.
+	The address should not be NAT’ed or firewalled. There is not default,
+	so you should set this option explicitly. Implies `use_turn`.
 
 **`turn_min_port: Integer`**:   Together with `turn_max_port` forms port range to allocate from. The
 	default is 49152. Implies `use_turn`.
@@ -287,7 +298,7 @@ enabled if TURN is enabled. Here, only UDP section is shown:
 	    port: 3478
 	    transport: udp
 	    use_turn: true
-	    turn_ip: 10.20.30.1
+	    turn_ipv4_address: 10.20.30.1
 	    module: ejabberd_stun
 	  ...
 
