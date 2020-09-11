@@ -192,7 +192,7 @@ There are many options to modify the default compilation behaviour:
   an explicit HOME directory, because `/var/lib/ejabberd/` will be
   used by default.
 
-- **`-–enable-group[=USER]`**: Similar to the previous option, but for
+- **`-–enable-group[=GROUP]`**: Similar to the previous option, but for
   system groups.
 
 - **`–-enable-all`**: Enable many of the database and dependencies
