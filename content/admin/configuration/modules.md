@@ -486,7 +486,8 @@ element in the list is constructed from the following options:
     modules.
 
  - **name**: *Name*  
-   Any arbitrary name of the contact.
+   The field *var* name that will be defined. See
+    XEP-0157 for some standardized names.
 
  - **urls**: *\[URI, ...\]*  
    A list of contact URIs, such as HTTP URLs,
