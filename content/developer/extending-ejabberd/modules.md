@@ -78,8 +78,11 @@ The following code shows the simplest possible module.
 %% Required by ?INFO_MSG macros
 -include("logger.hrl").
 
+%% Required by ?T macro
+-include("translate.hrl").
+
 %% gen_mod API callbacks
--export([start/2, stop/1, depends/2, mod_options/1]).
+-export([start/2, stop/1, depends/2, mod_options/1, mod_doc/0]).
 
 start(_Host, _Opts) ->
     ?INFO_MSG("Hello, ejabberd world!", []),
@@ -94,6 +97,10 @@ depends(_Host, _Opts) ->
 
 mod_options(_Host) ->
     [].
+
+mod_doc() ->
+    #{desc =>
+          ?T("This is an example module.")}.
 ~~~
 
 Now you have two ways to compile and install the module:
@@ -105,7 +112,7 @@ If you installed some compiled ejabberd package, you can create your own module 
 You can enable your new module by adding it in the ejabberd config file.
 Adding the following
 snippet in the config file will integrate the module in ejabberd
-module lifecycle management. It means the module will be started and
+module lifecycle management. It means the module will be started at
 ejabberd launch and stopped during ejabberd shutdown process:
 
 ~~~ yaml
@@ -114,8 +121,8 @@ modules:
   mod_hello_world: {}
 ~~~
 
-Or you can start / stop it manually by typind the following commands
-from an Erlang shell running ejabberd:
+Or you can start / stop it manually by typing the following commands
+in an Erlang shell running ejabberd:
 
 * To manually start your module:
 
@@ -141,8 +148,10 @@ should see the following message in ejabberd log file:
 ejabberd is able to fetch module sources by itself, compile with correct flags
 and install in a local repository, without any external dependencies. You do not
 need to know Erlang and have it installed in order to use the contributed modules.
-The contributed modules repository is ejabberd-contrib on github. It contains
-most used contribution and also can link to any other external repository.
+The contributed modules repository is
+[ejabberd-contrib on github](https://github.com/processone/ejabberd-contrib).
+It contains
+most used contributions and also can link to any other external repository.
 This works with ejabberd modules written in Erlang and will also support new Elixir modules.
 
 # Basic commands
@@ -160,7 +169,7 @@ You should repeat this command at regular interval depending on your needs.
 Basically running modules_update_specs once a week is enough to keep in sync
 but you may prefer to manually call this only before you need to install a
 new module or an attended upgrade.
-Then you can list available modules
+Then you can list available modules:
 
 ~~~ bash
 $ ejabberdctl modules_available
@@ -186,10 +195,8 @@ configuration is installed in:
 $HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
 ~~~
 
-All you have to do is to copy paste the module and add the values in there in the
-proper place in your ejabberd.yml config file. Be careful, the snippet can include ACLs,
-listeners and module configuration, that you have to put in the right place in your
-config file.
+That small configuration file will be loaded at ejabberd start,
+so the configuration of this module will be taken into account by ejabberd.
 
 Now, check your new module is installed:
 
@@ -206,21 +213,24 @@ ok
 ~~~
 
 # Managing your own modules
-As a developper, you still need Erlang and Ejabberd if you install everything from
+As a developer, you still need Erlang and Ejabberd if you install everything from
 sources, but you may even not need Erlang if you installed ejabberd from official
-ProcesOne installer. The official installer includes everything needed to build
+ProcessOne installer. The official installer includes everything needed to build
 ejabberd modules on its own.
 
-First you can work on your own module by creating a repository in
+First, create this path and copy your new source code to this location:
 
 ~~~
-$HOME/.ejabberd-modules/sources/mod_mysupermodule
+$HOME/.ejabberd-modules/sources/mod_hello_world/src/mod_hello_world.erl
 ~~~
 
-and creating a specification file in YAML format as mod_mysupermodule.spec
+and create a specification file in YAML format as mod_hello_world.spec
 (see examples from ejabberd-contrib). From that point you should see it as available module.
 
-Before commiting your code, you should check if your module follows the policy and if it
+You can keep your repository private in this location, ejabberd see it as an available module,
+you can install it, modify the source code and reinstall it...
+
+If you plan to publish your module, you should check if your module follows the policy and if it
 compiles correctly:
 
 ~~~ bash
@@ -230,9 +240,9 @@ ok
 
 if all is OK, your’re done ! Else, just follow the warning/error messages to fix the issues.
 
-You can keep your repository private in this location, ejabberd see it as an available module,
-or you can publish it as a tgz/zip archive or git repository, and send your spec file for
-integration in ejabberd-contrib repository. ejabberd-contrib will only host a copy of your
+You may consider publishing your module as a tgz/zip archive or git repository,
+and send your spec file for integration in ejabberd-contrib repository.
+ejabberd-contrib will only host a copy of your
 spec file and does not need your code to make it available to all ejabberd users.
 
 
