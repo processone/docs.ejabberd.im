@@ -40,17 +40,6 @@ For example, the default configuration is:
 
 	loglevel: 4
 
-Option `log_rate_limit` is useful if you want to protect the logging
-mechanism from being overloaded by excessive amount of log messages. The
-syntax is:
-
-**`log_rate_limit: N`**:   Where N is a maximum number of log messages per second. The default
-	value is 100.
-
-When the limit is reached the similar warning message is logged:
-
-	lager_error_logger_h dropped 800 messages in the last second that exceeded the limit of 100 messages/sec
-
 By default `ejabberd` rotates the log files when they get grown above a
 certain size. The exact value is controlled by `log_rotate_size` option.
 The syntax is:
@@ -58,16 +47,7 @@ The syntax is:
 **`log_rotate_size: N`**:   Where N is the maximum size of a log file in bytes. The default
 	value is 10485760 (10Mb).
 
-`ejabberd` can also rotates the log files at given date interval. The
-exact value is controlled by `log_rotate_date` option. The syntax is:
-
-**`log_rotate_date: D`**:   Where D is a string with syntax is taken from the syntax newsyslog
-	uses in newsyslog.conf. The default value is `` (no rotation
-	triggered by date).
-
-However, you can rotate the log files manually. For doing this, set
-`log_rotate_size` option to 0 and `log_rotate_date` to empty list, then,
-when you need to rotate the files, rename and then reopen them. You can
+However, you can rotate the log files manually. You can
 either use an external tool for log rotation and the ejabberdctl command
 `reopen-log` to reopen the log files, or the ejabberdctl command
 `rotate-log` to perform both steps (please refer to section [ejabberd

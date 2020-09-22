@@ -136,22 +136,10 @@ There are several toplevel options to configure logging:
     Setting count to N keeps N rotated logs. Setting count to 0
     does not disable rotation, it instead rotates the file and keeps no previous
     versions around. Setting size to X rotate log when it reaches X bytes.
-    To disable rotation set the size to 0 and the date to ""
-    Date syntax is taken from the syntax newsyslog uses in newsyslog.conf.
-
-Here are some examples:
-
-- $D0     rotate every night at midnight
-- $D23    rotate every day at 23:00 hr
-- $W0D23  rotate every week on Sunday at 23:00 hr
-- $W5D16  rotate every week on Friday at 16:00 hr
-- $M1D0   rotate on the first day of every month at midnight
-- $M5D6   rotate on every 5th day of the month at 6:00 hr
 
 The values in default configuration file are:
 
-    log_rotate_size: 0
-    log_rotate_date: "$D0"
+    log_rotate_size: 10485760
     log_rotate_count: 1
 
 
