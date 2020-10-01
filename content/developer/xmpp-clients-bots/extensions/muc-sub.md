@@ -527,6 +527,10 @@ the subscriber will be shown in MUC roster of legacy clients.
 
 To be friendly with mobile, the MAM service should allow a user to
 connect and easily resync their history for all MUC subscriptions.
+For details about MAM, see
+[XEP-0313 Message Archive Management](https://xmpp.org/extensions/xep-0313.html)
+and your software's documentation, for instance
+[ejabberd's mod_mam](/admin/configuration/modules/#mod-mam).
 
 Thanks to ability to get the list of all the existing subscription, client
 can get a starting point to interact with MAM service to resync history and
