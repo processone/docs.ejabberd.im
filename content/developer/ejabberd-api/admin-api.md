@@ -3801,6 +3801,8 @@ __Examples:__
 Send a direct invitation to several destinations
 
 
+Since ejabberd 20.10, this command is asynchronous: the API call may return before the server has send all the invitations.
+
 Password and Message can also be: none. Users JIDs are separated with : 
 
 __Arguments:__

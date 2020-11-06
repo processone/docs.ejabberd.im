@@ -2435,10 +2435,9 @@ section with top-level options.
 __Available options:__
 
 - **access**: *AccessName*  
-Specify rules to restrict what usernames can be registered and
-unregistered. If a rule returns *deny* on the requested username,
-registration and unregistration of that user name is denied. There are
-no restrictions by default.
+Specify rules to restrict what usernames can be registered. If a rule
+returns *deny* on the requested username, registration of that user name
+is denied. There are no restrictions by default.
 
 - **access\_from**: *AccessName*  
 By default, *ejabberd* doesn’t allow to register new accounts from s2s

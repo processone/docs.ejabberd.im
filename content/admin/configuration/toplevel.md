@@ -997,6 +997,22 @@ Specify which address families to try, in what order. The default is
 *\[ipv4, ipv6\]* which means it first tries connecting with IPv4, if
 that fails it tries using IPv6.
 
+## outgoing\_s2s\_ipv4\_address
+
+*Address*  
+
+Specify the IPv4 address that will be used when establishing an outgoing
+S2S IPv4 connection, for example "127.0.0.1". The default value is
+*undefined*.
+
+## outgoing\_s2s\_ipv6\_address
+
+*Address*  
+
+Specify the IPv6 address that will be used when establishing an outgoing
+S2S IPv6 connection, for example "::FFFF:127.0.0.1". The default value
+is *undefined*.
+
 ## outgoing\_s2s\_port
 
 *1..65535*  
@@ -1386,6 +1402,14 @@ file. The default value is *ejabberd*.
 An interval to make a dummy SQL request to keep alive the connections to
 the database. There is no default value, so no keepalive requests are
 made.
+
+## sql\_odbc\_driver
+
+*Path*  
+
+Path to the ODBC driver to use to connect to a Microsoft SQL Server
+database. This option is only valid if the *sql\_type* option is set to
+*mssql*. The default value is: *libtdsodbc.so*
 
 ## sql\_password
 
