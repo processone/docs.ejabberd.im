@@ -245,6 +245,68 @@ and send your spec file for integration in ejabberd-contrib repository.
 ejabberd-contrib will only host a copy of your
 spec file and does not need your code to make it available to all ejabberd users.
 
+# Your module with Docker
+
+If you installed ejabberd using the Docker image, these specific instructions
+allow you to use your module with your Docker image:
+
+1. Create a local directory for the contributed modules:
+
+    ~~~ bash
+    mkdir docker-modules
+    ~~~
+
+2. Then create the directory structure for your custom module:
+
+    ~~~ bash
+    cd docker-modules
+
+    mkdir -p sources/mod_hello_world/
+    touch sources/mod_hello_world/mod_hello_world.spec
+
+    mkdir sources/mod_hello_world/src/
+    mv mod_hello_world.erl sources/mod_hello_world/src/
+
+    mkdir sources/mod_hello_world/conf/
+    echo -e "modules:\n  mod_hello_world: {}" > sources/mod_hello_world/conf/mod_hello_world.yml
+
+    cd ..
+    ~~~
+
+3. Grant ownership of that directory to the UID that ejabberd will use inside the Docker image:
+
+    ~~~ bash
+    sudo chown 9000 -R docker-modules/
+    ~~~
+
+4. Start ejabberd in Docker:
+
+    ~~~ bash
+    sudo docker run \
+      --name hellotest \
+      -d \
+      --volume "$(pwd)/docker-modules:/home/ejabberd/.ejabberd-modules/" \
+      -p 5222:5222 \
+      -p 5280:5280 \
+      ejabberd/ecs
+    ~~~
+
+5. Check the module is available for installing, and then install it:
+
+    ~~~ bash
+    sudo docker exec -it hellotest bin/ejabberdctl modules_available
+    mod_hello_world []
+
+    sudo docker exec -it hellotest bin/ejabberdctl module_install mod_hello_world
+    ~~~
+
+6. If the module works correctly, you will see the Hello string in the ejabberd logs when it starts:
+
+    ~~~ bash
+    sudo docker exec -it hellotest grep Hello logs/ejabberd.log
+    2020-10-06 13:40:13.154335+00:00 [info]
+      <0.492.0>@mod_hello_world:start/2:15 Hello, ejabberd world!
+    ~~~
 
 # Status
 
