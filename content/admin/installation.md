@@ -11,9 +11,14 @@ There are several ways to install ejabberd:
   - [Install on Windows](#install-on-windows)
   - [Install on Linux](#install-on-linux)
   - [Install on macOS](#install-on-macos)
-- [Install from Source Code](#install-from-source-code) – recommended for advanced users
+- [Install from Source Code](#install-from-source-code) – recommended for advanced users and developers
 - [Install with Operating System specific packages](#install-with-os-specific-packages) – recommended for sysops
-- [Post-install operations](#post-install-operations) – for example, register users and create admin accounts
+- [Install with Docker image](https://github.com/processone/docker-ejabberd/tree/master/ecs)
+
+Additionally, this section covers other topics:
+
+- [Starting ejabberd](#starting-ejabberd) – manual and automatically
+- [Post-install operations](#post-install-operations) – register users, admin, and setting database
 
 # Quick Start
 
