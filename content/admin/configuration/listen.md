@@ -14,7 +14,7 @@ protocols `ejabberd` will listen and what services will be run on them.
 Each element of the list is an associative array with the following
 elements:
 
--   Port number. Optionally also the IP address and/or a transport
+-   Port, optionally also the IP address and/or a transport
 	protocol.
 
 -   Listening module that serves this port.
@@ -36,8 +36,10 @@ For example:
 	    transport: tcp
 
 
-The **port number** defines which port to listen for incoming connections.
-It can be a Jabber/XMPP standard port or any other valid port number.
+The **port** defines which port number to listen for incoming connections:
+it can be a Jabber/XMPP standard port or any other valid port number.
+Alternatively, set the option to a string in form `"unix:/path/to/socket"`
+to create and listen on a unix domain socket `/path/to/socket`.
 
 The **IP address** can be represented as a string. The socket will listen
 only in that network interface. It is possible to specify a generic

@@ -183,12 +183,12 @@ Specify the password to verify an external component that connects to the port.
 
 ## port
 
-* Port number, or unix domain socket path*
+*Port number, or unix domain socket path*
 
 Declares at which port/unix domain socket should be listening.
 
 Can be set to number between `1` and `65535` to listen on TCP or UDP socket,
-or can be set to string in form`"unix:/path/to/socket"` to create and listen
+or can be set to string in form `"unix:/path/to/socket"` to create and listen
 on unix domain socket `/path/to/socket`.
 
 ## protocol_options
