@@ -143,7 +143,7 @@ should see the following message in ejabberd log file:
 19:13:29.717 [info] Hello, ejabberd world!
 ~~~
 
-# Working with the ejabberd module repository
+# ejabberd-contrib
 
 ejabberd is able to fetch module sources by itself, compile with correct flags
 and install in a local repository, without any external dependencies. You do not
@@ -154,91 +154,108 @@ It contains
 most used contributions and also can link to any other external repository.
 This works with ejabberd modules written in Erlang and will also support new Elixir modules.
 
-# Basic commands
+# Basic usage
 
 As a user, this is how it works:
 
-First you need to get/update the list of available modules. This must be done
-before anything else to let module related features to work correctly:
+1. First you need to get/update the list of available modules.  This must be
+    done before anything else to let module related features to work correctly.
+    You may want to repeat this command before you need installing a new module
+    or an attended server upgrade.
 
-~~~ bash
-$ ejabberdctl modules_update_specs
-~~~
+    ~~~ bash
+    ejabberdctl modules_update_specs
+    ~~~
 
-You should repeat this command at regular interval depending on your needs.
-Basically running modules_update_specs once a week is enough to keep in sync
-but you may prefer to manually call this only before you need to install a
-new module or an attended upgrade.
-Then you can list available modules:
+2. Then you can list available modules:
 
-~~~ bash
-$ ejabberdctl modules_available
-...
-mod_admin_extra Additional ejabberd commands
-mod_archive Supports almost all the XEP-0136 version 0.6 except otr
-mod_cron Execute scheduled commands
-mod_log_chat Logging chat messages in text files
-...
-~~~
+    ~~~ bash
+    ejabberdctl modules_available
+    ...
+    mod_admin_extra Additional ejabberd commands
+    mod_archive Supports almost all the XEP-0136 version 0.6 except otr
+    mod_cron Execute scheduled commands
+    mod_log_chat Logging chat messages in text files
+    ...
+    ~~~
 
-Let’s give `mod_cron` a try:
+3. Let’s install `mod_cron` from ejabberd-contrib repository:
 
-~~~ bash
-$ ejabberdctl module_install mod_cron
-ok
-~~~
+    ~~~ bash
+    ejabberdctl module_install mod_cron
+    ok
+    ~~~
 
-This command installs `mod_cron` from ejabberd-contrib repository. An example default
-configuration is installed in:
+4. You can check anytime what modules are installed:
 
-~~~
-$HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
-~~~
+    ~~~ bash
+    ejabberdctl modules_installed
+    mod_cron
+    ~~~
 
-That small configuration file will be loaded at ejabberd start,
-so the configuration of this module will be taken into account by ejabberd.
+5. An example default configuration is installed, and will be read by ejabberd
+    when it starts. You can find that small configuration in:
 
-Now, check your new module is installed:
+    ~~~
+    $HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
+    ~~~
 
-~~~ bash
-$ ejabberdctl modules_installed
-mod_cron
-~~~
+6. And finally, you can remove the module:
 
-And finally, you can remove it:
+    ~~~ bash
+    ejabberdctl module_uninstall mod_cron
+    ok
+    ~~~
 
-~~~ bash
-$ ejabberdctl module_uninstall mod_cron
-ok
-~~~
+# Add your module
 
-# Managing your own modules
-As a developer, you still need Erlang and Ejabberd if you install everything from
-sources, but you may even not need Erlang if you installed ejabberd from official
-ProcessOne installer. The official installer includes everything needed to build
-ejabberd modules on its own.
+If you install ejabberd using the official ProcessOne installer,
+it includes everything needed to build ejabberd modules on its own.
 
-First, create this path and copy your new source code to this location:
+1. First, create this path
 
-~~~
-$HOME/.ejabberd-modules/sources/mod_hello_world/src/mod_hello_world.erl
-~~~
+    ~~~ bash
+    $HOME/.ejabberd-modules/sources/mod_hello_world/src/
+    ~~~
 
-and create a specification file in YAML format as mod_hello_world.spec
-(see examples from ejabberd-contrib). From that point you should see it as available module.
+2. and copy your source code to this location:
 
-You can keep your repository private in this location, ejabberd see it as an available module,
-you can install it, modify the source code and reinstall it...
+    ~~~ bash
+    $HOME/.ejabberd-modules/sources/mod_hello_world/src/mod_hello_world.erl
+    ~~~
 
-If you plan to publish your module, you should check if your module follows the policy and if it
-compiles correctly:
+3. Create a specification file in YAML format as mod_hello_world.spec
+(see examples from ejabberd-contrib). So, create the file
 
-~~~ bash
-$ ejabberdctl module_check mod_mysupermodule
-ok
-~~~
+    ~~~ bash
+    $HOME/.ejabberd-modules/sources/mod_hello_world/mod_hello_world.spec
+    ~~~
 
-if all is OK, your’re done ! Else, just follow the warning/error messages to fix the issues.
+    with this content:
+
+    ~~~ yaml
+    summary: "Hello World example module"
+    ~~~
+
+4.  From that point you should see it as available module:
+
+    ~~~ bash
+    ejabberdctl modules_available
+    mod_hello_world Hello World example module
+    ~~~
+
+5. Now you can install and uninstall that module like any other,
+    as described in the previous section.
+
+6.  If you plan to publish your module, you should check if your module
+    follows the policy and if it compiles correctly:
+
+    ~~~ bash
+    ejabberdctl module_check mod_mysupermodule
+    ok
+    ~~~
+
+    if all is OK, your’re done ! Else, just follow the warning/error messages to fix the issues.
 
 You may consider publishing your module as a tgz/zip archive or git repository,
 and send your spec file for integration in ejabberd-contrib repository.
