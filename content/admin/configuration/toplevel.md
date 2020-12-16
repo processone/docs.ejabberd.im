@@ -5,7 +5,7 @@ menu: Top-Level Options
 order: 80
 ---
 
-> This section describes top level options of ejabberd 20.07. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+> This section describes top level options of ejabberd 20.12. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
 
 ## access\_rules
 
@@ -257,6 +257,15 @@ client. It is impossible to obtain the original plain password from the
 stored information; for this reason, when this value is configured it
 cannot be changed to plain anymore. This format allows clients to
 authenticate using: SASL PLAIN and SASL SCRAM-SHA-1.
+
+## auth\_scram\_hash
+
+*sha | sha256 | sha512*  
+
+Hash algorith that should be used to store password in SCRAM format. You
+shouldn’t change this if you are already have passwords generated with
+different algorithm - this will make users that have old password being
+able to use SCRAM auth algorithms.
 
 ## auth\_use\_cache
 
@@ -890,7 +899,7 @@ default value is *1* minute.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/20.07/sql>. There are two
+<https://github.com/processone/ejabberd/tree/20.12/sql>. There are two
 schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*

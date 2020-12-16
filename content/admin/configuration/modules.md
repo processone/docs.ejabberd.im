@@ -5,7 +5,7 @@ menu: Modules Options
 order: 95
 ---
 
-> This section describes options of all modules in ejabberd 20.07. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+> This section describes options of all modules in ejabberd 20.12. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
 
 mod\_adhoc
 ----------

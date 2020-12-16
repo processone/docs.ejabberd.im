@@ -124,6 +124,7 @@ To configure SQL there are several top-level options:
 - [sql_ssl_certfile](/admin/configuration/toplevel/#sql-ssl-certfile)
 - [sql_pool_size](/admin/configuration/toplevel/#sql-pool-size)
 - [sql_keepalive_interval](/admin/configuration/toplevel/#sql-keepalive-interval)
+- [sql_odbc_driver](/admin/configuration/toplevel/#sql-odbc-driver)
 - [sql_start_interval](/admin/configuration/toplevel/#sql-start-interval)
 - [sql_prepared_statements](/admin/configuration/toplevel/#sql-prepared-statements)
 
@@ -168,10 +169,9 @@ Example configuration:
 	redis_server: redis.server.com
 	redis_db: 1
 
-# Microsoft SQL
+# Microsoft SQL Server
 
 For now, MS SQL is only supported in Unix-like OS'es. You need to have
-[`FreeTDS`](https://www.freetds.org/) and
 [`unixODBC`](https://www.unixodbc.org/) installed on your machine.
 Also, in some cases you need to add machine name to `sql_username`, especially
 when you have `sql_server` defined as an IP address, e.g.:
@@ -181,6 +181,14 @@ when you have `sql_server` defined as an IP address, e.g.:
 	sql_server: 1.2.3.4
 	...
 	sql_username: user1@host
+
+By default, ejabberd will use the [`FreeTDS`](https://www.freetds.org/) driver. You need to have the driver file `libtdsodbc.so` installed in your library PATH on your system.
+
+If the FreeTDS driver is not installed in a standard location, or if you want to use another ODBC driver, you can specify the path to the driver using the [sql_odbc_driver](/admin/configuration/toplevel/#sql-odbc-driver) option, available in ejabberd 20.12 or later. For example, if you want to use Microsoft ODBC Driver 17 for SQL Server:
+
+	sql_odbc_driver: "/opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.3.so.1.1"
+
+Note that if you use a Microsoft driver, you may have to use an IP address instead of a host name for the `sql_server` option.
 
 ## SQL Authentication
 
