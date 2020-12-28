@@ -261,8 +261,6 @@ To configure LDAP authentication there are these top-level options:
 
 - [ldap_base](/admin/configuration/toplevel/#ldap-base)
 - [ldap_uids](/admin/configuration/toplevel/#ldap-uids)
-- [ldap_uidattr](/admin/configuration/toplevel/#ldap-uidattr)
-- [ldap_uidattr_format](/admin/configuration/toplevel/#ldap-uidattr-format)
 - [ldap_filter](/admin/configuration/toplevel/#ldap-filter)
 - [ldap_dn_filter](/admin/configuration/toplevel/#ldap-dn-filter)
 
