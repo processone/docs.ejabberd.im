@@ -257,7 +257,7 @@ or configure [ACME](/admin/configuration/basic/#acme).
 
 Allow specifying a tag in a `listen` section
 and later use it to have a special
-[`api_permissions`](/admin/configuration/toplevel/#api_permissions)
+[`api_permissions`](/admin/configuration/toplevel/#api-permissions)
 just for it.
 
 For example:

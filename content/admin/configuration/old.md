@@ -4768,9 +4768,9 @@ Options:
 
 ## mod_push_keepalive
 
-This module tries to keep the [stream management](#mod_stream_mgmt)
+This module tries to keep the [stream management](#mod-stream-mgmt)
 session of a disconnected mobile client alive if the client enabled
-[push notifications](#mod_push) for that session. However, the normal
+[push notifications](#mod-push) for that session. However, the normal
 session resumption timeout is restored once a push notification is
 issued, so the session will be closed if the client doesn't respond to
 push notifications.
@@ -4782,7 +4782,7 @@ Options:
 	client times out. This timeout is only in effect as long as no
 	push notification is issued. Once that happened, the resumption
 	timeout configured for the [stream management
-	module](#mod_stream_mgmt) is restored. If this option is set to
+	module](#mod-stream-mgmt) is restored. If this option is set to
 	`undefined`, the resumption timeout won't be modified by
 	`mod_push_keepalive`. Default: `259200`.
 

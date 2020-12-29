@@ -32,7 +32,7 @@ When the option is omitted, ejabberd will rely upon the default database which i
 Account creation is only supported by internal, external and sql methods.
 
 Other toplevel options that are relevant to the authentication configuration:
-[disable_sasl_mechanisms](/admin/configuration/toplevel/#disable_sasl_mechanisms)
+[disable_sasl_mechanisms](/admin/configuration/toplevel/#disable-sasl-mechanisms)
 [fqdn](/admin/configuration/toplevel/#fqdn)
 
 # Internal
@@ -42,7 +42,7 @@ authentication method. The value `internal` will enable the internal
 authentication method.
 
 It is possible to use the option
-[auth_password_format](/admin/configuration/toplevel/#auth_password_format)
+[auth_password_format](/admin/configuration/toplevel/#auth-password-format)
 to store the password in SCRAM format.
 
 For details about the client-server communication when using SCRAM-SHA-1,
@@ -108,7 +108,7 @@ Starting in *ejabberd 17.06*, caching has received a complete overhaul.
 	Those options are:
 [auth_use_cache](/admin/configuration/toplevel/#auth-use-cache),
 [auth_cache_missed](/admin/configuration/toplevel/#auth-cache-missed),
-[auth_cache_size](/admin/configuration/toplevel/#auth-cache_size), and
+[auth_cache_size](/admin/configuration/toplevel/#auth-cache-size), and
 [auth_cache_life_time](/admin/configuration/toplevel/#auth-cache-life-time).
 
 This example sets external authentication, the extauth script, enables
@@ -219,7 +219,7 @@ have to configure and compile `ejabberd` with PAM support enabled:
 Options:
 
 - [pam_service](/admin/configuration/toplevel/#pam-service)
-- [pam_userinfotype](/admin/configuration/toplevel/#pam_userinfotype)
+- [pam_userinfotype](/admin/configuration/toplevel/#pam-userinfotype)
 
 Example:
 

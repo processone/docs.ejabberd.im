@@ -330,10 +330,10 @@ represented as `#iq{}` record). There are two types of IQ handlers:
 `local` and `sm`.
 - `local` IQ handler is a function processing IQs coming from
 `ejabberd_local`, that is, an IQ destined to the local server itself as
-described in [ejabberd_local](#ejabberd_local).
+described in [ejabberd_local](#ejabberd-local).
 - `sm` IQ handler is a function processing IQs coming from
 `ejabberd_sm`, that is, a bare-JID IQ destined to a local user as
-described in [ejabberd_sm](#ejabberd_sm).
+described in [ejabberd_sm](#ejabberd-sm).
 
 An IQ handler is registered as:
 ```erlang
