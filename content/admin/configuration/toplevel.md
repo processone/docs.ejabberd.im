@@ -263,9 +263,9 @@ authenticate using: SASL PLAIN and SASL SCRAM-SHA-1.
 *sha | sha256 | sha512*  
 
 Hash algorith that should be used to store password in SCRAM format. You
-shouldn’t change this if you are already have passwords generated with
-different algorithm - this will make users that have old password being
-able to use SCRAM auth algorithms.
+shouldn’t change this if you already have passwords generated with a
+different algorithm - users that have such passwords will not be able to
+authenticate.
 
 ## auth\_use\_cache
 
@@ -840,10 +840,11 @@ The number of rotated log files to keep. The default value is *1*.
 
 ## log\_rotate\_size
 
-*Size*  
+*pos\_integer() | infinity*  
 
-The size (in bytes) of a log file to trigger rotation. The default value
-is *10485760* (10 Mb).
+The size (in bytes) of a log file to trigger rotation. If set to
+*infinity*, log rotation is disabled. The default value is *10485760*
+(that is, 10 Mb).
 
 ## loglevel
 

@@ -1619,7 +1619,7 @@ mod\_multicast
 --------------
 
 This module implements a service for [XEP-0033: Extended Stanza
-Addressing](https://xmpp.org/extensions/xep-0033.html).
+Addressing](https://xmpp.org/extensions/xep-0054.html).
 
 __Available options:__
 
@@ -2890,6 +2890,11 @@ Same as top-level *ldap\_uids* option, but applied to this module only.
 - **ldap\_userdesc**  
 The name of the attribute which holds the human-readable user name.
 Retrieved from results of the "User Filter". Defaults to *cn*.
+
+- **ldap\_userjidattr**  
+The name of the attribute which is used to map user id to XMPP jid. If
+not specified (and that is default value of this option), user jid will
+be created from user id and this module host.
 
 - **ldap\_useruid**  
 The name of the attribute which holds the ID of a roster item. Value of
