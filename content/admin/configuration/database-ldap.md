@@ -393,6 +393,7 @@ sample configuration is shown below:
 	      Email: EMAIL
 	  ...
 
+
 ## Shared Roster in LDAP
 
 Since [mod_shared_roster_ldap](/admin/configuration/modules/#mod-shared-roster-ldap) has a few complex options,
@@ -543,6 +544,84 @@ following algorithm is used:
 
 			2.  then, the display name for the given user ID is
 				retrieved from the user name cache.
+
+### Multi-Domain
+
+By default, the module option `ldap_userjidattr` is set to the empty string,
+in that case the JID of the user's contact is formed by compounding
+UID of the contact `@` Host of the user owning the roster.
+
+When the option `ldap_userjidattr` is set to something like `"mail"`,
+then it uses that field to determine the JID of the contact. This is
+useful if the ldap `mail` attribute contains the JID of the accounts.
+
+Basically, it allows us to define a groupOfNames
+(e.g. xmppRosterGroup) and list any users, anywhere in the ldap
+directory by specifying the attribute defining the JID of the
+members.
+
+This allows hosts/domains other than that of the roster owner. It is
+also more flexible, since the LDAP manager can specify the JID of the
+users without any assumptions being made. The only down side is that
+there must be an LDAP attribute (field) filled in for all Jabber/XMPP
+users.
+
+Below is a sample, a relevant LDAP entry, and ejabberd's module configuration:
+
+	cn=Example Org Roster,ou=groups,o=Example Organisation,dc=acme,dc=com
+	objectClass: groupOfNames
+	objectClass: xmppRosterGroup
+	objectClass: top
+	xmppRosterStatus: active
+	member:
+	description: Roster group for Example Org
+	cn: Example Org Roster
+	uniqueMember: uid=john,ou=people,o=Example Organisation,dc=acme,dc=com
+	uniqueMember: uid=pierre,ou=people,o=Example Organisation,dc=acme,dc=com
+	uniqueMember: uid=jane,ou=people,o=Example Organisation,dc=acme,dc=com
+	...
+
+	uid=john,ou=people,o=Example Organisation,dc=acme,dc=com
+	objectClass: top
+	objectClass: person
+	objectClass: organizationalPerson
+	objectClass: inetOrgPerson
+	objectClass: mailUser
+	objectClass: sipRoutingObject
+	uid: john
+	givenName: John
+	sn: Doe
+	cn: John Doe
+	displayName: John Doe
+	accountStatus: active
+	userPassword: secretpass
+	IMAPURL: imap://imap.example.net:143
+	mailHost: smtp.example.net
+	mail: john@example.net
+	sipLocalAddress: john@example.net
+	Below is the sample ejabberd.yml module configuration to match:
+
+	mod_shared_roster_ldap:
+	  ldap_servers:
+	    - "ldap.acme.com"
+	  ldap_encrypt: tls
+	  ldap_port: 636
+	  ldap_rootdn: "cn=Manager,dc=acme,dc=com"
+	  ldap_password: "supersecretpass"
+	  ldap_base: "dc=acme,dc=com"
+	  ldap_filter: "(objectClass=*)"
+	  ldap_rfilter: "(&(objectClass=xmppRosterGroup)(xmppRosterStatus=active))"
+	  ldap_gfilter: "(&(objectClass=xmppRosterGroup)(xmppRosterStatus=active)(cn=%g))"
+	  ldap_groupattr: "cn"
+	  ldap_groupdesc: "cn"
+	  ldap_memberattr: "uniqueMember"
+	  ldap_memberattr_format_re: "uid=([a-z.]*),(ou=.*,)*(o=.*,)*dc=acme,dc=com"
+	  ldap_useruid: "uid"
+	  ldap_userdesc: "cn"
+	  ldap_userjidattr: "mail"
+	  ldap_auth_check: false
+	  ldap_user_cache_validity: 86400
+	  ldap_group_cache_validity: 86400
 
 ### Configuration examples
 

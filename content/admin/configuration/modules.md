@@ -2744,7 +2744,7 @@ password in multiple places.
     shared roster information. All of them are run against the
     ldap\_base.
 
--   Attributes: *ldap\_groupattr*, *ldap\_groupdesc*,
+-   Attributes: *ldap\_groupattr*, *ldap\_groupdesc*, *ldap\_userjidattr*,
     *ldap\_memberattr*, *ldap\_userdesc*, *ldap\_useruid*. These options
     specify the names of the attributes which hold interesting data in
     the entries returned by running filters specified with the filter
