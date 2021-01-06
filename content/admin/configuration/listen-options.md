@@ -58,13 +58,13 @@ or configure [ACME](/admin/configuration/basic/#acme).
 
 This option can be used with
 [`ejabberd_service`](/admin/configuration/listen/#ejabberd-service) only.
-	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html) requires that
+	[`XEP-0114`](https://xmpp.org/extensions/xep-0114.html) requires that
 	the domain must match the hostname of the component. If this option
 	is set to `false`, `ejabberd` will allow the component to send
 	stanzas with any arbitrary domain in the ’from’ attribute. Only use
 	this option if you are completely sure about it. The default value
 	is `true`, to be compliant with
-	[`XEP-0114`](http://xmpp.org/extensions/xep-0114.html).
+	[`XEP-0114`](https://xmpp.org/extensions/xep-0114.html).
 
 ## ciphers
 
@@ -293,7 +293,7 @@ This option specifies that traffic on the port will be encrypted
 	5223 for client-to-server communications. But this method is
 	nowadays deprecated and not recommended. The preferable encryption
 	method is STARTTLS on port 5222, as defined
-	[`RFC 6120: XMPP Core`](http://xmpp.org/rfcs/rfc6120.html#tls),
+	[`RFC 6120: XMPP Core`](https://xmpp.org/rfcs/rfc6120.html#tls),
 	which can be enabled in `ejabberd` with the option
         [`starttls`](#starttls).
 
@@ -316,7 +316,7 @@ Whether to enable or disable TLS compression. The default value is
 
 *false | true*
 
-This option specifies whether to verify the certificate or not when TLS is enabled. 
+This option specifies whether to verify the certificate or not when TLS is enabled.
 
 The default value is `false`, which means no checks are performed.
 
@@ -330,7 +330,7 @@ The certificate will be checked against trusted CA roots, either defined at the 
 
 Is this listener accessed by proxy service that is using
     proxy protocol for supplying real IP addresses to ejabberd server. You can read about this protocol
-    in [Proxy protocol specification](http://www.haproxy.org/download/1.8/doc/proxy-protocol.txt).
+    in [Proxy protocol specification](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt).
     The default value of this option is`false`.
 
 ## zlib
@@ -338,6 +338,5 @@ Is this listener accessed by proxy service that is using
 *true | false*
 
 This option specifies that Zlib stream compression (as defined in
-	[`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)) is available
+	[`XEP-0138`](https://xmpp.org/extensions/xep-0138.html)) is available
 	on connections to the port.
-

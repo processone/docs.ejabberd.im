@@ -31,4 +31,4 @@ The following example shows the reply to the following query:
 
 The Web Admin also supports the `Accept-Language` HTTP header.
 
-[1]:	http://www.gnu.org/software/gettext/
+[1]:	https://www.gnu.org/software/gettext/

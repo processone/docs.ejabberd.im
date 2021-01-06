@@ -1741,7 +1741,7 @@ Some vcard field names in get/set_vcard are:
 * TITLE        - Work: Position
 * ROLE         - Work: Role
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -1792,7 +1792,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -1845,7 +1845,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -4163,7 +4163,7 @@ Some vcard field names in get/set_vcard are:
 * TITLE        - Work: Position
 * ROLE         - Work: Role
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -4216,7 +4216,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -4271,7 +4271,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 

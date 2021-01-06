@@ -94,13 +94,13 @@ Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
 	-   SIP support.
 	-   Component support: interface with networks such as AIM, ICQ and MSN installing special transports.
 
-[1]:	http://www.erlang.org/
-[2]:	http://tools.ietf.org/html/rfc3490
-[3]:	http://www.ejabberd.im/protocols
-[4]:	http://xmpp.org/extensions/xep-0138.html
-[5]:	http://xmpp.org/extensions/xep-0039.html
-[6]:	http://xmpp.org/extensions/xep-0045.html
-[7]:	http://xmpp.org/extensions/xep-0060.html
-[8]:	http://xmpp.org/extensions/xep-0163.html
+[1]:	https://erlang.org/
+[2]:	https://tools.ietf.org/html/rfc3490
+[3]:	https://ejabberd.im/protocols
+[4]:	https://xmpp.org/extensions/xep-0138.html
+[5]:	https://xmpp.org/extensions/xep-0039.html
+[6]:	https://xmpp.org/extensions/xep-0045.html
+[7]:	https://xmpp.org/extensions/xep-0060.html
+[8]:	https://xmpp.org/extensions/xep-0163.html
 [9]:	https://tools.ietf.org/html/rfc7395
-[10]:	http://xmpp.org/extensions/xep-0206.html
+[10]:	https://xmpp.org/extensions/xep-0206.html

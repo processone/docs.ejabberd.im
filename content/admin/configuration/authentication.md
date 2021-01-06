@@ -91,7 +91,7 @@ script, and calls it to perform authentication tasks.
 The server administrator can write the external authentication script in
 any language. The details on the interface between ejabberd and the
 script are described in the `ejabberd Developers Guide`. There are also
-[`several example authentication scripts`](http://www.ejabberd.im/extauth).
+[`several example authentication scripts`](https://ejabberd.im/extauth).
 
 Options:
 
@@ -134,7 +134,7 @@ authentication:
 
 **`SASL Anonymous`**:   This is a special SASL authentication mechanism that allows to login
 	without providing username or password (see
-	[`XEP-0175`](http://xmpp.org/extensions/xep-0175.html)). The main
+	[`XEP-0175`](https://xmpp.org/extensions/xep-0175.html)). The main
 	advantage of SASL Anonymous is that the protocol was designed to
 	give the user a login. This is useful to avoid in some case, where
 	the server has many users already logged or registered and when it
@@ -204,7 +204,7 @@ Examples:
 		    anonymous_protocol: both
 
 There are more configuration examples and XMPP client example stanzas in
-[`Anonymous users support`](http://www.ejabberd.im/Anonymous-users-support).
+[`Anonymous users support`](https://ejabberd.im/Anonymous-users-support).
 
 # PAM Authentication
 

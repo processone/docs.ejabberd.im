@@ -23,7 +23,7 @@ Extension is disabled.
 
 ## Specification
 
-[XEP-0004: Data Forms](http://xmpp.org/extensions/xep-0004.html)
+[XEP-0004: Data Forms](https://xmpp.org/extensions/xep-0004.html)
 
 ## Implementation
 
@@ -44,7 +44,7 @@ disabled.
 
 ## Specification
 
-[XEP-0012: Last Activity](http://xmpp.org/extensions/xep-0012.html)
+[XEP-0012: Last Activity](https://xmpp.org/extensions/xep-0012.html)
 
 ## Implementation
 
@@ -79,7 +79,7 @@ No side effect.
 
 ## Specification
 
-[XEP-0013: Flexible Offline Message Retrieval](http://xmpp.org/extensions/xep-0013.html)
+[XEP-0013: Flexible Offline Message Retrieval](https://xmpp.org/extensions/xep-0013.html)
 
 ## Implementation
 
@@ -94,13 +94,13 @@ message retrieval is enabled in the following cases:
 
 * client send request to retrieve number of messages prior to sending
   its initial presence:
-  [Requesting Number of Messages](http://xmpp.org/extensions/xep-0013.html#request-number)
+  [Requesting Number of Messages](https://xmpp.org/extensions/xep-0013.html#request-number)
 * client send request to retrieve messages headers prior to sending
   its initial presence:
-  [Requesting Message Headers](http://xmpp.org/extensions/xep-0013.html#request-headers)
+  [Requesting Message Headers](https://xmpp.org/extensions/xep-0013.html#request-headers)
 * client send all messages retrieval request prior to sending its
   initial presence:
-  [Retrieving All Messages](http://xmpp.org/extensions/xep-0013.html#retrieve-all)
+  [Retrieving All Messages](https://xmpp.org/extensions/xep-0013.html#retrieve-all)
 
 ## Enabling
 

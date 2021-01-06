@@ -5,7 +5,7 @@ title: Contributions
 # External authentication
 
 There are examples of external authentication scripts in many different languages in the page:
-[`https://www.ejabberd.im/extauth`](https://www.ejabberd.im/extauth)
+[`https://ejabberd.im/extauth`](https://ejabberd.im/extauth)
 
 # Main contribution repository
 
@@ -24,5 +24,5 @@ integration with your own backends:
 # Old / obsolete contributions
 
 Finally, there is an old list of contributions that were developed for ejabberd 2.x in:
-[`https://www.ejabberd.im/contributions`](https://www.ejabberd.im/contributions)
+[`https://ejabberd.im/contributions`](https://ejabberd.im/contributions)
 

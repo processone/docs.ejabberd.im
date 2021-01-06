@@ -20,12 +20,12 @@ exchanging data with ejabberd using a simplified XML stream.
 
 Components can be written in any programming language. ejabberd
 supports
-[XEP-0114: Jabber Component Protocol](http://www.xmpp.org/extensions/xep-0114.html).
+[XEP-0114: Jabber Component Protocol](https://xmpp.org/extensions/xep-0114.html).
 
 Note the external component have limited rights on the XMPP
 server. As such, it is less powerful than an ejabberd module written
 in Erlang or Elixir. Some proposed XMPP extensions, like
-[Priviledge Entities](http://www.xmpp.org/extensions/xep-0356.html),
+[Priviledge Entities](https://xmpp.org/extensions/xep-0356.html),
 may grant more privileges in the future to external components.
 
 # Virtual hosts

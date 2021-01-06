@@ -3387,7 +3387,7 @@ Same as top-level *ldap\_uids* option, but applied to this module only.
 - **ldap\_vcard\_map**: *{Name: {Pattern, LDAPattributes}, ...}*  
 With this option you can set the table that maps LDAP attributes to
 vCard fields. *Name* is the type name of the vCard as defined in [RFC
-2426](http://tools.ietf.org/html/rfc2426). *Pattern* is a string which
+2426](https://tools.ietf.org/html/rfc2426). *Pattern* is a string which
 contains pattern variables *%u*, *%d* or *%s*. *LDAPattributes* is the
 list containing LDAP attributes. The pattern variables *%s* will be
 sequentially replaced with the values of LDAP attributes from

@@ -172,7 +172,7 @@ Example configuration:
 # Microsoft SQL Server
 
 For now, MS SQL is only supported in Unix-like OS'es. You need to have
-[`unixODBC`](https://www.unixodbc.org/) installed on your machine.
+[`unixODBC`](http://www.unixodbc.org/) installed on your machine.
 Also, in some cases you need to add machine name to `sql_username`, especially
 when you have `sql_server` defined as an IP address, e.g.:
 
@@ -728,4 +728,3 @@ before searching their info in LDAP.
 		  Email: EMAIL
 		  Birthday: BDAY
 		  Nickname: NICKNAME
-

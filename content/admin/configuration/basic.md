@@ -85,7 +85,7 @@ Examples:
 To define specific ejabberd modules in a virtual host, you can define
 the global `modules` option with the common modules, and later add
 specific modules to certain virtual hosts. To accomplish that, instead
-of defining each option in `host_config` use 
+of defining each option in `host_config` use
 [append_host_config](/admin/configuration/toplevel/#append-host-config)
 with the same syntax.
 
@@ -169,7 +169,7 @@ provides more details.
 
 Some `ejabberd` modules can be configured to require a CAPTCHA challenge
 on certain actions. If the client does not support CAPTCHA Forms
-([`XEP-0158`](http://xmpp.org/extensions/xep-0158.html)), a web link is
+([`XEP-0158`](https://xmpp.org/extensions/xep-0158.html)), a web link is
 provided so the user can fill the challenge in a web browser.
 
 An example script is provided that generates the image using
@@ -660,5 +660,3 @@ and sets a higher `BurstSize`:
       not_normal:
         rate: 1000
         burst_size: 20000
-
-

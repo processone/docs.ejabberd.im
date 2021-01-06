@@ -49,7 +49,7 @@ It is also well documented, so it should not be an issue.
 ## Amazon RDS compliance
 
 ejabberd is fully compliant with
-[MySQL on Amazon RDS](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html).
+[MySQL on Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html).
 
 You just need to make sure to use MySQL version 5.6 or greater when you
 create your database.

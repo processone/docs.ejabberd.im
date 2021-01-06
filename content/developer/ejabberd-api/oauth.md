@@ -35,7 +35,7 @@ This OAuth integration makes ejabberd:
   a specific app / third party can always be revoked at any time as
   this is usually the case with OAuth services.
 
-You can read more on OAuth from [OAuth website](http://oauth.net).
+You can read more on OAuth from [OAuth website](https://oauth.net).
 
 OAuth support is available in ejabberd 15.09 and newest releases.
 

@@ -168,7 +168,7 @@ enabled or disabled thanks to a new configuration option:
 
 Until a subscriber is not joined a conference (see [Joining a MUC Room](#joining-a-muc-room)),
 a subscriber role MUST be 'none'. When a subscriber is joined a conference its role is
-changed according to [XEP-0045](http://xmpp.org/extensions/xep-0045.html) rules, that is,
+changed according to [XEP-0045](https://xmpp.org/extensions/xep-0045.html) rules, that is,
 it becomes either 'visitor', 'participant' or 'moderator'.
 
 # Subscribing to MUC/Sub events
@@ -306,11 +306,11 @@ Example: Room moderator unsubscribes another room user
 # Subscriber actions
 
 If not stated otherwise in this document, a subscriber MUST perform any actions in the conference
-as described in [XEP-0045](http://xmpp.org/extensions/xep-0045.html). For example,
+as described in [XEP-0045](https://xmpp.org/extensions/xep-0045.html). For example,
 it MUST send messages to all occupants according to
-[7.4 Sending a Message to All Occupants](http://xmpp.org/extensions/xep-0045.html#message),
+[7.4 Sending a Message to All Occupants](https://xmpp.org/extensions/xep-0045.html#message),
 it MUST configure a conference according to
-[10.2 Subsequent Room Configuration](http://xmpp.org/extensions/xep-0045.html#roomconfig)
+[10.2 Subsequent Room Configuration](https://xmpp.org/extensions/xep-0045.html#roomconfig)
 and so on.
 
 Here are a few examples:
@@ -334,15 +334,15 @@ No need to join it after you connect. As a subscriber, you can send messages at 
 If a user wants to be present in the room, they just have to join the room as defined in XEP-0045.
 
 A subscriber MAY decide to join a conference
-(in the [XEP-0045](http://xmpp.org/extensions/xep-0045.html) sense).
+(in the [XEP-0045](https://xmpp.org/extensions/xep-0045.html) sense).
 In this case a conference MUST behave as described in
-[XEP-0045 7.2 Entering a Room](http://xmpp.org/extensions/xep-0045.html#enter-muc).
+[XEP-0045 7.2 Entering a Room](https://xmpp.org/extensions/xep-0045.html#enter-muc).
 A conference MUST process events as described under
-[XEP-0045 7.1 Order of Events](http://xmpp.org/extensions/xep-0045.html#order)
+[XEP-0045 7.1 Order of Events](https://xmpp.org/extensions/xep-0045.html#order)
 except it MUST not send room history.
 When a subscriber is joined, a conference MUST stop sending subscription events and
 MUST switch to a regular groupchat protocol (as described in
-[XEP-0045](http://xmpp.org/extensions/xep-0045.html)) until a subscriber
+[XEP-0045](https://xmpp.org/extensions/xep-0045.html)) until a subscriber
 leaves.
 
 # Receiving events

@@ -43,7 +43,7 @@ the ports that ejabberd needs must be available for testing.  So you can't run
 an ejabberd instance at the same time you test.
 
 Other options you can use to limit the tests that will be run is to pass a list
-of groups to test. 
+of groups to test.
 
 Some group examples:
 - no_db: Runs subgroups `generic` and `test_proxy65`.
@@ -89,4 +89,4 @@ independently by checking them out and running their test suites directly.
 
 We run tests for ejabberd and dependencies automatically via Travis-CI. We
 have a Dashboard available on Github to check the overall test status for all
-projects: [ProcessOne Github Dashboard](http://processone.github.io)
+projects: [ProcessOne Github Dashboard](https://processone.github.io/)

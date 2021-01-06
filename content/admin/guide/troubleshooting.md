@@ -110,4 +110,4 @@ watchdog admins, set the option with an empty list:
 	
 	watchdog_admins: []
 
-[1]:	http://www.ejabberd.im/interconnect-erl-nodes
+[1]:	https://ejabberd.im/interconnect-erl-nodes

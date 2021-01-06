@@ -79,7 +79,7 @@ your existing application using:
 * [REST API](/developer/ejabberd-api/) and ejabberdctl command-line tool
 * Mobile libraries for iOS: [XMPPFramework](https://github.com/robbiehanson/XMPPFramework), [Jayme REST API](https://github.com/inaka/Jayme)
 * Mobile libraries for Android: [Smack](https://github.com/igniterealtime/Smack), [Retrofit](https://github.com/square/retrofit)
-* Web library with WebSocket support and fallback to BOSH: [Strophe](http://strophe.im/)
+* Web library with WebSocket support and fallback to BOSH: [Strophe](https://strophe.im/)
 
 # Architecture of an ejabberd service
 
@@ -105,7 +105,7 @@ different features, including:
 * and many many more.
 
 The full list of supported protocol and extensions is available on
-[Protocols Supported by ejabberd](http://www.process-one.net/en/ejabberd/protocols/)
+[Protocols Supported by ejabberd](https://www.process-one.net/en/ejabberd/protocols/)
 page.
 
 This modular architecture allows high customisability and easy access
@@ -159,13 +159,13 @@ Note that your mileage may vary depending on your use case, the
 feature your are using and how clean the architecture design and the
 client is developed. That's why, if you plan to reach huge volume, it
 is recommended to start asking advices from day 1 to an
-[ejabberd expert](http://www.process-one.net). Initial mistakes in the
+[ejabberd expert](https://www.process-one.net). Initial mistakes in the
 solution design are harder to fix once the project is in production.
 
 If the service requires a cluster of more than 10 nodes, we recommend
 not relying on Mnesia clustering mode. Many solutions are available, the
 easiest and more inexpensive being to rely on
-[ejabberd Software-as-a-Service](http://www.process-one.net/en/ejabberd/saas/)
+[ejabberd Software-as-a-Service](https://www.process-one.net/en/ejabberd/saas/)
 approach.
 
 ejabberd also allows connecting different clusters as parts of larger
@@ -222,4 +222,4 @@ choice in term of scalability, robustness and manageability.
 The best way to start developing for ejabberd is to clone, watch and
 star the [project](https://www.github.com/processone/ejabberd), to get
 in touch on our developer chatroom (ejabberd@conference.process-one.net) or
-to join [ejabberd community on StackOverflow](http://stackoverflow.com/questions/tagged/ejabberd?sort=newest).
+to join [ejabberd community on StackOverflow](https://stackoverflow.com/questions/tagged/ejabberd?sort=newest).

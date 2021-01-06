@@ -9,7 +9,7 @@ This document describes ejabberd's PubSub architecture to understand how to writ
 
 # PubSub overview
 
-[`XEP-0060`](http://xmpp.org/extensions/xep-0060.html) (PubSub) is more than 100 pages of specifications, with 12 very detailed use cases with many possibles options and possible situations:
+[`XEP-0060`](https://xmpp.org/extensions/xep-0060.html) (PubSub) is more than 100 pages of specifications, with 12 very detailed use cases with many possibles options and possible situations:
 - Subscribe
 - Unsubscribe
 - Configure subscription
@@ -23,7 +23,7 @@ This document describes ejabberd's PubSub architecture to understand how to writ
 - Manage subscriptions
 - Manage affiliations
 
-[`XEP-0163`](http://xmpp.org/extensions/xep-0163.html) (PEP) is based on PubSub XEP-0248 (deprecated) for Collection Nodes and uses generic PubSub functionality, specified in XEP-0060.
+[`XEP-0163`](https://xmpp.org/extensions/xep-0163.html) (PEP) is based on PubSub XEP-0248 (deprecated) for Collection Nodes and uses generic PubSub functionality, specified in XEP-0060.
 
 # History
 
@@ -43,7 +43,7 @@ They handles storage and organisation of PubSub nodes. Called on get, create and
 Default implementation includes three plugins:
 - tree: (default) both internal and odbc backend.
 - virtual: no backend, no configurable nodes.
-- dag: handles [`XEP-0248`](http://xmpp.org/extensions/xep-0248.html).
+- dag: handles [`XEP-0248`](https://xmpp.org/extensions/xep-0248.html).
 
 If all nodes shares same configuration, I/O on pubsub_node can be avoided using virtual nodetree.
 
@@ -53,8 +53,8 @@ Each plugin is responsible of checks to handle all possibles cases and reply act
 The most common plugins available in default installation are:
 - flat: (default) all nodes are in a flat namespace, there are no parent/child nodes
 - hometree: all nodes are organized as in a filesystem under /home/hostname/user/...
-- pep: handles [`XEP-0163`](http://xmpp.org/extensions/xep-0163.html)
-- dag: handles [`XEP-0248`](http://xmpp.org/extensions/xep-0248.html).
+- pep: handles [`XEP-0163`](https://xmpp.org/extensions/xep-0163.html)
+- dag: handles [`XEP-0248`](https://xmpp.org/extensions/xep-0248.html).
 - public, private, ... which are derivate of flat, with different default node configuration.
 
 ### `node_flat`

@@ -7,7 +7,7 @@ menu: Internal Guide
 # Introduction
 
 `ejabberd` is a *free and open source* instant messaging server
-written in [`Erlang/OTP`](http://www.erlang.org/).
+written in [`Erlang/OTP`](https://erlang.org/).
 
 `ejabberd` is *cross-platform*, distributed, fault-tolerant, and based
 on open standards to achieve real-time communication.
@@ -882,7 +882,7 @@ Every `stanza()` element has `meta` field represented as a `map()`.
 It's useful when there is a need to attach some metadata to the stanza
 before routing it further.
 A programmer can manipulate with this field directly using
-[maps](http://erlang.org/doc/man/maps.html) module,
+[maps](https://erlang.org/doc/man/maps.html) module,
 or use `xmpp:get_meta/1,2,3`, `xmpp:set_meta/2`, `xmpp:put_meta/3`,
 `xmpp:update_meta/3` and `xmpp:del_meta/2` functions, which is almost
 always more convenient (except pattern matching).
@@ -961,7 +961,7 @@ for more details.
 ### External
 
 The external authentication script follows
-[`the erlang port driver API`](http://www.erlang.org/doc/tutorial/c_portdriver.html).
+[`the erlang port driver API`](https://erlang.org/doc/tutorial/c_portdriver.html).
 
 That script is supposed to do theses actions, in an infinite loop:
 
