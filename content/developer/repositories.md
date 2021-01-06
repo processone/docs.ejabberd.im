@@ -58,7 +58,7 @@ Erlang dependencies:
   to ejabberd.
 * [processone/stun](https://github.com/processone/stun):
   Implementation of
-  [Session Traversal Utilities for NAT](http://en.wikipedia.org/wiki/STUN). It
+  [Session Traversal Utilities for NAT](https://en.wikipedia.org/wiki/STUN). It
   is used for XMPP and SIP media capabilities, to help client discover
   their visible IP address and allow them to get in touch through
   NAT. This is basically useful for voice and file transfers.

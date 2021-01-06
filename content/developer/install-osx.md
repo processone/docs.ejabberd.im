@@ -22,7 +22,7 @@ on your system:
 # Homebrew
 
 An easy way to install some of the dependencies is by using a package
-manager, such as [Homebrew](http://brew.sh) – the Homebrew commands
+manager, such as [Homebrew](https://brew.sh/) – the Homebrew commands
 are provided here:
 
 * Git: `brew install git`
@@ -61,7 +61,7 @@ To build and install ejabberd from source code, do the following:
         make && make install
 
 Note that the previous command reference the previously installed
-dependencies from [Homebrew](http://brew.sh).
+dependencies from [Homebrew](https://brew.sh/).
 
 # Running ejabberd
 

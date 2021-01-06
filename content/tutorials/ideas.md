@@ -22,4 +22,4 @@ Volunteers ?
 * Using Lager backend to centralize log cluster storage
 
 Inspiration:
-http://stackoverflow.com/questions/35940281/store-ejabberd-cluster-log-at-same-location
+https://stackoverflow.com/questions/35940281/store-ejabberd-cluster-log-at-same-location

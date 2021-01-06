@@ -44,7 +44,7 @@ __Examples:__
       "group": "Friends",
       "subs": "both"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -73,7 +73,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/database.backup"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -106,7 +106,7 @@ __Examples:__
       "host": "myserver.com",
       "reason": "Spaming other users"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -137,7 +137,7 @@ __Examples:__
       "user": "bob",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     "Bookmarks exported"
 ~~~
@@ -170,7 +170,7 @@ __Examples:__
       "host": "myserver.com",
       "newpass": "blank"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -205,7 +205,7 @@ __Examples:__
       "option": "members_only",
       "value": "true"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -236,7 +236,7 @@ __Examples:__
       "user": "peter",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -269,7 +269,7 @@ __Examples:__
       "host": "myserver.com",
       "password": "secret"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -307,7 +307,7 @@ __Examples:__
       "passwordhash": "5ebe2294ecd0e0f08eab7690d2a6ee69",
       "hashmethod": "md5"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -333,9 +333,9 @@ __Examples:__
 ~~~ json
     POST /api/clear_cache
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -364,7 +364,7 @@ __Examples:__
     {
       "file": "/home/me/srcs/ejabberd/mod_example.erl"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -390,9 +390,9 @@ __Examples:__
 ~~~ json
     POST /api/connected_users
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     [
       "user1@example.com",
@@ -421,9 +421,9 @@ __Examples:__
 ~~~ json
     POST /api/connected_users_info
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -462,9 +462,9 @@ __Examples:__
 ~~~ json
     POST /api/connected_users_number
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
         {"num_sessions": 2}
 ~~~
@@ -493,7 +493,7 @@ __Examples:__
     {
       "host": "myexample.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "user1@myserver.com/tka",
@@ -525,7 +525,7 @@ __Examples:__
     {
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -556,7 +556,7 @@ __Examples:__
       "in": "/etc/ejabberd/ejabberd.cfg",
       "out": "/etc/ejabberd/ejabberd.yml"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -589,7 +589,7 @@ __Examples:__
       "service": "muc.example.com",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -629,7 +629,7 @@ __Examples:__
         }
       ]
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -661,7 +661,7 @@ __Examples:__
     {
       "file": "/home/ejabberd/rooms.txt"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -687,9 +687,9 @@ __Examples:__
 ~~~ json
     POST /api/delete_expired_messages
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -718,7 +718,7 @@ __Examples:__
     {
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -752,7 +752,7 @@ __Examples:__
       "type": "all",
       "days": 31
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -781,7 +781,7 @@ __Examples:__
     {
       "days": 31
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -810,7 +810,7 @@ __Examples:__
     {
       "days": 1
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -847,7 +847,7 @@ __Examples:__
     {
       "days": 30
     }
-    
+
     HTTP/1.1 200 OK
     "Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
 ~~~
@@ -886,7 +886,7 @@ __Examples:__
       "host": "myserver.com",
       "days": 30
     }
-    
+
     HTTP/1.1 200 OK
     "Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
 ~~~
@@ -921,7 +921,7 @@ __Examples:__
       "user": "user2",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -952,7 +952,7 @@ __Examples:__
       "name": "room1",
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -984,7 +984,7 @@ __Examples:__
     {
       "file": "/home/ejabberd/rooms.txt"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1013,7 +1013,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/database.txt"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -1042,7 +1042,7 @@ __Examples:__
     {
       "out": "/tmp/ejabberd.yml"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1073,7 +1073,7 @@ __Examples:__
       "file": "/var/lib/ejabberd/table-muc-registered.txt",
       "table": "muc_registered"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -1107,7 +1107,7 @@ __Examples:__
       "host": "example.com",
       "file": "/var/lib/ejabberd/example.com.sql"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1136,7 +1136,7 @@ __Examples:__
     {
       "dir": "/var/lib/ejabberd/"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1167,7 +1167,7 @@ __Examples:__
       "dir": "/var/lib/ejabberd/",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1193,9 +1193,9 @@ __Examples:__
 ~~~ json
     POST /api/gc
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1228,7 +1228,7 @@ __Examples:__
       "regexp": "mod_admin",
       "examples": "java,json"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1261,7 +1261,7 @@ __Examples:__
       "regexp": "mod_admin",
       "examples": "java,json"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1287,9 +1287,9 @@ __Examples:__
 ~~~ json
     POST /api/get_cookie
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
         {"cookie": "MWTAVMODFELNLSMYXPPD"}
 ~~~
@@ -1323,7 +1323,7 @@ __Examples:__
       "user": "user1",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     {
       "timestamp": "2017-06-30T14:32:16.060684Z",
@@ -1352,9 +1352,9 @@ __Examples:__
 ~~~ json
     POST /api/get_loglevel
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
         {"levelatom": "warning"}
 ~~~
@@ -1385,7 +1385,7 @@ __Examples:__
       "user": "aaaaa",
       "server": "bbbbb"
     }
-    
+
     HTTP/1.1 200 OK
         {"value": 5}
 ~~~
@@ -1428,7 +1428,7 @@ __Examples:__
       "user": "peter",
       "host": "myexample.com"
     }
-    
+
     HTTP/1.1 200 OK
     {
       "jid": "user1@myserver.com/tka",
@@ -1465,7 +1465,7 @@ __Examples:__
       "service": "muc.example.com",
       "jid": "user1@example.com"
     }
-    
+
     HTTP/1.1 200 OK
         {"affiliation": "member"}
 ~~~
@@ -1496,7 +1496,7 @@ __Examples:__
       "name": "room1",
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -1534,7 +1534,7 @@ __Examples:__
       "name": "room1",
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -1571,7 +1571,7 @@ __Examples:__
       "name": "room1",
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
         {"occupants": 7}
 ~~~
@@ -1602,7 +1602,7 @@ __Examples:__
       "name": "room1",
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -1638,7 +1638,7 @@ __Examples:__
       "user": "aaaaa",
       "server": "bbbbb"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -1684,7 +1684,7 @@ __Examples:__
       "name": "room1",
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "user2@example.com",
@@ -1718,7 +1718,7 @@ __Examples:__
       "user": "tom",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "room1@muc.example.com",
@@ -1743,7 +1743,7 @@ Some vcard field names in get/set_vcard are:
 * TITLE        - Work: Position
 * ROLE         - Work: Role
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -1765,7 +1765,7 @@ __Examples:__
       "host": "myserver.com",
       "name": "NICKNAME"
     }
-    
+
     HTTP/1.1 200 OK
         {"content": "User 1"}
 ~~~
@@ -1794,7 +1794,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -1818,7 +1818,7 @@ __Examples:__
       "name": "N",
       "subname": "FAMILY"
     }
-    
+
     HTTP/1.1 200 OK
         {"content": "Schubert"}
 ~~~
@@ -1847,7 +1847,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -1871,7 +1871,7 @@ __Examples:__
       "name": "ccccc",
       "subname": "ddddd"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "aaaaa",
@@ -1903,7 +1903,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/jabberd14/"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -1932,7 +1932,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/jabberd14.spool"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -1961,7 +1961,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/example.com.xml"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -1993,7 +1993,7 @@ __Examples:__
     {
       "dir": "/var/lib/prosody/datadump/"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2019,9 +2019,9 @@ __Examples:__
 ~~~ json
     POST /api/incoming_s2s_number
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
         {"s2s_incoming": 1}
 ~~~
@@ -2050,7 +2050,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/database.fallback"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -2082,7 +2082,7 @@ __Examples:__
     {
       "node": "ejabberd1@machine7"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2117,7 +2117,7 @@ __Examples:__
       "resource": "Psi",
       "reason": "Stuck connection"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2148,7 +2148,7 @@ __Examples:__
       "user": "user1",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
         {"num_resources": 3}
 ~~~
@@ -2180,7 +2180,7 @@ __Examples:__
     {
       "node": "ejabberd1@machine8"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2206,9 +2206,9 @@ __Examples:__
 ~~~ json
     POST /api/list_cluster
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     [
       "ejabberd1@machine7",
@@ -2240,7 +2240,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/database.txt"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -2266,9 +2266,9 @@ __Examples:__
 ~~~ json
     POST /api/man
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -2303,7 +2303,7 @@ __Examples:__
       "oldbackup": "/var/lib/ejabberd/old.backup",
       "newbackup": "/var/lib/ejabberd/new.backup"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -2329,9 +2329,9 @@ __Examples:__
 ~~~ json
     POST /api/mnesia_info
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
         {"res": "aaaaa"}
 ~~~
@@ -2360,7 +2360,7 @@ __Examples:__
     {
       "table": "roster"
     }
-    
+
     HTTP/1.1 200 OK
         {"res": "aaaaa"}
 ~~~
@@ -2389,7 +2389,7 @@ __Examples:__
     {
       "module": "mod_rest"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2418,7 +2418,7 @@ __Examples:__
     {
       "module": "mod_rest"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2447,7 +2447,7 @@ __Examples:__
     {
       "module": "mod_rest"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2479,7 +2479,7 @@ __Examples:__
     {
       "module": "mod_rest"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2505,9 +2505,9 @@ __Examples:__
 ~~~ json
     POST /api/modules_available
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     {
       "mod_cron": "Execute scheduled commands",
@@ -2536,9 +2536,9 @@ __Examples:__
 ~~~ json
     POST /api/modules_installed
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     {
       "mod_cron": "Execute scheduled commands",
@@ -2570,9 +2570,9 @@ __Examples:__
 ~~~ json
     POST /api/modules_update_specs
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2601,7 +2601,7 @@ __Examples:__
     {
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "room1@muc.example.com",
@@ -2635,7 +2635,7 @@ __Examples:__
       "service": "muc.example.com",
       "regex": "^prefix"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -2679,7 +2679,7 @@ __Examples:__
       "jid": "tim@example.org",
       "service": "muc.example.org"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2710,7 +2710,7 @@ __Examples:__
       "jid": "tim@example.org",
       "service": "muc.example.org"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -2741,7 +2741,7 @@ __Examples:__
       "user": "peter",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
         {"resources": 5}
 ~~~
@@ -2774,7 +2774,7 @@ __Examples:__
       "client_name": "bbbbb",
       "redirect_uri": "ccccc"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -2807,7 +2807,7 @@ __Examples:__
       "client_name": "bbbbb",
       "secret": "ccccc"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -2840,7 +2840,7 @@ __Examples:__
       "ttl": 3600,
       "scopes": "connected_users_number;muc_online_rooms"
     }
-    
+
     HTTP/1.1 200 OK
     {
       "token": "aaaaa",
@@ -2873,9 +2873,9 @@ __Examples:__
 ~~~ json
     POST /api/oauth_list_tokens
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -2917,7 +2917,7 @@ __Examples:__
     {
       "client_id": "aaaaa"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -2946,7 +2946,7 @@ __Examples:__
     {
       "token": "aaaaa"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -2985,9 +2985,9 @@ __Examples:__
 ~~~ json
     POST /api/outgoing_s2s_number
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
         {"s2s_outgoing": 1}
 ~~~
@@ -3020,7 +3020,7 @@ __Examples:__
       "host": "myserver.com",
       "xmlquery": "<query xmlns='jabber:iq:privacy'>..."
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3055,7 +3055,7 @@ __Examples:__
       "element": "storage",
       "ns": "storage:rosternotes"
     }
-    
+
     HTTP/1.1 200 OK
         {"res": "aaaaa"}
 ~~~
@@ -3088,7 +3088,7 @@ __Examples:__
       "host": "myserver.com",
       "element": "<storage xmlns='storage:rosternotes'/>"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3109,7 +3109,7 @@ Explanation of each argument:
  - users: the JIDs of the local user
  - contacts: the JIDs of the contact in the roster
 
- *** Mnesia: 
+ *** Mnesia:
 
 Allowed values in the arguments:
   ACTION = list | delete
@@ -3161,7 +3161,7 @@ __Examples:__
       "users": "ddddd",
       "contacts": "eeeee"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -3201,7 +3201,7 @@ __Examples:__
       "host": "myserver.com",
       "group": "Everybody"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3241,7 +3241,7 @@ __Examples:__
       "user": "user1",
       "host": "localhost"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3275,7 +3275,7 @@ __Examples:__
     {
       "file": "/home/ejabberd/roster.txt"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3308,7 +3308,7 @@ __Examples:__
       "host": "example.com",
       "password": "SomEPass44"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -3337,7 +3337,7 @@ __Examples:__
     {
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "user1",
@@ -3366,9 +3366,9 @@ __Examples:__
 ~~~ json
     POST /api/registered_vhosts
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     [
       "example.com",
@@ -3397,9 +3397,9 @@ __Examples:__
 ~~~ json
     POST /api/reload_config
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3430,7 +3430,7 @@ __Examples:__
       "user": "bob",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     "MAM archive removed"
 ~~~
@@ -3463,7 +3463,7 @@ __Examples:__
       "host": "example.com",
       "with": "anne@example.com"
     }
-    
+
     HTTP/1.1 200 OK
     "MAM archive removed"
 ~~~
@@ -3489,9 +3489,9 @@ __Examples:__
 ~~~ json
     POST /api/reopen_log
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3524,7 +3524,7 @@ __Examples:__
       "host": "myserver.com",
       "num": 2
     }
-    
+
     HTTP/1.1 200 OK
         {"resource": "Psi"}
 ~~~
@@ -3550,9 +3550,9 @@ __Examples:__
 ~~~ json
     POST /api/restart
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3586,7 +3586,7 @@ __Examples:__
       "host": "myserver.com",
       "module": "mod_admin_extra"
     }
-    
+
     HTTP/1.1 200 OK
         {"res": 0}
 ~~~
@@ -3615,7 +3615,7 @@ __Examples:__
     {
       "file": "/var/lib/ejabberd/database.backup"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -3647,7 +3647,7 @@ __Examples:__
     {
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "room1@muc.example.com",
@@ -3682,7 +3682,7 @@ __Examples:__
     {
       "service": "muc.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "room1@muc.example.com",
@@ -3719,7 +3719,7 @@ __Examples:__
       "service": "muc.example.com",
       "days": 31
     }
-    
+
     HTTP/1.1 200 OK
     [
       "room1@muc.example.com",
@@ -3756,7 +3756,7 @@ __Examples:__
       "service": "muc.example.com",
       "days": 31
     }
-    
+
     HTTP/1.1 200 OK
     [
       "room1@muc.example.com",
@@ -3785,9 +3785,9 @@ __Examples:__
 ~~~ json
     POST /api/rotate_log
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3803,7 +3803,7 @@ Send a direct invitation to several destinations
 
 Since ejabberd 20.10, this command is asynchronous: the API call may return before the server has send all the invitations.
 
-Password and Message can also be: none. Users JIDs are separated with : 
+Password and Message can also be: none. Users JIDs are separated with :
 
 __Arguments:__
 
@@ -3829,7 +3829,7 @@ __Examples:__
       "reason": "Check this out!",
       "users": "user2@localhost:user3@example.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3869,7 +3869,7 @@ __Examples:__
       "subject": "Restart",
       "body": "In 5 minutes"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3902,7 +3902,7 @@ __Examples:__
       "to": "user1@localhost",
       "stanza": "<message><ext attr='value'/></message>"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3937,7 +3937,7 @@ __Examples:__
       "resource": "bot",
       "stanza": "<message to='user1@localhost'><ext attr='value'/></message>"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -3975,7 +3975,7 @@ __Examples:__
       "timestamp": 1500045311,
       "status": "GoSleeping"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4004,7 +4004,7 @@ __Examples:__
     {
       "loglevel": "debug"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4036,7 +4036,7 @@ __Examples:__
     {
       "nodename": "ejabberd@machine7"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -4069,7 +4069,7 @@ __Examples:__
       "host": "myserver.com",
       "nickname": "User 1"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4110,7 +4110,7 @@ __Examples:__
       "status": "BB",
       "priority": "7"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4145,7 +4145,7 @@ __Examples:__
       "jid": "user2@example.com",
       "affiliation": "member"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4167,7 +4167,7 @@ Some vcard field names in get/set_vcard are:
 * TITLE        - Work: Position
 * ROLE         - Work: Role
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -4191,7 +4191,7 @@ __Examples:__
       "name": "URL",
       "content": "www.example.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4220,7 +4220,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -4246,7 +4246,7 @@ __Examples:__
       "subname": "NUMBER",
       "content": "123456"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4275,7 +4275,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at http://www.xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
 
 __Arguments:__
 
@@ -4304,7 +4304,7 @@ __Examples:__
         "fffff"
       ]
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4348,7 +4348,7 @@ __Examples:__
       "description": "Third group",
       "display": "group1\\ngroup2"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4379,7 +4379,7 @@ __Examples:__
       "group": "group3",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4410,7 +4410,7 @@ __Examples:__
       "group": "group3",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -4450,7 +4450,7 @@ __Examples:__
       "group": "group3",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "user1@localhost",
@@ -4482,7 +4482,7 @@ __Examples:__
     {
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "group1",
@@ -4520,7 +4520,7 @@ __Examples:__
       "group": "group3",
       "grouphost": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4555,7 +4555,7 @@ __Examples:__
       "group": "group3",
       "grouphost": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4584,7 +4584,7 @@ __Examples:__
     {
       "name": "registeredusers"
     }
-    
+
     HTTP/1.1 200 OK
         {"stat": 6}
 ~~~
@@ -4615,7 +4615,7 @@ __Examples:__
       "name": "registeredusers",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
         {"stat": 6}
 ~~~
@@ -4641,9 +4641,9 @@ __Examples:__
 ~~~ json
     POST /api/status
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     "The node ejabberd@localhost is started with status: startedejabberd X.X is running in that node"
 ~~~
@@ -4672,7 +4672,7 @@ __Examples:__
     {
       "status": "dnd"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -4711,7 +4711,7 @@ __Examples:__
       "host": "myserver.com",
       "status": "dnd"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -4748,7 +4748,7 @@ __Examples:__
     {
       "status": "dnd"
     }
-    
+
     HTTP/1.1 200 OK
         {"users": 23}
 ~~~
@@ -4779,7 +4779,7 @@ __Examples:__
       "host": "myserver.com",
       "status": "dnd"
     }
-    
+
     HTTP/1.1 200 OK
         {"users": 23}
 ~~~
@@ -4805,9 +4805,9 @@ __Examples:__
 ~~~ json
     POST /api/stop
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4821,7 +4821,7 @@ __Examples:__
 Inform users and rooms, wait, and stop the server
 
 
-Provide the delay in seconds, and the announcement quoted, for example: 
+Provide the delay in seconds, and the announcement quoted, for example:
 ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
 
 __Arguments:__
@@ -4842,7 +4842,7 @@ __Examples:__
       "delay": 60,
       "announcement": "Server will stop now."
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4868,9 +4868,9 @@ __Examples:__
 ~~~ json
     POST /api/stop_s2s_connections
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -4905,7 +4905,7 @@ __Examples:__
       "room": "room1@conference.localhost",
       "nodes": "urn:xmpp:mucsub:nodes:messages,urn:xmpp:mucsub:nodes:affiliations"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "urn:xmpp:mucsub:nodes:messages",
@@ -4940,7 +4940,7 @@ __Examples:__
     {
       "address": "::FFFF:127.0.0.1/128"
     }
-    
+
     HTTP/1.1 200 OK
         {"unbanned": 3}
 ~~~
@@ -4971,7 +4971,7 @@ __Examples:__
       "user": "bob",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -5002,7 +5002,7 @@ __Examples:__
       "user": "tom@localhost",
       "room": "room1@conference.localhost"
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -5031,7 +5031,7 @@ __Examples:__
     {
       "module": "mod_vcard"
     }
-    
+
     HTTP/1.1 200 OK
     "Success"
 ~~~
@@ -5057,9 +5057,9 @@ __Examples:__
 ~~~ json
     POST /api/update_list
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     [
       "mod_configure",
@@ -5088,9 +5088,9 @@ __Examples:__
 ~~~ json
     POST /api/update_sql
     {
-      
+
     }
-    
+
     HTTP/1.1 200 OK
     ""
 ~~~
@@ -5121,7 +5121,7 @@ __Examples:__
       "user": "user1",
       "host": "example.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       "tka1",
@@ -5156,7 +5156,7 @@ __Examples:__
       "user": "peter",
       "host": "myserver.com"
     }
-    
+
     HTTP/1.1 200 OK
     [
       {
@@ -5172,5 +5172,3 @@ __Examples:__
       }
     ]
 ~~~
-
-

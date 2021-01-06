@@ -6,7 +6,7 @@ This repository holds the source code of the ejabberd documentation website, ava
 
 If you want to contribute to this ejabberd documentation, here are some helpful guidelines regarding the syntax:
 
-- use Markdown, specifically the [kramdown flavour](http://kramdown.gettalong.org/syntax.html)
+- use Markdown, specifically the [kramdown flavour](https://kramdown.gettalong.org/syntax.html)
 
 - when creating code blocks, use `~~~ language` fencing, where `language` represents what's in the code block
 

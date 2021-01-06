@@ -232,14 +232,14 @@ The commands included in ejabberd by default are:
 	`install_fallback`.
 
 **`import_piefxis, export_piefxis, export_piefxis_host`**:   These options can be used to migrate accounts using
-	[`XEP-0227`](http://xmpp.org/extensions/xep-0227.html) formatted XML
+	[`XEP-0227`](https://xmpp.org/extensions/xep-0227.html) formatted XML
 	files from/to other Jabber/XMPP servers or move users of a vhost to
 	another ejabberd installation.
 
 **`import_file, import_dir`**:   These options can be used to migrate accounts using jabberd1.4
 	formatted XML files. from other Jabber/XMPP servers There exist
 	tutorials to
-	[`migrate from other software to ejabberd`](http://www.ejabberd.im/migrate-to-ejabberd).
+	[`migrate from other software to ejabberd`](https://ejabberd.im/migrate-to-ejabberd).
 
 **`import_prosody import_dir`**:  Import data from Prosody server. `import_dir` is typically `/var/lib/prosody/`.
    Currently the following data is imported: vcards, accounts, rosters, private data
@@ -499,4 +499,4 @@ NEWFILE=/tmp/new.backup
 	accounts, rosters... After you finish, remember to delete the
 	temporary backup files from public directories.
 
-[1]:	http://xmpp.org/extensions/xep-0050.html
+[1]:	https://xmpp.org/extensions/xep-0050.html

@@ -19,4 +19,4 @@ error occurs, it means that you have reached this limit.
 ## Solution
 
 Read the
-[section about ERL_MAX_ETS_TABLES on the Performance Tuning page](https://www.ejabberd.im/tuning#erl_max_ets_tables).
+[section about ERL_MAX_ETS_TABLES on the Performance Tuning page](https://ejabberd.im/tuning#erl_max_ets_tables).

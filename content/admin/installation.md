@@ -113,7 +113,7 @@ $ sudo spctl --master-enable
 
 ### Using Homebrew
 
-[Homebrew](https://brew.sh) is a package manager for macOS that aims to port the many Unix & Linux software that is not easily available or compatible. Homebrew installation is simple and the instruction is available on its website.
+[Homebrew](https://brew.sh/) is a package manager for macOS that aims to port the many Unix & Linux software that is not easily available or compatible. Homebrew installation is simple and the instruction is available on its website.
 
 1. Once you have Homebrew installed, open Terminal. Run `brew install ejabberd`. This should install the latest or at most the one-before-latest version of ejabberd. The installation directory should be reported at the end of this process, but usually the main executable is stored at `/usr/local/sbin/ejabberdctl`.
 2. Start your ejabberd by running `/usr/local/sbin/ejabberdctl live`. This interactive mode prints useful messages in the Terminal. The default domain used by Homebrew's ejabberd is `localhost`.
@@ -137,14 +137,14 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   Libyaml 0.1.4 or higher
 -   Erlang/OTP 19.3 or higher. We recommend using Erlang OTP 21.2.
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
--   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`](http://xmpp.org/extensions/xep-0138.html)). Optional.
+-   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`](https://xmpp.org/extensions/xep-0138.html)). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See [PAM Authentication](/admin/configuration/authentication/#pam-authentication) section.
 -   ImageMagick’s Convert program and Ghostscript fonts. Optional. For CAPTCHA challenges. See section [CAPTCHA](/admin/configuration/basic/#captcha).
 
 ## Downloading
 
 Released versions of ejabberd are available on ProcessOne
-[ejabberd official download page](http://www.process-one.net/en/ejabberd/downloads).
+[ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads).
 
 Alternatively, the latest development source code can be retrieved
 from the Git repository using the commands:
@@ -307,7 +307,7 @@ The command to compile ejabberd in BSD systems is `gmake`.
 ### macOS
 
 If compiling from sources on macOS, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
-The best approach is to use [Homebrew](http://brew.sh) to install your dependencies, then
+The best approach is to use [Homebrew](https://brew.sh/) to install your dependencies, then
 exports your custom path to let configure and make be aware of them.
 
 ``` bash
@@ -468,7 +468,7 @@ enter the ejabberd Web Admin. Here are the steps to create it:
 
 By default, ejabberd uses its own database to store runtime data. In many cases
 you may need to let ejabberd use an external SQL database.
-Supported SQL backends are MySQL, PostgreSQL, Sqlite, MSSQL.
+Supported SQL backends are MySQL, PostgreSQL, SQlite, MS SQL.
 
 When using external database backend, ejabberd does not create schema and tables
 by itself. You must create the schema before you run ejabberd.
@@ -481,4 +481,3 @@ by itself. You must create the schema before you run ejabberd.
 
 See [ejabberd SQL Database Schema](/developer/sql-schema/)
 for details on database schemas.
-

@@ -46,7 +46,7 @@ The password are hashed if you use SCRAM authentication. In that case the next f
 ## Table `rosterusers`
 
 This is a quite complex table, used as a store for a quite complex protocol that is the one defined to manage
-rosters and subscriptions on [rfc6121](http://tools.ietf.org/html/rfc6121).  
+rosters and subscriptions on [rfc6121](https://tools.ietf.org/html/rfc6121).  
 
 In the common case of two users adding each other as contacts, entries in the roster table follows a series of steps
  as they moves from a subscription request to the final approval and bi-directional subscription being established. 
@@ -54,7 +54,7 @@ This process can be initiated either by the user, or by the (possible remote) pe
 where the user, or the contact, might not be online at the moment of the subscription request is made.
 
 Steps are further complicated by the fact that entries in the roster aren't required to have corresponding subscriptions. 
-For details of the meaning of the different fields, refer to [the protocol itself](http://tools.ietf.org/html/rfc6121#section-2), as these are mostly a direct mapping of it. 
+For details of the meaning of the different fields, refer to [the protocol itself](https://tools.ietf.org/html/rfc6121#section-2), as these are mostly a direct mapping of it. 
  
 Note:
 If you manage users contacts from outside the roster workflow of XMPP (for example your site backends perform the linking between
@@ -109,7 +109,7 @@ The table is used to store privacy rules.
 
 The table is a direct translation of the XMPP packet used to set
 privacy lists. For more details, please read
-[XEP-0016: Privacy Lists, Syntax and Semantics](http://xmpp.org/extensions/xep-0016.html#protocol-syntax). Here
+[XEP-0016: Privacy Lists, Syntax and Semantics](https://xmpp.org/extensions/xep-0016.html#protocol-syntax). Here
 is an example packet coming from privacy list specification:
 
     

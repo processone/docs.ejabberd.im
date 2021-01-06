@@ -1441,7 +1441,7 @@ to potential race conditions.
 *1..65535*  
 
 The port where the SQL server is accepting connections. The default is
-*3306* for MySQL, *5432* for PostgreSQL and *1433* for MSSQL. The option
+*3306* for MySQL, *5432* for PostgreSQL and *1433* for MS SQL. The option
 has no effect for SQLite.
 
 ## sql\_prepared\_statements

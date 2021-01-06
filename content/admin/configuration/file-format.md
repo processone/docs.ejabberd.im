@@ -13,7 +13,7 @@ extension. This helps ejabberd to differentiate between the new and
 legacy file formats (see
 section [Legacy Configuration File](#legacy-configuration-file)).
 
-The configuration file is written in [`YAML`](http://en.wikipedia.org/wiki/YAML).
+The configuration file is written in [`YAML`](https://en.wikipedia.org/wiki/YAML).
 
 Note that `ejabberd` never edits the configuration file. If you are
 changing parameter from web admin interface, you will need to apply

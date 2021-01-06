@@ -104,9 +104,9 @@ Options:
 ## ejabberd_service
 
 Interacts with an
-	[`external component`](http://www.ejabberd.im/tutorials-transports)
+	[`external component`](https://ejabberd.im/tutorials-transports)
 	(as defined in the Jabber Component Protocol
-	([`XEP-0114`](http://xmpp.org/extensions/xep-0114.html)).
+	([`XEP-0114`](https://xmpp.org/extensions/xep-0114.html)).
 
 Options:
 [access](/archive/20_04/listen-options/#access),
@@ -129,7 +129,7 @@ Options:
 ## ejabberd_sip
 
 Handles SIP requests as defined in
-	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).
+	[`RFC 3261`](https://tools.ietf.org/html/rfc3261).
 	
 For details please check the
 [ejabberd_sip](/archive/20_04/listen/#ejabberd-sip-1)
@@ -142,8 +142,8 @@ General listener options:
 ## ejabberd_stun
 
 Handles STUN/TURN requests as defined in
-	[`RFC 5389`](http://tools.ietf.org/html/rfc5389) and
-	[`RFC 5766`](http://tools.ietf.org/html/rfc5766).
+	[`RFC 5389`](https://tools.ietf.org/html/rfc5389) and
+	[`RFC 5766`](https://tools.ietf.org/html/rfc5766).
 
 For the specific module options, please check the
 [ejabberd_stun](/archive/20_04/listen/#ejabberd-stun-1) section:
@@ -209,10 +209,10 @@ Listen options:
 # ejabberd_stun
 
 `ejabberd` is able to act as a stand-alone STUN/TURN server
-([`RFC 5389`](http://tools.ietf.ml/rfc5389)/[`RFC 5766`](http://tools.ietf.org/html/rfc5766).
+([`RFC 5389`](https://tools.ietf.org/html/rfc5389)/[`RFC 5766`](https://tools.ietf.org/html/rfc5766).
 In that role `ejabberd` helps clients with ICE
-([`RFC 5245`](http://tools.ietf.org/html/rfc5245) or Jingle ICE
-([`XEP-0176`](http://xmpp.org/extensions/xep-0176.html) support to
+([`RFC 5245`](https://tools.ietf.org/html/rfc5245) or Jingle ICE
+([`XEP-0176`](https://xmpp.org/extensions/xep-0176.html) support to
 discover their external addresses and ports and to relay media traffic
 when it is impossible to establish direct peer-to-peer connection.
 
@@ -293,10 +293,10 @@ enabled if TURN is enabled. Here, only UDP section is shown:
 You also need to configure DNS SRV records properly so clients can
 easily discover a STUN/TURN server serving your XMPP domain. Refer to
 section
-[`DNS Discovery of a Server`](http://tools.ietf.org/html/rfc5389#section-9)
-of [`RFC 5389`](http://tools.ietf.org/html/rfc5389) and section
-[`Creating an Allocation`](http://tools.ietf.org/html/rfc5766#section-6)
-of [`RFC 5766`](http://tools.ietf.org/html/rfc5766) for details.
+[`DNS Discovery of a Server`](https://tools.ietf.org/html/rfc5389#section-9)
+of [`RFC 5389`](https://tools.ietf.org/html/rfc5389) and section
+[`Creating an Allocation`](https://tools.ietf.org/html/rfc5766#section-6)
+of [`RFC 5766`](https://tools.ietf.org/html/rfc5766) for details.
 
 Example DNS SRV configuration for STUN only:
 
@@ -327,7 +327,7 @@ must be specified as well, otherwise incoming TLS connections
 would fail.
 
 Example configuration with standard ports (as per
-[`RFC 3261`](http://tools.ietf.org/html/rfc3261)):
+[`RFC 3261`](https://tools.ietf.org/html/rfc3261)):
 
 
 	listen:
@@ -347,13 +347,13 @@ Example configuration with standard ports (as per
 	  ...
 
 Note that there is no StartTLS support in SIP and
-[`SNI`](http://en.wikipedia.org/wiki/Server_Name_Indication) support is
+[`SNI`](https://en.wikipedia.org/wiki/Server_Name_Indication) support is
 somewhat tricky, so for TLS you have to configure different virtual
 hosts on different ports if you have different certificate files for
 them.
 
 Next you need to configure DNS SIP records for your virtual domains.
-Refer to [`RFC 3263`](http://tools.ietf.org/html/rfc3263) for the
+Refer to [`RFC 3263`](https://tools.ietf.org/html/rfc3263) for the
 detailed explanation. Simply put, you should add NAPTR and SRV records
 for your domains. Skip NAPTR configuration if your DNS provider doesn't
 support this type of records. It’s not fatal, however, highly
@@ -366,7 +366,7 @@ Example configuration of NAPTR records:
 	example.com IN NAPTR 30  0 "s" "SIP+D2U" "" _sip._udp.example.com.
 
 Example configuration of SRV records with standard ports (as per
-[`RFC 3261`](http://tools.ietf.org/html/rfc3261):
+[`RFC 3261`](https://tools.ietf.org/html/rfc3261):
 
 	_sip._udp   IN SRV  0 0 5060 sip.example.com.
 	_sip._tcp   IN SRV  0 0 5060 sip.example.com.
@@ -381,7 +381,7 @@ password with SCRAM.
 # ejabberd_http_ws
 
 This module enables XMPP communication over Websocket connection as
-described in [`RFC 7395`](http://tools.ietf.org/html/rfc7395).
+described in [`RFC 7395`](https://tools.ietf.org/html/rfc7395).
 
 ## Enabling Websocket support
 
@@ -489,7 +489,7 @@ listener, see the old document for reference and example configuration:
 [Listening Module](/admin/configuration/old/#listening-module).
 
 Just for reference, there's also the old
-[`ejabberd_xmlrpc documentation`](http://www.ejabberd.im/ejabberd_xmlrpc).
+[`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc).
 
 # Examples
 
@@ -593,27 +593,27 @@ In this example, the following configuration defines that:
 -   All users except for the administrators have a traffic of limit
 	1,000Bytes/second
 
--   The [`AIM transport`](http://www.ejabberd.im/pyaimt)
+-   The [`AIM transport`](https://ejabberd.im/pyaimt)
 	`aim.example.org` is connected to port 5233 on localhost IP
 	addresses (127.0.0.1 and ::1) with password ‘`aimsecret`’.
 
 -   The ICQ transport JIT (`icq.example.org` and `sms.example.org`) is
 	connected to port 5234 with password ‘`jitsecret`’.
 
--   The [`MSN transport`](http://www.ejabberd.im/pymsnt)
+-   The [`MSN transport`](https://ejabberd.im/pymsnt)
 	`msn.example.org` is connected to port 5235 with password
 	‘`msnsecret`’.
 
--   The [`Yahoo! transport`](http://www.ejabberd.im/yahoo-transport-2)
+-   The [`Yahoo! transport`](https://ejabberd.im/yahoo-transport-2)
 	`yahoo.example.org` is connected to port 5236 with password
 	‘`yahoosecret`’.
 
 -   The
-	[`Gadu-Gadu transport`](http://www.ejabberd.im/jabber-gg-transport)
+	[`Gadu-Gadu transport`](https://ejabberd.im/jabber-gg-transport)
 	`gg.example.org` is connected to port 5237 with password
 	‘`ggsecret`’.
 
--   The [`Jabber Mail Component`](http://www.ejabberd.im/jmc)
+-   The [`Jabber Mail Component`](https://ejabberd.im/jmc)
 	`jmc.example.org` is connected to port 5238 with password
 	‘`jmcsecret`’.
 

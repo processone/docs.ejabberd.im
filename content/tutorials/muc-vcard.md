@@ -29,7 +29,7 @@ proper image base64 encoding in your code.
 
 To set the MUC vCard, you can send a vcard-temp set request, as
 defined in
-[XEP-0054: vcard-temp](http://xmpp.org/extensions/xep-0054.html), but
+[XEP-0054: vcard-temp](https://xmpp.org/extensions/xep-0054.html), but
 directly addressed to your MUC room. For example, assuming my room id
 is `test@conference.localhost`:
 

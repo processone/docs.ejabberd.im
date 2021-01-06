@@ -117,4 +117,4 @@ the proper user to read, write and execute those files and directories.
 
 **`Erlang cookie file: /var/lib/ejabberd/.erlang.cookie`**:   See section [Erlang Cookie](#erlang-cookie).
 
-[1]:	http://www.erlang.org/doc/man/epmd.html
+[1]:	https://erlang.org/doc/man/epmd.html
