@@ -1616,7 +1616,7 @@ mod\_multicast
 --------------
 
 This module implements a service for [XEP-0033: Extended Stanza
-Addressing](https://xmpp.org/extensions/xep-0054.html).
+Addressing](https://xmpp.org/extensions/xep-0033.html).
 
 __Available options:__
 
