@@ -132,7 +132,7 @@ Options:
 ## ejabberd_sip
 
 Handles SIP requests as defined in
-	[`RFC 3261`](http://tools.ietf.org/html/rfc3261).
+	[`RFC 3261`](https://tools.ietf.org/html/rfc3261).
 
 For details please check the
 [ejabberd_sip](/admin/configuration/listen/#ejabberd-sip-1)
