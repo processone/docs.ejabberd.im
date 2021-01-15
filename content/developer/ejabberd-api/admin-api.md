@@ -2752,7 +2752,7 @@ __Examples:__
 ## oauth_add_client_implicit
 
 
-Add OAUTH client_id with implicit grant type
+Add OAuth client_id with implicit grant type
 
 __Arguments:__
 
@@ -2785,7 +2785,7 @@ __Examples:__
 ## oauth_add_client_password
 
 
-Add OAUTH client_id with password grant type
+Add OAuth client_id with password grant type
 
 __Arguments:__
 
@@ -2818,11 +2818,11 @@ __Examples:__
 ## oauth_issue_token
 
 
-Issue an oauth token for the given jid
+Issue an OAuth token for the given JID
 
 __Arguments:__
 
-- *jid* :: string : Jid for which issue token
+- *jid* :: string : JID for which issue token
 - *ttl* :: integer : Time to live of generated token in seconds
 - *scopes* :: string : List of scopes to allow, separated by ';'
 
@@ -2855,10 +2855,10 @@ __Examples:__
 ## oauth_list_tokens
 
 
-List oauth tokens, user, scope, and seconds to expire (only Mnesia)
+List OAuth tokens, user, scope, and seconds to expire (only Mnesia)
 
 
-List oauth tokens, their user and scope, and how many seconds remain until expirity
+List OAuth tokens, their user and scope, and how many seconds remain until expirity
 
 __Arguments:__
 
@@ -2899,7 +2899,7 @@ __Examples:__
 ## oauth_remove_client
 
 
-Remove OAUTH client_id
+Remove OAuth client_id
 
 __Arguments:__
 
@@ -3109,7 +3109,7 @@ Explanation of each argument:
  - users: the JIDs of the local user
  - contacts: the JIDs of the contact in the roster
 
- *** Mnesia:
+ *** Mnesia: 
 
 Allowed values in the arguments:
   ACTION = list | delete
@@ -3803,7 +3803,7 @@ Send a direct invitation to several destinations
 
 Since ejabberd 20.10, this command is asynchronous: the API call may return before the server has send all the invitations.
 
-Password and Message can also be: none. Users JIDs are separated with :
+Password and Message can also be: none. Users JIDs are separated with : 
 
 __Arguments:__
 
@@ -4821,7 +4821,7 @@ __Examples:__
 Inform users and rooms, wait, and stop the server
 
 
-Provide the delay in seconds, and the announcement quoted, for example:
+Provide the delay in seconds, and the announcement quoted, for example: 
 ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
 
 __Arguments:__

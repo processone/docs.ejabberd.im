@@ -2420,7 +2420,7 @@ mod\_register
 
 This module adds support for [XEP-0077: In-Band
 Registration](https://xmpp.org/extensions/xep-0077.html). This protocol
-enables end users to use a XMPP client to:
+enables end users to use an XMPP client to:
 
 -   Register a new account on the server.
 
@@ -2488,15 +2488,15 @@ This module provides a web page where users can:
 
 -   Change the password from an existing account on the server.
 
--   Delete an existing account on the server.
+-   Unregister an existing account on the server.
 
 This module supports CAPTCHA image to register a new account. To enable
 this feature, configure the options *captcha\_cmd* and *captcha\_url*,
-which are documented in the section with top-level options.
+documented in the section with top-level options.
 
-As an example usage, the users of the host *example.org* can visit the
-page: *https://example.org:5281/register/* It is important to include
-the last / character in the URL, otherwise the subpages URL will be
+As a usage example, users of the host *example.org* can visit the page:
+*https://example.org:5281/register/* It is important to include the last
+"/" character in the URL, otherwise the URLs for subpages will be
 incorrect.
 
 The module depends on *mod\_register* where all the configuration is
