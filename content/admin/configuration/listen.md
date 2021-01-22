@@ -234,8 +234,8 @@ The specific configurable options are:
 
 **`turn_blacklist: String | [String,...]`**:   Specify one or more IP addresses and/or subnet
 	addresses/masks. The TURN server will refuse to relay traffic from/to
-	blacklisted IP addresses. By default, Teredo and 6to4 addresses are
-	blacklisted, as mandated by RFC 6156 (section 9.1).
+	blacklisted IP addresses. By default, loopback addresses (`127.0.0.0/8`
+	and `::1/128`) are blacklisted.
 
 **`turn_ipv4_address: String`**:   The IPv4 address advertised by your TURN server.
 	The address should not be NAT’ed or firewalled. There is not default,
