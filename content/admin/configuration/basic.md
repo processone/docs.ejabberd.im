@@ -149,9 +149,10 @@ For example:
 
 # Default Language
 
-The option `language` defines the default language of server strings
+The [language](/admin/configuration/toplevel/#language) option
+defines the default language of server strings
 that can be seen by XMPP clients. If a XMPP client does not support
-`xml:lang`, the specified language is used.
+`xml:lang`, `ejabberd` uses the language specified in this option.
 
 The option syntax is:
 
