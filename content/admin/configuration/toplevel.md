@@ -5,7 +5,7 @@ menu: Top-Level Options
 order: 80
 ---
 
-> This section describes top level options of ejabberd 20.12. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+> This section describes top level options of ejabberd 21.01. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
 
 ## access\_rules
 
@@ -900,7 +900,7 @@ default value is *1* minute.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/20.12/sql>. There are two
+<https://github.com/processone/ejabberd/tree/21.01/sql>. There are two
 schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*
@@ -931,6 +931,13 @@ set, the value from *cache\_life\_time* will be used.
 
 Same as *cache\_missed*, but applied to OAuth cache only. If not set,
 the value from *cache\_missed* will be used.
+
+## oauth\_cache\_rest\_failure\_life\_time
+
+*timeout()*  
+
+The time that a failure in OAuth ReST is cached. The default value is
+*infinity*.
 
 ## oauth\_cache\_size
 

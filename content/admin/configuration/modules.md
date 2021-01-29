@@ -5,7 +5,7 @@ menu: Modules Options
 order: 95
 ---
 
-> This section describes options of all modules in ejabberd 20.12. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+> This section describes options of all modules in ejabberd 21.01. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
 
 mod\_adhoc
 ----------
@@ -1369,6 +1369,15 @@ is not specified, the only Jabber ID will be the hostname of the virtual
 host with the prefix "conference.". The keyword *@HOST@* is replaced
 with the real virtual host name.
 
+- **max\_captcha\_whitelist**: *Number*  
+This option defines the maximum number of characters that Captcha
+Whitelist can have when configuring the room. The default value is
+*infinity*.
+
+- **max\_password**: *Number*  
+This option defines the maximum number of characters that Password can
+have when configuring the room. The default value is *infinity*.
+
 - **max\_room\_desc**: *Number*  
 This option defines the maximum number of characters that Room
 Description can have when configuring the room. The default value is
@@ -2492,11 +2501,11 @@ This module provides a web page where users can:
 
 This module supports CAPTCHA image to register a new account. To enable
 this feature, configure the options *captcha\_cmd* and *captcha\_url*,
-documented in the section with top-level options.
+which are documented in the section with top-level options.
 
-As a usage example, users of the host *example.org* can visit the page:
-*https://example.org:5281/register/* It is important to include the last
-"/" character in the URL, otherwise the URLs for subpages will be
+As an example usage, the users of the host *example.org* can visit the
+page: *https://example.org:5281/register/* It is important to include
+the last / character in the URL, otherwise the subpages URL will be
 incorrect.
 
 The module depends on *mod\_register* where all the configuration is
@@ -2744,7 +2753,7 @@ password in multiple places.
     shared roster information. All of them are run against the
     ldap\_base.
 
--   Attributes: *ldap\_groupattr*, *ldap\_groupdesc*, *ldap\_userjidattr*,
+-   Attributes: *ldap\_groupattr*, *ldap\_groupdesc*,
     *ldap\_memberattr*, *ldap\_userdesc*, *ldap\_useruid*. These options
     specify the names of the attributes which hold interesting data in
     the entries returned by running filters specified with the filter
