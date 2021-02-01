@@ -508,13 +508,13 @@ Args)`. The function always returns `ok`.
 where `Args` is a list of arguments (other variables have the same
 meaning as above).
 
-There is a helper script in `tools/hook_deps.sh`. You can use it to
+There is a helper script that you can use to
 check hook correctness and find mishooked functions. The script also
 generates a module `src/hooks_type_test.erl` from where you can learn
 about existing hooks and check execution order. You can place your code
-inside `src` directory (if any), recompile ejabberd and run:
+inside `src` directory (if any), and run:
 ```
-$ tools/hook_deps.sh src
+$ make hooks
 ```
 
 # Modules
