@@ -7,33 +7,33 @@ order: 50
 
 The toplevel option [auth_method](/admin/configuration/toplevel/#auth-method)
 defines the authentication methods that are
-used for user authentication. The syntax is:
+used for user authentication. The option syntax is:
 
-`[Method, ...]`
+`auth_method: [Method1, Method2, ...]`
 
 The following authentication methods are supported by `ejabberd`:
 
--   internal — See section [Internal](#internal).
+-   `internal` — See section [Internal](#internal).
 
--   external — See section [External Script](#external-script).
+-   `external` — See section [External Script](#external-script).
 
--   ldap — See section  [LDAP](/admin/configuration/database-ldap/#ldap-autentication).
+-   `ldap` — See section  [LDAP](/admin/configuration/database-ldap/#ldap-autentication).
 
--   sql — See section [Relational Databases](/admin/configuration/database-ldap/#relational-databases).
+-   `sql` — See section [Relational Databases](/admin/configuration/database-ldap/#relational-databases).
 
--   anonymous — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
+-   `anonymous` — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 
--   pam — See section [Pam Authentication](#pam-authentication).
+-   `pam` — See section [Pam Authentication](#pam-authentication).
 
--   jwt — See section [JWT Authentication](#jwt-authentication).
+-   `jwt` — See section [JWT Authentication](#jwt-authentication).
 
 When the option is omitted, ejabberd will rely upon the default database which is configured in `default_db` option. If this option is not set neither the default authentication method will be `internal`.
 
-Account creation is only supported by internal, external and sql methods.
+Account creation is only supported by `internal`, `external` and `sql` auth methods.
 
 Other toplevel options that are relevant to the authentication configuration:
-[disable_sasl_mechanisms](/admin/configuration/toplevel/#disable-sasl-mechanisms)
-[fqdn](/admin/configuration/toplevel/#fqdn)
+[disable_sasl_mechanisms](/admin/configuration/toplevel/#disable-sasl-mechanisms),
+[fqdn](/admin/configuration/toplevel/#fqdn).
 
 # Internal
 
@@ -41,21 +41,8 @@ Other toplevel options that are relevant to the authentication configuration:
 authentication method. The value `internal` will enable the internal
 authentication method.
 
-It is possible to use the option
-[auth_password_format](/admin/configuration/toplevel/#auth-password-format)
-to store the password in SCRAM format.
-
-For details about the client-server communication when using SCRAM-SHA-1,
-refer to [SASL and SCRAM-SHA-1](https://wiki.xmpp.org/web/SASLandSCRAM-SHA-1).
-
-When you enable SCRAM password format for internal storage, if you try
-to authenticate a user that had their password already stored in plain
-text, their password will be automatically converted to SCRAM format. It
-means database is converted as you use it.
-
-If you want to convert your Mnesia database all at once, you can look
-into the Erlang function:
-`ejabberd_auth_internal:maybe_scram_passwords/0`.
+To store the passwords in SCRAM format instead of plaintext,
+see the [SCRAM](#scram) section.
 
 Examples:
 
@@ -75,13 +62,6 @@ Examples:
 
 		auth_method: internal
 		auth_password_format: scram
-
-*Note on SCRAM using and foreign authentication limitations*: when using
-the SCRAM password format, it is not possible to use foreign
-authentication method in ejabberd, as the real password is not known,
-Foreign authentication are use to authenticate through various bridges
-ejabberd provide. Foreign authentication includes at the moment SIP
-and TURN auth support and they will not be working with SCRAM.
 
 # External Script
 
@@ -309,3 +289,48 @@ In this example, admins can use both JWT and plain passwords, while the rest of 
 
 For more information about JWT authentication, you can check a brief tutorial in the
 [ejabberd 19.08 release notes](https://www.process-one.net/blog/ejabberd-19-08/).
+
+# SCRAM
+
+The top-level option
+[auth_password_format](/admin/configuration/toplevel/#auth-password-format)
+allows to store the passwords in SCRAM format instead of plaintext format.
+
+For details about the client-server communication when using SCRAM-SHA-1,
+refer to [SASL and SCRAM-SHA-1](https://wiki.xmpp.org/web/SASLandSCRAM-SHA-1).
+
+## Internal storage
+
+When ejabberd starts with internal auth method and SCRAM password format configured:
+
+    auth_method: internal
+    auth_password_format: scram
+
+and detects that there are plaintext passwords stored,
+they are automatically converted to SCRAM format:
+
+    [info] Passwords in Mnesia table 'passwd' will be SCRAM'ed
+    [info] Transforming table 'passwd', this may take a while
+
+## SQL Database
+
+Please note that if you use SQL auth method and SCRAM password format,
+the plaintext passwords already stored in the database are not automatically
+converted to SCRAM format.
+
+To convert plaintext passwords to SCRAM format in your database,
+execute the command:
+
+
+	ejabberdctl convert_to_scram example.org
+
+## Foreign authentication
+
+*Note on SCRAM using and foreign authentication limitations*:
+when using
+the SCRAM password format, it is not possible to use foreign
+authentication method in ejabberd, as the real password is not known.
+
+Foreign authentication are use to authenticate through various bridges
+ejabberd provide. Foreign authentication includes at the moment SIP
+and TURN auth support and they will not be working with SCRAM.

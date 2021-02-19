@@ -63,7 +63,10 @@ sections must be set inside a [host_config](/admin/configuration/toplevel/#host-
 
 # Default database
 
-You can simplify the configuration by setting the default database. This can be done with `default_db` option:
+You can simplify the configuration by setting the default database.
+This can be done with the
+[`default_db`](/admin/configuration/toplevel/#default-db)
+top-level option:
 
 **`default_db: mnesia|sql`**:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
 
@@ -144,6 +147,28 @@ Example of MySQL connection:
 	sql_password: "**********"
 	sql_pool_size: 5
 
+## SQL Authentication
+
+You can authenticate users against an SQL database, see the option `auth_method`
+in the [Authentication](/admin/configuration/authentication/) section.
+
+To store the passwords in SCRAM format instead of plaintext,
+see the [SCRAM](/admin/configuration/authentication/#scram) section.
+
+## SQL Storage
+
+Several `ejabberd` [modules](/admin/configuration/modules)
+have options called `db_type`, and can store their tables
+in an SQL database instead of internal.
+
+In this sense, if you defined your database access using the
+[SQL Options](#sql-options),
+you can configure a module to use your database
+by adding the option `db_type: sql` to that module.
+
+Alternatively, if you want all modules to use your SQL database when possible,
+you may prefer to set SQL as your [default database](#default-database).
+
 # Redis
 
 [`Redis`](https://redis.io/) is an advanced key-value cache and store. You can
@@ -189,30 +214,6 @@ If the FreeTDS driver is not installed in a standard location, or if you want to
 	sql_odbc_driver: "/opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.3.so.1.1"
 
 Note that if you use a Microsoft driver, you may have to use an IP address instead of a host name for the `sql_server` option.
-
-## SQL Authentication
-
-You can authenticate users against an SQL database, see the option
-`auth_method` in section [Authentication](#authentication).
-
-The option `auth_password_format` is supported,
-for details see section [Internal](#internal).
-Please note that if you use SQL auth method and set SCRAM format,
-old plain passwords that may be stored in the database are not
-automatically scrammed. For that, you can execute the command:
-
-
-	ejabberdctl convert_to_scram example.org
-
-## SQL Storage
-
-An ODBC compatible database also can be used to store information into
-from several `ejabberd` modules. See section [Modules Overview](#modules-overview) to see which
-modules can be used with relational databases like MySQL. To enable
-storage to your database, just make sure that your database is running
-well (see previous sections), and add the module option `db_type: sql`
-or set `default_db: sql` globally if you want to use SQL for all modules.
-
 
 # LDAP
 
