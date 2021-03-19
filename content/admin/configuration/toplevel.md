@@ -1438,10 +1438,10 @@ The password for SQL authentication. The default is empty string.
 
 *Size*  
 
-A number of connections to the SQL server. By default ejabberd opens 10
-connections to the database for each virtual host. WARNING: for SQLite
-this value is *1* by default and it’s not recommended to change it due
-to potential race conditions.
+Number of connections to the SQL server that ejabberd will open for each
+virtual host. The default value is 10. WARNING: for SQLite this value is
+*1* by default and it’s not recommended to change it due to potential
+race conditions.
 
 ## sql\_port
 

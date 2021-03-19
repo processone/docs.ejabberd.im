@@ -2460,8 +2460,8 @@ user is able to unregister their account.
 
 - **captcha\_protected**: *true | false*  
 Protect registrations with CAPTCHA (see section
-[CAPTCHA](https://docs.ejabberd.im/admin/configuration/#captcha) of the
-Configuration Guide). The default is *false*.
+[CAPTCHA](https://docs.ejabberd.im/admin/configuration/basic/#captcha)
+of the Configuration Guide). The default is *false*.
 
 - **ip\_access**: *AccessName*  
 Define rules to allow or deny account registration depending on the IP

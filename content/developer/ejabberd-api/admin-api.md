@@ -3913,7 +3913,10 @@ __Examples:__
 ## send_stanza_c2s
 
 
-Send a stanza as if sent from a c2s session
+Send a stanza from an existing C2S session
+
+
+USER@HOST/RESOURCE must be an existing C2S session. As an alternative, use send_stanza instead.
 
 __Arguments:__
 
