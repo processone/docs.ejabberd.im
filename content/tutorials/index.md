@@ -7,6 +7,35 @@ toc: true
 
 *Learning ejabberd and XMPP through videos and hands-on tutorials*
 
+# Text tutorials
+
+In the [ProcessOne's blog Tutorial tag](https://www.process-one.net/blog/tag/tutorial/)
+you will find tutorials about:
+
+* How to setup
+[MariaDB](https://www.process-one.net/blog/install-and-configure-mariadb-with-ejabberd/),
+[MQTT](https://www.process-one.net/blog/starting-with-mqtt-protocol-and-ejabberd-mqtt-broker/),
+[PubSub](https://www.process-one.net/blog/publish-subscribe-pattern-and-pubsub-in-ejabberd/),
+[STUN/TURN](https://www.process-one.net/blog/how-to-set-up-ejabberd-video-voice-calling/),
+[WebSocket](https://www.process-one.net/blog/getting-started-with-websocket-api-in-ejabberd/).
+
+* Elixir:
+[Part 1](https://www.process-one.net/blog/elixir-sips-ejabberd-with-elixir-part-1/),
+[Part 2](https://www.process-one.net/blog/ejabberd-with-elixir-packet-filters/),
+[Embed in Phoenix](https://www.process-one.net/blog/embedding-ejabberd-into-an-elixir-phoenix-web-application/),
+[Embed in Elixir app](https://www.process-one.net/blog/how-to-use-ejabberd-as-an-elixir-application-dependency/).
+
+* [Useful configuration steps](https://www.process-one.net/blog/ejabberd-xmpp-server-useful-configuration-steps/)
+
+* [Configuration for Office IM](https://www.process-one.net/blog/how-to-move-the-office-to-real-time-im-on-ejabberd/)
+
+* [Configuration for XMPP compliance test](https://www.process-one.net/blog/how-to-configure-ejabberd-to-get-100-in-xmpp-compliance-test/)
+
+* [Using a local development trusted CA on MacOS](https://www.process-one.net/blog/using-a-local-development-trusted-ca-on-macos/)
+
+In the so-called [ejabberd book](https://www.ejabberd.im/book/index.html)
+there are also [old archived ejabberd tutorials](https://www.ejabberd.im/tutorials/).
+
 # Architecture
 
 <div class="media row">
