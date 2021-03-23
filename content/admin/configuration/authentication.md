@@ -287,6 +287,11 @@ In this example, admins can use both JWT and plain passwords, while the rest of 
 
 	jwt_auth_only_rule: jwt_only
 
+Please notice that, when using JWT authentication,
+[mod_offline](/admin/configuration/modules/#mod-offline) will not work.
+With JWT authentication the accounts do not exist in the database,
+and there is no way to know if a given account exists or not.
+
 For more information about JWT authentication, you can check a brief tutorial in the
 [ejabberd 19.08 release notes](https://www.process-one.net/blog/ejabberd-19-08/).
 
