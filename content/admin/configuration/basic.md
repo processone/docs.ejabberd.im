@@ -169,16 +169,21 @@ provides more details.
 # CAPTCHA
 
 Some `ejabberd` modules can be configured to require a CAPTCHA challenge
-on certain actions. If the client does not support CAPTCHA Forms
+on certain actions, for instance
+[mod_block_strangers](/admin/configuration/modules/#mod-block-strangers),
+[mod_muc](/admin/configuration/modules/#mod-muc),
+[mod_register](/admin/configuration/modules/#mod-register), and
+[mod_register_web](/admin/configuration/modules/#mod-register-web).
+If the client does not support CAPTCHA Forms
 ([`XEP-0158`](https://xmpp.org/extensions/xep-0158.html)), a web link is
 provided so the user can fill the challenge in a web browser.
 
 An example script is provided that generates the image using
 ImageMagick’s Convert program.
 
-Note: we do not provide example scripts to support image generation on
-Microsoft Windows. Captcha will not work with ejabberd Windows
-installer.
+Note: if you use the [ejabberd Docker Image](https://hub.docker.com/r/ejabberd/ecs),
+CAPTCHA doesn't work because it does not include ImageMagick by default.
+In order to use CAPTCHA in Docker, you must first install ImageMagick in the container.
 
 The configurable options are:
 
