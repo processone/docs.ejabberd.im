@@ -8,3 +8,4 @@ This section contains archived documentation of previous ejabberd releases.
 Please notice that it only contains the pages that most probably change between releases.
 
 * [20.04](/archive/20_04/)
+* [20.07](/archive/20_07/)
