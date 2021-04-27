@@ -5,54 +5,36 @@ toc: true
 order: 2
 ---
 
-There are several ways to install ejabberd:
+There are several ways to install ejabberd Community Server:
 
-- [Quick Start with Binary Installers](#quick-start) – recommended when starting development on localhost
-  - [Install on Windows](#install-on-windows)
-  - [Install on Linux](#install-on-linux)
-  - [Install on macOS](#install-on-macos)
-- [Install from Source Code](#install-from-source-code) – recommended for advanced users and developers
-- [Install with Operating System specific packages](#install-with-os-specific-packages) – recommended for sysops
-- [Install with Docker image](https://github.com/processone/docker-ejabberd/tree/master/ecs)
+- [Linux RUN Installer](#linux-run-installer) – for any Linux
+- [Linux DEB and RPM Installers](#linux-deb-and-rpm-installers) – for DEB and RPM based Linux
+- [Operating System packages](#operating-system-packages) – for System Operators
+- [Docker image](#docker-image) – for Windows, macOS, Linux, ...
+- [Homebrew](#homebrew) – for macOS
+- [Source Code](#source-code) – for developers and advanced administrators
 
-Additionally, this section covers other topics:
+Once installed, you can head to the next steps:
 
-- [Starting ejabberd](#starting-ejabberd) – manual and automatically
-- [Post-install operations](#post-install-operations) – register users, admin, and setting database
+- [Starting ejabberd](#starting-ejabberd)
+- [Autostart on Linux](#autostart-on-linux)
+- [Administration Account](#administration-account)
+- [Configuring ejabberd](#configuring-ejabberd)
 
-# Quick Start
+# Linux RUN Installer
 
-The Binary Installer will deploy and configure a full featured
+The `*.run` binary installer will deploy and configure a full featured
 ejabberd server and does not require any extra dependencies. It
 includes a stripped down version of Erlang. As such, when using
 ejabberd installer, you do not need to install Erlang separately.
 
-These tutorials assume installation on `localhost` for development purposes.
+Those instructions assume installation on `localhost` for development purposes.
 In this document, when mentioning `ejabberd-YY.MM`, we assume `YY.MM`
 is the release number, for example 18.01. Also note that the installer
 scripts support many options useful for production or unattended, scripted installation.
 You can read more on installer options on [unattended installation](/admin/guide/unattended/).
 
-## Install on Windows
-
-1. Go to [ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/) on ProcessOne website.
-2. Download the installer for Windows 7 / 2008 64-bits or newer: "Windows Installer".
-3. Double-click the `ejabberd-YY.MM-installer.exe` to start the installer.
-4. On the Windows Security dialog, Allow this application to install.
-5. Select the installer language you prefer, then click "Next" to go through necessary installation steps:
-    - accepting the license agreement,
-    - selecting the installation directory,
-    - defining the XMPP domain: by default, it's set to the name of your computer on the local network. **if unsure, type `localhost` here**,
-    - setting the administrator username,
-    - setting the administrator password,
-    - selecting if this ejabberd instance will be part of a cluster: for simple local install, just select "No",
-    - start the installation,
-    - when asked by the Windows Firewall prompt, you can both times click "Cancel",
-6. After successful install, you should see on your Desktop two new shortcuts: "Start ejabberd" and "Stop ejabberd". To start or stop ejabberd, righ-click on each shortcut and select **"Run as Administrator"**, then confirm the Windows dialog by clicking "Yes".
-7. After starting ejabberd, a welcome screen should open in your default browser. You can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@domain` (or `admin@localhost` as above). Then fill the password field with that account's `password`. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
-8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall.exe` in the directory where it was installed. By default, that's `\Program Files\ejabberd-YY.MM\uninstall.app`. The uninstaller will stop your ejabberd server and remove all its files. Log files may be left behind, so to completely remove ejabberd, just delete its main folder.
-
-## Install on Linux
+Installation using the `*.run` binary installer:
 
 1. Go to [ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/) on ProcessOne website.
 2. Download the "Linux x86 64-bits Installer".
@@ -76,51 +58,100 @@ You can read more on installer options on [unattended installation](/admin/guide
 7. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@domain` (or `admin@localhost` as above). Then fill the password field with that account's `password`. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
 8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall` in the directory where it was installed.
 
-## Install on macOS
+To start and stop ejabberd manually, use the desktop shortcuts
+created by the installer. If the machine doesn't have a graphical
+system, use the scripts ’start’ and ’stop’ in the ’bin’ directory
+where ejabberd is installed.
 
-### Using Binary Installer
+# Linux DEB and RPM Installers
 
-Before you begin installing ejabberd, make sure your Mac allows apps from identified developers. To do this, **go to your Mac Preferences, Security & Privacy and select "Allow apps downloaded from: App Store and identified developers"**. Then you can download ejabberd and proceed with installation:
+ProcessOne provides DEB and RPM all-in-one binary installers with the same content
+that the `*.run` Binary Installer mentioned in the previous section.
 
-1. Go to [ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/) on ProcessOne website.
-2. Download the "Mac OS X Intel Installer". If your system is older than the minimal requirements specified, search the [ejabberd Download Archive](https://www.process-one.net/en/ejabberd/archive/) for an appropriate version.
-3. Double-click the `ejabberd-YY.MM-osx-installer.app.zip` to unpack the archive.
-4. Double-click the `ejabberd-YY.MM-osx-installer.app` to start the installer.
-5. Confirm the security dialog by clicking "Open".
-6. If you see a dialog titled **"App is not optimized for your Mac" you can safely discard it** – it only applies to the installer, not ejabberd itself.
-7. Select the installer language you prefer, then click "Next" to go through necessary installation steps:
-    - accepting the license agreement,
-    - selecting the installation directory,
-    - defining the XMPP domain: by default, it's set to the name of your computer on the local network. **if unsure, type `localhost` here**,
-    - setting the administrator username,
-    - setting the administrator password,
-    - selecting if this ejabberd instance will be part of a cluster: for simple local install, just select "No",
-    - start the installation,
-8. Once the installation script finishes, it attempts to start ejabberd. You may see a prompt asking to allow incoming connections to `beam.smp`. **Unless you allow, the installation cannot finish successfully.**
-9. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall.app` in the directory where it was installed. By default, that's `/Apllications/ejabberd-YY.MM/uninstall.app`. The uninstaller will stop your ejabberd server and remove all its files. Log files are left behind, so to completely remove ejabberd, just delete its main folder.
+Those are self-sufficient packages that contain a minimal Erlang distribution,
+this ensures that it does not interfere with your existing Erlang version
+and is also a good way to make sure ejabberd will run with the latest Erlang version.
 
+Those packages install ejabberd in `/opt/ejabberd-XX.YY/`.
+Your configuration and Mnesia database are available in `/opt/ejabberd/`.
 
-Binary Installers of ejabberd prior to version 18.01 did not have an Apple Developer signature.
-If macOS complains when you try to install ejabberd older than 18.01 with binary installer with
-message *"ejabberd-installer is damaged and can’t be opened"* – then you need to temporarily
-disable gatekeeper to be able to install ejabberd:
+You can download the DEB and RPM packages from the
+[ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/).
+
+# Operating System Packages
+
+Many operating systems provide specific ejabberd packages adapted
+to the system architecture and libraries. They usually also check
+dependencies and perform basic configuration tasks like creating the
+initial administrator account.
+
+List of known ejabberd packages:
+
+- [Arch Linux](https://archlinux.org/packages/community/x86_64/ejabberd/)
+- [Debian](https://tracker.debian.org/pkg/ejabberd)
+- [Fedora](https://apps.fedoraproject.org/packages/ejabberd)
+- [FreeBSD](https://www.freshports.org/net-im/ejabberd/)
+- [Gentoo](https://packages.gentoo.org/packages/net-im/ejabberd)
+- [OpenSUSE](https://software.opensuse.org/package/ejabberd)
+- [NetBSD](https://pkgsrc.se/chat/ejabberd/)
+- [Ubuntu](https://packages.ubuntu.com/search?keywords=ejabberd)
+
+Consult the resources provided by your Operating System for more information.
+
+There's also an [ejabberd snap](https://snapcraft.io/ejabberd)
+to install ejabberd on serveral operating systems using Snap package manager.
+
+# Docker Image
+
+If you already have Docker installed,
+the [ejabberd/ecs Docker image](https://hub.docker.com/r/ejabberd/ecs)
+allows to install ejabberd in one single command:
 
 ``` bash
-$ sudo spctl --master-disable
-<install ejabberd>
-$ sudo spctl --master-enable
+docker pull ejabberd/ecs
 ```
 
-### Using Homebrew
+If you use Microsoft Windows 7, 10, or similar operating systems, check those tutorials:
+
+- [Install ejabberd on Windows 10 using Docker Desktop](https://www.process-one.net/blog/install-ejabberd-on-windows-10-using-docker-desktop/)
+- [Install ejabberd on Windows 7 using Docker Toolbox](https://www.process-one.net/blog/install-ejabberd-on-windows-7-using-docker-toolbox/)
+
+For bug reports and improvement suggestions, please go to the
+[docker-ejabberd Git Repository](https://github.com/processone/docker-ejabberd/tree/master/ecs).
+
+# Homebrew
 
 [Homebrew](https://brew.sh/) is a package manager for macOS that aims to port the many Unix & Linux software that is not easily available or compatible. Homebrew installation is simple and the instruction is available on its website.
 
-1. Once you have Homebrew installed, open Terminal. Run `brew install ejabberd`. This should install the latest or at most the one-before-latest version of ejabberd. The installation directory should be reported at the end of this process, but usually the main executable is stored at `/usr/local/sbin/ejabberdctl`.
-2. Start your ejabberd by running `/usr/local/sbin/ejabberdctl live`. This interactive mode prints useful messages in the Terminal. The default domain used by Homebrew's ejabberd is `localhost`.
-3. Create an admin account by running `/usr/local/sbin/ejabberdctl register admin localhost password`. This creates an account `admin@localhost` with the specified `password`.
-4. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@localhost`, then fill the password field with that account's `password`. Without configuration there's not much to see here, therefore the next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
+The ejabberd configuration included in Homebrew's ejabberd 
+has as default domain `localhost`,
+and has already granted administrative privileges to the account `admin@localhost`.
 
-# Install from Source Code
+1. Once you have Homebrew installed, open Terminal. Run
+
+    ``` bash
+    brew install ejabberd
+    ```
+
+    This should install the latest or at most the one-before-latest version of ejabberd. The installation directory should be reported at the end of this process, but usually the main executable is stored at `/usr/local/sbin/ejabberdctl`.
+
+2. Start ejabberd in interactive mode, which prints useful messages in the Terminal.
+
+    ``` bash
+    /usr/local/sbin/ejabberdctl live
+    ```
+
+3. Create the account `admin@localhost` with password set as `password`:
+
+    ``` bash
+    /usr/local/sbin/ejabberdctl register admin localhost password
+    ```
+
+4. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@localhost`, then fill the password field with that account's `password`.
+
+5. Without configuration there's not much to see here, therefore the next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
+
+# Source Code
 
 The canonical form for distribution of ejabberd stable releases is
 the source code package. Compiling ejabberd from source code is
@@ -319,38 +350,18 @@ export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/l
 make
 ```
 
-# Install with OS specific packages
 
-<!-- TODO: Update with mention to our links and RPMs -->
+# Next steps
 
-Some Operating Systems provide a specific ejabberd package adapted
-to the system architecture and libraries. It usually also checks
-dependencies and performs basic configuration tasks like creating the
-initial administrator account. Some examples are Debian and
-Gentoo. Consult the resources provided by your Operating System for
-more information.
+## Starting ejabberd
 
-ProcessOne now provides RPM and DEB all in one packages as well, since
-ejabberd version 15.06. This is self-sufficient packages also
-containing a minimal Erlang distribution. It ensures that it does not
-interfere with your existing Erlang version. This is also a good way
-to make sure ejabberd will run with the latest Erlang version. You can
-download the packages from the
-[ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/).
-
-
-# Starting ejabberd
-
-ejabberd can be started manually at any time, or automatically by
+Depending on how you installed ejabberd, it may be started automatically by
 the operating system at system boot time.
 
-To start and stop ejabberd manually, use the desktop shortcuts
-created by the installer. If the machine doesn't have a graphical
-system, use the scripts ’start’ and ’stop’ in the ’bin’ directory
-where ejabberd is installed.
+You can use the `ejabberdctl` command line administration script to
+start and stop ejabberd, check its status and many other administrative tasks.
 
-You can also use the `ejabberdctl` command line administration script to
-start and stop ejabberd. If you provided the configure option
+If you provided the configure option
 `–enable-user=USER` (see compilation [options](#options)), you can execute `ejabberdctl`
 with either that system account or root.
 
@@ -366,15 +377,16 @@ ejabberd is running in that node
 prompt> ejabberdctl stop
 ```
 
-If ejabberd doesn't start correctly and a crash dump file is
-generated, there was a severe problem. You can try starting ejabberd
-with the script `bin/live.bat` in Windows, or with the command
-`bin/ejabberdctl live` in other Operating Systems. This way you see
-the error message provided by Erlang and can identify what is exactly
-the problem.
+If ejabberd doesn't start correctly and a crash dump file is generated,
+there was a severe problem.
+You can try to start ejabberd in interactive mode with the command
+`bin/ejabberdctl live`
+to see the error messages provided by Erlang and identify the exact the problem.
 
 The `ejabberdctl` administration script is included in the `bin`
-directory. Please refer to the section
+directory in the Linux Installers and Docker image.
+
+Please refer to the section
 [ejabberdctl](/admin/guide/managing/#ejabberdctl)
 for details
 about `ejabberdctl`, and configurable options to fine tune the Erlang
@@ -389,7 +401,7 @@ If you want ejabberd to be started as daemon at boot time with that user,
 copy `ejabberd.init` from the `bin` directory to something like `/etc/init.d/ejabberd`.
 Then you can call `/etc/inid.d/ejabberd start` to start the server.
 
-Or if you have a systemd distribution:
+Or if you have a `systemd` distribution:
 
 1. copy `ejabberd.service` to `/etc/systemd/system/`
 2. run `systemctl daemon-reload`
@@ -401,23 +413,8 @@ are `beam` or `beam.smp`, and also `epmd`. For more information
 regarding `epmd` consult the section relating to
 [epmd](/admin/guide/security/#epmd).
 
-## Autostart on Windows
 
-The Windows installer also adds ejabberd as a system service, and a
-shortcut to a debug console for experienced administrators. If you
-want ejabberd to be started automatically at boot time, go to the
-Windows service settings and set ejabberd to be automatically
-started. Note that the Windows service is a feature still in
-development, and for example it doesn't read the file
-`ejabberdctl.cfg`.
-
-On Microsoft Windows, the Erlang processes for ejabberd are named
-`erl.exe` and `epmd.exe`.
-
-
-# Post-install operations
-
-## Administration account
+## Administration Account
 
 ejabberd binary installer prompts you for an admin account, so in that case,
 you can probably skip this step.
@@ -464,20 +461,12 @@ enter the ejabberd Web Admin. Here are the steps to create it:
     enter the suffix is due to ejabberd’s virtual hosting support. You can
     manage several XMPP domains on a single instance.
 
-## Backend database
+## Configuring ejabberd
 
-By default, ejabberd uses its own database to store runtime data. In many cases
-you may need to let ejabberd use an external SQL database.
-Supported SQL backends are MySQL, PostgreSQL, SQlite, MS SQL.
+Now that you got ejabberd installed and running, it's time to configure it
+to your needs. You can follow on the
+[Configuration](http://localhost:8080/admin/configuration/) section
+and take also a look at the
+[Tutorials](http://localhost:8080/tutorials/).
 
-When using external database backend, ejabberd does not create schema and tables
-by itself. You must create the schema before you run ejabberd.
 
-- If installing ejabberd from sources, you will find sql script for your backend
-  in the installation directory. By default: `/usr/local/lib/ejabberd/priv/sql`
-
-- If installing ejabberd from Process-One installer, the init scripts are located
-  in the ejabberd's installation path under `<base>/lib/ejabberd*/priv/sql`
-
-See [ejabberd SQL Database Schema](/developer/sql-schema/)
-for details on database schemas.

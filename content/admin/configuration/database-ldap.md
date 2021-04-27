@@ -43,6 +43,26 @@ The following LDAP servers are tested with `ejabberd`:
 -   Normally any LDAP compatible server should work; inform us about
 	your success with a not-listed server so that we can list it here.
 
+# Database Schema
+
+When using external database backend, ejabberd does not create schema and tables
+by itself. If you plan to use MySQL, PostgreSQL, MS SQL or SQLite,
+you must create the schema before you run ejabberd.
+
+- If installing ejabberd from sources, you will find sql script for your backend
+  in the installation directory. By default: `/usr/local/lib/ejabberd/priv/sql`
+
+- If installing ejabberd from Process-One installer, the init scripts are located
+  in the ejabberd's installation path under `<base>/lib/ejabberd*/priv/sql`
+
+If using MySQL or PostgreSQL, you can choose between the
+[default or the new schemas](#default-and-new-schemas).
+
+See [ejabberd SQL Database Schema](/developer/sql-schema/)
+for details on database schemas.
+
+# Virtual Hosting
+
 Important note about virtual hosting: if you define several domains in
 ejabberd.yml (see section [Host Names](/admin/configuration/basic/#host-names)), you probably want that each
 virtual host uses a different configuration of database, authentication
