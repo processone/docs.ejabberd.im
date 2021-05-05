@@ -242,6 +242,8 @@ This is used by the contributed module *ejabberd\_auth\_http* that can
 be installed from the *ejabberd-contrib* Git repository. Please refer to
 that module’s README file for details.
 
+<div class="note-down">improved in <a href="/archive/20_01/">20.01</a></div>
+
 ## auth\_password\_format
 
 *plain | scram*  
@@ -932,6 +934,8 @@ set, the value from *cache\_life\_time* will be used.
 Same as *cache\_missed*, but applied to OAuth cache only. If not set,
 the value from *cache\_missed* will be used.
 
+<div class="note-down">added in <a href="/archive/21_01/">21.01</a></div>
+
 ## oauth\_cache\_rest\_failure\_life\_time
 
 *timeout()*  
@@ -1014,6 +1018,8 @@ Specify which address families to try, in what order. The default is
 *\[ipv4, ipv6\]* which means it first tries connecting with IPv4, if
 that fails it tries using IPv6.
 
+<div class="note-down">added in <a href="/archive/20_12/">20.12</a></div>
+
 ## outgoing\_s2s\_ipv4\_address
 
 *Address*  
@@ -1021,6 +1027,8 @@ that fails it tries using IPv6.
 Specify the IPv4 address that will be used when establishing an outgoing
 S2S IPv4 connection, for example "127.0.0.1". The default value is
 *undefined*.
+
+<div class="note-down">added in <a href="/archive/20_12/">20.12</a></div>
 
 ## outgoing\_s2s\_ipv6\_address
 
@@ -1420,6 +1428,8 @@ An interval to make a dummy SQL request to keep alive the connections to
 the database. There is no default value, so no keepalive requests are
 made.
 
+<div class="note-down">added in <a href="/archive/20_12/">20.12</a></div>
+
 ## sql\_odbc\_driver
 
 *Path*  
@@ -1451,6 +1461,8 @@ The port where the SQL server is accepting connections. The default is
 *3306* for MySQL, *5432* for PostgreSQL and *1433* for MS SQL. The
 option has no effect for SQLite.
 
+<div class="note-down">added in <a href="/archive/20_01/">20.01</a></div>
+
 ## sql\_prepared\_statements
 
 *true | false*  
@@ -1480,12 +1492,15 @@ defined in *queue\_type* or *ram* if the latter is not set.
 A hostname or an IP address of the SQL server. The default value is
 *localhost*.
 
+<div class="note-down">improved in <a href="/archive/20_03/">20.03</a></div>
+
 ## sql\_ssl
 
 *true | false*  
 
 Whether to use SSL encrypted connections to the SQL server. The option
-is only available for PostgreSQL. The default value is *false*.
+is only available for MySQL and PostgreSQL. The default value is
+*false*.
 
 ## sql\_ssl\_cafile
 

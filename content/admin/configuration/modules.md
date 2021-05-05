@@ -1032,8 +1032,8 @@ mod\_mix
 
 This module is an experimental implementation of [XEP-0369: Mediated
 Information eXchange (MIX)](https://xmpp.org/extensions/xep-0369.html).
-MIX support was added in ejabberd 16.03 as an experimental feature,
-updated in 19.02, and is not yet ready to use in production. It’s
+MIX support was added in ejabberd <a href="/archive/16_03/">16.03</a> as an experimental feature,
+updated in <a href="/archive/19_02/">19.02</a>, and is not yet ready to use in production. It’s
 asserted that the MIX protocol is going to replace the MUC protocol in
 the future (see *mod\_muc*).
 
@@ -1369,10 +1369,14 @@ is not specified, the only Jabber ID will be the hostname of the virtual
 host with the prefix "conference.". The keyword *@HOST@* is replaced
 with the real virtual host name.
 
+<div class="note-left">added in <a href="/archive/21_01/">21.01</a></div>
+
 - **max\_captcha\_whitelist**: *Number*  
 This option defines the maximum number of characters that Captcha
 Whitelist can have when configuring the room. The default value is
 *infinity*.
+
+<div class="note-left">added in <a href="/archive/21_01/">21.01</a></div>
 
 - **max\_password**: *Number*  
 This option defines the maximum number of characters that Password can
@@ -3094,7 +3098,8 @@ mod\_stun\_disco
 
 This module allows XMPP clients to discover STUN/TURN services and to
 obtain temporary credentials for using them as per [XEP-0215: External
-Service Discovery](https://xmpp.org/extensions/xep-0215.html).
+Service Discovery](https://xmpp.org/extensions/xep-0215.html). This
+module is included in ejabberd since version <a href="/archive/20_04/">20.04</a>.
 
 __Available options:__
 
