@@ -221,6 +221,10 @@ There are many options to modify the default compilation behaviour:
 - **`-–prefix=/`**: Specify the path prefix where the files will be
   copied when running the `make install` command.
 
+<div class="note-left">added in <a href="/archive/20_12/">20.12</a></div>
+
+- **`--with-rebar=/`**: Specify the path to rebar or rebar3
+
 - **`-–enable-user[=USER]`**: Allow this normal system user to execute
   the ejabberdctl script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)), read the
   configuration files, read and write in the spool directory, read and
@@ -258,6 +262,10 @@ There are many options to modify the default compilation behaviour:
   specified in rebar.config. Should be only used when developing
   ejabberd.
 
+<div class="note-left">added in <a href="/archive/21_04/">21.04</a></div>
+
+- **`-–enable-lua`**: Enable Lua support, to import from Prosody.
+
 - **`-–enable-mssql`**: Enable Microsoft SQL Server support, this
     option requires --enable-odbc (see [Supported storages][18]).
 
@@ -285,6 +293,8 @@ There are many options to modify the default compilation behaviour:
 
 - **`--enable-system-deps`**: Makes rebar use locally installed
     dependencies instead of downloading them.
+
+<div class="note-left">changed in <a href="/archive/21_04/">21.04</a></div>
 
 - **`-–enable-tools`**: Enable the use of development tools.
 

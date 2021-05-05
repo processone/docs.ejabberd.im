@@ -181,6 +181,8 @@ This option specifies an approximate maximum size in bytes of XML
 
 Specify the password to verify an external component that connects to the port.
 
+<div class="note-down">improved in <a href="/archive/20_07/">20.07</a></div>
+
 ## port
 
 *Port number, or unix domain socket path*
