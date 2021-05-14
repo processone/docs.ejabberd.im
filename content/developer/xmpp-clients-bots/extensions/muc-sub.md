@@ -459,13 +459,15 @@ Example: Server replies with subscriptions list
     type='result'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
   <subscriptions xmlns='urn:xmpp:mucsub:0'>
-    <subscription jid='coven@muc.shakespeare.example'>
+    <subscription nick='mynick'
+                  jid='coven@muc.shakespeare.example'>
       <event node='urn:xmpp:mucsub:nodes:messages'/>
       <event node='urn:xmpp:mucsub:nodes:affiliations'/>
       <event node='urn:xmpp:mucsub:nodes:subject'/>
       <event node='urn:xmpp:mucsub:nodes:config'/>
     </subscription>
-    <subscription jid='chat@muc.shakespeare.example'>
+    <subscription nick='MyNick'
+                  jid='chat@muc.shakespeare.example'>
       <event node='urn:xmpp:mucsub:nodes:messages'/>
     </subscription>
   </subscriptions>
@@ -496,11 +498,13 @@ Example: Server replies with subscribers list
     type='result'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
   <subscriptions xmlns='urn:xmpp:mucsub:0'>
-    <subscription jid='juliet@shakespeare.example'>
+    <subscription nick='Juliet'
+                  jid='juliet@shakespeare.example'>
       <event node='urn:xmpp:mucsub:nodes:messages'/>
       <event node='urn:xmpp:mucsub:nodes:affiliations'/>
     </subscription>
-    <subscription jid='romeo@shakespeare.example'>
+    <subscription nick='Romeo'
+                  jid='romeo@shakespeare.example'>
       <event node='urn:xmpp:mucsub:nodes:messages'/>
     </subscription>
   </subscriptions>
