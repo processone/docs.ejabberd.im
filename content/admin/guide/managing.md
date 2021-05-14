@@ -32,6 +32,8 @@ see [API Permissions](/developer/ejabberd-api/permissions/).
 If you use Bash, you can get Bash completion by copying the file
 `tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
 Debian, Ubuntu, Fedora and maybe others).
+Or adding to your `$HOME/.bashrc` a line similar to:
+`source /path/to/ejabberd/tools/ejabberdctl.bc`
 
 ## ejabberdctl Commands
 
