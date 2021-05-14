@@ -2,6 +2,9 @@
 
 This repository holds the source code of the ejabberd documentation website, available at [docs.ejabberd.im](https://docs.ejabberd.im). This is a community effort and you are welcome to submit issues or pull requests in order to improve the docs and benefit the ejabberd community.
 
+Some documentation pages are generated from ejabberd source code.
+To build those pages, start ejabberd and run 'make'.
+
 # Contributing
 
 If you want to contribute to this ejabberd documentation, here are some helpful guidelines regarding the syntax:
