@@ -243,6 +243,9 @@ connections to the port. You should also set the
 [`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
 or configure [ACME](/admin/configuration/basic/#acme).
 
+This option gets implicitly enabled when enabling
+[`starttls_required`](#starttls-required) or [`tls_verify`](#tls-verify).
+
 ## starttls_required
 
 *true | false*
@@ -252,6 +255,8 @@ connections to the port. No unencrypted connections will be allowed.
 You should also set the
 [`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
 or configure [ACME](/admin/configuration/basic/#acme).
+
+Enabling this option implicitly enables also the [`starttls`](#starttls) option.
 
 ## tag
 
@@ -307,6 +312,8 @@ The option `tls` can also be used in
         [`ejabberd_http`](/admin/configuration/listen/#ejabberd-http)
         to support HTTPS.
 
+Enabling this option implicitly disables the [`starttls`](#starttls) option.
+
 ## tls_compression
 
 *true | false*
@@ -325,6 +332,8 @@ The default value is `false`, which means no checks are performed.
 The certificate will be checked against trusted CA roots, either defined at the operation system level or defined in the
  listener [`cafile`](#cafile). If trusted, it will accept the jid that is embedded in the certificate in the
  `subjectAltName` field of that certificate.
+
+Enabling this option implicitly enables also the [`starttls`](#starttls) option.
 
 ## use_proxy_protocol
 
