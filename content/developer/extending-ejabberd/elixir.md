@@ -18,7 +18,7 @@ done as follow:
     ~~~
 
 2. Make sure you have all dependencies installed. For example, on MacOS, you need to use Homebrew and [set up your 
-   environment](https://docs.ejabberd.im/admin/installation/#macos).    
+   environment](/admin/installation/#macos).
 
 3. Build ejabberd with `mix` like any standard Elixir project:
 

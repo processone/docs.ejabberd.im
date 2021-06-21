@@ -441,7 +441,7 @@ It is configured as a request handler in
 
 By default there is no restriction to who can execute what commands,
 so it is strongly recommended that you configure restrictions using
-[API Permissions](https://docs.ejabberd.im/developer/ejabberd-api/permissions/).
+[API Permissions](/developer/ejabberd-api/permissions/).
 
 This is the minimum configuration required to enable the feature:
 

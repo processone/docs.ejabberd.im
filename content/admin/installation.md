@@ -55,7 +55,7 @@ Installation using the `*.run` binary installer:
     - selecting if this ejabberd instance will be part of a cluster: for simple local install, just select "No",
     - start the installation,
 6. After successful installation, let's launch ejabberd using the Terminal. In the command line, go to the installation folder and execute `./bin/ejabberdctl live`. This will start ejabberd in an interactive live mode with some useful messages printed in the Terminal.
-7. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@domain` (or `admin@localhost` as above). Then fill the password field with that account's `password`. The next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
+7. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@domain` (or `admin@localhost` as above). Then fill the password field with that account's `password`. The next step is to get to know [how to configure ejabberd](/admin/configuration/).
 8. If something goes wrong during the installation, and you would like to start from scratch, you will find the ejabberd `uninstall` in the directory where it was installed.
 
 To start and stop ejabberd manually, use the desktop shortcuts
@@ -150,7 +150,7 @@ and has already granted administrative privileges to the account `admin@localhos
 
 4. Now you can go to the web dashboard at `http://localhost:5280/admin/` and fill the username field with the full account JID, for example `admin@localhost`, then fill the password field with that account's `password`.
 
-5. Without configuration there's not much to see here, therefore the next step is to get to know [how to configure ejabberd](https://docs.ejabberd.im/admin/configuration/).
+5. Without configuration there's not much to see here, therefore the next step is to get to know [how to configure ejabberd](/admin/configuration/).
 
 # Source Code
 
@@ -476,8 +476,8 @@ enter the ejabberd Web Admin. Here are the steps to create it:
 
 Now that you got ejabberd installed and running, it's time to configure it
 to your needs. You can follow on the
-[Configuration](http://localhost:8080/admin/configuration/) section
+[Configuration](/admin/configuration/) section
 and take also a look at the
-[Tutorials](http://localhost:8080/tutorials/).
+[Tutorials](/tutorials/).
 
 
