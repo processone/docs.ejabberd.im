@@ -194,7 +194,7 @@ there are also [old archived ejabberd tutorials](https://www.ejabberd.im/tutoria
     <span class="glyphicon glyphicon-file"></span>
   </div>
   <div class="col-sm-11">
-    <h4 class="media-heading"><a href="/tutorials/mix-010/">Getting started with XEP-0369: Mediated Information eXchange (MIX) version 0.1.0</a></h4>
+    <h4 class="media-heading"><a href="/tutorials/mix-010/">Getting started with XEP-0369: Mediated Information eXchange (MIX)</a></h4>
   </div>
 </div>
 
