@@ -20,9 +20,7 @@ The test suite is modular and can be run in parts (to focus on a group
 of features) or run for a specific backend.
 
 The environment variable `CT_BACKEND` is used to specify which backend tests to
-run.
-
-Current `CT_BACKENDS` values:
+run. Current `CT_BACKENDS` values:
 
 - mnesia. Typically, Mnesia is included in ejabberd and should
   always be available for testing.
@@ -43,9 +41,8 @@ the ports that ejabberd needs must be available for testing.  So you can't run
 an ejabberd instance at the same time you test.
 
 Other options you can use to limit the tests that will be run is to pass a list
-of groups to test.
+of groups to test. Some group examples:
 
-Some group examples:
 - no_db: Runs subgroups `generic` and `test_proxy65`.
 - ldap
 - mnesia
@@ -87,6 +84,6 @@ independently by checking them out and running their test suites directly.
 
 # Build test status
 
-We run tests for ejabberd and dependencies automatically via Travis-CI. We
+We run tests for ejabberd and dependencies automatically via Github Actions. We
 have a Dashboard available on Github to check the overall test status for all
 projects: [ProcessOne Github Dashboard](https://processone.github.io/)
