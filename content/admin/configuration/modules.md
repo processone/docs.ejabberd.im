@@ -1461,10 +1461,9 @@ consumption.
 - **queue\_type**: *ram | file*  
 Same as top-level *queue\_type* option, but applied to this module only.
 
-- **ram\_db\_type**: *mnesia*  
+- **ram\_db\_type**: *mnesia | sql*  
 Define the type of volatile (in-memory) storage where the module will
-store room information. The only available value for this module is
-*mnesia*.
+store room information (*muc\_online\_room* and *muc\_online\_users*).
 
 - **regexp\_room\_id**: *string()*  
 This option defines the regular expression that a Room ID must satisfy
