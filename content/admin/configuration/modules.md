@@ -91,7 +91,8 @@ mod\_admin\_update\_sql
 This module can be used to update existing SQL database from the default
 to the new schema. Check the section [Default and New
 Schemas](/admin/configuration/database-ldap/#default-and-new-schemas) for details.
-When the module is loaded use *update\_sql* ejabberdctl command.
+Please note that only PostgreSQL is supported. When the module is loaded
+use *update\_sql* ejabberdctl command.
 
 The module has no options.
 
@@ -2413,7 +2414,7 @@ This option specifies the period of time until the session of a
 disconnected push client times out. This timeout is only in effect as
 long as no push notification is issued. Once that happened, the
 resumption timeout configured for the *mod\_stream\_mgmt* module is
-restored. The default value is *72* minutes.
+restored. The default value is *72* hours.
 
 - **wake\_on\_start**: *true | false*  
 If this option is set to *true*, notifications are generated for **all**

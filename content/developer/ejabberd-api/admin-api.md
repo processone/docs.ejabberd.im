@@ -1087,7 +1087,7 @@ __Examples:__
 Export virtual host information from Mnesia tables to SQL file
 
 
-Configure the modules to use SQL, then call this command.
+Configure the modules to use SQL, then call this command. After correctly exported the database of a vhost, you may want to delete from mnesia with the [delete_mnesia](/developer/ejabberd-api/admin-api/#delete-mnesia) command.
 
 __Arguments:__
 
@@ -2014,7 +2014,7 @@ __Examples:__
 Import data from Prosody
 
 
-Note: this method requires ejabberd compiled with optional tools support and package must provide optional luerl dependency.
+Note: this requires ejabberd compiled with --enable-lua and include the optional 'luerl' library.
 
 __Arguments:__
 
@@ -5115,7 +5115,7 @@ __Examples:__
 ## update_sql
 
 
-Convert SQL DB to the new format
+Convert PostgreSQL DB to the new format
 
 __Arguments:__
 

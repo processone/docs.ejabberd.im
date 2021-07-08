@@ -194,7 +194,7 @@ default value is *sasl\_anon*.
 
 Define the permissions for API access. Please consult the ejabberd Docs
 web → For Developers → ejabberd ReST API → [API
-Permissions](/developer/ejabberd-api/permissions/).
+Permissions](https://docs.ejabberd.im/developer/ejabberd-api/permissions/).
 
 ## append\_host\_config
 
