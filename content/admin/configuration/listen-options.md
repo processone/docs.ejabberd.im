@@ -41,6 +41,14 @@ To set a file for all server connections, you can use the
 or the
 [`ca_file`](/admin/configuration/toplevel/#ca-file) top-level option.
 
+Please note: if this option is set in
+[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
+or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+and the corresponding top-level option is also set
+([`c2s_cafile`](/admin/configuration/toplevel/#c2s-cafile),
+[`s2s_cafile`](/admin/configuration/toplevel/#s2s-cafile)),
+then the top-level option is used, not this one.
+
 ## certfile
 
 *Path*
@@ -73,6 +81,14 @@ This option can be used with
 OpenSSL ciphers list in the same format accepted by
 	‘`openssl ciphers`’ command.
 
+Please note: if this option is set in
+[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
+or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+and the corresponding top-level option is also set
+([`c2s_ciphers`](/admin/configuration/toplevel/#c2s-ciphers),
+[`s2s_ciphers`](/admin/configuration/toplevel/#s2s-ciphers)),
+then the top-level option is used, not this one.
+
 ## custom_headers
 
 *{Name: Value}*
@@ -101,6 +117,14 @@ Full path to a file containing custom parameters for Diffie-Hellman key
 	`openssl dhparam -out dh.pem 2048`. If this option is not specified,
 	default parameters will be used, which might not provide the same level
 	of security as using custom parameters.
+
+Please note: if this option is set in
+[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
+or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+and the corresponding top-level option is also set
+([`c2s_dhfile`](/admin/configuration/toplevel/#c2s-dhfile),
+[`s2s_dhfile`](/admin/configuration/toplevel/#s2s-dhfile)),
+then the top-level option is used, not this one.
 
 ## global_routes
 
@@ -200,6 +224,14 @@ on unix domain socket `/path/to/socket`.
 List of general options relating to SSL/TLS. These map to
 	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_options.html).
 	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
+
+Please note: if this option is set in
+[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
+or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+and the corresponding top-level option is also set
+([`c2s_protocol_options`](/admin/configuration/toplevel/#c2s-protocol-options),
+[`s2s_protocol_options`](/admin/configuration/toplevel/#s2s-protocol-options)),
+then the top-level option is used, not this one.
 
 ## request_handlers
 
@@ -320,6 +352,14 @@ Enabling this option implicitly disables the [`starttls`](#starttls) option.
 
 Whether to enable or disable TLS compression. The default value is
 	`false`.
+
+Please note: if this option is set in
+[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
+or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+and the corresponding top-level option is also set
+([`c2s_tls_compression`](/admin/configuration/toplevel/#c2s-tls-compression),
+[`s2s_tls_compression`](/admin/configuration/toplevel/#s2s-tls-compression)),
+then the top-level option is used, not this one.
 
 ## tls_verify
 
