@@ -223,7 +223,7 @@ There are many options to modify the default compilation behaviour:
   copied when running the `make install` command.
 
 <div class="note-down">added in <a href="/archive/20_12/">20.12</a>
-and improved in <a href="/archive/20_12/">21.07</a></div>
+and improved in <a href="/archive/21_07/">21.07</a></div>
 
 <br />
 
@@ -248,7 +248,7 @@ and improved in <a href="/archive/20_12/">21.07</a></div>
 
 - **`–-disable-debug`**: Compile without `+debug_info`.
 
-<div class="note-down">improved in <a href="/archive/20_12/">21.07</a></div>
+<div class="note-down">improved in <a href="/archive/21_07/">21.07</a></div>
 
 <br />
 
