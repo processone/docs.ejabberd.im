@@ -172,6 +172,7 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`](https://xmpp.org/extensions/xep-0138.html)). Optional.
 -   PAM library. Optional. For Pluggable Authentication Modules (PAM). See [PAM Authentication](/admin/configuration/authentication/#pam-authentication) section.
 -   ImageMagick’s Convert program and Ghostscript fonts. Optional. For CAPTCHA challenges. See section [CAPTCHA](/admin/configuration/basic/#captcha).
+-   Elixir 1.10.3 or higher. Optional. Alternative to build ejabberd
 
 ## Downloading
 
@@ -221,9 +222,12 @@ There are many options to modify the default compilation behaviour:
 - **`-–prefix=/`**: Specify the path prefix where the files will be
   copied when running the `make install` command.
 
-<div class="note-left">added in <a href="/archive/20_12/">20.12</a></div>
+<div class="note-down">added in <a href="/archive/20_12/">20.12</a>
+and improved in <a href="/archive/20_12/">21.07</a></div>
 
-- **`--with-rebar=/`**: Specify the path to rebar or rebar3
+<br />
+
+- **`--with-rebar=/`**: Specify the path to rebar, rebar3 or mix
 
 - **`-–enable-user[=USER]`**: Allow this normal system user to execute
   the ejabberdctl script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)), read the
@@ -244,7 +248,13 @@ There are many options to modify the default compilation behaviour:
 
 - **`–-disable-debug`**: Compile without `+debug_info`.
 
+<div class="note-down">improved in <a href="/archive/20_12/">21.07</a></div>
+
+<br />
+
 - **`–-enable-elixir`**: Build ejabberd with Elixir extension support.
+    Works only with rebar2. If interested in Elixir development, you may
+    prefer to install Elixir yourself and use `--with-rebar=mix`
 
 - **`–-disable-erlang-version-check`**: Don't check Erlang/OTP version.
 
@@ -302,6 +312,12 @@ There are many options to modify the default compilation behaviour:
 
 ## Installation
 
+There are several ways to install and run the ejabberd compiled from source code:
+installing in the system, building a production release,
+or building a development release.
+
+### System Install
+
 To install ejabberd in the destination directories, run the command `make install`.
 
 Note that you probably need administrative privileges in the system to
@@ -339,6 +355,49 @@ The files and directories created are, by default:
 
     - `ejabberd.log`:   ejabberd service log
     - `erlang.log`:   Erlang/OTP system log
+
+<div class="note-down">improved in <a href="/archive/21_07/">21.07</a></div>
+### Production Release
+
+You can build a release that includes ejabberd, Erlang/OTP
+and all the required erlang dependencies in a single tar.gz file.
+Then you can copy that file to another machine that has the same machine
+architecture, and run ejabberd without installing anything else.
+
+To build that release, run:
+``` bash
+make rel
+```
+
+If you configured `--with-rebar` to use rebar3 or mix, this will directly
+produce a tar.gz that you can copy. For example:
+
+``` bash
+cp _build/prod/rel/ejabberd/ejabberd-21.04.123.tar.gz /tmp
+cd /tmp
+mkdir ejatest
+tar -xzf ejabberd-21.04.123.tar.gz -C ejatest
+ejatest/bin/ejabberd console
+```
+
+<div class="note-down">new in <a href="/archive/21_07/">21.07</a></div>
+### Development Release
+
+If you configured `--with-rebar` to use rebar3 or mix,
+you can build a development release.
+
+This is designed to run ejabberd in the local machine for development,
+manual testing... without installing in the system.
+
+This development release has some customizations: uses a dummy certificate file,
+if you register the account admin@localhost it has admin rights...
+
+To build a development release and start ejabberd in live mode:
+``` bash
+./configure --with-rebar=rebar3
+make dev
+_build/dev/rel/ejabberd/bin/ejabberdctl live
+```
 
 ## Specific notes
 
