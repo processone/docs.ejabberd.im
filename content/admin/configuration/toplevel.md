@@ -902,7 +902,7 @@ default value is *1* minute.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/21.04/sql>. There are two
+<https://github.com/processone/ejabberd/tree/21.07/sql>. There are two
 schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*
