@@ -81,6 +81,7 @@ Options:
 [max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
 [max_stanza_size](/admin/configuration/listen-options/#max-stanza-size),
 [protocol_options](/admin/configuration/listen-options/#protocol-options),
+[send_timeout](/admin/configuration/listen-options/#send-timeout),
 [shaper](/admin/configuration/listen-options/#shaper),
 [starttls](/admin/configuration/listen-options/#starttls),
 [starttls_required](/admin/configuration/listen-options/#starttls-required),
@@ -100,6 +101,7 @@ Options:
 [max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
 [max_stanza_size](/admin/configuration/listen-options/#max-stanza-size),
 [protocol_options](/admin/configuration/listen-options/#protocol-options),
+[send_timeout](/admin/configuration/listen-options/#send-timeout),
 [shaper](/admin/configuration/listen-options/#shaper),
 [tls](/admin/configuration/listen-options/#tls),
 [tls_compression](/admin/configuration/listen-options/#tls-compression).
@@ -124,6 +126,7 @@ Options:
 [max_stanza_size](/admin/configuration/listen-options/#max-stanza-size),
 [password](/admin/configuration/listen-options/#password),
 [protocol_options](/admin/configuration/listen-options/#protocol-options),
+[send_timeout](/admin/configuration/listen-options/#send-timeout),
 [shaper](/admin/configuration/listen-options/#shaper),
 [shaper_rule](/admin/configuration/listen-options/#shaper-rule),
 [tls](/admin/configuration/listen-options/#tls),
@@ -140,6 +143,7 @@ and [mod_sip](/admin/configuration/modules/#mod-sip) sections.
 
 General listener options:
 [certfile](/admin/configuration/listen-options/#certfile),
+[send_timeout](/admin/configuration/listen-options/#send-timeout),
 [tls](/admin/configuration/listen-options/#tls).
 
 ## ejabberd_stun
@@ -164,6 +168,7 @@ For the specific module options, please check the
 
 General listener options:
 [certfile](/admin/configuration/listen-options/#certfile),
+[send_timeout](/admin/configuration/listen-options/#send-timeout),
 [shaper](/admin/configuration/listen-options/#shaper),
 [tls](/admin/configuration/listen-options/#tls),
 
@@ -191,6 +196,7 @@ Options:
 [dhfile](/admin/configuration/listen-options/#dhfile),
 [protocol_options](/admin/configuration/listen-options/#protocol-options),
 [request_handlers](/admin/configuration/listen-options/#request-handlers),
+[send_timeout](/admin/configuration/listen-options/#send-timeout),
 [tag](/admin/configuration/listen-options/#tag),
 [tls](/admin/configuration/listen-options/#tls),
 [tls_compression](/admin/configuration/listen-options/#tls-compression),
@@ -207,6 +213,7 @@ Check the advanded documentation in [MQTT Support](/admin/guide/mqtt/).
 Listen options:
 [max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
 [max_payload_size](/admin/configuration/listen-options/#max-payload-size),
+[send_timeout](/admin/configuration/listen-options/#send-timeout),
 [tls](/admin/configuration/listen-options/#tls),
 [tls_verify](/admin/configuration/listen-options/#tls-verify).
 

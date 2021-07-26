@@ -249,6 +249,14 @@ To define one or several handlers that will serve HTTP requests in
 	      /bosh: mod_bosh
 	      /mqtt: mod_mqtt
 
+<div class="note-down">new in <a href="/archive/21_07/">21.07</a></div>
+
+## send_timeout
+
+*Integer | infinity*
+
+Sets the longest time that data can wait to be accepted to sent by OS socket. Triggering this timeout will cause the server to close it. By default it's set to 15 seconds, expressed in milliseconds: 15000
+
 ## shaper
 
 *none | ShaperName*
