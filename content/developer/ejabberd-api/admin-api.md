@@ -4352,7 +4352,7 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>changed in <a href="/archive/21_07/">21.07</a></div>
 
 ## srg_create
 
@@ -4370,7 +4370,7 @@ __Arguments:__
 
 - *group* :: string : Group identifier
 - *host* :: string : Group server name
-- *name* :: string : Group name
+- *label* :: string : Group name
 - *description* :: string : Group description
 - *display* :: string : Groups to display
 
@@ -4386,7 +4386,7 @@ __Examples:__
     {
       "group": "group3",
       "host": "myserver.com",
-      "name": "Group3",
+      "label": "Group3",
       "description": "Third group",
       "display": "group1\\ngroup2"
     }
