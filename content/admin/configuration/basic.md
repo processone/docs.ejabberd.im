@@ -223,24 +223,25 @@ in a fully automated mode.
 
 In ejabberd, ACME is configured using the
 [`acme`](/admin/configuration/toplevel/#acme)
-top-level option, check there available options an example configuration.
+top-level option, check there the available options and example configuration.
 
 The automated mode is enabled by default.
-However, since ACME requires HTTP challenges
-(i.e. an ACME server will connect to ejabberd server on HTTP port 80 during certificate issuance),
-some configuration of ejabberd is still required. Namely, an HTTP listener for
-[ejabberd_http](/admin/configuration/listen/#ejabberd-http) listen
-module should be configured on non-TLS port with so called "ACME well known" request handler:
+However, some configuration of ejabberd is still required,
+because ACME requires HTTP challenges:
+an ACME remote server will connect to your ejabberd server
+on HTTP port 80 during certificate issuance.
+
+For that reason you must have an
+[ejabberd_http](/admin/configuration/listen/#ejabberd-http) listener
+with TLS disabled handling an "ACME well known" path. For example:
 
     listen:
-      ...
       -
         module: ejabberd_http
         port: 5280
+        tls: false
         request_handlers:
           /.well-known/acme-challenge: ejabberd_acme
-          ...
-      ...
 
 Note that the ACME protocol **requires** challenges to be sent on port 80. Since this is a privileged
 port, ejabberd cannot listen on it directly without root privileges. Thus you need some mechanism
