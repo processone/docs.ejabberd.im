@@ -288,29 +288,57 @@ The commands included in ejabberd by default are:
 
 # Web Admin
 
-The `ejabberd` Web Admin allows to administer most of `ejabberd` using a
-web browser.
+The `ejabberd` Web Admin allows to administer some parts of `ejabberd` using a
+web browser: accounts, Shared Roster Groups, manage the Mnesia database,
+create and restore backups, view server statistics, …
 
-This feature is enabled by default: a 
-[ejabberd_http](/admin/configuration/listen/#ejabberd-http)
-listener with the option
-[request_handlers](/admin/configuration/listen-options/#request-handlers)
- serving ejabberd_web_admin
-Then you can open `http://server:port/admin/` in your favourite
-web browser. You will be asked to enter the username (the *full* Jabber
-ID) and password of an `ejabberd` user with administrator rights. After
-authentication you will see a page similar to the following screen.
+## Basic Setup
+
+1. If not done already, register an account and grant administration rights to it
+   (see [Administration Account](/admin/installation/#administration-account)):
+
+    ``` yaml
+    acl:
+      admin:
+        user: admin1@example.org
+    access_rules:
+      configure:
+        allow: admin
+    ```
+
+2. Make sure `ejabberd_web_admin` is available in
+   [request_handlers](/admin/configuration/listen-options/#request-handlers)
+   of a [ejabberd_http](/admin/configuration/listen/#ejabberd-http) listener.
+   If you want to use HTTPS, enable [tls](/admin/configuration/listen-options/#tls).
+   For example:
+   ``` yaml
+   listen:
+      -
+        port: 5443
+        ip: "::"
+        module: ejabberd_http
+        tls: true
+        request_handlers:
+          /admin: ejabberd_web_admin
+   ```
+
+3. Open the Web Admin page in your favourite web browser.
+The exact address depends on your configuration;
+in this example the address is: `https://example.net:5443/admin/`
+
+4. In the login window provide the **full Jabber ID: `admin1@example.org`** and password.
+
+5. Finally you will see a page similar to:
 
 ![Web Admin](/static/images/admin/webadmin.png)
 
-Here you can edit access restrictions, manage users, create backups,
-manage the database, enable/disable ports listened for, view server
-statistics,…
+## Advanced Configuration
 
-The access rule `configure` determines what accounts can access the Web
-Admin and modify it. The access rule `webadmin_view` is to grant only
-view access: those accounts can browse the Web Admin with read-only
-access.
+There are two [access rules](/admin/configuration/basic/#access-rules) supported:
+
+- `configure` determines what accounts can access the Web Admin and make changes.
+-  `webadmin_view` grants only view access:
+   those accounts can browse the Web Admin with read-only access.
 
 Example configurations:
 

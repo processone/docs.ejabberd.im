@@ -499,10 +499,9 @@ enter the ejabberd Web Admin. Here are the steps to create it:
     `admin1@example.org`. There are two ways to register an XMPP
     account:
 
-  1.  Using an XMPP client and In-Band Registration (see section (/admin/configuration/modules/#mod-register)).
+  - Using an XMPP client and [In-Band Registration](/admin/configuration/modules/#mod-register).
 
-  2.  Using `ejabberdctl` (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)):
-
+  - Using [ejabberdctl](/admin/guide/managing/#ejabberdctl):
       ``` bash
       ejabberdctl register admin1 example.org password
       ```
@@ -513,11 +512,10 @@ enter the ejabberd Web Admin. Here are the steps to create it:
     ``` yaml
     acl:
       admin:
-        user:
-          - "admin1": "example.org"
-    access:
+        user: admin1@example.org
+    access_rules:
       configure:
-        admin: allow
+        allow: admin
     ```
 
     You can grant administrative privileges to many XMPP accounts, and
@@ -525,11 +523,11 @@ enter the ejabberd Web Admin. Here are the steps to create it:
 
 3.  Restart ejabberd to load the new configuration.
 
-4.  Open the Web Admin (usually `http://localhost:5280/admin/`) in your favourite
-    browser. Make sure to enter the *full* JID as username (in this
-    example: `admin1@example.org`). The reason that you also need to
-    enter the suffix is due to ejabberd’s virtual hosting support. You can
-    manage several XMPP domains on a single instance.
+4.  Open the Web Admin page (usually `http://localhost:5280/admin/`) in your favourite
+    browser. Make sure to enter the **full JID* (in this
+    example: `admin1@example.org`).
+See [Web Admin](/admin/guide/managing/#web-admin) for details.
+
 
 ## Configuring ejabberd
 
