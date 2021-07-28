@@ -8,8 +8,6 @@ order: 20
 This page describes the new flexible permission mechanism introduced in
 ejabberd 16.12.
 
-# Configuring permissions to API endpoints
-
 Access to all available endpoints are configured using `api_permissions` option.
 
 It allows to define multiple groups, each one with separate list of filters
@@ -20,57 +18,66 @@ Basic rule looks like this:
 ``` yaml
 api_permissions:
   "admin access":
-    - who:
+    who:
       - admin
-    - what
+    what:
       - "*"
       - "!stop"
+    from:
+      - ejabberd_ctl
+      - mod_http_api
 ```
 
 It tells that group named `Admin access` allows all users that are accepted by
-ACL rule `admin` to execute all commands except command `stop`.
+ACL rule `admin` to execute all commands except command `stop`, using the command-line tool `ejabberdctl` or sending a ReST query handled by `mod_http_api`.
 
 Each group has associated name (that is just used in log messages), `who` section
 for rules that authentication details must match, `what` section for specifying
 list of command, and `from` with list of modules that API was delivered to.
 
-## Rules inside `who` section
+# Rules inside `who` section
 
 There are 3 types of rules that can be placed in `who` section:
 
-`- acl: Name|ACLDefinition` or shortcut version `- Name|ACLRule`
-: It accepts command when authentication used to execute command matches
-  rules of `Name` ACL (or inline rules from `ACLDefinition` or `ACLRule`)
+- **acl:** *Name | ACLDefinition*  
+  or the short version:  
+  *Name | ACLRule*  
+  This accepts a command when the authentication provided matches
+  rules of `Name` 
+  [Access Control List](/admin/configuration/basic/#acl-definition)
+  (or inline rules from `ACLDefinition` or `ACLRule`)
 
-`- access: Name|AccessDefinition`
-: This will allow execution if access `Name` or inline `AccessDefinition`
-  will return `allowed` for command's authentication details
+- **access:** *Name | AccessDefinition*  
+  This allows execution if
+  the [Access Rule](/admin/configuration/basic/#access-rights)
+  `Name` or inline `AccessDefinition`
+  returns `allowed` for command's authentication details
 
-`- oauth: ListOfRules`
-: This rule (and only this) will match for commands that were executed
-  with OAuth authentication. Inside ListOfRules you can use any rule
-  described above (`- acl: Name`, `- AClName`, `- access: Name`) and
-  additionally you must include `-scope: ListOfScopeNames` with OAuth
+- **oauth:** *ListOfRules*  
+  This rule (and only this) will match for commands that were executed
+  with [OAuth](/developer/ejabberd-api/oauth/) authentication.
+  Inside ListOfRules you can use any rule
+  described above (`acl: Name`, `AClName`, `access: Name`) and
+  additionally you must include `scope: ListOfScopeNames` with OAuth
   scope names that must match scope used to generate OAuth token used
   in command authentication.
 
-`who` section will allow command to be executed if at least one rule
-included inside it will be successfully matched, if you need to have
-ensure that multiple rules must be matched at this same time, you
-need to use `- access` rule for that.
+`who` allows the command to be executed if at least one rule matches.
+If you want to require several rules to match at this same time,
+use `access` (see examples below).
 
-Missing `who` rule is equivalent to `- who: none` which will stop group
+Missing `who` rule is equivalent to `who: none` which will stop group
 from accepting any command.
 
-### Examples of `who` rules
+## Examples of `who` rules
 
 This accepts user `admin@server.com` or commands originating
 from localhost:
 
 ``` yaml
-- who:
-  - user: "admin@server.com"
-  - ip: "127.0.0.1/8"
+who:
+  user: admin@server.com
+  ip: 127.0.0.1/8
 ```
 
 This only allows execution of a command if it's invoked by user
@@ -78,44 +85,51 @@ This only allows execution of a command if it's invoked by user
 If one of those restrictions isn't satisfied, execution will fail:
 
 ``` yaml
-- who:
-  - access:
-    - allow:
-      - user: "admin@server.com"
-      - ip: "127.0.0.1/8"
+who:
+  access:
+    allow:
+      user: admin@server.com
+      ip: 127.0.0.1/8
 ```
 
 Those rules match for users from `muc_admin` ACL both using regular
-authentication and OAuth (but only for tokens created with `can_muc_admin` scope):
+authentication and OAuth):
 
 ``` yaml
-- who:
-  - muc_admin
-  - oauth
-    - scope: "can_muc_admin"
-    - muc_admin
+who:
+  access:
+    allow:
+      acl: muc_admin
+  oauth:
+    scope: "ejabberd:admin"
+    access:
+      allow:
+        acl: muc_admin
 ```
 
-## Rules in `what` section
+# Rules in `what` section
 
-Rules in `what` section are constructed from `"strings"` literals, you can
-use name of existing commands like `"register"` or `"connected_users"`, you
-can also use wildcard `"*"` rule to match all commands, or you can use rule
-`"[tag:roster]"` to allow all commands that have been declared with tag `roster`
+Rules in `what` section are constructed from `"strings"` literals. You can use:
+
+- *"command_name"* of an existing [API command](/developer/ejabberd-api/admin-api/)
+- *command_name* is same as before, but no need to provide `"`
+- **"*"** is a wildcard rule to match all commands
+- **"[tag:** *tagname* **]"** allows all commands that have been declared with tag `tagname`.
+  You can consult the list of tags and their commands with: `ejabberdctl help tags`
 
 Additionally each rule can be prepended with `!` character to change
 it into negative assertion rule. Command names that would match what is
 after `!` character will be removed from list of allowed commands.
 
-Missing `what` rule is equivalent to `- what: "!*"` which will stop group
+Missing `what` rule is equivalent to `what: "!*"` which will stop group
 from accepting any command.
 
-### Example of `what` rules
+## Example of `what` rules
 
 This allows execution of all commands except command `stop`:
 
 ``` yaml
-- what:
+what:
   - "*"
   - "!stop"
 ```
@@ -124,20 +138,20 @@ This allows execution of `status` and commands with tag `session`
 (like `num_resources` or `status_list`):
 
 ``` yaml
-- what:
-  - "status"
+what:
+  - status
   - "[tag:account]"
 ```
 
 This matches no command:
 
 ``` yaml
-- what:
-  - "start"
+what:
+  - start
   - "!*"
 ```
 
-## Rules in `from` section
+# Rules in `from` section
 
 This section allows to specify list of allowed module names that expose API
 to outside world. Currently those modules are `ejabberd_xmlrpc`, `mod_http_api`
@@ -147,7 +161,7 @@ If `from` section is missing from group then all endpoints are accepted,
 if it's specified endpoint must be listed inside it to be allowed to execute.
 
 
-## Examples
+# Examples
 
 Those rules allow execution of any command invoked
 by `ejabberdctl` shell command, or all command except `start` and `stop`
@@ -163,10 +177,14 @@ api_permissions:
     what: "*"
   "admin access":
     who:
-      - admin
-      - oauth:
-        - scope: "ejabberd:admin"
-        - admin
+      access:
+        allow:
+          - acl: admin
+      oauth:
+        scope: "ejabberd:admin"
+        access:
+          allow:
+            - acl: admin
     what:
       - "*"
       - "!stop"

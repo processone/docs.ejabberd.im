@@ -45,7 +45,7 @@ record. The record requires a few fields:
   restriction policy of the command. It can be on of: `open`, `admin`,
   `user`, `restricted`. Default is `restricted`, meaning the command
   can be used from ejabberdctl command-line tool.
-  - **version**: API version number where this command is available (see
+- **version**: API version number where this command is available (see
     *API versioning* documentation for details).
 
 <!-- TODO explain what the result field should look likes -->

@@ -60,114 +60,99 @@ level:
 To enable OAuth support in ejabberd, you need to edit your
 `ejabberd.yml` file to add the following snippets.
 
-1. You first need to expose more HTTP endpoint in `ejabberd_http` modules.
-    1. `ejabberd_oauth` is the request handler that will allow
+You first need to expose more HTTP endpoint in `ejabberd_http` modules:
+
+- `ejabberd_oauth` is the request handler that will allow
        generating token for third-parties (clients, services). It is
        usually exposed on "/oauth" endpoint. This handler is mandatory
        to support OAuth.
-    2. `mod_http_api` is the request handler that enable ReST API
+- [mod_http_api](/admin/configuration/modules/#mod-http-api) request handler
+       enables ReST API
        endpoint to perform delegated actions on ejabberd using an HTTP
        JSON API. This handler is usually exposed on "/api"
        endpoint. It is optional.
 
-If you want to support commands using the XML-RPC protocol, you can add
-`ejabberd_xmlrpc` as a specific listener on a separate port.
+- [ejabberd_xmlrpc](/admin/configuration/listen/#ejabberd-xmlrpc) listener
+  can be set on a separate port to query commands using the XML-RPC protocol.
 
 Here is a example of the `listen` section in ejabberd configuration
 file, focusing on HTTP handlers:
 
     
     listen:
-      ## To handle ejabberd commands using XML-RPC
       -
         port: 4560
         module: ejabberd_http
         request_handlers:
+          ## Handle ejabberd commands using XML-RPC
           /: ejabberd_xmlrpc
       -
         port: 5280
         module: ejabberd_http
         request_handlers:
-          "/websocket": ejabberd_http_ws
-          "/log": mod_log_http
+          /websocket: ejabberd_http_ws
+          /log: mod_log_http
           # OAuth support:
-          "/oauth": ejabberd_oauth
+          /oauth: ejabberd_oauth
           # ReST API:
-          "/api": mod_http_api
-        web_admin: true
-        http_bind: true
-        captcha: true
-
-    ... other listeners
-
+          /api: mod_http_api
 
 ## Module configuration
 
-Make sure you have enabled the modules supporting the OAuth commands
-you want to use in `ejabberd.yml` modules section.
-
-Please, refer to the
-[List of commands available with OAuth support](#list-of-commands-available-with-oauth-support)
-for reference.
+Make sure you have enabled in `ejabberd.yml` the modules that implement
+the commands you want to use.
 
 ## OAuth specific parameters
 
-Here are the following available parameters to tweak the behaviour of
-OAuth and the available commands:
+OAuth is configured using those top-level options:
 
-- `commands_admin_access`: This option will reference an ejabberd
-  access rule that will define the user that will be able to use
-  commands that are defined as admin only.
+- [oauth_access](/admin/configuration/toplevel/#oauth-access)
+- [oauth_cache_life_time](/admin/configuration/toplevel/#oauth-cache-life-time)
+- [oauth_cache_missed](/admin/configuration/toplevel/#oauth-cache-missed)
+- [oauth_cache_rest_failure_life_time](/admin/configuration/toplevel/#oauth-cache-rest-failure-life_time)
+- [oauth_cache_size](/admin/configuration/toplevel/#oauth-cache-size)
+- [oauth_client_id_check](/admin/configuration/toplevel/#oauth-client-id-check)
+- [oauth_db_type](/admin/configuration/toplevel/#oauth-db-type)
+- [oauth_expire](/admin/configuration/toplevel/#oauth-expire)
+- [oauth_use_cache](/admin/configuration/toplevel/#oauth-use-cache)
 
-- `commands`: This option is used to define the list of commands we
-  want to enable through a remote mechanism (ReST or XML-RPC). This is
-  a list of `add_commands` and `remove_commands` options. You can
-  provide list of either commands or complete categories of commands.
-  The `add_commands` and `remove_commands` directives are executed in
-  order and you can have several of them to control the precise list
-  of commands you want to expose through OAuth.
-  Possible categories of commands are:
-  - `open`: no auth required for that command. Typically, for generic
-    service information related commands.
-  - `admin`: Only an admin user can use the method.
-  - `user`: User can use the method to access server level information
-    (like browse MUC room list as user) or their own data. Admin can
-    still use it to access any user data.
-  - `restricted`: Such admin command is not exposed over internet and
-    is only available through local secure tool like `ejabberdctl`
-    command-line tool.
-
-- `oauth_expire`: Time during which the token is valid, in
-  seconds. After that amount of time, the token expires and the
-  delegated credential cannot be used and is removed from the
-  database.
-
-- `oauth_access`: By default creating OAuth tokens is not allowed.  To define
-  which users can create OAuth tokens, you can refer to an ejabberd access rule
-  in the `oauth_access` option.  Use `all` to allow everyone to create tokens.
-
-Here is an example, for OAuth specific parameters configuration:
+In this example, tokens expire after an hour, and all users can create tokens:
 
     
-    commands_admin_access: configure
-    commands:
-      - add_commands:
-        - user
     oauth_expire: 3600
     oauth_access: all
 
-In the previous example, tokens expire after an hour. All commands in category
-`user` are exposed. All users can create tokens, and admin access is granted to
-users that can pass the `configure` access rule defined in the config file.
-
+<!--
 ## Database / Back-ends for OAuth tokens
 
 Currently, OAuth tokens are stored in Mnesia database. In a future
 release, we plan to support multiple token backends.
+-->
 
-# Using ejabberd OAuth API from your applications
+# authorization_token
 
-## authorization_token: Generating OAuth token
+An easy way to generate a token is using the ejabberdctl shell script:
+
+``` bash
+ejabberdctl oauth_issue_token user123@localhost 3600 ejabberd:admin
+
+erHymcBiT2r0QsuOpDjIrsEvnOS4grkj  [<<"ejabberd:admin">>]  3600 seconds
+```
+
+But probably you want your users to be able to generate tokens themselves.
+
+<!--
+Open this page in a web browser:
+    http://localhost:5281/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=get_roster+sasl_auth
+
+In that page, provide as User (jid): john@localhost and its password somePass
+
+You will get redirected to an URL similar to:
+    http://client.uri/?access_token=HtP7SpKAidA3SeOzSUOmhrPt25mgzH3c&token_type=bearer&expires_in=31536000&scope=get_roster%20sasl_auth&state=
+
+Take note of the access_token value, as this will be used later.
+-->
+
 
 To generate a token you can have the user open the
 `/oauth/authorization_token` in a webview in your application or in a
@@ -211,7 +196,7 @@ redirect the user to the redirect_uri, to actually let ejabberd pass
 the token to the app that requested it. It can be either a Web app or
 `a mobile / desktop application.
 
-## redirect_uri: Receiving OAuth token
+# redirect_uri
 
 The `redirect_uri` originally passed in the authorization_token
 request will be called on successfull validation of user credentials,
@@ -241,12 +226,15 @@ Parameters are described in OAuth specification:
 
 <!--- TODO: Add Android and iOS examples on how to get the token.  -->
 
-## Available default scopes
+# Scopes
 
 - `sasl_auth`: This scope is use to generate a token that can login
   over XMPP using SASL X-OAUTH2 mechanism.
-- `user_get_roster` (*mod_oauth_test*): This scope is used to allow
-  retrieving user roster.
+- `ejabberd:admin`
+- `ejabberd:user`
+- And one scope for each existing [API command](/developer/ejabberd-api/admin-api/).
+  For example, there is a scope `registered_users`
+  because there is a command called `registered_users`.
 
 <!--- TODO: As scope are generally provided by commands, which are
 provided by enabled modules, we need to command to list enabled
@@ -256,7 +244,7 @@ getting scope as a command tag, to grant access to all MUC commands
 for example. The authorize_token form should list the commands that
 will be enabled by the scope at token generation time. -->
 
-## Implementing X-OAuth2 authentication in XMPP client
+# X-OAuth2 Authentication
 
 You can connect to ejabberd using an X-OAUTH2 token that is valid in
 the scope `sasl_auth`. You can use an OAuth token as generated in the
@@ -299,25 +287,28 @@ success, server will reply with:
     
     <success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
 
-## Using commands with ReST / XML-RPC API
+# ReST / XML-RPC API
 
-### Passing credentials
+It is possible to use OAuth to authenticate a client when
+attempting to perform a ReST or XML-RPC query.
 
-To pass your bearer token using ReST API, you need to pass your token
-as Bearer token in Authorization HTTP header:
+## Passing credentials
+
+When using ReST, the client authorization is done by using a bearer token
+(no need to pass the user and host parameters).
+For that, include an Authorization HTTP header like:
 
     
     Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
 
-Using ReST API, authorization is using a bearer token, meaning you do
-not need to pass the user and host parameters.
 
 For XML-RPC, credentials must be passed as XML-RPC parameters,
 including token but also user and host parameters. This is for legacy
 reason, but will likely change in a future version, making user and
 host implicit, thanks to bearer token.
 
-### Acting as an admin
+<!--
+## Acting as an admin
 
 With both HTTP remote call mechanisms, you can either act as a user or
 act as an admin (See previous reference about access rules).
@@ -332,8 +323,9 @@ To act as an admin from an XML-RPC query, the XML-RPC query must contain:
 
     
     {admin,true}
+-->
 
-### ReST JSON example
+## ReST JSON example
 
 With a command like `get_roster`, you can get your own roster, or act
 as an admin to get any user roster.
@@ -342,17 +334,20 @@ The HTTP endpoint does not take any parameter, so we can just do an
 HTTP post with empty JSON structure list (see `-d` option):
 
     
-    curl -v -X POST -H "Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx" http://localhost:5280/api/get_roster -d '[]'
+    curl --oauth2-bearer erHymcBiT2r0QsuOpDjIrsEvnOS4grkj \
+         '127.0.0.1:5281/api/registered_users?host=localhost'
 
+<!--
 For admin queries, add "X-Admin: true" header:
 
     
     curl -v -X POST -H "X-Admin: true" -H "Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx" http://localhost:5280/api/get_roster -d '{"user": "test10", "server": "localhost"}'
+-->
 
 <!--- There is - - oauth2-bearer curl option, which probably should add
       that authorization header, but it does nothing in my curl version -->
 
-### XML-RPC examples
+## XML-RPC examples
 
 With a command like `get_roster`, you can get your own roster, or act
 as an admin to get any user roster.
@@ -511,46 +506,3 @@ Those calls would send this XML to server:
         </param>
       </params>
     </methodCall>
-
-# List of commands available with OAuth support
-
-At the moment, here are the commands are available with OAuth
-authentication:
-
-## Admin only
-
-You can enable all those commands individually or enable them all at
-once by adding all commands in `admin` policy.
-
-- ejabberd core:
-    - `incoming_s2s_number` - Number of incoming s2s connections on node
-    - `outgoing_s2s_number` - Number of outgoing s2s connections on node
-    - `connected_users` - List of established sessions
-    - `connected_users_number` - Number of established sessions
-
-- `ejabberd_admin`:
-   - `register` - Create a new user
-
-- `mod_admin_extra`:
-    - `num_active_users` - Number of users active in the last days
-    - `status_num_host` - Number of logged users with given status in host
-    - `status_num` - Number of logged users with given status
-    - `stats` -  Get statistical value: registered users, online users,
-       online users node, uptime seconds
-    - `stats_host` - Get statistical value per host: registered users,
-      online users, online users node, uptime seconds
-
-- `mod_muc_admin`:
-    - `muc_online_rooms` - List of existing rooms
-
-## User and Admin
-
-You can enable all those commands individually or enable them all at
-once by adding all commands in `user` policy.
-
-- ejabberd core:
-    - `user_resources` - List of connected user's resources
-
-- `mod_admin_extra`:
-    - `get_roster` - Get roster of a local user
-    - `get_offline_count` - Number of unread offline messages
