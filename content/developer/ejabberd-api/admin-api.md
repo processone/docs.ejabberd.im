@@ -30,6 +30,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+roster 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -65,6 +71,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -95,6 +104,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+accounts 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -128,6 +143,12 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+private 
+
+__Module:__
+mod_private
+
 __Examples:__
 
 
@@ -159,6 +180,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+accounts 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -194,6 +221,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -227,6 +260,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+accounts 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -258,6 +297,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+accounts 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -296,6 +341,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+accounts 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -327,6 +378,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+server 
+
 __Examples:__
 
 
@@ -356,6 +410,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+erlang 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -383,6 +443,9 @@ __Arguments:__
 __Result:__
 
 - *connected_users* :: [sessions::string] : List of users sessions
+
+__Tags:__
+session 
 
 __Examples:__
 
@@ -414,6 +477,12 @@ __Arguments:__
 __Result:__
 
 - *connected_users_info* :: [{jid::string, connection::string, ip::string, port::integer, priority::integer, node::string, uptime::integer, status::string, resource::string, statustext::string}]
+
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -456,6 +525,9 @@ __Result:__
 
 - *num_sessions* :: integer
 
+__Tags:__
+session statistics 
+
 __Examples:__
 
 
@@ -484,6 +556,12 @@ __Arguments:__
 __Result:__
 
 - *connected_users_vhost* :: [sessions::string]
+
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -517,6 +595,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+sql 
+
 __Examples:__
 
 
@@ -546,6 +627,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+config 
 
 __Examples:__
 
@@ -578,6 +662,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -612,6 +702,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -653,6 +749,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -680,6 +782,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+purge 
 
 __Examples:__
 
@@ -709,6 +814,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -743,6 +851,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+purge 
+
+__Module:__
+mod_mam
+
 __Examples:__
 
 
@@ -773,6 +887,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+purge 
+
 __Examples:__
 
 
@@ -801,6 +918,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+purge 
+
+__Module:__
+mod_push
 
 __Examples:__
 
@@ -838,6 +961,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+accounts purge 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -877,6 +1006,12 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+accounts purge 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -909,6 +1044,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+roster 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -943,6 +1084,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -976,6 +1123,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -1004,6 +1157,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -1034,6 +1190,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+config 
+
 __Examples:__
 
 
@@ -1063,6 +1222,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -1098,6 +1260,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -1127,6 +1292,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -1158,6 +1326,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -1186,6 +1357,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+server 
 
 __Examples:__
 
@@ -1217,6 +1391,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+documentation 
 
 __Examples:__
 
@@ -1251,6 +1428,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+documentation 
+
 __Examples:__
 
 
@@ -1280,6 +1460,12 @@ __Arguments:__
 __Result:__
 
 - *cookie* :: string : Erlang cookie used for authentication by ejabberd
+
+__Tags:__
+erlang 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -1314,6 +1500,12 @@ __Result:__
 
 - *last_activity* :: {timestamp::string, status::string} : Last activity timestamp and status
 
+__Tags:__
+last 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -1346,6 +1538,9 @@ __Result:__
 
 - *levelatom* :: string : Tuple with the log level number, its keyword and description
 
+__Tags:__
+logs 
+
 __Examples:__
 
 
@@ -1375,6 +1570,12 @@ __Arguments:__
 __Result:__
 
 - *value* :: integer : Number
+
+__Tags:__
+offline 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -1419,6 +1620,12 @@ __Result:__
 
 - *presence* :: {jid::string, show::string, status::string}
 
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -1455,6 +1662,12 @@ __Result:__
 
 - *affiliation* :: string : Affiliation of the user
 
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -1486,6 +1699,12 @@ __Arguments:__
 __Result:__
 
 - *affiliations* :: [{username::string, domain::string, affiliation::string, reason::string}] : The list of affiliations with username, domain, affiliation and reason
+
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -1525,6 +1744,12 @@ __Result:__
 
 - *occupants* :: [{jid::string, nick::string, role::string}] : The list of occupants with JID, nick and affiliation
 
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -1562,6 +1787,12 @@ __Result:__
 
 - *occupants* :: integer : Number of room occupants
 
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -1592,6 +1823,12 @@ __Arguments:__
 __Result:__
 
 - *options* :: [{name::string, value::string}] : List of room options tuples with name and value
+
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -1628,6 +1865,12 @@ __Arguments:__
 __Result:__
 
 - *contacts* :: [{jid::string, nick::string, subscription::string, ask::string, group::string}]
+
+__Tags:__
+roster 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -1675,6 +1918,12 @@ __Result:__
 
 - *subscribers* :: [jid::string] : The list of users that are subscribed to that room
 
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -1709,6 +1958,12 @@ __Result:__
 
 - *rooms* :: [room::string]
 
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -1742,6 +1997,12 @@ __Arguments:__
 __Result:__
 
 - *rooms* :: [{roomjid::string, usernick::string, nodes::[node::string]}]
+
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -1794,6 +2055,12 @@ __Result:__
 
 - *content* :: string : Field content
 
+__Tags:__
+vcard 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -1845,6 +2112,12 @@ __Arguments:__
 __Result:__
 
 - *content* :: string : Field content
+
+__Tags:__
+vcard 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -1899,6 +2172,12 @@ __Result:__
 
 - *contents* :: [value::string]
 
+__Tags:__
+vcard 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -1934,6 +2213,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -1963,6 +2245,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -1991,6 +2276,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -2024,6 +2312,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+mnesia sql 
+
 __Examples:__
 
 
@@ -2051,6 +2342,9 @@ __Arguments:__
 __Result:__
 
 - *s2s_incoming* :: integer
+
+__Tags:__
+statistics s2s 
 
 __Examples:__
 
@@ -2080,6 +2374,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -2113,6 +2410,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+cluster 
+
 __Examples:__
 
 
@@ -2144,6 +2444,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -2178,6 +2484,9 @@ __Result:__
 
 - *num_resources* :: integer : Number of resources that were kicked
 
+__Tags:__
+session 
+
 __Examples:__
 
 
@@ -2211,6 +2520,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+cluster 
+
 __Examples:__
 
 
@@ -2238,6 +2550,9 @@ __Arguments:__
 __Result:__
 
 - *nodes* :: [node::string]
+
+__Tags:__
+cluster 
 
 __Examples:__
 
@@ -2271,6 +2586,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -2298,6 +2616,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+documentation 
 
 __Examples:__
 
@@ -2331,6 +2652,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -2362,6 +2686,9 @@ __Result:__
 
 - *res* :: string
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -2390,6 +2717,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -2420,6 +2750,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+modules 
+
 __Examples:__
 
 
@@ -2449,6 +2782,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+modules 
+
 __Examples:__
 
 
@@ -2477,6 +2813,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+modules 
 
 __Examples:__
 
@@ -2510,6 +2849,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+modules 
+
 __Examples:__
 
 
@@ -2537,6 +2879,9 @@ __Arguments:__
 __Result:__
 
 - *modules* :: [{name::string, summary::string}] : List of tuples with module name and description
+
+__Tags:__
+modules 
 
 __Examples:__
 
@@ -2568,6 +2913,9 @@ __Arguments:__
 __Result:__
 
 - *modules* :: [{name::string, summary::string}] : List of tuples with module name and description
+
+__Tags:__
+modules 
 
 __Examples:__
 
@@ -2603,6 +2951,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+modules 
+
 __Examples:__
 
 
@@ -2631,6 +2982,12 @@ __Arguments:__
 __Result:__
 
 - *rooms* :: [room::string] : List of rooms
+
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -2664,6 +3021,12 @@ __Arguments:__
 __Result:__
 
 - *rooms* :: [{jid::string, public::string, participants::integer}] : List of rooms with summary
+
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -2708,6 +3071,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -2740,6 +3109,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -2770,6 +3145,12 @@ __Arguments:__
 __Result:__
 
 - *resources* :: integer : Number of active resources for a user
+
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -2802,6 +3183,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+oauth 
 
 __Examples:__
 
@@ -2836,6 +3220,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+oauth 
+
 __Examples:__
 
 
@@ -2868,6 +3255,9 @@ __Arguments:__
 __Result:__
 
 - *result* :: {token::string, scopes::string, expires_in::string}
+
+__Tags:__
+oauth 
 
 __Examples:__
 
@@ -2905,6 +3295,9 @@ __Arguments:__
 __Result:__
 
 - *tokens* :: [{token::string, user::string, scope::string, expires_in::string}]
+
+__Tags:__
+oauth 
 
 __Examples:__
 
@@ -2948,6 +3341,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+oauth 
+
 __Examples:__
 
 
@@ -2976,6 +3372,9 @@ __Arguments:__
 __Result:__
 
 - *tokens* :: [{token::string, user::string, scope::string, expires_in::string}] : List of remaining tokens
+
+__Tags:__
+oauth 
 
 __Examples:__
 
@@ -3018,6 +3417,9 @@ __Result:__
 
 - *s2s_outgoing* :: integer
 
+__Tags:__
+statistics s2s 
+
 __Examples:__
 
 
@@ -3048,6 +3450,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+stanza 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -3083,6 +3491,12 @@ __Result:__
 
 - *res* :: string
 
+__Tags:__
+private 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3116,6 +3530,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+private 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -3188,6 +3608,12 @@ __Result:__
 
 - *response* :: [{user::string, contact::string}]
 
+__Tags:__
+roster 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3231,6 +3657,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+roster 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3270,6 +3702,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+roster 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3306,6 +3744,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+roster 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3336,6 +3780,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+accounts 
 
 __Examples:__
 
@@ -3368,6 +3815,9 @@ __Result:__
 
 - *users* :: [username::string] : List of registered accounts usernames
 
+__Tags:__
+accounts 
+
 __Examples:__
 
 
@@ -3398,6 +3848,9 @@ __Arguments:__
 __Result:__
 
 - *vhosts* :: [vhost::string] : List of available vhosts
+
+__Tags:__
+server 
 
 __Examples:__
 
@@ -3430,6 +3883,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+config 
+
 __Examples:__
 
 
@@ -3459,6 +3915,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+mam 
+
+__Module:__
+mod_mam
 
 __Examples:__
 
@@ -3492,6 +3954,12 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+mam 
+
+__Module:__
+mod_mam
+
 __Examples:__
 
 
@@ -3521,6 +3989,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+logs 
 
 __Examples:__
 
@@ -3553,6 +4024,12 @@ __Result:__
 
 - *resource* :: string : Name of user resource
 
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3582,6 +4059,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+server 
 
 __Examples:__
 
@@ -3616,6 +4096,12 @@ __Result:__
  - 1: error: module not loaded
  - 2: code not reloaded, but module restarted
 
+__Tags:__
+erlang 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3645,6 +4131,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+mnesia 
 
 __Examples:__
 
@@ -3677,6 +4166,12 @@ __Arguments:__
 __Result:__
 
 - *rooms* :: [room::string] : List of empty rooms that have been destroyed
+
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -3713,6 +4208,12 @@ __Result:__
 
 - *rooms* :: [room::string] : List of empty rooms
 
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -3748,6 +4249,12 @@ __Arguments:__
 __Result:__
 
 - *rooms* :: [room::string] : List of unused rooms that has been destroyed
+
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -3786,6 +4293,12 @@ __Result:__
 
 - *rooms* :: [room::string] : List of unused rooms
 
+__Tags:__
+muc 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -3817,6 +4330,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+logs 
 
 __Examples:__
 
@@ -3855,6 +4371,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -3896,6 +4418,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+stanza 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -3930,6 +4458,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+stanza 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -3967,6 +4501,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+stanza 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -4006,6 +4546,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+last 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4037,6 +4583,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+logs 
 
 __Examples:__
 
@@ -4070,6 +4619,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+mnesia 
+
 __Examples:__
 
 
@@ -4100,6 +4652,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+vcard 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -4138,6 +4696,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4175,6 +4739,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -4221,6 +4791,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+vcard 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -4275,6 +4851,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+vcard 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -4331,6 +4913,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+vcard 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4378,6 +4966,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+shared_roster_group 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4412,6 +5006,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+shared_roster_group 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4442,6 +5042,12 @@ __Arguments:__
 __Result:__
 
 - *informations* :: [{key::string, value::string}] : List of group informations, as key and value
+
+__Tags:__
+shared_roster_group 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -4483,6 +5089,12 @@ __Result:__
 
 - *members* :: [member::string] : List of group identifiers
 
+__Tags:__
+shared_roster_group 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4515,6 +5127,12 @@ __Arguments:__
 __Result:__
 
 - *groups* :: [id::string] : List of group identifiers
+
+__Tags:__
+shared_roster_group 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -4551,6 +5169,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+shared_roster_group 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4586,6 +5210,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+shared_roster_group 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4618,6 +5248,12 @@ __Result:__
 
 - *stat* :: integer : Integer statistic value
 
+__Tags:__
+statistics 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4648,6 +5284,12 @@ __Result:__
 
 - *stat* :: integer : Integer statistic value
 
+__Tags:__
+statistics 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4677,6 +5319,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+server 
+
 __Examples:__
 
 
@@ -4705,6 +5350,12 @@ __Arguments:__
 __Result:__
 
 - *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
+
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
@@ -4744,6 +5395,12 @@ __Result:__
 
 - *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
 
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4782,6 +5439,12 @@ __Result:__
 
 - *users* :: integer : Number of connected sessions with given status type
 
+__Tags:__
+session statistics 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4812,6 +5475,12 @@ __Result:__
 
 - *users* :: integer : Number of connected sessions with given status type
 
+__Tags:__
+session statistics 
+
+__Module:__
+mod_admin_extra
+
 __Examples:__
 
 
@@ -4840,6 +5509,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+server 
 
 __Examples:__
 
@@ -4875,6 +5547,9 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+server 
+
 __Examples:__
 
 
@@ -4903,6 +5578,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+s2s 
 
 __Examples:__
 
@@ -4935,6 +5613,12 @@ __Arguments:__
 __Result:__
 
 - *nodes* :: [node::string] : The list of nodes that has subscribed
+
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
 
 __Examples:__
 
@@ -4974,6 +5658,12 @@ __Result:__
 
 - *unbanned* :: integer : Amount of unbanned entries, or negative in case of error.
 
+__Tags:__
+accounts 
+
+__Module:__
+mod_fail2ban
+
 __Examples:__
 
 
@@ -5003,6 +5693,9 @@ __Arguments:__
 __Result:__
 
 - *res* :: string : Raw result string
+
+__Tags:__
+accounts 
 
 __Examples:__
 
@@ -5035,6 +5728,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+muc_room 
+
+__Module:__
+mod_muc_admin
+
 __Examples:__
 
 
@@ -5065,6 +5764,9 @@ __Result:__
 
 - *res* :: string : Raw result string
 
+__Tags:__
+server 
+
 __Examples:__
 
 
@@ -5092,6 +5794,9 @@ __Arguments:__
 __Result:__
 
 - *modules* :: [module::string]
+
+__Tags:__
+server 
 
 __Examples:__
 
@@ -5124,6 +5829,12 @@ __Result:__
 
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
+__Tags:__
+sql 
+
+__Module:__
+mod_admin_update_sql
+
 __Examples:__
 
 
@@ -5153,6 +5864,9 @@ __Arguments:__
 __Result:__
 
 - *resources* :: [resource::string]
+
+__Tags:__
+session 
 
 __Examples:__
 
@@ -5188,6 +5902,12 @@ __Arguments:__
 __Result:__
 
 - *sessions_info* :: [{connection::string, ip::string, port::integer, priority::integer, node::string, uptime::integer, status::string, resource::string, statustext::string}]
+
+__Tags:__
+session 
+
+__Module:__
+mod_admin_extra
 
 __Examples:__
 
