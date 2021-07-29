@@ -13,6 +13,10 @@ all: api man
 
 api:
 	ejabberdctl gen_markdown_doc_for_commands `pwd`/admin-api.md "." json
+	# Remove three consecutive empty lines after Tags: and Modules:
+	sed -i 's/^__Tags:__/__Tags:__\nCLEANLINES/g' admin-api.md
+	sed -i 's/^__Module:__/__Module:__\nCLEANLINES/g' admin-api.md
+	sed -i '/^CLEANLINES/{N;N;N;//d}' admin-api.md
 	# Add disclaimer about Archive page for older ejabberd releases
 	sed -i 's|\(This section.*\)|> \1'$(ARCHIVESTRING)'|g' admin-api.md
 	# Make URL when mentioning an ejabberd release
