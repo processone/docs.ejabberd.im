@@ -177,7 +177,7 @@ see the [SCRAM](/admin/configuration/authentication/#scram) section.
 
 ## SQL Storage
 
-Several `ejabberd` [modules](/admin/configuration/modules)
+Several `ejabberd` [modules](/admin/configuration/modules/)
 have options called `db_type`, and can store their tables
 in an SQL database instead of internal.
 
