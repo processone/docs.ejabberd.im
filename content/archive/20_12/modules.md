@@ -1,5 +1,5 @@
 ---
-title: Modules Options (20.12)
+title: Modules Options
 toc: true
 menu: Modules Options
 order: 95
