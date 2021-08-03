@@ -124,6 +124,9 @@ For bug reports and improvement suggestions, please go to the
 
 [Homebrew](https://brew.sh/) is a package manager for macOS that aims to port the many Unix & Linux software that is not easily available or compatible. Homebrew installation is simple and the instruction is available on its website.
 
+Check also the guide for
+[Installing ejabberd development environment on OSX](/developer/install-osx/)
+
 The ejabberd configuration included in Homebrew's ejabberd 
 has as default domain `localhost`,
 and has already granted administrative privileges to the account `admin@localhost`.
@@ -167,12 +170,17 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   GCC
 -   Libexpat 1.95 or higher
 -   Libyaml 0.1.4 or higher
--   Erlang/OTP 19.3 or higher. We recommend using Erlang OTP 21.2.
+-   [Erlang/OTP](https://www.erlang.org/) 19.3 or higher.
+    We recommend using Erlang OTP 21.2.
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
--   Zlib 1.2.3 or higher, for Stream Compression support ([`XEP-0138`](https://xmpp.org/extensions/xep-0138.html)). Optional.
--   PAM library. Optional. For Pluggable Authentication Modules (PAM). See [PAM Authentication](/admin/configuration/authentication/#pam-authentication) section.
--   ImageMagick’s Convert program and Ghostscript fonts. Optional. For CAPTCHA challenges. See section [CAPTCHA](/admin/configuration/basic/#captcha).
--   Elixir 1.10.3 or higher. Optional. Alternative to build ejabberd
+-   Zlib 1.2.3 or higher. Optional.
+    For [Zlib Stream Compression](/admin/configuration/listen-options/#zlib)
+-   PAM library. Optional.
+    For [PAM Authentication](/admin/configuration/authentication/#pam-authentication)
+-   ImageMagick’s Convert program and Ghostscript fonts. Optional.
+    For [CAPTCHA challenges](/admin/configuration/basic/#captcha).
+-   [Elixir](https://elixir-lang.org/) 1.10.3 or higher. Optional.
+    For [Elixir Development](/developer/extending-ejabberd/elixir/)
 
 ## Downloading
 
@@ -227,7 +235,8 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
 
 <br />
 
-- **`--with-rebar=/`**: Specify the path to rebar, rebar3 or mix
+- **`--with-rebar=/`**: Specify the path to rebar, rebar3 or
+  [mix](/developer/extending-ejabberd/elixir/)
 
 - **`-–enable-user[=USER]`**: Allow this normal system user to execute
   the ejabberdctl script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)), read the
