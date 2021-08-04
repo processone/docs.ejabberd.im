@@ -2,7 +2,6 @@
 title: Supporting and configuring specific XMPP Extensions in ejabberd
 toc: true
 menu: XMPP Extensions
-order: 50
 ---
 
 XMPP extensions support can be implemented in different ways in ejabberd. We have several cases:

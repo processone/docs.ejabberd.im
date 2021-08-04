@@ -2,7 +2,6 @@
 title: Managing an ejabberd server
 toc: true
 menu: Managing
-order: 60
 ---
 
 # ejabberdctl

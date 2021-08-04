@@ -1,7 +1,6 @@
 ---
 title: ejabberd for Elixir Developers
-menu: Elixir Development
-order: 50
+menu: Elixir Dev
 toc: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: ejabberd commands
-menu: Commands record
+menu: Record
+order: 18
 ---
 
 By defining command using api available through `ejabberd_commands`

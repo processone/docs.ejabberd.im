@@ -2,7 +2,6 @@
 title: Troubleshooting ejabberd
 toc: true
 menu: Troubleshooting
-order: 110
 ---
 
 # Log Files

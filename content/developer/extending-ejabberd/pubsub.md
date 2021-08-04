@@ -1,7 +1,6 @@
 ---
 title: PubSub Plugin Development
-menu: PubSub Plugin Development
-order: 20
+menu: PubSub Dev
 toc: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Listen Options
 toc: true
-menu: Listen Options
+menu: Listen Opts
 order: 51
 ---
 

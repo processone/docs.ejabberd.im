@@ -1,7 +1,6 @@
 ---
 title: ejabberd Test Suites
-menu: Testing ejabberd
-order: 60
+menu: Testing
 toc: true
 ---
 

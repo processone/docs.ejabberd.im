@@ -1,7 +1,6 @@
 ---
 title: ejabberd Stanza Routing
 menu: Stanza Routing
-order: 40
 ---
 
 # Message Routing

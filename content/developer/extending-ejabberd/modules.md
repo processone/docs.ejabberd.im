@@ -1,7 +1,6 @@
 ---
 title: ejabberd Modules Development
-menu: Modules Development
-order: 10
+menu: Modules Dev
 toc: true
 ---
 

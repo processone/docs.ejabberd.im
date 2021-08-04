@@ -1,7 +1,6 @@
 ---
 title: Internationalization and Localization
 menu: Localization
-order: 70
 ---
 
 The source code of `ejabberd` supports localization:

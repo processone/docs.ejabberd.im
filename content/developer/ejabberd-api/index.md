@@ -1,7 +1,7 @@
 ---
 title: ejabberd Rest API
-menu: ejabberd ReST API
-order: 20
+menu: API
+order: 10
 toc: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Basic Configuration
 toc: true
-menu: Basic Configuration
+menu: Basic Config
 order: 20
 ---
 

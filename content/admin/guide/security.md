@@ -2,7 +2,6 @@
 title: Securing ejabberd
 toc: true
 menu: Security
-order: 70
 ---
 
 # Firewall Settings

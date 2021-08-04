@@ -1,6 +1,7 @@
 ---
 title: Understanding ejabberd hosts
 menu: Hosts
+order: 80
 ---
 
 The host parameter is very commonly used through ejabberd code

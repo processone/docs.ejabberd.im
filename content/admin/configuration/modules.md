@@ -1,7 +1,7 @@
 ---
 title: Modules Options
 toc: true
-menu: Modules Options
+menu: Modules Opts
 order: 95
 ---
 

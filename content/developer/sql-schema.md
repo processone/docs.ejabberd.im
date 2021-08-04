@@ -2,6 +2,7 @@
 title: ejabberd SQL Database Schema
 toc: true
 menu: SQL Schema
+order: 190
 ---
 
 > This section describes ejabberd SQL database schema of most recent version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).

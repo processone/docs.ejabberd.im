@@ -1,8 +1,8 @@
 ---
 title: API Permissions
 toc: true
-menu: API Permissions
-order: 20
+menu: Permissions
+order: 16
 ---
 
 This page describes the new flexible permission mechanism introduced in

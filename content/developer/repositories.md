@@ -1,6 +1,7 @@
 ---
 title: Understanding ejabberd and its dependencies
 menu: Repositories
+order: 180
 ---
 
 We wanted to make sure that ejabberd is modular and that parts that

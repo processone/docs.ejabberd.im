@@ -1,6 +1,7 @@
 ---
 title: Installing ejabberd development environment on OSX
-menu: Install on OSX
+menu: OSX Install
+order: 150
 ---
 
 This short guide will show you how to compile ejabberd from source

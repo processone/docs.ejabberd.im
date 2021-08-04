@@ -1,7 +1,7 @@
 ---
 title: API Versioning
-menu: API Versioning
-order: 20
+menu: Versioning
+order: 22
 toc: true
 ---
 

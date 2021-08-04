@@ -1,7 +1,7 @@
 ---
 title: Simple ejabberd Rest API Configuration
-menu: Simple Configuration
-order: 10
+menu: Simple Config
+order: 0
 toc: true
 ---
 

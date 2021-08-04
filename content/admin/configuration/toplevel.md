@@ -1,7 +1,7 @@
 ---
 title: Top-Level Options
 toc: true
-menu: Top-Level Options
+menu: Top-Level Opts
 order: 80
 ---
 

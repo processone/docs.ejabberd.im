@@ -1,7 +1,6 @@
 ---
 title: ejabberd Architecture
 menu: Architecture
-order: 70
 ---
 
 This section contains information to help your understand ejabberd
