@@ -1,7 +1,6 @@
 ---
 title: MQTT Support
 menu: MQTT
-order: 35
 toc: true
 ---
 
@@ -28,7 +27,7 @@ The bottom line is simple:
 - You get support on solution design for real-time infrastructure and can get help choosing between XMPP and MQTT, from
 a vendor that has no interest in selling one protocol more than another.
 
-## Specific benefits of MQTT service in eBE
+# Specific benefits of MQTT service in eBE
 
 ejabberd Business Edition offers a different clustering than eCS. Using MQTT with ejabberd Business Edition means
 you can leverage:
@@ -39,9 +38,9 @@ regions. You can deploy a truly global service.
 - The backend integration that are supported in ejabberd Business Edition will be available in MQTT. You have no need
 to develop support for new API.
 
-## Enabling MQTT service in ejabberd
+# Enabling MQTT service in ejabberd
 
-### Creating self-signed TLS certificate
+## Creating self-signed TLS certificate
 
 If you want to use TLS, you may want to create a self-signed certificate (at least to get started). The following page
 is a nice guide: [Mosquitto SSL Configuration -MQTT TLS Security](http://www.steves-internet-guide.com/mosquitto-tls/).
@@ -57,7 +56,7 @@ openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out s
 cat server.crt server.key > mqtt.pem
 ```
 
-### Adding MQTT service in ejabberd.yml
+## Adding MQTT service in ejabberd.yml
 
 Enabling it is as simple as adding `mod_mqtt` in ejabberd modules list and adding one or two listeners.
 For details see [mod_mqtt modules options](/admin/configuration/modules/#mod-mqtt)
@@ -95,7 +94,7 @@ enable both or only one of them depending on your needs.
 
 Start ejabberd server and you should be able to connect to ejabberd MQTT service.
 
-## MQTT over Websocket
+# MQTT over Websocket
 
 You can add an extra listener to enabled MQTT over Websocket:
 
@@ -118,7 +117,7 @@ ones.
 If you need an example on how to use MQTTJS library, you can check our small example project: 
 [mqttjs-demo](https://github.com/processone/mqttjs-demo)
 
-## Access control configuration
+# Access control configuration
 
 MQTT support in ejabberd supports advanced configuration using ejabberd ACLs.
 
@@ -159,12 +158,12 @@ modules:
 ```
 
 
-## Testing MQTT from the client perspective
+# Testing MQTT from the client perspective
 
 If you are a developer and would like to try connecting your client to MQTT service, you can either use our test public
 MQTT broker, or on your own server.
 
-### Testing on mqtt.fluux.io
+## Testing on mqtt.fluux.io
 
 ProcessOne has deployed a public MQTT broker with anonymous access. This is one of the first MQTT 5 public brokers available.
 
@@ -192,7 +191,7 @@ You should see your message received and displayed below the `mosquitto_sub` com
 
 *Note: In this example, Mosquitto client is using MQTT v3.1.1, as it doesn’t support version 5.0 at the moment of writing.*
 
-### Testing on your own server with authentication and TLS
+## Testing on your own server with authentication and TLS
 
 I assume that you have configured ejabberd on `localhost` (for development) and have created user `mqttuser@localhost`
 with password `mqtt`. You can then connect using TLS with the `mosquitto` client.
