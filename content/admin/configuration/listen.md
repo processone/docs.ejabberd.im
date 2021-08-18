@@ -183,6 +183,7 @@ With the proper request handlers configured, this serves HTTP services like
 [CAPTCHA](/admin/configuration/basic/#captcha),
 [Fileserver](/admin/configuration/modules/#mod-http-fileserver),
 [OAuth](/developer/ejabberd-api/oauth/),
+[RegisterWeb](/admin/configuration/modules/#mod-register-web),
 [Upload](/admin/configuration/modules/#mod-http-upload),
 [WebAdmin](/admin/guide/managing/#web-admin),
 [WebSocket](/admin/configuration/listen/#ejabberd-http-ws),
