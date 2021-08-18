@@ -43,7 +43,7 @@ man:
 	sed -E '$!N;s/[A-Z ]+\n===+/===---===/;P;D' man-tmp1.md >man-tmp2.md
 	csplit man-tmp2.md /===---===/ {*} -f man- --suppress-matched
 
-	echo "---\ntitle: Top-Level Options\ntoc: true\nmenu: Top-Level Options\norder: 80\n---" >toplevel.md
+	echo "---\ntitle: Top-Level Options\ntoc: true\nmenu: Top-Level Opts\norder: 80\n---" >toplevel.md
 	cat man-02 >>toplevel.md
 	# Add headers to options so they get TOC entries:
 	sed -i 's/^\*\*\(.*\)\*\*: \(.*\)/## \1\n\n\2\n/g' toplevel.md
@@ -58,7 +58,7 @@ man:
 	# Make URL when mentioning an ejabberd release
 	sed -i 's| \([0-9][0-9]\)\.\([0-9][0-9]\)| <a href="/archive/\1_\2/">\1.\2</a>|g' toplevel.md
 
-	echo "---\ntitle: Modules Options\ntoc: true\nmenu: Modules Options\norder: 95\n---" >modules.md
+	echo "---\ntitle: Modules Options\ntoc: true\nmenu: Modules Opts\norder: 95\n---" >modules.md
 	cat man-03 >>modules.md
 	# Remove second-level headers so they don't get TOC entries:
 	sed -i 's/^### \(.*\)/__\1__/g' modules.md
