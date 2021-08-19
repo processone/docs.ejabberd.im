@@ -12,6 +12,15 @@ ARCHIVESTRING=" If you are using an old ejabberd release, please refer to the co
 all: api man
 
 api:
+	ejabberdctl gen_markdown_doc_for_tags `pwd`/admin-tags.md
+	# Convert *`something`* API into a link to API Reference
+	sed -i 's|\*`\([a-z0-9_]*\)`\*|[\1](/developer/ejabberd-api/admin-api/#\1)|g' admin-tags.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-tags.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-tags.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-tags.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-tags.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-tags.md
+	mv admin-tags.md content/developer/ejabberd-api
 	ejabberdctl gen_markdown_doc_for_commands `pwd`/admin-api.md "." json
 	# Remove three consecutive empty lines after Tags: and Modules:
 	sed -i 's/^__Tags:__/__Tags:__\nCLEANLINES/g' admin-api.md
@@ -22,7 +31,15 @@ api:
 	# Make URL when mentioning an ejabberd release
 	sed -i 's| \([0-9][0-9]\)\.\([0-9][0-9]\)| <a href="/archive/\1_\2/">\1.\2</a>|g' admin-api.md
 	# Convert tricky absolute URLs into valid relative URLS
-	sed -i 's|http://\./\(#.*\)\(\[[_a-z]*\]\)|\2(/developer/ejabberd-api/admin-api/\1)|g' admin-api.md
+	sed -i 's|http://\./\(#.*\)\(\[[_a-z0-9]*\]\)|\2(/developer/ejabberd-api/admin-api/\1)|g' admin-api.md
+	# Convert *`mod_something`* into a link to modules section
+	sed -i 's|\*`mod_\([a-z0-9_]*\)`\*|[mod_\1](/admin/configuration/modules/#mod-\1)|g' admin-api.md
+	# Convert *`something`* into a link to tags section
+	sed -i 's|\*`\([a-z0-9_]*\)`\*|[\1](/developer/ejabberd-api/admin-tags/#\1)|g' admin-api.md
+	# Anchors must use -, not _ characters
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-api.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-api.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-api.md
 	mv admin-api.md content/developer/ejabberd-api
 
 test:
@@ -53,6 +70,18 @@ man:
 	sed -i 's|\(This section.*\)|> \1'$(ARCHIVESTRING)'|g' toplevel.md
 	# Convert tricky absolute URLs into valid relative URLS
 	sed -i 's|http://\.\.|/admin/configuration|g' toplevel.md
+	# Convert tricky absolute URLs into valid relative URLS
+	sed -i 's|http://\.\.|/admin/configuration|g' toplevel.md
+	# Convert *`mod_something`* into a link to modules section
+	sed -i 's|\*`mod_\([a-z_]*\)`\*|[mod_\1](/admin/configuration/modules/#mod-\1)|g' toplevel.md
+	# Convert *`something`* API into a link to API Reference
+	sed -i 's|\*`\([a-z0-9_]*\)`\* API|[\1](/developer/ejabberd-api/admin-api/#\1) API|g' toplevel.md
+	# Convert *`something`* into a link to top-level options
+	sed -i 's|\*`\([a-z0-9_]*\)`\*|[\1](/admin/configuration/toplevel/#\1)|g' toplevel.md
+	# Anchors must use -, not _ characters
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' toplevel.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' toplevel.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' toplevel.md
 	# Convert note to div HTML elements
 	sed -i 's|\*Note\* about the next option: \(.*\):|<div class="note-down">\1</div>|g' toplevel.md
 	# Make URL when mentioning an ejabberd release
@@ -73,6 +102,16 @@ man:
 	sed -i 's/^\*\*.*\*\*  /- &/g' modules.md
 	# Convert tricky absolute URLs into valid relative URLS
 	sed -i 's|http://\.\.|/admin/configuration|g' modules.md
+	# Convert *`mod_something`* into a link to modules section
+	sed -i 's|\*`mod_\([a-z_]*\)`\*|[mod_\1](/admin/configuration/modules/#mod-\1)|g' modules.md
+	# Convert *`something`* API into a link to API Reference
+	sed -i 's|\*`\([a-z_]*\)`\* API|[\1](/developer/ejabberd-api/admin-api/#\1) API|g' modules.md
+	# Convert *`something`* into a link to top-level options
+	sed -i 's|\*`\([a-z_]*\)`\*|[\1](/admin/configuration/toplevel/#\1)|g' modules.md
+	# Anchors must use -, not _ characters
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' modules.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' modules.md
+	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' modules.md
 	# Add disclaimer about Archive page for older ejabberd releases
 	sed -i 's|\(This section.*\)|> \1'$(ARCHIVESTRING)'|g' modules.md
 	# Convert note to div HTML elements
