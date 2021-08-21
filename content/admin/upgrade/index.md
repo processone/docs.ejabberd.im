@@ -32,23 +32,23 @@ This is the simplest process, and require service restart.
 
 # Soft upgrade process
 
-This process needs you to run in cluster, with at lease two nodes. In this case,
+This process needs you to run in cluster, with at least two nodes. In this case,
 we assume you run node A and B with version N, and will upgrade to version N+1.
 
 - read the upgrade note, make sure it does not explicitly states "soft upgrade is not supported".
 - apply the required changes in database from the upgrade note.
 - make sure node A is running
-- run `leave_cluster` command on node B
+- run [leave_cluster](/developer/ejabberd-api/admin-api/#leave-cluster) on node B
 - stop old node B
 - install new version on B's host
 - start new node B
-- run `join_cluster` command on node B, passing node A as parameter
+- run [join_cluster](/developer/ejabberd-api/admin-api/#join-cluster) on node B, passing node A as parameter
 - make sure both nodes are running and working as expected
-- run `leave_cluster` command on node A
+- run [leave_cluster](/developer/ejabberd-api/admin-api/#leave-cluster) on node A
 - stop old node A
 - install new version on A's host
 - start new node A
-- run `join_cluster` command on node A, passing node B as parameter
+- run [join_cluster](/developer/ejabberd-api/admin-api/#join-cluster) on node A, passing node B as parameter
 
 # Note on database schema upgrade
 

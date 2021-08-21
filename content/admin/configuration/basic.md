@@ -85,8 +85,8 @@ Examples:
 To define specific ejabberd modules in a virtual host, you can define
 the global `modules` option with the common modules, and later add
 specific modules to certain virtual hosts. To accomplish that, instead
-of defining each option in `host_config` use
-[append_host_config](/admin/configuration/toplevel/#append-host-config)
+of defining each option in [host_config](/admin/configuration/toplevel/#host-config)
+use [append_host_config](/admin/configuration/toplevel/#append-host-config)
 with the same syntax.
 
 In this example three virtual hosts have some similar modules, but there
@@ -273,7 +273,9 @@ in the [`acme`](/admin/configuration/toplevel/#acme) top-level option:
       ...
 
 In this case automated renewals are still enabled, however, in order to request a new certificate,
-you need to run `request-certificate` ejabberdctl command:
+you need to run 
+[request_certificate](/developer/ejabberd-api/admin-api/#request-certificate)
+ API command:
 
     $ ejabberdctl request-certificate all
 
@@ -281,7 +283,8 @@ If you only want to request certificates for a subset of the domains, run:
 
     $ ejabberdctl request-certificate domain.tld,pubsub.domain.tld,server.com,conference.server.com,...
 
-You can view the certificates obtained using ACME:
+You can view the certificates obtained using ACME and
+[list_certificates](/developer/ejabberd-api/admin-api/#list-certificates):
 
     $ ejabberdctl list-certificates
     domain.tld /path/to/cert/file1 true
@@ -293,7 +296,9 @@ and whether this certificate file is used or not. A certificate might not be use
 mostly because ejabberd detects a better certificate (i.e. not expired, or having a longer lifetime).
 It's recommended to revoke unused certificates if they are not yet expired (see below).
 
-At any point you can revoke a certificate: pick the certificate file from the listing above and run:
+At any point you can revoke a certificate using
+[revoke_certificate](/developer/ejabberd-api/admin-api/#revoke-certificate):
+pick the certificate file from the listing above and run:
 
     $ ejabberdctl revoke-certificate /path/to/cert/file
 

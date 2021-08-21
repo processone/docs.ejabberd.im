@@ -99,7 +99,9 @@ together.
    other cluster nodes.
 
 3.  Adding a node to the cluster is done by starting a new `ejabberd`
-	node within the same network, and running a command from a cluster
+	node within the same network, and running 
+        [join_cluster](/developer/ejabberd-api/admin-api/#join-cluster)
+        from a cluster
 	node. On the `ejabberd02` node for example, as ejabberd is already
 	started, run the following command as the `ejabberd` daemon user,
 	using the ejabberdctl script:
@@ -128,7 +130,8 @@ by themselves. If the node is started again, it's immediately
 attached back to the cluster until it has been explicitly removed
 permanently from the cluster.
 
-To permanently remove a running node from the cluster, the following
+To permanently remove a running node from the cluster, the
+[leave_cluster](/developer/ejabberd-api/admin-api/#leave-cluster)
 command must be run as the `ejabberd` daemon user, from one node of the
 cluster:
 

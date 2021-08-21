@@ -324,7 +324,7 @@ the plaintext passwords already stored in the database are not automatically
 converted to SCRAM format.
 
 To convert plaintext passwords to SCRAM format in your database,
-execute the command:
+use the [convert_to_scram](/developer/ejabberd-api/admin-api/#convert-to-scram) command:
 
 
 	ejabberdctl convert_to_scram example.org

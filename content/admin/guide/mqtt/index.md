@@ -90,7 +90,8 @@ modules:
 The listener on port 1883 is MQTT over cleartext TCP/IP connection. The listener on port 8883 is MQTT over TLS. You can 
 enable both or only one of them depending on your needs.
 
-**Be careful**: option `certfile` does not work directly on listener, you must use global *certfiles* option.
+**Be careful**: option `certfile` does not work directly on listener,
+use the [certfiles](/admin/configuration/toplevel/#certfiles) top-level option.
 
 Start ejabberd server and you should be able to connect to ejabberd MQTT service.
 

@@ -49,8 +49,9 @@ in ejabberd.
 
 If `ejabberd_oauth` HTTP request handlers is not enabled, there is no
 way to generate token from outside ejabberd. However, you can still
-explicitly disabled X-OAUTH2 with the `disable_sasl_mechanisms`
-option in `ejabberd.yml` file, either at global or at virtual host
+explicitly disabled X-OAUTH2 with the
+[disable_sasl_mechanisms](/admin/configuration/toplevel/#disable-sasl-mechanisms)
+top-level option in `ejabberd.yml` file, either at global or at virtual host
 level:
 
     
@@ -328,8 +329,8 @@ To act as an admin from an XML-RPC query, the XML-RPC query must contain:
 
 ## ReST JSON example
 
-With a command like `get_roster`, you can get your own roster, or act
-as an admin to get any user roster.
+With a command like [get_roster](/developer/ejabberd-api/admin-api/#get-roster)
+you can get your own roster, or act as an admin to get any user roster.
 
 The HTTP endpoint does not take any parameter, so we can just do an
 HTTP post with empty JSON structure list (see `-d` option):
@@ -350,8 +351,8 @@ For admin queries, add "X-Admin: true" header:
 
 ## XML-RPC examples
 
-With a command like `get_roster`, you can get your own roster, or act
-as an admin to get any user roster.
+With a command like [get_roster](/developer/ejabberd-api/admin-api/#get-roster)
+you can get your own roster, or act as an admin to get any user roster.
 
 Here is an (Erlang) XML-RPC example on how to get your own roster:
 

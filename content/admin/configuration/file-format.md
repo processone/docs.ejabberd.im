@@ -29,11 +29,9 @@ sensitive to this) or you will get pretty cryptic errors.
 
 In previous `ejabberd` version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
-highly recommended to convert it to the new YAML format using
-`convert_to_yaml` command from `ejabberdctl` (see
-[ejabberdctl](/admin/guide/managing/#ejabberdctl)
-and [List of ejabberd Commands](/admin/guide/managing/#list-of-ejabberd-commands)
-for details).
+highly recommended to convert it to the new YAML format with the
+[convert_to_yaml](/developer/ejabberd-api/admin-api/#convert-to-yaml)
+API command using [ejabberdctl](/admin/guide/managing/#ejabberdctl).
 
 If you want to specify some options using the old Erlang format, you
 can set them in an additional cfg file, and include it using the
@@ -61,7 +59,11 @@ The file is in a subdirectory from where the main configuration file is.
 	  ./example.org/additional_not_listen.yml:
 	    disallow: [listen]
 
-Please notice that options already defined in the main configuration file cannot be redefined in the included configuration files. But you can use `host_config` and `append_host_config` as usual (see [Virtual Hosting](/admin/configuration/basic/#virtual-hosting)).
+Please notice that options already defined in the main configuration file
+cannot be redefined in the included configuration files.
+But you can use [host_config](/admin/configuration/toplevel/#host-config)
+and [append_host_config](/admin/configuration/toplevel/#append-host-config)
+as usual (see [Virtual Hosting](/admin/configuration/basic/#virtual-hosting)).
 
 In this example, `ejabberd.yml` defines some ACL for the whole ejabberd server, and later includes another file:
 

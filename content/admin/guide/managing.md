@@ -491,13 +491,15 @@ NEWFILE=/tmp/new.backup
     ejabberdctl start
     ```
 
-6.  Convert the backup to new node name:
+6.  Convert the backup to new node name using
+    [mnesia_change_nodename](/developer/ejabberd-api/admin-api/#mnesia-change-nodename):
 
     ``` bash
     ejabberdctl mnesia_change_nodename $OLDNODE $NEWNODE $OLDFILE $NEWFILE
     ```
 
-7.  Install the backup file as a fallback:
+7.  Install the backup file as a fallback using
+    [install_fallback](/developer/ejabberd-api/admin-api/#install-fallback):
 
     ``` bash
     ejabberdctl install_fallback $NEWFILE

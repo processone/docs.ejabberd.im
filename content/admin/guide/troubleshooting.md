@@ -40,24 +40,22 @@ For example, the default configuration is:
 	loglevel: 4
 
 By default `ejabberd` rotates the log files when they get grown above a
-certain size. The exact value is controlled by `log_rotate_size` option.
-The syntax is:
-
-**`log_rotate_size: N`**:   Where N is the maximum size of a log file in bytes. The default
-	value is 10485760 (10Mb).
+certain size. The exact value is controlled by the
+[log_rotate_size](/admin/configuration/toplevel/#log-rotate-size)
+top-level option.
 
 However, you can rotate the log files manually. You can
-either use an external tool for log rotation and the ejabberdctl command
-`reopen-log` to reopen the log files, or the ejabberdctl command
-`rotate-log` to perform both steps (please refer to section [ejabberd
+either use an external tool for log rotation and the
+[reopen_log](/developer/ejabberd-api/admin-api/#reopen-log)
+API command to reopen the log files, or the
+[rotate_log](/developer/ejabberd-api/admin-api/#rotate-log) API command
+to perform both steps (please refer to section [ejabberd
 Commands](/admin/guide/managing/#ejabberd-commands)).
 
-The option `log_rotate_count` defines the number of rotated files to
-keep by `reopen-log` command. Every such file has a numeric suffix. The
-exact format is:
-
-**`log_rotate_count: N`**:   The default value is 1, which means only `ejabberd.log.0`,
-	`error.log.0` and `crash.log.0` will be kept.
+The [log_rotate_count](/admin/configuration/toplevel/#log-rotate-count)
+toplevel option defines the number of rotated files to
+keep by the [reopen_log](/developer/ejabberd-api/admin-api/#reopen-log)
+API command. Every such file has a numeric suffix.
 
 # Debug Console
 
