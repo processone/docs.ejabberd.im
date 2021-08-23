@@ -73,4 +73,16 @@ examples in the article
 To exit the shell, close the window or press the keys: control+c
 control+c.
 
+# Too many db tables
+
+When running ejabberd, the log shows this error:
+
+    ** Too many db tables **
+
+The number of concurrent ETS and Mnesia tables is limited. If this
+error occurs, it means that you have reached this limit.
+
+For a solution, please read the
+[section about ERL_MAX_ETS_TABLES on the Performance Tuning page](https://ejabberd.im/tuning#erl_max_ets_tables).
+
 [1]:	https://ejabberd.im/interconnect-erl-nodes
