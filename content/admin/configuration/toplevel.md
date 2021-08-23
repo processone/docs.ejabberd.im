@@ -15,7 +15,7 @@ The option specifies access rules. Each access rule is assigned a name
 that can be referenced from other parts of the configuration file
 (mostly from *access* options of ejabberd modules). Each rule definition
 may contain arbitrary number of *allow* or *deny* sections, and each
-section may contain any number of ACL rules (see *acl* option). There
+section may contain any number of ACL rules (see [acl](/admin/configuration/toplevel/#acl) option). There
 are no access rules defined by default.
 
 **Example**:
@@ -53,7 +53,7 @@ address). Every set of rules has name *ACLName*: it can be any string
 except *all* or *none* (those are predefined names for the rules that
 match all or nothing respectively). The name *ACLName* can be referenced
 from other parts of the configuration file, for example in
-*access\_rules* option. The rules of *ACLName* are represented by
+[access_rules](/admin/configuration/toplevel/#access-rules) option. The rules of *ACLName* are represented by
 mapping *{ACLType: ACLValue}*. These can be one of the following:
 
 -   **ip**: *Network*  
@@ -183,10 +183,16 @@ option is only useful in very special occasions. The default value is
 
 *login\_anon | sasl\_anon | both*  
 
-*login\_anon* means that the anonymous login method will be used.
-*sasl\_anon* means that the SASL Anonymous method will be used. *both*
-means that SASL Anonymous and login anonymous are both enabled. The
-default value is *sasl\_anon*.
+Define what anonymous protocol will be used:
+
+-   *login\_anon* means that the anonymous login method will be used.
+
+-   *sasl\_anon* means that the SASL Anonymous method will be used.
+
+-   *both* means that SASL Anonymous and login anonymous are both
+    enabled.
+
+The default value is *sasl\_anon*.
 
 ## api\_permissions
 
@@ -209,22 +215,22 @@ specific modules to certain virtual hosts. To accomplish that,
 
 *timeout()*  
 
-Same as *cache\_life\_time*, but applied to authentication cache only.
-If not set, the value from *cache\_life\_time* will be used.
+Same as [cache_life_time](/admin/configuration/toplevel/#cache-life-time), but applied to authentication cache only.
+If not set, the value from [cache_life_time](/admin/configuration/toplevel/#cache-life-time) will be used.
 
 ## auth\_cache\_missed
 
 *true | false*  
 
-Same as *cache\_missed*, but applied to authentication cache only. If
-not set, the value from *cache\_missed* will be used.
+Same as [cache_missed](/admin/configuration/toplevel/#cache-missed), but applied to authentication cache only. If
+not set, the value from [cache_missed](/admin/configuration/toplevel/#cache-missed) will be used.
 
 ## auth\_cache\_size
 
 *pos\_integer() | infinity*  
 
-Same as *cache\_size*, but applied to authentication cache only. If not
-set, the value from *cache\_size* will be used.
+Same as [cache_size](/admin/configuration/toplevel/#cache-size), but applied to authentication cache only. If not
+set, the value from [cache_size](/admin/configuration/toplevel/#cache-size) will be used.
 
 ## auth\_method
 
@@ -239,8 +245,9 @@ least one of the methods succeeds. The default value is *\[mnesia\]*.
 *\[Option, ...\]*  
 
 This is used by the contributed module *ejabberd\_auth\_http* that can
-be installed from the *ejabberd-contrib* Git repository. Please refer to
-that module’s README file for details.
+be installed from the
+[ejabberd-contrib](https://github.com/processone/ejabberd-contrib) Git
+repository. Please refer to that module’s README file for details.
 
 <div class="note-down">improved in <a href="/archive/20_01/">20.01</a></div>
 
@@ -248,17 +255,20 @@ that module’s README file for details.
 
 *plain | scram*  
 
-The option defines in what format the users passwords are stored.
-*plain*: The password is stored as plain text in the database. This is
-risky because the passwords can be read if your database gets
-compromised. This is the default value. This format allows clients to
-authenticate using: the old Jabber Non-SASL (XEP-0078), SASL PLAIN, SASL
-DIGEST-MD5, and SASL SCRAM-SHA-1. *scram*: The password is not stored,
-only some information that allows to verify the hash provided by the
-client. It is impossible to obtain the original plain password from the
-stored information; for this reason, when this value is configured it
-cannot be changed to plain anymore. This format allows clients to
-authenticate using: SASL PLAIN and SASL SCRAM-SHA-1.
+The option defines in what format the users passwords are stored:
+
+-   *plain*: The password is stored as plain text in the database. This
+    is risky because the passwords can be read if your database gets
+    compromised. This is the default value. This format allows clients
+    to authenticate using: the old Jabber Non-SASL (XEP-0078), SASL
+    PLAIN, SASL DIGEST-MD5, and SASL SCRAM-SHA-1.
+
+-   *scram*: The password is not stored, only some information that
+    allows to verify the hash provided by the client. It is impossible
+    to obtain the original plain password from the stored information;
+    for this reason, when this value is configured it cannot be changed
+    to plain anymore. This format allows clients to authenticate using:
+    SASL PLAIN and SASL SCRAM-SHA-1.
 
 ## auth\_scram\_hash
 
@@ -273,8 +283,8 @@ authenticate.
 
 *true | false*  
 
-Same as *use\_cache*, but applied to authentication cache only. If not
-set, the value from *use\_cache* will be used.
+Same as [use_cache](/admin/configuration/toplevel/#use-cache), but applied to authentication cache only. If not
+set, the value from [use_cache](/admin/configuration/toplevel/#use-cache) will be used.
 
 ## c2s\_cafile
 
@@ -357,9 +367,9 @@ For server conections, this *ca\_file* option is overriden by the
 The time of a cached item to keep in cache. Once it’s expired, the
 corresponding item is erased from cache. The default value is *one
 hour*. Several modules have a similar option; and some core ejabberd
-parts support similar options too, see *auth\_cache\_life\_time*,
-*oauth\_cache\_life\_time*, *router\_cache\_life\_time*, and
-*sm\_cache\_life\_time*.
+parts support similar options too, see [auth_cache_life_time](/admin/configuration/toplevel/#auth-cache-life-time),
+[oauth_cache_life_time](/admin/configuration/toplevel/#oauth-cache-life-time), [router_cache_life_time](/admin/configuration/toplevel/#router-cache-life-time), and
+[sm_cache_life_time](/admin/configuration/toplevel/#sm-cache-life-time).
 
 ## cache\_missed
 
@@ -368,11 +378,11 @@ parts support similar options too, see *auth\_cache\_life\_time*,
 Whether or not to cache missed lookups. When there is an attempt to
 lookup for a value in a database and this value is not found and the
 option is set to *true*, this attempt will be cached and no attempts
-will be performed until the cache expires (see *cache\_life\_time*).
+will be performed until the cache expires (see [cache_life_time](/admin/configuration/toplevel/#cache-life-time)).
 Usually you don’t want to change it. Default is *true*. Several modules
 have a similar option; and some core ejabberd parts support similar
-options too, see *auth\_cache\_missed*, *oauth\_cache\_missed*,
-*router\_cache\_missed*, and *sm\_cache\_missed*.
+options too, see [auth_cache_missed](/admin/configuration/toplevel/#auth-cache-missed), [oauth_cache_missed](/admin/configuration/toplevel/#oauth-cache-missed),
+[router_cache_missed](/admin/configuration/toplevel/#router-cache-missed), and [sm_cache_missed](/admin/configuration/toplevel/#sm-cache-missed).
 
 ## cache\_size
 
@@ -386,38 +396,38 @@ items are deleted, and the corresponding warning is logged. You should
 avoid frequent cache clearance, because this degrades performance. The
 default value is *1000*. Several modules have a similar option; and some
 core ejabberd parts support similar options too, see
-*auth\_cache\_size*, *oauth\_cache\_size*, *router\_cache\_size*, and
-*sm\_cache\_size*.
+[auth_cache_size](/admin/configuration/toplevel/#auth-cache-size), [oauth_cache_size](/admin/configuration/toplevel/#oauth-cache-size), [router_cache_size](/admin/configuration/toplevel/#router-cache-size), and
+[sm_cache_size](/admin/configuration/toplevel/#sm-cache-size).
 
 ## captcha\_cmd
 
 *Path*  
 
-Full path to a script that generates CAPTCHA images. There is no default
-value: when this option is not set, CAPTCHA functionality is completely
-disabled.
+Full path to a script that generates [CAPTCHA](/admin/configuration/basic/#captcha)
+images. There is no default value: when this option is not set, CAPTCHA
+functionality is completely disabled.
 
 ## captcha\_host
 
 *String*  
 
-Deprecated. Use *captcha\_url* instead.
+Deprecated. Use [captcha_url](/admin/configuration/toplevel/#captcha-url) instead.
 
 ## captcha\_limit
 
 *pos\_integer() | infinity*  
 
-Maximum number of CAPTCHA generated images per minute for any given JID.
-The option is intended to protect the server from CAPTCHA DoS. The
-default value is *infinity*.
+Maximum number of [CAPTCHA](/admin/configuration/basic/#captcha) generated images
+per minute for any given JID. The option is intended to protect the
+server from CAPTCHA DoS. The default value is *infinity*.
 
 ## captcha\_url
 
 *URL*  
 
-An URL where CAPTCHA requests should be sent. NOTE: you need to
-configure *request\_handlers* for *ejabberd\_http* listener as well.
-There is no default value.
+An URL where [CAPTCHA](/admin/configuration/basic/#captcha) requests should be
+sent. NOTE: you need to configure *request\_handlers* for
+*ejabberd\_http* listener as well. There is no default value.
 
 ## certfiles
 
@@ -690,7 +700,7 @@ attribute, the specified language is used.
 *\[Host, ...\]*  
 
 A list of IP addresses or DNS names of LDAP backup servers. When no
-servers listed in *ldap\_servers* option are reachable, ejabberd will
+servers listed in [ldap_servers](/admin/configuration/toplevel/#ldap-servers) option are reachable, ejabberd will
 try to connect to these backup servers. The default is an empty list,
 i.e. no backup servers specified. WARNING: ejabberd doesn’t try to
 reconnect back to the main servers when they become operational again,
@@ -725,8 +735,8 @@ variables are consecutively replaced by values from the attributes in
 *FilterAttrs* and "%D" is replaced by Distinguished Name from the result
 set. There is no default value, which means the result is not filtered.
 WARNING: Since this filter makes additional LDAP lookups, use it only as
-the last resort: try to define all filter rules in *ldap\_filter* option
-if possible.
+the last resort: try to define all filter rules in [ldap_filter](/admin/configuration/toplevel/#ldap-filter)
+option if possible.
 
 **Example**:
 
@@ -838,7 +848,8 @@ Modules](/admin/configuration/listen/) section for details.
 
 *Number*  
 
-The number of rotated log files to keep. The default value is *1*.
+The number of rotated log files to keep. The default value is *1*, which
+means that only keeps `ejabberd.log.0`, `error.log.0` and `crash.log.0`.
 
 ## log\_rotate\_size
 
@@ -924,15 +935,15 @@ can create OAuth tokens, you can refer to an ejabberd access rule in the
 
 *timeout()*  
 
-Same as *cache\_life\_time*, but applied to OAuth cache only. If not
-set, the value from *cache\_life\_time* will be used.
+Same as [cache_life_time](/admin/configuration/toplevel/#cache-life-time), but applied to OAuth cache only. If not
+set, the value from [cache_life_time](/admin/configuration/toplevel/#cache-life-time) will be used.
 
 ## oauth\_cache\_missed
 
 *true | false*  
 
-Same as *cache\_missed*, but applied to OAuth cache only. If not set,
-the value from *cache\_missed* will be used.
+Same as [cache_missed](/admin/configuration/toplevel/#cache-missed), but applied to OAuth cache only. If not set,
+the value from [cache_missed](/admin/configuration/toplevel/#cache-missed) will be used.
 
 <div class="note-down">added in <a href="/archive/21_01/">21.01</a></div>
 
@@ -947,8 +958,8 @@ The time that a failure in OAuth ReST is cached. The default value is
 
 *pos\_integer() | infinity*  
 
-Same as *cache\_size*, but applied to OAuth cache only. If not set, the
-value from *cache\_size* will be used.
+Same as [cache_size](/admin/configuration/toplevel/#cache-size), but applied to OAuth cache only. If not set, the
+value from [cache_size](/admin/configuration/toplevel/#cache-size) will be used.
 
 ## oauth\_client\_id\_check
 
@@ -963,7 +974,7 @@ value is *allow*.
 *mnesia | sql*  
 
 Database backend to use for OAuth authentication. The default value is
-picked from *default\_db* option, or if it’s not set, *mnesia* will be
+picked from [default_db](/admin/configuration/toplevel/#default-db) option, or if it’s not set, *mnesia* will be
 used.
 
 ## oauth\_expire
@@ -978,15 +989,15 @@ used and is removed from the database. The default is *4294967* seconds.
 
 *true | false*  
 
-Same as *use\_cache*, but applied to OAuth cache only. If not set, the
-value from *use\_cache* will be used.
+Same as [use_cache](/admin/configuration/toplevel/#use-cache), but applied to OAuth cache only. If not set, the
+value from [use_cache](/admin/configuration/toplevel/#use-cache) will be used.
 
 ## oom\_killer
 
 *true | false*  
 
 Enable or disable OOM (out-of-memory) killer. When system memory raises
-above the limit defined in *oom\_watermark* option, ejabberd triggers
+above the limit defined in [oom_watermark](/admin/configuration/toplevel/#oom-watermark) option, ejabberd triggers
 OOM killer to terminate most memory consuming Erlang processes. Note
 that in order to maintain functionality, ejabberd only attempts to kill
 transient processes, such as those managing client sessions, s2s or
@@ -998,7 +1009,7 @@ database connections. The default value is *true*.
 
 Trigger OOM killer when some of the running Erlang processes have
 messages queue above this *Size*. Note that such processes won’t be
-killed if *oom\_killer* option is set to *false* or if *oom\_watermark*
+killed if [oom_killer](/admin/configuration/toplevel/#oom-killer) option is set to *false* or if *oom\_watermark*
 is not reached yet.
 
 ## oom\_watermark
@@ -1007,7 +1018,7 @@ is not reached yet.
 
 A percent of total system memory consumed at which OOM killer should be
 activated with some of the processes possibly be killed (see
-*oom\_killer* option). Later, when memory drops below this *Percent*,
+[oom_killer](/admin/configuration/toplevel/#oom-killer) option). Later, when memory drops below this *Percent*,
 OOM killer is deactivated. The default value is *80* percents.
 
 ## outgoing\_s2s\_families
@@ -1079,7 +1090,7 @@ default value is *false*.
 
 *Directory*  
 
-If *queue\_type* option is set to *file*, use this *Directory* to store
+If [queue_type](/admin/configuration/toplevel/#queue-type) option is set to *file*, use this *Directory* to store
 file queues. The default is to keep queues inside Mnesia directory.
 
 ## queue\_type
@@ -1088,7 +1099,7 @@ file queues. The default is to keep queues inside Mnesia directory.
 
 Default type of queues in ejabberd. Modules may have its own value of
 the option. The value of *ram* means that queues will be kept in memory.
-If value *file* is set, you may also specify directory in *queue\_dir*
+If value *file* is set, you may also specify directory in [queue_dir](/admin/configuration/toplevel/#queue-dir)
 option where file queues will be placed. The default value is *ram*.
 
 ## redis\_connect\_timeout
@@ -1130,8 +1141,8 @@ The port where the Redis server is accepting connections. The default is
 *ram | file*  
 
 The type of request queue for the Redis server. See description of
-*queue\_type* option for the explanation. The default value is the value
-defined in *queue\_type* or *ram* if the latter is not set.
+[queue_type](/admin/configuration/toplevel/#queue-type) option for the explanation. The default value is the
+value defined in [queue_type](/admin/configuration/toplevel/#queue-type) or *ram* if the latter is not set.
 
 ## redis\_server
 
@@ -1144,7 +1155,7 @@ A hostname or an IP address of the Redis server. The default is
 
 *timeout()*  
 
-This is a global option for module *mod\_register*. It limits the
+This is a global option for module [mod_register](/admin/configuration/modules/#mod-register). It limits the
 frequency of registrations from a given IP or username. So, a user that
 tries to register a new account from the same IP address or JID during
 this time after their previous registration will receive an error with
@@ -1167,37 +1178,37 @@ action performed is *closeold*.
 
 *timeout()*  
 
-Same as *cache\_life\_time*, but applied to routing table cache only. If
-not set, the value from *cache\_life\_time* will be used.
+Same as [cache_life_time](/admin/configuration/toplevel/#cache-life-time), but applied to routing table cache only. If
+not set, the value from [cache_life_time](/admin/configuration/toplevel/#cache-life-time) will be used.
 
 ## router\_cache\_missed
 
 *true | false*  
 
-Same as *cache\_missed*, but applied to routing table cache only. If not
-set, the value from *cache\_missed* will be used.
+Same as [cache_missed](/admin/configuration/toplevel/#cache-missed), but applied to routing table cache only. If
+not set, the value from [cache_missed](/admin/configuration/toplevel/#cache-missed) will be used.
 
 ## router\_cache\_size
 
 *pos\_integer() | infinity*  
 
-Same as *cache\_size*, but applied to routing table cache only. If not
-set, the value from *cache\_size* will be used.
+Same as [cache_size](/admin/configuration/toplevel/#cache-size), but applied to routing table cache only. If not
+set, the value from [cache_size](/admin/configuration/toplevel/#cache-size) will be used.
 
 ## router\_db\_type
 
 *mnesia | redis | sql*  
 
 Database backend to use for routing information. The default value is
-picked from *default\_ram\_db* option, or if it’s not set, *mnesia* will
+picked from [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, or if it’s not set, *mnesia* will
 be used.
 
 ## router\_use\_cache
 
 *true | false*  
 
-Same as *use\_cache*, but applied to routing table cache only. If not
-set, the value from *use\_cache* will be used.
+Same as [use_cache](/admin/configuration/toplevel/#use-cache), but applied to routing table cache only. If not
+set, the value from [use_cache](/admin/configuration/toplevel/#use-cache) will be used.
 
 ## rpc\_timeout
 
@@ -1290,9 +1301,9 @@ below:
 
 *ram | file*  
 
-The type of a queue for s2s packets. See description of *queue\_type*
+The type of a queue for s2s packets. See description of [queue_type](/admin/configuration/toplevel/#queue-type)
 option for the explanation. The default value is the value defined in
-*queue\_type* or *ram* if the latter is not set.
+[queue_type](/admin/configuration/toplevel/#queue-type) or *ram* if the latter is not set.
 
 ## s2s\_timeout
 
@@ -1333,7 +1344,7 @@ considered insecure.
 
 The option defines a set of shapers. Every shaper is assigned a name
 *ShaperName* that can be used in other parts of the configuration file,
-such as *shaper\_rules* option. The shaper itself is defined by its
+such as [shaper_rules](/admin/configuration/toplevel/#shaper-rules) option. The shaper itself is defined by its
 *Rate*, where *Rate* stands for the maximum allowed incoming rate in
 **bytes** per second. When a connection exceeds this limit, ejabberd
 stops reading from the socket until the average rate is again below the
@@ -1352,9 +1363,9 @@ speed to 1,000 bytes/sec and shaper *fast* limits the traffic speed to
 *{ShaperRuleName: {Number|ShaperName: ACLRule|ACLName}}*  
 
 An entry allowing to declaring shaper to use for matching user/hosts.
-Semantics is similar to *access\_rules* option, the only difference is
+Semantics is similar to [access_rules](/admin/configuration/toplevel/#access-rules) option, the only difference is
 that instead using *allow* or *deny*, a name of a shaper (defined in
-*shaper* option) or a positive number should be used.
+[shaper](/admin/configuration/toplevel/#shaper) option) or a positive number should be used.
 
 **Example**:
 
@@ -1374,37 +1385,37 @@ that instead using *allow* or *deny*, a name of a shaper (defined in
 
 *timeout()*  
 
-Same as *cache\_life\_time*, but applied to client sessions table cache
-only. If not set, the value from *cache\_life\_time* will be used.
+Same as [cache_life_time](/admin/configuration/toplevel/#cache-life-time), but applied to client sessions table cache
+only. If not set, the value from [cache_life_time](/admin/configuration/toplevel/#cache-life-time) will be used.
 
 ## sm\_cache\_missed
 
 *true | false*  
 
-Same as *cache\_missed*, but applied to client sessions table cache
-only. If not set, the value from *cache\_missed* will be used.
+Same as [cache_missed](/admin/configuration/toplevel/#cache-missed), but applied to client sessions table cache
+only. If not set, the value from [cache_missed](/admin/configuration/toplevel/#cache-missed) will be used.
 
 ## sm\_cache\_size
 
 *pos\_integer() | infinity*  
 
-Same as *cache\_size*, but applied to client sessions table cache only.
-If not set, the value from *cache\_size* will be used.
+Same as [cache_size](/admin/configuration/toplevel/#cache-size), but applied to client sessions table cache only.
+If not set, the value from [cache_size](/admin/configuration/toplevel/#cache-size) will be used.
 
 ## sm\_db\_type
 
 *mnesia | redis | sql*  
 
 Database backend to use for client sessions information. The default
-value is picked from *default\_ram\_db* option, or if it’s not set,
+value is picked from [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, or if it’s not set,
 *mnesia* will be used.
 
 ## sm\_use\_cache
 
 *true | false*  
 
-Same as *use\_cache*, but applied to client sessions table cache only.
-If not set, the value from *use\_cache* will be used.
+Same as [use_cache](/admin/configuration/toplevel/#use-cache), but applied to client sessions table cache only.
+If not set, the value from [use_cache](/admin/configuration/toplevel/#use-cache) will be used.
 
 ## sql\_connect\_timeout
 
@@ -1435,7 +1446,7 @@ made.
 *Path*  
 
 Path to the ODBC driver to use to connect to a Microsoft SQL Server
-database. This option is only valid if the *sql\_type* option is set to
+database. This option is only valid if the [sql_type](/admin/configuration/toplevel/#sql-type) option is set to
 *mssql*. The default value is: *libtdsodbc.so*
 
 ## sql\_password
@@ -1482,8 +1493,8 @@ seconds.
 *ram | file*  
 
 The type of a request queue for the SQL server. See description of
-*queue\_type* option for the explanation. The default value is the value
-defined in *queue\_type* or *ram* if the latter is not set.
+[queue_type](/admin/configuration/toplevel/#queue-type) option for the explanation. The default value is the
+value defined in [queue_type](/admin/configuration/toplevel/#queue-type) or *ram* if the latter is not set.
 
 ## sql\_server
 
@@ -1507,7 +1518,7 @@ is only available for MySQL and PostgreSQL. The default value is
 *Path*  
 
 A path to a file with CA root certificates that will be used to verify
-SQL connections. Implies *sql\_ssl* and *sql\_ssl\_verify* options are
+SQL connections. Implies [sql_ssl](/admin/configuration/toplevel/#sql-ssl) and [sql_ssl_verify](/admin/configuration/toplevel/#sql-ssl-verify) options are
 set to *true*. There is no default which means certificate verification
 is disabled.
 
@@ -1516,7 +1527,7 @@ is disabled.
 *Path*  
 
 A path to a certificate file that will be used for SSL connections to
-the SQL server. Implies *sql\_ssl* option is set to *true*. There is no
+the SQL server. Implies [sql_ssl](/admin/configuration/toplevel/#sql-ssl) option is set to *true*. There is no
 default which means ejabberd won’t provide a client certificate to the
 SQL server.
 
@@ -1525,7 +1536,7 @@ SQL server.
 *true | false*  
 
 Whether to verify SSL connection to the SQL server against CA root
-certificates defined in *sql\_ssl\_cafile* option. Implies *sql\_ssl*
+certificates defined in [sql_ssl_cafile](/admin/configuration/toplevel/#sql-ssl-cafile) option. Implies [sql_ssl](/admin/configuration/toplevel/#sql-ssl)
 option is set to *true*. The default value is *false*.
 
 ## sql\_start\_interval
@@ -1567,8 +1578,8 @@ trusted for security rules in ejabberd.
 
 Enable or disable cache. The default is *true*. Several modules have a
 similar option; and some core ejabberd parts support similar options
-too, see *auth\_use\_cache*, *oauth\_use\_cache*, *router\_use\_cache*,
-and *sm\_use\_cache*.
+too, see [auth_use_cache](/admin/configuration/toplevel/#auth-use-cache), [oauth_use_cache](/admin/configuration/toplevel/#oauth-use-cache), [router_use_cache](/admin/configuration/toplevel/#router-use-cache),
+and [sm_use_cache](/admin/configuration/toplevel/#sm-use-cache).
 
 ## validate\_stream
 
@@ -1586,7 +1597,7 @@ value is *false*.
 *string()*  
 
 The option can be used to set custom ejabberd version, that will be used
-by different parts of ejabberd, for example by *mod\_version* module.
+by different parts of ejabberd, for example by [mod_version](/admin/configuration/modules/#mod-version) module.
 The default value is obtained at compile time from the underlying
 version control system.
 
