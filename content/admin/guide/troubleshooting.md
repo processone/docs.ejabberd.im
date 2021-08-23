@@ -73,40 +73,4 @@ examples in the article
 To exit the shell, close the window or press the keys: control+c
 control+c.
 
-# Watchdog Alerts
-
-`ejabberd` includes a watchdog mechanism that may be useful to
-developers when troubleshooting a problem related to memory usage. If a
-process in the `ejabberd` server consumes more memory than the
-configured threshold, a message is sent to the XMPP accounts defined
-with the option `watchdog_admins` in the `ejabberd` configuration file.
-
-The syntax is:
-
-**`watchdog_admins: [JID, ...]`**:  
-
-The memory consumed is measured in `words`: a word on 32-bit
-architecture is 4 bytes, and a word on 64-bit architecture is 8 bytes.
-The threshold by default is 1000000 words. This value can be configured
-with the option `watchdog_large_heap`, or in a conversation with the
-watchdog alert bot.
-
-The syntax is:
-
-**`watchdog_large_heap: Number`**
-
-Example configuration:
-
-	
-	watchdog_admins:
-	  - "admin2@localhost"
-	  - "admin2@example.org"
-	watchdog_large_heap: 30000000
-
-To remove watchdog admins, remove them in the option. To remove all
-watchdog admins, set the option with an empty list:
-
-	
-	watchdog_admins: []
-
 [1]:	https://ejabberd.im/interconnect-erl-nodes
