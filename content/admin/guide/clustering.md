@@ -162,23 +162,9 @@ chosen at random. If no instance is available locally, one instance is
 randomly chosen among the remote component instances.
 
 If you need a different behaviour, you can change the load balancing
-behaviour with the option `domain_balancing`. The syntax of the option
-is the following:
-
-**`domain_balancing: BalancingCriteria`**: Several balancing criterias are available:
-
--   `destination`: the full JID of the packet `to` attribute is used.
-
--   `source`: the full JID of the packet `from` attribute is used.
-
--   `bare_destination`: the bare JID (without resource) of the packet
-	`to` attribute is used.
-
--   `bare_source`: the bare JID (without resource) of the packet `from`
-	attribute is used.
-
-If the value corresponding to the criteria is the same, the same
-component instance in the cluster will be used.
+behaviour with the
+[domain_balancing](/admin/configuration/toplevel/#domain-balancing)
+option.
 
 ## Load-Balancing Buckets
 
@@ -188,10 +174,8 @@ not work correctly unless the sessions are rebalanced.
 
 In this case, it is best to limit the problem to the sessions handled by
 the failing component. This is what the
-`domain_balancing_component_number` option does, making the load
+`component_number` option does, making the load
 balancing algorithm not dynamic, but sticky on a fix number of component
 instances.
-
-The syntax is:
-
-**`domain_balancing_component_number: Number`**
+Check [domain_balancing](/admin/configuration/toplevel/#domain-balancing)
+top-level option documentation for details.
