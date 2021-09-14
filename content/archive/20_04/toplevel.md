@@ -256,6 +256,7 @@ client. It is impossible to obtain the original plain password from the
 stored information; for this reason, when this value is configured it
 cannot be changed to plain anymore. This format allows clients to
 authenticate using: SASL PLAIN and SASL SCRAM-SHA-1.
+The default value is *plain*.
 
 ## auth\_use\_cache
 
@@ -333,7 +334,7 @@ defined file if possible.
 *timeout()*  
 
 The time of a cached item to keep in cache. Once it’s expired, the
-corresponding item is erased from cache. The default value is *one
+corresponding item is erased from cache. The default value is *1
 hour*. Several modules have a similar option; and some core ejabberd
 parts support similar options too, see *auth\_cache\_life\_time*,
 *oauth\_cache\_life\_time*, *router\_cache\_life\_time*, and
@@ -661,7 +662,7 @@ Path to the file that contains the JWK Key. The default value is
 
 The option defines the default language of server strings that can be
 seen by XMPP clients. If an XMPP client does not possess *xml:lang*
-attribute, the specified language is used.
+attribute, the specified language is used. The default value is *"en"*.
 
 ## ldap\_backups
 
@@ -872,7 +873,7 @@ tells Erlang VM how often nodes should check if intra-node communication
 was not interrupted. This option must have identical value on all nodes,
 or it will lead to subtle bugs. Usually leaving default value of this is
 option is best, tweak it only if you know what you are doing. The
-default value is *1* minute.
+default value is *1 minute*.
 
 ## new\_sql\_schema
 
@@ -1244,7 +1245,7 @@ option for the explanation. The default value is the value defined in
 *timeout()*  
 
 A time to wait before closing an idle s2s connection. The default value
-is *10* minutes.
+is *10 minutes*.
 
 ## s2s\_tls\_compression
 

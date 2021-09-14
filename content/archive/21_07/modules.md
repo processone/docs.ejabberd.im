@@ -43,12 +43,7 @@ Details for some commands:
     the characters "' and '" to define when the Name starts and ends.
     See an example below.
 
-__Available options:__
-
-- **module\_resource**: *Resource*  
-Indicate the resource that the XMPP stanzas must use in the FROM or TO
-JIDs. This is only useful in the *get\_vcard\** and *set\_vcard\**
-commands. The default value is *mod\_admin\_extra*.
+The module has no options.
 
 __Examples:__
 
@@ -62,8 +57,7 @@ mod\_admin\_extra commands:
       vcard_set:
         - allow: adminextraresource
     modules:
-      mod_admin_extra:
-        module_resource: "modadminextraf8x,31ad"
+      mod_admin_extra: {}
       mod_vcard:
         access_set: vcard_set
 
@@ -712,7 +706,8 @@ means no explicit permissions will be set.
 
 - **get\_url**: *URL*  
 This option specifies the initial part of the GET URLs used for
-downloading the files. By default, it is set to the same value as
+downloading the files. The default value is *undefined*. When this
+option is *undefined*, this option is set to the same value as
 *put\_url*. The keyword @HOST@ is replaced with the virtual host name.
 NOTE: if GET requests are handled by *mod\_http\_upload*, the *get\_url*
 must match the *put\_url*. Setting it to a different value only makes
@@ -748,7 +743,7 @@ Upload".
 This option specifies the initial part of the PUT URLs used for file
 uploads. The keyword @HOST@ is replaced with the virtual host name.
 NOTE: different virtual hosts cannot use the same PUT URL. The default
-value is "https://@HOST@:5443".
+value is "https://@HOST@:5443/upload".
 
 - **rm\_on\_unregister**: *true | false*  
 This option specifies whether files uploaded by a user should be removed
@@ -1197,18 +1192,17 @@ a service message.
 
 - **access\_create**: *AccessName*  
 To configure who is allowed to create new rooms at the Multi-User Chat
-service, this option can be used. By default any account in the local
-ejabberd server is allowed to create rooms.
+service, this option can be used. The default value is *all*, which
+means everyone is allowed to create rooms.
 
 - **access\_mam**: *AccessName*  
-To configure who is allowed to modify the *mam* room option. By default
-any account in the local ejabberd server is allowed to modify that
-option.
+To configure who is allowed to modify the *mam* room option. The default
+value is *all*, which means everyone is allowed tomodify that option.
 
 - **access\_persistent**: *AccessName*  
-To configure who is allowed to modify the *persistent* room option. By
-default any account in the local ejabberd server is allowed to modify
-that option.
+To configure who is allowed to modify the *persistent* room option. The
+default value is *all*, which means everyone is allowed tomodify that
+option.
 
 - **access\_register**: *AccessName*  
 This option specifies who is allowed to register nickname within the
@@ -1420,7 +1414,7 @@ reached. The default limit is *5*.
 This option defines after how many users in the room, it is considered
 overcrowded. When a MUC room is considered overcrowed, presence
 broadcasts are limited to reduce load, traffic and excessive presence
-"storm" received by participants.
+"storm" received by participants. The default value is *1000*.
 
 - **min\_message\_interval**: *Number*  
 This option defines the minimum interval between two messages send by an
@@ -1824,7 +1818,7 @@ __Available options:__
 
 - **ping\_ack\_timeout**: *timeout()*  
 How long to wait before deeming that a client has not answered a given
-server ping request. The default value is *32* seconds.
+server ping request. The default value is *undefined*.
 
 - **ping\_interval**: *timeout()*  
 How often to send pings to connected clients, if option *send\_pings* is
@@ -2413,7 +2407,7 @@ This option specifies the period of time until the session of a
 disconnected push client times out. This timeout is only in effect as
 long as no push notification is issued. Once that happened, the
 resumption timeout configured for the *mod\_stream\_mgmt* module is
-restored. The default value is *72* hours.
+restored. The default value is *72 hours*.
 
 - **wake\_on\_start**: *true | false*  
 If this option is set to *true*, notifications are generated for **all**
@@ -2475,7 +2469,7 @@ default value is *all*.
 This option sets the minimum [Shannon
 entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)) for
 passwords. The value *Entropy* is a number of bits of entropy. The
-recommended minimum is 32 bits. The default is 0, i.e. no checks are
+recommended minimum is 32 bits. The default is *0*, i.e. no checks are
 performed.
 
 - **redirect\_url**: *URL*  
@@ -3111,7 +3105,7 @@ credentials. The default value is *local*.
 The lifetime of temporary credentials offered to clients. If ejabberd’s
 built-in TURN service is used, TURN relays allocated using temporary
 credentials will be terminated shortly after the credentials expired.
-The default value is *12* hours. Note that restarting the ejabberd node
+The default value is *12 hours*. Note that restarting the ejabberd node
 invalidates any temporary credentials offered before the restart unless
 a *secret* is specified (see below).
 
