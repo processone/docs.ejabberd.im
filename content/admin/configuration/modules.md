@@ -1229,11 +1229,11 @@ means everyone is allowed to create rooms.
 
 - **access\_mam**: *AccessName*  
 To configure who is allowed to modify the *mam* room option. The default
-value is *all*, which means everyone is allowed tomodify that option.
+value is *all*, which means everyone is allowed to modify that option.
 
 - **access\_persistent**: *AccessName*  
 To configure who is allowed to modify the *persistent* room option. The
-default value is *all*, which means everyone is allowed tomodify that
+default value is *all*, which means everyone is allowed to modify that
 option.
 
 - **access\_register**: *AccessName*  
