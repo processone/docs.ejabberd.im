@@ -103,21 +103,30 @@ to enable the feature:
 
 	new_sql_schema: true
 
-If you already have a PostgreSQL database with the default schema and contents,
-you can upgrade it to the new schema.
-Right now, only PostgreSQL database can be upgraded.
-For that, enable the
+
+If you already have a MySQL or PostgreSQL database with the default schema and contents,
+you can upgrade it to the new schema:
+
+* *MySQL*:
+Edit the file `sql/mysql.old-to.new.sql` which is included with ejabberd,
+fill DEFAULT_HOST in the first line,
+and import that SQL file in your database.
+Then enable the `new_sql_schema` option in the ejabberd configuration,
+and restart ejabberd.
+
+* *PostgreSQL*:
+First enable `new_sql_schema` and
 [mod_admin_update_sql](/admin/configuration/modules/#mod-admin-update-sql)
-module in your ejabberd configuration:
+in your ejabberd configuration:
 
-	new_sql_schema: true
-	modules:
-	  mod_admin_update_sql: {}
+            new_sql_schema: true
+            modules:
+              mod_admin_update_sql: {}
 
-then restart ejabberd, and finally execute the
-[update_sql](/developer/ejabberd-api/admin-api/#update-sql) command:
+    then restart ejabberd, and finally execute the
+    [update_sql](/developer/ejabberd-api/admin-api/#update-sql) command:
 
-	ejabberdctl update_sql
+            ejabberdctl update_sql
 
 ## SQL Options
 
