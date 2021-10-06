@@ -242,9 +242,10 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
   the ejabberdctl script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)), read the
   configuration files, read and write in the spool directory, read and
   write in the log directory. The account user and group must exist in
-  the machine before running `make install`. This account doesn't need
-  an explicit HOME directory, because `/var/lib/ejabberd/` will be
-  used by default.
+  the machine before running `make install`.
+  This account needs a HOME directory, because the
+  [Erlang cookie file](/admin/guide/security/#erlang-cookie)
+  will be created and read there.
 
 - **`-–enable-group[=GROUP]`**: Similar to the previous option, but for
   system groups.
@@ -357,7 +358,7 @@ The files and directories created are, by default:
 
 - `/var/lib/ejabberd/`: Spool directory:
 
-   - `.erlang.cookie`: Erlang cookie file (see section [cookie](/admin/guide/security/#erlang-cookie))
+   - `.erlang.cookie`: The [Erlang cookie file](/admin/guide/security/#erlang-cookie)
    - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
 
 - `/var/log/ejabberd/`: Log directory (see section [logfiles]):

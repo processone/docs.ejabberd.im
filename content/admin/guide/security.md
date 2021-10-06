@@ -62,9 +62,23 @@ Erlang command-line parameter used internally is, for example:
 
 The Erlang cookie is a string with numbers and letters. An Erlang node
 reads the cookie at startup from the command-line parameter
-`-setcookie`. If not indicated, the cookie is read from the cookie file
-`$HOME/.erlang.cookie`. If this file does not exist, it is created
-immediately with a random cookie. Two Erlang nodes communicate only if
+`-setcookie`. If not indicated, the cookie is read from the file
+`$HOME/.erlang.cookie`.
+
+If this file does not exist, it is created
+immediately with a random cookie in the user `$HOME` path.
+This means the user running ejabberd must have a `$HOME`,
+and have write access to that path.
+So, when you create a new account in your system for running ejabberd,
+either allow it to have a `$HOME`,
+or set as `$HOME` a path where ejabberd will have write access.
+Depending on your setup, examples could be:
+
+	adduser --home /usr/local/var/lib/ejabberd ejabberd
+	or
+	adduser --home /var/lib/ejabberd ejabberd
+
+Two Erlang nodes communicate only if
 they have the same cookie. Setting a cookie on the Erlang node allows
 you to structure your Erlang network and define which nodes are allowed
 to connect to which.
