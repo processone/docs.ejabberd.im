@@ -961,6 +961,10 @@ for more details.
 
 ### External
 
+You can configure ejabberd to use as authentication method an external script,
+as described in the Administrator section:
+[External Script](/admin/configuration/authentication/#external-script).
+
 The external authentication script follows
 [`the erlang port driver API`](https://erlang.org/doc/tutorial/c_portdriver.html).
 
@@ -1001,7 +1005,9 @@ This is possible because the User and Server fields can't contain the `:` charac
 and Password can have that character, but is always the last field.
 So it is always possible to parse the input characters unambiguously.
 
-Example python script
+There are
+[`several example authentication scripts`](https://ejabberd.im/extauth).
+Example Python script:
 
     #!/usr/bin/python
 

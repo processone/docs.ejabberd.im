@@ -70,7 +70,9 @@ script, and calls it to perform authentication tasks.
 
 The server administrator can write the external authentication script in
 any language. The details on the interface between ejabberd and the
-script are described in the `ejabberd Developers Guide`. There are also
+script are described in the Developers Internals section:
+[External](/developer/guide/#external).
+There are also
 [`several example authentication scripts`](https://ejabberd.im/extauth).
 
 Options:
