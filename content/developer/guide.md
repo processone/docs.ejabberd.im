@@ -996,6 +996,11 @@ That script is supposed to do theses actions, in an infinite loop:
     -   B: the result code (coded as a short), should be 1 for
         success/valid, or 0 for failure/invalid
 
+As you noticed, the `:` character is used to separate the fields.
+This is possible because the User and Server fields can't contain the `:` character;
+and Password can have that character, but is always the last field.
+So it is always possible to parse the input characters unambiguously.
+
 Example python script
 
     #!/usr/bin/python
