@@ -86,23 +86,34 @@ top-level option:
 
 ## Default and New Schemas
 
-There are two schemas usable for ejabberd. The default legacy schema allows to
-store one XMPP domain into one ejabberd database. The 'new' schema allows to
-handle several XMPP domains in a single ejabberd database. Using this new schema
-is best when serving several XMPP domains and/or changing domains from time to
-time. This avoid need to manage several databases and handle complex
-configuration changes.
+There are two database schemas available in ejabberd:
+the default schema is preferable when serving one massive domain,
+the new schema is preferable when serving many small domains.
 
-For example, if you are using MySQL and choose the default schema, use `mysql.sql`.
-If you are using PostgreSQL and need the new schema, use `pg.new.sql`.
+The default schema stores only one XMPP domain in the database.
+The [XMPP domain](/admin/configuration/basic/#xmpp-domains)
+is not stored as this is the same for all the accounts,
+and this saves space in massive deployments.
+However, to handle several domains,
+you have to setup one database per domain
+and configure each one independently
+using [host_config](/admin/configuration/basic/#virtual-hosting),
+so in that case you may prefer the new schema.
 
-If you choose the new schema, you MUST add an extra line into `ejabberd.yml`
-configuration file using the
-[new_sql_schema](/admin/configuration/toplevel/#new-sql-schema) top-level option
-to enable the feature:
+The 'new' schema stores the XMPP domain in the database entries,
+so it allows to handle several XMPP domains in a single ejabberd database.
+Using this schema is preferable when serving several XMPP domains
+and changing domains from time to time.
+However, if you have only one massive domain, you may prefer to use the default schema.
+
+To use the new schema, edit the ejabberd configuration file and enable
+[new_sql_schema](/admin/configuration/toplevel/#new-sql-schema) top-level option:
 
 	new_sql_schema: true
 
+Now, when creating the new database, remember to use the proper SQL schema!
+For example, if you are using MySQL and choose the default schema, use `mysql.sql`.
+If you are using PostgreSQL and need the new schema, use `pg.new.sql`.
 
 If you already have a MySQL or PostgreSQL database with the default schema and contents,
 you can upgrade it to the new schema:
