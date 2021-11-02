@@ -178,8 +178,11 @@ If the client does not support CAPTCHA Forms
 ([`XEP-0158`](https://xmpp.org/extensions/xep-0158.html)), a web link is
 provided so the user can fill the challenge in a web browser.
 
-An example script is provided that generates the image using
-ImageMagick’s Convert program.
+Example scripts are provided that generate the image using
+[ImageMagick](https://imagemagick.org/)’s Convert program
+and [Ghostscript](https://www.ghostscript.com/) fonts.
+Remember to install those depencies
+(in Debian, install the `imagemagick` and `gsfonts` packages).
 
 Note: if you use the [ejabberd Docker Image](https://hub.docker.com/r/ejabberd/ecs),
 CAPTCHA doesn't work because it does not include ImageMagick by default.
