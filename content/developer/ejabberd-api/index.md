@@ -31,6 +31,11 @@ All commands can be exposed through interfaces. Available interfaces are:
 - to some extend, XMPP protocol itself through discovery and adhoc commands, using
   [mod_configure](/admin/configuration/modules/#mod-configure).
 
+The [ejabberd-contrib Github repository](https://github.com/processone/ejabberd-contrib)
+provides other interfaces that can be installed to
+execute ejabberd commands in different ways: `mod_rest` (HTTP POST
+service), `mod_shcommands` (ejabberd WebAdmin page).
+
 Any module in ejabberd can add its own command through ejabberd Erlang/Elixir API, making the whole
 system totally extensible. A third-party module can expose its own command and feel like a real part
 of the system. A module that exposes commands makes it possible for server admin to expose it the way they want.
@@ -68,6 +73,30 @@ the following:
 <!--
 TODO: Using API with ejabberd command-line tool and Go based library
 -->
+
+The list of available commands is available in the
+[API Reference](/developer/ejabberd-api/admin-api/) section.
+Additonally, you can check at runtime what commands are available
+in your installed server using [ejabberdctl](/admin/guide/managing/#ejabberdctl):
+
+``` bash
+❯ ejabberdctl
+Usage: ejabberdctl [--no-timeout] [--node nodename] [--version api_version] command [arguments]
+
+Available commands in this ejabberd node:
+  backup file
+             Store internal Mnesia database to binary backup file
+  ban_account user host reason
+             Ban an account: kick sessions and set random password
+  ...
+
+
+❯ ejabberdctl help
+  ...
+
+❯ ejabberdctl help ban_account
+  ...
+```
 
 # Next steps
 

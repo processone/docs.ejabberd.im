@@ -25,6 +25,11 @@ modules:
 
 # Commands
 
+The most updated and detailed list of commands for managing
+a MUC service and MUC rooms is available
+in the [muc API tag](/developer/ejabberd-api/admin-tags/#muc)
+and the [muc_room API tag](/developer/ejabberd-api/admin-tags/#muc-room).
+
 ## Online Rooms
 
 List existing rooms ('global' to get all vhosts).

@@ -68,6 +68,9 @@ The `ejabberdctl commands` are:
 
 **`mnesia`**:   Get information about the Mnesia database.
 
+# ejabberd Commands
+
+Please go to the [API](/developer/ejabberd-api/) section.
 
 # Erlang Runtime System
 
@@ -158,132 +161,6 @@ The command line parameters:
 Note that some characters need to be escaped when used in shell scripts,
 for instance `"` and `{}`. You can find other options in the Erlang
 manual page (`erl -man erl`).
-
-# ejabberd Commands
-
-An `ejabberd command` is an abstract function identified by a name, with
-a defined number and type of calling arguments and type of result that
-is registered in the `ejabberd_commands` service. Those commands can be
-defined in any Erlang module and executed using any valid frontend.
-
-`ejabberd` includes three frontends to execute `ejabberd commands`:
-the script [ejabberdctl](#ejabberdctl),
-the [ejabberd_xmlrpc](/admin/configuration/listen/#ejabberd-xmlrpc) request handler
-and [mod_http_api](/admin/configuration/modules/#mod-http-api).
-Other known frontends that can be installed to
-execute ejabberd commands in different ways are: `mod_rest` (HTTP POST
-service), `mod_shcommands` (ejabberd WebAdmin page).
-
-You probably want to restrict what commands can be executed, how and who;
-for that matter see [API Permissions](/developer/ejabberd-api/permissions/).
-
-## List of ejabberd Commands
-
-`ejabberd` includes a few ejabberd Commands by default as listed below.
-When more modules are installed, new commands may be available in the
-frontends, see
-[Administration API Commands](/developer/ejabberd-api/admin-api/)
-for a more detailed list of commands.
-
-The easiest way to get a list of the available commands, and get help
-for them is to use the ejabberdctl script:
-
-``` bash
-$ ejabberdctl help
-Usage: ejabberdctl [--node nodename] [--auth user host password] command [options]
-
-Available commands in this ejabberd node:
-  backup file                  Store the database to backup file
-  connected_users              List all established sessions
-  connected_users_number       Get the number of established sessions
-  ...
-```
-
-The commands included in ejabberd by default are:
-
-**`stop_kindly delay announcement`**:   Inform users and rooms, wait, and stop the server. Provide the delay
-	in seconds, and the announcement quoted.
-
-**`registered_vhosts`**:   List all registered vhosts in SERVER
-
-**`reopen_log`**:   Reopen the log files after they were renamed. This can be useful when an
-	external tool is used for log rotation. See section
-	[Log Files](/admin/guide/troubleshooting/#log-files).
-
-**`rotate_log`**:   Rotate the log files.
-
-**`convert_to_yaml /etc/ejabberd/ejabberd.cfg /etc/ejabberd/ejabberd-converted.yml`**:   Convert an old ejabberd.cfg file to the YAML syntax in a new file.
-
-**`backup ejabberd.backup`**:   Store internal Mnesia database to a binary backup file.
-
-**`restore ejabberd.backup`**:   Restore immediately from a binary backup file the internal Mnesia
-	database. This will consume a lot of memory if you have a large
-	database, so better use `install_fallback`.
-
-**`install_fallback ejabberd.backup`**:   The binary backup file is installed as fallback: it will be used to
-	restore the database at the next ejabberd start. This means that,
-	after running this command, you have to restart ejabberd. This
-	command requires less memory than `restore`.
-
-**`dump ejabberd.dump`**:   Dump internal Mnesia database to a text file dump.
-
-**`load ejabberd.dump`**:   Restore immediately from a text file dump. This is not recommended
-	for big databases, as it will consume much time, memory and
-	processor. In that case it’s preferable to use `backup` and
-	`install_fallback`.
-
-**`import_piefxis, export_piefxis, export_piefxis_host`**:   These options can be used to migrate accounts using
-	[`XEP-0227`](https://xmpp.org/extensions/xep-0227.html) formatted XML
-	files from/to other Jabber/XMPP servers or move users of a vhost to
-	another ejabberd installation.
-
-**`import_file, import_dir`**:   These options can be used to migrate accounts using jabberd1.4
-	formatted XML files. from other Jabber/XMPP servers There exist
-	tutorials to
-	[`migrate from other software to ejabberd`](https://ejabberd.im/migrate-to-ejabberd).
-
-**`import_prosody import_dir`**:  Import data from Prosody server. `import_dir` is typically `/var/lib/prosody/`.
-   Currently the following data is imported: vcards, accounts, rosters, private data
-   (e.g. conference bookmarks), conferences, offline messages and privacy lists.
-   Note: ejabberd must be compiled with optional tools support and package must
-   provide optional luerl dependency.
-
-**`set_master nodename`**:   Set master node of the clustered Mnesia tables. If you provide as
-	nodename “self”, this node will be set as its own master.
-
-**`mnesia_change_nodename oldnodename newnodename oldbackup newbackup`**:   Change the erlang node name in a backup file
-
-**`export2sql virtualhost filepath`**:   Export virtual host information from Mnesia tables to a SQL file.
-
-**`update_list`**:   List modified modules that can be updated
-
-**`update module`**:   Update the given module, or use the keyword: all
-
-**`reload_config`**:   Reload ejabberd configuration file into memory
-
-**`delete_expired_messages`**:   This option can be used to delete old messages in offline storage.
-	This might be useful when the number of offline messages is very
-	high.
-
-**`delete_old_messages days`**:   Delete offline messages older than the given days.
-
-**`incoming_s2s_number`**:   Number of incoming s2s connections on the node
-
-**`outgoing_s2s_number`**:   Number of outgoing s2s connections on the node
-
-**`register user host password`**:   Register an account in that domain with the given password.
-
-**`unregister user host`**:   Unregister the given account.
-
-**`registered_users host`**:   List all registered users in HOST
-
-**`connected_users`**:   List all established sessions
-
-**`connected_users_number`**:   Get the number of established sessions
-
-**`user_resources user host`**:   List user’s connected resources
-
-**`kick_user user host`**:   Disconnect user’s active sessions
 
 # Web Admin
 
@@ -424,7 +301,9 @@ section [Erlang Runtime System](#erlang-runtime-system).
 
 # Ad-hoc Commands
 
-If you enable `mod_configure` and `mod_adhoc`, you can perform several
+If you enable [mod_configure](/admin/configuration/modules/#mod-configure)
+and [mod_adhoc](/admin/configuration/modules/#mod-adhoc),
+you can perform several
 administrative tasks in `ejabberd` with an XMPP client. The client must
 support Ad-Hoc Commands
 ([`XEP-0050`][1]), and you must

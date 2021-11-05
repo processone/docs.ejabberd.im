@@ -62,7 +62,8 @@ level:
 To enable OAuth support in ejabberd, you need to edit your
 `ejabberd.yml` file to add the following snippets.
 
-You first need to expose more HTTP endpoint in `ejabberd_http` modules:
+You first need to expose more HTTP endpoint in
+[ejabberd_http](/admin/configuration/listen/#ejabberd-http) modules:
 
 - `ejabberd_oauth` is the request handler that will allow
        generating token for third-parties (clients, services). It is
@@ -101,8 +102,16 @@ file, focusing on HTTP handlers:
 
 ## Module configuration
 
-Make sure you have enabled in `ejabberd.yml` the modules that implement
-the commands you want to use.
+Some commands are implemented by ejabberd internals and are always available,
+but other commands are implemented by optional modules.
+If the documentation of a command you want to use mentions a module,
+make sure you have enabled that module in `ejabberd.yml`.
+For example the
+[add_rosteritem](/developer/ejabberd-api/admin-api/#add-rosteritem)
+command is implemented in the mod_admin_extra module.
+
+By the way, ejabberd implements several commands to manage OAuth,
+check the [oauth tag](/developer/ejabberd-api/admin-tags/#oauth) documentation.
 
 ## OAuth specific parameters
 
@@ -133,7 +142,9 @@ release, we plan to support multiple token backends.
 
 # authorization_token
 
-An easy way to generate a token is using the ejabberdctl shell script:
+An easy way to generate a token is using the
+[oauth_issue_token](/developer/ejabberd-api/admin-api/#oauth-issue-token)
+command with the ejabberdctl shell script:
 
 ``` bash
 ejabberdctl oauth_issue_token user123@localhost 3600 ejabberd:admin
