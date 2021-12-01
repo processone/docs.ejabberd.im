@@ -440,8 +440,9 @@ module by looking at an example for a given DIT (or one resembling it).
 This seems to be the kind of DIT for which this module was initially
 designed. Basically there are just user objects, and group membership is
 stored in an attribute individually for each user. For example in a
-layout shown in figure [fig:msrl-dit-flat], the group of each user is
-stored in its `ou` attribute.
+layout like this, it's stored in the `ou` attribute:
+
+![msrl-dit-flat.png](/static/images/admin/msrl-dit-flat.png)
 
 Such layout has a few downsides, including:
 
@@ -469,14 +470,18 @@ supporting it. You can use the following configuration…
 	    ldap_userdesc: displayName
 	  ...
 
-…to be provided with a roster as shown in figure [fig:msrl-roster-flat]
-upon connecting as user `czesio`.
+…to be provided with a roster upon connecting as user `czesio`,
+as shown in this figure:
+
+![msrl-roster-flat.png](/static/images/admin/msrl-roster-flat.png)
 
 ### Deep DIT
 
 This type of DIT contains distinctly typed objects for users and groups
-– see figure [fig:msrl-dit-deep]. They are shown separated into
+– see the next figure. They are shown separated into
 different subtrees, but it’s not a requirement.
+
+![msrl-dit-deep.png](/static/images/admin/msrl-dit-deep.png)
 
 If you use the following example module configuration with it:
 
@@ -496,7 +501,9 @@ If you use the following example module configuration with it:
 	  ...
 
 …and connect as user `czesio`, then `ejabberd` will provide
-you with the roster shown in figure [fig:msrl-roster-deep].
+you with the roster shown in this figure:
+
+![msrl-roster-deep.png](/static/images/admin/msrl-roster-deep.png)
 
 # vCard in LDAP
 
