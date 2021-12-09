@@ -59,6 +59,7 @@ version indicates you need to also update those tables.
 
 # Specific version upgrade notes
 
+- [Upgrading from ejabberd 21.07 to 21.12](/admin/upgrade/from_21.07_to_21.12/)
 - [Upgrading from ejabberd 21.04 to 21.07](/admin/upgrade/from_21.04_to_21.07/)
 - [Upgrading from ejabberd 21.01 to 21.04](/admin/upgrade/from_21.01_to_21.04/)
 - [Upgrading from ejabberd 19.08 to 20.01](/admin/upgrade/from_19.08_to_20.01/)
