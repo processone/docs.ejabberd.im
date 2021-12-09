@@ -396,6 +396,57 @@ requires [mod_adhoc](/admin/configuration/modules/#mod-adhoc) to be loaded.
 
 The module has no options.
 
+mod\_conversejs
+---------------
+
+This module serves a simple page for the
+[Converse](https://conversejs.org/) XMPP web browser client.
+
+This module is available since ejabberd <a href="/archive/21_12/">21.12</a>.
+
+To use this module, in addition to adding it to the *modules* section,
+you must also enable it in *listen* → *ejabberd\_http* →
+[request\_handlers](/admin/configuration/listen-options/#request-handlers).
+
+You must also setup either the option *websocket\_url* or
+*bosh\_service\_url*.
+
+By default, the options *conversejs\_css* and *conversejs\_script* point
+to the public Converse.js client. Alternatively, you can host the client
+locally using [mod_http_fileserver](/admin/configuration/modules/#mod-http-fileserver).
+
+__Available options:__
+
+- **bosh\_service\_url**: *BoshURL*  
+BOSH service URL to which Converse.js can connect to.
+
+- **conversejs\_css**: *URL*  
+Converse.js CSS URL.
+
+- **conversejs\_script**: *URL*  
+Converse.js main script URL.
+
+- **default\_domain**: *Domain*  
+Specify a domain to act as the default for user JIDs. The default value
+is the first domain defined in the ejabberd configuration file.
+
+- **websocket\_url**: *WebsocketURL*  
+A websocket URL to which Converse.js can connect to.
+
+__**Example**:__
+
+    listen:
+      -
+        port: 5280
+        module: ejabberd_http
+        request_handlers:
+          /websocket: ejabberd_http_ws
+          /conversejs: mod_conversejs
+
+    modules:
+      mod_conversejs:
+        websocket_url: "ws://example.org:5280/websocket"
+
 mod\_delegation
 ---------------
 
@@ -2259,9 +2310,14 @@ systems with not so many nodes, caching last items speeds up pubsub and
 allows to raise user connection rate. The cost is memory usage, as every
 item is stored in memory.
 
+<div class="note-left">added in <a href="/archive/21_12/">21.12</a></div>
+
+- **max\_item\_expire\_node**: *timeout() | infinity*  
+Specify the maximum item epiry time. Default value is: *infinity*.
+
 - **max\_items\_node**: *non\_neg\_integer() | infinity*  
 Define the maximum number of items that can be stored in a node. Default
-value is: *10*.
+value is: *1000*.
 
 - **max\_nodes\_discoitems**: *pos\_integer() | infinity*  
 The maximum number of nodes to return in a discoitem response. The
@@ -2496,6 +2552,13 @@ uncontrolled massive accounts creation by rogue users.
 - **access\_remove**: *AccessName*  
 Specify rules to restrict access for user unregistration. By default any
 user is able to unregister their account.
+
+<div class="note-left">added in <a href="/archive/21_12/">21.12</a></div>
+
+- **allow\_modules**: *all | \[Module, ...\]*  
+List of modules that can register accounts, or *all*. The default value
+is *all*, which is equivalent to something like *\[mod\_register,
+mod\_register\_web\]*.
 
 - **captcha\_protected**: *true | false*  
 Protect registrations with [CAPTCHA](/admin/configuration/basic/#captcha). The

@@ -351,6 +351,9 @@ This section enumerates the tags and their associated API.
 * [delete_expired_messages](/developer/ejabberd-api/admin-api/#delete-expired-messages)
 
 
+* [delete_expired_pubsub_items](/developer/ejabberd-api/admin-api/#delete-expired-pubsub-items)
+
+
 * [delete_old_mam_messages](/developer/ejabberd-api/admin-api/#delete-old-mam-messages)
 
 

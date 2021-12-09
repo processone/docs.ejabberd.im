@@ -62,7 +62,7 @@ __Examples:__
 ## backup
 
 
-Store the database to backup file
+Backup the Mnesia database to a binary file
 
 __Arguments:__
 
@@ -801,6 +801,40 @@ __Examples:__
 ~~~
 
 
+<div class='note-down'>added in <a href="/archive/21_12/">21.12</a></div>
+
+## delete_expired_pubsub_items
+
+
+Delete expired PubSub items
+
+__Arguments:__
+
+
+__Result:__
+
+- *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+[purge](/developer/ejabberd-api/admin-tags/#purge) 
+
+__Module:__
+[mod_pubsub](/admin/configuration/modules/#mod-pubsub)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/delete_expired_pubsub_items
+    {
+      
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+
+
 
 
 ## delete_mnesia
@@ -905,7 +939,7 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>added in <a href="/archive/21_12/">21.12</a></div>
 
 ## delete_old_pubsub_items
 
@@ -1184,7 +1218,7 @@ __Examples:__
 ## dump
 
 
-Dump the database to a text file
+Dump the Mnesia database to a text file
 
 __Arguments:__
 
@@ -1248,7 +1282,7 @@ __Examples:__
 ## dump_table
 
 
-Dump a table to a text file
+Dump a Mnesia table to a text file
 
 __Arguments:__
 
@@ -1483,7 +1517,7 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>added in <a href="/archive/21_12/">21.12</a></div>
 
 ## gen_markdown_doc_for_tags
 
@@ -2433,7 +2467,11 @@ __Examples:__
 ## install_fallback
 
 
-Install the database from a fallback file
+Install Mnesia database from a binary backup file
+
+
+The binary backup file is installed as fallback: it will be used to restore the database at the next ejabberd start. This means that, after running this command, you have to restart ejabberd. This command requires less memory than
+			'restore'.
 
 __Arguments:__
 
@@ -2686,7 +2724,10 @@ __Examples:__
 ## load
 
 
-Restore the database from a text file
+Restore Mnesia database from a text dump file
+
+
+Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use 'backup' and 'install_fallback'.
 
 __Arguments:__
 
@@ -4091,7 +4132,10 @@ __Examples:__
 ## reopen_log
 
 
-Reopen the log files
+Reopen the log files after being renamed
+
+
+This can be useful when an external tool is used for log rotation. See https://docs.ejabberd.im/admin/guide/troubleshooting/#log-files
 
 __Arguments:__
 
@@ -4264,7 +4308,10 @@ __Examples:__
 ## restore
 
 
-Restore the database from backup file
+Restore the Mnesia database from a binary backup file
+
+
+This restores immediately from a binary backup file the internal Mnesia database. This will consume a lot of memory if you have a large database, you may prefer 'install_fallback'.
 
 __Arguments:__
 
