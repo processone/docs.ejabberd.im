@@ -5863,6 +5863,54 @@ __Examples:__
 
 
 
+## subscribe_room_many
+
+
+Subscribe several users to a MUC conference
+
+__Arguments:__
+
+- *users* :: [{jid::string, nick::string}] : Users JIDs and nicks
+- *room* :: string : the room to subscribe
+- *nodes* :: string : nodes separated by commas: ,
+
+__Result:__
+
+- *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+
+__Module:__
+[mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/subscribe_room_many
+    {
+      "users": [
+        {
+          "jid": "tom@localhost",
+          "nick": "Tom"
+        },
+        {
+          "jid": "jerry@localhost",
+          "nick": "Jerry"
+        }
+      ],
+      "room": "room1@conference.localhost",
+      "nodes": "urn:xmpp:mucsub:nodes:messages,urn:xmpp:mucsub:nodes:affiliations"
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+
+
+
+
 ## unban_ip
 
 

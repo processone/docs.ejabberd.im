@@ -303,6 +303,9 @@ This section enumerates the tags and their associated API.
 * [subscribe_room](/developer/ejabberd-api/admin-api/#subscribe-room)
 
 
+* [subscribe_room_many](/developer/ejabberd-api/admin-api/#subscribe-room-many)
+
+
 * [unsubscribe_room](/developer/ejabberd-api/admin-api/#unsubscribe-room)
 
 
