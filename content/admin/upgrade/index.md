@@ -50,6 +50,34 @@ we assume you run node A and B with version N, and will upgrade to version N+1.
 - start new node A
 - run [join_cluster](/developer/ejabberd-api/admin-api/#join-cluster) on node A, passing node B as parameter
 
+# Module update process
+
+Instead of upgrading all ejabberd to a brand new version,
+maybe you just want to update a few modules with bugfixes...
+in that case you can update only specific modules.
+
+This process is only recommended for bugfixes that involve functional changes,
+and do not involve structural or memory changes
+(those ones are usually detected and applied at server start only).
+
+How to do this?
+
+1. Apply the fixes to your source code, compile and reinstall ejabberd,
+   so the new `*.beam` files replace the old ones
+2. In the ejabberd Web Admin go to `Nodes` -> your node -> `Update`
+3. This will detect what `*.beam` files have changed in the installation
+4. Select which modules you want to update now, and click `Update`
+5. This will load into memory the corresponding `*.beam` files
+
+If you prefer to use commands, check
+[update_list](/developer/ejabberd-api/admin-api/#update-list)
++ [update](/developer/ejabberd-api/admin-api/#update).
+
+Notice this does not restart [modules](/admin/configuration/modules/)
+or any other tasks. If the fix you plan to apply requires a module restart,
+you can use this alternative:
+[restart_module](/developer/ejabberd-api/admin-api/#restart-module).
+
 # Note on database schema upgrade
 
 `ejabberd` automatically updates the Mnesia table definitions at
