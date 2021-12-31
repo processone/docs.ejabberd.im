@@ -24,6 +24,27 @@ changing parameters at runtime from web admin interface, you will need to apply
 them to configuration file manually. This is to prevent messing up
 with your config file comments, syntax, etc.
 
+# Reload at Runtime
+
+You can modify the `ejabberd` configuration file
+and reload it at runtime:
+the changes you made are applied immediately,
+no need to restart ejabberd.
+This applies to adding, changing or removing
+vhosts, listened ports, modules, ACLs or any other options.
+
+How to do this?
+
+1. Let's assume your ejabberd server is already running
+2. Modify the configuration file
+3. Run the [reload_config](/developer/ejabberd-api/admin-api/#reload-config) command
+4. ejabberd will read that file, check its YAML syntax is valid,
+   check the options are valid and known...
+5. If there's any problem in the configuration file,
+   the reload is aborted and an error message is logged with details,
+   so you can fix the problem.
+6. If the file is right, it detects the changed options,
+   and applies them immediately (add/remove hosts, add/remove modules, ...)
 
 # Legacy Configuration File
 
