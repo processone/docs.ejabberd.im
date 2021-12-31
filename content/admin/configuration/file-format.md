@@ -7,23 +7,23 @@ order: 10
 
 # Yaml File Format
 
-The configuration file will be loaded the first time you start
-`ejabberd`. The configuration file name MUST have “.yml” or “.yaml”
-extension. This helps ejabberd to differentiate between the new and
-legacy file formats (see
-section [Legacy Configuration File](#legacy-configuration-file)).
-
-The configuration file is written in [`YAML`](https://en.wikipedia.org/wiki/YAML).
-
-Note that `ejabberd` never edits the configuration file. If you are
-changing parameter from web admin interface, you will need to apply
-them to configuration file manually. This is to prevent messing up
-with your config file comments, syntax, etc.
+`ejabberd` loads its configuration file during startup.
+This configuration file is written in
+[`YAML`](https://en.wikipedia.org/wiki/YAML) format,
+and its file name MUST have “.yml” or “.yaml” extension.
+This helps ejabberd to differentiate between this new format
+and the [legacy configuration file](#legacy-configuration-file) format.
 
 Please, consult `ejabberd.log` for configuration errors. `ejabberd` will
 report syntax related errors, as well as complains about unknown options
 and invalid values. Make sure you respect indentation (YAML is
 sensitive to this) or you will get pretty cryptic errors.
+
+Note that `ejabberd` never edits the configuration file. If you are
+changing parameters at runtime from web admin interface, you will need to apply
+them to configuration file manually. This is to prevent messing up
+with your config file comments, syntax, etc.
+
 
 # Legacy Configuration File
 
