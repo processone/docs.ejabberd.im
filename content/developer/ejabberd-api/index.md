@@ -7,16 +7,15 @@ toc: true
 
 # Introduction
 
-ejabberd comes with a powerful API that serve two goals:
+ejabberd comes with a powerful API serving two goals:
 
-1. It is primarily used to manage the XMPP service and integrate the platform with back-end platforms and script tools.
-2. It also can be used from user clients to perform tasks on behalf of the users. This allows write simple basic clients
-   that do not have to use XMPP protocol. This can be handy, for example to send a message from your smartwatch, or show
-   the number of offline messages.
+1. Manage the XMPP service and integrate the platform with back-end platforms and script tools.
+2. Allow users to perform tasks via the client, allowing simple basic clients that do not need to use XMPP protocol. 
+   This can be handy, for example to send a message from your smartwatch, or show the number of offline messages.
 
 The system is powerful and very versatile and you can configure it very finely, but it can be quite daunting to set up.
 
-This section is write to demystify ejabberd API configuration and help you
+This section is written to demystify ejabberd API configuration and help you
 integrate ejabberd with your other back-ends or script through an HTTP / HTTPS ReST API.
 
 # Understanding ejabberd "commands" 
@@ -36,9 +35,9 @@ provides other interfaces that can be installed to
 execute ejabberd commands in different ways: `mod_rest` (HTTP POST
 service), `mod_shcommands` (ejabberd WebAdmin page).
 
-Any module in ejabberd can add its own command through ejabberd Erlang/Elixir API, making the whole
-system totally extensible. A third-party module can expose its own command and feel like a real part
-of the system. A module that exposes commands makes it possible for server admin to expose it the way they want.
+Any module in ejabberd can add its own command(s) through ejabberd Erlang/Elixir API, making the whole
+system totally extensible. A third-party module can expose its own command(s) and feel like a real part
+of the system. A module that exposes commands allows server admins to expose it the way they want.
 
 ejabberd commands are universal, extensible and widely available through various configurable entrypoints.
 
