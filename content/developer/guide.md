@@ -1005,8 +1005,12 @@ This is possible because the User and Server fields can't contain the `:` charac
 and Password can have that character, but is always the last field.
 So it is always possible to parse the input characters unambiguously.
 
+An example Perl script is included with ejabberd,
+see [check_pass_null.pl](https://github.com/processone/ejabberd/blob/master/examples/extauth/check_pass_null.pl)
+
 There are
 [`several example authentication scripts`](https://ejabberd.im/extauth).
+
 Example Python script:
 
     #!/usr/bin/python
