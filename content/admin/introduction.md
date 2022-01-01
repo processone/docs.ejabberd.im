@@ -16,11 +16,11 @@ order: 1
 
 `ejabberd` is:
 
--   *Cross-platform:* `ejabberd` runs under Microsoft Windows and Unix derived systems such as Linux, FreeBSD and NetBSD.
+-   *Cross-platform:* `ejabberd` runs under Microsoft Windows and Unix-derived systems such as Linux, FreeBSD and NetBSD.
 
--   *Distributed:* You can run `ejabberd` on a cluster of machines and all of them will serve the same Jabber domain(s). When you need more capacity you can simply add a new cheap node to your cluster. Accordingly, you do not need to buy an expensive high-end machine to support tens of thousands concurrent users.
+-   *Distributed:* You can run `ejabberd` on a cluster of machines all serving the same Jabber domain(s). When you need more capacity you can simply add a new cheap node to your cluster. Accordingly, you do not need to buy an expensive high-end machine to support tens of thousands concurrent users.
 
--   *Fault-tolerant:* You can deploy an `ejabberd` cluster so that all the information required for a properly working service will be replicated permanently on all nodes. This means that if one of the nodes crashes, the others will continue working without disruption. In addition, nodes also can be added or replaced ‘on the fly’.
+-   *Fault-tolerant:* You can deploy an `ejabberd` cluster so that all the information required for a properly working service will be replicated permanently on all nodes. This means that if one of the nodes crashes, the others will continue working without disruption. In addition, nodes can be added or replaced on the fly.
 
 -   *Administrator Friendly:* `ejabberd` is built on top of the Erlang programming language. As a result, if you wish, you can perform self-contained deployments. You are not required to install an external database, an external web server, amongst others because everything is already included, and ready to run out of the box. Other administrator benefits include:
 
@@ -32,12 +32,12 @@ order: 1
 	-   Can integrate with existing authentication mechanisms.
 	-   Capability to send announce messages.
 
--   *Internationalized:* `ejabberd` leads in internationalization. Hence it is very well suited to build service available across the world. Related features are:
+-   *Internationalized:* `ejabberd` leads in internationalization and is well suited to build services available across the world. Related features are:
 
 	-   Translated to 25 languages.
 	-   Support for [`IDNA`][2].
 
--   *Open Standards:* `ejabberd` is the first Open Source Jabber server claiming to fully comply to the XMPP standard.
+-   *Open Standards:* `ejabberd` is the first Open Source Jabber server staking a claiming to full complyiance to the XMPP standard.
 
 	-   Fully XMPP compliant.
 	-   XML-based protocol.
@@ -45,7 +45,7 @@ order: 1
 
 # Additional Features
 
-Moreover, `ejabberd` comes with a wide range of other state-of-the-art features:
+`ejabberd` also comes with a wide range of other state-of-the-art features:
 
 -   Modular
 
