@@ -32,7 +32,7 @@ The following databases are supported by `ejabberd`:
 -   [`Redis`](https://redis.io/)(only for transient data)
 
 Please check
-[LDAP Configuration](http://localhost:8080/admin/configuration/ldap/)
+[LDAP Configuration](/admin/configuration/ldap/)
 section for documentation about using LDAP.
 
 # Database Schema
