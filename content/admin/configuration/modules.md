@@ -2885,11 +2885,11 @@ password in multiple places.
 -   Connection parameters: The module also accepts the connection
     parameters, all of which default to the top-level parameter of the
     same name, if unspecified. See [LDAP
-    Connection](/admin/configuration/database-ldap/#ldap-connection) section for
+    Connection](/admin/configuration/ldap/#ldap-connection) section for
     more information about them.
 
 Check also the [Configuration
-examples](/admin/configuration/database-ldap/#configuration-examples) section to
+examples](/admin/configuration/ldap/#ldap-examples) section to
 get details about retrieving the roster, and configuration examples
 including Flat DIT and Deep DIT.
 
@@ -2930,7 +2930,7 @@ only.
 - **ldap\_filter**  
 Additional filter which is AND-ed together with "User Filter" and "Group
 Filter". For more information check the LDAP
-[Filters](/admin/configuration/database-ldap/#filters) section.
+[Filters](/admin/configuration/ldap/#filters) section.
 
 - **ldap\_gfilter**  
 "Group Filter", used when retrieving human-readable name (a.k.a.
@@ -2967,7 +2967,7 @@ section Filters.
 - **ldap\_memberattr\_format\_re**  
 A regex for extracting user ID from the value of the attribute named by
 *ldap\_memberattr*. Check the LDAP [Control
-Parameters](/admin/configuration/database-ldap/#control-parameters) section.
+Parameters](/admin/configuration/ldap/#control-parameters) section.
 
 - **ldap\_password**  
 Same as top-level [ldap_password](/admin/configuration/toplevel/#ldap-password) option, but applied to this module
@@ -3010,7 +3010,7 @@ only.
 "User Filter", used for retrieving the human-readable name of roster
 entries (usually full names of people in the roster). See also the
 parameters *ldap\_userdesc* and *ldap\_useruid*. For more information
-check the LDAP [Filters](/admin/configuration/database-ldap/#filters) section.
+check the LDAP [Filters](/admin/configuration/ldap/#filters) section.
 
 - **ldap\_uids**  
 Same as top-level [ldap_uids](/admin/configuration/toplevel/#ldap-uids) option, but applied to this module only.

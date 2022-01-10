@@ -17,9 +17,9 @@ The following authentication methods are supported by `ejabberd`:
 
 -   `external` — See section [External Script](#external-script).
 
--   `ldap` — See section  [LDAP](/admin/configuration/database-ldap/#ldap-autentication).
+-   `ldap` — See section  [LDAP](/admin/configuration/ldap/#ldap-authentication).
 
--   `sql` — See section [Relational Databases](/admin/configuration/database-ldap/#relational-databases).
+-   `sql` — See section [Relational Databases](/admin/configuration/database/#sql-authentication).
 
 -   `anonymous` — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 

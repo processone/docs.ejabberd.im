@@ -48,5 +48,5 @@ configure your development environment:
 # Customizing ejabberd
 
 * [ejabberd development guide](guide/)
-* [ejabberd modules development](modules/)
+* [ejabberd modules development](extending-ejabberd/modules/)
 

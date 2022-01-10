@@ -72,7 +72,7 @@ No side effect.
 
 ## Module documentation
 
-* [mod_last](/admin/guide/configuration/#mod-last)
+* [mod_last](/admin/configuration/modules/#mod-last)
 
 # XEP-0013: Flexible Offline Message Retrieval
 
@@ -119,4 +119,4 @@ Side effect: It will disable all offline messages storage.
 
 ## Module documentation
 
-* [mod_offline](/admin/guide/configuration/#mod-offline)
+* [mod_offline](/admin/configuration/modules/#mod-offline)

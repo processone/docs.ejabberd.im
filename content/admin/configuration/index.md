@@ -23,7 +23,8 @@ Detailed documentation in sections:
 - [File Format](/admin/configuration/file-format/)
 - [Basic Configuration](/admin/configuration/basic/): hosts, acl, logging...
 - [Authentication](/admin/configuration/authentication/): auth_method
-- [Database and LDAP](/admin/configuration/database-ldap/)
+- [Databases and LDAP](/admin/configuration/database/)
+- [LDAP](/admin/configuration/ldap/)
 - [Listen Modules](/admin/configuration/listen/): c2s, s2s, http, sip, stun...
 - [Listen Options](/admin/configuration/listen-options/)
 - [Top-Level Options](/admin/configuration/toplevel/)

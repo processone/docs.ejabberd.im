@@ -9,6 +9,6 @@ developer clients and bots.
 
 This section is here to help you get started in writing XMPP powered software.
 
-* [Proposed Extensions](/developer/xmpp-clients-bots/proposed-extensions/)
+* [Proposed Extensions](/developer/xmpp-clients-bots/extensions/)
 
 * [iOS Development](/developer/xmpp-clients-bots/ios/)

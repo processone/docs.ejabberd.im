@@ -147,7 +147,7 @@ either using basic auth or OAuth.
 # OAuth Authentication
 
 Before using OAuth to interact with ejabberd API,
-you need to configure [OAuth support in ejabberd](/admin/guide/oauth/).
+you need to configure [OAuth support in ejabberd](/developer/ejabberd-api/oauth/).
 
 Here are example entries to check / change in your ejabberd
 configuration file:
