@@ -1,5 +1,7 @@
 ---
 title: Unattended Installation
+toc: true
+menu: Unattended
 ---
 
 Bitrock framework allow unattended installation. With this mode, the
