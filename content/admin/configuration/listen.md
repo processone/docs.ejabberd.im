@@ -208,16 +208,19 @@ and the [trusted_proxies](/admin/configuration/toplevel/#trusted-proxies) top-le
 Support for MQTT requires configuring `mod_mqtt` both in the
 [listen](/admin/configuration/toplevel/#listen) and the
 [modules](/admin/configuration/toplevel/#modules) sections.
-Check the [mod_mqtt modules options](/admin/configuration/modules/#mod-mqtt).
-Check the advanded documentation in [MQTT Support](/admin/guide/mqtt/).
+Check the [mod_mqtt module](/admin/configuration/modules/#mod-mqtt) options,
+and the [MQTT Support](/admin/guide/mqtt/) section.
 
 Listen options:
+[backlog](/admin/configuration/listen-options/#backlog),
 [max_fsm_queue](/admin/configuration/listen-options/#max-fsm-queue),
 [max_payload_size](/admin/configuration/listen-options/#max-payload-size),
 [send_timeout](/admin/configuration/listen-options/#send-timeout),
 [tls](/admin/configuration/listen-options/#tls),
 [tls_verify](/admin/configuration/listen-options/#tls-verify).
 
+<!-- other potions supposedly supported by mqtt, but undocumented
+     accept_interval, supervisor, transport, use_proxy_protocol -->
 
 # ejabberd_stun
 

@@ -4,6 +4,8 @@ menu: MQTT
 toc: true
 ---
 
+# Benefits
+
 ejabberd is a multiprotocol server that supports [MQTT](https://mqtt.org/)
 out of the box since ejabberd Business Edition 4.0 and
 ejabberd Community Server 19.02
@@ -22,14 +24,12 @@ platform, with a single tool.
 5. ejabberd supports MQTT 5: it is a state of the art, modern MQTT server.
 And it also supports MQTT 3.1.1 in case you want to use previous clients.
 
-The bottom line is simple:
+In summary:
 
 - You can switch between XMPP and MQTT as you wish, even use both protocols on the same infrastructure.
 - You will save on infrastructure, given the high-performance of the platform.
 - You get support on solution design for real-time infrastructure and can get help choosing between XMPP and MQTT, from
 a vendor that has no interest in selling one protocol more than another.
-
-# Specific benefits of MQTT service in eBE
 
 ejabberd Business Edition offers a different clustering than eCS. Using MQTT with ejabberd Business Edition means
 you can leverage:
@@ -40,12 +40,129 @@ regions. You can deploy a truly global service.
 - The backend integration that are supported in ejabberd Business Edition will be available in MQTT. You have no need
 to develop support for new API.
 
-# Enabling MQTT service in ejabberd
 
-## Creating self-signed TLS certificate
+# Basic Setup
 
-If you want to use TLS, you may want to create a self-signed certificate (at least to get started). The following page
-is a nice guide: [Mosquitto SSL Configuration -MQTT TLS Security](http://www.steves-internet-guide.com/mosquitto-tls/).
+Maybe you already have MQTT enabled in your ejabberd server,
+as it comes enabled by default in many distributions.
+
+MQTT support in ejabberd is enabled by adding `mod_mqtt`
+to the list of `listen` and the list of `modules` like this:
+
+```yaml
+listen:
+  -
+    port: 1883
+    module: mod_mqtt
+    backlog: 1000
+
+modules:
+  ...
+  mod_mqtt: {}
+```
+
+The listener on port 1883 is MQTT over cleartext TCP/IP connection;
+you can later setup encryption, WebSocket, and encrypted WebSocket.
+
+For available options you can consult
+the [mod_mqtt listener](/admin/configuration/listen/#mod-mqtt)
+and the [mod_mqtt module](/admin/configuration/modules/#mod-mqtt).
+
+# Test Setup
+
+Start ejabberd server and you can connect to ejabberd MQTT service with your preferred MQTT client.
+
+Let's use the clients included with [mosquitto](https://mosquitto.org/),
+available in [Debian](https://packages.debian.org/sid/mosquitto-clients),
+[Brew](https://formulae.brew.sh/formula/mosquitto)
+and many others (see [mosquitto downloads](https://mosquitto.org/download/)).
+
+First of all register several accounts and subscribe one to the topic `test/1` with:
+
+```bash
+ejabberdctl register author localhost Pass
+ejabberdctl register user1 localhost Pass
+
+mosquitto_sub -u user1@localhost -P Pass -t "test/1" -d -v
+
+Client (null) sending CONNECT
+Client (null) received CONNACK (0)
+Client (null) sending SUBSCRIBE (Mid: 1, Topic: test/1, QoS: 0, Options: 0x00)
+Client (null) received SUBACK
+Subscribed (mid: 1): 0
+```
+
+Then go to another terminal or window and publish something on that topic:
+
+```bash
+mosquitto_pub -u author@localhost -P Pass -t "test/1" -d -m "ABC"
+
+Client (null) sending CONNECT
+Client (null) received CONNACK (0)
+Client (null) sending PUBLISH (d0, q0, r0, m1, 'test/1', ... (3 bytes))
+Client (null) sending DISCONNECT
+```
+
+You will see the message received and displayed in the `mosquitto_sub` window:
+
+```bash
+Client (null) received PUBLISH (d0, q0, r0, m0, 'test/1', ... (3 bytes))
+test/1 ABC
+```
+
+# Access Control
+
+The [mod_mqtt module](/admin/configuration/modules/#mod-mqtt)
+provides two options for access control:
+
+- `access_subscribe` to restrict access for subscribers,
+- and `access_publish` to restrict access for publishers.
+
+Both options accept mapping `filter: rule`
+where `filter` is an MQTT topic filter and `rule` is the standard
+[ejabberd access rule](/admin/configuration/basic/#acl-definition).
+
+As an example, let's say only `author@localhost` is allowed to publish
+to topic "/test/1/" and its subtopics,
+while only `user1@localhost` is allowed to subscribe
+to this topic and its subtopics,
+and nobody else can publish or subscribe to anything else.
+The configuration will look something like this:
+
+```yaml
+acl:
+  ...
+  publisher:
+    user: author@localhost
+  subscriber:
+    user: user1@localhost
+
+modules:
+  ...
+  mod_mqtt:
+    access_publish:
+      "test/1/#":
+        - allow: publisher
+        - deny
+      "#":
+        - deny
+    access_subscribe:
+      "test/1/#":
+        - allow: subscriber
+        - deny
+      "#":
+        - deny
+```
+
+# Encryption
+
+## Self-Signed Certificate
+
+If you have already setup encryption in ejabberd, you can bypass this step.
+
+If you want to use TLS, you may want to create a self-signed certificate
+(at least to get started). The following page is a nice guide:
+[Mosquitto SSL Configuration -MQTT TLS Security](http://www.steves-internet-guide.com/mosquitto-tls/).
 
 Here is a summary of the steps, adapted for ejabberd MQTT:
 
@@ -58,17 +175,20 @@ openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out s
 cat server.crt server.key > mqtt.pem
 ```
 
-## Adding MQTT service in ejabberd.yml
-
-Enabling it is as simple as adding `mod_mqtt` in ejabberd modules list and adding one or two listeners.
-For details see [mod_mqtt modules options](/admin/configuration/modules/#mod-mqtt)
-and [mod_mqtt listen options](/admin/configuration/listen/#mod-mqtt).
-Example configuration:
+Now copy `mqtt.pem` to the path with ejabberd configuration files,
+and configure accordingly:
 
 ```yaml
-hosts:
-  - "localhost"
+certfiles:
+  - "/etc/ejabberd/mqtt.pem"
+```
 
+## Configure Encryption
+
+Add a new listener with `tls` option
+in the port number 8883 (the standard for encrypted MQTT):
+
+```yaml
 listen:
   -
     port: 1883
@@ -79,136 +199,82 @@ listen:
     module: mod_mqtt
     backlog: 1000
     tls: true
-
-# adapt the path to your own certfile    
-certfiles:
-  - "../../conf/mqtt.pem"
-
-modules:
-...
-  mod_mqtt: {}
 ```
 
-The listener on port 1883 is MQTT over cleartext TCP/IP connection. The listener on port 8883 is MQTT over TLS. You can 
-enable both or only one of them depending on your needs.
+The listener on port 1883 is MQTT over cleartext TCP/IP connection.
+The listener on port 8883 is MQTT over TLS.
+You can enable both or only one of them depending on your needs.
 
-**Be careful**: option `certfile` does not work directly on listener,
-use the [certfiles](/admin/configuration/toplevel/#certfiles) top-level option.
+## Test Encryption
 
-Start ejabberd server and you should be able to connect to ejabberd MQTT service.
+You can repeat the commands from previous test,
+appending `-p 8883` to use the encrypted port.
+If you are using a self-signed certificate as explained previously,
+you will also have to append `--cafile server.crt`.
+For example:
 
-# MQTT over Websocket
+```
+mosquitto_sub -u user1@localhost -P Pass -t "test/1" -d -v -p 8883 --cafile server.crt
+```
 
-You can add an extra listener to enabled MQTT over Websocket:
+# WebSocket
+
+## Setup WS
+
+Add `mod_mqtt` as a
+[request_handler](/admin/configuration/listen-options/#request-handlers)
+on the [ejabberd_http](/admin/configuration/listen/#ejabberd-http) listener:
 
 ```yaml
 listen:
+  ...
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
       ...
-      -
-        port: 5280
-        module: ejabberd_http
-        request_handlers:
-           ...
-           "/mqtt": mod_mqtt
+      /mqtt: mod_mqtt
 ```
 
-This config directive maps the path */mqtt* to the MQTT Websocket handler, on the main ejabberd HTTP listener. 
+This configuration maps the path `/mqtt` to the MQTT WebSocket handler
+on the main ejabberd HTTP listener.
 
-_Note:_ You can enabled listeners independently. It is possible to enable only the Websocket listener and not the TCP/IP 
-ones. 
+You can enable listeners independently, for example enable only
+the WebSocket listener and not the TCP/IP ones.
 
-If you need an example on how to use MQTTJS library, you can check our small example project: 
+## Test WS
+
+Our beloved mosquitto client does not support MQTT over WebSocket,
+so you may have to find some capable MQTT client.
+For example, in [MQTTX](https://mqttx.app/), setup in the login window:
+
+- Host: `ws://` `localhost`
+- Port: 5280
+- Path:` /mqtt`
+
+If you need an example on how to use MQTTJS library, you can check our small example project:
 [mqttjs-demo](https://github.com/processone/mqttjs-demo)
 
-# Access control configuration
+## Encrypted WS
 
-MQTT support in ejabberd supports advanced configuration using ejabberd ACLs.
-
-The module mod_mqtt provides two options for access control: `access_subscribe` and `access_publish`. The former can be  
-used to restrict access for subscribers and the latter can be used to restrict access for publishers. Both accept  
-mapping `filter: rule` where `filter` is an MQTT topic filter and `rule` is the standard 
-[ejabberd access rule](/admin/configuration/#acl-definition).
-
-As an example, let's say `user1@domain.tld` is only able to publish to topic "/foo/bar/" and its subtopics, 
-while `user2@domain.tld` is only able to subscribe to this topic and its subtopics. The configuration will look 
-something like this:
+To enable encryption on WebSocket, enable `tls` like this:
 
 ```yaml
-acl:
-  ...
-  publisher:
-    user:
-      "user1" : "domain.tld"
-  subscriber:
-    user:
-      "user2" : "domain.tld"
-
-modules:
-  ...
-  mod_mqtt:
-    access_publish:
-      "/foo/bar/#":
-        - allow: publisher
-        - deny
-      "#":
-        - deny
-    access_subscribe:
-      "/foo/bar/#":
-        - allow: subscriber
-        - deny
-      "#":
-        - deny
+listen:
+  -
+    port: 5281
+    ip: "::"
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /mqtt: mod_mqtt
 ```
 
+For testing this in the MQTTX client:
 
-# Testing MQTT from the client perspective
-
-If you are a developer and would like to try connecting your client to MQTT service, you can either use our test public
-MQTT broker, or on your own server.
-
-## Testing on mqtt.fluux.io
-
-ProcessOne has deployed a public MQTT broker with anonymous access. This is one of the first MQTT 5 public brokers available.
-
-The broker is deployed at `mqtt.fluux.io` on port 1883 and 8883 (TLS) and allows anonymous access.
-
-You can, for example, test our broker with mosquitto client. On macOS, you can install mosquitto via Terminal using Homebrew with:
-
-```bash
-brew install mosquitto
-```
-
-From there, you can subscribe to the topic `test/topic` with:
-
-```bash
-mosquitto_sub -h mqtt.fluux.io -p 1883 -V mqttv311 -v -t "test/topic" -q 2
-```
-
-and then (in another Terminal tab or window) you can publish with:
-
-```bash
-mosquitto_pub -h mqtt.fluux.io -p 1883 -V mqttv311 -t "test/topic" -m "message" -q 2
-```
-
-You should see your message received and displayed below the `mosquitto_sub` command in your previous Terminal tab or window.
-
-*Note: In this example, Mosquitto client is using MQTT v3.1.1, as it doesn’t support version 5.0 at the moment of writing.*
-
-## Testing on your own server with authentication and TLS
-
-I assume that you have configured ejabberd on `localhost` (for development) and have created user `mqttuser@localhost`
-with password `mqtt`. You can then connect using TLS with the `mosquitto` client.
-
-First, subscribe to `test/topic` by executing this in a Terminal:
-
-```
-mosquitto_sub -V mqttv311 -v -t 'test/topic' -h localhost -p 8883 -u mqttuser@localhost -P mqtt --cafile ca.crt
-```
-
-**Note**: We are using our Certificate Authority cert that we created earlier, so that mosquitto can trust our server.
-
-You can then publish in another Terminal and check that your subscriber properly receives your message:
-
-```
-mosquitto_pub -V mqttv311 -t test/topic -m "Hi, from ejabberd MQTT"  -h localhost -p 8883 -u mqttuser@localhost -P mqtt --cafile ca.crt
-```
+- Host: `wss://` `localhost`
+- Port: 5281
+- Path: `/mqtt`
+- SSL/TLS: true
+- Certificate: CA signed server
+- If you used a self-signed certificate, you will have to disable SSL Secure
