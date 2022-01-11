@@ -22,7 +22,7 @@ process.
 
 This is the simplest process, and require service restart.
 
-- read the upgrade note
+- read the corresponding [upgrade notes](#specific-version-upgrade-notes)
 - apply the required changes in database from the upgrade note.
 - stop old node
 - archive content of mnesia database directory (database, i.e. `/opt/ejabberd-XX.YY/database`, `/usr/local/var/lib/ejabberd`, ...)
@@ -35,7 +35,8 @@ This is the simplest process, and require service restart.
 This process needs you to run in cluster, with at least two nodes. In this case,
 we assume you run node A and B with version N, and will upgrade to version N+1.
 
-- read the upgrade note, make sure it does not explicitly states "soft upgrade is not supported".
+- read the corresponding [upgrade notes](#specific-version-upgrade-notes),
+make sure it does not explicitly states "soft upgrade is not supported".
 - apply the required changes in database from the upgrade note.
 - make sure node A is running
 - run [leave_cluster](/developer/ejabberd-api/admin-api/#leave-cluster) on node B
@@ -80,10 +81,11 @@ you can use this alternative:
 
 # Note on database schema upgrade
 
-`ejabberd` automatically updates the Mnesia table definitions at
-startup when needed. If you also use an external database for storage
-of some modules, check if the release notes of the new ejabberd
-version indicates you need to also update those tables.
+`ejabberd` automatically updates the Mnesia table definitions at startup when needed.
+If you also use an external [database](/admin/configuration/database/) (like MySQL, ...)
+for storage of some modules, check in the corresponding
+[upgrade notes](#specific-version-upgrade-notes)
+of the new ejabberd version if you need to update those tables yourself manually.
 
 # Specific version upgrade notes
 
