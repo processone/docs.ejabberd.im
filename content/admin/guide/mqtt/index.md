@@ -4,7 +4,8 @@ menu: MQTT
 toc: true
 ---
 
-ejabberd is a multiprotocol server that can support MQTT out of the box, since ejabberd Business Edition 4.0 and
+ejabberd is a multiprotocol server that supports [MQTT](https://mqtt.org/)
+out of the box since ejabberd Business Edition 4.0 and
 ejabberd Community Server 19.02
 
 There are major benefits in using MQTT service embedded in ejabberd:
@@ -18,7 +19,8 @@ protocols.
 3. You can leverage existing skills and plugins you have written for ejabberd, like for example custom authentication.
 4. You can deploy services that take advantage of both protocols and have them interoperate with each other, on a single
 platform, with a single tool.
-5. ejabberd MQTT supports MQTT 5. It is a state of the art, modern MQTT server.
+5. ejabberd supports MQTT 5: it is a state of the art, modern MQTT server.
+And it also supports MQTT 3.1.1 in case you want to use previous clients.
 
 The bottom line is simple:
 
