@@ -4947,7 +4947,7 @@ __Examples:__
 ## unregister
 
 
-Unregister a user
+Unregister a user. Calling this API will delete the user and all its data.
 
 __Arguments:__
 
