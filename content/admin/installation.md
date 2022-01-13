@@ -339,8 +339,8 @@ The files and directories created are, by default:
 
 - `/etc/ejabberd/`:  Configuration directory:
 
-    - `ejabberd.yml`:  ejabberd configuration file
-    - `ejabberdctl.cfg`: Configuration file of the administration script
+    - `ejabberd.yml`:  ejabberd configuration file (see [File Format](/admin/configuration/file-format/))
+    - `ejabberdctl.cfg`: Configuration file of the administration script (see [Erlang Runtime System](/admin/guide/managing/#erlang-runtime-system))
     - `inetrc`: Network DNS configuration file for Erlang
 
 - `/lib/ejabberd/`:
@@ -350,9 +350,9 @@ The files and directories created are, by default:
     - `priv/`: Additional files required at runtime
     - `bin/`: Executable programs
     - `lib/`: Binary system libraries (\*.so)
-    - `msgs/`:   Translation files (\*.msgs)
+    - `msgs/`: Translation files (\*.msgs) (see [Default Language](/admin/configuration/basic/#default-language))
 
-- `/sbin/ejabberdctl`: Administration script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)).
+- `/sbin/ejabberdctl`: Administration script (see [ejabberdctl](/admin/guide/managing/#ejabberdctl))
 
 - `/share/doc/ejabberd/`: Documentation of ejabberd
 
@@ -361,7 +361,7 @@ The files and directories created are, by default:
    - `.erlang.cookie`: The [Erlang cookie file](/admin/guide/security/#erlang-cookie)
    - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
 
-- `/var/log/ejabberd/`: Log directory (see section [logfiles]):
+- `/var/log/ejabberd/`: Log directory (see [Logging](/admin/configuration/basic/#logging)):
 
     - `ejabberd.log`:   ejabberd service log
     - `erlang.log`:   Erlang/OTP system log
