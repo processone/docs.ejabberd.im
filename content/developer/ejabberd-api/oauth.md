@@ -127,11 +127,13 @@ OAuth is configured using those top-level options:
 - [oauth_expire](/admin/configuration/toplevel/#oauth-expire)
 - [oauth_use_cache](/admin/configuration/toplevel/#oauth-use-cache)
 
-In this example, tokens expire after an hour, and all users can create tokens:
+A basic setup is to allow all accounts to create tokens,
+and tokens expire after an hour:
 
-    
-    oauth_expire: 3600
-    oauth_access: all
+``` yaml
+oauth_access: all
+oauth_expire: 3600
+```
 
 <!--
 ## Database / Back-ends for OAuth tokens
@@ -147,9 +149,9 @@ An easy way to generate a token is using the
 command with the ejabberdctl shell script:
 
 ``` bash
-ejabberdctl oauth_issue_token user123@localhost 3600 ejabberd:admin
+ejabberdctl oauth_issue_token user1@localhost 3600 ejabberd:admin
 
-erHymcBiT2r0QsuOpDjIrsEvnOS4grkj  [<<"ejabberd:admin">>]  3600 seconds
+r9KFladBTYJS71OggKCifo0GJwyT7oY4 [<<"ejabberd:admin">>]  3600 seconds
 ```
 
 <!--
@@ -302,10 +304,87 @@ success, server will reply with:
     
     <success xmlns='urn:ietf:params:xml:ns:xmpp-sasl'/>
 
-# ReST / XML-RPC API
+# ReST Example
 
 It is possible to use OAuth to authenticate a client when
 attempting to perform a ReST or XML-RPC query.
+
+## Configuring
+
+First of all check all the required options are setup
+([listener](#ejabberd-listeners),
+[OAuth](#oauth-specific-parameters),
+[API](/developer/ejabberd-api/permissions/)
+and [ACL](/admin/configuration/basic/#acl-definition)):
+
+``` yaml
+listen:
+  -
+    port: 5280
+    ip: "::"
+    module: ejabberd_http
+    request_handlers:
+      /api: mod_http_api
+      /oauth: ejabberd_oauth
+
+oauth_expire: 3600
+oauth_access: all
+
+api_permissions:
+  "admin access":
+    who:
+      oauth:
+        scope: "ejabberd:admin"
+        access:
+          allow:
+            - acl: loopback
+            - acl: admin
+    what:
+      - "*"
+      - "!stop"
+      - "!start"
+
+acl:
+  admin:
+    user:
+      - user1@localhost
+
+modules:
+  mod_admin_extra: {}
+  mod_roster: {}
+```
+
+Register the account with admin rights, and another one used for the queries:
+
+``` bash
+ejabberdctl register user1 localhost asd
+ejabberdctl register user2 localhost asd
+ejabberdctl add_rosteritem user2 localhost tom localhost Tom "" none
+```
+
+## Obtain bearer token
+
+Obtain a bearer token as explained in [authorization_token](#authorization-token),
+either using `ejabberdctl`:
+
+```bash
+ejabberdctl oauth_issue_token user1@localhost 3600 ejabberd:admin
+r9KFladBTYJS71OggKCifo0GJwyT7oY4        [<<"ejabberd:admin">>]  3600 seconds
+```
+
+Or using a web browser:
+
+- visit the URL
+`http://localhost:5280/oauth/authorization_token?response_type=token&scope=ejabberd:admin`
+- User (jid): `user1@localhost`
+- Password: `asd`
+- and click `Accept`
+
+This redirects to a new URL which contains the access_token, for example:
+
+    
+    http://localhost:5280/oauth/authorization_token?access_token=r9KFladBTYJS71OggKCifo0GJwyT7oY4&token_type=bearer&expires_in=31536000&scope=ejabberd:admin&state=
+
 
 ## Passing credentials
 
@@ -314,13 +393,8 @@ When using ReST, the client authorization is done by using a bearer token
 For that, include an Authorization HTTP header like:
 
     
-    Authorization: Bearer Qi4CyTCDtqpUNW3fnRSZLb0OG3XOOjvx
+    Authorization: Bearer r9KFladBTYJS71OggKCifo0GJwyT7oY4
 
-
-For XML-RPC, credentials must be passed as XML-RPC parameters,
-including token but also user and host parameters. This is for legacy
-reason, but will likely change in a future version, making user and
-host implicit, thanks to bearer token.
 
 <!--
 ## Acting as an admin
@@ -340,17 +414,43 @@ To act as an admin from an XML-RPC query, the XML-RPC query must contain:
     {admin,true}
 -->
 
-## ReST JSON example
+## Query examples
+
+Let's use `curl` to get the list of registered_users with a HTTP GET query:
+
+``` bash
+curl -X GET \
+     -H "Authorization: Bearer r9KFladBTYJS71OggKCifo0GJwyT7oY4" \
+     http://localhost:5280/api/registered_users?host=localhost
+
+["user1","user2"]
+```
+
+Or provide the bearer token with this option:
+
+``` bash
+curl -X GET \
+     --oauth2-bearer r9KFladBTYJS71OggKCifo0GJwyT7oY4 \
+     http://localhost:5280/api/registered_users?host=localhost
+```
 
 With a command like [get_roster](/developer/ejabberd-api/admin-api/#get-roster)
 you can get your own roster, or act as an admin to get any user roster.
 
 The HTTP endpoint does not take any parameter, so we can just do an
-HTTP post with empty JSON structure list (see `-d` option):
+HTTP POST with empty JSON structure list (see `-d` option).
 
-    
-    curl --oauth2-bearer erHymcBiT2r0QsuOpDjIrsEvnOS4grkj \
-         '127.0.0.1:5281/api/registered_users?host=localhost'
+In this example let's use a HTTP POST query:
+
+``` bash
+curl -v -X POST \
+     --oauth2-bearer r9KFladBTYJS71OggKCifo0GJwyT7oY4 \
+     http://localhost:5280/api/get_roster \
+     -d '{"user": "user2", "server": "localhost"}'
+
+[{"jid":"tom@localhost","nick":"Tom","subscription":"none","ask":"none","group":""}]
+```
+
 
 <!--
 For admin queries, add "X-Admin: true" header:
@@ -362,10 +462,12 @@ For admin queries, add "X-Admin: true" header:
 <!--- There is - - oauth2-bearer curl option, which probably should add
       that authorization header, but it does nothing in my curl version -->
 
-## XML-RPC examples
+# XML-RPC Example
 
-With a command like [get_roster](/developer/ejabberd-api/admin-api/#get-roster)
-you can get your own roster, or act as an admin to get any user roster.
+For XML-RPC, credentials must be passed as XML-RPC parameters,
+including token but also user and host parameters. This is for legacy
+reason, but will likely change in a future version, making user and
+host implicit, thanks to bearer token.
 
 Here is an (Erlang) XML-RPC example on how to get your own roster:
 
