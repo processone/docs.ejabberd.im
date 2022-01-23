@@ -44,8 +44,8 @@ OAuth support is available in ejabberd 15.09 and newest releases.
 
 ## Authentication method
 
-An X-OAUTH2 SASL mechanism is enabled by default for authentication
-in ejabberd.
+An [X-OAUTH2 SASL authentication](#x-oauth2-authentication)
+mechanism is enabled by default in ejabberd.
 
 However, if the `ejabberd_oauth` HTTP request handler is not enabled,
 there is no way to generate token from outside ejabberd.
@@ -152,8 +152,6 @@ ejabberdctl oauth_issue_token user123@localhost 3600 ejabberd:admin
 erHymcBiT2r0QsuOpDjIrsEvnOS4grkj  [<<"ejabberd:admin">>]  3600 seconds
 ```
 
-But probably you want your users to be able to generate tokens themselves.
-
 <!--
 Open this page in a web browser:
     http://localhost:5281/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=get_roster+sasl_auth
@@ -166,29 +164,30 @@ You will get redirected to an URL similar to:
 Take note of the access_token value, as this will be used later.
 -->
 
-
-To generate a token you can have the user open the
+The users can generate tokens themselves
+by visiting
 `/oauth/authorization_token` in a webview in your application or in a
-browser.
-
+web browser.
 For example, URL can be:
 
     http://example.net:5280/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=get_roster+sasl_auth
 
-**Note::** To use `get_roster` scope, you need to have
-`mod_admin_extra` enabled. Otherwise, the command is unknown and you
-will get an invalid_scope error.
+**Note:** To use the `get_roster` scope, enable `mod_admin_extra`, because the
+[get_roster](/developer/ejabberd-api/admin-api/#get-roster)
+ API is defined in that module. Otherwise, the command is unknown and you
+will get an `invalid_scope` error.
+See [Module configuration](#module-configuration) for details.
 
 Parameters are described in OAuth 2.0 specification:
 
 - `response_type`: Should be `token`.
 - `client_id`: This is the name of the application that is asking for Oauth token.
-- `scope`: This is the scope of the rights being delegated to the
+- [`scope`](#scopes): This is the scope of the rights being delegated to the
   application. It will limit the feature the application can perform
   and thus ensure the user is not giving away more right than expected
   by the application. As a developer, you should always limit the
   scope to what you actually need.
-- `redirect_uri`: After token is generated, token is passed to the
+- [`redirect_uri`](#redirect-uri): After token is generated, token is passed to the
   application using the redirect URI. It can obviously work for web
   applications, but also for mobile applications, using a redirect URI
   that the mobile application have registered: Proper code for
@@ -245,9 +244,12 @@ Parameters are described in OAuth specification:
   over XMPP using SASL X-OAUTH2 mechanism.
 - `ejabberd:admin`
 - `ejabberd:user`
-- And one scope for each existing [API command](/developer/ejabberd-api/admin-api/).
+- Scopes for each existing [API command](/developer/ejabberd-api/admin-api/).
   For example, there is a scope `registered_users`
-  because there is a command called `registered_users`.
+  because there is a command called
+  [registered_users](/developer/ejabberd-api/admin-api/#registered-users).
+  Ensure you enable the module that defines the command that you want to use,
+  see [Module configuration](#module-configuration) for details.
 
 <!--- TODO: As scope are generally provided by commands, which are
 provided by enabled modules, we need to command to list enabled
