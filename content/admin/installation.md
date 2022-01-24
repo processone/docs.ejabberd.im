@@ -205,24 +205,29 @@ To compile ejabberd execute the commands:
 make
 ```
 
-This tells the configuration to prepare the installed program
+`./autogen.sh` is required only when download from git,
+as that doesn't include the configure script.
+
+In this example, [`./configure`](#configure) prepares the installed program
 to run with a user called ejabberd, so please create that user
 or tell to use another local user.
 It isn't recommended to run ejabberd with `root` user.
 
+[`make`](#make) gets the dependencies and compiles everything.
+
 *Note*: To build ejabberd, you will need Internet access, as
  dependencies will be downloaded depending on the selected options.
 
-The build configuration script allows several options. To get the full
-list run the command:
+### `./configure`
+
+The build configuration script supports many options.
+Get the full list:
 
 ``` bash
 ./configure --help
 ```
 
-## Options
-
-There are many options to modify the default compilation behaviour:
+Options details:
 
 - **`-–bindir=/`**: Specify the path to the user executables
   (where `epmd` and `iex` are available).
@@ -320,11 +325,31 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
 
 - **`-–disable-zlib`**: Disable Stream Compression (XEP-0138) using zlib.
 
+### `make`
+
+This tool is used to compile ejabberd and perform other tasks:
+
+- Get, update, compile dependencies; clean files
+- [System install](#system-install), uninstall
+- Build OTP [production](#production-release)
+/ [development](#production-release) releases
+- Development: edoc, [options](/developer/guide/#configuration),
+ [translations](/developer/extending-ejabberd/localization/), tags
+- Testing: dialyzer, [hooks](/developer/guide/#hooks),
+ [test](/developer/extending-ejabberd/testing/), xref
+
+Get the full list and details:
+
+``` bash
+make help
+```
+
 ## Installation
 
 There are several ways to install and run the ejabberd compiled from source code:
-installing in the system, building a production release,
-or building a development release.
+[system install](#system-install),
+building a [production](#production-release) release,
+or building a [development](#production-release) release.
 
 ### System Install
 
@@ -333,7 +358,8 @@ To install ejabberd in the destination directories, run the command `make instal
 Note that you probably need administrative privileges in the system to
 install ejabberd.
 
-The files and directories created are, by default:
+The created files and directories depend on the options
+provided to [`./configure`](#configure), by default they are:
 
 <!-- TODO: Check we are up to date -->
 
@@ -369,7 +395,7 @@ The files and directories created are, by default:
 <div class="note-down">improved in <a href="/archive/21_07/">21.07</a></div>
 ### Production Release
 
-You can build a release that includes ejabberd, Erlang/OTP
+You can build an OTP release that includes ejabberd, Erlang/OTP
 and all the required erlang dependencies in a single tar.gz file.
 Then you can copy that file to another machine that has the same machine
 architecture, and run ejabberd without installing anything else.
@@ -379,10 +405,18 @@ To build that release, run:
 make rel
 ```
 
-If you configured `--with-rebar` to use rebar3 or mix, this will directly
-produce a tar.gz that you can copy. For example:
+If you provided to [`./configure`](#configure) the option
+ `--with-rebar` to use rebar3 or mix, this will directly
+produce a tar.gz that you can copy.
+
+This example uses rebar3 to manage the compilation,
+builds an OTP production release,
+copies the resulting package to a temporary path,
+and starts ejabberd there:
 
 ``` bash
+./configure --with-rebar=rebar3
+make rel
 cp _build/prod/rel/ejabberd/ejabberd-21.04.123.tar.gz /tmp
 cd /tmp
 mkdir ejatest
@@ -393,8 +427,9 @@ ejatest/bin/ejabberd console
 <div class="note-down">new in <a href="/archive/21_07/">21.07</a></div>
 ### Development Release
 
-If you configured `--with-rebar` to use rebar3 or mix,
-you can build a development release.
+If you provided to [`./configure`](#configure) the option
+ `--with-rebar` to use rebar3 or mix,
+you can build an OTP development release.
 
 This is designed to run ejabberd in the local machine for development,
 manual testing... without installing in the system.
@@ -402,9 +437,13 @@ manual testing... without installing in the system.
 This development release has some customizations: uses a dummy certificate file,
 if you register the account admin@localhost it has admin rights...
 
-To build a development release and start ejabberd in live mode:
+This example [uses Elixir's mix](/developer/extending-ejabberd/elixir/)
+to manage the compilation,
+builds an OTP development release,
+and starts ejabberd there:
+
 ``` bash
-./configure --with-rebar=rebar3
+./configure --with-rebar=mix
 make dev
 _build/dev/rel/ejabberd/bin/ejabberdctl live
 ```

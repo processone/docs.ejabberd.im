@@ -37,7 +37,7 @@ Also, if using Erlang/OTP 24, then Elixir 1.11.4 or higher is required.
     make
     ~~~
 
-1. Build a development release:
+1. [Build a development release](/admin/installation/#development-release):
 
     ~~~ bash
     make dev
