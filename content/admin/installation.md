@@ -229,10 +229,10 @@ Get the full list:
 
 Options details:
 
-- **`-–bindir=/`**: Specify the path to the user executables
+- **`--bindir=/`**: Specify the path to the user executables
   (where `epmd` and `iex` are available).
 
-- **`-–prefix=/`**: Specify the path prefix where the files will be
+- **`--prefix=/`**: Specify the path prefix where the files will be
   copied when running the `make install` command.
 
 <div class="note-down">added in <a href="/archive/20_12/">20.12</a>
@@ -243,7 +243,7 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
 - **`--with-rebar=/`**: Specify the path to rebar, rebar3 or
   [mix](/developer/extending-ejabberd/elixir/)
 
-- **`-–enable-user[=USER]`**: Allow this normal system user to execute
+- **`--enable-user[=USER]`**: Allow this normal system user to execute
   the ejabberdctl script (see section [ejabberdctl](/admin/guide/managing/#ejabberdctl)), read the
   configuration files, read and write in the spool directory, read and
   write in the log directory. The account user and group must exist in
@@ -252,34 +252,34 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
   [Erlang cookie file](/admin/guide/security/#erlang-cookie)
   will be created and read there.
 
-- **`-–enable-group[=GROUP]`**: Similar to the previous option, but for
+- **`--enable-group[=GROUP]`**: Similar to the previous option, but for
   system groups.
 
-- **`–-enable-all`**: Enable many of the database and dependencies
+- **`--enable-all`**: Enable many of the database and dependencies
     options described here, this is useful for Dialyzer checks:
     --enable-debug --enable-elixir --enable-mysql --enable-odbc
     --enable-pam --enable-pgsql --enable-redis --enable-sip
     --enable-sqlite --enable-stun --enable-tools --enable-zlib
 
-- **`–-disable-debug`**: Compile without `+debug_info`.
+- **`--disable-debug`**: Compile without `+debug_info`.
 
 <div class="note-down">improved in <a href="/archive/21_07/">21.07</a></div>
 
 <br />
 
-- **`–-enable-elixir`**: Build ejabberd with Elixir extension support.
+- **`--enable-elixir`**: Build ejabberd with Elixir extension support.
     Works only with rebar2. If interested in Elixir development, you may
     prefer to install Elixir yourself and use `--with-rebar=mix`
 
-- **`–-disable-erlang-version-check`**: Don't check Erlang/OTP version.
+- **`--disable-erlang-version-check`**: Don't check Erlang/OTP version.
 
-- **`-–enable-full-xml`**: Use XML features in XMPP stream (ex:
+- **`--enable-full-xml`**: Use XML features in XMPP stream (ex:
     CDATA). This requires XML compliant clients).
 
-- **`–-enable-hipe`**: Compile natively with HiPE. This is an
+- **`--enable-hipe`**: Compile natively with HiPE. This is an
     experimental feature, and not recommended.
 
-- **`-–enable-lager`**: Use lager Erlang logging tool instead of
+- **`--enable-lager`**: Use lager Erlang logging tool instead of
   standard error logger.
 
 - **`--enable-latest-deps`**: Makes rebar use latest versions of
@@ -289,41 +289,41 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
 
 <div class="note-left">added in <a href="/archive/21_04/">21.04</a></div>
 
-- **`-–enable-lua`**: Enable Lua support, to import from Prosody.
+- **`--enable-lua`**: Enable Lua support, to import from Prosody.
 
-- **`-–enable-mssql`**: Enable Microsoft SQL Server support, this
+- **`--enable-mssql`**: Enable Microsoft SQL Server support, this
     option requires --enable-odbc (see [Supported storages][18]).
 
-- **`-–enable-mysql`**: Enable MySQL support (see [Supported storages][18]).
+- **`--enable-mysql`**: Enable MySQL support (see [Supported storages][18]).
 
-- **`-–enable-new-sql-schema`**: Use new SQL schema.
+- **`--enable-new-sql-schema`**: Use new SQL schema.
 
-- **`-–enable-odbc`**: Enable pure ODBC support.
+- **`--enable-odbc`**: Enable pure ODBC support.
 
-- **`-–enable-pam`**: Enable the PAM authentication method (see [PAM Authentication](/admin/configuration/authentication/#pam-authentication) section).
+- **`--enable-pam`**: Enable the PAM authentication method (see [PAM Authentication](/admin/configuration/authentication/#pam-authentication) section).
 
-- **`-–enable-pgsql`**: Enable PostgreSQL support (see [Supported storages][18]).
+- **`--enable-pgsql`**: Enable PostgreSQL support (see [Supported storages][18]).
 
-- **`-–enable-redis`**: Enable Redis support to use for external
+- **`--enable-redis`**: Enable Redis support to use for external
     session storage.
 
-- **`-–enable-roster-gateway-workaround`**: Turn on workaround for
+- **`--enable-roster-gateway-workaround`**: Turn on workaround for
     processing gateway subscriptions.
 
-- **`-–enable-sip`**: Enable SIP support.
+- **`--enable-sip`**: Enable SIP support.
 
-- **`-–enable-sqlite`**: Enable SQLite support (see [Supported storages][18]).
+- **`--enable-sqlite`**: Enable SQLite support (see [Supported storages][18]).
 
-- **`-–disable-stun`**: Disable STUN/TURN support.
+- **`--disable-stun`**: Disable STUN/TURN support.
 
 - **`--enable-system-deps`**: Makes rebar use locally installed
     dependencies instead of downloading them.
 
 <div class="note-left">changed in <a href="/archive/21_04/">21.04</a></div>
 
-- **`-–enable-tools`**: Enable the use of development tools.
+- **`--enable-tools`**: Enable the use of development tools.
 
-- **`-–disable-zlib`**: Disable Stream Compression (XEP-0138) using zlib.
+- **`--disable-zlib`**: Disable Stream Compression (XEP-0138) using zlib.
 
 ### `make`
 
@@ -481,7 +481,7 @@ You can use the `ejabberdctl` command line administration script to
 start and stop ejabberd, check its status and many other administrative tasks.
 
 If you provided the configure option
-`–enable-user=USER` (see compilation [options](#options)), you can execute `ejabberdctl`
+`--enable-user=USER` (see compilation [options](#options)), you can execute `ejabberdctl`
 with either that system account or root.
 
 Usage example:
