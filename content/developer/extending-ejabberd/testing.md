@@ -18,7 +18,7 @@ level.  It also contains tests for the various backends that ejabberd supports.
 The test suite is modular and can be run in parts (to focus on a group
 of features) or run for a specific backend.
 
-The environment variable `CT_BACKEND` is used to specify which backend tests to
+The environment variable `CT_BACKENDS` is used to specify which backend tests to
 run. Current `CT_BACKENDS` values:
 
 - mnesia. Typically, Mnesia is included in ejabberd and should
