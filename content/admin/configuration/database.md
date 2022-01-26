@@ -100,7 +100,8 @@ and configure each one independently
 using [host_config](/admin/configuration/basic/#virtual-hosting),
 so in that case you may prefer the new schema.
 
-The 'new' schema stores the XMPP domain in the database entries,
+The new schema stores the XMPP domain in a new column `server_host`
+in the database entries,
 so it allows to handle several XMPP domains in a single ejabberd database.
 Using this schema is preferable when serving several XMPP domains
 and changing domains from time to time.
