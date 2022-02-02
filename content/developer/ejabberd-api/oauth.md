@@ -315,7 +315,7 @@ First of all check all the required options are setup
 ([listener](#ejabberd-listeners),
 [OAuth](#oauth-specific-parameters),
 [API](/developer/ejabberd-api/permissions/)
-and [ACL](/admin/configuration/basic/#acl-definition)):
+and [ACL](/admin/configuration/basic/#acl)):
 
 ``` yaml
 listen:

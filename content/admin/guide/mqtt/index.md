@@ -120,7 +120,7 @@ provides two options for access control:
 
 Both options accept mapping `filter: rule`
 where `filter` is an MQTT topic filter and `rule` is the standard
-[ejabberd access rule](/admin/configuration/basic/#acl-definition).
+ejabberd [Access Rule](/admin/configuration/basic/#access-rules).
 
 As an example, let's say only `author@localhost` is allowed to publish
 to topic "/test/1/" and its subtopics,

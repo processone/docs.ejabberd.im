@@ -341,14 +341,14 @@ too frequently - usually there is a rate limit on the number of accounts and
 certificates an ACME server creates. In particular, for [Let's Encrypt](https://letsencrypt.org)
 the limits are described [here](https://letsencrypt.org/docs/rate-limits).
 
-# Access Rules
+# Access Rights
 
 *This section describes new ACL syntax introduced in ejabberd
 16.06. For old access rule and ACL syntax documentation, please refer
 to
 [configuration document archive](https://github.com/processone/docs.ejabberd.im/blob/7391ac375fd8253f74214cbffa2bafb140501981/content/admin/guide/configuration.md)*
 
-## ACL Definition
+## ACL
 
 Access control in `ejabberd` is performed via Access Control Lists
 (ACLs), using the [acl](/admin/configuration/toplevel/#acl) option.
@@ -491,7 +491,7 @@ The following `ACLName` are pre-defined:
 
 **`none`**:   Matches no JID.
 
-## Access Rights
+## Access Rules
 
 The [access_rules](/admin/configuration/toplevel/#access-rules)
 option is used to allow or deny access to different services. The syntax
@@ -501,7 +501,7 @@ is:
 
 Each definition may contain arbitrary number of `- allow` or `- deny`
 sections, and each section can contain any number of acl rules
-(as defined in [previous section](#acl-definition), it recognizes
+(as defined in [previous section](#acl), it recognizes
 one additional rule `acl: RuleName` that matches when acl rule
 named `RuleName` matches). If no rule or definition is defined, the
 rule `all` is applied.
@@ -594,7 +594,7 @@ Examples:
       log_days: 30
 
 
-## Limiting Opened Sessions with ACL
+## Limiting Opened Sessions
 
 The special access `max_user_sessions` specifies the maximum number of
 sessions (authenticated connections) per user. If a user tries to open
@@ -616,7 +616,7 @@ and to 10 for admins:
 	    - 10: admin
 	    - 5
 
-## Several connections to a remote XMPP server with ACL
+## Connections to Remote Server
 
 The special access `max_s2s_connections` specifies how many simultaneous
 S2S connections can be established to a specific remote XMPP server. The

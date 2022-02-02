@@ -44,12 +44,12 @@ There are 3 types of rules that can be placed in `who` section:
   *Name | ACLRule*  
   This accepts a command when the authentication provided matches
   rules of `Name` 
-  [Access Control List](/admin/configuration/basic/#acl-definition)
+  [Access Control List](/admin/configuration/basic/#acl)
   (or inline rules from `ACLDefinition` or `ACLRule`)
 
 - **access:** *Name | AccessDefinition*  
   This allows execution if
-  the [Access Rule](/admin/configuration/basic/#access-rights)
+  the [Access Rule](/admin/configuration/basic/#access-rules)
   `Name` or inline `AccessDefinition`
   returns `allowed` for command's authentication details
 
