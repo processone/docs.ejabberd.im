@@ -11,12 +11,12 @@ order: 80
 
 *{AccessName: {allow|deny: ACLRules|ACLName}}*  
 
-The option specifies access rules. Each access rule is assigned a name
-that can be referenced from other parts of the configuration file
-(mostly from *access* options of ejabberd modules). Each rule definition
-may contain arbitrary number of *allow* or *deny* sections, and each
-section may contain any number of ACL rules (see [acl](/admin/configuration/toplevel/#acl) option). There
-are no access rules defined by default.
+This option defines [Access Rules](/admin/configuration/basic/#access-rules). Each
+access rule is assigned a name that can be referenced from other parts
+of the configuration file (mostly from *access* options of ejabberd
+modules). Each rule definition may contain arbitrary number of *allow*
+or *deny* sections, and each section may contain any number of ACL rules
+(see [acl](/admin/configuration/toplevel/#acl) option). There are no access rules defined by default.
 
 **Example**:
 
@@ -274,8 +274,8 @@ The option defines in what format the users passwords are stored:
 
 *sha | sha256 | sha512*  
 
-Hash algorith that should be used to store password in SCRAM format. You
-shouldn’t change this if you already have passwords generated with a
+Hash algorithm that should be used to store password in SCRAM format.
+You shouldn’t change this if you already have passwords generated with a
 different algorithm - users that have such passwords will not be able to
 authenticate. The default value is *sha*.
 
@@ -357,7 +357,7 @@ default value is *false*.
 Path to a file of CA root certificates. The default is to use system
 defined file if possible.
 
-For server conections, this *ca\_file* option is overriden by the
+For server connections, this *ca\_file* option is overridden by the
 [s2s\_cafile](/admin/configuration/toplevel/#s2s-cafile) option.
 
 ## cache\_life\_time
@@ -1222,8 +1222,10 @@ are used for internal needs only. The default value is *5* seconds.
 
 *Access*  
 
-The access rule to restrict server-to-server connections. The default
-value is *all* which means no restrictions are applied.
+This [Access Rule](/admin/configuration/basic/#access-rules) defines to what remote
+servers can s2s connections be established. The default value is *all*;
+no restrictions are applied, it is allowed to connect s2s to/from all
+remote servers.
 
 ## s2s\_cafile
 

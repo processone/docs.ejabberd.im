@@ -4577,7 +4577,7 @@ __Examples:__
 Send a direct invitation to several destinations
 
 
-Since ejabberd <a href="/archive/20_10/">20.10</a>, this command is asynchronous: the API call may return before the server has send all the invitations.
+Since ejabberd <a href="/archive/20_12/">20.12</a>, this command is asynchronous: the API call may return before the server has send all the invitations.
 
 Password and Message can also be: none. Users JIDs are separated with : 
 
@@ -5262,7 +5262,7 @@ __Arguments:__
 
 __Result:__
 
-- *informations* :: [{key::string, value::string}] : List of group informations, as key and value
+- *informations* :: [{key::string, value::string}] : List of group information, as key and value
 
 __Tags:__
 [shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
@@ -5953,6 +5953,9 @@ __Examples:__
 
 
 Unregister a user
+
+
+This deletes the authentication and all the data associated to the account (roster, vcard...).
 
 __Arguments:__
 
