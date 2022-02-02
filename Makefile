@@ -1,5 +1,5 @@
 
-EJA = /usr/local/var/lib/ejabberd/
+EJA = `pwd`/../ejabberd/
 
 VERSIONPRE = $(shell git tag --sort=creatordate | tail -n 2 | head -n 1)
 VERSION = $(shell git tag --sort=creatordate | tail -n 1)
