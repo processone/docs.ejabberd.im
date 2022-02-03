@@ -54,7 +54,17 @@ man:
 	sed -E 's/\*(.*)\*: (.*):::/- *\1*: \2/g' $(EJA)/ejabberd.yml.5.txt >ejabberd.yml.5.txt
 
 	a2x -f docbook ejabberd.yml.5.txt
+
+	# Workaround required since Pandoc 2.8
+	# https://github.com/jgm/pandoc/commit/9b5082b086359a63b92bdb40166fa59dea27afe1
+	# Alternate workaround would be: https://github.com/jgm/pandoc/issues/6906
+	sed -i 's|<warning><simpara>\(.*\)</simpara></warning>|<blockquote><formalpara><title>Warning</title><simpara>\1</simpara><formalpara></blockquote>|g' ejabberd.yml.5.xml
+	sed -i 's|<note><simpara>\(.*\)</simpara></note>|<blockquote><formalpara><title>Note</title><simpara>\1</simpara><formalpara></blockquote>|g' ejabberd.yml.5.xml
+
 	pandoc -f docbook -t markdown_strict ejabberd.yml.5.xml -o man-tmp1.md
+
+	# Also required by the Pandoc 2.8 workaround
+	sed -i 's|> \*\*\(.*\)\.\*\*|> **\1**|g' man-tmp1.md
 
 	# Allow to split the man page in sections:
 	sed -E '$!N;s/[A-Z ]+\n===+/===---===/;P;D' man-tmp1.md >man-tmp2.md
