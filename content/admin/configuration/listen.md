@@ -433,13 +433,12 @@ This module can be configured using those top-level options:
 
 ## WebSocket Discovery
 
-You also need to configure DNS SRV records properly so clients can
+With the example configuration previously mentioned,
+the WebSocket URL would be: `ws://localhost:5280/xmpp`
+
+You may want to setup `host-meta` so clients can
 easily discover WebSocket service for your XMPP domain. Refer to
-[XEP-0156](https://xmpp.org/extensions/xep-0156.html).
-
-Example DNS TXT configuration for WebSocket:
-
-    _xmppconnect IN TXT "[ _xmpp-client-websocket=wss://web.example.com:443/ws ]"
+[XEP-0156](https://xmpp.org/extensions/xep-0156.html#http).
 
 ## Testing WebSocket
 
