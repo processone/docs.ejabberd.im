@@ -405,10 +405,10 @@ password with SCRAM.
 
 # ejabberd_http_ws
 
-This module enables XMPP communication over Websocket connection as
+This module enables XMPP communication over WebSocket connection as
 described in [`RFC 7395`](https://tools.ietf.org/html/rfc7395).
 
-## Enabling Websocket support
+## Enabling WebSocket support
 
 To enable this module it must have handler added to `request_handlers`
 section of `ejabberd_http` listener:
@@ -430,18 +430,18 @@ placed in general section of config file: [websocket\_origin](/admin/configurati
 ## Discovery
 
 You also need to configure DNS SRV records properly so clients can
-easily discover Websocket service for your XMPP domain. Refer to
+easily discover WebSocket service for your XMPP domain. Refer to
 [XEP-0156](https://xmpp.org/extensions/xep-0156.html).
 
-Example DNS TXT configuration for Websocket:
+Example DNS TXT configuration for WebSocket:
 
     _xmppconnect IN TXT "[ _xmpp-client-websocket=wss://web.example.com:443/ws ]"
 
-## Testing Websocket
+## Testing WebSocket
 
-A test client can be found on Github: [Websocket test client](https://github.com/processone/xmpp-websocket-client)
+A test client can be found on Github: [WebSocket test client](https://github.com/processone/xmpp-websocket-client)
 
-<!-- TODO We should probably embed a test Websocket client on the Websocket info get page. -->
+<!-- TODO We should probably embed a test WebSocket client on the WebSocket info get page. -->
 
 # ejabberd_xmlrpc
 
@@ -613,7 +613,7 @@ In this example, the following configuration defines that:
 -   Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
 	all the IPv4 addresses. Note that it is also possible to serve them
 	on different ports. The second example in section [Managing: Web Admin](/admin/guide/managing/#web-admin) shows
-	how exactly this can be done. A request handler to serve MQTT over Websocket is also defined.
+	how exactly this can be done. A request handler to serve MQTT over WebSocket is also defined.
 
 -   All users except for the administrators have a traffic of limit
 	1,000Bytes/second

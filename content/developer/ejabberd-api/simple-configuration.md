@@ -158,7 +158,7 @@ configuration file:
     listen:
       -
         # Using a separate port for oauth and API to make it easy to protect it
-        # differently than BOSH and Websocket HTTP interface.
+        # differently than BOSH and WebSocket HTTP interface.
         port: 5281
         # oauth and API only listen on localhost interface for security reason
         # You can set ip to 0.0.0.0 to open it widely, but be careful!

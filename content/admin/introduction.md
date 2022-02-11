@@ -89,7 +89,7 @@ order: 1
 	-   Users Directory based on users vCards.
 	-   [`Publish-Subscribe`][7] component with support for
 		[`Personal Eventing via Pubsub`][8].
-	- Support for web clients: Support for [XMPP subprotocol for Websocket][9] and [`HTTP Binding (BOSH)`][10] services.
+	- Support for web clients: Support for [XMPP subprotocol for WebSocket][9] and [`HTTP Binding (BOSH)`][10] services.
 	-   IRC transport.
 	-   SIP support.
 	-   Component support: interface with networks such as AIM, ICQ and MSN installing special transports.

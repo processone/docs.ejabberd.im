@@ -32,7 +32,7 @@ adding a box/VM).
 Designed at a moment when clients were mostly desktops that
 only supported a kind of HTTP polling call BOSH, the project
 managed to adapt to recent changes by introducing support for
-Websockets, Bosh improvements, and a solid mobile stack.
+WebSockets, BOSH improvements, and a solid mobile stack.
 
 It was developed at a time when XMPP was still known as
 "Jabber", but quickly adopted an evolution process in order to support

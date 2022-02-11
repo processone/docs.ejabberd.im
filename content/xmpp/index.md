@@ -28,14 +28,14 @@ managed to adapt thanks to the following specifications:
   very adequate for realtime web as it allows you to broadcast
   relevant events to web pages.
 
-* Websocket: XMPP over websocket is a defined in
+* WebSocket: XMPP over websocket is a defined in
   [RFC 7395](https://tools.ietf.org/html/rfc7395). It is more
   efficient and more scalable than XMPP for web previous
   specifications called
-  [BOSH](https://xmpp.org/extensions/xep-0124.html). Websocket being a
+  [BOSH](https://xmpp.org/extensions/xep-0124.html). WebSocket being a
   true bidirectional channel, it allows lower latency messaging and is
   very reliable. Note that BOSH can still be used transparently along
-  with Websocket to support old web browsers.
+  with WebSocket to support old web browsers.
 
 **Use cases**: News, interactive web page, web chat, web games.
 
