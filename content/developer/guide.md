@@ -965,8 +965,8 @@ You can configure ejabberd to use as authentication method an external script,
 as described in the Administrator section:
 [External Script](/admin/configuration/authentication/#external-script).
 
-The external authentication script follows
-[`the erlang port driver API`](https://erlang.org/doc/tutorial/c_portdriver.html).
+The external authentication script follows the
+[Erlang port driver API](https://erlang.org/doc/tutorial/c_portdriver.html).
 
 That script is supposed to do theses actions, in an infinite loop:
 
@@ -1005,11 +1005,9 @@ This is possible because the User and Server fields can't contain the `:` charac
 and Password can have that character, but is always the last field.
 So it is always possible to parse the input characters unambiguously.
 
-An example Perl script is included with ejabberd,
-see [check_pass_null.pl](https://github.com/processone/ejabberd/blob/master/examples/extauth/check_pass_null.pl)
-
-There are
-[`several example authentication scripts`](https://ejabberd.im/extauth).
+A simple example Perl script is included with ejabberd, see
+[check_pass_null.pl](https://github.com/processone/ejabberd/blob/master/examples/extauth/check_pass_null.pl).
+There are also several old [example scripts](https://ejabberd.im/extauth).
 
 Example Python script:
 

@@ -65,15 +65,17 @@ Examples:
 
 # External Script
 
-In this authentication method, when `ejabberd` starts, it start a
-script, and calls it to perform authentication tasks.
+In the `external` authentication method, ejabberd uses a custom
+script to perform authentication tasks.
 
-The server administrator can write the external authentication script in
-any language. The details on the interface between ejabberd and the
-script are described in the Developers Internals section:
-[External](/developer/guide/#external).
-There are also
-[`several example authentication scripts`](https://ejabberd.im/extauth).
+The server administrator can write an external authentication script in
+any programming language.
+The details on the interface between ejabberd and the script are described
+in the [Developers: External](/developer/guide/#external) section.
+
+A simple example Perl script is included with ejabberd, see
+[check_pass_null.pl](https://github.com/processone/ejabberd/blob/master/examples/extauth/check_pass_null.pl).
+There are also several old [example scripts](https://ejabberd.im/extauth).
 
 Options:
 
@@ -81,20 +83,19 @@ Options:
 - [extauth_pool_size](/admin/configuration/toplevel/#extauth-pool-size)
 - [extauth_program](/admin/configuration/toplevel/#extauth-program)
 
-Starting in *ejabberd 17.06*, caching has received a complete overhaul.
-	Instead of `extauth_cache`, a set of new variables describes cache
-	behaviour, and the default value is now `true`. Note that caching
-	interferes with the ability to maintain multiple passwords per
-	account. So if your authentication mechanism supports
-	application-specific passwords, caching must be disabled.
-	Those options are:
-[auth_use_cache](/admin/configuration/toplevel/#auth-use-cache),
+Authentication caching is enabled by default, and can be configured with
+the options: [auth_use_cache](/admin/configuration/toplevel/#auth-use-cache),
 [auth_cache_missed](/admin/configuration/toplevel/#auth-cache-missed),
-[auth_cache_size](/admin/configuration/toplevel/#auth-cache-size), and
+[auth_cache_size](/admin/configuration/toplevel/#auth-cache-size),
 [auth_cache_life_time](/admin/configuration/toplevel/#auth-cache-life-time).
 
-This example sets external authentication, the extauth script, enables
-caching for 10 minutes, and starts three instances of the script for
+Please note that caching interferes with the ability
+to maintain multiple passwords per account.
+So if your authentication mechanism supports application-specific passwords,
+caching must be disabled.
+
+This example sets external authentication, specifies the extauth script,
+enables caching for 10 minutes, and starts three instances of the script for
 each virtual host defined in ejabberd:
 
 
