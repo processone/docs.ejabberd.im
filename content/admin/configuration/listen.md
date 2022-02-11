@@ -408,10 +408,10 @@ password with SCRAM.
 This module enables XMPP communication over WebSocket connection as
 described in [`RFC 7395`](https://tools.ietf.org/html/rfc7395).
 
-## Enabling WebSocket support
+## WebSocket Config
 
-To enable this module it must have handler added to `request_handlers`
-section of `ejabberd_http` listener:
+To enable WebSocket, simply add a handler to the `request_handlers`
+section of an `ejabberd_http` listener:
 
 	listen:
 	  ...
@@ -424,10 +424,14 @@ section of `ejabberd_http` listener:
 	      ...
 	  ...
 
-This module can be configured by using those options that should be
-placed in general section of config file: [websocket\_origin](/admin/configuration/toplevel/#websocket-origin), [websocket\_ping\_interval](/admin/configuration/toplevel/#websocket-ping-interval), [websocket\_timeout](/admin/configuration/toplevel/#websocket-timeout).
 
-## Discovery
+This module can be configured using those top-level options:
+
+- [websocket\_origin](/admin/configuration/toplevel/#websocket-origin)
+- [websocket\_ping\_interval](/admin/configuration/toplevel/#websocket-ping-interval)
+- [websocket\_timeout](/admin/configuration/toplevel/#websocket-timeout)
+
+## WebSocket Discovery
 
 You also need to configure DNS SRV records properly so clients can
 easily discover WebSocket service for your XMPP domain. Refer to
@@ -440,6 +444,9 @@ Example DNS TXT configuration for WebSocket:
 ## Testing WebSocket
 
 A test client can be found on Github: [WebSocket test client](https://github.com/processone/xmpp-websocket-client)
+
+There is an example configuration for WebSocket and Converse.js in the
+[ejabberd 21.12 release notes](https://www.process-one.net/blog/ejabberd-21-12/).
 
 <!-- TODO We should probably embed a test WebSocket client on the WebSocket info get page. -->
 
