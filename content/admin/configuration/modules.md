@@ -256,7 +256,7 @@ This module implements XMPP over BOSH as defined in
 Bidirectional-streams Over Synchronous HTTP. It makes it possible to
 simulate long lived connections required by XMPP over the HTTP protocol.
 In practice, this module makes it possible to use XMPP in a browser
-without Websocket support and more generally to have a way to use XMPP
+without WebSocket support and more generally to have a way to use XMPP
 while having to get through an HTTP proxy.
 
 __Available options:__
@@ -298,7 +298,8 @@ Same as top-level [queue_type](/admin/configuration/toplevel/#queue-type) option
 only.
 
 - **ram\_db\_type**: *mnesia | sql | redis*  
-Same as [default_ram_db](/admin/configuration/toplevel/#default-ram-db) but applied to this module only.
+Same as top-level [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, but applied to this module
+only.
 
 - **use\_cache**: *true | false*  
 Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
@@ -430,8 +431,8 @@ Converse.js main script URL.
 Specify a domain to act as the default for user JIDs. The default value
 is the first domain defined in the ejabberd configuration file.
 
-- **websocket\_url**: *WebsocketURL*  
-A websocket URL to which Converse.js can connect to.
+- **websocket\_url**: *WebSocketURL*  
+A WebSocket URL to which Converse.js can connect to.
 
 __**Example**:__
 
@@ -1294,9 +1295,8 @@ compatibility, which means that any user is allowed to register any free
 nick.
 
 - **db\_type**: *mnesia | sql*  
-Define the type of persistent storage where the module will store room
-information. The default is the storage defined by the global option
-*default\_db*, or *mnesia* if omitted.
+Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+only.
 
 - **default\_room\_options**: *Options*  
 This option allows to define the desired default room options. Note that
@@ -1540,8 +1540,8 @@ Same as top-level [queue_type](/admin/configuration/toplevel/#queue-type) option
 only.
 
 - **ram\_db\_type**: *mnesia | sql*  
-Define the type of volatile (in-memory) storage where the module will
-store room information (*muc\_online\_room* and *muc\_online\_users*).
+Same as top-level [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, but applied to this module
+only.
 
 - **regexp\_room\_id**: *string()*  
 This option defines the regular expression that a Room ID must satisfy
@@ -2174,8 +2174,8 @@ A port number to listen for incoming connections. The default value is
 *7777*.
 
 - **ram\_db\_type**: *mnesia | redis | sql*  
-Define the type of volatile (in-memory) storage where the module will
-store room information.
+Same as top-level [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, but applied to this module
+only.
 
 - **recbuf**: *Size*  
 A size of the buffer for incoming packets. If you define a shaper, set
@@ -2800,10 +2800,8 @@ Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option
 only.
 
 - **db\_type**: *mnesia | sql*  
-Define the type of storage where the module will create the tables and
-store user information. The default is the storage defined by the
-top-level [default_db](/admin/configuration/toplevel/#default-db) option, or *mnesia* if omitted. If *sql* value
-is defined, make sure you have defined the database.
+Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+only.
 
 - **use\_cache**: *true | false*  
 Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.

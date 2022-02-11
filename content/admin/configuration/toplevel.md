@@ -1610,7 +1610,7 @@ version control system.
 This option enables validation for *Origin* header to protect against
 connections from other domains than given in the configuration file. In
 this way, the lower layer load balancer can be chosen for a specific
-ejabberd implementation while still providing a secure Websocket
+ejabberd implementation while still providing a secure WebSocket
 connection. The default value is *ignore*. An example value of the *URL*
 is "https://test.example.org:8081".
 
@@ -1618,7 +1618,7 @@ is "https://test.example.org:8081".
 
 *timeout()*  
 
-Defines time between pings sent by the server to a client (Websocket
+Defines time between pings sent by the server to a client (WebSocket
 level protocol pings are used for this) to keep a connection active. If
 the client doesn’t respond to two consecutive pings, the connection will
 be assumed as closed. The value of *0* can be used to disable the
