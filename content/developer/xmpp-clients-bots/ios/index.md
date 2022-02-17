@@ -19,4 +19,4 @@ Here is a few topics that you may find useful:
   This page will help you setup your first iOS XMPPFramework based
   project.
 
-<!-- - Implementating ProcessOne Session Rebind with XMPPFramework. -->
+<!-- - Implementing ProcessOne Session Rebind with XMPPFramework. -->

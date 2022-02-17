@@ -208,7 +208,7 @@ there are also [old archived ejabberd tutorials](https://www.ejabberd.im/tutoria
 </div>
 
 
-# Developer tools and technics
+# Developer tools and techniques
 
 <div class="media row">
   <div class="col-sm-3">

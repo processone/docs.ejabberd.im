@@ -100,7 +100,7 @@ List of known ejabberd packages:
 Consult the resources provided by your Operating System for more information.
 
 There's also an [ejabberd snap](https://snapcraft.io/ejabberd)
-to install ejabberd on serveral operating systems using Snap package manager.
+to install ejabberd on several operating systems using Snap package manager.
 
 # Docker Image
 

@@ -4397,7 +4397,7 @@ __Arguments:__
 
 __Result:__
 
-- *informations* :: [{key::string, value::string}] : List of group informations, as key and value
+- *information* :: [{key::string, value::string}] : List of group information, as key and value
 
 __Examples:__
 

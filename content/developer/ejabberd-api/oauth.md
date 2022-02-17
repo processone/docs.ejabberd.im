@@ -213,7 +213,7 @@ the token to the app that requested it. It can be either a Web app or
 # redirect_uri
 
 The `redirect_uri` originally passed in the authorization_token
-request will be called on successfull validation of user credentials,
+request will be called on successful validation of user credentials,
 with added parameters.
 
 For example, redirect URI called by ejabberd can be:

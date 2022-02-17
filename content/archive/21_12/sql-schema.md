@@ -249,7 +249,7 @@ The table fields are defined as follow:
 | lusername            | string           | Lowercase username for search                 |
 | fn                   | string           | Raw fullname for display                      |
 | lfn                  | string           | Lowercase fullname for search                 |
-| familly              | string           | Raw family name for display                   |
+| family              | string           | Raw family name for display                   |
 | lfamilly             | string           | Lowercase family name for search              |
 | given                | string           | Raw given name for display                    |
 | lgiven               | string           | Lowercase given name for search               |

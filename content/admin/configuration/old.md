@@ -4257,7 +4257,7 @@ This option  can be useful for both standard MUC and MucSub, but the bounce is m
 context of MucSub, so it is even more important to have it on large MucSub services.The default is `false`, meaning
 the optimisation is enabled.
 
-**`use_mam_for_storage: false|true`**: This is an experimetal option. Enabling this option will make mod_offline not
+**`use_mam_for_storage: false|true`**: This is an experimental option. Enabling this option will make mod_offline not
 use the former spool table for storing MucSub offline messages, but will use the archive table instead. This use of
 the archive table is cleaner and it makes it possible for clients to slowly drop the former offline use case and rely
 on message archive instead. It also further reduce the storage required when you enabled MucSub. Enabling this option
@@ -4639,7 +4639,7 @@ prefix contains only one dot, for example ‘`pubsub.`’, or
    - `flat` plugin handles the default behaviour and follows standard
       XEP-0060 implementation.
 
-   - `pep` plugin adds extention to handle Personal Eventing Protocol
+   - `pep` plugin adds extension to handle Personal Eventing Protocol
      ([`XEP-0163`](https://xmpp.org/extensions/xep-0163.html)) to the PubSub
      engine. Adding pep plugin to PubSub make it handle PEP automatically.
 

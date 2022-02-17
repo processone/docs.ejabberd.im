@@ -41,7 +41,7 @@ schema to cope with those older MySQL versions.
 ## MySQL on Linux
 
 This documentation will not get into the details of making MySQL
-running on Linux for production. It is dependant on Linux distribution
+running on Linux for production. It is dependent on Linux distribution
 and system administrators preferences and habits.
 
 It is also well documented, so it should not be an issue.
@@ -186,7 +186,7 @@ more usual directory:
 INSTALLDIR_OR_PREFIX/share/doc/ejabberd
 ~~~
 
-Finally, you can always find the lastest version of the MySQL schema
+Finally, you can always find the latest version of the MySQL schema
 in ejabberd Github repository:
 [mysql.sql](https://github.com/processone/ejabberd/blob/master/sql/mysql.sql)
 

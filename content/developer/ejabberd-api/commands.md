@@ -9,7 +9,7 @@ module, it's possible to add operations that would be available to
 users through `ejabberdctl` command, XML-RPC socket or JSON based REST
 service.
 
-Each command needs to provide informations about required arguments
+Each command needs to provide information about required arguments
 and produced result by filling `#ejabberd_commands` record and
 registering it in dispatcher by calling
 `ejabberd_commands:register_commands([ListOfEjabberdCommandsRecords])`.
@@ -56,7 +56,7 @@ XML-RPC API, you just have to define it with policy `user`. Then, you
 have to make sure that the function will take a user binary and a host
 binary as first parameter of the function. They do not have to be put
 in the `args` list in `#ejabberd_commands` record as the `user policy
-implicitely expect them.
+implicitly expect them.
 
 That's all you need to have commands that can be used in a variety of
 ways.

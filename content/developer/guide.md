@@ -968,7 +968,7 @@ as described in the Administrator section:
 The external authentication script follows the
 [Erlang port driver API](https://erlang.org/doc/tutorial/c_portdriver.html).
 
-That script is supposed to do theses actions, in an infinite loop:
+That script is supposed to do these actions, in an infinite loop:
 
 -   read from stdin: AABBBBBBBBB.....
 

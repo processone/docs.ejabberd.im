@@ -175,7 +175,7 @@ The module depends on *mod\_vcard*, *mod\_vcard\_xupdate* and
 __Available options:__
 
 - **convert**: *{From: To}*  
-Defines image convertion rules: the format in *From* will be converted
+Defines image conversion rules: the format in *From* will be converted
 to format in *To*. The value of *From* can also be *default*, which is
 match-all rule. NOTE: the list of supported formats is detected at
 compile time depending on the image libraries installed in the system.
@@ -188,7 +188,7 @@ compile time depending on the image libraries installed in the system.
 
 - **rate\_limit**: *Number*  
 Limit any given JID by the number of avatars it is able to convert per
-minute. This is to protect the server from image convertion DoS. The
+minute. This is to protect the server from image conversion DoS. The
 default value is *10*.
 
 mod\_block\_strangers
@@ -2266,7 +2266,7 @@ stanza element.
  - *flat* plugin handles the default behaviour and follows standard
     XEP-0060 implementation.
 
- - *pep* plugin adds extention to handle Personal Eventing Protocol
+ - *pep* plugin adds extension to handle Personal Eventing Protocol
     (XEP-0163) to the PubSub engine. Adding pep allows to handle PEP
     automatically.
 
