@@ -26,7 +26,7 @@ supports
 Note the external component have limited rights on the XMPP
 server. As such, it is less powerful than an ejabberd module written
 in Erlang or Elixir. Some proposed XMPP extensions, like
-[Priviledge Entities](https://xmpp.org/extensions/xep-0356.html),
+[Privilege Entities](https://xmpp.org/extensions/xep-0356.html),
 may grant more privileges in the future to external components.
 
 # Virtual hosts

@@ -262,7 +262,7 @@ The default value is *plain*.
 
 *sha | sha256 | sha512*  
 
-Hash algorith that should be used to store password in SCRAM format. You
+Hash algorithm that should be used to store password in SCRAM format. You
 shouldn’t change this if you already have passwords generated with a
 different algorithm - users that have such passwords will not be able to
 authenticate. The default value is *sha*.
@@ -345,7 +345,7 @@ default value is *false*.
 Path to a file of CA root certificates. The default is to use system
 defined file if possible.
 
-For server conections, this *ca\_file* option is overriden by the
+For server connections, this *ca\_file* option is overridden by the
 [s2s\_cafile](/archive/21_04/toplevel/#s2s-cafile) option.
 
 ## cache\_life\_time

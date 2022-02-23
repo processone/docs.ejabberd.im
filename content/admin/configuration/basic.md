@@ -181,7 +181,7 @@ provided so the user can fill the challenge in a web browser.
 Example scripts are provided that generate the image using
 [ImageMagick](https://imagemagick.org/)’s Convert program
 and [Ghostscript](https://www.ghostscript.com/) fonts.
-Remember to install those depencies
+Remember to install those dependencies
 (in Debian, install the `imagemagick` and `gsfonts` packages).
 
 Note: if you use the [ejabberd Docker Image](https://hub.docker.com/r/ejabberd/ecs),

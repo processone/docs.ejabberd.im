@@ -75,7 +75,7 @@ TODO: Using API with ejabberd command-line tool and Go based library
 
 The list of available commands is available in the
 [API Reference](/developer/ejabberd-api/admin-api/) section.
-Additonally, you can check at runtime what commands are available
+Additionally, you can check at runtime what commands are available
 in your installed server using [ejabberdctl](/admin/guide/managing/#ejabberdctl):
 
 ``` bash

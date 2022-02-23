@@ -100,7 +100,7 @@ As a reference, you should read the following blog post:
 ## What are the tips to optimize performance?
 
 Optimisation of XMPP servers performance, including ejabberd, is
-highly dependant on the use case. You really need to find your
+highly dependent on the use case. You really need to find your
 bottleneck(s) by monitoring the process queues, finding out what is
 your limiting factor, tune that and then move to the next one.
 

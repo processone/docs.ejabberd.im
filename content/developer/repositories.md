@@ -79,10 +79,10 @@ Erlang dependencies:
 
 ## Optional dependencies
 
-Then, we use a few other dependant repositories that may be used if you
+Then, we use a few other dependent repositories that may be used if you
 have enabled support in the configure script.
 
-Here are the dependancies for relational database support:
+Here are the dependencies for relational database support:
 
 * [processone/mysql](https://github.com/processone/mysql): Pure Erlang
   MySQL driver.
