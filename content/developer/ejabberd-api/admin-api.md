@@ -5262,7 +5262,7 @@ __Arguments:__
 
 __Result:__
 
-- *information* :: [{key::string, value::string}] : List of group information, as key and value
+- *informations* :: [{key::string, value::string}] : List of group information, as key and value
 
 __Tags:__
 [shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 

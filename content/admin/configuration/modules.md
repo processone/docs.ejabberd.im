@@ -611,8 +611,9 @@ default value is *20*.
 mod\_http\_api
 --------------
 
-This module provides a ReST API to call ejabberd commands using JSON
-data.
+This module provides a ReST interface to call [ejabberd
+API](https://docs.ejabberd.im/developer/ejabberd-api) commands using
+JSON data.
 
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
