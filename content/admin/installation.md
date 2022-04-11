@@ -90,7 +90,7 @@ List of known ejabberd packages:
 - [Alpine Linux](https://pkgs.alpinelinux.org/packages?name=ejabberd&branch=edge)
 - [Arch Linux](https://archlinux.org/packages/community/x86_64/ejabberd/)
 - [Debian](https://tracker.debian.org/pkg/ejabberd)
-- [Fedora](https://apps.fedoraproject.org/packages/ejabberd)
+- [Fedora](https://packages.fedoraproject.org/pkgs/ejabberd/ejabberd/)
 - [FreeBSD](https://www.freshports.org/net-im/ejabberd/)
 - [Gentoo](https://packages.gentoo.org/packages/net-im/ejabberd)
 - [OpenSUSE](https://software.opensuse.org/package/ejabberd)
