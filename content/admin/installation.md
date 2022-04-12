@@ -75,8 +75,10 @@ and is also a good way to make sure ejabberd will run with the latest Erlang ver
 Those packages install ejabberd in `/opt/ejabberd-XX.YY/`.
 Your configuration and Mnesia database are available in `/opt/ejabberd/`.
 
-You can download the DEB and RPM packages from the
+You can direct download the DEB and RPM packages from the
 [ejabberd official download page](https://www.process-one.net/en/ejabberd/downloads/).
+
+If you prefer, you can also get those packages from our official [ejabberd packages repository](https://repo.process-one.net).
 
 # Operating System Packages
 
