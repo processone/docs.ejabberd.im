@@ -18,8 +18,8 @@ Here is an overview of ejabberd internal architecture:
 # What is a module ?
 
 Outside of a few infrastructure core components most of ejabberd
-features are developed as modules. Modules are use to extend the
-feature of ejabberd (plugins).
+features are developed as modules. Modules are used to extend the
+features of ejabberd (plugins).
 
 # How to write a custom module ?
 
