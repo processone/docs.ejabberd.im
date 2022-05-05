@@ -28,6 +28,12 @@ This is the simplest process, and require service restart.
 - archive content of mnesia database directory (database, i.e. `/opt/ejabberd-XX.YY/database`, `/usr/local/var/lib/ejabberd`, ...)
 - install new version
 - extract database archive in new path
+- if systemctl is used to manage ejabberd, copy the new service file and reload systemctl:
+```
+cp ejabberd-21.12/bin/ejabberd.service /etc/systemd/system/
+systemctl daemon-reload
+```
+
 - start new node
 
 # Soft upgrade process
