@@ -7,6 +7,73 @@ order: 1
 ---
 
 > This section describes API of ejabberd. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
+
+## abort_delete_old_mam_messages
+
+
+Abort currently running delete old MAM messages operation
+
+__Arguments:__
+
+- *host* :: string : Name of host where operation should be aborted
+
+__Result:__
+
+- *status* :: string : Status text
+
+__Tags:__
+[purge](/developer/ejabberd-api/admin-tags/#purge) 
+
+__Module:__
+[mod_mam](/admin/configuration/modules/#mod-mam)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/abort_delete_old_mam_messages
+    {
+      "host": "localhost"
+    }
+    
+    HTTP/1.1 200 OK
+        {"status": "Operation aborted"}
+~~~
+
+
+<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
+
+## abort_delete_old_messages
+
+
+Abort currently running delete old offline messages operation
+
+__Arguments:__
+
+- *host* :: string : Name of host where operation should be aborted
+
+__Result:__
+
+- *status* :: string : Status text
+
+__Tags:__
+[purge](/developer/ejabberd-api/admin-tags/#purge) 
+
+__Examples:__
+
+
+~~~ json
+    POST /api/abort_delete_old_messages
+    {
+      "host": "localhost"
+    }
+    
+    HTTP/1.1 200 OK
+        {"status": "Operation aborted"}
+~~~
+
+
 
 
 ## add_rosteritem
@@ -907,6 +974,87 @@ __Examples:__
 ~~~
 
 
+<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
+
+## delete_old_mam_messages_batch
+
+
+Delete MAM messages older than DAYS
+
+
+Valid message TYPEs: "chat", "groupchat", "all".
+
+__Arguments:__
+
+- *host* :: string : Name of host where messages should be deleted
+- *type* :: string : Type of messages to delete (chat, groupchat, all)
+- *days* :: integer : Days to keep messages
+- *batch_size* :: integer : Number of messages to delete per batch
+- *rate* :: integer : Desired rate of messages to delete per minute
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[purge](/developer/ejabberd-api/admin-tags/#purge) 
+
+__Module:__
+[mod_mam](/admin/configuration/modules/#mod-mam)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/delete_old_mam_messages_batch
+    {
+      "host": "localhost",
+      "type": "all",
+      "days": 31,
+      "batch_size": 1000,
+      "rate": 10000
+    }
+    
+    HTTP/1.1 200 OK
+    "Removal of 5000 messages in progress"
+~~~
+
+
+<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
+
+## delete_old_mam_messages_status
+
+
+Status of delete old MAM messages operation
+
+__Arguments:__
+
+- *host* :: string : Name of host where messages should be deleted
+
+__Result:__
+
+- *status* :: string : Status test
+
+__Tags:__
+[purge](/developer/ejabberd-api/admin-tags/#purge) 
+
+__Module:__
+[mod_mam](/admin/configuration/modules/#mod-mam)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/delete_old_mam_messages_status
+    {
+      "host": "localhost"
+    }
+    
+    HTTP/1.1 200 OK
+        {"status": "Operation in progress, delete 5000 messages"}
+~~~
+
+
 
 
 ## delete_old_messages
@@ -936,6 +1084,76 @@ __Examples:__
     
     HTTP/1.1 200 OK
     ""
+~~~
+
+
+<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
+
+## delete_old_messages_batch
+
+
+Delete offline messages older than DAYS
+
+__Arguments:__
+
+- *host* :: string : Name of host where messages should be deleted
+- *days* :: integer : Days to keep messages
+- *batch_size* :: integer : Number of messages to delete per batch
+- *rate* :: integer : Desired rate of messages to delete per minute
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[purge](/developer/ejabberd-api/admin-tags/#purge) 
+
+__Examples:__
+
+
+~~~ json
+    POST /api/delete_old_messages_batch
+    {
+      "host": "localhost",
+      "days": 31,
+      "batch_size": 1000,
+      "rate": 10000
+    }
+    
+    HTTP/1.1 200 OK
+    "Removal of 5000 messages in progress"
+~~~
+
+
+<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
+
+## delete_old_messages_status
+
+
+Status of delete old offline messages operation
+
+__Arguments:__
+
+- *host* :: string : Name of host where messages should be deleted
+
+__Result:__
+
+- *status* :: string : Status test
+
+__Tags:__
+[purge](/developer/ejabberd-api/admin-tags/#purge) 
+
+__Examples:__
+
+
+~~~ json
+    POST /api/delete_old_messages_status
+    {
+      "host": "localhost"
+    }
+    
+    HTTP/1.1 200 OK
+        {"status": "Operation in progress, delete 5000 messages"}
 ~~~
 
 
@@ -3509,12 +3727,12 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>changed in <a href="/archive/22_05/">22.05</a></div>
 
 ## oauth_revoke_token
 
 
-Revoke authorization for a token (only Mnesia)
+Revoke authorization for a token
 
 __Arguments:__
 
@@ -3522,7 +3740,7 @@ __Arguments:__
 
 __Result:__
 
-- *tokens* :: [{token::string, user::string, scope::string, expires_in::string}] : List of remaining tokens
+- *res* :: string : Raw result string
 
 __Tags:__
 [oauth](/developer/ejabberd-api/admin-tags/#oauth) 
@@ -3537,20 +3755,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-    [
-      {
-        "token": "aaaaa",
-        "user": "bbbbb",
-        "scope": "ccccc",
-        "expires_in": "ddddd"
-      },
-      {
-        "token": "eeeee",
-        "user": "fffff",
-        "scope": "ggggg",
-        "expires_in": "hhhhh"
-      }
-    ]
+    "Success"
 ~~~
 
 
@@ -5861,12 +6066,15 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
 
 ## subscribe_room_many
 
 
 Subscribe several users to a MUC conference
+
+
+This command accept up to 50 users at once (this is configurable with `subscribe_room_many_max_users` option)
 
 __Arguments:__
 

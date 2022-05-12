@@ -351,6 +351,12 @@ This section enumerates the tags and their associated API.
 ## purge
 
 
+* [abort_delete_old_mam_messages](/developer/ejabberd-api/admin-api/#abort-delete-old-mam-messages)
+
+
+* [abort_delete_old_messages](/developer/ejabberd-api/admin-api/#abort-delete-old-messages)
+
+
 * [delete_expired_messages](/developer/ejabberd-api/admin-api/#delete-expired-messages)
 
 
@@ -360,7 +366,19 @@ This section enumerates the tags and their associated API.
 * [delete_old_mam_messages](/developer/ejabberd-api/admin-api/#delete-old-mam-messages)
 
 
+* [delete_old_mam_messages_batch](/developer/ejabberd-api/admin-api/#delete-old-mam-messages-batch)
+
+
+* [delete_old_mam_messages_status](/developer/ejabberd-api/admin-api/#delete-old-mam-messages-status)
+
+
 * [delete_old_messages](/developer/ejabberd-api/admin-api/#delete-old-messages)
+
+
+* [delete_old_messages_batch](/developer/ejabberd-api/admin-api/#delete-old-messages-batch)
+
+
+* [delete_old_messages_status](/developer/ejabberd-api/admin-api/#delete-old-messages-status)
 
 
 * [delete_old_pubsub_items](/developer/ejabberd-api/admin-api/#delete-old-pubsub-items)

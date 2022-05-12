@@ -403,50 +403,106 @@ mod\_conversejs
 This module serves a simple page for the
 [Converse](https://conversejs.org/) XMPP web browser client.
 
-This module is available since ejabberd <a href="/archive/21_12/">21.12</a>.
+This module is available since ejabberd <a href="/archive/21_12/">21.12</a>. Several options were
+improved in ejabberd <a href="/archive/22_05/">22.05</a>.
 
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
 [request\_handlers](/admin/configuration/listen-options/#request-handlers).
 
-You must also setup either the option *websocket\_url* or
-*bosh\_service\_url*.
+Make sure either *mod\_bosh* or *ejabberd\_http\_ws*
+[request\_handlers](/admin/configuration/listen-options/#request-handlers) are
+enabled.
 
-By default, the options *conversejs\_css* and *conversejs\_script* point
-to the public Converse.js client. Alternatively, you can host the client
-locally using [mod_http_fileserver](/admin/configuration/modules/#mod-http-fileserver).
+When *conversejs\_css* and *conversejs\_script* are *auto*, by default
+they point to the public Converse client.
 
 __Available options:__
 
-- **bosh\_service\_url**: *BoshURL*  
-BOSH service URL to which Converse.js can connect to.
+- **bosh\_service\_url**: *auto | BoshURL*  
+BOSH service URL to which Converse can connect to. The keyword *@HOST@*
+is replaced with the real virtual host name. If set to *auto*, it will
+build the URL of the first configured BOSH request handler. The default
+value is *auto*.
 
-- **conversejs\_css**: *URL*  
-Converse.js CSS URL.
+- **conversejs\_css**: *auto | URL*  
+Converse CSS URL. The keyword *@HOST@* is replaced with the hostname.
+The default value is *auto*.
 
-- **conversejs\_script**: *URL*  
-Converse.js main script URL.
+<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+
+- **conversejs\_options**: *{Name: Value}*  
+Specify additional options to be passed to Converse. See [Converse
+configuration](https://conversejs.org/docs/html/configuration.html).
+Only boolean, integer and string values are supported; lists are not
+supported.
+
+<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+
+- **conversejs\_resources**: *Path*  
+Local path to the Converse files. If not set, the public Converse client
+will be used instead.
+
+- **conversejs\_script**: *auto | URL*  
+Converse main script URL. The keyword *@HOST@* is replaced with the
+hostname. The default value is *auto*.
 
 - **default\_domain**: *Domain*  
-Specify a domain to act as the default for user JIDs. The default value
-is the first domain defined in the ejabberd configuration file.
+Specify a domain to act as the default for user JIDs. The keyword
+*@HOST@* is replaced with the hostname. The default value is *@HOST@*.
 
-- **websocket\_url**: *WebSocketURL*  
-A WebSocket URL to which Converse.js can connect to.
+- **websocket\_url**: *auto | WebSocketURL*  
+A WebSocket URL to which Converse can connect to. The keyword *@HOST@*
+is replaced with the real virtual host name. If set to *auto*, it will
+build the URL of the first configured WebSocket request handler. The
+default value is *auto*.
 
-__**Example**:__
+__Examples:__
+
+Manually setup WebSocket url, and use the public Converse client:
 
     listen:
       -
         port: 5280
         module: ejabberd_http
         request_handlers:
+          /bosh: mod_bosh
+          /websocket: ejabberd_http_ws
+          /conversejs: mod_conversejs
+
+    modules:
+      mod_bosh: {}
+      mod_conversejs:
+        websocket_url: "ws://@HOST@:5280/websocket"
+
+Host Converse locally and let auto detection of WebSocket and Converse
+URLs:
+
+    listen:
+      -
+        port: 443
+        module: ejabberd_http
+        tls: true
+        request_handlers:
           /websocket: ejabberd_http_ws
           /conversejs: mod_conversejs
 
     modules:
       mod_conversejs:
-        websocket_url: "ws://example.org:5280/websocket"
+        conversejs_resources: "/home/ejabberd/conversejs-9.0.0/package/dist"
+
+Configure some additional options for Converse
+
+    modules:
+      mod_conversejs:
+        websocket_url: auto
+        conversejs_options:
+          auto_away: 30
+          clear_cache_on_logout: true
+          i18n: "pt"
+          locked_domain: "@HOST@"
+          message_archiving: always
+          theme: dracula
 
 mod\_delegation
 ---------------
@@ -607,6 +663,52 @@ failures. The default value is *1* hour.
 - **c2s\_max\_auth\_failures**: *Number*  
 The number of C2S authentication failures to trigger the IP ban. The
 default value is *20*.
+
+mod\_host\_meta
+---------------
+
+This module serves small *host-meta* files as described in [XEP-0156:
+Discovering Alternative XMPP Connection
+Methods](https://xmpp.org/extensions/xep-0156.html).
+
+This module is available since ejabberd <a href="/archive/22_05/">22.05</a>.
+
+To use this module, in addition to adding it to the *modules* section,
+you must also enable it in *listen* → *ejabberd\_http* →
+[request\_handlers](/admin/configuration/listen-options/#request-handlers).
+
+Notice it only works if ejabberd\_http has tls enabled.
+
+__Available options:__
+
+- **bosh\_service\_url**: *undefined | auto | BoshURL*  
+BOSH service URL to announce. The keyword *@HOST@* is replaced with the
+real virtual host name. If set to *auto*, it will build the URL of the
+first configured BOSH request handler. The default value is *auto*.
+
+- **websocket\_url**: *undefined | auto | WebSocketURL*  
+WebSocket URL to announce. The keyword *@HOST@* is replaced with the
+real virtual host name. If set to *auto*, it will build the URL of the
+first configured WebSocket request handler. The default value is *auto*.
+
+__**Example**:__
+
+    listen:
+      -
+        port: 443
+        module: ejabberd_http
+        tls: true
+        request_handlers:
+          /bosh: mod_bosh
+          /ws: ejabberd_http_ws
+          /.well-known/host-meta: mod_host_meta
+          /.well-known/host-meta.json: mod_host_meta
+
+    modules:
+      mod_bosh: {}
+      mod_host_meta:
+        bosh_service_url: "https://@HOST@:5443/bosh"
+        websocket_url: "wss://@HOST@:5443/ws"
 
 mod\_http\_api
 --------------
@@ -1295,9 +1397,17 @@ Multi-User Chat service. The default is *all* for backward
 compatibility, which means that any user is allowed to register any free
 nick.
 
+<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+
+- **cleanup\_affiliations\_on\_start**: *true | false*  
+Remove affiliations for non-existing local users on startup. The default
+value is *false*.
+
 - **db\_type**: *mnesia | sql*  
 Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
 only.
+
+<div class="note-left">improved in <a href="/archive/22_05/">22.05</a></div>
 
 - **default\_room\_options**: *Options*  
 This option allows to define the desired default room options. Note that
@@ -1341,6 +1451,10 @@ using an XMPP client with MUC capability. The *Options* are:
     stripped before broadcasting the presence update to all the room
     occupants. The default value is *true*.
 
+ - **allow\_voice\_requests**: *true | false*  
+   Allow visitors in a
+    moderated room to request voice. The default value is *true*.
+
  - **anonymous**: *true | false*  
    The room is anonymous: occupants don’t
     see the real JIDs of other occupants. Note that the room moderators
@@ -1354,6 +1468,14 @@ using an XMPP client with MUC capability. The *Options* are:
     [CAPTCHA](https://docs.ejabberd.im/admin/configuration/#captcha) in
     order to accept their join in the room. The default value is
     *false*.
+
+ - **description**: *Room Description*  
+   Short description of the room.
+    The default value is an empty string.
+
+ - **enable\_hats**: *true | false*  
+   Allow extended roles as defined in
+    XEP-0317 Hats. The default value is *false*.
 
  - **lang**: *Language*  
    Preferred language for the discussions in the
@@ -1419,9 +1541,21 @@ using an XMPP client with MUC capability. The *Options* are:
    The list of participants is public,
     without requiring to enter the room. The default value is *true*.
 
+ - **pubsub**: *PubSub Node*  
+   XMPP URI of associated Publish/Subscribe
+    node. The default value is an empty string.
+
  - **title**: *Room Title*  
    A human-readable title of the room. There is
     no default value
+
+ - **vcard**: *vCard*  
+   A custom vCard for the room. See the equivalent
+    mod\_muc option.The default value is an empty string.
+
+ - **voice\_request\_min\_interval**: *Number*  
+   Minimum interval between
+    voice requests, in seconds. The default value is *1800*.
 
 - **hibernation\_timeout**: *infinity | Seconds*  
 Timeout before hibernating the room process, expressed in seconds. The
@@ -1594,7 +1728,13 @@ rooms.
 
 This module depends on [mod_muc](/admin/configuration/modules/#mod-muc).
 
-The module has no options.
+__Available options:__
+
+<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+
+- **subscribe\_room\_many\_max\_users**: *Number*  
+How many users can be subscribed to a room at once using the
+*subscribe\_room\_many* command. The default value is *50*.
 
 mod\_muc\_log
 -------------
@@ -1854,17 +1994,16 @@ Whether or not to store groupchat messages. The default value is
 Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
 
 - **use\_mam\_for\_storage**: *true | false*  
-This is an experimental option. Enabling this option will make
-*mod\_offline* not use the former spool table for storing MucSub offline
-messages, but will use the archive table instead. This use of the
-archive table is cleaner and it makes it possible for clients to slowly
-drop the former offline use case and rely on message archive instead. It
-also further reduces the storage required when you enabled MucSub.
+This is an experimental option. Enabling this option, *mod\_offline*
+uses the *mod\_mam* archive table instead of its own spool table to
+retrieve the messages received when the user was offline. This allows
+client developers to slowly drop XEP-0160 and rely on XEP-0313 instead.
+It also further reduces the storage required when you enable MucSub.
 Enabling this option has a known drawback for the moment: most of
 flexible message retrieval queries don’t work (those that allow
 retrieval/deletion of messages by id), but this specification is not
 widely used. The default value is *false* to keep former behaviour as
-default and ensure this option is disabled.
+default.
 
 __Examples:__
 
