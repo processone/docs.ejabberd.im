@@ -6,13 +6,14 @@ toc: true
 order: 10
 ---
 
-- [Quick Start with Binary Installers](/admin/installation/#quick-start) – recommended when starting development on localhost
-  - [Install on Windows](/admin/installation/#install-on-windows)
-  - [Install on Linux](/admin/installation/#install-on-linux)
-  - [Install on macOS](/admin/installation/#install-on-macos)
-- [Install from Source Code](/admin/installation/#install-from-source-code) – recommended for advanced users
-- [Install with Operating System specific packages](/admin/installation/#install-with-os-specific-packages) – recommended for sysops
-- [Post-install operations](/admin/installation/#post-install-operations) – for example, register users and create admin accounts
+- [Quick Start with Binary Installers](/admin/installation/) – recommended when starting development on localhost
+  - [Install on Linux using RUN](/admin/installation/#linux-run-installer)
+  - [Install on Linux using DEB or RPM](/admin/installation/#linux-deb-and-rpm-installers)
+  - [Install on Windows using Docker](/admin/installation/#docker-image)
+  - [Install on macOS using Homebrew](/admin/installation/#homebrew)
+- [Install from Source Code](/admin/installation/#source-code) – recommended for advanced users
+- [Install with Operating System specific packages](/admin/installation/#operating-system-packages) – recommended for sysops
+- [Next Steps](/admin/installation/#next-steps) – for example, register users and create admin accounts
 
 # Overview
 
