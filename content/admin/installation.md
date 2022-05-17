@@ -31,13 +31,10 @@ ejabberd installer, you do not need to install Erlang separately.
 Those instructions assume installation on `localhost` for development purposes.
 In this document, when mentioning `ejabberd-YY.MM`, we assume `YY.MM`
 is the release number, for example 18.01.
-Also note that the installer scripts support some options,
-check [unattended installation](/admin/guide/unattended/) for details.
 
 Installation using the `*.run` binary installer:
 
-1. Go to [ejabberd GitHub Releases](https://github.com/processone/ejabberd/releases)
-or [ProcessOne Downloads](https://www.process-one.net/en/ejabberd/downloads/).
+1. Go to [ejabberd GitHub Releases](https://github.com/processone/ejabberd/releases).
 
 2. Download the `run` package for your architecture
 
@@ -48,18 +45,20 @@ or [ProcessOne Downloads](https://www.process-one.net/en/ejabberd/downloads/).
    chmod +x ejabberd-YY.MM-1-linux-x64.run
    ```
 
-4. The installer must be run as superuser, so either become `root` or use `sudo`:
+4. If the installer runs as superuser (by `root` or using `sudo`),
+   it installs ejabberd binaries in `/opt/ejabberd-XX.YY/`;
+   installs your configuration, Mnesia database and logs in `/opt/ejabberd/`,
+   and setups ejabberd service in `systemd`:
    ``` bash
    sudo ./ejabberd-YY.MM-1-linux-x64.run
    ```
 
-5. The installer informs the paths where it will be installed:
-   ejabberd binaries in `/opt/ejabberd-XX.YY/`;
-   your configuration, Mnesia database and logs in `/opt/ejabberd/`.
-   Those paths are not configurable.
-   Simply accept it to proceed to the installation.
+5. If the installer runs as a regular user,
+   it asks the base path where ejabberd should be installed.
+   In that case, the ejabberd service is not set in `systemd`,
+   and `systemctl` cannot be used to start ejabberd; start it manually.
 
-6. After successful installation, ejabberd is automatically started.
+6. After successful installation by root, ejabberd is automatically started.
    Check its status with
    ``` bash
    systemctl status ejabberd
@@ -104,8 +103,7 @@ Those packages install ejabberd in `/opt/ejabberd-XX.YY/`.
 Your configuration, Mnesia database and logs are available in `/opt/ejabberd/`.
 
 You can download directly the DEB and RPM packages from
-[ejabberd GitHub Releases](https://github.com/processone/ejabberd/releases)
-or [ProcessOne Downloads](https://www.process-one.net/en/ejabberd/downloads/).
+[ejabberd GitHub Releases](https://github.com/processone/ejabberd/releases).
 
 If you prefer, you can also get those packages from our official [ejabberd packages repository](https://repo.process-one.net).
 
@@ -230,8 +228,7 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 ## Downloading
 
 Released versions of ejabberd are available for download from
-[ejabberd GitHub Releases](https://github.com/processone/ejabberd/releases)
-and [ProcessOne Downloads](https://www.process-one.net/en/ejabberd/downloads/).
+[ejabberd GitHub Releases](https://github.com/processone/ejabberd/releases).
 
 Alternatively, the latest development source code can be retrieved
 from the Git repository using the commands:
