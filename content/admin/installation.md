@@ -48,14 +48,14 @@ Installation using the `*.run` binary installer:
 4. If the installer runs as superuser (by `root` or using `sudo`),
    it installs ejabberd binaries in `/opt/ejabberd-XX.YY/`;
    installs your configuration, Mnesia database and logs in `/opt/ejabberd/`,
-   and setups ejabberd service in `systemd`:
+   and setups an ejabberd service unit in `systemd`:
    ``` bash
    sudo ./ejabberd-YY.MM-1-linux-x64.run
    ```
 
 5. If the installer runs as a regular user,
    it asks the base path where ejabberd should be installed.
-   In that case, the ejabberd service is not set in `systemd`,
+   In that case, the ejabberd service unit is not set in `systemd`,
    and `systemctl` cannot be used to start ejabberd; start it manually.
 
 6. After successful installation by root, ejabberd is automatically started.
