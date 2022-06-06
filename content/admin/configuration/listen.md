@@ -436,9 +436,11 @@ This module can be configured using those top-level options:
 With the example configuration previously mentioned,
 the WebSocket URL would be: `ws://localhost:5280/xmpp`
 
-You may want to setup `host-meta` so clients can
-easily discover WebSocket service for your XMPP domain. Refer to
-[XEP-0156](https://xmpp.org/extensions/xep-0156.html#http).
+You may want to provide a `host-meta` file so clients can
+easily discover WebSocket service for your XMPP domain
+(see [XEP-0156](https://xmpp.org/extensions/xep-0156.html#http)).
+One easy way to provide that file is using
+[`mod_host_meta`](/admin/configuration/modules/#mod-host-meta).
 
 ## Testing WebSocket
 
