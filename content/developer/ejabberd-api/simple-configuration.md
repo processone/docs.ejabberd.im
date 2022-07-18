@@ -144,6 +144,21 @@ either using basic auth or OAuth.
     ["user2","user8","john"]
     ```
 
+6. Example Python code:
+
+    ``` python
+    import requests
+
+    url = "http://localhost:5281/api/registered_users"
+    data = {
+        "host": "localhost"
+    }
+
+    res = requests.post(url, json=data, auth=("john@localhost", "somePass"))
+
+    print(res.text)
+    ```
+
 # OAuth Authentication
 
 Before using OAuth to interact with ejabberd API,
