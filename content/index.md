@@ -9,7 +9,7 @@ XMPP messaging server.
 ejabberd has been in development since 2002 and is used all over the
 world to power the largest XMPP deployments. This project is so
 versatile that you can deploy it and customize it for very large
-scale, no matter what is your use case.
+scale, no matter what your use case is.
 
 This incredible power comes with a price. You need to learn how to
 leverage it. Fortunately, the goal of this website is to get you

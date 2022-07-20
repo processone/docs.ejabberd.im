@@ -10,7 +10,7 @@ services across a large number of industries:
 
 # Mobile messaging
 
-ejabberd massive scalability make it the most solid choice as the
+ejabberd's massive scalability makes it the most solid choice as the
 backbone for a very large number of mobile messaging services.
 
 This includes:
