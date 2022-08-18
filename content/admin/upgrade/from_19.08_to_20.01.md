@@ -23,6 +23,7 @@ CREATE TABLE oauth_client (
    client_name text NOT NULL,
    grant_type text NOT NULL,
    options text NOT NULL
+) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
 ### PostgreSQL
