@@ -597,6 +597,8 @@ enter the ejabberd Web Admin. Here are the steps to create it:
       ``` bash
       ejabberdctl register admin1 example.org password
       ```
+      
+    where `example.org` is one of the hosts configured in `/etc/ejabberd/ejabberd.yml`
 
 2.  Edit the ejabberd configuration file to give administration
     rights to the XMPP account you created:
