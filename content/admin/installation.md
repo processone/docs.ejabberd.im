@@ -578,18 +578,19 @@ regarding `epmd` consult the section relating to
 
 ## Administration Account
 
-ejabberd binary installer prompts you for an admin account, so in that case,
-you can probably skip this step.
+Some ejabberd installation methods ask you details for the first account,
+and take care to register that account and grant it administrative rights;
+in that case you can skip this section.
 
-However, if you use another way of installing ejabberd you may need to create an
-admin XMPP account.
+After installing ejabberd from source code or other methods,
+you may want to register the first XMPP account and grant it administrative rights:
 
-You need an XMPP account with administrative privileges to
-enter the ejabberd Web Admin. Here are the steps to create it:
-
-1.  Register an XMPP account on your ejabberd server, for example
-    `admin1@example.org`. There are two ways to register an XMPP
-    account:
+1.  Register an XMPP account on your ejabberd server.
+    For example, if `example.org` is configured in the
+    [hosts](/admin/configuration/basic/#host-names)
+    section in your ejabberd configuration file,
+    then you may want to register an account with JID `admin1@example.org`.
+    There are two ways to register an XMPP account in ejabberd:
 
   - Using an XMPP client and [In-Band Registration](/admin/configuration/modules/#mod-register).
 
@@ -599,12 +600,13 @@ enter the ejabberd Web Admin. Here are the steps to create it:
       ```
 
 2.  Edit the ejabberd configuration file to give administration
-    rights to the XMPP account you created:
+    rights to the XMPP account you registered:
 
     ``` yaml
     acl:
       admin:
         user: admin1@example.org
+
     access_rules:
       configure:
         allow: admin
@@ -613,12 +615,17 @@ enter the ejabberd Web Admin. Here are the steps to create it:
     You can grant administrative privileges to many XMPP accounts, and
     also to accounts in other XMPP servers.
 
-3.  Restart ejabberd to load the new configuration.
+3.  Restart ejabberd to load the new configuration, or run the
+    [reload_config](/developer/ejabberd-api/admin-api/#reload-config) command.
 
-4.  Open the Web Admin page (usually `http://localhost:5280/admin/`) in your favourite
-    browser. Make sure to enter the **full JID* (in this
-    example: `admin1@example.org`).
-See [Web Admin](/admin/guide/managing/#web-admin) for details.
+4.  Open the Web Admin page in your favourite browser.
+    The exact address depends on your ejabberd configuration,
+    and may be
+    [http://localhost:5280/admin/](http://localhost:5280/admin/),
+    [https://localhost:5443/admin/](https://localhost:5443/admin/),
+    [https://localhost:5280/admin/](https://localhost:5280/admin/) ...
+    Make sure to enter the **full JID**, in this example `admin1@example.org`.
+    See [Web Admin](/admin/guide/managing/#web-admin) for details.
 
 
 ## Configuring ejabberd
