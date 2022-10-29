@@ -399,13 +399,23 @@ core ejabberd parts support similar options too, see
 [auth_cache_size](/admin/configuration/toplevel/#auth-cache-size), [oauth_cache_size](/admin/configuration/toplevel/#oauth-cache-size), [router_cache_size](/admin/configuration/toplevel/#router-cache-size), and
 [sm_cache_size](/admin/configuration/toplevel/#sm-cache-size).
 
+<div class="note-down">improved in <a href="/archive/21_10/">21.10</a></div>
+
 ## captcha\_cmd
 
 *Path*  
 
 Full path to a script that generates [CAPTCHA](/admin/configuration/basic/#captcha)
-images. There is no default value: when this option is not set, CAPTCHA
-functionality is completely disabled.
+images. @VERSION@ is replaced with ejabberd version number in XX.YY
+format. @SEMVER@ is replaced with ejabberd version number in semver
+format when compiled with Elixir’s mix, or XX.YY format otherwise. There
+is no default value: when this option is not set, CAPTCHA functionality
+is completely disabled.
+
+When using the ejabberd installers or container image, the example
+captcha scripts can be used like this:
+
+    captcha_cmd: /opt/ejabberd-@VERSION@/lib/ejabberd-@SEMVER@/priv/bin/captcha.sh
 
 ## captcha\_host
 
@@ -843,6 +853,23 @@ JID. For example, "%<u@example>.org". If the value is in the form of
 
 The option for listeners configuration. See the [Listen
 Modules](/admin/configuration/listen/) section for details.
+
+<div class="note-down">added in <a href="/archive/22_10/">22.10</a></div>
+
+## log\_burst\_limit\_count
+
+*Number*  
+
+The number of messages to accept in `log_burst_limit_window_time` period
+before starting to drop them. Default 500
+
+<div class="note-down">added in <a href="/archive/22_10/">22.10</a></div>
+
+## log\_burst\_limit\_window\_time
+
+*Number*  
+
+The time period to rate-limit log messages by. Defaults to 1 second.
 
 ## log\_rotate\_count
 
@@ -1312,7 +1339,7 @@ option for the explanation. The default value is the value defined in
 *timeout()*  
 
 A time to wait before closing an idle s2s connection. The default value
-is *10 minutes*.
+is *1* hour.
 
 ## s2s\_tls\_compression
 
