@@ -2,6 +2,7 @@
 title: ejabberd for Developers
 menu: For Developers
 order: 30
+toc: true
 ---
 
 As a developer, you can customize ejabberd to design almost every type
@@ -33,17 +34,15 @@ repository.
 
 For a complete overview of ejabberd source code and its dependencies, please refer to [ejabberd and related repositories](repositories/)
 
-## Development environment
+## Development Environment
 
-One of the first step to develop for ejabberd is to install /
+The first step to develop for ejabberd is to install and
 configure your development environment:
 
-* [Installing ejabberd development environment on OSX](install-osx/)
-* [Use Ansible to auto provision a development environment in a VM](https://github.com/processone/ejabberd-vagrant-dev):
-  The main benefit of that environment is that it is preconfigured
-  with all the database backend supported by ejabberd. You can both
-  start developing immediately for any backend, but also run the full
-  test suite to make sure you did not break any important feature.
+* Check the [Source Code Installation](/admin/installation/#source-code) section
+* If using Emacs, install [erlang-mode](https://www.erlang.org/doc/apps/tools/erlang_mode_chapter.html) in your operating system
+* If using OSX, check the [OSX development environment](install-osx/) section
+* For Visual Studio Code and alternatives, check the [Developing ejabberd with VSCode](vscode/) section
 
 # Customizing ejabberd
 
