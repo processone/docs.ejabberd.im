@@ -211,6 +211,7 @@ configuration file:
             access:
               allow:
                 acl: apicommands
+        what: "*"
     ```
 
 5. If that account does not yet exist,
