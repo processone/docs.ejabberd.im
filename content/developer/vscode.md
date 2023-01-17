@@ -6,7 +6,7 @@ toc: true
 ---
 
 The ejabberd git repository includes basic configuration and a few
-scripts to get started with VSCode, since ejabberd 23.01.
+scripts to get started with VSCode, since ejabberd <a href="/archive/23_01/">23.01</a>.
 
 There are several VSCode alternatives for ejabberd development:
 
