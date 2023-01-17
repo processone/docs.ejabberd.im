@@ -399,18 +399,19 @@ core ejabberd parts support similar options too, see
 [auth_cache_size](/admin/configuration/toplevel/#auth-cache-size), [oauth_cache_size](/admin/configuration/toplevel/#oauth-cache-size), [router_cache_size](/admin/configuration/toplevel/#router-cache-size), and
 [sm_cache_size](/admin/configuration/toplevel/#sm-cache-size).
 
-<div class="note-down">improved in <a href="/archive/21_10/">21.10</a></div>
+<div class="note-down">improved in <a href="/archive/23_01/">23.01</a></div>
 
 ## captcha\_cmd
 
-*Path*  
+*Path | ModuleName*  
 
 Full path to a script that generates [CAPTCHA](/admin/configuration/basic/#captcha)
 images. @VERSION@ is replaced with ejabberd version number in XX.YY
 format. @SEMVER@ is replaced with ejabberd version number in semver
-format when compiled with Elixir’s mix, or XX.YY format otherwise. There
-is no default value: when this option is not set, CAPTCHA functionality
-is completely disabled.
+format when compiled with Elixir’s mix, or XX.YY format otherwise.
+Alternatively, it can be the name of a module that implements ejabberd
+CAPTCHA support. There is no default value: when this option is not set,
+CAPTCHA functionality is completely disabled.
 
 When using the ejabberd installers or container image, the example
 captcha scripts can be used like this:
@@ -871,6 +872,15 @@ before starting to drop them. Default 500
 
 The time period to rate-limit log messages by. Defaults to 1 second.
 
+<div class="note-down">added in <a href="/archive/23_01/">23.01</a></div>
+
+## log\_modules\_fully
+
+*\[Module, ...\]*  
+
+List of modules that will log everything independently from the general
+loglevel option.
+
 ## log\_rotate\_count
 
 *Number*  
@@ -940,7 +950,7 @@ default value is *1 minute*.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/22.05/sql>. There are two
+<https://github.com/processone/ejabberd/tree/23.01/sql>. There are two
 schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*
@@ -1048,13 +1058,16 @@ activated with some of the processes possibly be killed (see
 [oom_killer](/admin/configuration/toplevel/#oom-killer) option). Later, when memory drops below this *Percent*,
 OOM killer is deactivated. The default value is *80* percents.
 
+<div class="note-down">changed in <a href="/archive/23_01/">23.01</a></div>
+
 ## outgoing\_s2s\_families
 
-*\[ipv4 | ipv6, ...\]*  
+*\[ipv6 | ipv4, ...\]*  
 
 Specify which address families to try, in what order. The default is
-*\[ipv4, ipv6\]* which means it first tries connecting with IPv4, if
-that fails it tries using IPv6.
+*\[ipv6, ipv4\]* which means it first tries connecting with IPv6, if
+that fails it tries using IPv4. This option is obsolete and irrelevant
+when using ejabberd <a href="/archive/23_01/">23.01</a> and Erlang/OTP 22, or newer versions of them.
 
 <div class="note-down">added in <a href="/archive/20_12/">20.12</a></div>
 

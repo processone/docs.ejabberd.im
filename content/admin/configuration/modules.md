@@ -1342,6 +1342,45 @@ connection is closed. The default value is *5* minutes.
 - **use\_cache**: *true | false*  
 Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
 
+mod\_mqtt\_bridge
+-----------------
+
+This module adds ability to synchronize local MQTT topics with data on
+remote servers It can update topics on remote servers when local user
+updates local topic, or can subscribe for changes on remote server, and
+update local copy when remote data is updated. It is available since
+ejabberd <a href="/archive/23_01/">23.01</a>.
+
+__Available options:__
+
+- **replication\_user**: *JID*  
+Identifier of a user that will be assigned as owner of local changes.
+
+- **servers**: *{ServerUrl: {publish: \[TopicPairs, subscribe: \[TopicPairs\], authentication: \[AuthInfo\]}}\]*  
+Declaration of data to share, must contain *publish* or *subscribe* or
+both, and *authentication* section with username/password field or
+certfile pointing to client certificate. Accepted urls can use schema
+mqtt, mqtts (mqtt with tls), mqtt5, mqtt5s (both to trigger v5
+protocol), ws, wss, ws5, wss5. Certifcate authentication can be only
+used with mqtts, mqtt5s, wss, wss5.
+
+__**Example**:__
+
+    modules:
+      ...
+      mod_mqtt_bridge:
+        servers:
+          "mqtt://server.com":
+            publish:
+              "localA": "remoteA" # local changes to 'localA' will be replicated on remote server as 'remoteA'
+              "topicB": "topicB"
+            subscribe:
+              "remoteB": "localB" # changes to 'remoteB' on remote server will be stored as 'localB' on local server
+            authentication:
+              certfile: "/etc/ejabberd/mqtt_server.pem"
+        replication_user: "mqtt@xmpp.server.com"
+      ...
+
 mod\_muc
 --------
 
