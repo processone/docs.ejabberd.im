@@ -230,7 +230,8 @@ Example configuration:
 # Microsoft SQL Server
 
 For now, MS SQL is only supported in Unix-like OS'es. You need to have
-[`unixODBC`](http://www.unixodbc.org/) installed on your machine.
+[`unixODBC`](http://www.unixodbc.org/) installed on your machine, and your Erlang/OTP
+must be compiled with ODBC support.
 Also, in some cases you need to add machine name to `sql_username`, especially
 when you have `sql_server` defined as an IP address, e.g.:
 
@@ -240,10 +241,39 @@ when you have `sql_server` defined as an IP address, e.g.:
 	...
 	sql_username: user1@host
 
-By default, ejabberd will use the [`FreeTDS`](https://www.freetds.org/) driver. You need to have the driver file `libtdsodbc.so` installed in your library PATH on your system.
+By default, ejabberd will use the [`FreeTDS`](https://www.freetds.org/) driver.
+You need to have the driver file `libtdsodbc.so` installed in your library PATH
+on your system.
 
-If the FreeTDS driver is not installed in a standard location, or if you want to use another ODBC driver, you can specify the path to the driver using the [sql_odbc_driver](/admin/configuration/toplevel/#sql-odbc-driver) option, available in ejabberd 20.12 or later. For example, if you want to use Microsoft ODBC Driver 17 for SQL Server:
+If the FreeTDS driver is not installed in a standard location, or if you want
+to use another ODBC driver, you can specify the path to the driver using the
+[sql_odbc_driver](/admin/configuration/toplevel/#sql-odbc-driver) option,
+available in ejabberd 20.12 or later. For example, if you want to use Microsoft
+ODBC Driver 17 for SQL Server:
 
 	sql_odbc_driver: "/opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.3.so.1.1"
 
-Note that if you use a Microsoft driver, you may have to use an IP address instead of a host name for the `sql_server` option.
+Note that if you use a Microsoft driver, you may have to use an IP address
+instead of a host name for the `sql_server` option.
+
+If hostname (or IP address) is specified in `sql_server` option, ejabberd will
+connect using a an ODBC DSN connection string constructed with:
+
+SERVER=[sql_server](/admin/configuration/toplevel/#sql-server)
+DATABASE=[sql_database](/admin/configuration/toplevel/#sql-database)
+UID=[sql_username](/admin/configuration/toplevel/#sql-username)
+PWD=[sql_password](/admin/configuration/toplevel/#sql-password)
+PORT=[sql_port](/admin/configuration/toplevel/#sql-port)
+ENCRYPTION=required (only if [sql_ssl](/admin/configuration/toplevel/#sql-ssl) is true)
+CLIENT_CHARSET=UTF-8
+
+As of ejabberd 23.xx it is possible to use different connection options by
+putting a full ODBC connection string in `sql_server` (e.g.
+`DSN=database;UID=ejabberd;PWD=password`). The DSN must be configured in
+existing system or user odbc.ini file, where it can be configured as desired,
+using a driver from system odbcinst.ini. The [sql_odbc_driver](/admin/configuration/toplevel/#sql-odbc-driver)
+option will have no effect in this case.
+
+If specifying an ODBC connection string, an ODBC connection string must also be
+specified for any other hosts using MS SQL DB, otherwise the auto-generated
+ODBC configuration will interfere.
