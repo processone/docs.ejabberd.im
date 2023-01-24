@@ -259,13 +259,13 @@ instead of a host name for the `sql_server` option.
 If hostname (or IP address) is specified in `sql_server` option, ejabberd will
 connect using a an ODBC DSN connection string constructed with:
 
-SERVER=[sql_server](/admin/configuration/toplevel/#sql-server)
-DATABASE=[sql_database](/admin/configuration/toplevel/#sql-database)
-UID=[sql_username](/admin/configuration/toplevel/#sql-username)
-PWD=[sql_password](/admin/configuration/toplevel/#sql-password)
-PORT=[sql_port](/admin/configuration/toplevel/#sql-port)
-ENCRYPTION=required (only if [sql_ssl](/admin/configuration/toplevel/#sql-ssl) is true)
-CLIENT_CHARSET=UTF-8
+- SERVER=[sql_server](/admin/configuration/toplevel/#sql-server)
+- DATABASE=[sql_database](/admin/configuration/toplevel/#sql-database)
+- UID=[sql_username](/admin/configuration/toplevel/#sql-username)
+- PWD=[sql_password](/admin/configuration/toplevel/#sql-password)
+- PORT=[sql_port](/admin/configuration/toplevel/#sql-port)
+- ENCRYPTION=required (only if [sql_ssl](/admin/configuration/toplevel/#sql-ssl) is true)
+- CLIENT_CHARSET=UTF-8
 
 As of ejabberd 23.xx it is possible to use different connection options by
 putting a full ODBC connection string in `sql_server` (e.g.
