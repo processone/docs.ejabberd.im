@@ -101,7 +101,7 @@ each virtual host defined in ejabberd:
 
 	auth_method: [external]
 	extauth_program: /etc/ejabberd/JabberAuth.class.php
-	extauth_instances: 3
+	extauth_pool_size: 3
 	auth_use_cache: false
 
 # Anonymous Login and SASL Anonymous
