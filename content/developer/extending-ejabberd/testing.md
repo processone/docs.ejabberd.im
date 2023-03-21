@@ -18,50 +18,56 @@ level.  It also contains tests for the various backends that ejabberd supports.
 The test suite is modular and can be run in parts (to focus on a group
 of features) or run for a specific backend.
 
-The environment variable `CT_BACKENDS` is used to specify which backend tests to
+The `CT_BACKENDS` environment variable specifies which backend tests to
 run. Current `CT_BACKENDS` values:
 
-- mnesia. Typically, Mnesia is included in ejabberd and should
-  always be available for testing.
-- redis
-- mysql
-- pgsql
-- sqlite: SQLite is a library available on many systems. However, you must have
-  enabled it in ejabberd at compile time for this to work.
-- ldap
-- extauth
+- `extauth`
+- `ldap`
+- `mnesia`
+- `mssql`
+- `mysql`
+- `odbc`
+- `pgsql`
+- `redis`
+- `sqlite`
 
 **Note:** You must build ejabberd with proper backend support for the tests to
-work. If the tests fail and you aren't sure why, check the `configure` build
-options to make sure you built ejabberd with adequate backend support.
+work. If the tests fail and you aren't sure why, check the
+[`configure` build options](/admin/installation/#configure)
+to make sure ejabberd is compiled with adequate backend support.
 
 **Note:** these tests are e2e tests that operate a full ejabberd instance.  So
 the ports that ejabberd needs must be available for testing.  So you can't run
 an ejabberd instance at the same time you test.
 
 Other options you can use to limit the tests that will be run is to pass a list
-of groups to test. Some group examples:
+of `groups` to test. Some `groups` examples:
 
-- no_db: Runs subgroups `generic` and `test_proxy65`.
-- ldap
-- mnesia
-- redis
-- mysql
-- pgsql
-- sqlite
-- extauth
+- `no_db`: Runs subgroups `generic` and `test_proxy65`.
+- `component`
+- `extauth`
+- `ldap`
+- `mnesia`
+- `mssql`
+- `mysql`
+- `pgsql`
+- `redis`
+- `s2s`
+- `sqlite`
 
 Usually, it is enough to just limit tests with `CT_BACKENDS` and let the test
 suite decide which relevant tests to run. Sometimes you may want to only focus
-on a specific backend, skipping the generic `no_db` tests.  The "groups" can be
-found in `tests/ejabberd_SUITE.erl`.
+on a specific backend, skipping the generic `no_db` tests.
 
-Some example commands for running the XMPP end-to-end test suite are:
+Some example commands for running the XMPP end-to-end test suite
+using rebar and [rebar3 ct](https://rebar3.org/docs/testing/ct/):
 
 ~~~ bash
-CT_BACKENDS=mnesia rebar ct suites=ejabberd
-CT_BACKENDS=mnesia rebar ct suites=ejabberd groups=mnesia
-CT_BACKENDS=mnesia rebar ct suites=ejabberd groups=generic
+CT_BACKENDS=mnesia rebar  ct suites=ejabberd
+CT_BACKENDS=mnesia rebar  ct suites=ejabberd groups=mnesia
+CT_BACKENDS=mnesia rebar  ct suites=ejabberd groups=generic
+CT_BACKENDS=mnesia rebar3 ct --suite=test/ejabberd_SUITE --group=offline_flex,offline_send_all
+CT_BACKENDS=redis  rebar3 ct --suite=test/ejabberd_SUITE --group=offline_flex,offline_send_all
 ~~~
 
 If you have every backend configured, you can run all the tests with:
