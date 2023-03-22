@@ -181,20 +181,28 @@ provided so the user can fill the challenge in a web browser.
 Example scripts are provided that generate the image using
 [ImageMagick](https://imagemagick.org/)’s Convert program
 and [Ghostscript](https://www.ghostscript.com/) fonts.
-Remember to install those dependencies
-(in Debian, install the `imagemagick` and `gsfonts` packages).
+Remember to install those dependencies:
+in Debian install the `imagemagick` and `gsfonts` packages;
+in container images check their documentation for details.
 
-Note: if you use the [ejabberd Docker Image](https://hub.docker.com/r/ejabberd/ecs),
-CAPTCHA doesn't work because it does not include ImageMagick by default.
-In order to use CAPTCHA in Docker, you must first install ImageMagick in the container.
+The relevant top-level options are:
 
-The configurable options are:
+- **[captcha_cmd](/admin/configuration/toplevel/#captcha-cmd)`: Path | Module`**:
+  Full path to a script that generates the image,
+  or name of a module that supports generating CAPTCHA images
+  ([mod_ecaptcha](https://github.com/processone/ejabberd-contrib/tree/master/mod_ecaptcha),
+  [mod_captcha_rust](https://github.com/processone/ejabberd-contrib/tree/master/mod_captcha_rust)).
+  The default value disables the feature: `undefined`
 
-**`captcha_cmd: Path`**:   Full path to a script that generates the image. The default value
-	disables the feature: `undefined`
+- **[captcha_url](/admin/configuration/toplevel/#captcha-url)`: URL | auto`**:
+  An URL where CAPTCHA requests should be sent,
+  or `auto` to determine the URL automatically.
+  The default value is `auto`.
 
-**`captcha_url: URL`**:  An URL where CAPTCHA requests should be sent.
-        You need to configure request_handlers for ejabberd_http listener as well.
+And finally, configure [request_handlers](/admin/configuration/listen-options/#request-handlers)
+for the [ejabberd_http](/admin/configuration/listen/#ejabberd-http)
+listener with a path handled by `ejabberd_captcha`,
+where the CAPTCHA images will be served.
 
 Example configuration:
 
@@ -202,7 +210,11 @@ Example configuration:
 	hosts: [example.org]
 
 	captcha_cmd: /lib/ejabberd/priv/bin/captcha.sh
-	captcha_url: http://example.org:5280/captcha
+	# captcha_cmd: /opt/ejabberd-23.01/lib/captcha.sh
+	# captcha_cmd: mod_ecaptcha
+
+	captcha_url: auto
+	## captcha_url: http://example.org:5280/captcha
 	## captcha_url: https://example.org:443/captcha
 	## captcha_url: http://example.com/captcha
 
