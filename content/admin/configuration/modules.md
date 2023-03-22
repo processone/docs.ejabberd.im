@@ -85,8 +85,8 @@ mod\_admin\_update\_sql
 This module can be used to update existing SQL database from the default
 to the new schema. Check the section [Default and New
 Schemas](/admin/configuration/database/#default-and-new-schemas) for details.
-Please note that only PostgreSQL is supported. When the module is loaded
-use [update_sql](/developer/ejabberd-api/admin-api/#update-sql) API.
+Please note that only MS SQL, MySQL, and PostgreSQL are supported. When
+the module is loaded use [update_sql](/developer/ejabberd-api/admin-api/#update-sql) API.
 
 The module has no options.
 
@@ -1884,6 +1884,26 @@ A top level *URL* where a client can access logs of a particular
 conference. The conference name is appended to the URL if *dirname*
 option is set to *room\_name* or a conference JID is appended to the
 *URL* otherwise. There is no default value.
+
+mod\_muc\_rtbl
+--------------
+
+This module implement Real-time blocklists for MUC rooms.
+
+It works by observing remote pubsub node conforming with specification
+described in <https://xmppbl.org/>.
+
+This module is available since ejabberd <a href="/archive/23_04/">23.04</a>.
+
+__Available options:__
+
+- **rtbl\_node**: *PubsubNodeName*  
+Name of pubsub node that should be used to track blocked users. The
+default value is *muc\_bans\_sha256*.
+
+- **rtbl\_server**: *Domain*  
+Domain of xmpp server that serves block list. The default value is
+*xmppbl.org*
 
 mod\_multicast
 --------------

@@ -406,8 +406,8 @@ core ejabberd parts support similar options too, see
 *Path | ModuleName*  
 
 Full path to a script that generates [CAPTCHA](/admin/configuration/basic/#captcha)
-images. @VERSION@ is replaced with ejabberd version number in XX.YY
-format. @SEMVER@ is replaced with ejabberd version number in semver
+images. *@VERSION@* is replaced with ejabberd version number in *XX.YY*
+format. *@SEMVER@* is replaced with ejabberd version number in semver
 format when compiled with Elixir’s mix, or XX.YY format otherwise.
 Alternatively, it can be the name of a module that implements ejabberd
 CAPTCHA support. There is no default value: when this option is not set,
@@ -432,13 +432,18 @@ Maximum number of [CAPTCHA](/admin/configuration/basic/#captcha) generated image
 per minute for any given JID. The option is intended to protect the
 server from CAPTCHA DoS. The default value is *infinity*.
 
+<div class="note-down">improved in <a href="/archive/23_04/">23.04</a></div>
+
 ## captcha\_url
 
-*URL*  
+*URL | auto | undefined*  
 
 An URL where [CAPTCHA](/admin/configuration/basic/#captcha) requests should be
 sent. NOTE: you need to configure *request\_handlers* for
-*ejabberd\_http* listener as well. There is no default value.
+*ejabberd\_http* listener as well. If set to *auto*, it builds the URL
+using a *request\_handler* already enabled, with encryption if
+available. If set to *undefined*, it builds the URL using the deprecated
+[captcha_host](/admin/configuration/toplevel/#captcha-host) + /captcha. The default value is *auto*.
 
 ## certfiles
 
@@ -950,7 +955,7 @@ default value is *1 minute*.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/23.01/sql>. There are two
+<https://github.com/processone/ejabberd/tree/23.04/sql>. There are two
 schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*
@@ -1488,8 +1493,9 @@ made.
 *Path*  
 
 Path to the ODBC driver to use to connect to a Microsoft SQL Server
-database. This option is only valid if the [sql_type](/admin/configuration/toplevel/#sql-type) option is set to
-*mssql*. The default value is: *libtdsodbc.so*
+database. This option only applies if the [sql_type](/admin/configuration/toplevel/#sql-type) option is set to
+*mssql* and [sql_server](/admin/configuration/toplevel/#sql-server) is not an ODBC connection string. The default
+value is: *libtdsodbc.so*
 
 ## sql\_password
 
@@ -1542,8 +1548,9 @@ value defined in [queue_type](/admin/configuration/toplevel/#queue-type) or *ram
 
 *Host*  
 
-A hostname or an IP address of the SQL server. The default value is
-*localhost*.
+The hostname or IP address of the SQL server. For [sql_type](/admin/configuration/toplevel/#sql-type) *mssql*
+or *odbc* this can also be an ODBC connection string. The default value
+is *localhost*.
 
 <div class="note-down">improved in <a href="/archive/20_03/">20.03</a></div>
 
@@ -1552,7 +1559,7 @@ A hostname or an IP address of the SQL server. The default value is
 *true | false*  
 
 Whether to use SSL encrypted connections to the SQL server. The option
-is only available for MySQL and PostgreSQL. The default value is
+is only available for MySQL, MS SQL and PostgreSQL. The default value is
 *false*.
 
 ## sql\_ssl\_cafile
@@ -1562,7 +1569,7 @@ is only available for MySQL and PostgreSQL. The default value is
 A path to a file with CA root certificates that will be used to verify
 SQL connections. Implies [sql_ssl](/admin/configuration/toplevel/#sql-ssl) and [sql_ssl_verify](/admin/configuration/toplevel/#sql-ssl-verify) options are
 set to *true*. There is no default which means certificate verification
-is disabled.
+is disabled. This option has no effect for MS SQL.
 
 ## sql\_ssl\_certfile
 
@@ -1571,7 +1578,7 @@ is disabled.
 A path to a certificate file that will be used for SSL connections to
 the SQL server. Implies [sql_ssl](/admin/configuration/toplevel/#sql-ssl) option is set to *true*. There is no
 default which means ejabberd won’t provide a client certificate to the
-SQL server.
+SQL server. This option has no effect for MS SQL.
 
 ## sql\_ssl\_verify
 
@@ -1579,7 +1586,8 @@ SQL server.
 
 Whether to verify SSL connection to the SQL server against CA root
 certificates defined in [sql_ssl_cafile](/admin/configuration/toplevel/#sql-ssl-cafile) option. Implies [sql_ssl](/admin/configuration/toplevel/#sql-ssl)
-option is set to *true*. The default value is *false*.
+option is set to *true*. This option has no effect for MS SQL. The
+default value is *false*.
 
 ## sql\_start\_interval
 

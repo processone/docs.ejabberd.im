@@ -282,6 +282,9 @@ This section enumerates the tags and their associated API.
 * [get_room_affiliations](/developer/ejabberd-api/admin-api/#get-room-affiliations)
 
 
+* [get_room_history](/developer/ejabberd-api/admin-api/#get-room-history)
+
+
 * [get_room_occupants](/developer/ejabberd-api/admin-api/#get-room-occupants)
 
 

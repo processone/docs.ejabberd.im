@@ -760,6 +760,9 @@ __Examples:__
 
 Create a MUC room name@service in host with given options
 
+
+To set affilitions string value must have format 'Type:JID,Type:JID' for example 'owner:bob@example.com,member:peter@example.com'. Subscribers can be define with string 'JID:Nick:Node1:Node2,JID:Nick:Node3' for example 'bob@example.com:Bob:messages:subject,anne@example.com:Anne:messages'.
+
 __Arguments:__
 
 - *name* :: string : Room name
@@ -790,6 +793,10 @@ __Examples:__
         {
           "name": "members_only",
           "value": "true"
+        },
+        {
+          "name": "subscribers",
+          "value": "bob@example.com:Bob:messages"
         }
       ]
     }
@@ -2043,6 +2050,52 @@ __Examples:__
         "domain": "example.com",
         "affiliation": "member",
         "reason": "member"
+      }
+    ]
+~~~
+
+
+<div class='note-down'>added in <a href="/archive/23_04/">23.04</a></div>
+
+## get_room_history
+
+
+Get history of messages stored inside MUC room state
+
+__Arguments:__
+
+- *name* :: string : Room name
+- *service* :: string : MUC service
+
+__Result:__
+
+- *history* :: [{timestamp::string, message::string}]
+
+__Tags:__
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+
+__Module:__
+[mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/get_room_history
+    {
+      "name": "room1",
+      "service": "muc.example.com"
+    }
+    
+    HTTP/1.1 200 OK
+    [
+      {
+        "timestamp": "aaaaa",
+        "message": "bbbbb"
+      },
+      {
+        "timestamp": "ccccc",
+        "message": "ddddd"
       }
     ]
 ~~~
@@ -6295,12 +6348,12 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>improved in <a href="/archive/23_04/">23.04</a></div>
 
 ## update_sql
 
 
-Convert PostgreSQL DB to the new format
+Convert MS SQL, MySQL or PostgreSQL DB to the new format
 
 __Arguments:__
 
