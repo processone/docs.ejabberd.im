@@ -213,8 +213,10 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   GCC
 -   Libexpat 1.95 or higher
 -   Libyaml 0.1.4 or higher
--   [Erlang/OTP](https://www.erlang.org/) 19.3 or higher.
-    We recommend using Erlang OTP 21.2.
+-   [Erlang/OTP](https://www.erlang.org/) 19.3 or higher,
+    preferably 20.0 or higher.
+    We recommend using Erlang OTP 25.3,
+    which is the version used in the binary installers and container images.
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher. Optional.
     For [Zlib Stream Compression](/admin/configuration/listen-options/#zlib)
