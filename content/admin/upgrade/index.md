@@ -95,6 +95,7 @@ of the new ejabberd version if you need to update those tables yourself manually
 
 # Specific version upgrade notes
 
+- [Upgrading from ejabberd 23.01 to 23.04](/admin/upgrade/from_23.01_to_23.04/)
 - [Upgrading from ejabberd 22.10 to 23.01](/admin/upgrade/from_22.10_to_23.01/)
 - [Upgrading from ejabberd 22.05 to 22.10](/admin/upgrade/from_22.05_to_22.10/)
 - [Upgrading from ejabberd 21.12 to 22.05](/admin/upgrade/from_21.12_to_22.05/)
