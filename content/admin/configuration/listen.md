@@ -187,7 +187,7 @@ With the proper request handlers configured, this serves HTTP services like
 [Upload](/admin/configuration/modules/#mod-http-upload),
 [WebAdmin](/admin/guide/managing/#web-admin),
 [WebSocket](/admin/configuration/listen/#ejabberd-http-ws),
-[XMP-RPC](/admin/configuration/listen/#ejabberd-xmlrpc).
+[XML-RPC](/admin/configuration/listen/#ejabberd-xmlrpc).
 
 Options:
 [cafile](/admin/configuration/listen-options/#cafile),
