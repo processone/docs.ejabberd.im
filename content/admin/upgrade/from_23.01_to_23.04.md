@@ -54,7 +54,7 @@ Another solution is to [change the mnesia node name](https://github.com/processo
 
 Those notes allow to apply the improvements in the SQL database schemas from this ejabberd release to your existing SQL database. Please take into account what database you use, and whether it is the [default or the new schema](https://docs.ejabberd.im/admin/configuration/database/#default-and-new-schemas).
 
-### PostgreSQL new
+### PostgreSQL new schema
 
 Fix a long standing bug in new schema on PostgreSQL. The fix for any existing impacted installations is the same:
 ```sql
@@ -62,7 +62,7 @@ ALTER TABLE vcard_search DROP CONSTRAINT vcard_search_pkey;
 ALTER TABLE vcard_search ADD PRIMARY KEY (server_host, lusername);
 ```
 
-### PostgreSQL default/new
+### PostgreSQL default/new schema
 
 To convert columns to allow up to 2 billion rows in these tables. This conversion will require full table rebuilds, and will take a long time if tables already have lots of rows. Optional: this is not necessary if the tables are never likely to grow large.
 
@@ -74,7 +74,7 @@ ALTER TABLE pubsub_state ALTER COLUMN stateid TYPE BIGINT;
 ALTER TABLE spool ALTER COLUMN seq TYPE BIGINT;
 ```
 
-### PostgreSQL/SQLite
+### PostgreSQL/SQLite default schema
 
 ```sql
 DROP INDEX i_rosteru_username;
@@ -89,7 +89,7 @@ DROP INDEX i_mix_subscription_chan_serv;
 DROP INDEX i_mix_pam_us;
 ```
 
-### PostgreSQL/SQLite
+### PostgreSQL/SQLite new schema
 
 ```sql
 DROP INDEX i_rosteru_sh_username;
