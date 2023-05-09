@@ -134,22 +134,22 @@ to install ejabberd on several operating systems using Snap package manager.
 # Docker Image
 
 If you already have Docker installed,
-the [ejabberd/ecs Docker image](https://hub.docker.com/r/ejabberd/ecs)
+the [`"ecs"`](https://hub.docker.com/r/ejabberd/ecs) container image
 allows to get ejabberd stable releases in x64 machines with:
 
 ``` bash
-docker pull ejabberd/ecs
+docker pull docker.io/ejabberd/ecs
 ```
 
-Alternatively, there are
-[ejabberd container images](https://github.com/processone/ejabberd/pkgs/container/ejabberd)
+There is an alternative
+[`"ejabberd"`](https://github.com/processone/ejabberd/pkgs/container/ejabberd) container image
 available in the GitHub Container Registry.
-Those are available for x64 and arm64, both for stable ejabberd releases and the `master` branch.
+This one is available for x64 and arm64, both for stable ejabberd releases and the `master` branch.
 Check the [container documentation](https://github.com/processone/ejabberd/blob/master/CONTAINER.md).
 For example, to download and start the latest stable ejabberd release:
 
 ``` bash
-docker pull ghcr.io/processone/ejabberd:latest
+docker pull ghcr.io/processone/ejabberd
 ```
 
 If you use Microsoft Windows 7, 10, or similar operating systems, check those tutorials:
@@ -158,9 +158,9 @@ If you use Microsoft Windows 7, 10, or similar operating systems, check those tu
 - [Install ejabberd on Windows 7 using Docker Toolbox](https://www.process-one.net/blog/install-ejabberd-on-windows-7-using-docker-toolbox/)
 
 For bug reports and improvement suggestions,
-if you use the `ejabberd/ecs` docker image please go to the
+if you use the `"ecs"` container image please go to the
 [docker-ejabberd GitHub Issues](https://github.com/processone/docker-ejabberd/issues),
-if using the container image from github please go to the
+if using the `"ejabberd"` container image from github please go to the
 [ejabberd GitHub Issues](https://github.com/processone/ejabberd/issues?q=is%3Aopen+is%3Aissue+label%3APackaging%3AContainer)
 
 # Homebrew
