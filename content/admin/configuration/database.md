@@ -188,6 +188,22 @@ in the [Authentication](/admin/configuration/authentication/) section.
 To store the passwords in SCRAM format instead of plaintext,
 see the [SCRAM](/admin/configuration/authentication/#scram) section.
 
+## SQL with ssl connection
+
+It's possible to make ssl encrypted connection to PostgreSQL, MySQL or MsSQL.
+This is triggered by haing `sql_ssl: true` option in config file.
+
+Ejabberd verifies certificate presented by sql server against CA certificate
+list, so if your sql server uses self signed certificate you need special
+configuration for it:
+
+	sql_ssl: true
+	sql_ssl_verify: false
+	sql_ssl_cafile: "/path/to/sql_server_cacert.pem"
+
+This tells ejabberd to ignore problems from not matching any CA certificate
+from default list, but instead try to verify using specified CA certificate.
+
 ## SQL Storage
 
 Several `ejabberd` [modules](/admin/configuration/modules/)
