@@ -955,15 +955,17 @@ Inspect exported functions of
 [jid.erl](https://github.com/processone/xmpp/blob/master/src/jid.erl)
 for more details.
 
-# Miscellaneous
-
-## Authentication
-
-### External
+# External Authentication
 
 You can configure ejabberd to use as authentication method an external script,
 as described in the Administrator section:
 [External Script](/admin/configuration/authentication/#external-script).
+
+Let's see the interface between ejabberd and your script,
+and several example scripts.
+There are also several old [example scripts](https://ejabberd.im/extauth).
+
+## Extauth Interface
 
 The external authentication script follows the
 [Erlang port driver API](https://erlang.org/doc/tutorial/c_portdriver.html).
@@ -1005,9 +1007,89 @@ This is possible because the User and Server fields can't contain the `:` charac
 and Password can have that character, but is always the last field.
 So it is always possible to parse the input characters unambiguously.
 
-A simple example Perl script is included with ejabberd, see
-[check_pass_null.pl](https://github.com/processone/ejabberd/blob/master/examples/extauth/check_pass_null.pl).
-There are also several old [example scripts](https://ejabberd.im/extauth).
+## Perl Example Script
+
+This is a simple example Perl script;
+for example if the file is copied to the path `/etc/ejabberd/check_pass_null.pl`
+then configure ejabberd like this:
+
+```yaml
+auth_method: [external]
+extauth_program: /etc/ejabberd/check_pass_null.pl
+```
+
+Content of `check_pass_null.pl`:
+
+```perl
+#!/usr/bin/perl
+
+use Unix::Syslog qw(:macros :subs);
+
+my $domain = $ARGV[0] || "example.com";
+
+while(1)
+  {
+   # my $rin = '',$rout;
+   # vec($rin,fileno(STDIN),1) = 1;
+   # $ein = $rin;
+   # my $nfound = select($rout=$rin,undef,undef,undef);
+
+    my $buf = "";
+    syslog LOG_INFO,"waiting for packet";
+    my $nread = sysread STDIN,$buf,2;
+    do { syslog LOG_INFO,"port closed"; exit; } unless $nread == 2;
+    my $len = unpack "n",$buf;
+    my $nread = sysread STDIN,$buf,$len;
+
+    my ($op,$user,$host,$password) = split /:/,$buf;
+    #$user =~ s/\./\//og;
+    my $jid = "$user\@$domain";
+    my $result;
+
+    syslog(LOG_INFO,"request (%s)", $op);
+
+  SWITCH:
+      {
+	$op eq 'auth' and do
+	  {
+             $result = 1;
+	  },last SWITCH;
+
+	$op eq 'setpass' and do
+	  {
+             $result = 1;
+	  },last SWITCH;
+
+        $op eq 'isuser' and do
+          {
+             # password is null. Return 1 if the user $user\@$domain exitst.
+             $result = 1;
+          },last SWITCH;
+
+        $op eq 'tryregister' and do
+          {
+             $result = 1;
+          },last SWITCH;
+
+        $op eq 'removeuser' and do
+          {
+             # password is null. Return 1 if the user $user\@$domain exitst.
+             $result = 1;
+          },last SWITCH;
+
+        $op eq 'removeuser3' and do
+          {
+             $result = 1;
+          },last SWITCH;
+      };
+    my $out = pack "nn",2,$result ? 1 : 0;
+    syswrite STDOUT,$out;
+  }
+
+closelog;
+```
+
+## Python Example Script
 
 Example Python script:
 

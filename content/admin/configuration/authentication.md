@@ -67,15 +67,12 @@ Examples:
 
 In the `external` authentication method, ejabberd uses a custom
 script to perform authentication tasks.
-
-The server administrator can write an external authentication script in
+The server administrator can write that external authentication script in
 any programming language.
-The details on the interface between ejabberd and the script are described
-in the [Developers: External](/developer/guide/#external) section.
 
-A simple example Perl script is included with ejabberd, see
-[check_pass_null.pl](https://github.com/processone/ejabberd/blob/master/examples/extauth/check_pass_null.pl).
-There are also several old [example scripts](https://ejabberd.im/extauth).
+Please check some example scripts,
+and the details on the interface between ejabberd and the script in the
+[Developers > Internals > External Authentication](/developer/guide/#external-authentication) section.
 
 Options:
 
