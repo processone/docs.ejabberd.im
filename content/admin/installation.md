@@ -496,9 +496,15 @@ _build/dev/rel/ejabberd/bin/ejabberdctl live
 
 The command to compile ejabberd in BSD systems is `gmake`.
 
+You may want to check
+[pkgsrc.se for ejabberd](https://pkgsrc.se/chat/ejabberd/).
+
+Up to ejabberd 23.04, some old scripts where included in ejabberd source for NetBSD compilation, and you can take a look to those files for reference in ejabberd
+[`23.04/examples/mtr/`](https://github.com/processone/ejabberd/tree/23.04/examples/mtr) path.
+
 ### macOS
 
-If compiling from sources on macOS, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
+If compiling from sources on Mac OS X, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
 The best approach is to use [Homebrew](https://brew.sh/) to install your dependencies, then
 exports your custom path to let configure and make be aware of them.
 
@@ -511,6 +517,8 @@ export CPPFLAGS="-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/l
 make
 ```
 
+Check also the guide for
+[Installing ejabberd development environment on OSX](/developer/install-osx/)
 
 # Next Steps
 
