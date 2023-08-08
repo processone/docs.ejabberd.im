@@ -92,7 +92,7 @@ So if your authentication mechanism supports application-specific passwords,
 caching must be disabled.
 
 This example sets external authentication, specifies the extauth script,
-enables caching for 10 minutes, and starts three instances of the script for
+disables caching, and starts three instances of the script for
 each virtual host defined in ejabberd:
 
 
