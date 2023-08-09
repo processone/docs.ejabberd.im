@@ -7,15 +7,21 @@ menu: Security
 # Firewall Settings
 
 You need to take the following TCP ports in mind when configuring your
-firewall:
+firewall (the ports may change depending on your ejabberd configuration):
 
 | **Port**              | **Description**                                                                             |
 |:----------------------|:--------------------------------------------------------------------------------------------|
-| 5222                  | Standard port for Jabber/XMPP client connections, plain or STARTTLS.                        |
-| 5223                  | Standard port for Jabber client connections using the old SSL method.                       |
-| 5269                  | Standard port for Jabber/XMPP server connections.                                           |
-| 4369                  | EPMD (see [epmd](#epmd)) listens for Erlang node name requests.                             |
-| port range            | Used for connections between Erlang nodes. This range is configurable (see [epmd](#epmd)).  |
+| 5222                  | Jabber/XMPP client connections, plain or STARTTLS                                           |
+| 5223                  | Jabber client connections using the old SSL method                                          |
+| 5269                  | Jabber/XMPP incoming server connections                                                     |
+| 5280/5443             | HTTP/HTTPS for Web Admin and many more ([ejabberd_http](/admin/configuration/listen/#ejabberd-http)) |
+| 1883/8883             | MQTT/MQTTS service ([mod_mqtt](/admin/configuration/listen/#mod-mqtt))                      |
+| 3478/5349             | STUN/TURN service ([ejabberd_stun](/admin/configuration/listen/#ejabberd-stun-1))           |
+| 5060/5061             | SIP service ([ejabberd_sip](/admin/configuration/listen/#ejabberd-sip-1))                   |
+| 7777                  | SOCKS5 file transfer proxy ([mod_proxy65](/admin/configuration/modules/#mod-proxy65))       |
+| 4369                  | EPMD (see [epmd](#epmd)) listens for Erlang node name requests                              |
+| port range            | Used for connections between Erlang nodes. This range is configurable (see [epmd](#epmd))   |
+| 5210                  | Erlang connectivity when `ERL_DIST_PORT` is set, alternative to EPMD                        |
 
 # epmd
 
