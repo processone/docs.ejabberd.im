@@ -126,8 +126,8 @@ ALTER TABLE private_storage DROP INDEX i_private_storage_username;
 ALTER TABLE muc_online_users DROP INDEX i_muc_online_users_us;
 ALTER TABLE route DROP INDEX i_route_domain;
 ALTER TABLE mix_participant DROP INDEX i_mix_participant_chan_serv;
-ALTER TABLE mix_participant DROP INDEX i_mix_subscription_chan_serv_ud;
-ALTER TABLE mix_participant DROP INDEX i_mix_subscription_chan_serv;
+ALTER TABLE mix_subscription DROP INDEX i_mix_subscription_chan_serv_ud;
+ALTER TABLE mix_subscription DROP INDEX i_mix_subscription_chan_serv;
 ALTER TABLE mix_pam DROP INDEX i_mix_pam_u;
 ```
 
@@ -141,8 +141,8 @@ ALTER TABLE private_storage DROP INDEX i_private_storage_sh_username;
 ALTER TABLE muc_online_users DROP INDEX i_muc_online_users_us;
 ALTER TABLE route DROP INDEX i_route_domain;
 ALTER TABLE mix_participant DROP INDEX i_mix_participant_chan_serv;
-ALTER TABLE mix_participant DROP INDEX i_mix_subscription_chan_serv_ud;
-ALTER TABLE mix_participant DROP INDEX i_mix_subscription_chan_serv;
+ALTER TABLE mix_subscription DROP INDEX i_mix_subscription_chan_serv_ud;
+ALTER TABLE mix_subscription DROP INDEX i_mix_subscription_chan_serv;
 ALTER TABLE mix_pam DROP INDEX i_mix_pam_us;
 ```
 Add index that might be missing:
