@@ -14,7 +14,7 @@ There are several VSCode alternatives for ejabberd development:
   local development with no dependencies
 * [VSCodium](#vscodium) desktop app –
   local development installing dependencies
-* [Coder's code-server](#coders-code-server) container image –
+* [Coder's code-server](#coder-s-code-server) container image –
   local or remote development
 * [GitHub Codespaces](#github-codespaces) service –
   quick and short remote development
