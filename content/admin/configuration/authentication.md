@@ -31,9 +31,31 @@ When the option is omitted, ejabberd will rely upon the default database which i
 
 Account creation is only supported by `internal`, `external` and `sql` auth methods.
 
-Other toplevel options that are relevant to the authentication configuration:
+Other top-level options that are relevant to the authentication configuration:
 [disable_sasl_mechanisms](/admin/configuration/toplevel/#disable-sasl-mechanisms),
 [fqdn](/admin/configuration/toplevel/#fqdn).
+
+Authentication caching is enabled by default, and can be
+disabled in a specific vhost with the option
+[auth_use_cache](/admin/configuration/toplevel/#auth-use-cache).
+The global authentication cache can be configured for all the authentication
+methods with the global top-level options:
+[auth_cache_missed](/admin/configuration/toplevel/#auth-cache-missed),
+[auth_cache_size](/admin/configuration/toplevel/#auth-cache-size),
+[auth_cache_life_time](/admin/configuration/toplevel/#auth-cache-life-time).
+For example:
+
+``` yaml
+auth_cache_size: 1500
+auth_cache_life_time: 10 minutes
+
+host_config:
+  example.org:
+    auth_method: [internal]
+  example.net:
+    auth_method: [ldap]
+    auth_use_cache: false
+```
 
 # Internal
 
@@ -80,16 +102,11 @@ Options:
 - [extauth_pool_size](/admin/configuration/toplevel/#extauth-pool-size)
 - [extauth_program](/admin/configuration/toplevel/#extauth-program)
 
-Authentication caching is enabled by default, and can be configured with
-the options: [auth_use_cache](/admin/configuration/toplevel/#auth-use-cache),
-[auth_cache_missed](/admin/configuration/toplevel/#auth-cache-missed),
-[auth_cache_size](/admin/configuration/toplevel/#auth-cache-size),
-[auth_cache_life_time](/admin/configuration/toplevel/#auth-cache-life-time).
-
 Please note that caching interferes with the ability
 to maintain multiple passwords per account.
 So if your authentication mechanism supports application-specific passwords,
-caching must be disabled.
+caching must be disabled in the host that uses this authentication method with the
+option [auth_use_cache](/admin/configuration/toplevel/#auth-use-cache).
 
 This example sets external authentication, specifies the extauth script,
 disables caching, and starts three instances of the script for
