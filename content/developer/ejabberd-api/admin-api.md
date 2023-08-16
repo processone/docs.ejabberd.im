@@ -82,7 +82,7 @@ __Examples:__
 Add an item to a user's roster (supports ODBC)
 
 
-Group can be several groups separated by ; for example: "g1;g2;g3"
+Group can be several groups separated by `;` for example: `g1;g2;g3`
 
 __Arguments:__
 
@@ -396,7 +396,7 @@ __Examples:__
 Check if the password hash is correct
 
 
-Allows hash methods from crypto application
+Allows hash methods from the Erlang/OTP [crypto](https://www.erlang.org/doc/man/crypto) application.
 
 __Arguments:__
 
@@ -761,7 +761,7 @@ __Examples:__
 Create a MUC room name@service in host with given options
 
 
-To set affilitions string value must have format 'Type:JID,Type:JID' for example 'owner:bob@example.com,member:peter@example.com'. Subscribers can be define with string 'JID:Nick:Node1:Node2,JID:Nick:Node3' for example 'bob@example.com:Bob:messages:subject,anne@example.com:Anne:messages'.
+The syntax of `affiliations` is: `Type:JID,Type:JID`. The syntax of `subscribers` is: `JID:Nick:Node:Node2:Node3,JID:Nick:Node`.
 
 __Arguments:__
 
@@ -795,8 +795,12 @@ __Examples:__
           "value": "true"
         },
         {
+          "name": "affiliations",
+          "value": "owner:bob@example.com,member:peter@example.com"
+        },
+        {
           "name": "subscribers",
-          "value": "bob@example.com:Bob:messages"
+          "value": "bob@example.com:Bob:messages:subject,anne@example.com:Anne:messages"
         }
       ]
     }
@@ -949,11 +953,11 @@ __Examples:__
 Delete MAM messages older than DAYS
 
 
-Valid message TYPEs: "chat", "groupchat", "all".
+Valid message TYPEs: `chat`, `groupchat`, `all`.
 
 __Arguments:__
 
-- *type* :: string : Type of messages to delete (chat, groupchat, all)
+- *type* :: string : Type of messages to delete (`chat`, `groupchat`, `all`)
 - *days* :: integer : Days to keep messages
 
 __Result:__
@@ -989,12 +993,12 @@ __Examples:__
 Delete MAM messages older than DAYS
 
 
-Valid message TYPEs: "chat", "groupchat", "all".
+Valid message TYPEs: `chat`, `groupchat`, `all`.
 
 __Arguments:__
 
 - *host* :: string : Name of host where messages should be deleted
-- *type* :: string : Type of messages to delete (chat, groupchat, all)
+- *type* :: string : Type of messages to delete (`chat`, `groupchat`, `all`)
 - *days* :: integer : Days to keep messages
 - *batch_size* :: integer : Number of messages to delete per batch
 - *rate* :: integer : Desired rate of messages to delete per minute
@@ -1243,10 +1247,12 @@ Delete users that didn't log in last days, or that never logged
 
 
 To protect admin accounts, configure this for example:
+```
 access_rules:
   protect_old_users:
     - allow: admin
     - deny: all
+```
 
 
 __Arguments:__
@@ -1286,10 +1292,12 @@ Delete users that didn't log in last days in vhost, or that never logged
 
 
 To protect admin accounts, configure this for example:
+```
 access_rules:
   delete_old_users:
     - deny: admin
     - allow: all
+```
 
 
 __Arguments:__
@@ -1544,7 +1552,7 @@ __Examples:__
 Export virtual host information from Mnesia tables to SQL file
 
 
-Configure the modules to use SQL, then call this command. After correctly exported the database of a vhost, you may want to delete from mnesia with the [delete_mnesia](/developer/ejabberd-api/admin-api/#delete-mnesia) command.
+Configure the modules to use SQL, then call this command. After correctly exported the database of a vhost, you may want to delete from mnesia with the [`delete_mnesia`](/developer/ejabberd-api/admin-api/#delete-mnesia) command.
 
 __Arguments:__
 
@@ -1681,7 +1689,7 @@ __Arguments:__
 
 - *file* :: string : Path to file where generated documentation should be stored
 - *regexp* :: string : Regexp matching names of commands or modules that will be included inside generated document
-- *examples* :: string : Comma separated list of languages (chosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
+- *examples* :: string : Comma separated list of languages (chosen from `java`, `perl`, `xmlrpc`, `json`) that will have example invocation include in markdown document
 
 __Result:__
 
@@ -1717,7 +1725,7 @@ __Arguments:__
 
 - *file* :: string : Path to file where generated documentation should be stored
 - *regexp* :: string : Regexp matching names of commands or modules that will be included inside generated document
-- *examples* :: string : Comma separated list of languages (chosen from java, perl, xmlrpc, json)that will have example invocation include in markdown document
+- *examples* :: string : Comma separated list of languages (chosen from `java`, `perl`, `xmlrpc`, `json`) that will have example invocation include in markdown document
 
 __Result:__
 
@@ -1816,7 +1824,7 @@ __Examples:__
 Get last activity information
 
 
-Timestamp is UTC and XEP-0082 format, for example: 2017-02-23T22:25:28.063062Z     ONLINE
+Timestamp is UTC and XEP-0082 format, for example: `2017-02-23T22:25:28.063062Z     ONLINE`
 
 __Arguments:__
 
@@ -1927,16 +1935,18 @@ __Examples:__
 Retrieve the resource with highest priority, and its presence (show and status message) for a given user.
 
 
-The 'jid' value contains the user jid with resource.
-The 'show' value contains the user presence flag. It can take limited values:
- - available
- - chat (Free for chat)
- - away
- - dnd (Do not disturb)
- - xa (Not available, extended away)
- - unavailable (Not connected)
+The `jid` value contains the user JID with resource.
 
-'status' is a free text defined by the user client.
+The `show` value contains the user presence flag. It can take limited values:
+
+ - `available`
+ - `chat` (Free for chat)
+ - `away`
+ - `dnd` (Do not disturb)
+ - `xa` (Not available, extended away)
+ - `unavailable` (Not connected)
+
+`status` is a free text defined by the user client.
 
 __Arguments:__
 
@@ -2675,7 +2685,7 @@ __Examples:__
 Import data from Prosody
 
 
-Note: this requires ejabberd compiled with --enable-lua and include the optional 'luerl' library.
+Note: this requires ejabberd to be [compiled with `--enable-lua`](http://localhost:8098/admin/installation/#configure) (which installs the `luerl` library).
 
 __Arguments:__
 
@@ -2741,8 +2751,7 @@ __Examples:__
 Install Mnesia database from a binary backup file
 
 
-The binary backup file is installed as fallback: it will be used to restore the database at the next ejabberd start. This means that, after running this command, you have to restart ejabberd. This command requires less memory than
-			'restore'.
+The binary backup file is installed as fallback: it will be used to restore the database at the next ejabberd start. This means that, after running this command, you have to restart ejabberd. This command requires less memory than [`restore`](/developer/ejabberd-api/admin-api/#restore).
 
 __Arguments:__
 
@@ -2998,7 +3007,7 @@ __Examples:__
 Restore Mnesia database from a text dump file
 
 
-Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use 'backup' and 'install_fallback'.
+Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use [`install_fallback`](/developer/ejabberd-api/admin-api/#backup[backup] and http://./#install-fallback).
 
 __Arguments:__
 
@@ -4569,7 +4578,7 @@ __Examples:__
 Restore the Mnesia database from a binary backup file
 
 
-This restores immediately from a binary backup file the internal Mnesia database. This will consume a lot of memory if you have a large database, you may prefer 'install_fallback'.
+This restores immediately from a binary backup file the internal Mnesia database. This will consume a lot of memory if you have a large database, you may prefer [`install_fallback`](/developer/ejabberd-api/admin-api/#install-fallback).
 
 __Arguments:__
 
@@ -4636,11 +4645,11 @@ __Examples:__
 Destroy the rooms that have no messages in archive
 
 
-The MUC service argument can be 'global' to get all hosts.
+The MUC service argument can be `global` to get all hosts.
 
 __Arguments:__
 
-- *service* :: string : MUC service, or 'global' for all
+- *service* :: string : MUC service, or `global` for all
 
 __Result:__
 
@@ -4677,11 +4686,11 @@ __Examples:__
 List the rooms that have no messages in archive
 
 
-The MUC service argument can be 'global' to get all hosts.
+The MUC service argument can be `global` to get all hosts.
 
 __Arguments:__
 
-- *service* :: string : MUC service, or 'global' for all
+- *service* :: string : MUC service, or `global` for all
 
 __Result:__
 
@@ -4718,11 +4727,11 @@ __Examples:__
 Destroy the rooms that are unused for many days in the service
 
 
-The room recent history is used, so it's recommended  to wait a few days after service start before running this. The MUC service argument can be 'global' to get all hosts.
+The room recent history is used, so it's recommended  to wait a few days after service start before running this. The MUC service argument can be `global` to get all hosts.
 
 __Arguments:__
 
-- *service* :: string : MUC service, or 'global' for all
+- *service* :: string : MUC service, or `global` for all
 - *days* :: integer : Number of days
 
 __Result:__
@@ -4761,11 +4770,11 @@ __Examples:__
 List the rooms that are unused for many days in the service
 
 
-The room recent history is used, so it's recommended  to wait a few days after service start before running this. The MUC service argument can be 'global' to get all hosts.
+The room recent history is used, so it's recommended  to wait a few days after service start before running this. The MUC service argument can be `global` to get all hosts.
 
 __Arguments:__
 
-- *service* :: string : MUC service, or 'global' for all
+- *service* :: string : MUC service, or `global` for all
 - *days* :: integer : Number of days
 
 __Result:__
@@ -4837,15 +4846,15 @@ Send a direct invitation to several destinations
 
 Since ejabberd <a href="/archive/20_12/">20.12</a>, this command is asynchronous: the API call may return before the server has send all the invitations.
 
-Password and Message can also be: none. Users JIDs are separated with : 
+Password and Message can also be: `none`. Users JIDs are separated with `:`.
 
 __Arguments:__
 
 - *name* :: string : Room name
 - *service* :: string : MUC service
-- *password* :: string : Password, or none
-- *reason* :: string : Reason text, or none
-- *users* :: string : Users JIDs separated with : characters
+- *password* :: string : Password, or `none`
+- *reason* :: string : Reason text, or `none`
+- *users* :: string : Users JIDs separated with `:` characters
 
 __Result:__
 
@@ -4883,11 +4892,11 @@ __Examples:__
 Send a message to a local or remote bare of full JID
 
 
-When sending a groupchat message to a MUC room, FROM must be the full JID of a room occupant, or the bare JID of a MUC service admin, or the bare JID of a MUC/Sub subscribed user.
+When sending a groupchat message to a MUC room, `from` must be the full JID of a room occupant, or the bare JID of a MUC service admin, or the bare JID of a MUC/Sub subscribed user.
 
 __Arguments:__
 
-- *type* :: string : Message type: normal, chat, headline, groupchat
+- *type* :: string : Message type: `normal`, `chat`, `headline`, `groupchat`
 - *from* :: string : Sender JID
 - *to* :: string : Receiver JID
 - *subject* :: string : Subject, or empty string
@@ -4968,7 +4977,7 @@ __Examples:__
 Send a stanza from an existing C2S session
 
 
-USER@HOST/RESOURCE must be an existing C2S session. As an alternative, use send_stanza instead.
+`user`@`host`/`resource` must be an existing C2S session. As an alternative, use [`send_stanza`](/developer/ejabberd-api/admin-api/#send-stanza) instead.
 
 __Arguments:__
 
@@ -5012,7 +5021,7 @@ __Examples:__
 Set last activity information
 
 
-Timestamp is the seconds since 1970-01-01 00:00:00 UTC, for example: date +%s
+Timestamp is the seconds since `1970-01-01 00:00:00 UTC`. For example value see `date +%s`
 
 __Arguments:__
 
@@ -5088,7 +5097,7 @@ __Examples:__
 Set master node of the clustered Mnesia tables
 
 
-If you provide as nodename "self", this node will be set as its own master.
+If you provide as nodename `self`, this node will be set as its own master.
 
 __Arguments:__
 
@@ -5166,8 +5175,8 @@ __Arguments:__
 - *user* :: string : User name
 - *host* :: string : Server name
 - *resource* :: string : Resource
-- *type* :: string : Type: available, error, probe...
-- *show* :: string : Show: away, chat, dnd, xa.
+- *type* :: string : Type: `available`, `error`, `probe`...
+- *show* :: string : Show: `away`, `chat`, `dnd`, `xa`.
 - *status* :: string : Status text
 - *priority* :: string : Priority, provide this value as an integer
 
@@ -5428,10 +5437,10 @@ Create a Shared Roster Group
 
 
 If you want to specify several group identifiers in the Display argument,
-put  \ " around the argument and
-separate the identifiers with \ \ n
+put `\ "` around the argument and
+separate the identifiers with `\ \ n`
 For example:
-  ejabberdctl srg_create group3 myserver.com name desc \"group1\\ngroup2\"
+  `ejabberdctl srg_create group3 myserver.com name desc \"group1\\ngroup2\"`
 
 __Arguments:__
 
@@ -6015,7 +6024,7 @@ Inform users and rooms, wait, and stop the server
 
 
 Provide the delay in seconds, and the announcement quoted, for example: 
-ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"
+`ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"`
 
 __Arguments:__
 
@@ -6087,7 +6096,7 @@ __Arguments:__
 - *user* :: string : User JID
 - *nick* :: string : a user's nick
 - *room* :: string : the room to subscribe
-- *nodes* :: string : nodes separated by commas: ,
+- *nodes* :: string : nodes separated by commas: `,`
 
 __Result:__
 
@@ -6127,13 +6136,13 @@ __Examples:__
 Subscribe several users to a MUC conference
 
 
-This command accept up to 50 users at once (this is configurable with `subscribe_room_many_max_users` option)
+This command accepts up to 50 users at once (this is configurable with the [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin) option `subscribe_room_many_max_users`)
 
 __Arguments:__
 
 - *users* :: [{jid::string, nick::string}] : Users JIDs and nicks
 - *room* :: string : the room to subscribe
-- *nodes* :: string : nodes separated by commas: ,
+- *nodes* :: string : nodes separated by commas: `,`
 
 __Result:__
 
