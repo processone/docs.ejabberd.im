@@ -225,28 +225,28 @@ Example configurations:
   only the virtual host `example.com`. Before you get access to the
   Web Admin you need to enter as username, the JID and password from a
   registered user that is allowed to configure `ejabberd`. In this
-  example you can enter as username ‘`admin@example.net`’ to
+  example you can enter as username `admin@example.net` to
   administer all virtual hosts (first URL). If you log in with
-  ‘`admin@example.com`’ on
+  `admin@example.com` on
   `http://example.org:5280/admin/server/example.com/` you can only
   administer the virtual host `example.com`. The account
-  ‘`reviewer@example.com`’ can browse that vhost in read-only mode.
+  `reviewer@example.com` can browse that vhost in read-only mode.
 
   ``` yaml
   acl:
     admin:
       user:
-        - "admin": "example.net"
+        - admin: example.net
    
   host_config:
-    "example.com":
+    example.com:
       acl:
         admin:
           user:
-            - "admin": "example.com"
+            - admin: example.com
         viewers:
           user:
-            - "reviewer": "example.com"
+            - reviewer: example.com
   
   access:
     configure:
@@ -255,7 +255,7 @@ Example configurations:
       viewers: allow
   
   hosts:
-    - "example.org"
+    - example.org
   
   listen:
     ...
@@ -274,7 +274,7 @@ Example configurations:
 
   ``` yaml
   hosts:
-    - "example.org"
+    - example.org
   listen:
     ...
     - 
