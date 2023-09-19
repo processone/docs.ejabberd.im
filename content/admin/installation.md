@@ -133,9 +133,10 @@ to install ejabberd on several operating systems using Snap package manager.
 
 # Docker Image
 
-If you already have Docker installed,
-the [`"ecs"`](https://hub.docker.com/r/ejabberd/ecs) container image
-allows to get ejabberd stable releases in x64 machines with:
+The [`"ecs"`](https://hub.docker.com/r/ejabberd/ecs) container image
+allows to get ejabberd stable releases in x64 machines.
+Check the [`"ecs"` container documentation](https://github.com/processone/docker-ejabberd/tree/master/ecs#readme).
+Download ejabberd with:
 
 ``` bash
 docker pull docker.io/ejabberd/ecs
@@ -145,8 +146,8 @@ There is an alternative
 [`"ejabberd"`](https://github.com/processone/ejabberd/pkgs/container/ejabberd) container image
 available in the GitHub Container Registry.
 This one is available for x64 and arm64, both for stable ejabberd releases and the `master` branch.
-Check the [container documentation](https://github.com/processone/ejabberd/blob/master/CONTAINER.md).
-For example, to download and start the latest stable ejabberd release:
+Check the [`"ejabberd"` container documentation](https://github.com/processone/ejabberd/blob/master/CONTAINER.md).
+For example, download the latest stable ejabberd release:
 
 ``` bash
 docker pull ghcr.io/processone/ejabberd
