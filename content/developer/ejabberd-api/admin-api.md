@@ -1900,7 +1900,7 @@ Get the number of unread offline messages
 __Arguments:__
 
 - *user* :: string
-- *server* :: string
+- *host* :: string
 
 __Result:__
 
@@ -1919,7 +1919,7 @@ __Examples:__
     POST /api/get_offline_count
     {
       "user": "aaaaa",
-      "server": "bbbbb"
+      "host": "bbbbb"
     }
     
     HTTP/1.1 200 OK
@@ -2243,7 +2243,7 @@ Get roster of a local user
 __Arguments:__
 
 - *user* :: string
-- *server* :: string
+- *host* :: string
 
 __Result:__
 
@@ -2262,7 +2262,7 @@ __Examples:__
     POST /api/get_roster
     {
       "user": "aaaaa",
-      "server": "bbbbb"
+      "host": "bbbbb"
     }
     
     HTTP/1.1 200 OK

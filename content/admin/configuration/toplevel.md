@@ -166,8 +166,9 @@ certificate requests and renewals are performed to some CA server (aka
 
 *true | false*  
 
-Whether to allow installation of third-party modules or not. The default
-value is *true*.
+Whether to allow installation of third-party modules or not. See
+[ejabberd-contrib](https://docs.ejabberd.im/developer/extending-ejabberd/modules/#ejabberd-contrib)
+documentation section. The default value is *true*.
 
 ## allow\_multiple\_connections
 
