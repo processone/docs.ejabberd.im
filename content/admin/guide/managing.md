@@ -203,6 +203,8 @@ The exact address depends on your configuration;
 in this example the address is: `https://example.net:5443/admin/`
 
 4. In the login window provide the **full Jabber ID: `admin1@example.org`** and password.
+   If the web address hostname is the same that the account JID,
+   you can provide simply the username instead of the full JID: `admin1`.
 
 5. Finally you will see a page similar to:
 

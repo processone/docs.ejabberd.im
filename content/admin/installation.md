@@ -635,7 +635,11 @@ you may want to register the first XMPP account and grant it administrative righ
     [http://localhost:5280/admin/](http://localhost:5280/admin/),
     [https://localhost:5443/admin/](https://localhost:5443/admin/),
     [https://localhost:5280/admin/](https://localhost:5280/admin/) ...
-    Make sure to enter the **full JID**, in this example `admin1@example.org`.
+
+5.  Your web browser shows a login window. Introduce the **full JID**,
+    in this example `admin1@example.org`, and the account password.
+    If the web address hostname is the same that the account JID,
+    you can provide simply the username instead of the full JID: `admin1`.
     See [Web Admin](/admin/guide/managing/#web-admin) for details.
 
 
