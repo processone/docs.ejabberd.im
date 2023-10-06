@@ -458,61 +458,85 @@ Handles XML-RPC requests to execute
 It is configured as a request handler in
 [ejabberd_http](/admin/configuration/listen/#ejabberd-http).
 
+This is the minimum configuration required to enable the feature:
+
+```yaml
+listen:
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      /xmlrpc: ejabberd_xmlrpc
+
+api_permissions:
+  "public commands":
+    who:
+      ip: 127.0.0.1/8
+    what:
+      - connected_users_number
+```
+
+Example Python3 script:
+
+```python
+import xmlrpc.client
+server = xmlrpc.client.ServerProxy("http://127.0.0.1:5280/xmlrpc/");
+print(server.connected_users_number())
+```
+
 By default there is no restriction to who can execute what commands,
 so it is strongly recommended that you configure restrictions using
 [API Permissions](/developer/ejabberd-api/permissions/).
 
-This is the minimum configuration required to enable the feature:
+This example configuration adds some restrictions (only requests from localhost are accepted, the XML-RPC query must include authentication credentials of a specific account registered in ejabberd, and only two commands are accepted):
 
-    listen:
-      -
-        port: 4560
-        module: ejabberd_http
-        request_handlers:
-          /: ejabberd_xmlrpc
+```yaml
+listen:
+  -
+    port: 5280
+    ip: "::"
+    module: ejabberd_http
+    request_handlers:
+      /xmlrpc: ejabberd_xmlrpc
 
-Example Python script:
+api_permissions:
+  "some XMLRPC commands":
+    from: ejabberd_xmlrpc
+    who:
+      - ip: 127.0.0.1
+      - user: user1@localhost
+    what:
+      - registered_users
+      - connected_users_number
+```
 
-    import xmlrpclib
-    server = xmlrpclib.Server('http://127.0.0.1:4560/');
-    params = {}
-    params["host"] = "localhost"
-    print server.registered_users(params)
+Example Python3 script for that restricted configuration:
 
-This example configuration adds some restrictions:
+```python
+import xmlrpc.client
+server = xmlrpc.client.ServerProxy("http://127.0.0.1:5280/xmlrpc/");
 
-    listen:
-      -
-        port: 5281
-        ip: "::"
-        module: ejabberd_http
-        request_handlers:
-          /api: mod_http_api
-          /xmlrpc: ejabberd_xmlrpc
+params = {}
+params['host'] = 'localhost'
 
-    api_permissions:
-      "some XMLRPC commands":
-        from: ejabberd_xmlrpc
-        who:
-          - ip: 127.0.0.1
-          - user: user1@localhost
-        what:
-          - registered_users
-          - connected_users_number
+auth = {'user': 'user1',
+        'server': 'localhost',
+        'password': 'mypass11',
+        'admin': True}
 
-With that configuration, it is possible to execute two specific commands using
-`ejabberd_xmlrpc`, with two access restrictions. Example Python script:
+def calling(command, data):
+    fn = getattr(server, command)
+    return fn(auth, data)
 
-    import xmlrpclib
-    server = xmlrpclib.Server('http://127.0.0.1:5281/xmlrpc')
-    LOGIN = {'user':'user1',
-             'server':'localhost',
-             'password':'mypass11',
-             'admin':True}
-    def calling(command, data):
-        fn = getattr(server, command)
-        return fn(LOGIN, data)
-    print calling('registered_users', {'host':'localhost'})
+print(calling('registered_users', params))
+```
+
+Please notice, when using the old Python2, replace the two first lines with:
+
+```python
+import xmlrpclib
+server = xmlrpclib.Server("http://127.0.0.1:5280/xmlrpc/");
+```
 
 It's possible to use OAuth for authentication instead of plain password, see
 [OAuth Support](/developer/ejabberd-api/oauth/).
@@ -522,7 +546,8 @@ listener, see the old document for reference and example configuration:
 [Listening Module](/admin/configuration/old/#listening-module).
 
 Just for reference, there's also the old
-[`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc).
+[`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc)
+with example clients in other languages.
 
 # Examples
 
