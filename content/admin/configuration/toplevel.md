@@ -233,6 +233,18 @@ not set, the value from [cache_missed](/admin/configuration/toplevel/#cache-miss
 Same as [cache_size](/admin/configuration/toplevel/#cache-size), but applied to authentication cache only. If not
 set, the value from [cache_size](/admin/configuration/toplevel/#cache-size) will be used.
 
+<div class="note-down">added in <a href="/archive/23_10/">23.10</a></div>
+
+## auth\_external\_user\_exists\_check
+
+*true | false*  
+
+Supplement check for user existence based on *mod\_last* data, for
+authentication methods that don’t have a way to reliable tell if user
+exists (like is the case for *jwt* and certificate based
+authentication). This helps with processing offline message for those
+users. The default value is *true*.
+
 ## auth\_method
 
 *\[mnesia | sql | anonymous | external | jwt | ldap | pam, ...\]*  
@@ -680,6 +692,16 @@ following:
     options in the included file *Filename*. The options that match this
     criteria are not accepted. The default value is an empty list.
 
+<div class="note-down">added in <a href="/archive/23_10/">23.10</a></div>
+
+## install\_contrib\_modules
+
+*\[Module, ...\]*  
+
+Modules to install from
+[ejabberd-contrib](https://docs.ejabberd.im/developer/extending-ejabberd/modules/#ejabberd-contrib)
+at start time. The default value is an empty list of modules: *\[\]*.
+
 ## jwt\_auth\_only\_rule
 
 *AccessName*  
@@ -956,7 +978,7 @@ default value is *1 minute*.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/23.04/sql>. There are two
+<https://github.com/processone/ejabberd/tree/23.10/sql>. There are two
 schemas available. The default legacy schema allows to store one XMPP
 domain into one ejabberd database. The *new* schema allows to handle
 several XMPP domains in a single ejabberd database. Using this *new*

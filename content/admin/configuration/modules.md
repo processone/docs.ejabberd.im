@@ -1394,6 +1394,12 @@ else can use that nickname in any room in the MUC service. To register a
 nickname, open the Service Discovery in your XMPP client and register in
 the MUC service.
 
+It is also possible to register a nickname in a room, so nobody else can
+use that nickname in that room. If a nick is registered in the MUC
+service, that nick cannot be registered in any room, and vice versa: a
+nick that is registered in a room cannot be registered at the MUC
+service.
+
 This module supports clustering and load balancing. One module can be
 started per cluster node. Rooms are distributed at creation time on all
 available MUC module instances. The multi-user chat module is clustered
@@ -1430,11 +1436,13 @@ To configure who is allowed to modify the *persistent* room option. The
 default value is *all*, which means everyone is allowed to modify that
 option.
 
+<div class="note-left">improved in <a href="/archive/23_10/">23.10</a></div>
+
 - **access\_register**: *AccessName*  
 This option specifies who is allowed to register nickname within the
-Multi-User Chat service. The default is *all* for backward
+Multi-User Chat service and rooms. The default is *all* for backward
 compatibility, which means that any user is allowed to register any free
-nick.
+nick in the MUC service and in the rooms.
 
 <div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
 
@@ -1456,10 +1464,6 @@ using an XMPP client with MUC capability. The *Options* are:
  - **allow\_change\_subj**: *true | false*  
    Allow occupants to change
     the subject. The default value is *true*.
-
- - **allow\_private\_messages**: *true | false*  
-   Occupants can send
-    private messages to other occupants. The default value is *true*.
 
  - **allow\_private\_messages\_from\_visitors**: *anyone | moderators |
     nobody* Visitors can send private messages to other occupants. The
@@ -1493,6 +1497,10 @@ using an XMPP client with MUC capability. The *Options* are:
  - **allow\_voice\_requests**: *true | false*  
    Allow visitors in a
     moderated room to request voice. The default value is *true*.
+
+ - **allowpm**: *anyone | participants | moderators | none*  
+   Who can
+    send private messages. The default value is *anyone*.
 
  - **anonymous**: *true | false*  
    The room is anonymous: occupants don’t
@@ -1885,6 +1893,19 @@ conference. The conference name is appended to the URL if *dirname*
 option is set to *room\_name* or a conference JID is appended to the
 *URL* otherwise. There is no default value.
 
+mod\_muc\_occupantid
+--------------------
+
+This module implements [XEP-0421: Anonymous unique occupant identifiers
+for MUCs](https://xmpp.org/extensions/xep-0421.html).
+
+When the module is enabled, the feature is enabled in all semi-anonymous
+rooms.
+
+This module is available since ejabberd <a href="/archive/23_10/">23.10</a>.
+
+The module has no options.
+
 mod\_muc\_rtbl
 --------------
 
@@ -2210,6 +2231,11 @@ clients of the same user. The data stored might be anything, as long as
 it is a valid XML. One typical usage is storing a bookmark of all user’s
 conferences ([XEP-0048:
 Bookmarks](https://xmpp.org/extensions/xep-0048.html)).
+
+It also implements the bookmark conversion described in [XEP-0402: PEP
+Native Bookmarks](https://xmpp.org/extensions/xep-0402.html), see the
+command
+[bookmarks\_to\_pep](https://docs.ejabberd.im/developer/ejabberd-api/admin-api/#bookmarks-to-pep).
 
 __Available options:__
 
@@ -2681,6 +2707,15 @@ actual message contents. The default value is "New message".
 If this option is set to *true*, the sender’s JID is included with push
 notifications generated for incoming messages with a body. The default
 value is *false*.
+
+<div class="note-left">added in <a href="/archive/23_10/">23.10</a></div>
+
+- **notify\_on**: *messages | all*  
+If this option is set to *messages*, notifications are generated only
+for actual chat messages with a body text (or some encrypted payload).
+If it’s set to *all*, any kind of XMPP stanza will trigger a
+notification. If unsure, it’s strongly recommended to stick to *all*,
+which is the default value.
 
 - **use\_cache**: *true | false*  
 Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.

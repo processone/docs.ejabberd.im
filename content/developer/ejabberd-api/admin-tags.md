@@ -441,6 +441,9 @@ This section enumerates the tags and their associated API.
 * [gc](/developer/ejabberd-api/admin-api/#gc)
 
 
+* [halt](/developer/ejabberd-api/admin-api/#halt)
+
+
 * [registered_vhosts](/developer/ejabberd-api/admin-api/#registered-vhosts)
 
 

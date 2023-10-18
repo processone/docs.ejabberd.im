@@ -1552,7 +1552,7 @@ __Examples:__
 Export virtual host information from Mnesia tables to SQL file
 
 
-Configure the modules to use SQL, then call this command. After correctly exported the database of a vhost, you may want to delete from mnesia with the [`delete_mnesia`](/developer/ejabberd-api/admin-api/#delete-mnesia) command.
+Configure the modules to use SQL, then call this command. After correctly exported the database of a vhost, you may want to delete from mnesia with the [delete_mnesia](/developer/ejabberd-api/admin-api/#delete-mnesia) command.
 
 __Arguments:__
 
@@ -2233,12 +2233,15 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>improved in <a href="/archive/23_10/">23.10</a></div>
 
 ## get_roster
 
 
-Get roster of a local user
+Get list of contacts in a local user roster
+
+
+Subscription can be: "none", "from", "to", "both". Pending can be: "in", "out", "none".
 
 __Arguments:__
 
@@ -2247,7 +2250,7 @@ __Arguments:__
 
 __Result:__
 
-- *contacts* :: [{jid::string, nick::string, subscription::string, ask::string, group::string}]
+- *contacts* :: [{jid::string, nick::string, subscription::string, pending::string, groups::[group::string]}]
 
 __Tags:__
 [roster](/developer/ejabberd-api/admin-tags/#roster) 
@@ -2271,15 +2274,21 @@ __Examples:__
         "jid": "aaaaa",
         "nick": "bbbbb",
         "subscription": "ccccc",
-        "ask": "ddddd",
-        "group": "eeeee"
+        "pending": "ddddd",
+        "groups": [
+          "eeeee",
+          "fffff"
+        ]
       },
       {
-        "jid": "fffff",
-        "nick": "ggggg",
-        "subscription": "hhhhh",
-        "ask": "iiiii",
-        "group": "jjjjj"
+        "jid": "ggggg",
+        "nick": "hhhhh",
+        "subscription": "iiiii",
+        "pending": "jjjjj",
+        "groups": [
+          "kkkkk",
+          "lllll"
+        ]
       }
     ]
 ~~~
@@ -2581,6 +2590,37 @@ __Examples:__
 ~~~
 
 
+<div class='note-down'>added in <a href="/archive/23_10/">23.10</a></div>
+
+## halt
+
+
+Halt ejabberd abruptly with status code 1
+
+__Arguments:__
+
+
+__Result:__
+
+- *res* :: integer : Status code (0 on success, 1 otherwise)
+
+__Tags:__
+[server](/developer/ejabberd-api/admin-tags/#server) 
+
+__Examples:__
+
+
+~~~ json
+    POST /api/halt
+    {
+      
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+
+
 
 
 ## import_dir
@@ -2751,7 +2791,7 @@ __Examples:__
 Install Mnesia database from a binary backup file
 
 
-The binary backup file is installed as fallback: it will be used to restore the database at the next ejabberd start. This means that, after running this command, you have to restart ejabberd. This command requires less memory than [`restore`](/developer/ejabberd-api/admin-api/#restore).
+The binary backup file is installed as fallback: it will be used to restore the database at the next ejabberd start. This means that, after running this command, you have to restart ejabberd. This command requires less memory than [restore](/developer/ejabberd-api/admin-api/#restore).
 
 __Arguments:__
 
@@ -3007,7 +3047,7 @@ __Examples:__
 Restore Mnesia database from a text dump file
 
 
-Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use [`install_fallback`](/developer/ejabberd-api/admin-api/#backup[backup] and http://./#install-fallback).
+Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use [install_fallback](/developer/ejabberd-api/admin-api/#backup[backup] and http://./#install-fallback).
 
 __Arguments:__
 
@@ -4578,7 +4618,7 @@ __Examples:__
 Restore the Mnesia database from a binary backup file
 
 
-This restores immediately from a binary backup file the internal Mnesia database. This will consume a lot of memory if you have a large database, you may prefer [`install_fallback`](/developer/ejabberd-api/admin-api/#install-fallback).
+This restores immediately from a binary backup file the internal Mnesia database. This will consume a lot of memory if you have a large database, you may prefer [install_fallback](/developer/ejabberd-api/admin-api/#install-fallback).
 
 __Arguments:__
 
@@ -4977,7 +5017,7 @@ __Examples:__
 Send a stanza from an existing C2S session
 
 
-`user`@`host`/`resource` must be an existing C2S session. As an alternative, use [`send_stanza`](/developer/ejabberd-api/admin-api/#send-stanza) instead.
+`user`@`host`/`resource` must be an existing C2S session. As an alternative, use [send_stanza](/developer/ejabberd-api/admin-api/#send-stanza) instead.
 
 __Arguments:__
 
