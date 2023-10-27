@@ -5,13 +5,9 @@ menu: Authentication
 order: 50
 ---
 
-The toplevel option [auth_method](/admin/configuration/toplevel/#auth-method)
-defines the authentication methods that are
-used for user authentication. The option syntax is:
+# Supported Methods
 
-`auth_method: [Method1, Method2, ...]`
-
-The following authentication methods are supported by `ejabberd`:
+The authentication methods supported by `ejabberd` are:
 
 -   `internal` — See section [Internal](#internal).
 
@@ -27,9 +23,25 @@ The following authentication methods are supported by `ejabberd`:
 
 -   `jwt` — See section [JWT Authentication](#jwt-authentication).
 
-When the option is omitted, ejabberd will rely upon the default database which is configured in `default_db` option. If this option is not set neither the default authentication method will be `internal`.
+The top-level option [auth_method](/admin/configuration/toplevel/#auth-method)
+defines the authentication methods that are
+used for user authentication.
+The option syntax is:
+
+```yaml
+auth_method: [Method1, Method2, ...]
+```
+
+When the `auth_method` option is omitted, `ejabberd` relies on the default database which is configured in [`default_db`](/admin/configuration/toplevel/#default-db) option. If this option is not set neither, then the default authentication method will be `internal`.
 
 Account creation is only supported by `internal`, `external` and `sql` auth methods.
+
+# General Options
+
+The top-level option
+[auth_password_format](/admin/configuration/toplevel/#auth-password-format)
+allows to store the passwords in SCRAM format,
+see the [SCRAM](#scram) section.
 
 Other top-level options that are relevant to the authentication configuration:
 [disable_sasl_mechanisms](/admin/configuration/toplevel/#disable-sasl-mechanisms),
@@ -315,11 +327,25 @@ For more information about JWT authentication, you can check a brief tutorial in
 # SCRAM
 
 The top-level option
-[auth_password_format](/admin/configuration/toplevel/#auth-password-format)
-allows to store the passwords in SCRAM format instead of plaintext format.
+[`auth_password_format`](/admin/configuration/toplevel/#auth-password-format)
+defines in what format the users passwords are stored:
+SCRAM format or plaintext format.
 
-For details about the client-server communication when using SCRAM-SHA-1,
-refer to [SASL and SCRAM-SHA-1](https://wiki.xmpp.org/web/SASLandSCRAM-SHA-1).
+The top-level option
+[`auth_scram_hash`](/admin/configuration/toplevel/#auth-scram-hash)
+defines the hash algorithm that will be used to scram the password.
+
+ejabberd supports channel binding to the external channel,
+allowing the clients to use `-PLUS` authentication mechanisms.
+
+In summary, depending on the configured options, ejabberd supports:
+
+- `SCRAM_SHA-1(-PLUS)`
+- `SCRAM_SHA-256(-PLUS)`
+- `SCRAM_SHA-512(-PLUS)`
+
+For details about the client-server communication when using SCRAM,
+refer to [SASL Authentication and SCRAM](https://wiki.xmpp.org/web/SASL_Authentication_and_SCRAM).
 
 ## Internal storage
 

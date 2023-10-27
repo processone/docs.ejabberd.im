@@ -268,26 +268,30 @@ repository. Please refer to that module’s README file for details.
 
 *plain | scram*  
 
-The option defines in what format the users passwords are stored:
+The option defines in what format the users passwords are stored,
+plain text or in [SCRAM](/admin/configuration/authentication/#scram) format:
 
 -   *plain*: The password is stored as plain text in the database. This
     is risky because the passwords can be read if your database gets
     compromised. This is the default value. This format allows clients
     to authenticate using: the old Jabber Non-SASL (XEP-0078), SASL
-    PLAIN, SASL DIGEST-MD5, and SASL SCRAM-SHA-1.
+    PLAIN, SASL DIGEST-MD5, and SASL SCRAM-SHA-1/256/512(-PLUS).
 
 -   *scram*: The password is not stored, only some information that
     allows to verify the hash provided by the client. It is impossible
     to obtain the original plain password from the stored information;
     for this reason, when this value is configured it cannot be changed
     to plain anymore. This format allows clients to authenticate using:
-    SASL PLAIN and SASL SCRAM-SHA-1. The default value is *plain*.
+    SASL PLAIN and SASL SCRAM-SHA-1/256/512(-PLUS). The SCRAM variant
+    depends on the [auth_scram_hash](/admin/configuration/toplevel/#auth-scram-hash) option.
+
+The default value is *plain*.
 
 ## auth\_scram\_hash
 
 *sha | sha256 | sha512*  
 
-Hash algorithm that should be used to store password in SCRAM format.
+Hash algorithm that should be used to store password in [SCRAM](/admin/configuration/authentication/#scram) format.
 You shouldn’t change this if you already have passwords generated with a
 different algorithm - users that have such passwords will not be able to
 authenticate. The default value is *sha*.
