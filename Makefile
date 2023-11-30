@@ -21,7 +21,7 @@ api:
 	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-tags.md
 	sed -i 's|#\([a-z0-9-]*\)_\([a-z0-9_-]*\))|#\1-\2)|g' admin-tags.md
 	mv admin-tags.md content/developer/ejabberd-api
-	ejabberdctl gen_markdown_doc_for_commands `pwd`/admin-api.md "." json
+	ejabberdctl gen_markdown_doc_for_commands `pwd`/admin-api.md "runtime" json
 	# Remove three consecutive empty lines after Tags: and Modules:
 	sed -i 's/^__Tags:__/__Tags:__\nCLEANLINES/g' admin-api.md
 	sed -i 's/^__Module:__/__Module:__\nCLEANLINES/g' admin-api.md
