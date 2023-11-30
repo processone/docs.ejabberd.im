@@ -67,7 +67,8 @@ man:
 	sed -i 's|> \*\*\(.*\)\.\*\*|> **\1**|g' man-tmp1.md
 
 	# Allow to split the man page in sections:
-	sed -E '$!N;s/[A-Z ]+\n===+/===---===/;P;D' man-tmp1.md >man-tmp2.md
+	#sed -E '$!N;s/[A-Z ]+\n===+/===---===/;P;D' man-tmp1.md >man-tmp2.md # pandoc 2.9.2
+	sed -E '$!N;s/^# [A-Z ]+/===---===/;P;D' man-tmp1.md >man-tmp2.md # pandoc 2.17.1
 	csplit man-tmp2.md /===---===/ {*} -f man- --suppress-matched
 
 	echo "---\ntitle: Top-Level Options\ntoc: true\nmenu: Top-Level Opts\norder: 80\n---" >toplevel.md
