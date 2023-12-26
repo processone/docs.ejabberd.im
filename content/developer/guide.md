@@ -329,6 +329,7 @@ passing through all layers or want to "listen" for some internal events
 An `IQ Handler` is a function processing an IQ stanza (internally
 represented as `#iq{}` record). There are two types of IQ handlers:
 `local` and `sm`.
+
 - `local` IQ handler is a function processing IQs coming from
 `ejabberd_local`, that is, an IQ destined to the local server itself as
 described in [ejabberd_local](#ejabberd-local).
@@ -346,6 +347,7 @@ gen_iq_handler:add_iq_handler(Type :: ejabberd_local | ejabberd_sm,
                               IQDisc :: gen_iq_handler:type()) -> ok
 ```
 where:
+
 - `Type` is `ejabberd_local` for `local` handlers or `ejabberd_sm` for
 `sm` handlers
 - `Host` is a virtual host for which the IQ is to be processed
@@ -374,14 +376,17 @@ with the same meaning of the arguments.
 
 An `IQ discipline` defines how an IQ handler (a function) will be
 executed. There are the following disciplines:
+
 - `no_queue`: all IQs matching the handler are executed sequentially
 inside the calling process. This is a fast method to execute a handler,
 however, the drawback is that it blocks the caller.
+
 - `one_queue`: a process is created for the handler and all matching
 IQs are relayed to this process. The drawback is that the created
 process' message queue can be overloaded if it doesn't process incoming
 IQs fast enough, which, in the worst case may crash emulator due to OOM
 (out-of-memory).
+
 - `N :: integer()`: `N` parallel processes are created for the handler
 and all matching IQs are relayed to one of these processes. The
 processes are picked up _randomly_. This solves the "message queue
@@ -392,6 +397,7 @@ might be a problem in some cases. Care should be taken on choosing too
 large value for `N` because picking up a process from the pool has
 `O(N)` complexity. Anyway, in practice, seems like there is no much
 benefit to set `N` larger than `50`.
+
 - `parallel`: for every matching IQ a process is created to execute the
 handler. This discipline is not recommended because uncontrolled
 processes creation is in general a bad idea.
