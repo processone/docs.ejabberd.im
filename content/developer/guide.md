@@ -343,8 +343,7 @@ gen_iq_handler:add_iq_handler(Type :: ejabberd_local | ejabberd_sm,
                               Host :: binary(),
                               Namespace :: binary(),
                               Module :: module(),
-                              Function :: atom(),
-                              IQDisc :: gen_iq_handler:type()) -> ok
+                              Function :: atom()) -> ok
 ```
 where:
 
@@ -352,7 +351,6 @@ where:
 `sm` handlers
 - `Host` is a virtual host for which the IQ is to be processed
 - `Namespace` is an XML namespace of IQ's child element
-- `IQDisc` is an [IQ discipline](#iq-discipline)
 
 Once registered, matching `IQ` stanzas are handled by calling
 `Module:Function(IQ)`. The result should be in the form of `#iq{}` or
@@ -371,36 +369,6 @@ gen_iq_handler:remove_iq_handler(Type :: ejabberd_local | ejabberd_sm,
                                  Namespace :: binary()) -> ok
 ```
 with the same meaning of the arguments.
-
-### IQ discipline
-
-An `IQ discipline` defines how an IQ handler (a function) will be
-executed. There are the following disciplines:
-
-- `no_queue`: all IQs matching the handler are executed sequentially
-inside the calling process. This is a fast method to execute a handler,
-however, the drawback is that it blocks the caller.
-
-- `one_queue`: a process is created for the handler and all matching
-IQs are relayed to this process. The drawback is that the created
-process' message queue can be overloaded if it doesn't process incoming
-IQs fast enough, which, in the worst case may crash emulator due to OOM
-(out-of-memory).
-
-- `N :: integer()`: `N` parallel processes are created for the handler
-and all matching IQs are relayed to one of these processes. The
-processes are picked up _randomly_. This solves the "message queue
-overflow" problem of `one_queue` discipline. However, the drawback is
-that the order of IQs is not maintained, i.e. matching IQs can be
-re-ordered (because one process can be slower than another) and this
-might be a problem in some cases. Care should be taken on choosing too
-large value for `N` because picking up a process from the pool has
-`O(N)` complexity. Anyway, in practice, seems like there is no much
-benefit to set `N` larger than `50`.
-
-- `parallel`: for every matching IQ a process is created to execute the
-handler. This discipline is not recommended because uncontrolled
-processes creation is in general a bad idea.
 
 ## Hooks
 
