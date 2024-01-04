@@ -148,6 +148,7 @@ archive:
 	cp content/admin/configuration/modules.md $(DEST)/modules.md
 	cp content/admin/configuration/toplevel.md $(DEST)/toplevel.md
 	cp content/developer/ejabberd-api/admin-api.md $(DEST)/admin-api.md
+	cp content/developer/ejabberd-api/admin-tags.md $(DEST)/admin-tags.md
 	cp content/developer/sql-schema.md $(DEST)/sql-schema.md
 	sed -i '/order: 40/d' $(DEST)/admin-api.md
 	sed -i '/^> This section /d' $(DEST)/*.md
@@ -156,6 +157,7 @@ archive:
 	sed -i 's|/admin/configuration/modules/|/'$(ARCHIVE)'/modules/|g' $(DEST)/*.md
 	sed -i 's|/admin/configuration/toplevel/|/'$(ARCHIVE)'/toplevel/|g' $(DEST)/*.md
 	sed -i 's|/developer/ejabberd-api/admin-api/|/'$(ARCHIVE)'/admin-api/|g' $(DEST)/*.md
+	sed -i 's|/developer/ejabberd-api/admin-tags/|/'$(ARCHIVE)'/admin-tags/|g' $(DEST)/*.md
 	sed -i 's|/developer/sql-schema/|/'$(ARCHIVE)'/sql-schema/|g' $(DEST)/*.md
 	echo "* [$(VERSION)](/archive/$(VERSION_)/)" >>content/archive/index.md
 	echo "---" >$(DEST)/index.md
