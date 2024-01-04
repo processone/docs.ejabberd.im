@@ -12,6 +12,12 @@ Versioning is used to ensure compatibility with third party
 backend that uses the API.
 This feature is available since ejabberd 24.XX.
 
+When a command is modified (either its
+declaration or its definition, breaking compatibility), those
+modifications can be done in a new version of the API, keeping the old
+command still available in the previous API version.
+An API version is an integer (sub-versions are not supported).
+
 If the API client does not specify the API version,
 ejabberd uses by default the most recent available API version.
 
@@ -34,18 +40,9 @@ doesn't support API versioning, and consequently it can only use the latest API 
 
 # Command Definition
 
-When a command is modified (either its
-declaration or its definition, breaking compatibility), those
-modifications should be done in a new version of the API, keeping the old
-command still available in the previous API version.
-An API version is an integer (sub-versions are not supported).
-
-In practice, when you want to modify a command in a breaking way,
-copy the `#ejabberd_commands` definition of that command, and in the new
-definition set a `version` attribute with the API version (an integer)
-where this command version is available.
-
-There is no need to
+If a command is modified, a new `#ejabberd_commands` record should be
+defined with a `version` attribute set to the API version (an integer)
+where this command version is available. There is no need to
 add a new `#ejabberd_commands` record for commands that are not modified
 in a given API version, immediate inferior version is used.
 
