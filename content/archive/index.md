@@ -7,6 +7,7 @@ order: 99
 This section contains archived documentation of previous ejabberd releases.
 Please notice that it only contains the pages that most probably change between releases.
 
+<!-- RELEASE_LIST -->
 * [20.01](/archive/20_01/)
 * [20.02](/archive/20_02/)
 * [20.03](/archive/20_03/)

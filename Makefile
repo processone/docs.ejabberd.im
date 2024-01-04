@@ -5,6 +5,7 @@ VERSIONPRE = $(shell git tag --sort=creatordate | tail -n 2 | head -n 1)
 VERSION = $(shell git tag --sort=creatordate | tail -n 1)
 VERSION_ = $(shell git tag --sort=creatordate | tail -n 1 | tr . _)
 VERSION- = $(shell git tag --sort=creatordate | tail -n 1 | tr . -)
+VERSIONU = $(shell git tag --sort=creatordate | tail -n 1 | tr -d .)
 ARCHIVE = archive/$(VERSION_)
 DEST = content/$(ARCHIVE)
 ARCHIVESTRING=" If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/)."
@@ -142,7 +143,9 @@ man:
 	mv modules.md content/admin/configuration
 
 archive:
+	#
 	mkdir $(DEST)
+	#
 	cp content/admin/configuration/listen.md $(DEST)/listen.md
 	cp content/admin/configuration/listen-options.md $(DEST)/listen-options.md
 	cp content/admin/configuration/modules.md $(DEST)/modules.md
@@ -150,7 +153,9 @@ archive:
 	cp content/developer/ejabberd-api/admin-api.md $(DEST)/admin-api.md
 	cp content/developer/ejabberd-api/admin-tags.md $(DEST)/admin-tags.md
 	cp content/developer/sql-schema.md $(DEST)/sql-schema.md
+	#
 	sed -i '/order: 40/d' $(DEST)/admin-api.md
+	#
 	sed -i '/^> This section /d' $(DEST)/*.md
 	sed -i 's|/admin/configuration/listen/|/'$(ARCHIVE)'/listen/|g' $(DEST)/*.md
 	sed -i 's|/admin/configuration/listen-options/|/'$(ARCHIVE)'/listen-options/|g' $(DEST)/*.md
@@ -159,10 +164,13 @@ archive:
 	sed -i 's|/developer/ejabberd-api/admin-api/|/'$(ARCHIVE)'/admin-api/|g' $(DEST)/*.md
 	sed -i 's|/developer/ejabberd-api/admin-tags/|/'$(ARCHIVE)'/admin-tags/|g' $(DEST)/*.md
 	sed -i 's|/developer/sql-schema/|/'$(ARCHIVE)'/sql-schema/|g' $(DEST)/*.md
-	echo "* [$(VERSION)](/archive/$(VERSION_)/)" >>content/archive/index.md
+	#
+	sed -i 's|\(RELEASE_LIST -->\)|\1\n* [$(VERSION)](/archive/$(VERSION_)/)|g' content/archive/index.md
+	#
 	echo "---" >$(DEST)/index.md
 	echo "title: Archived Documentation for $(VERSION)" >>$(DEST)/index.md
 	echo "menu: $(VERSION)" >>$(DEST)/index.md
+	echo "order: $$(( 9999 - $(VERSIONU) ))" >>$(DEST)/index.md
 	echo "---" >>$(DEST)/index.md
 	echo "" >>$(DEST)/index.md
 	echo "This section contains some archived sections for ejabberd $(VERSION)." >>$(DEST)/index.md
@@ -174,3 +182,4 @@ archive:
 	echo "* [Docs Github Compare from $(VERSIONPRE)](https://github.com/processone/docs.ejabberd.im/compare/$(VERSIONPRE)...$(VERSION))" >>$(DEST)/index.md
 	echo "* [ejabberd Github Compare from $(VERSIONPRE)](https://github.com/processone/ejabberd/compare/$(VERSIONPRE)...$(VERSION))" >>$(DEST)/index.md
 	echo "" >>$(DEST)/index.md
+	#
