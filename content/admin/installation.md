@@ -458,13 +458,13 @@ copies the resulting package to a temporary path,
 and starts ejabberd there:
 
 ``` bash
+./autogen.sh
 ./configure --with-rebar=rebar3
+make
 make rel
-cp _build/prod/rel/ejabberd/ejabberd-21.04.123.tar.gz /tmp
-cd /tmp
-mkdir ejatest
-tar -xzf ejabberd-21.04.123.tar.gz -C ejatest
-ejatest/bin/ejabberd console
+mkdir $HOME/eja-release
+tar -xzvf _build/prod/ejabberd-*.tar.gz -C $HOME/eja-release
+$HOME/eja-release/bin/ejabberdctl live
 ```
 
 <div class="note-down">new in <a href="/archive/21_07/">21.07</a></div>
@@ -486,7 +486,9 @@ builds an OTP development release,
 and starts ejabberd there:
 
 ``` bash
+./autogen.sh
 ./configure --with-rebar=mix
+make
 make dev
 _build/dev/rel/ejabberd/bin/ejabberdctl live
 ```
