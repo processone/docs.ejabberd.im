@@ -61,14 +61,17 @@ man:
 	sed -i 's|<warning><simpara>\(.*\)</simpara></warning>|<blockquote><formalpara><title>Warning</title><simpara>\1</simpara></formalpara></blockquote>|g' ejabberd.yml.5.xml
 	sed -i 's|<note><simpara>\(.*\)</simpara></note>|<blockquote><formalpara><title>Note</title><simpara>\1</simpara></formalpara></blockquote>|g' ejabberd.yml.5.xml
 
-	pandoc -f docbook -t markdown_strict ejabberd.yml.5.xml -o man-tmp1.md
+	pandoc -f docbook -t markdown_strict --markdown-headings=setext ejabberd.yml.5.xml -o man-tmp1.md
 
 	# Also required by the Pandoc 2.8 workaround
 	sed -i 's|> \*\*\(.*\)\.\*\*|> **\1**|g' man-tmp1.md
 
 	# Allow to split the man page in sections:
-	#sed -E '$!N;s/[A-Z ]+\n===+/===---===/;P;D' man-tmp1.md >man-tmp2.md # pandoc 2.9.2
-	sed -E '$!N;s/^# [A-Z ]+/===---===/;P;D' man-tmp1.md >man-tmp2.md # pandoc 2.17.1
+	# for pandoc 2.9.2, or pandoc 3 with --markdown-headings=setext
+	sed -E '$!N;s/[A-Z ]+\n===+/===---===/;P;D' man-tmp1.md >man-tmp2.md
+	# for pandoc 2.17.1
+	#sed -E '$!N;s/^# [A-Z ]+/===---===/;P;D' man-tmp1.md >man-tmp2.md
+
 	csplit man-tmp2.md /===---===/ {*} -f man- --suppress-matched
 
 	echo "---\ntitle: Top-Level Options\ntoc: true\nmenu: Top-Level Opts\norder: 80\n---" >toplevel.md
