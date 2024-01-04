@@ -495,6 +495,30 @@ _build/dev/rel/ejabberd/bin/ejabberdctl live
 
 ## Specific notes
 
+### asdf
+
+When Erlang/OTP (and/or Elixir) is installed
+using [asdf](https://asdf-vm.com/) (multiple runtime version manager),
+it is available only for your account, in `$HOME/.asdf/shims/erl`.
+In that case, you cannot install ejabberd globally in the system,
+and you cannot use the `root` account to start it,
+because that account doesn't have access to erlang.
+
+In that scenario, there are several ways to run/install ejabberd:
+
+* Run a [development release](#development-release) locally without installing
+
+* Copy a [production release](#production-release) locally
+
+* Use [system install](#system-install), but install it locally:
+```bash
+./autogen.sh
+./configure --prefix=$HOME/eja-install --enable-user
+make
+make install
+$HOME/eja-install/sbin/ejabberdctl live
+```
+
 ### BSD
 
 The command to compile ejabberd in BSD systems is `gmake`.
