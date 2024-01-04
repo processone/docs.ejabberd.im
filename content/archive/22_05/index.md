@@ -1,6 +1,7 @@
 ---
 title: Archived Documentation for 22.05
 menu: 22.05
+order: 7794
 ---
 
 This section contains some archived sections for ejabberd 22.05.

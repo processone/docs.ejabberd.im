@@ -1,6 +1,7 @@
 ---
 title: Archived Documentation for 23.10
 menu: 23.10
+order: 7689
 ---
 
 This section contains some archived sections for ejabberd 23.10.

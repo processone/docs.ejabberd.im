@@ -1,6 +1,7 @@
 ---
 title: Archived Documentation for 20.04
 menu: 20.04
+order: 7995
 ---
 
 This section contains some archived sections for ejabberd 20.04.

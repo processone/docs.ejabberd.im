@@ -1,6 +1,7 @@
 ---
 title: Archived Documentation for 20.12
 menu: 20.12
+order: 7987
 ---
 
 This section contains some archived sections for ejabberd 20.12.

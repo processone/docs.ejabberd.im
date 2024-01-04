@@ -1,6 +1,7 @@
 ---
 title: Archived Documentation for 20.03
 menu: 20.03
+order: 7996
 ---
 
 If you are upgrading ejabberd from a previous release, you can check:

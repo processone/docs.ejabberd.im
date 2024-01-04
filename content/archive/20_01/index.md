@@ -1,6 +1,7 @@
 ---
 title: Archived Documentation for 20.01
 menu: 20.01
+order: 7998
 ---
 
 If you are upgrading ejabberd from a previous release, you can check:
