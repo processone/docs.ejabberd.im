@@ -22,7 +22,7 @@ __Result:__
 - *status* :: string : Status text
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_mam](/archive/23_10/modules/#mod-mam)
@@ -57,7 +57,7 @@ __Result:__
 - *status* :: string : Status text
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Examples:__
 
@@ -98,7 +98,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/archive/23_10/admin-tags/#roster) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -139,7 +139,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -173,7 +173,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -211,7 +211,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[private](/developer/ejabberd-api/admin-tags/#private) 
+[private](/archive/23_10/admin-tags/#private) 
 
 __Module:__
 [mod_private](/archive/23_10/modules/#mod-private)
@@ -249,7 +249,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -289,7 +289,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -328,7 +328,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -366,7 +366,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -409,7 +409,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -446,7 +446,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -478,7 +478,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[erlang](/developer/ejabberd-api/admin-tags/#erlang) 
+[erlang](/archive/23_10/admin-tags/#erlang) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -512,7 +512,7 @@ __Result:__
 - *connected_users* :: [sessions::string] : List of users sessions
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Examples:__
 
@@ -546,7 +546,7 @@ __Result:__
 - *connected_users_info* :: [{jid::string, connection::string, ip::string, port::integer, priority::integer, node::string, uptime::integer, status::string, resource::string, statustext::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -593,7 +593,7 @@ __Result:__
 - *num_sessions* :: integer
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) [statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[session](/archive/23_10/admin-tags/#session) [statistics](/archive/23_10/admin-tags/#statistics) 
 
 __Examples:__
 
@@ -625,7 +625,7 @@ __Result:__
 - *connected_users_vhost* :: [sessions::string]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -663,7 +663,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[sql](/developer/ejabberd-api/admin-tags/#sql) 
+[sql](/archive/23_10/admin-tags/#sql) 
 
 __Examples:__
 
@@ -696,7 +696,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[config](/developer/ejabberd-api/admin-tags/#config) 
+[config](/archive/23_10/admin-tags/#config) 
 
 __Examples:__
 
@@ -731,7 +731,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -774,7 +774,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -828,7 +828,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -862,7 +862,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Examples:__
 
@@ -893,7 +893,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_pubsub](/archive/23_10/modules/#mod-pubsub)
@@ -928,7 +928,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -964,7 +964,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_mam](/archive/23_10/modules/#mod-mam)
@@ -1007,7 +1007,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_mam](/archive/23_10/modules/#mod-mam)
@@ -1046,7 +1046,7 @@ __Result:__
 - *status* :: string : Status test
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_mam](/archive/23_10/modules/#mod-mam)
@@ -1081,7 +1081,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Examples:__
 
@@ -1116,7 +1116,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Examples:__
 
@@ -1151,7 +1151,7 @@ __Result:__
 - *status* :: string : Status test
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Examples:__
 
@@ -1183,7 +1183,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_pubsub](/archive/23_10/modules/#mod-pubsub)
@@ -1218,7 +1218,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_push](/archive/23_10/modules/#mod-push)
@@ -1263,7 +1263,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) [purge](/developer/ejabberd-api/admin-tags/#purge) 
+[accounts](/archive/23_10/admin-tags/#accounts) [purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -1309,7 +1309,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) [purge](/developer/ejabberd-api/admin-tags/#purge) 
+[accounts](/archive/23_10/admin-tags/#accounts) [purge](/archive/23_10/admin-tags/#purge) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -1348,7 +1348,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/archive/23_10/admin-tags/#roster) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -1387,7 +1387,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -1426,7 +1426,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -1461,7 +1461,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -1493,7 +1493,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[config](/developer/ejabberd-api/admin-tags/#config) 
+[config](/archive/23_10/admin-tags/#config) 
 
 __Examples:__
 
@@ -1526,7 +1526,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -1563,7 +1563,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -1596,7 +1596,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -1629,7 +1629,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -1661,7 +1661,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -1695,7 +1695,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/archive/23_10/admin-tags/#documentation) 
 
 __Examples:__
 
@@ -1731,7 +1731,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/archive/23_10/admin-tags/#documentation) 
 
 __Examples:__
 
@@ -1765,7 +1765,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/archive/23_10/admin-tags/#documentation) 
 
 __Examples:__
 
@@ -1796,7 +1796,7 @@ __Result:__
 - *cookie* :: string : Erlang cookie used for authentication by ejabberd
 
 __Tags:__
-[erlang](/developer/ejabberd-api/admin-tags/#erlang) 
+[erlang](/archive/23_10/admin-tags/#erlang) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -1835,7 +1835,7 @@ __Result:__
 - *last_activity* :: {timestamp::string, status::string} : Last activity timestamp and status
 
 __Tags:__
-[last](/developer/ejabberd-api/admin-tags/#last) 
+[last](/archive/23_10/admin-tags/#last) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -1873,7 +1873,7 @@ __Result:__
 - *levelatom* :: string : Tuple with the log level number, its keyword and description
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/archive/23_10/admin-tags/#logs) 
 
 __Examples:__
 
@@ -1906,7 +1906,7 @@ __Result:__
 - *value* :: integer : Number
 
 __Tags:__
-[offline](/developer/ejabberd-api/admin-tags/#offline) 
+[offline](/archive/23_10/admin-tags/#offline) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -1957,7 +1957,7 @@ __Result:__
 - *presence* :: {jid::string, show::string, status::string}
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -1999,7 +1999,7 @@ __Result:__
 - *affiliation* :: string : Affiliation of the user
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2037,7 +2037,7 @@ __Result:__
 - *affiliations* :: [{username::string, domain::string, affiliation::string, reason::string}] : The list of affiliations with username, domain, affiliation and reason
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2081,7 +2081,7 @@ __Result:__
 - *history* :: [{timestamp::string, message::string}]
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2127,7 +2127,7 @@ __Result:__
 - *occupants* :: [{jid::string, nick::string, role::string}] : The list of occupants with JID, nick and affiliation
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2170,7 +2170,7 @@ __Result:__
 - *occupants* :: integer : Number of room occupants
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2207,7 +2207,7 @@ __Result:__
 - *options* :: [{name::string, value::string}] : List of room options tuples with name and value
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2252,7 +2252,7 @@ __Result:__
 - *contacts* :: [{jid::string, nick::string, subscription::string, pending::string, groups::[group::string]}]
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/archive/23_10/admin-tags/#roster) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -2310,7 +2310,7 @@ __Result:__
 - *subscribers* :: [jid::string] : The list of users that are subscribed to that room
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2350,7 +2350,7 @@ __Result:__
 - *rooms* :: [room::string]
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2390,7 +2390,7 @@ __Result:__
 - *rooms* :: [{roomjid::string, usernick::string, nodes::[node::string]}]
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -2447,7 +2447,7 @@ __Result:__
 - *content* :: string : Field content
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/archive/23_10/admin-tags/#vcard) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -2505,7 +2505,7 @@ __Result:__
 - *content* :: string : Field content
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/archive/23_10/admin-tags/#vcard) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -2564,7 +2564,7 @@ __Result:__
 - *contents* :: [value::string]
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/archive/23_10/admin-tags/#vcard) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -2604,7 +2604,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -2636,7 +2636,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -2668,7 +2668,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -2700,7 +2700,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -2735,7 +2735,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) [sql](/developer/ejabberd-api/admin-tags/#sql) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) [sql](/archive/23_10/admin-tags/#sql) 
 
 __Examples:__
 
@@ -2766,7 +2766,7 @@ __Result:__
 - *s2s_incoming* :: integer
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) [s2s](/developer/ejabberd-api/admin-tags/#s2s) 
+[statistics](/archive/23_10/admin-tags/#statistics) [s2s](/archive/23_10/admin-tags/#s2s) 
 
 __Examples:__
 
@@ -2801,7 +2801,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -2836,7 +2836,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/archive/23_10/admin-tags/#cluster) 
 
 __Examples:__
 
@@ -2871,7 +2871,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -2910,7 +2910,7 @@ __Result:__
 - *num_resources* :: integer : Number of resources that were kicked
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Examples:__
 
@@ -2946,7 +2946,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/archive/23_10/admin-tags/#cluster) 
 
 __Examples:__
 
@@ -2977,7 +2977,7 @@ __Result:__
 - *certificates* :: [{domain::string, file::string, used::string}]
 
 __Tags:__
-[acme](/developer/ejabberd-api/admin-tags/#acme) 
+[acme](/archive/23_10/admin-tags/#acme) 
 
 __Examples:__
 
@@ -3019,7 +3019,7 @@ __Result:__
 - *nodes* :: [node::string]
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/archive/23_10/admin-tags/#cluster) 
 
 __Examples:__
 
@@ -3057,7 +3057,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -3088,7 +3088,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/archive/23_10/admin-tags/#documentation) 
 
 __Examples:__
 
@@ -3123,7 +3123,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -3157,7 +3157,7 @@ __Result:__
 - *res* :: string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -3189,7 +3189,7 @@ __Result:__
 - *res* :: string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -3221,7 +3221,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/archive/23_10/admin-tags/#modules) 
 
 __Examples:__
 
@@ -3253,7 +3253,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/archive/23_10/admin-tags/#modules) 
 
 __Examples:__
 
@@ -3285,7 +3285,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/archive/23_10/admin-tags/#modules) 
 
 __Examples:__
 
@@ -3320,7 +3320,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/archive/23_10/admin-tags/#modules) 
 
 __Examples:__
 
@@ -3351,7 +3351,7 @@ __Result:__
 - *modules* :: [{name::string, summary::string}] : List of tuples with module name and description
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/archive/23_10/admin-tags/#modules) 
 
 __Examples:__
 
@@ -3385,7 +3385,7 @@ __Result:__
 - *modules* :: [{name::string, summary::string}] : List of tuples with module name and description
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/archive/23_10/admin-tags/#modules) 
 
 __Examples:__
 
@@ -3422,7 +3422,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/archive/23_10/admin-tags/#modules) 
 
 __Examples:__
 
@@ -3454,7 +3454,7 @@ __Result:__
 - *rooms* :: [room::string] : List of rooms
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -3493,7 +3493,7 @@ __Result:__
 - *rooms* :: [{jid::string, public::string, participants::integer}] : List of rooms with summary
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -3542,7 +3542,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -3580,7 +3580,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -3617,7 +3617,7 @@ __Result:__
 - *resources* :: integer : Number of active resources for a user
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -3655,7 +3655,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/archive/23_10/admin-tags/#oauth) 
 
 __Examples:__
 
@@ -3691,7 +3691,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/archive/23_10/admin-tags/#oauth) 
 
 __Examples:__
 
@@ -3727,7 +3727,7 @@ __Result:__
 - *result* :: {token::string, scopes::string, expires_in::string}
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/archive/23_10/admin-tags/#oauth) 
 
 __Examples:__
 
@@ -3767,7 +3767,7 @@ __Result:__
 - *tokens* :: [{token::string, user::string, scope::string, expires_in::string}]
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/archive/23_10/admin-tags/#oauth) 
 
 __Examples:__
 
@@ -3812,7 +3812,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/archive/23_10/admin-tags/#oauth) 
 
 __Examples:__
 
@@ -3844,7 +3844,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/archive/23_10/admin-tags/#oauth) 
 
 __Examples:__
 
@@ -3875,7 +3875,7 @@ __Result:__
 - *s2s_outgoing* :: integer
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) [s2s](/developer/ejabberd-api/admin-tags/#s2s) 
+[statistics](/archive/23_10/admin-tags/#statistics) [s2s](/archive/23_10/admin-tags/#s2s) 
 
 __Examples:__
 
@@ -3909,7 +3909,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/archive/23_10/admin-tags/#stanza) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -3949,7 +3949,7 @@ __Result:__
 - *res* :: string
 
 __Tags:__
-[private](/developer/ejabberd-api/admin-tags/#private) 
+[private](/archive/23_10/admin-tags/#private) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -3989,7 +3989,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[private](/developer/ejabberd-api/admin-tags/#private) 
+[private](/archive/23_10/admin-tags/#private) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4066,7 +4066,7 @@ __Result:__
 - *response* :: [{user::string, contact::string}]
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/archive/23_10/admin-tags/#roster) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4115,7 +4115,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/archive/23_10/admin-tags/#roster) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4160,7 +4160,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/archive/23_10/admin-tags/#roster) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4202,7 +4202,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/archive/23_10/admin-tags/#roster) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4239,7 +4239,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Examples:__
 
@@ -4273,7 +4273,7 @@ __Result:__
 - *users* :: [username::string] : List of registered accounts usernames
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Examples:__
 
@@ -4307,7 +4307,7 @@ __Result:__
 - *vhosts* :: [vhost::string] : List of available vhosts
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -4341,7 +4341,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[config](/developer/ejabberd-api/admin-tags/#config) 
+[config](/archive/23_10/admin-tags/#config) 
 
 __Examples:__
 
@@ -4374,7 +4374,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mam](/developer/ejabberd-api/admin-tags/#mam) 
+[mam](/archive/23_10/admin-tags/#mam) 
 
 __Module:__
 [mod_mam](/archive/23_10/modules/#mod-mam)
@@ -4412,7 +4412,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mam](/developer/ejabberd-api/admin-tags/#mam) 
+[mam](/archive/23_10/admin-tags/#mam) 
 
 __Module:__
 [mod_mam](/archive/23_10/modules/#mod-mam)
@@ -4451,7 +4451,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/archive/23_10/admin-tags/#logs) 
 
 __Examples:__
 
@@ -4483,7 +4483,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[acme](/developer/ejabberd-api/admin-tags/#acme) 
+[acme](/archive/23_10/admin-tags/#acme) 
 
 __Examples:__
 
@@ -4517,7 +4517,7 @@ __Result:__
 - *resource* :: string : Name of user resource
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4553,7 +4553,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -4589,7 +4589,7 @@ __Result:__
  - 2: code not reloaded, but module restarted
 
 __Tags:__
-[erlang](/developer/ejabberd-api/admin-tags/#erlang) 
+[erlang](/archive/23_10/admin-tags/#erlang) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4628,7 +4628,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/archive/23_10/admin-tags/#mnesia) 
 
 __Examples:__
 
@@ -4660,7 +4660,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[acme](/developer/ejabberd-api/admin-tags/#acme) 
+[acme](/archive/23_10/admin-tags/#acme) 
 
 __Examples:__
 
@@ -4695,7 +4695,7 @@ __Result:__
 - *rooms* :: [room::string] : List of empty rooms that have been destroyed
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -4736,7 +4736,7 @@ __Result:__
 - *rooms* :: [room::string] : List of empty rooms
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -4778,7 +4778,7 @@ __Result:__
 - *rooms* :: [room::string] : List of unused rooms that has been destroyed
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -4821,7 +4821,7 @@ __Result:__
 - *rooms* :: [room::string] : List of unused rooms
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/archive/23_10/admin-tags/#muc) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -4859,7 +4859,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/archive/23_10/admin-tags/#logs) 
 
 __Examples:__
 
@@ -4900,7 +4900,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -4946,7 +4946,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/archive/23_10/admin-tags/#stanza) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -4987,7 +4987,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/archive/23_10/admin-tags/#stanza) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5030,7 +5030,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/archive/23_10/admin-tags/#stanza) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5074,7 +5074,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[last](/developer/ejabberd-api/admin-tags/#last) 
+[last](/archive/23_10/admin-tags/#last) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5112,7 +5112,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/archive/23_10/admin-tags/#logs) 
 
 __Examples:__
 
@@ -5147,7 +5147,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/archive/23_10/admin-tags/#cluster) 
 
 __Examples:__
 
@@ -5181,7 +5181,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/archive/23_10/admin-tags/#vcard) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5224,7 +5224,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5268,7 +5268,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -5320,7 +5320,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/archive/23_10/admin-tags/#vcard) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5380,7 +5380,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/archive/23_10/admin-tags/#vcard) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5441,7 +5441,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/archive/23_10/admin-tags/#vcard) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5494,7 +5494,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/archive/23_10/admin-tags/#shared-roster-group) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5534,7 +5534,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/archive/23_10/admin-tags/#shared-roster-group) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5571,7 +5571,7 @@ __Result:__
 - *informations* :: [{key::string, value::string}] : List of group information, as key and value
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/archive/23_10/admin-tags/#shared-roster-group) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5617,7 +5617,7 @@ __Result:__
 - *members* :: [member::string] : List of group identifiers
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/archive/23_10/admin-tags/#shared-roster-group) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5656,7 +5656,7 @@ __Result:__
 - *groups* :: [id::string] : List of group identifiers
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/archive/23_10/admin-tags/#shared-roster-group) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5697,7 +5697,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/archive/23_10/admin-tags/#shared-roster-group) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5738,7 +5738,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/archive/23_10/admin-tags/#shared-roster-group) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5776,7 +5776,7 @@ __Result:__
 - *stat* :: integer : Integer statistic value
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[statistics](/archive/23_10/admin-tags/#statistics) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5812,7 +5812,7 @@ __Result:__
 - *stat* :: integer : Integer statistic value
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[statistics](/archive/23_10/admin-tags/#statistics) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5847,7 +5847,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -5879,7 +5879,7 @@ __Result:__
 - *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5923,7 +5923,7 @@ __Result:__
 - *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -5967,7 +5967,7 @@ __Result:__
 - *users* :: integer : Number of connected sessions with given status type
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) [statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[session](/archive/23_10/admin-tags/#session) [statistics](/archive/23_10/admin-tags/#statistics) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -6003,7 +6003,7 @@ __Result:__
 - *users* :: integer : Number of connected sessions with given status type
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) [statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[session](/archive/23_10/admin-tags/#session) [statistics](/archive/23_10/admin-tags/#statistics) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
@@ -6038,7 +6038,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -6075,7 +6075,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -6107,7 +6107,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[s2s](/developer/ejabberd-api/admin-tags/#s2s) 
+[s2s](/archive/23_10/admin-tags/#s2s) 
 
 __Examples:__
 
@@ -6142,7 +6142,7 @@ __Result:__
 - *nodes* :: [node::string] : The list of nodes that has subscribed
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -6188,7 +6188,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -6237,7 +6237,7 @@ __Result:__
 - *unbanned* :: integer : Amount of unbanned entries, or negative in case of error.
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Module:__
 [mod_fail2ban](/archive/23_10/modules/#mod-fail2ban)
@@ -6276,7 +6276,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/archive/23_10/admin-tags/#accounts) 
 
 __Examples:__
 
@@ -6310,7 +6310,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/archive/23_10/admin-tags/#muc-room) 
 
 __Module:__
 [mod_muc_admin](/archive/23_10/modules/#mod-muc-admin)
@@ -6346,7 +6346,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -6377,7 +6377,7 @@ __Result:__
 - *modules* :: [module::string]
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/archive/23_10/admin-tags/#server) 
 
 __Examples:__
 
@@ -6411,7 +6411,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[sql](/developer/ejabberd-api/admin-tags/#sql) 
+[sql](/archive/23_10/admin-tags/#sql) 
 
 __Module:__
 [mod_admin_update_sql](/archive/23_10/modules/#mod-admin-update-sql)
@@ -6447,7 +6447,7 @@ __Result:__
 - *resources* :: [resource::string]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Examples:__
 
@@ -6485,7 +6485,7 @@ __Result:__
 - *sessions_info* :: [{connection::string, ip::string, port::integer, priority::integer, node::string, uptime::integer, status::string, resource::string, statustext::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/archive/23_10/admin-tags/#session) 
 
 __Module:__
 [mod_admin_extra](/archive/23_10/modules/#mod-admin-extra)
