@@ -9,13 +9,15 @@ toc: true
 
 * **[RFC 9266 Channel Bindings for TLS 1.3](https://www.rfc-editor.org/rfc/rfc9266)**
 
+* **[XEP-0386: Bind 2](https://xmpp.org/extensions/xep-0386.html)**
+
 * **[XEP-0388: Extensible SASL Profile (SASL2)](https://xmpp.org/extensions/xep-0388.html)**
+
+* **[XEP-0424: Message Retraction](https://xmpp.org/extensions/xep-0424.html)**
 
 * **[XEP-0440: SASL Channel-Binding Type Capability](https://xmpp.org/extensions/xep-0440.html)**
 
-* **[XEP-0386: Bind 2](https://xmpp.org/extensions/xep-0386.html)**
-
-* **[XEP-0424: Message Retraction](https://xmpp.org/extensions/xep-0424.html)**
+* **[XEP-0474: SASL SCRAM Downgrade Protection](https://xmpp.org/extensions/xep-0474.html)**
 
 * **Automatic SQL schema creation and update**
 
@@ -57,7 +59,10 @@ toc: true
 
     ejabberd includes many tweaks to support rebar3 and rebar2.
     By removing support for rebar2, we could simplify rebar.config and other files a lot.
-    Furthermore, it would allow to use `hex.pm` package manager instead of downloading from git.
+    But more importantly, dependencies would not need to be updated just because
+    other dependencies are updated: Rebar2 requires exact version numbers to be provided,
+    [Rebar3 doesn't require that](https://rebar3.org/docs/configuration/dependencies/#dependency-version-handling),
+    and [neither does Mix](https://hexdocs.pm/elixir/Version.html#module-requirements).
 
 # Released
 
