@@ -295,8 +295,8 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
   [Erlang cookie file](/admin/guide/security/#erlang-cookie)
   will be created and read there.
 
-- **`--enable-group[=GROUP]`**: Similar to the previous option, but for
-  system groups.
+- **`--enable-group[=GROUP]`**: Use this option additionally to `--enable-user`
+  when that account is in a group that doesn't coincide with its username.
 
 - **`--enable-all`**: Enable many of the database and dependencies
     options described here, this is useful for Dialyzer checks:
