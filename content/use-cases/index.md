@@ -55,8 +55,8 @@ This includes:
 
 # Customer chat / CRM
 
-* [CoBrowser.net](https://www.cobrowser.net/): [Coder Interview](https://www.process-one.net/blog/code-as-craft-interview-cobrowser-net/).
-* [iAdvize](https://www.iadvize.com/)
+* CoBrowser.net: [Coder Interview](https://www.process-one.net/blog/code-as-craft-interview-cobrowser-net/).
+* iAdvize
 * [LiveHelpercChat](https://livehelperchat.com): [Blog post: Full XMPP chat support for ejabberd](https://livehelperchat.com/full-xmpp-chat-support-for-ejabberd-423a.html)
 
 # Media
@@ -67,7 +67,7 @@ This includes:
 # Social media
 
 * [Facebook](https://www.quora.com/Why-was-Erlang-chosen-for-use-in-Facebook-chat)
-* [Nasza Klasa (NKTalk messenger)](https://nk.pl/)
+* Nasza Klasa (NKTalk messenger)
 * [StudiVZ](https://en.wikipedia.org/wiki/StudiVZ)
 * [Sify](http://highscalability.com/blog/2010/5/10/sifycom-architecture-a-portal-at-3900-requests-per-second.html)
 * [Tuenti](https://en.wikipedia.org/wiki/Tuenti)
@@ -88,7 +88,7 @@ This includes:
 
 # Dating
 
-* [Grindr](https://www.meetup.com/idevelopers/messages/boards/thread/41634422#115806052)
+* Grindr
 * [Meetic](https://www.meetic.com/)
 
 # Community sites
