@@ -15,11 +15,11 @@ backbone for a very large number of mobile messaging services.
 
 This includes:
 
-* [Chaatz](http://chaatz.com)
+* Chaatz
 * [Libon](https://www.process-one.net/en/customers/case/libon/)
 * [Nokia OVI Chat](https://en.wikipedia.org/wiki/Ovi_(Nokia))
-* [Roo Kids](http://www.rookidsapp.com): Safe & fun instant messaging app for kids with minimum yet critical parental controls.
-* [Swisscom IO](https://www.io.swisscom.ch/en/index.html)
+* Roo Kids : Safe & fun instant messaging app for kids with minimum yet critical parental controls.
+* Swisscom IO
 * Versapp
 * [Whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html)
 
@@ -37,11 +37,11 @@ This includes:
 * [Nimbuzz](https://en.wikipedia.org/wiki/Nimbuzz)
 * [ooVoo](https://www.oovoo.com/)
 * [Sipphone](https://www.process-one.net/resources/case_studies/ProcessOne_SIP_Phone_Case_Study_v3.pdf)
-* [WowApp](https://www.wowapp.com/)
+* WowApp
 
 # Internet of Things
 
-* [AeroFS](https://www.aerofs.com/)
+* AeroFS
 * IMA Teleassistance
 * [Nabaztag](https://en.wikipedia.org/wiki/Nabaztag) (Violet, Mindscape, then Aldebaran Robotics)
 
