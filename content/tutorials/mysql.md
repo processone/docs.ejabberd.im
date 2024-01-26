@@ -161,49 +161,51 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql>
 ~~~
 
-## Download and adapt MySQL schema
+## Decide which SQL schema to use
 
-The schema files can be found in ejabberd priv directory. MySQL
-default schema is defined in a file called `mysql.sql`.
+Read carefully the
+[Default and New Schemas](/admin/configuration/database/#default-and-new-schemas)
+section and decide which schema is preferable in your case: the default or the new schema.
 
-* After build and install from source, the SQL schemas are copied here:
+Then modify the `ejabberd.yml` configuration file to setup your desired option value:
 
-  ~~~ bash
-  PREFIX/lib/ejabberd-VERSION/priv/sql
-  ~~~
-
-* After installing ejabberd from binary installer, you can find the
-  SQL schema in similar directory:
-
-  ~~~ bash
-  INSTALLDIR/lib/ejabberd-VERSION/priv/sql
-  ~~~
-
-Starting from ejabberd 16.03, database schemas are installed in the
-more usual directory:
-
-~~~ bash
-INSTALLDIR_OR_PREFIX/share/doc/ejabberd
+~~~ yaml
+new_sql_schema: true
 ~~~
 
-Finally, you can always find the latest version of the MySQL schema
-in ejabberd Github repository:
-[mysql.sql](https://github.com/processone/ejabberd/blob/master/sql/mysql.sql)
+## Use automatic schema update
 
-You can download it with command:
+Since ejabberd 23.10, ejabberd can take care to create the tables automatically
+the first time it starts with an empty database,
+and also takes care to update the database schema when you upgrade ejabberd to a newer version.
 
-~~~ bash
-wget https://raw.githubusercontent.com/processone/ejabberd/master/sql/mysql.sql
+That feature works both for default and new SQL schema, for MySQL, PostgreSQL and SQLite.
+
+To enable automatic database schema creation and update, simply add in your `ejabberd.yml` configuration file:
+
+~~~ yaml
+update_sql_schema: true
 ~~~
 
-From there, you can read it and check that it suites your production
-constrains. You can learn more about the database schema, you can read
+In that case, you don't need to load the database schema manually:
+no need to read the next section.
+
+
+## Load database schema manually
+
+MySQL default schema is defined in a file called `mysql.sql`,
+and the new schema is `mysql.new.sql`.
+Some tables of the schema are described in:
 [ejabberd SQL database schema documentation](/developer/sql-schema/).
 
-## Load database schema into your new database
+Those schema files can be found:
 
-You can load the schema in your new 'ejabberd' database with the following command:
+* Git repository and source code package: [`/sql/` directory](https://github.com/processone/ejabberd/tree/master/sql)
 
+* When installed from source code or binary installer, the SQL schemas are copied to
+  `PREFIX/lib/ejabberd-VERSION/priv/sql`
+
+Load the schema in your `ejabberd` database with the command:
 ~~~ bash
 mysql -h localhost -D ejabberd -u ejabberd -p < mysql.sql
 ~~~
