@@ -367,7 +367,7 @@ You should be set now.
 
 # Converting database from default to new schema
 
-TODO
+Please check the section [Default and New Schemas](/admin/configuration/database/#default-and-new-schemas).
 
 # Getting further
 
