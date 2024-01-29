@@ -4,18 +4,17 @@ menu: MySQL
 toc: true
 ---
 
-ejabberd is bundled with native Erlang driver to use MySQL as a
+ejabberd is bundled with a native Erlang driver to use MySQL as a
 backend for persistent storage.
-
 Using MySQL as backend is thus extremely straightforward.
 
 # ejabberd installation
 
-ejabberd packages and binary installers contains all the module needed
+ejabberd packages and binary installers contain all the modules needed
 to connect to your MySQL server. You have no extra module to install
 anymore.
 
-If you are building ejabberd from source, you need to make sure that
+If you are building ejabberd from source, make sure that
 you configure ejabberd to include MySQL module. It can be done by
 passing option `--enable-mysql` to `configure` script. For example:
 
@@ -31,7 +30,7 @@ to. The database does not have to be on the same server than ejabberd.
 
 ## Requirements
 
-ejabberd make use of FULLTEXT indexes with InnoDB. Thus, you need
+ejabberd uses FULLTEXT indexes with InnoDB. Thus, you need
 MySQL 5.6 or greater to use with ejabberd.
 
 **Note:** If you do not store message archive in database however, you
@@ -57,11 +56,11 @@ create your database.
 ## Example MySQL installation on OSX with homebrew
 
 For testing / development, it is common to start experimenting with
-MySQL with Homebrew installation.
+MySQL with [Homebrew installation](https://brew.sh/).
 
 Here is how to get started to help with setup up environment.
 
-With homebrew properly installed, you can use the following command to install MySQL:
+With Homebrew properly installed, you can use the following command to install MySQL:
 
 ~~~ bash
 brew install mysql
@@ -91,7 +90,7 @@ mysql.server stop
 
 <!--
 
-Should we also show how to restart from scratch by removing old homebrew versions ?
+Should we also show how to restart from scratch by removing old Homebrew versions ?
 
 Here is how to do it:
 
@@ -126,22 +125,22 @@ mysql -uroot -ppassword
 
 ## Create ejabberd user and database
 
-MySQL admins should use that schema and grant right to a dedicated
-'ejabberd' user (replace password with your desired password):
+MySQL admins should use this procedure and grant rights to a dedicated
+`ejabberd` user (replace password with your desired password):
 
 ~~~ bash
 echo "GRANT ALL ON ejabberd.* TO 'ejabberd'@'localhost' IDENTIFIED BY 'password';" | mysql -h localhost -u root
 ~~~
 
-You can then create a dedicated 'ejabberd' database (use password
+You can then create a dedicated `ejabberd` database (use password
 created earlier):
 
 ~~~ bash
 echo "CREATE DATABASE ejabberd;" | mysql -h localhost -u ejabberd -p
 ~~~
 
-You should now be able to connect to 'ejabberd' database with user
-'ejabberd' (use password defined on GRANT command):
+You should now be able to connect to `ejabberd` database with user
+`ejabberd` (use password defined on GRANT command):
 
 ~~~ bash
 mysql -h localhost -u ejabberd -p -D ejabberd
@@ -206,6 +205,7 @@ Those schema files can be found:
   `PREFIX/lib/ejabberd-VERSION/priv/sql`
 
 Load the schema in your `ejabberd` database with the command:
+
 ~~~ bash
 mysql -h localhost -D ejabberd -u ejabberd -p < mysql.sql
 ~~~
@@ -254,10 +254,6 @@ Your database is now ready to connect with ejabberd.
 
 # ejabberd configuration
 
-ejabberd default backend is Mnesia internal database. However,
-ejabberd is extremely flexible and you can decide to use MySQL instead
-on a module-by-module basis.
-
 ## Adding MySQL connection configuration to ejabberd config file
 
 In `ejabberd.yml`, define your database parameters:
@@ -304,8 +300,8 @@ You should now be able to connect XMPP users based on MySQL user base.
 ## Switch modules to use MySQL instead of Mnesia
 
 At this stage, only the authentication / user base has been moved to
-MySQL. For data managed by modules, ejabberd still use internal
-database as default.
+MySQL. For data managed by modules, ejabberd still uses the Mnesia internal
+database by default; you can decide to use MySQL on a module-by-module basis.
 
 For each modules that support SQL backend, you can pass option
 `db_type: sql` to use your configured MySQL database. Switch can be
@@ -320,8 +316,8 @@ modules:
   ...
 ~~~
 
-However, if you want to use MySQL for all modules that support MySQL
-as db_type, you can simply use global option `default_db: sql`:
+However, if you want to use MySQL for all modules that support MySQL,
+you can simply use global option `default_db: sql`:
 
 ~~~ yaml
 default_db: sql
