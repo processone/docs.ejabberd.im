@@ -53,7 +53,7 @@ ejabberd is fully compliant with
 You just need to make sure to use MySQL version 5.6 or greater when you
 create your database.
 
-## Example MySQL installation on OSX with homebrew
+## MySQL on OSX with Homebrew
 
 For testing / development, it is common to start experimenting with
 MySQL with [Homebrew installation](https://brew.sh/).
@@ -100,7 +100,7 @@ sudo rm -rf /usr/local/var/mysql
 
 -->
 
-## Install with Windows Bash
+## MySQL on Windows with Bash
 
 On Windows you can install MySQL easily like on Linux using Ubuntu Bash:
 
@@ -254,7 +254,7 @@ Your database is now ready to connect with ejabberd.
 
 # ejabberd configuration
 
-## Adding MySQL connection configuration to ejabberd config file
+## Setup MySQL connection
 
 In `ejabberd.yml`, define your database parameters:
 
@@ -270,7 +270,7 @@ sql_port: 3306
 
 Those parameters are mandatory if you want to use MySQL with ejabberd.
 
-## Configure desired authentication backend
+## Authentication use MySQL
 
 If you decide to store user password in ejabberd, you need to tell
 ejabberd to use MySQL instead of internal database for authentication.
@@ -297,7 +297,7 @@ User testuser@localhost successfully registered
 
 You should now be able to connect XMPP users based on MySQL user base.
 
-## Switch modules to use MySQL instead of Mnesia
+## Modules use MySQL
 
 At this stage, only the authentication / user base has been moved to
 MySQL. For data managed by modules, ejabberd still uses the Mnesia internal
@@ -326,7 +326,7 @@ default_db: sql
 **Note:** even if you move all the persistent data you can to MySQL,
 Mnesia will still be started and used to manage clustering.
 
-# Migrating data from internal database to MySQL
+# Migrating data from internal to MySQL
 
 To migrate your data, once you have setup your sql service, you can
 move most of the data to your database.
@@ -364,6 +364,10 @@ configured MySQL database. For example:
    ~~~
 
 You should be set now.
+
+# Converting database from default to new schema
+
+TODO
 
 # Getting further
 
