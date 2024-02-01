@@ -28,11 +28,27 @@ using: `echo $?`
 To restrict what commands can be executed;
 see [API Permissions](/developer/ejabberd-api/permissions/).
 
-If you use Bash, you can get Bash completion by copying the file
-`tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
-Debian, Ubuntu, Fedora and maybe others).
-Or adding to your `$HOME/.bashrc` a line similar to:
-`source /path/to/ejabberd/tools/ejabberdctl.bc`
+## Bash Completion
+
+If you use Bash, you can get Bash completion for ejabberdctl commands names.
+
+Some methods to enable that feature:
+
+- Copy the file `tools/ejabberdctl.bc` to the directory `/etc/bash_completion.d/` (in
+Debian, Ubuntu, Fedora and maybe others)
+
+- Or add to your `$HOME/.bashrc` a line similar to:
+``` bash
+source /path/to/ejabberd/tools/ejabberdctl.bc
+```
+
+When ejabberd is running in the machine, type `ejabberdctl` in a console
+and press the `TAB` key.
+
+The first time this is used,
+the list of commands is extracted from ejabberd and stored in a file in `/tmp/`.
+The next time, that file is reused for faster responses.
+
 
 ## ejabberdctl Commands
 
