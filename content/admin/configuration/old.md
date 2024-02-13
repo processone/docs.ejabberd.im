@@ -2137,7 +2137,7 @@ The following parameters are available:
 
 **`sql_prepared_statements: Boolean`**:  If you need to disable prepared
 	statements.  The default value is `true`.  The option is valid for
-	`pgsql`.
+	`pgsql` and `mysql`.
 
 Example of plain ODBC connection:
 
