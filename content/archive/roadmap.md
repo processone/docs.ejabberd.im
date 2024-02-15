@@ -19,6 +19,8 @@ toc: true
 
 * **[XEP-0474: SASL SCRAM Downgrade Protection](https://xmpp.org/extensions/xep-0474.html)**
 
+* **[XEP-0480: SASL Upgrade Tasks](https://xmpp.org/extensions/xep-0480.html)**
+
 * **Automatic SQL schema creation and update**
 
     With [Automatic SQL schema](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/),
