@@ -70,6 +70,10 @@ toc: true
 
 ## 2023
 
+- [23.10](https://www.process-one.net/blog/ejabberd-23-10/)
+  * Support for [XEP-0402: PEP Native Bookmarks](https://xmpp.org/extensions/xep-0402.html)
+  * Support for [XEP-0421: Occupant Id](https://xmpp.org/extensions/xep-0421.html)
+  * MySQL Performance enhancements
 - [23.04](https://www.process-one.net/blog/ejabberd-23-04/)
   * [`mod_mam`](https://docs.ejabberd.im/admin/configuration/modules/#mod-mam) support for [XEP-0425: Message Moderation](https://xmpp.org/extensions/xep-0425.html)
   * New [`mod_muc_rtbl`](https://docs.ejabberd.im/admin/configuration/modules/#mod-muc-rtbl): [Real-Time Block List](https://xmppbl.org/) for MUC rooms
