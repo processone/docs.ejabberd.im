@@ -1,7 +1,7 @@
 ---
 title: ejabberd Roadmap
 menu: Roadmap
-order: 10
+order: 70
 toc: true
 ---
 
