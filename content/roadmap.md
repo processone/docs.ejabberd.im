@@ -44,10 +44,11 @@ toc: true
     When a client queries to use that command, by default the most recent one is used,
     and the API client can specify the API version it supports.
 
-* **Support Elixir 1.16**
+* **Support Elixir 1.16 and Erlang/OTP 27**
 
-    This version was [recently released](https://elixir-lang.org/blog/2023/12/22/elixir-v1-16-0-released/),
-    it includes no breaking changes, but shows some compilation warnings that are worth solving.
+    Those versions were recently released or planned, see
+    [Elixir 1.16](https://elixir-lang.org/blog/2023/12/22/elixir-v1-16-0-released/)
+    and [Erlang/OTP 27.0-rc1](https://www.erlang.org/news/167)).
 
 # Planned
 
