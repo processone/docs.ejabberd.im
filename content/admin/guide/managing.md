@@ -56,13 +56,13 @@ When `ejabberdctl` is executed without any parameter, it displays the
 available options. If there isn't an `ejabberd` server running, the
 available parameters are:
 
-**`start`**:   Start `ejabberd` in background mode. This is the default method.
+- **`start`**:   Start `ejabberd` in background mode. This is the default method.
 
-**`debug`**:   Attach an Erlang shell to an already existing `ejabberd` server.
+- **`debug`**:   Attach an Erlang shell to an already existing `ejabberd` server.
 	This allows to execute commands interactively in the `ejabberd`
 	server.
 
-**`live`**:   Start `ejabberd` in live mode: the shell keeps attached to the
+- **`live`**:   Start `ejabberd` in live mode: the shell keeps attached to the
 	started server, showing log messages and allowing to execute
 	interactive commands.
 
@@ -73,16 +73,16 @@ shows the `ejabberdctl commands` described below and all the
 
 The `ejabberdctl commands` are:
 
-**`help`**:   Get help about ejabberdctl or any available command. Try
+- **`help`**:   Get help about ejabberdctl or any available command. Try
 	`ejabberdctl help help`.
 
-**`status`**:   Check the status of the `ejabberd` server.
+- **`status`**:   Check the status of the `ejabberd` server.
 
-**`stop`**:   Stop the `ejabberd` server.
+- **`stop`**:   Stop the `ejabberd` server.
 
-**`restart`**:   Restart the `ejabberd` server.
+- **`restart`**:   Restart the `ejabberd` server.
 
-**`mnesia`**:   Get information about the Mnesia database.
+- **`mnesia`**:   Get information about the Mnesia database.
 
 # ejabberd Commands
 
