@@ -29,6 +29,14 @@ toc: true
     It can also create the schema on an empty database during a new deployment.
     It works with both old and new schemas.
 
+* **Matrix support**
+
+    A Matrix bridge [was included in October 2022](https://www.process-one.net/blog/matrix-protocol-added-to-ejabberd/)
+    in [ejabberd Business Edition](https://www.process-one.net/en/ejabberd/#getejabberd)
+    and [Fluux](https://fluux.io/) ejabberd SaaS platform.
+    Now it is planned to include it in the
+    [ejabberd Community Server](https://github.com/processone/ejabberd) too.
+
 * **Commands API versioning**
 
     With [API versioning](https://github.com/processone/ejabberd/pull/4118),
@@ -48,14 +56,6 @@ toc: true
     Automatic SQL schema update was included as a beta-testing feature in ejabberd 23.10
     (see the [feature announcement](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/)),
     and it will become the default
-
-* **Matrix support**
-
-    A Matrix bridge [was included in October 2022](https://www.process-one.net/blog/matrix-protocol-added-to-ejabberd/)
-    in [ejabberd Business Edition](https://www.process-one.net/en/ejabberd/#getejabberd)
-    and [Fluux](https://fluux.io/) ejabberd SaaS platform.
-    Now it is planned to include it in the
-    [ejabberd Community Server](https://github.com/processone/ejabberd) too.
 
 * **Remove support for Rebar2**
 
