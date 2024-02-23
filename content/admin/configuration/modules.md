@@ -1159,10 +1159,83 @@ archived as usual. The default value is *false*.
 Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
 
 - **user\_mucsub\_from\_muc\_archive**: *true | false*  
-When this option is disabled, for each individual subscriber a separa
+When this option is disabled, for each individual subscriber a separate
 mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is *false*.
+
+mod\_matrix\_gw
+------------
+
+[Matrix](https://matrix.org/) gateway.
+
+To use this module, you must [enable
+s2s](https://docs.ejabberd.im/admin/configuration/toplevel/#s2s-access)
+and define an [HTTP
+handler](https://docs.ejabberd.im/admin/configuration/listen/#ejabberd-http)
+to send `/_matrix` queries to `mod_matrix_gw`.
+
+> **Note**
+>
+> If you compile ejabberd from source, you need [Erlang/OTP
+> 24](https://www.erlang.org/) or superior.
+
+This module is available since ejabberd <a
+href="/archive/24_02/">24.02</a>. 
+
+__Available options:__
+
+- **host**: *Host*  
+This option defines the Jabber ID of the service. If the *host* option
+is not specified, the Jabber ID will be the hostname of the virtual
+host with the prefix "`matrix.`". The keyword *@HOST@* is replaced with
+the real virtual host name.
+
+- **key**: *string()*  
+Value of the matrix signing key, in base64.
+
+- **key\_name**: *string()*  
+Name of the matrix signing key.
+
+- **matrix\_domain**:  *Domain*  
+This option defines the Matrix domain of your ejabberd server in the
+[Matrix
+federation](https://spec.matrix.org/v1.9/server-server-api/). The
+keyword *@HOST@* is replaced with the XMPP domain. The default value
+is *@HOST@*.
+
+- **matrix\_id\_as\_jid**: *true | false*  
+If set to *false*, all packets failing to be delivered via an XMPP
+server-to-server connection will then be routed to the Matrix gateway
+by translating a Jabber ID `user@matrixdomain.tld` to a Matrix user
+identifier `@user:matrixdomain.tld`. When set to *true*, messages
+must be explicitly sent to the matrix gateway service Jabber ID to be
+routed to a remote Matrix server. In this case, to send a message to
+Matrix user `@user:matrixdomain.tld`, the client must send a message
+to the JID `user%matrixdomain.tld@matrix.myxmppdomain.tld`, where
+`matrix.myxmppdomain.tld` is the JID of the gateway service as set by the
+**host** option. The default is *false*.
+
+__**Example**:__
+
+    listen:
+      -
+        port: 5222
+        module: ejabberd_c2s
+      -
+        port: 8448
+        module: ejabberd_http
+	    tls: true
+        request_handlers:
+          "/_matrix": mod_matrix_gw
+
+    modules:
+      mod_matrix_gw:
+         matrix_domain: "domain.tld"
+	     key_name: "key1"
+         key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+		 matrix_id_as_jid: true
+
 
 mod\_metrics
 ------------
