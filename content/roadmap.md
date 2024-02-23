@@ -1,7 +1,7 @@
 ---
 title: ejabberd Roadmap
 menu: Roadmap
-order: 10
+order: 70
 toc: true
 ---
 
@@ -19,6 +19,8 @@ toc: true
 
 * **[XEP-0474: SASL SCRAM Downgrade Protection](https://xmpp.org/extensions/xep-0474.html)**
 
+* **[XEP-0480: SASL Upgrade Tasks](https://xmpp.org/extensions/xep-0480.html)**
+
 * **Automatic SQL schema creation and update**
 
     With [Automatic SQL schema](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/),
@@ -27,6 +29,14 @@ toc: true
     It can also create the schema on an empty database during a new deployment.
     It works with both old and new schemas.
 
+* **Matrix support**
+
+    A Matrix bridge [was included in October 2022](https://www.process-one.net/blog/matrix-protocol-added-to-ejabberd/)
+    in [ejabberd Business Edition](https://www.process-one.net/en/ejabberd/#getejabberd)
+    and [Fluux](https://fluux.io/) ejabberd SaaS platform.
+    Now it is planned to include it in the
+    [ejabberd Community Server](https://github.com/processone/ejabberd) too.
+
 * **Commands API versioning**
 
     With [API versioning](https://github.com/processone/ejabberd/pull/4118),
@@ -34,10 +44,11 @@ toc: true
     When a client queries to use that command, by default the most recent one is used,
     and the API client can specify the API version it supports.
 
-* **Support Elixir 1.16**
+* **Support Elixir 1.16 and Erlang/OTP 27**
 
-    This version was [recently released](https://elixir-lang.org/blog/2023/12/22/elixir-v1-16-0-released/),
-    it includes no breaking changes, but shows some compilation warnings that are worth solving.
+    Those versions were recently released or planned, see
+    [Elixir 1.16](https://elixir-lang.org/blog/2023/12/22/elixir-v1-16-0-released/)
+    and [Erlang/OTP 27.0-rc1](https://www.erlang.org/news/167)).
 
 # Planned
 
@@ -46,14 +57,6 @@ toc: true
     Automatic SQL schema update was included as a beta-testing feature in ejabberd 23.10
     (see the [feature announcement](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/)),
     and it will become the default
-
-* **Matrix support**
-
-    A Matrix bridge [was included in October 2022](https://www.process-one.net/blog/matrix-protocol-added-to-ejabberd/)
-    in [ejabberd Business Edition](https://www.process-one.net/en/ejabberd/#getejabberd)
-    and [Fluux](https://fluux.io/) ejabberd SaaS platform.
-    Now it is planned to include it in the
-    [ejabberd Community Server](https://github.com/processone/ejabberd) too.
 
 * **Remove support for Rebar2**
 
@@ -68,6 +71,10 @@ toc: true
 
 ## 2023
 
+- [23.10](https://www.process-one.net/blog/ejabberd-23-10/)
+  * Support for [XEP-0402: PEP Native Bookmarks](https://xmpp.org/extensions/xep-0402.html)
+  * Support for [XEP-0421: Occupant Id](https://xmpp.org/extensions/xep-0421.html)
+  * MySQL Performance enhancements
 - [23.04](https://www.process-one.net/blog/ejabberd-23-04/)
   * [`mod_mam`](https://docs.ejabberd.im/admin/configuration/modules/#mod-mam) support for [XEP-0425: Message Moderation](https://xmpp.org/extensions/xep-0425.html)
   * New [`mod_muc_rtbl`](https://docs.ejabberd.im/admin/configuration/modules/#mod-muc-rtbl): [Real-Time Block List](https://xmppbl.org/) for MUC rooms
