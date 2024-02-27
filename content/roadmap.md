@@ -7,48 +7,7 @@ toc: true
 
 # In the Works
 
-* **[RFC 9266 Channel Bindings for TLS 1.3](https://www.rfc-editor.org/rfc/rfc9266)**
-
-* **[XEP-0386: Bind 2](https://xmpp.org/extensions/xep-0386.html)**
-
-* **[XEP-0388: Extensible SASL Profile (SASL2)](https://xmpp.org/extensions/xep-0388.html)**
-
-* **[XEP-0424: Message Retraction](https://xmpp.org/extensions/xep-0424.html)**
-
-* **[XEP-0440: SASL Channel-Binding Type Capability](https://xmpp.org/extensions/xep-0440.html)**
-
-* **[XEP-0474: SASL SCRAM Downgrade Protection](https://xmpp.org/extensions/xep-0474.html)**
-
-* **[XEP-0480: SASL Upgrade Tasks](https://xmpp.org/extensions/xep-0480.html)**
-
-* **Automatic SQL schema creation and update**
-
-    With [Automatic SQL schema](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/),
-    ejabberd can handle SQL schema upgrades automatically when you update
-    to a new ejabberd release that includes some change in the SQL schema.
-    It can also create the schema on an empty database during a new deployment.
-    It works with both old and new schemas.
-
-* **Matrix support**
-
-    A Matrix bridge [was included in October 2022](https://www.process-one.net/blog/matrix-protocol-added-to-ejabberd/)
-    in [ejabberd Business Edition](https://www.process-one.net/en/ejabberd/#getejabberd)
-    and [Fluux](https://fluux.io/) ejabberd SaaS platform.
-    Now it is planned to include it in the
-    [ejabberd Community Server](https://github.com/processone/ejabberd) too.
-
-* **Commands API versioning**
-
-    With [API versioning](https://github.com/processone/ejabberd/pull/4118),
-    when an API command gets some breaking change, it is defined as a new API version.
-    When a client queries to use that command, by default the most recent one is used,
-    and the API client can specify the API version it supports.
-
-* **Support Elixir 1.16 and Erlang/OTP 27**
-
-    Those versions were recently released or planned, see
-    [Elixir 1.16](https://elixir-lang.org/blog/2023/12/22/elixir-v1-16-0-released/)
-    and [Erlang/OTP 27.0-rc1](https://www.erlang.org/news/167)).
+* Nothing to mention here right now
 
 # Planned
 
@@ -69,12 +28,28 @@ toc: true
 
 # Released
 
+## 2024
+
+- [24.02](https://www.process-one.net/blog/ejabberd-24-02/)
+  * [Matrix gateway](https://docs.ejabberd.im/admin/configuration/modules/#mod-matrix-gw)
+  * [RFC 9266 Channel Bindings for TLS 1.3](https://www.rfc-editor.org/rfc/rfc9266)
+  * [XEP-0386: Bind 2](https://xmpp.org/extensions/xep-0386.html)
+  * [XEP-0388: Extensible SASL Profile (SASL2)](https://xmpp.org/extensions/xep-0388.html)
+  * [XEP-0424: Message Retraction](https://xmpp.org/extensions/xep-0424.html)
+  * [XEP-0440: SASL Channel-Binding Type Capability](https://xmpp.org/extensions/xep-0440.html)
+  * [XEP-0474: SASL SCRAM Downgrade Protection](https://xmpp.org/extensions/xep-0474.html)
+  * [XEP-0480: SASL Upgrade Tasks](https://xmpp.org/extensions/xep-0480.html)
+  * [Automatic SQL schema](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/) creation and update
+  * Commands [API versioning](https://github.com/processone/ejabberd/pull/4118)
+  * Support Elixir 1.16 and Erlang/OTP 27.0-rc1
+
 ## 2023
 
 - [23.10](https://www.process-one.net/blog/ejabberd-23-10/)
   * Support for [XEP-0402: PEP Native Bookmarks](https://xmpp.org/extensions/xep-0402.html)
   * Support for [XEP-0421: Occupant Id](https://xmpp.org/extensions/xep-0421.html)
   * MySQL Performance enhancements
+
 - [23.04](https://www.process-one.net/blog/ejabberd-23-04/)
   * [`mod_mam`](https://docs.ejabberd.im/admin/configuration/modules/#mod-mam) support for [XEP-0425: Message Moderation](https://xmpp.org/extensions/xep-0425.html)
   * New [`mod_muc_rtbl`](https://docs.ejabberd.im/admin/configuration/modules/#mod-muc-rtbl): [Real-Time Block List](https://xmppbl.org/) for MUC rooms
