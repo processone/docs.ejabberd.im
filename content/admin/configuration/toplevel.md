@@ -240,7 +240,7 @@ set, the value from [cache_size](/admin/configuration/toplevel/#cache-size) will
 *true | false*  
 
 Supplement check for user existence based on *mod\_last* data, for
-authentication methods that don’t have a way to reliable tell if user
+authentication methods that don’t have a way to reliably tell if a user
 exists (like is the case for *jwt* and certificate based
 authentication). This helps with processing offline message for those
 users. The default value is *true*.
@@ -268,8 +268,8 @@ repository. Please refer to that module’s README file for details.
 
 *plain | scram*  
 
-The option defines in what format the users passwords are stored,
-plain text or in [SCRAM](/admin/configuration/authentication/#scram) format:
+The option defines in what format the users passwords are stored, plain
+text or in [SCRAM](/admin/configuration/authentication/#scram) format:
 
 -   *plain*: The password is stored as plain text in the database. This
     is risky because the passwords can be read if your database gets
@@ -277,11 +277,11 @@ plain text or in [SCRAM](/admin/configuration/authentication/#scram) format:
     to authenticate using: the old Jabber Non-SASL (XEP-0078), SASL
     PLAIN, SASL DIGEST-MD5, and SASL SCRAM-SHA-1/256/512(-PLUS).
 
--   *scram*: The password is not stored, only some information that
-    allows to verify the hash provided by the client. It is impossible
-    to obtain the original plain password from the stored information;
-    for this reason, when this value is configured it cannot be changed
-    to plain anymore. This format allows clients to authenticate using:
+-   *scram*: The password is not stored, only some information required
+    to verify the hash provided by the client. It is impossible to
+    obtain the original plain password from the stored information; for
+    this reason, when this value is configured it cannot be changed to
+    plain anymore. This format allows clients to authenticate using:
     SASL PLAIN and SASL SCRAM-SHA-1/256/512(-PLUS). The SCRAM variant
     depends on the [auth_scram_hash](/admin/configuration/toplevel/#auth-scram-hash) option.
 
@@ -291,9 +291,10 @@ The default value is *plain*.
 
 *sha | sha256 | sha512*  
 
-Hash algorithm that should be used to store password in [SCRAM](/admin/configuration/authentication/#scram) format.
-You shouldn’t change this if you already have passwords generated with a
-different algorithm - users that have such passwords will not be able to
+Hash algorithm that should be used to store password in
+[SCRAM](/admin/configuration/authentication/#scram) format. You shouldn’t change
+this if you already have passwords generated with a different
+algorithm - users that have such passwords will not be able to
 authenticate. The default value is *sha*.
 
 ## auth\_use\_cache
@@ -548,6 +549,18 @@ that should not be offered to the client. For convenience, the value of
 *Mechanism* is case-insensitive. The default value is an empty list,
 i.e. no mechanisms are disabled by default.
 
+## disable\_sasl\_scram\_downgrade\_protection
+
+*true | false*  
+
+Allows to disable sending data required by *XEP-0474: SASL SCRAM
+Downgrade Protection*. There are known buggy clients (like those that
+use strophejs 1.6.2) which will not be able to authenticatate when
+servers sends data from that specification. This options allows server
+to disable it to allow even buggy clients connects, but in exchange
+decrease MITM protection. The default value of this option is *false*
+which enables this extension.
+
 ## domain\_balancing
 
 *{Domain: Options}*  
@@ -568,7 +581,7 @@ connected as *Domain*, available *Options* are:
     *random* - an instance is chosen at random; *destination* - an
     instance is chosen by the full JID of the packet’s *to* attribute;
     *source* - by the full JID of the packet’s *from* attribute;
-    *bare\_destination* - by the the bare JID (without resource) of the
+    *bare\_destination* - by the bare JID (without resource) of the
     packet’s *to* attribute; *bare\_source* - by the bare JID (without
     resource) of the packet’s *from* attribute is used. The default
     value is *random*.
@@ -720,8 +733,8 @@ is *none*.
 
 *FieldName*  
 
-By default, the JID is defined in the *"jid"* JWT field. This option
-allows to specify other JWT field name where the JID is defined.
+By default, the JID is defined in the *"jid"* JWT field. In this option
+you can specify other JWT field name where the JID is defined.
 
 ## jwt\_key
 
@@ -964,7 +977,7 @@ section for details.
 
 Time to wait for an XMPP stream negotiation to complete. When timeout
 occurs, the corresponding XMPP stream is closed. The default value is
-*30* seconds.
+*120* seconds.
 
 ## net\_ticktime
 
@@ -982,15 +995,14 @@ default value is *1 minute*.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/23.10/sql>. There are two
-schemas available. The default legacy schema allows to store one XMPP
-domain into one ejabberd database. The *new* schema allows to handle
-several XMPP domains in a single ejabberd database. Using this *new*
-schema is best when serving several XMPP domains and/or changing domains
-from time to time. This avoid need to manage several databases and
-handle complex configuration changes. The default depends on
-configuration flag *--enable-new-sql-schema* which is set at compile
-time.
+<https://github.com/processone/ejabberd/tree/24.02/sql>. There are two
+schemas available. The default legacy schema stores one XMPP domain into
+one ejabberd database. The *new* schema can handle several XMPP domains
+in a single ejabberd database. Using this *new* schema is best when
+serving several XMPP domains and/or changing domains from time to time.
+This avoid need to manage several databases and handle complex
+configuration changes. The default depends on configuration flag
+*--enable-new-sql-schema* which is set at compile time.
 
 ## oauth\_access
 
@@ -1505,6 +1517,16 @@ default value is *5* seconds.
 An SQL database name. For SQLite this must be a full path to a database
 file. The default value is *ejabberd*.
 
+<div class="note-down">added in <a href="/archive/24_02/">24.02</a></div>
+
+## sql\_flags
+
+*\[mysql\_alternative\_upsert\]*  
+
+This option accepts a list of SQL flags, and is empty by default.
+*mysql\_alternative\_upsert* forces the alternative upsert
+implementation in MySQL.
+
 ## sql\_keepalive\_interval
 
 *timeout()*  
@@ -1554,7 +1576,7 @@ option has no effect for SQLite.
 *true | false*  
 
 This option is *true* by default, and is useful to disable prepared
-statements. The option is valid for PostgreSQL.
+statements. The option is valid for PostgreSQL and MySQL.
 
 ## sql\_query\_timeout
 
@@ -1642,12 +1664,18 @@ A user name for SQL authentication. The default value is *ejabberd*.
 Specify what proxies are trusted when an HTTP request contains the
 header *X-Forwarded-For*. You can specify *all* to allow all proxies, or
 specify a list of IPs, possibly with masks. The default value is an
-empty list. This allows, if enabled, to be able to know the real IP of
-the request, for admin purpose, or security configuration (for example
-using *mod\_fail2ban*). IMPORTANT: The proxy MUST be configured to set
-the *X-Forwarded-For* header if you enable this option as, otherwise,
-the client can set it itself and as a result the IP value cannot be
-trusted for security rules in ejabberd.
+empty list. Using this option you can know the real IP of the request,
+for admin purpose, or security configuration (for example using
+*mod\_fail2ban*). IMPORTANT: The proxy MUST be configured to set the
+*X-Forwarded-For* header if you enable this option as, otherwise, the
+client can set it itself and as a result the IP value cannot be trusted
+for security rules in ejabberd.
+
+## update\_sql\_schema
+
+*true | false*  
+
+Allow ejabberd to update SQL schema. The default value is *true*.
 
 ## use\_cache
 

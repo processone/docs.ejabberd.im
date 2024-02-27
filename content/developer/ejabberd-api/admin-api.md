@@ -23,7 +23,7 @@ __Result:__
 - *status* :: string : Status text
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_mam](/admin/configuration/modules/#mod-mam)
@@ -58,7 +58,7 @@ __Result:__
 - *status* :: string : Status text
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Examples:__
 
@@ -74,15 +74,12 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>updated in <a href="/archive/24_02/">24.02</a></div>
 
 ## add_rosteritem
 
 
 Add an item to a user's roster (supports ODBC)
-
-
-Group can be several groups separated by `;` for example: `g1;g2;g3`
 
 __Arguments:__
 
@@ -91,15 +88,15 @@ __Arguments:__
 - *user* :: string : Contact user name
 - *host* :: string : Contact server name
 - *nick* :: string : Nickname
-- *group* :: string : Group
+- *groups* :: [group::string] : Groups
 - *subs* :: string : Subscription
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/developer/ejabberd-api/admin-tags/#roster), [v1](/developer/ejabberd-api/admin-tags/#v1)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -115,7 +112,10 @@ __Examples:__
       "user": "user2",
       "host": "myserver.com",
       "nick": "User 2",
-      "group": "Friends",
+      "groups": [
+        "Friends",
+        "Team 1"
+      ],
       "subs": "both"
     }
     
@@ -140,7 +140,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -171,10 +171,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -212,7 +212,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[private](/developer/ejabberd-api/admin-tags/#private) 
+[private](/developer/ejabberd-api/admin-tags/#private)
 
 __Module:__
 [mod_private](/admin/configuration/modules/#mod-private)
@@ -247,10 +247,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -287,10 +287,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -326,10 +326,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -364,10 +364,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -407,10 +407,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -444,10 +444,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -476,10 +476,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[erlang](/developer/ejabberd-api/admin-tags/#erlang) 
+[erlang](/developer/ejabberd-api/admin-tags/#erlang)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -513,7 +513,7 @@ __Result:__
 - *connected_users* :: [sessions::string] : List of users sessions
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Examples:__
 
@@ -547,7 +547,7 @@ __Result:__
 - *connected_users_info* :: [{jid::string, connection::string, ip::string, port::integer, priority::integer, node::string, uptime::integer, status::string, resource::string, statustext::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -594,7 +594,7 @@ __Result:__
 - *num_sessions* :: integer
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) [statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[session](/developer/ejabberd-api/admin-tags/#session), [statistics](/developer/ejabberd-api/admin-tags/#statistics)
 
 __Examples:__
 
@@ -626,7 +626,7 @@ __Result:__
 - *connected_users_vhost* :: [sessions::string]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -661,10 +661,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[sql](/developer/ejabberd-api/admin-tags/#sql) 
+[sql](/developer/ejabberd-api/admin-tags/#sql)
 
 __Examples:__
 
@@ -694,10 +694,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[config](/developer/ejabberd-api/admin-tags/#config) 
+[config](/developer/ejabberd-api/admin-tags/#config)
 
 __Examples:__
 
@@ -729,10 +729,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -772,10 +772,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room), [muc_sub](/developer/ejabberd-api/admin-tags/#muc-sub)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -826,10 +826,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -860,10 +860,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Examples:__
 
@@ -891,10 +891,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_pubsub](/admin/configuration/modules/#mod-pubsub)
@@ -926,10 +926,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -962,10 +962,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_mam](/admin/configuration/modules/#mod-mam)
@@ -1008,7 +1008,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_mam](/admin/configuration/modules/#mod-mam)
@@ -1047,7 +1047,7 @@ __Result:__
 - *status* :: string : Status test
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_mam](/admin/configuration/modules/#mod-mam)
@@ -1079,10 +1079,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Examples:__
 
@@ -1117,7 +1117,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Examples:__
 
@@ -1152,7 +1152,7 @@ __Result:__
 - *status* :: string : Status test
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Examples:__
 
@@ -1181,10 +1181,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_pubsub](/admin/configuration/modules/#mod-pubsub)
@@ -1216,10 +1216,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](/developer/ejabberd-api/admin-tags/#purge) 
+[purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_push](/admin/configuration/modules/#mod-push)
@@ -1264,7 +1264,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) [purge](/developer/ejabberd-api/admin-tags/#purge) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts), [purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -1310,7 +1310,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) [purge](/developer/ejabberd-api/admin-tags/#purge) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts), [purge](/developer/ejabberd-api/admin-tags/#purge)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -1346,10 +1346,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/developer/ejabberd-api/admin-tags/#roster)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -1385,10 +1385,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -1424,10 +1424,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -1462,7 +1462,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -1491,10 +1491,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[config](/developer/ejabberd-api/admin-tags/#config) 
+[config](/developer/ejabberd-api/admin-tags/#config)
 
 __Examples:__
 
@@ -1527,7 +1527,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -1561,10 +1561,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -1594,10 +1594,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -1627,10 +1627,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -1659,10 +1659,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -1693,10 +1693,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/developer/ejabberd-api/admin-tags/#documentation)
 
 __Examples:__
 
@@ -1724,15 +1724,15 @@ Generates markdown documentation for ejabberd_commands
 __Arguments:__
 
 - *file* :: string : Path to file where generated documentation should be stored
-- *regexp* :: string : Regexp matching names of commands or modules that will be included inside generated document
+- *regexp* :: string : Regexp matching names of commands or modules that will be included inside generated document, or `runtime` to get commands registered at runtime
 - *examples* :: string : Comma separated list of languages (chosen from `java`, `perl`, `xmlrpc`, `json`) that will have example invocation include in markdown document
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/developer/ejabberd-api/admin-tags/#documentation)
 
 __Examples:__
 
@@ -1763,10 +1763,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/developer/ejabberd-api/admin-tags/#documentation)
 
 __Examples:__
 
@@ -1797,7 +1797,7 @@ __Result:__
 - *cookie* :: string : Erlang cookie used for authentication by ejabberd
 
 __Tags:__
-[erlang](/developer/ejabberd-api/admin-tags/#erlang) 
+[erlang](/developer/ejabberd-api/admin-tags/#erlang)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -1824,7 +1824,7 @@ __Examples:__
 Get last activity information
 
 
-Timestamp is UTC and XEP-0082 format, for example: `2017-02-23T22:25:28.063062Z     ONLINE`
+Timestamp is UTC and [XEP-0082](https://xmpp.org/extensions/xep-0082.html) format, for example: `2017-02-23T22:25:28.063062Z     ONLINE`
 
 __Arguments:__
 
@@ -1836,7 +1836,7 @@ __Result:__
 - *last_activity* :: {timestamp::string, status::string} : Last activity timestamp and status
 
 __Tags:__
-[last](/developer/ejabberd-api/admin-tags/#last) 
+[last](/developer/ejabberd-api/admin-tags/#last)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -1874,7 +1874,7 @@ __Result:__
 - *levelatom* :: string : Tuple with the log level number, its keyword and description
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/developer/ejabberd-api/admin-tags/#logs)
 
 __Examples:__
 
@@ -1907,7 +1907,7 @@ __Result:__
 - *value* :: integer : Number
 
 __Tags:__
-[offline](/developer/ejabberd-api/admin-tags/#offline) 
+[offline](/developer/ejabberd-api/admin-tags/#offline)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -1958,7 +1958,7 @@ __Result:__
 - *presence* :: {jid::string, show::string, status::string}
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -2000,7 +2000,7 @@ __Result:__
 - *affiliation* :: string : Affiliation of the user
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2038,7 +2038,7 @@ __Result:__
 - *affiliations* :: [{username::string, domain::string, affiliation::string, reason::string}] : The list of affiliations with username, domain, affiliation and reason
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2082,7 +2082,7 @@ __Result:__
 - *history* :: [{timestamp::string, message::string}]
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2128,7 +2128,7 @@ __Result:__
 - *occupants* :: [{jid::string, nick::string, role::string}] : The list of occupants with JID, nick and affiliation
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2171,7 +2171,7 @@ __Result:__
 - *occupants* :: integer : Number of room occupants
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2208,7 +2208,7 @@ __Result:__
 - *options* :: [{name::string, value::string}] : List of room options tuples with name and value
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2241,7 +2241,9 @@ __Examples:__
 Get list of contacts in a local user roster
 
 
-Subscription can be: "none", "from", "to", "both". Pending can be: "in", "out", "none".
+`subscription` can be: `none`, `from`, `to`, `both`.
+
+`pending` can be: `in`, `out`, `none`.
 
 __Arguments:__
 
@@ -2253,7 +2255,7 @@ __Result:__
 - *contacts* :: [{jid::string, nick::string, subscription::string, pending::string, groups::[group::string]}]
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/developer/ejabberd-api/admin-tags/#roster)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -2311,7 +2313,7 @@ __Result:__
 - *subscribers* :: [jid::string] : The list of users that are subscribed to that room
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room), [muc_sub](/developer/ejabberd-api/admin-tags/#muc-sub)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2351,7 +2353,7 @@ __Result:__
 - *rooms* :: [room::string]
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2391,7 +2393,7 @@ __Result:__
 - *rooms* :: [{roomjid::string, usernick::string, nodes::[node::string]}]
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc), [muc_sub](/developer/ejabberd-api/admin-tags/#muc-sub)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -2427,7 +2429,7 @@ __Examples:__
 Get content from a vCard field
 
 
-Some vcard field names in get/set_vcard are:
+Some vcard field names in `get`/`set_vcard` are:
 
 * FN           - Full Name
 * NICKNAME     - Nickname
@@ -2435,7 +2437,7 @@ Some vcard field names in get/set_vcard are:
 * TITLE        - Work: Position
 * ROLE         - Work: Role
 
-For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check [XEP-0054: vcard-temp](https://xmpp.org/extensions/xep-0054.html)
 
 __Arguments:__
 
@@ -2448,7 +2450,7 @@ __Result:__
 - *content* :: string : Field content
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/developer/ejabberd-api/admin-tags/#vcard)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -2477,7 +2479,7 @@ __Examples:__
 Get content from a vCard subfield
 
 
-Some vcard field names and subnames in get/set_vcard2 are:
+Some vcard field names and subnames in `get`/`set_vcard2` are:
 
 * N FAMILY     - Family name
 * N GIVEN      - Given name
@@ -2492,7 +2494,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check [XEP-0054: vcard-temp](https://xmpp.org/extensions/xep-0054.html)
 
 __Arguments:__
 
@@ -2506,7 +2508,7 @@ __Result:__
 - *content* :: string : Field content
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/developer/ejabberd-api/admin-tags/#vcard)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -2536,7 +2538,7 @@ __Examples:__
 Get multiple contents from a vCard field
 
 
-Some vcard field names and subnames in get/set_vcard2 are:
+Some vcard field names and subnames in `get`/`set_vcard2` are:
 
 * N FAMILY     - Family name
 * N GIVEN      - Given name
@@ -2551,7 +2553,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check [XEP-0054: vcard-temp](https://xmpp.org/extensions/xep-0054.html)
 
 __Arguments:__
 
@@ -2565,7 +2567,7 @@ __Result:__
 - *contents* :: [value::string]
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/developer/ejabberd-api/admin-tags/#vcard)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -2602,16 +2604,50 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
 
 ~~~ json
     POST /api/halt
+    {
+      
+    }
+    
+    HTTP/1.1 200 OK
+    ""
+~~~
+
+
+
+
+## help
+
+
+Get list of commands, or help of a command (only ejabberdctl)
+
+
+This command is exclusive for the ejabberdctl command-line script, don't attempt to execute it using any other API frontend.
+
+__Arguments:__
+
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[ejabberdctl](/developer/ejabberd-api/admin-tags/#ejabberdctl)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/help
     {
       
     }
@@ -2637,7 +2673,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -2669,7 +2705,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -2698,10 +2734,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -2733,10 +2769,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) [sql](/developer/ejabberd-api/admin-tags/#sql) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia), [sql](/developer/ejabberd-api/admin-tags/#sql)
 
 __Examples:__
 
@@ -2767,7 +2803,7 @@ __Result:__
 - *s2s_incoming* :: integer
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) [s2s](/developer/ejabberd-api/admin-tags/#s2s) 
+[statistics](/developer/ejabberd-api/admin-tags/#statistics), [s2s](/developer/ejabberd-api/admin-tags/#s2s)
 
 __Examples:__
 
@@ -2802,7 +2838,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -2834,10 +2870,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/developer/ejabberd-api/admin-tags/#cluster)
 
 __Examples:__
 
@@ -2869,10 +2905,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -2911,7 +2947,7 @@ __Result:__
 - *num_resources* :: integer : Number of resources that were kicked
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Examples:__
 
@@ -2944,10 +2980,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/developer/ejabberd-api/admin-tags/#cluster)
 
 __Examples:__
 
@@ -2978,7 +3014,7 @@ __Result:__
 - *certificates* :: [{domain::string, file::string, used::string}]
 
 __Tags:__
-[acme](/developer/ejabberd-api/admin-tags/#acme) 
+[acme](/developer/ejabberd-api/admin-tags/#acme)
 
 __Examples:__
 
@@ -3020,7 +3056,7 @@ __Result:__
 - *nodes* :: [node::string]
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/developer/ejabberd-api/admin-tags/#cluster)
 
 __Examples:__
 
@@ -3058,7 +3094,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -3089,7 +3125,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[documentation](/developer/ejabberd-api/admin-tags/#documentation) 
+[documentation](/developer/ejabberd-api/admin-tags/#documentation)
 
 __Examples:__
 
@@ -3124,7 +3160,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -3158,7 +3194,7 @@ __Result:__
 - *res* :: string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -3171,6 +3207,40 @@ __Examples:__
     
     HTTP/1.1 200 OK
         {"res": "aaaaa"}
+~~~
+
+
+<div class='note-down'>renamed in <a href="/archive/24_02/">24.02</a></div>
+
+## mnesia_info_ctl
+
+
+Show information of Mnesia system (only ejabberdctl)
+
+
+This command is exclusive for the ejabberdctl command-line script, don't attempt to execute it using any other API frontend.
+
+__Arguments:__
+
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[ejabberdctl](/developer/ejabberd-api/admin-tags/#ejabberdctl), [mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/mnesia_info_ctl
+    {
+      
+    }
+    
+    HTTP/1.1 200 OK
+    ""
 ~~~
 
 
@@ -3190,7 +3260,7 @@ __Result:__
 - *res* :: string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -3219,10 +3289,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/developer/ejabberd-api/admin-tags/#modules)
 
 __Examples:__
 
@@ -3251,10 +3321,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/developer/ejabberd-api/admin-tags/#modules)
 
 __Examples:__
 
@@ -3283,10 +3353,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/developer/ejabberd-api/admin-tags/#modules)
 
 __Examples:__
 
@@ -3318,10 +3388,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/developer/ejabberd-api/admin-tags/#modules)
 
 __Examples:__
 
@@ -3352,7 +3422,7 @@ __Result:__
 - *modules* :: [{name::string, summary::string}] : List of tuples with module name and description
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/developer/ejabberd-api/admin-tags/#modules)
 
 __Examples:__
 
@@ -3386,7 +3456,7 @@ __Result:__
 - *modules* :: [{name::string, summary::string}] : List of tuples with module name and description
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/developer/ejabberd-api/admin-tags/#modules)
 
 __Examples:__
 
@@ -3420,10 +3490,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[modules](/developer/ejabberd-api/admin-tags/#modules) 
+[modules](/developer/ejabberd-api/admin-tags/#modules)
 
 __Examples:__
 
@@ -3444,18 +3514,21 @@ __Examples:__
 ## muc_online_rooms
 
 
-List existing rooms ('global' to get all vhosts)
+List existing rooms
+
+
+Ask for a specific host, or `global` to use all vhosts.
 
 __Arguments:__
 
-- *service* :: string : MUC service, or 'global' for all
+- *service* :: string : MUC service, or `global` for all
 
 __Result:__
 
 - *rooms* :: [room::string] : List of rooms
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -3482,11 +3555,14 @@ __Examples:__
 ## muc_online_rooms_by_regex
 
 
-List existing rooms ('global' to get all vhosts) by regex
+List existing rooms filtered by regexp
+
+
+Ask for a specific host, or `global` to use all vhosts.
 
 __Arguments:__
 
-- *service* :: string : MUC service, or 'global' for all
+- *service* :: string : MUC service, or `global` for all
 - *regex* :: string : Regex pattern for room name
 
 __Result:__
@@ -3494,7 +3570,7 @@ __Result:__
 - *rooms* :: [{jid::string, public::string, participants::integer}] : List of rooms with summary
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -3540,10 +3616,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -3578,10 +3654,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -3618,7 +3694,7 @@ __Result:__
 - *resources* :: integer : Number of active resources for a user
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -3643,7 +3719,7 @@ __Examples:__
 ## oauth_add_client_implicit
 
 
-Add OAUTH client_id with implicit grant type
+Add [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) client_id with implicit grant type
 
 __Arguments:__
 
@@ -3656,7 +3732,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/developer/ejabberd-api/admin-tags/#oauth)
 
 __Examples:__
 
@@ -3679,7 +3755,7 @@ __Examples:__
 ## oauth_add_client_password
 
 
-Add OAUTH client_id with password grant type
+Add [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) client_id with password grant type
 
 __Arguments:__
 
@@ -3692,7 +3768,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/developer/ejabberd-api/admin-tags/#oauth)
 
 __Examples:__
 
@@ -3710,25 +3786,25 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>updated in <a href="/archive/24_02/">24.02</a></div>
 
 ## oauth_issue_token
 
 
-Issue an oauth token for the given jid
+Issue an [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) token for the given jid
 
 __Arguments:__
 
 - *jid* :: string : Jid for which issue token
 - *ttl* :: integer : Time to live of generated token in seconds
-- *scopes* :: string : List of scopes to allow, separated by ';'
+- *scopes* :: [scope::string] : List of scopes to allow
 
 __Result:__
 
-- *result* :: {token::string, scopes::string, expires_in::string}
+- *result* :: {token::string, scopes::[scope::string], expires_in::string}
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/developer/ejabberd-api/admin-tags/#oauth), [v1](/developer/ejabberd-api/admin-tags/#v1)
 
 __Examples:__
 
@@ -3738,14 +3814,20 @@ __Examples:__
     {
       "jid": "user@server.com",
       "ttl": 3600,
-      "scopes": "connected_users_number;muc_online_rooms"
+      "scopes": [
+        "connected_users_number",
+        "muc_online_rooms"
+      ]
     }
     
     HTTP/1.1 200 OK
     {
       "token": "aaaaa",
-      "scopes": "bbbbb",
-      "expires_in": "ccccc"
+      "scopes": [
+        "bbbbb",
+        "ccccc"
+      ],
+      "expires_in": "ddddd"
     }
 ~~~
 
@@ -3755,10 +3837,10 @@ __Examples:__
 ## oauth_list_tokens
 
 
-List oauth tokens, user, scope, and seconds to expire (only Mnesia)
+List [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) tokens, user, scope, and seconds to expire (only Mnesia)
 
 
-List oauth tokens, their user and scope, and how many seconds remain until expirity
+List OAuth tokens, their user and scope, and how many seconds remain until expirity
 
 __Arguments:__
 
@@ -3768,7 +3850,7 @@ __Result:__
 - *tokens* :: [{token::string, user::string, scope::string, expires_in::string}]
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/developer/ejabberd-api/admin-tags/#oauth)
 
 __Examples:__
 
@@ -3802,7 +3884,7 @@ __Examples:__
 ## oauth_remove_client
 
 
-Remove OAUTH client_id
+Remove [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) client_id
 
 __Arguments:__
 
@@ -3813,7 +3895,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/developer/ejabberd-api/admin-tags/#oauth)
 
 __Examples:__
 
@@ -3834,7 +3916,7 @@ __Examples:__
 ## oauth_revoke_token
 
 
-Revoke authorization for a token
+Revoke authorization for an [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) token
 
 __Arguments:__
 
@@ -3845,7 +3927,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[oauth](/developer/ejabberd-api/admin-tags/#oauth) 
+[oauth](/developer/ejabberd-api/admin-tags/#oauth)
 
 __Examples:__
 
@@ -3876,7 +3958,7 @@ __Result:__
 - *s2s_outgoing* :: integer
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) [s2s](/developer/ejabberd-api/admin-tags/#s2s) 
+[statistics](/developer/ejabberd-api/admin-tags/#statistics), [s2s](/developer/ejabberd-api/admin-tags/#s2s)
 
 __Examples:__
 
@@ -3889,6 +3971,45 @@ __Examples:__
     
     HTTP/1.1 200 OK
         {"s2s_outgoing": 1}
+~~~
+
+
+<div class='note-down'>added in <a href="/archive/24_02/">24.02</a></div>
+
+## print_sql_schema
+
+
+Print SQL schema for the given RDBMS (only ejabberdctl)
+
+
+This command is exclusive for the ejabberdctl command-line script, don't attempt to execute it using any other API frontend.
+
+__Arguments:__
+
+- *db_type* :: string : Database type: pgsql | mysql | sqlite
+- *db_version* :: string : Your database version: 16.1, 8.2.0...
+- *new_schema* :: string : Use new schema: 0, false, 1 or true
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[ejabberdctl](/developer/ejabberd-api/admin-tags/#ejabberdctl), [sql](/developer/ejabberd-api/admin-tags/#sql)
+
+__Examples:__
+
+
+~~~ json
+    POST /api/print_sql_schema
+    {
+      "db_type": "pgsql",
+      "db_version": "16.1",
+      "new_schema": "true"
+    }
+    
+    HTTP/1.1 200 OK
+    ""
 ~~~
 
 
@@ -3907,10 +4028,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/developer/ejabberd-api/admin-tags/#stanza)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -3950,7 +4071,7 @@ __Result:__
 - *res* :: string
 
 __Tags:__
-[private](/developer/ejabberd-api/admin-tags/#private) 
+[private](/developer/ejabberd-api/admin-tags/#private)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -3987,10 +4108,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[private](/developer/ejabberd-api/admin-tags/#private) 
+[private](/developer/ejabberd-api/admin-tags/#private)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4020,39 +4141,50 @@ List/delete rosteritems that match filter
 
 
 Explanation of each argument:
- - action: what to do with each rosteritem that matches all the filtering options
- - subs: subscription type
- - asks: pending subscription
- - users: the JIDs of the local user
- - contacts: the JIDs of the contact in the roster
 
- *** Mnesia: 
+* `action`: what to do with each rosteritem that matches all the filtering options
+* `subs`: subscription type
+* `asks`: pending subscription
+* `users`: the JIDs of the local user
+* `contacts`: the JIDs of the contact in the roster
 
-Allowed values in the arguments:
-  ACTION = list | delete
-  SUBS = SUB[:SUB]* | any
-  SUB = none | from | to | both
-  ASKS = ASK[:ASK]* | any
-  ASK = none | out | in
-  USERS = JID[:JID]* | any
-  CONTACTS = JID[:JID]* | any
-  JID = characters valid in a JID, and can use the globs: *, ?, ! and [...]
-
-This example will list roster items with subscription 'none', 'from' or 'to' that have any ask property, of local users which JID is in the virtual host 'example.org' and that the contact JID is either a bare server name (without user part) or that has a user part and the server part contains the word 'icq':
-  list none:from:to any *@example.org *:*@*icq*
-
- *** SQL:
+**Mnesia backend:**
 
 Allowed values in the arguments:
-  ACTION = list | delete
-  SUBS = any | none | from | to | both
-  ASKS = any | none | out | in
-  USERS = JID
-  CONTACTS = JID
-  JID = characters valid in a JID, and can use the globs: _ and %
 
-This example will list roster items with subscription 'to' that have any ask property, of local users which JID is in the virtual host 'example.org' and that the contact JID's server part contains the word 'icq':
-  list to any %@example.org %@%icq%
+* `action` = `list` | `delete`
+* `subs` = `any` | SUB[:SUB]*
+* `asks` = `any` | ASK[:ASK]*
+* `users` = `any` | JID[:JID]*
+* `contacts` = `any` | JID[:JID]*
+
+where
+
+* SUB = `none` | `from `| `to` | `both`
+* ASK = `none` | `out` | `in`
+* JID = characters valid in a JID, and can use the globs: `*`, `?`, `!` and `[...]`
+
+This example will list roster items with subscription `none`, `from` or `to` that have any ask property, of local users which JID is in the virtual host `example.org` and that the contact JID is either a bare server name (without user part) or that has a user part and the server part contains the word `icq`:
+  `list none:from:to any *@example.org *:*@*icq*`
+
+**SQL backend:**
+
+Allowed values in the arguments:
+
+* `action` = `list` | `delete`
+* `subs` = `any` | SUB
+* `asks` = `any` | ASK
+* `users` = JID
+* `contacts` = JID
+
+where
+
+* SUB = `none` | `from` | `to` | `both`
+* ASK = `none` | `out` | `in`
+* JID = characters valid in a JID, and can use the globs: `_` and `%`
+
+This example will list roster items with subscription `to` that have any ask property, of local users which JID is in the virtual host `example.org` and that the contact JID's server part contains the word `icq`:
+  `list to any %@example.org %@%icq%`
 
 __Arguments:__
 
@@ -4067,7 +4199,7 @@ __Result:__
 - *response* :: [{user::string, contact::string}]
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/developer/ejabberd-api/admin-tags/#roster)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4113,10 +4245,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/developer/ejabberd-api/admin-tags/#roster)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4144,11 +4276,12 @@ __Examples:__
 Push template roster from file to a user
 
 
-The text file must contain an erlang term: a list of tuples with username, servername, group and nick. Example:
-[{<<"user1">>, <<"localhost">>, <<"Workers">>, <<"User 1">>},
- {<<"user2">>, <<"localhost">>, <<"Workers">>, <<"User 2">>}].
-When using UTF8 character encoding add /utf8 to certain string. Example:
-[{<<"user2">>, <<"localhost">>, <<"Workers"/utf8>>, <<"User 2"/utf8>>}].
+The text file must contain an erlang term: a list of tuples with username, servername, group and nick. For example:
+`[{"user1", "localhost", "Workers", "User 1"},
+ {"user2", "localhost", "Workers", "User 2"}].`
+
+If there are problems parsing UTF8 character encoding, provide the corresponding string with the `<<"STRING"/utf8>>` syntax, for example:
+`[{"user2", "localhost", "Workers", <<"User 2"/utf8>>}]`.
 
 __Arguments:__
 
@@ -4158,10 +4291,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/developer/ejabberd-api/admin-tags/#roster)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4191,8 +4324,8 @@ Push template roster from file to all those users
 
 
 The text file must contain an erlang term: a list of tuples with username, servername, group and nick. Example:
-[{"user1", "localhost", "Workers", "User 1"},
- {"user2", "localhost", "Workers", "User 2"}].
+`[{"user1", "localhost", "Workers", "User 1"},
+ {"user2", "localhost", "Workers", "User 2"}].`
 
 __Arguments:__
 
@@ -4200,10 +4333,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[roster](/developer/ejabberd-api/admin-tags/#roster) 
+[roster](/developer/ejabberd-api/admin-tags/#roster)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4240,7 +4373,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Examples:__
 
@@ -4274,7 +4407,7 @@ __Result:__
 - *users* :: [username::string] : List of registered accounts usernames
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Examples:__
 
@@ -4308,7 +4441,7 @@ __Result:__
 - *vhosts* :: [vhost::string] : List of available vhosts
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -4339,10 +4472,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[config](/developer/ejabberd-api/admin-tags/#config) 
+[config](/developer/ejabberd-api/admin-tags/#config)
 
 __Examples:__
 
@@ -4375,7 +4508,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mam](/developer/ejabberd-api/admin-tags/#mam) 
+[mam](/developer/ejabberd-api/admin-tags/#mam)
 
 __Module:__
 [mod_mam](/admin/configuration/modules/#mod-mam)
@@ -4413,7 +4546,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mam](/developer/ejabberd-api/admin-tags/#mam) 
+[mam](/developer/ejabberd-api/admin-tags/#mam)
 
 __Module:__
 [mod_mam](/admin/configuration/modules/#mod-mam)
@@ -4439,20 +4572,21 @@ __Examples:__
 ## reopen_log
 
 
-Reopen the log files after being renamed
+Reopen maybe the log files after being renamed
 
 
-This can be useful when an external tool is used for log rotation. See https://docs.ejabberd.im/admin/guide/troubleshooting/#log-files
+Has no effect on ejabberd main log files, only on log files generated by some modules.
+This can be useful when an external tool is used for log rotation. See [Log Files](https://docs.ejabberd.im/admin/guide/troubleshooting/#log-files).
 
 __Arguments:__
 
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/developer/ejabberd-api/admin-tags/#logs)
 
 __Examples:__
 
@@ -4473,7 +4607,10 @@ __Examples:__
 ## request_certificate
 
 
-Requests certificates for all or the specified domains: all | domain1,domain2,...
+Requests certificates for all or some domains
+
+
+Domains can be `all`, or a list of domains separared with comma characters
 
 __Arguments:__
 
@@ -4484,7 +4621,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[acme](/developer/ejabberd-api/admin-tags/#acme) 
+[acme](/developer/ejabberd-api/admin-tags/#acme)
 
 __Examples:__
 
@@ -4492,7 +4629,7 @@ __Examples:__
 ~~~ json
     POST /api/request_certificate
     {
-      "domains": "all | domain.tld,conference.domain.tld,..."
+      "domains": "example.com,domain.tld,conference.domain.tld"
     }
     
     HTTP/1.1 200 OK
@@ -4518,7 +4655,7 @@ __Result:__
 - *resource* :: string : Name of user resource
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4551,10 +4688,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -4585,12 +4722,12 @@ __Arguments:__
 __Result:__
 
 - *res* :: integer : Returns integer code:
- - 0: code reloaded, module restarted
- - 1: error: module not loaded
- - 2: code not reloaded, but module restarted
+ - `0`: code reloaded, module restarted
+ - `1`: error: module not loaded
+ - `2`: code not reloaded, but module restarted
 
 __Tags:__
-[erlang](/developer/ejabberd-api/admin-tags/#erlang) 
+[erlang](/developer/ejabberd-api/admin-tags/#erlang)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4629,7 +4766,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[mnesia](/developer/ejabberd-api/admin-tags/#mnesia) 
+[mnesia](/developer/ejabberd-api/admin-tags/#mnesia)
 
 __Examples:__
 
@@ -4661,7 +4798,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[acme](/developer/ejabberd-api/admin-tags/#acme) 
+[acme](/developer/ejabberd-api/admin-tags/#acme)
 
 __Examples:__
 
@@ -4696,7 +4833,7 @@ __Result:__
 - *rooms* :: [room::string] : List of empty rooms that have been destroyed
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -4737,7 +4874,7 @@ __Result:__
 - *rooms* :: [room::string] : List of empty rooms
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -4779,7 +4916,7 @@ __Result:__
 - *rooms* :: [room::string] : List of unused rooms that has been destroyed
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -4822,7 +4959,7 @@ __Result:__
 - *rooms* :: [room::string] : List of unused rooms
 
 __Tags:__
-[muc](/developer/ejabberd-api/admin-tags/#muc) 
+[muc](/developer/ejabberd-api/admin-tags/#muc)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -4850,17 +4987,20 @@ __Examples:__
 ## rotate_log
 
 
-Rotate the log files
+Rotate maybe log file of some module
+
+
+Has no effect on ejabberd main log files, only on log files generated by some modules.
 
 __Arguments:__
 
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/developer/ejabberd-api/admin-tags/#logs)
 
 __Examples:__
 
@@ -4876,7 +5016,7 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>updated in <a href="/archive/24_02/">24.02</a></div>
 
 ## send_direct_invitation
 
@@ -4886,7 +5026,7 @@ Send a direct invitation to several destinations
 
 Since ejabberd <a href="/archive/20_12/">20.12</a>, this command is asynchronous: the API call may return before the server has send all the invitations.
 
-Password and Message can also be: `none`. Users JIDs are separated with `:`.
+`password` and `message` can be set to `none`.
 
 __Arguments:__
 
@@ -4894,14 +5034,14 @@ __Arguments:__
 - *service* :: string : MUC service
 - *password* :: string : Password, or `none`
 - *reason* :: string : Reason text, or `none`
-- *users* :: string : Users JIDs separated with `:` characters
+- *users* :: [jid::string] : List of users JIDs
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room), [v1](/developer/ejabberd-api/admin-tags/#v1)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -4916,7 +5056,10 @@ __Examples:__
       "service": "muc.example.com",
       "password": "",
       "reason": "Check this out!",
-      "users": "user2@localhost:user3@example.com"
+      "users": [
+        "user2@localhost",
+        "user3@example.com"
+      ]
     }
     
     HTTP/1.1 200 OK
@@ -4944,10 +5087,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/developer/ejabberd-api/admin-tags/#stanza)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -4985,10 +5128,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/developer/ejabberd-api/admin-tags/#stanza)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5028,10 +5171,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[stanza](/developer/ejabberd-api/admin-tags/#stanza) 
+[stanza](/developer/ejabberd-api/admin-tags/#stanza)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5072,10 +5215,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[last](/developer/ejabberd-api/admin-tags/#last) 
+[last](/developer/ejabberd-api/admin-tags/#last)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5104,16 +5247,20 @@ __Examples:__
 
 Set the loglevel
 
+
+Possible loglevels: `none`, `emergency`, `alert`, `critical`,
+			           `error`, `warning`, `notice`, `info`, `debug`.
+
 __Arguments:__
 
-- *loglevel* :: string : Desired logging level: none | emergency | alert | critical | error | warning | notice | info | debug
+- *loglevel* :: string : Desired logging level
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[logs](/developer/ejabberd-api/admin-tags/#logs) 
+[logs](/developer/ejabberd-api/admin-tags/#logs)
 
 __Examples:__
 
@@ -5137,7 +5284,7 @@ __Examples:__
 Set master node of the clustered Mnesia tables
 
 
-If you provide as nodename `self`, this node will be set as its own master.
+If `nodename` is set to `self`, then this node will be set as its own master.
 
 __Arguments:__
 
@@ -5148,7 +5295,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[cluster](/developer/ejabberd-api/admin-tags/#cluster) 
+[cluster](/developer/ejabberd-api/admin-tags/#cluster)
 
 __Examples:__
 
@@ -5179,10 +5326,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/developer/ejabberd-api/admin-tags/#vcard)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5203,7 +5350,7 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>updated in <a href="/archive/24_02/">24.02</a></div>
 
 ## set_presence
 
@@ -5218,14 +5365,14 @@ __Arguments:__
 - *type* :: string : Type: `available`, `error`, `probe`...
 - *show* :: string : Show: `away`, `chat`, `dnd`, `xa`.
 - *status* :: string : Status text
-- *priority* :: string : Priority, provide this value as an integer
+- *priority* :: integer : Priority, provide this value as an integer
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session), [v1](/developer/ejabberd-api/admin-tags/#v1)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5242,7 +5389,7 @@ __Examples:__
       "type": "available",
       "show": "away",
       "status": "BB",
-      "priority": "7"
+      "priority": 7
     }
     
     HTTP/1.1 200 OK
@@ -5266,10 +5413,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -5299,7 +5446,7 @@ __Examples:__
 Set content in a vCard field
 
 
-Some vcard field names in get/set_vcard are:
+Some vcard field names in `get`/`set_vcard` are:
 
 * FN           - Full Name
 * NICKNAME     - Nickname
@@ -5307,7 +5454,7 @@ Some vcard field names in get/set_vcard are:
 * TITLE        - Work: Position
 * ROLE         - Work: Role
 
-For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check [XEP-0054: vcard-temp](https://xmpp.org/extensions/xep-0054.html)
 
 __Arguments:__
 
@@ -5318,10 +5465,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/developer/ejabberd-api/admin-tags/#vcard)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5351,7 +5498,7 @@ __Examples:__
 Set content in a vCard subfield
 
 
-Some vcard field names and subnames in get/set_vcard2 are:
+Some vcard field names and subnames in `get`/`set_vcard2` are:
 
 * N FAMILY     - Family name
 * N GIVEN      - Given name
@@ -5366,7 +5513,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check [XEP-0054: vcard-temp](https://xmpp.org/extensions/xep-0054.html)
 
 __Arguments:__
 
@@ -5378,10 +5525,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/developer/ejabberd-api/admin-tags/#vcard)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5412,7 +5559,7 @@ __Examples:__
 Set multiple contents in a vCard subfield
 
 
-Some vcard field names and subnames in get/set_vcard2 are:
+Some vcard field names and subnames in `get`/`set_vcard2` are:
 
 * N FAMILY     - Family name
 * N GIVEN      - Given name
@@ -5427,7 +5574,7 @@ Some vcard field names and subnames in get/set_vcard2 are:
 * ORG ORGNAME  - Work: Company
 * ORG ORGUNIT  - Work: Department
 
-For a full list of vCard fields check XEP-0054: vcard-temp at https://xmpp.org/extensions/xep-0054.html
+For a full list of vCard fields check [XEP-0054: vcard-temp](https://xmpp.org/extensions/xep-0054.html)
 
 __Arguments:__
 
@@ -5439,10 +5586,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[vcard](/developer/ejabberd-api/admin-tags/#vcard) 
+[vcard](/developer/ejabberd-api/admin-tags/#vcard)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5468,19 +5615,12 @@ __Examples:__
 ~~~
 
 
-<div class='note-down'>changed in <a href="/archive/21_07/">21.07</a></div>
+<div class='note-down'>updated in <a href="/archive/24_02/">24.02</a></div>
 
 ## srg_create
 
 
 Create a Shared Roster Group
-
-
-If you want to specify several group identifiers in the Display argument,
-put `\ "` around the argument and
-separate the identifiers with `\ \ n`
-For example:
-  `ejabberdctl srg_create group3 myserver.com name desc \"group1\\ngroup2\"`
 
 __Arguments:__
 
@@ -5488,14 +5628,14 @@ __Arguments:__
 - *host* :: string : Group server name
 - *label* :: string : Group name
 - *description* :: string : Group description
-- *display* :: string : Groups to display
+- *display* :: [group::string] : List of groups to display
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group), [v1](/developer/ejabberd-api/admin-tags/#v1)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5510,7 +5650,10 @@ __Examples:__
       "host": "myserver.com",
       "label": "Group3",
       "description": "Third group",
-      "display": "group1\\ngroup2"
+      "display": [
+        "group1",
+        "group2"
+      ]
     }
     
     HTTP/1.1 200 OK
@@ -5532,10 +5675,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5572,7 +5715,7 @@ __Result:__
 - *informations* :: [{key::string, value::string}] : List of group information, as key and value
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5618,7 +5761,7 @@ __Result:__
 - *members* :: [member::string] : List of group identifiers
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5657,7 +5800,7 @@ __Result:__
 - *groups* :: [id::string] : List of group identifiers
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5695,10 +5838,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5736,10 +5879,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group) 
+[shared_roster_group](/developer/ejabberd-api/admin-tags/#shared-roster-group)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5766,7 +5909,10 @@ __Examples:__
 ## stats
 
 
-Get statistical value: registeredusers onlineusers onlineusersnode uptimeseconds processes
+Get some statistical value for the whole ejabberd server
+
+
+Allowed statistics `name` are: `registeredusers`, `onlineusers`, `onlineusersnode`, `uptimeseconds`, `processes`.
 
 __Arguments:__
 
@@ -5777,7 +5923,7 @@ __Result:__
 - *stat* :: integer : Integer statistic value
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[statistics](/developer/ejabberd-api/admin-tags/#statistics)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5801,7 +5947,10 @@ __Examples:__
 ## stats_host
 
 
-Get statistical value for this host: registeredusers onlineusers
+Get some statistical value for this host
+
+
+Allowed statistics `name` are: `registeredusers`, `onlineusers`.
 
 __Arguments:__
 
@@ -5813,7 +5962,7 @@ __Result:__
 - *stat* :: integer : Integer statistic value
 
 __Tags:__
-[statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[statistics](/developer/ejabberd-api/admin-tags/#statistics)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5848,7 +5997,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -5880,7 +6029,7 @@ __Result:__
 - *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5924,7 +6073,7 @@ __Result:__
 - *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -5968,7 +6117,7 @@ __Result:__
 - *users* :: integer : Number of connected sessions with given status type
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) [statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[session](/developer/ejabberd-api/admin-tags/#session), [statistics](/developer/ejabberd-api/admin-tags/#statistics)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -6004,7 +6153,7 @@ __Result:__
 - *users* :: integer : Number of connected sessions with given status type
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) [statistics](/developer/ejabberd-api/admin-tags/#statistics) 
+[session](/developer/ejabberd-api/admin-tags/#session), [statistics](/developer/ejabberd-api/admin-tags/#statistics)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)
@@ -6036,10 +6185,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -6073,10 +6222,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -6105,10 +6254,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[s2s](/developer/ejabberd-api/admin-tags/#s2s) 
+[s2s](/developer/ejabberd-api/admin-tags/#s2s)
 
 __Examples:__
 
@@ -6124,7 +6273,7 @@ __Examples:__
 ~~~
 
 
-
+<div class='note-down'>updated in <a href="/archive/24_02/">24.02</a></div>
 
 ## subscribe_room
 
@@ -6136,14 +6285,14 @@ __Arguments:__
 - *user* :: string : User JID
 - *nick* :: string : a user's nick
 - *room* :: string : the room to subscribe
-- *nodes* :: string : nodes separated by commas: `,`
+- *nodes* :: [node::string] : list of nodes
 
 __Result:__
 
 - *nodes* :: [node::string] : The list of nodes that has subscribed
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room), [muc_sub](/developer/ejabberd-api/admin-tags/#muc-sub), [v1](/developer/ejabberd-api/admin-tags/#v1)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -6157,7 +6306,10 @@ __Examples:__
       "user": "tom@localhost",
       "nick": "Tom",
       "room": "room1@conference.localhost",
-      "nodes": "urn:xmpp:mucsub:nodes:messages,urn:xmpp:mucsub:nodes:affiliations"
+      "nodes": [
+        "urn:xmpp:mucsub:nodes:messages",
+        "urn:xmpp:mucsub:nodes:affiliations"
+      ]
     }
     
     HTTP/1.1 200 OK
@@ -6168,7 +6320,7 @@ __Examples:__
 ~~~
 
 
-<div class='note-down'>added in <a href="/archive/22_05/">22.05</a></div>
+<div class='note-down'>updated in <a href="/archive/24_02/">24.02</a></div>
 
 ## subscribe_room_many
 
@@ -6182,14 +6334,14 @@ __Arguments:__
 
 - *users* :: [{jid::string, nick::string}] : Users JIDs and nicks
 - *room* :: string : the room to subscribe
-- *nodes* :: string : nodes separated by commas: `,`
+- *nodes* :: [node::string] : nodes separated by commas: `,`
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room), [muc_sub](/developer/ejabberd-api/admin-tags/#muc-sub), [v1](/developer/ejabberd-api/admin-tags/#v1)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -6211,7 +6363,10 @@ __Examples:__
         }
       ],
       "room": "room1@conference.localhost",
-      "nodes": "urn:xmpp:mucsub:nodes:messages,urn:xmpp:mucsub:nodes:affiliations"
+      "nodes": [
+        "urn:xmpp:mucsub:nodes:messages",
+        "urn:xmpp:mucsub:nodes:affiliations"
+      ]
     }
     
     HTTP/1.1 200 OK
@@ -6238,7 +6393,7 @@ __Result:__
 - *unbanned* :: integer : Amount of unbanned entries, or negative in case of error.
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Module:__
 [mod_fail2ban](/admin/configuration/modules/#mod-fail2ban)
@@ -6277,7 +6432,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[accounts](/developer/ejabberd-api/admin-tags/#accounts) 
+[accounts](/developer/ejabberd-api/admin-tags/#accounts)
 
 __Examples:__
 
@@ -6308,10 +6463,10 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (0 on success, 1 otherwise)
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](/developer/ejabberd-api/admin-tags/#muc-room) 
+[muc_room](/developer/ejabberd-api/admin-tags/#muc-room), [muc_sub](/developer/ejabberd-api/admin-tags/#muc-sub)
 
 __Module:__
 [mod_muc_admin](/admin/configuration/modules/#mod-muc-admin)
@@ -6336,7 +6491,10 @@ __Examples:__
 ## update
 
 
-Update the given module, or use the keyword: all
+Update the given module
+
+
+To update all the possible modules, use `all`.
 
 __Arguments:__
 
@@ -6347,7 +6505,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -6378,7 +6536,7 @@ __Result:__
 - *modules* :: [module::string]
 
 __Tags:__
-[server](/developer/ejabberd-api/admin-tags/#server) 
+[server](/developer/ejabberd-api/admin-tags/#server)
 
 __Examples:__
 
@@ -6394,40 +6552,6 @@ __Examples:__
       "mod_configure",
       "mod_vcard"
     ]
-~~~
-
-
-<div class='note-down'>improved in <a href="/archive/23_04/">23.04</a></div>
-
-## update_sql
-
-
-Convert MS SQL, MySQL or PostgreSQL DB to the new format
-
-__Arguments:__
-
-
-__Result:__
-
-- *res* :: integer : Status code (0 on success, 1 otherwise)
-
-__Tags:__
-[sql](/developer/ejabberd-api/admin-tags/#sql) 
-
-__Module:__
-[mod_admin_update_sql](/admin/configuration/modules/#mod-admin-update-sql)
-
-__Examples:__
-
-
-~~~ json
-    POST /api/update_sql
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
 ~~~
 
 
@@ -6448,7 +6572,7 @@ __Result:__
 - *resources* :: [resource::string]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Examples:__
 
@@ -6486,7 +6610,7 @@ __Result:__
 - *sessions_info* :: [{connection::string, ip::string, port::integer, priority::integer, node::string, uptime::integer, status::string, resource::string, statustext::string}]
 
 __Tags:__
-[session](/developer/ejabberd-api/admin-tags/#session) 
+[session](/developer/ejabberd-api/admin-tags/#session)
 
 __Module:__
 [mod_admin_extra](/admin/configuration/modules/#mod-admin-extra)

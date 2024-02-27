@@ -99,6 +99,18 @@ This section enumerates the tags and their associated API.
 * [man](/developer/ejabberd-api/admin-api/#man)
 
 
+## ejabberdctl
+
+
+* [help](/developer/ejabberd-api/admin-api/#help)
+
+
+* [mnesia_info_ctl](/developer/ejabberd-api/admin-api/#mnesia-info-ctl)
+
+
+* [print_sql_schema](/developer/ejabberd-api/admin-api/#print-sql-schema)
+
+
 ## erlang
 
 
@@ -190,6 +202,9 @@ This section enumerates the tags and their associated API.
 
 
 * [mnesia_info](/developer/ejabberd-api/admin-api/#mnesia-info)
+
+
+* [mnesia_info_ctl](/developer/ejabberd-api/admin-api/#mnesia-info-ctl)
 
 
 * [mnesia_table_info](/developer/ejabberd-api/admin-api/#mnesia-table-info)
@@ -301,6 +316,27 @@ This section enumerates the tags and their associated API.
 
 
 * [set_room_affiliation](/developer/ejabberd-api/admin-api/#set-room-affiliation)
+
+
+* [subscribe_room](/developer/ejabberd-api/admin-api/#subscribe-room)
+
+
+* [subscribe_room_many](/developer/ejabberd-api/admin-api/#subscribe-room-many)
+
+
+* [unsubscribe_room](/developer/ejabberd-api/admin-api/#unsubscribe-room)
+
+
+## muc_sub
+
+
+* [create_room_with_opts](/developer/ejabberd-api/admin-api/#create-room-with-opts)
+
+
+* [get_subscribers](/developer/ejabberd-api/admin-api/#get-subscribers)
+
+
+* [get_user_subscriptions](/developer/ejabberd-api/admin-api/#get-user-subscriptions)
 
 
 * [subscribe_room](/developer/ejabberd-api/admin-api/#subscribe-room)
@@ -549,6 +585,9 @@ This section enumerates the tags and their associated API.
 * [import_prosody](/developer/ejabberd-api/admin-api/#import-prosody)
 
 
+* [print_sql_schema](/developer/ejabberd-api/admin-api/#print-sql-schema)
+
+
 ## stanza
 
 
@@ -586,6 +625,30 @@ This section enumerates the tags and their associated API.
 
 
 * [status_num_host](/developer/ejabberd-api/admin-api/#status-num-host)
+
+
+## v1
+
+
+* [add_rosteritem](/developer/ejabberd-api/admin-api/#add-rosteritem)
+
+
+* [oauth_issue_token](/developer/ejabberd-api/admin-api/#oauth-issue-token)
+
+
+* [send_direct_invitation](/developer/ejabberd-api/admin-api/#send-direct-invitation)
+
+
+* [set_presence](/developer/ejabberd-api/admin-api/#set-presence)
+
+
+* [srg_create](/developer/ejabberd-api/admin-api/#srg-create)
+
+
+* [subscribe_room](/developer/ejabberd-api/admin-api/#subscribe-room)
+
+
+* [subscribe_room_many](/developer/ejabberd-api/admin-api/#subscribe-room-many)
 
 
 ## vcard

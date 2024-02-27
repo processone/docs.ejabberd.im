@@ -198,7 +198,7 @@ default value is *10*.
 mod\_block\_strangers
 ---------------------
 
-This module allows to block/log messages coming from an unknown entity.
+This module blocks and logs any messages coming from an unknown entity.
 If a writing entity is not in your roster, you can let this module drop
 and/or log the message. By default you’ll just not receive message from
 that entity. Enable this module if you want to drop SPAM messages.
@@ -224,8 +224,7 @@ subscription present. The default value is *true*.
 
 - **captcha**: *true | false*  
 Whether to generate CAPTCHA or not in response to messages from
-strangers. See also section
-[CAPTCHA](https://docs.ejabberd.im/admin/configuration/#captcha) of the
+strangers. See also section [CAPTCHA](/admin/configuration/#captcha) of the
 Configuration Guide. The default value is *false*.
 
 - **drop**: *true | false*  
@@ -798,7 +797,7 @@ List of accounts that are allowed to use this service. Default value:
 __Examples:__
 
 This example configuration will serve the files from the local directory
-*/var/www* in the address *http://example.org:5280/pub/archive/*. In
+*/var/www* in the address *http://example.org:5280/pub/content/*. In
 this example a new content type *ogg* is defined, *png* is redefined,
 and *jpg* definition is deleted:
 
@@ -809,7 +808,7 @@ and *jpg* definition is deleted:
         module: ejabberd_http
         request_handlers:
           ...
-          /pub/archive: mod_http_fileserver
+          /pub/content: mod_http_fileserver
           ...
       ...
 
@@ -1159,37 +1158,25 @@ archived as usual. The default value is *false*.
 Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
 
 - **user\_mucsub\_from\_muc\_archive**: *true | false*  
-When this option is disabled, for each individual subscriber a separate
+When this option is disabled, for each individual subscriber a separa
 mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is *false*.
 
 mod\_matrix\_gw
-------------
+---------------
 
 [Matrix](https://matrix.org/) gateway.
 
-To use this module, you must [enable
-s2s](https://docs.ejabberd.im/admin/configuration/toplevel/#s2s-access)
-and define an [HTTP
-handler](https://docs.ejabberd.im/admin/configuration/listen/#ejabberd-http)
-to send `/_matrix` queries to `mod_matrix_gw`.
-
-> **Note**
->
-> If you compile ejabberd from source, you need [Erlang/OTP
-> 24](https://www.erlang.org/) or superior.
-
-This module is available since ejabberd <a
-href="/archive/24_02/">24.02</a>. 
+This module is available since ejabberd <a href="/archive/24_02/">24.02</a>.
 
 __Available options:__
 
 - **host**: *Host*  
-This option defines the Jabber ID of the service. If the *host* option
-is not specified, the Jabber ID will be the hostname of the virtual
-host with the prefix "`matrix.`". The keyword *@HOST@* is replaced with
-the real virtual host name.
+This option defines the Jabber IDs of the service. If the *host* option
+is not specified, the Jabber ID will be the hostname of the virtual host
+with the prefix *"matrix."*. The keyword *@HOST@* is replaced with the
+real virtual host name.
 
 - **key**: *string()*  
 Value of the matrix signing key, in base64.
@@ -1197,45 +1184,37 @@ Value of the matrix signing key, in base64.
 - **key\_name**: *string()*  
 Name of the matrix signing key.
 
-- **matrix\_domain**:  *Domain*  
-This option defines the Matrix domain of your ejabberd server in the
-[Matrix
-federation](https://spec.matrix.org/v1.9/server-server-api/). The
-keyword *@HOST@* is replaced with the XMPP domain. The default value
-is *@HOST@*.
+- **matrix\_domain**: *Domain*  
+Specify a domain in the Matrix federation. The keyword *@HOST@* is
+replaced with the hostname. The default value is *@HOST@*.
 
 - **matrix\_id\_as\_jid**: *true | false*  
 If set to *false*, all packets failing to be delivered via an XMPP
-server-to-server connection will then be routed to the Matrix gateway
-by translating a Jabber ID `user@matrixdomain.tld` to a Matrix user
-identifier `@user:matrixdomain.tld`. When set to *true*, messages
-must be explicitly sent to the matrix gateway service Jabber ID to be
-routed to a remote Matrix server. In this case, to send a message to
-Matrix user `@user:matrixdomain.tld`, the client must send a message
-to the JID `user%matrixdomain.tld@matrix.myxmppdomain.tld`, where
-`matrix.myxmppdomain.tld` is the JID of the gateway service as set by the
-**host** option. The default is *false*.
+server-to-server connection will then be routed to the Matrix gateway by
+translating a Jabber ID *user@matrixdomain.tld* to a Matrix user
+identifier *@user:matrixdomain.tld*. When set to *true*, messages must
+be explicitly sent to the matrix gateway service Jabber ID to be routed
+to a remote Matrix server. In this case, to send a message to Matrix
+user *@user:matrixdomain.tld*, the client must send a message to the JID
+*user%<matrixdomain.tld@matrix.myxmppdomain>.tld*, where
+*matrix.myxmppdomain.tld* is the JID of the gateway service as set by
+the *host* option. The default is *false*.
 
 __**Example**:__
 
     listen:
       -
-        port: 5222
-        module: ejabberd_c2s
-      -
         port: 8448
         module: ejabberd_http
-	    tls: true
+        tls: true
         request_handlers:
           "/_matrix": mod_matrix_gw
 
     modules:
       mod_matrix_gw:
-         matrix_domain: "domain.tld"
-	     key_name: "key1"
-         key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-		 matrix_id_as_jid: true
-
+        key_name: "key1"
+        key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        matrix_id_as_jid: true
 
 mod\_metrics
 ------------
@@ -1434,7 +1413,7 @@ Declaration of data to share, must contain *publish* or *subscribe* or
 both, and *authentication* section with username/password field or
 certfile pointing to client certificate. Accepted urls can use schema
 mqtt, mqtts (mqtt with tls), mqtt5, mqtt5s (both to trigger v5
-protocol), ws, wss, ws5, wss5. Certifcate authentication can be only
+protocol), ws, wss, ws5, wss5. Certificate authentication can be only
 used with mqtts, mqtt5s, wss, wss5.
 
 __**Example**:__
@@ -1530,9 +1509,9 @@ only.
 <div class="note-left">improved in <a href="/archive/22_05/">22.05</a></div>
 
 - **default\_room\_options**: *Options*  
-This option allows to define the desired default room options. Note that
-the creator of a room can modify the options of his room at any time
-using an XMPP client with MUC capability. The *Options* are:
+Define the default room options. Note that the creator of a room can
+modify the options of his room at any time using an XMPP client with MUC
+capability. The *Options* are:
 
  - **allow\_change\_subj**: *true | false*  
    Allow occupants to change
@@ -1585,9 +1564,8 @@ using an XMPP client with MUC capability. The *Options* are:
    When a user tries to join a
     room where they have no affiliation (not owner, admin or member),
     the room requires them to fill a CAPTCHA challenge (see section
-    [CAPTCHA](https://docs.ejabberd.im/admin/configuration/#captcha) in
-    order to accept their join in the room. The default value is
-    *false*.
+    [CAPTCHA](/admin/configuration/#captcha) in order to accept their join in the
+    room. The default value is *false*.
 
  - **description**: *Room Description*  
    Short description of the room.
@@ -1909,10 +1887,10 @@ either *Path* to local file or an *URL* to a remote file. By default a
 predefined CSS will be embedded into the HTML page.
 
 - **dirname**: *room\_jid | room\_name*  
-Allows to configure the name of the room directory. If set to
-*room\_jid*, the room directory name will be the full room JID.
-Otherwise, the room directory name will be only the room name, not
-including the MUC service name. The default value is *room\_jid*.
+Configure the name of the room directory. If set to *room\_jid*, the
+room directory name will be the full room JID. Otherwise, the room
+directory name will be only the room name, not including the MUC service
+name. The default value is *room\_jid*.
 
 - **dirtype**: *subdirs | plain*  
 The type of the created directories can be specified with this option.
@@ -2197,7 +2175,9 @@ __Available options:__
 
 - **ping\_ack\_timeout**: *timeout()*  
 How long to wait before deeming that a client has not answered a given
-server ping request. The default value is *undefined*.
+server ping request. NOTE: when [mod_stream_mgmt](/admin/configuration/modules/#mod-stream-mgmt) is loaded and stream
+management is enabled by a client, this value is ignored, and the
+`ack_timeout` applies instead. The default value is *undefined*.
 
 - **ping\_interval**: *timeout()*  
 How often to send pings to connected clients, if option *send\_pings* is
@@ -2605,8 +2585,8 @@ items of online contacts.
 To specify whether or not pubsub should cache last items. Value is
 *true* or *false*. If not defined, pubsub does not cache last items. On
 systems with not so many nodes, caching last items speeds up pubsub and
-allows to raise user connection rate. The cost is memory usage, as every
-item is stored in memory.
+allows you to raise the user connection rate. The cost is memory usage,
+as every item is stored in memory.
 
 <div class="note-left">added in <a href="/archive/21_12/">21.12</a></div>
 
@@ -2650,9 +2630,10 @@ shared by all node plugins.
     before.
 
 - **pep\_mapping**: *List of Key:Value*  
-This allows to define a list of key-value to choose defined node plugins
-on given PEP namespace. The following example will use *node\_tune*
-instead of *node\_pep* for every PEP node with the tune namespace:
+In this option you can provide a list of key-value to choose defined
+node plugins on given PEP namespace. The following example will use
+*node\_tune* instead of *node\_pep* for every PEP node with the tune
+namespace:
 
     **Example**:
 
@@ -2674,7 +2655,7 @@ stanza element.
     XEP-0060 implementation.
 
  - *pep* plugin adds extension to handle Personal Eventing Protocol
-    (XEP-0163) to the PubSub engine. Adding pep allows to handle PEP
+    (XEP-0163) to the PubSub engine. When enabled, PEP is handled
     automatically.
 
 - **vcard**: *vCard*  
@@ -2851,10 +2832,10 @@ returns *deny* on the requested username, registration of that user name
 is denied. There are no restrictions by default.
 
 - **access\_from**: *AccessName*  
-By default, *ejabberd* doesn’t allow to register new accounts from s2s
-or existing c2s sessions. You can change it by defining access rule in
-this option. Use with care: allowing registration from s2s leads to
-uncontrolled massive accounts creation by rogue users.
+By default, *ejabberd* doesn’t allow the client to register new accounts
+from s2s or existing c2s sessions. You can change it by defining access
+rule in this option. Use with care: allowing registration from s2s leads
+to uncontrolled massive accounts creation by rogue users.
 
 - **access\_remove**: *AccessName*  
 Specify rules to restrict access for user unregistration. By default any
@@ -3368,9 +3349,9 @@ virtual host.
 __Available options:__
 
 - **always\_record\_route**: *true | false*  
-Always insert "Record-Route" header into SIP messages. This approach
-allows to bypass NATs/firewalls a bit more easily. The default value is
-*true*.
+Always insert "Record-Route" header into SIP messages. With this
+approach it is possible to bypass NATs/firewalls a bit more easily. The
+default value is *true*.
 
 - **flow\_timeout\_tcp**: *timeout()*  
 The option sets a keep-alive timer for [SIP
