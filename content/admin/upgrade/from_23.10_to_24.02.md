@@ -113,7 +113,7 @@ For those reasons, the tool selection performed by `./configure` will now be:
 
 This ejabberd release includes support for [XEP-0474: SASL SCRAM Downgrade Protection](https://xmpp.org/extensions/xep-0474.html), and some clients may not support it correctly yet.
 
-If you are using [Converse.js](https://github.com/conversejs/converse.js) v0.9.1-beta or older, or any other client based in [Strophe.js](https://github.com/strophe/strophejs) v1.6.2 or older, you may notice that they cannot authenticate correctly to ejabberd.
+If you are using [Converse.js](https://github.com/conversejs/converse.js) 10.1.6 or older, [Movim](https://github.com/movim/movim) 0.23 Kojima or older, or any other client based in [Strophe.js](https://github.com/strophe/strophejs) v1.6.2 or older, you may notice that they cannot authenticate correctly to ejabberd.
 
 To solve that problem, either update to newer versions of those programs (if they exist), or you can enable temporarily the option [`disable_sasl_scram_downgrade_protection`](https://docs.ejabberd.im/admin/configuration/toplevel/#disable-sasl-scram-downgrade-protection) in the ejabberd configuration file `ejabberd.yml` like this:
 ```yaml
