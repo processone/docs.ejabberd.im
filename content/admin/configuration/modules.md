@@ -1185,8 +1185,8 @@ Value of the matrix signing key, in base64.
 Name of the matrix signing key.
 
 - **matrix\_domain**: *Domain*  
-Specify a domain in the Matrix federation. The keyword *@HOST@* is
-replaced with the hostname. The default value is *@HOST@*.
+Specify a domain in the Matrix federation.
+This option is mandatory.
 
 - **matrix\_id\_as\_jid**: *true | false*  
 If set to *false*, all packets failing to be delivered via an XMPP
@@ -1214,6 +1214,7 @@ __**Example**:__
       mod_matrix_gw:
         key_name: "key1"
         key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        matrix_domain: "example.org"
         matrix_id_as_jid: true
 
 mod\_metrics
