@@ -187,6 +187,25 @@ Specify the maximum payload size in bytes.
 It can be either an integer or the word `infinity`.
 The default value is `infinity`.
 
+## max_send_queue_delay
+
+*Integer*
+
+Specifies the maximum number of milliseconds to queue an outgoing stanza or
+stream management element. Setting this option to a positive (non-zero) number
+allows for batching up multiple XML elements into a single TCP packet in order
+to reduce the TCP/IP overhead. The default value is `0`, which disables
+queueing.
+
+## max_send_queue_size
+
+*Size*
+
+Specifies the maximum number of elements to add to the send queue. The default
+value is `10`. Note that this option has no effect if `max_send_queue_delay`
+isn't set to a value larger than `0`. Setting this option to `0` disables
+queueing.
+
 ## max_stanza_size
 
 *Size*
