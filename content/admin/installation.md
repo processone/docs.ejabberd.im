@@ -307,7 +307,7 @@ and improved in <a href="/archive/24_02/">24.02</a></div>
 
 - **`--disable-debug`**: Compile without `+debug_info`.
 
-<div class="note-down">improved in <a href="/archive/21_07/">24.02</a></div>
+<div class="note-down">improved in <a href="/archive/24_02/">24.02</a></div>
 
 <br />
 
