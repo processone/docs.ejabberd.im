@@ -214,10 +214,9 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
 -   GCC
 -   Libexpat 1.95 or higher
 -   Libyaml 0.1.4 or higher
--   [Erlang/OTP](https://www.erlang.org/) 19.3 or higher,
-    preferably 20.0 or higher.
-    We recommend using Erlang OTP 25.3,
-    which is the version used in the binary installers and container images.
+-   [Erlang/OTP](https://www.erlang.org/) 20.0 or higher.
+    Erlang OTP 26.2 is suggested,
+    in fact that's the version used in the binary installers and container images.
 -   OpenSSL 1.0.0 or higher, for STARTTLS, SASL and SSL encryption.
 -   Zlib 1.2.3 or higher. Optional.
     For [Zlib Stream Compression](/admin/configuration/listen-options/#zlib)
@@ -225,7 +224,9 @@ To compile ejabberd on a ‘Unix-like’ operating system, you need:
     For [PAM Authentication](/admin/configuration/authentication/#pam-authentication)
 -   ImageMagick’s Convert program and Ghostscript fonts. Optional.
     For [CAPTCHA challenges](/admin/configuration/basic/#captcha).
--   [Elixir](https://elixir-lang.org/) 1.10.3 or higher. Optional.
+-   [Elixir](https://elixir-lang.org/) 1.10.3 or higher.
+    It is recommended Elixir 1.13.4 or higher and Erlang/OTP 23.0 or higher.
+    Optional.
     For [Elixir Development](/developer/extending-ejabberd/elixir/)
 
 ## Downloading
@@ -279,7 +280,7 @@ Options details:
   copied when running the `make install` command.
 
 <div class="note-down">added in <a href="/archive/20_12/">20.12</a>
-and improved in <a href="/archive/21_07/">21.07</a></div>
+and improved in <a href="/archive/24_02/">24.02</a></div>
 
 <br />
 
@@ -306,13 +307,13 @@ and improved in <a href="/archive/21_07/">21.07</a></div>
 
 - **`--disable-debug`**: Compile without `+debug_info`.
 
-<div class="note-down">improved in <a href="/archive/21_07/">21.07</a></div>
+<div class="note-down">improved in <a href="/archive/21_07/">24.02</a></div>
 
 <br />
 
 - **`--enable-elixir`**: Build ejabberd with Elixir extension support.
-    Works only with rebar2. If interested in Elixir development, you may
-    prefer to install Elixir yourself and use `--with-rebar=mix`
+    Works only with rebar3, not rebar2. Requires to have Elixir installed.
+    If interested in Elixir development, you may prefer to use `--with-rebar=mix`
 
 - **`--disable-erlang-version-check`**: Don't check Erlang/OTP version.
 
@@ -443,9 +444,9 @@ and all the required erlang dependencies in a single tar.gz file.
 Then you can copy that file to another machine that has the same machine
 architecture, and run ejabberd without installing anything else.
 
-To build that release, run:
+To build that production release, run:
 ``` bash
-make rel
+make prod
 ```
 
 If you provided to [`./configure`](#configure) the option
@@ -461,7 +462,7 @@ and starts ejabberd there:
 ./autogen.sh
 ./configure --with-rebar=rebar3
 make
-make rel
+make prod
 mkdir $HOME/eja-release
 tar -xzvf _build/prod/ejabberd-*.tar.gz -C $HOME/eja-release
 $HOME/eja-release/bin/ejabberdctl live
