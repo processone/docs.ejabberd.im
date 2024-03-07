@@ -313,8 +313,7 @@ format. All client certificates should be signed by one of these root CA
 certificates and should contain the corresponding JID(s) in
 *subjectAltName* field. There is no default value.
 
-You can use [host\_config](/admin/configuration/toplevel/#host-config) to specify
-this option per-vhost.
+You can use [host_config](/admin/configuration/toplevel/#host-config) to specify this option per-vhost.
 
 To set a specific file per listener, use the listener’s
 [cafile](/admin/configuration/listen-options/#cafile) option. Please notice that
@@ -376,7 +375,7 @@ Path to a file of CA root certificates. The default is to use system
 defined file if possible.
 
 For server connections, this *ca\_file* option is overridden by the
-[s2s\_cafile](/admin/configuration/toplevel/#s2s-cafile) option.
+[s2s_cafile](/admin/configuration/toplevel/#s2s-cafile) option.
 
 ## cache\_life\_time
 
@@ -1316,11 +1315,10 @@ remote servers.
 *Path*  
 
 A path to a file with CA root certificates that will be used to
-authenticate s2s connections. If not set, the value of
-[ca\_file](/admin/configuration/toplevel/#ca-file) will be used.
+authenticate s2s connections. If not set, the value of [ca_file](/admin/configuration/toplevel/#ca-file) will
+be used.
 
-You can use [host\_config](/admin/configuration/toplevel/#host-config) to specify
-this option per-vhost.
+You can use [host_config](/admin/configuration/toplevel/#host-config) to specify this option per-vhost.
 
 ## s2s\_ciphers
 

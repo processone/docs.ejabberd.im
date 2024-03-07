@@ -1552,7 +1552,7 @@ __Examples:__
 Export virtual host information from Mnesia tables to SQL file
 
 
-Configure the modules to use SQL, then call this command. After correctly exported the database of a vhost, you may want to delete from mnesia with the [delete_mnesia](/developer/ejabberd-api/admin-api/#delete-mnesia) command.
+Configure the modules to use SQL, then call this command. After correctly exported the database of a vhost, you may want to delete from mnesia with the [delete_mnesia](/developer/ejabberd-api/admin-api/#delete-mnesia) API.
 
 __Arguments:__
 
@@ -2761,7 +2761,7 @@ __Examples:__
 Import data from Prosody
 
 
-Note: this requires ejabberd to be [compiled with `--enable-lua`](http://localhost:8098/admin/installation/#configure) (which installs the `luerl` library).
+Note: this requires ejabberd to be compiled with `./configure --enable-lua` (which installs the `luerl` library).
 
 __Arguments:__
 
@@ -2827,7 +2827,7 @@ __Examples:__
 Install Mnesia database from a binary backup file
 
 
-The binary backup file is installed as fallback: it will be used to restore the database at the next ejabberd start. This means that, after running this command, you have to restart ejabberd. This command requires less memory than [restore](/developer/ejabberd-api/admin-api/#restore).
+The binary backup file is installed as fallback: it will be used to restore the database at the next ejabberd start. This means that, after running this command, you have to restart ejabberd. This command requires less memory than [restore](/developer/ejabberd-api/admin-api/#restore) API.
 
 __Arguments:__
 
@@ -3083,7 +3083,7 @@ __Examples:__
 Restore Mnesia database from a text dump file
 
 
-Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use [install_fallback](/developer/ejabberd-api/admin-api/#backup[backup] and http://./#install-fallback).
+Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use [backup](/developer/ejabberd-api/admin-api/#backup) API and [install_fallback](/developer/ejabberd-api/admin-api/#install-fallback) API.
 
 __Arguments:__
 
@@ -4755,7 +4755,7 @@ __Examples:__
 Restore the Mnesia database from a binary backup file
 
 
-This restores immediately from a binary backup file the internal Mnesia database. This will consume a lot of memory if you have a large database, you may prefer [install_fallback](/developer/ejabberd-api/admin-api/#install-fallback).
+This restores immediately from a binary backup file the internal Mnesia database. This will consume a lot of memory if you have a large database, you may prefer [install_fallback](/developer/ejabberd-api/admin-api/#install-fallback) API.
 
 __Arguments:__
 
@@ -5160,7 +5160,7 @@ __Examples:__
 Send a stanza from an existing C2S session
 
 
-`user`@`host`/`resource` must be an existing C2S session. As an alternative, use [send_stanza](/developer/ejabberd-api/admin-api/#send-stanza) instead.
+`user`@`host`/`resource` must be an existing C2S session. As an alternative, use [send_stanza](/developer/ejabberd-api/admin-api/#send-stanza) API instead.
 
 __Arguments:__
 

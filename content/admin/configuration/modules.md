@@ -36,7 +36,7 @@ Details for some commands:
 
 -   *pushroster*: (and *pushroster-all*) The roster file must be placed,
     if using Windows, on the directory where you installed ejabberd:
-    C:/Program Files/ejabberd or similar. If you use other Operating
+    `C:/Program Files/ejabberd` or similar. If you use other Operating
     System, place the file on the same directory where the .beam files
     are installed. See below an example roster file.
 
@@ -1098,7 +1098,9 @@ mod\_mam
 --------
 
 This module implements [XEP-0313: Message Archive
-Management](https://xmpp.org/extensions/xep-0313.html). Compatible XMPP
+Management](https://xmpp.org/extensions/xep-0313.html) and [XEP-0441:
+Message Archive Management
+Preferences](https://xmpp.org/extensions/xep-0441.html). Compatible XMPP
 clients can use it to store their chat history on the server.
 
 __Available options:__
@@ -2288,8 +2290,7 @@ Bookmarks](https://xmpp.org/extensions/xep-0048.html)).
 
 It also implements the bookmark conversion described in [XEP-0402: PEP
 Native Bookmarks](https://xmpp.org/extensions/xep-0402.html), see the
-command
-[bookmarks\_to\_pep](https://docs.ejabberd.im/developer/ejabberd-api/admin-api/#bookmarks-to-pep).
+command [bookmarks_to_pep](/developer/ejabberd-api/admin-api/#bookmarks-to-pep) API.
 
 __Available options:__
 
