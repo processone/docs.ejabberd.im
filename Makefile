@@ -35,6 +35,8 @@ api:
 	sed -i 's|http://\./\(#.*\)\(\[[_a-z0-9]*\]\)|\2(/developer/ejabberd-api/admin-api/\1)|g' admin-api.md
 	# Convert *`mod_something`* into a link to modules section
 	sed -i 's|\*`mod_\([a-z0-9_]*\)`\*|[mod_\1](/admin/configuration/modules/#mod-\1)|g' admin-api.md
+	# Convert *`something`* API into a link to API Reference
+	sed -i 's|_`\([a-z_]*\)`_ API|[\1](/developer/ejabberd-api/admin-api/#\1) API|g' admin-api.md
 	# Convert *`something`* into a link to tags section
 	sed -i 's|\*`\([a-z0-9_]*\)`\*|[\1](/developer/ejabberd-api/admin-tags/#\1)|g' admin-api.md
 	# Anchors must use -, not _ characters
