@@ -1,6 +1,17 @@
----
-title: Getting Started with XMPPFramework
----
+# Getting Started with XMPPFramework
+
+## Introduction
+
+XMPP development on smartphone has always been challenging given the
+constraints on mobile platform.
+
+This area will help you understand the challenges and help you get
+started with XMPP development on Apple iOS platform.
+
+The main library to support XMPP on iOS is
+[XMPPFramework](https://github.com/robbiehanson/XMPPFramework).
+
+## XMPPFramework
 
 XMPPFramework is a large framework relying on several
 dependencies. The easiest way to get started is to use Cocoapods to
@@ -14,17 +25,17 @@ Here are the steps needed to get started:
 
 2. If you do not yet have a `Podfile`, create it if `pod init` command
    from the project root directory.
-   
+
 3. Edit your `Podfile` to use XMPPFramework as a target. It may looks like:
 
-   ~~~ ruby
+   ``` ruby
    platform :ios, '6.0'
    use_frameworks!
 
    target 'projectname' do
       pod 'XMPPFramework'
    end
-   ~~~
+   ```
 
 4. Run `pod install` command. It should download, install and
    configure three pods.
@@ -32,7 +43,6 @@ Here are the steps needed to get started:
 5. Open your XCode project with the newly created workspace file
    instead of the project file. This is required by Cocoapods so that
    you can use the installed Pods.
-   
+
 6. At this stage, you should be able to build your project
    successfully with the XMPP framework setup.
-

@@ -1,20 +1,14 @@
----
-title: Roster versioning
-toc: true
----
+# Roster versioning
 
 Roster versioning as implemented currently by ejabberd is a simplified approach to roster versioning.
 
-This is an all-or-nothing approach that does not support the granular diff as explained in
-[RFC-6121](https://tools.ietf.org/html/rfc6121#section-2.6).
+This is an all-or-nothing approach that does not support the granular diff as explained in [RFC-6121](https://tools.ietf.org/html/rfc6121#section-2.6).
 
-Our implementation conforms to [version 0.6 of XEP-0237](https://xmpp.org/extensions/attic/xep-0237-0.6.html#example-3),
-sending the full roster in case of change or empty result if the roster did not change. 
+Our implementation conforms to [version 0.6 of XEP-0237](https://xmpp.org/extensions/attic/xep-0237-0.6.html#example-3), sending the full roster in case of change or empty result if the roster did not change.
 
-As a result, as a client developer, when implementing support for roster versioning, you should expect both the
-traditional form for returning the roster, with version (iq result) and the incremental roster changes (iq set).
+As a result, as a client developer, when implementing support for roster versioning, you should expect both the traditional form for returning the roster, with version (iq result) and the incremental roster changes (iq set).
 
-## Example
+### Example
 
 As a summary, here is how you should expect it to work.
 
@@ -47,10 +41,10 @@ In return, you get a full roster with the current version:
 <iq from="myuser@domain.com" type="result" xml:lang="en" to="myuser@domain.com/resource" id="roster1">
  <query xmlns="jabber:iq:roster" ver="81cb523a7b77c7011552be85a3dde55189297590">
   <item subscription="both" jid="contact@domain.com">
- <group>Test</group>
-</item>
-...
-</query>
+   <group>Test</group>
+  </item>
+  ...
+ </query>
 </iq>
 ```
 
@@ -68,5 +62,4 @@ If client send a roster query with reference version it received get an empty iq
 <iq from="myuser@domain.com" type="result" xml:lang="en" to="myuser@domain.com/resource" id="roster2"/>
 ```
 
-If client send roster query with any other reference version, it will receive the full roster again in the roster iq
-result.
+If client send roster query with any other reference version, it will receive the full roster again in the roster iq result.

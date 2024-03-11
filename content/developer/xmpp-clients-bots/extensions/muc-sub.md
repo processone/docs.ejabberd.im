@@ -1,9 +1,6 @@
----
-title: MucSub: Multi-User Chat Subscriptions
-toc: true
----
+# MucSub: Multi-User Chat Subscriptions
 
-# Motivation
+## Motivation
 
 In XMPP, Multi-User Chat rooms design rely on presence. To participate
 in a MUC room, you need to send a presence to the room. When you get
@@ -78,7 +75,7 @@ The goal is to learn from real life working implementation to help feeding
 MIX with feedback from the field, without having to reinvent a complete new
 protocol.
 
-# General principle
+## General principle
 
 The core idea is to expose MUC rooms as PubSub nodes and to introduce
 the concept of MUC rooms subscribers.
@@ -89,25 +86,25 @@ participant in the room. It means that a user can receive messages
 without having to send presence to the room. In that sense, "joining
 the room" in XEP-0045 becomes more "Being available in the MUC room".
 
-# Discovering support
+## Discovering support
 
-## Discovering support on MUC service
+### Discovering support on MUC service
 
 You can check if MUC/Sub feature is available on MUC service by sending Disco Info IQ:
 
-~~~ xml
+``` xml
 <iq from='hag66@shakespeare.example/pda'
     to='muc.shakespeare.example'
     type='get'
     id='ik3vs715'>
   <query xmlns='http://jabber.org/protocol/disco#info'/>
 </iq>
-~~~
+```
 
 MUC service will show a feature of type 'urn:xmpp:mucsub:0' to the response if the
 feature is supported and enabled:
 
-~~~ xml
+``` xml
 <iq from="muc.shakespeare.example"
     to="hag66@shakespeare.example/pda"
     type="result"
@@ -121,26 +118,26 @@ feature is supported and enabled:
     ...
   </query>
 </iq>
-~~~
+```
 
-## Discovering support on a specific MUC
+### Discovering support on a specific MUC
 
 A user can discover support for MUC/Sub feature on a MUC room as
 follow:
 
-~~~ xml
+``` xml
 <iq from='hag66@shakespeare.example/pda'
     to='coven@muc.shakespeare.example'
     type='get'
     id='ik3vs715'>
   <query xmlns='http://jabber.org/protocol/disco#info'/>
 </iq>
-~~~
+```
 
 A conference MUST add 'urn:xmpp:mucsub:0' to the response if the
 feature is supported and enabled:
 
-~~~ xml
+``` xml
 <iq from='coven@muc.shakespeare.example'
     to='hag66@shakespeare.example/pda'
     type='result'
@@ -155,23 +152,23 @@ feature is supported and enabled:
     ...
   </query>
 </iq>
-~~~
+```
 
-# Option MUC room support for subscriptions
+## Option MUC room support for subscriptions
 
 Even if MUC room supports MUC/Sub feature, it MAY be explicitly
 enabled or disabled thanks to a new configuration option:
 
 - Allow subscription: Users can subscribe to MUC/Sub events.
 
-# Subscriber role
+## Subscriber role
 
 Until a subscriber is not joined a conference (see [Joining a MUC Room](#joining-a-muc-room)),
 a subscriber role MUST be 'none'. When a subscriber is joined a conference its role is
 changed according to [XEP-0045](https://xmpp.org/extensions/xep-0045.html) rules, that is,
 it becomes either 'visitor', 'participant' or 'moderator'.
 
-# Subscribing to MUC/Sub events
+## Subscribing to MUC/Sub events
 
 User can subscribe to the following events, by subscribing to specific
 nodes:
@@ -186,7 +183,7 @@ nodes:
 
 Example: User Subscribes to MUC/Sub events
 
-~~~ xml
+``` xml
 <iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
     type='set'
@@ -200,14 +197,14 @@ Example: User Subscribes to MUC/Sub events
     <event node='urn:xmpp:mucsub:nodes:config' />
   </subscribe>
 </iq>
-~~~
+```
 
 If user is allowed to subscribe, server replies with success.
 The password attribute can be provided when subscribing to a password-protected room.
 
 Example: Server replies with success
 
-~~~ xml
+``` xml
 <iq from='coven@muc.shakespeare.example'
     to='hag66@shakespeare.example'
     type='result'
@@ -219,7 +216,7 @@ Example: Server replies with success
     <event node='urn:xmpp:mucsub:nodes:config' />
   </subscribe>
 </iq>
-~~~
+```
 
 Subscription is associated with a nick. It will implicitly register the
 nick. Server should otherwise make sure that subscription match the
@@ -229,7 +226,7 @@ MUST be sent with a different nick or nodes information.
 
 Example: User changes subscription data
 
-~~~ xml
+``` xml
 <iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
     type='set'
@@ -240,14 +237,14 @@ Example: User changes subscription data
     <event node='urn:xmpp:mucsub:nodes:presence' />
   </subscribe>
 </iq>
-~~~
+```
 
 A room moderator can subscribe another user to MUC Room events
 by providing the user JID as an attribute in the `<subscribe/>` element.
 
 Example: Room moderator subscribes another user
 
-~~~ xml
+``` xml
 <iq from='king@shakespeare.example'
     to='coven@muc.shakespeare.example'
     type='set'
@@ -262,38 +259,38 @@ Example: Room moderator subscribes another user
     <event node='urn:xmpp:mucsub:nodes:config' />
   </subscribe>
 </iq>
-~~~
+```
 
-# Unsubscribing from a MUC Room
+## Unsubscribing from a MUC Room
 
 At any time a user can unsubscribe from MUC Room events.
 
 Example: User unsubscribes from a MUC Room
 
-~~~ xml
+``` xml
 <iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
     type='set'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
   <unsubscribe xmlns='urn:xmpp:mucsub:0' />
 </iq>
-~~~
+```
 
 Example: A MUC Room responds to unsubscribe request
 
-~~~ xml
+``` xml
 <iq from='coven@muc.shakespeare.example'
     to='hag66@shakespeare.example'
     type='result'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7' />
-~~~
+```
 
 A room moderator can unsubscribe another room user from MUC Room events
 by providing the user JID as an attribute in the `<unsubscribe/>` element.
 
 Example: Room moderator unsubscribes another room user
 
-~~~ xml
+``` xml
 <iq from='king@shakespeare.example'
     to='coven@muc.shakespeare.example'
     type='set'
@@ -301,9 +298,9 @@ Example: Room moderator unsubscribes another room user
   <unsubscribe xmlns='urn:xmpp:mucsub:0'
                jid='hag66@shakespeare.example'/>
 </iq>
-~~~
+```
 
-# Subscriber actions
+## Subscriber actions
 
 If not stated otherwise in this document, a subscriber MUST perform any actions in the conference
 as described in [XEP-0045](https://xmpp.org/extensions/xep-0045.html). For example,
@@ -315,21 +312,21 @@ and so on.
 
 Here are a few examples:
 
-## Sending a message
+### Sending a message
 
 Sending a message is like sending a standard groupchat message in MUC room:
 
-~~~ xml
+``` xml
 <message from="hag66@shakespeare.example"
          to="coven@muc.shakespeare.example"
          type="groupchat">
   <body>Test</body>
 </message>
-~~~
+```
 
 No need to join it after you connect. As a subscriber, you can send messages at any time.
 
-## Joining a MUC Room
+### Joining a MUC Room
 
 If a user wants to be present in the room, they just have to join the room as defined in XEP-0045.
 
@@ -345,12 +342,12 @@ MUST switch to a regular groupchat protocol (as described in
 [XEP-0045](https://xmpp.org/extensions/xep-0045.html)) until a subscriber
 leaves.
 
-# Receiving events
+## Receiving events
 
 Here is as an example message received by a subscriber when a message is posted to a MUC room
 when subscriber is subscribed to node urn:xmpp:mucsub:nodes:messages:
 
-~~~ xml
+``` xml
 <message from="coven@muc.shakespeare.example"
          to="hag66@shakespeare.example/pda">
   <event xmlns="http://jabber.org/protocol/pubsub#event">
@@ -372,12 +369,12 @@ when subscriber is subscribed to node urn:xmpp:mucsub:nodes:messages:
     </items>
   </event>
 </message>
-~~~
+```
 
 Presence changes in the MUC room are received wrapped in the same way by
 subscribers which subscribed to node urn:xmpp:mucsub:nodes:presence:
 
-~~~ xml
+``` xml
 <message from="coven@muc.shakespeare.example"
          to="hag66@shakespeare.example/pda">
   <event xmlns="http://jabber.org/protocol/pubsub#event">
@@ -396,13 +393,13 @@ subscribers which subscribed to node urn:xmpp:mucsub:nodes:presence:
     </items>
   </event>
 </message>
-~~~
+```
 
 If subscriber is subscribed to node urn:xmpp:mucsub:nodes:subscribers, message
 will ne sent for every mucsub subscription change.
 When a user becomes a subscriber:
 
-~~~ xml
+``` xml
 <message from="coven@muc.shakespeare.example"
          to="hag66@shakespeare.example/pda">
    <event xmlns="http://jabber.org/protocol/pubsub#event">
@@ -415,9 +412,11 @@ When a user becomes a subscriber:
      </items>
    </event>
 </message>
-~~~
+```
+
 When a user lost its subscription:
-~~~ xml
+
+``` xml
 <message from="coven@muc.shakespeare.example"
          to="hag66@shakespeare.example/pda">
    <event xmlns="http://jabber.org/protocol/pubsub#event">
@@ -430,30 +429,30 @@ When a user lost its subscription:
      </items>
    </event>
 </message>
-~~~
+```
 
 Note: Sometimes jid in subscribe/unsubscribe event may be missing
 if room is set to anonymous and user is not moderator.
 
-# Getting List of subscribed rooms
+## Getting List of subscribed rooms
 
 A user can query the MUC service to get their list of
 subscriptions.
 
 Example: User asks for subscriptions list
 
-~~~ xml
+``` xml
 <iq from='hag66@shakespeare.example'
     to='muc.shakespeare.example'
     type='get'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
   <subscriptions xmlns='urn:xmpp:mucsub:0' />
 </iq>
-~~~
+```
 
 Example: Server replies with subscriptions list
 
-~~~ xml
+``` xml
 <iq from='muc.shakespeare.example'
     to='hag66@shakespeare.example'
     type='result'
@@ -472,27 +471,27 @@ Example: Server replies with subscriptions list
     </subscription>
   </subscriptions>
 </iq>
-~~~
+```
 
-# Getting list of subscribers of a room
+## Getting list of subscribers of a room
 
 A subscriber or room moderator can get the list of subscribers by sending
 `<subscriptions/>` request directly to the room JID.
 
 Example: Asks for subscribers list
 
-~~~ xml
+``` xml
 <iq from='hag66@shakespeare.example'
     to='coven@muc.shakespeare.example'
     type='get'
     id='E6E10350-76CF-40C6-B91B-1EA08C332FC7'>
   <subscriptions xmlns='urn:xmpp:mucsub:0' />
 </iq>
-~~~
+```
 
 Example: Server replies with subscribers list
 
-~~~ xml
+``` xml
 <iq from='coven@muc.shakespeare.example'
     to='hag66@shakespeare.example'
     type='result'
@@ -509,9 +508,9 @@ Example: Server replies with subscribers list
     </subscription>
   </subscriptions>
 </iq>
-~~~
+```
 
-# Compliance with existing MUC clients
+## Compliance with existing MUC clients
 
 MUC/Sub approach is compliant with existing MUC service and MUC
 clients. MUC clients compliant with XEP-0045 will receive messages
@@ -527,14 +526,14 @@ However, a server could choose to send presence on behalf of
 subscribers when a user joins the room (in the XEP-0045 sense) so that
 the subscriber will be shown in MUC roster of legacy clients.
 
-# Synchronization of MUC messages: Leveraging MAM support
+## Synchronization of MUC messages: Leveraging MAM support
 
 To be friendly with mobile, the MAM service should allow a user to
 connect and easily resync their history for all MUC subscriptions.
 For details about MAM, see
 [XEP-0313 Message Archive Management](https://xmpp.org/extensions/xep-0313.html)
 and your software's documentation, for instance
-[ejabberd's mod_mam](/admin/configuration/modules/#mod-mam).
+[ejabberd's mod_mam](../../../admin/configuration/modules.md#mod_mam).
 
 Thanks to ability to get the list of all the existing subscription, client
 can get a starting point to interact with MAM service to resync history and
@@ -552,7 +551,7 @@ You would only need to query MUC for MAM for rooms for which you do not use MucS
 with MucSub you will be "delivered" each message (in that case, each message is added
 your MAM archive).
 
-# Push support compliance
+## Push support compliance
 
 Subscriptions are compliant with push mechanism. It is supported out of
 the box when using ProcessOne p1:push implementation (deployed on ejabberd
