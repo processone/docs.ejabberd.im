@@ -1,33 +1,118 @@
-# ejabberd documentation
+# ejabberd Docs Source Code
 
-This repository holds the source code of the ejabberd documentation website, available at [docs.ejabberd.im](https://docs.ejabberd.im). This is a community effort and you are welcome to submit issues or pull requests in order to improve the docs and benefit the ejabberd community.
+The [ejabberd](http://ejabberd.im/) Community Server
+has its source code available in the [ejabberd git repository](https://github.com/processone/ejabberd).
+Its documentation is published in the [ejabberd Docs](https://docs.ejabberd.im) website,
+and its source code is available in the [docs git repository](https://github.com/processone/docs.ejabberd.im).
 
-Some documentation pages are generated from ejabberd source code.
-To build those pages, start ejabberd and run 'make'.
+This is a community effort and you are welcome to submit issues or pull requests
+in order to improve the docs and benefit the ejabberd community.
 
-# Contributing
+This documentation site is built using [MkDocs](http://www.mkdocs.org/)
+and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
-If you want to contribute to this ejabberd documentation, here are some helpful guidelines regarding the syntax:
+## Installation
 
-- use Markdown, specifically the [kramdown flavour](https://kramdown.gettalong.org/syntax.html)
+To build the site you need Python 3.6 or later, then install the dependencies:
 
-- when creating code blocks, use `~~~ language` fencing, where `language` represents what's in the code block
+### pip
 
-- for code blocks with terminal listings, use `~~~ bash` or `~~~ python`, whichever looks best
+```bash
+mkdir -p .venv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-- ordered lists don't need to be enumerated 1,2,3... in the source - they can all start with `1.`, the generator will enumerate them properly
+!!! info
+    From now on, remember to run `source .venv/bin/activate` before running any `mkdocs [...]` command.
 
-- for code blocks within lists, make sure indentation of first `~~~` is vertically aligned with list item text, for example:
-    ```
-    1. Item list text
-    
-       ~~~ perl
-       my $variable = 'something';
-       ...
-       ~~~
-    ```
-    This is generally 3 spaces for numbered list item and 2 for bullet items.
+!!! tip
+    You can freeze the dependencies to a file using `pip freeze > requirements.txt`.
 
-- It is usually better to indent at same level the whole code block (so in list item), otherwise, empty lines will break rendering
+### Debian
 
-- Send your changes as pull request. It will be applied as a patch by a bot, but this allows us to track change requests
+You could install most dependencies using APT:
+
+```bash
+apt-get install mkdocs \
+                mkdocs-material \
+                mkdocs-material-extensions \
+                mkdocs-redirects \
+                python3-bs4
+```
+
+!!! warning
+    Unfortunately Debian doesn't package `mkdocs-with-pdf`, so you should remove `with-pdf` plugin from `mkdocs.yml`.
+
+## Building
+
+Now you can start a small webserver that builds the site dynamically:
+
+```bash
+mkdocs serve
+```
+
+or build the site into static html files in the `site/` directory:
+
+```bash
+mkdocs build
+```
+
+## Testing
+
+To verify the internal URLs in the site:
+
+```bash
+TEST=true mkdocs serve
+```
+
+To verify the internal URLs and also the external links:
+
+```bash
+TEST=true TEST_EXTERNAL=true mkdocs serve
+```
+
+## Updating content
+
+Some pages in this documentation are extracted from a running ejabberd node:
+
+- [admin/configuration/toplevel.md](admin/configuration/toplevel.md)
+- [admin/configuration/modules.md](admin/configuration/modules.md)
+- [developer/ejabberd-api/admin-api.md](developer/ejabberd-api/admin-api.md)
+- [developer/ejabberd-api/admin-tags.md](developer/ejabberd-api/admin-tags.md)
+
+To update those pages, install ejabberd, start it and run `make all` in this repository.
+This gets documentation from ejabberd, processes it to obtain markdown content
+and moves the files to this repository.
+
+Additionally, there are several other pages that are markdown files copied from
+ejabberd git repository and docker-ejabberd git repository. Those repositories
+must be available next to docs.ejabberd.im before running `make all`.
+
+## Markdown Shorthands
+
+When editing ejabberd source code to document top-level options, modules or API commands,
+there is some additional syntax supported to generate HTML URLs:
+
+For example, this text in the ejabberd source code:
+
+``` erlang
+_`mod_muc_admin`_
+_`bookmarks_to_pep`_ API
+_`default_db`_
+_`basic.md#captcha|CAPTCHA`_
+https://xmpp.org/extensions/xep-0045.html[XEP-0045]
+```
+
+gets converted into this markdown:
+
+``` markdown
+[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[bookmarks_to_pep](../../developer/ejabberd-api/admin-api.md#bookmarks_to_pep) API
+[default_db](toplevel.md#default_db)
+[CAPTCHA](basic.md#captcha)
+[XEP-0045](https://xmpp.org/extensions/xep-0045.html)
+```
+
+There are example usage of those shorthands in ejabberd, for example in `mod_muc.erl`.

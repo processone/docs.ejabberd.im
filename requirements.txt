@@ -1,0 +1,6 @@
+mkdocs
+mkdocs-htmlproofer-plugin
+mkdocs-material
+mkdocs-redirects
+mkdocs-with-pdf
+pymdown-extensions

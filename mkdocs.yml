@@ -1,0 +1,424 @@
+
+#' general
+#
+
+site_name: ejabberd Docs
+site_url: https://processone.github.io/mkdocs/
+
+repo_url: https://github.com/processone/ejabberd
+repo_name: processone/ejabberd
+edit_uri: https://github.com/processone/mkdocs/edit/main/content
+
+copyright: |
+  Copyright &copy; 2008 - 2024 <a href="https://process-one.net" target="_blank" rel="noopener">ProcessOne</a>
+
+docs_dir: content
+
+#.
+#' extra
+#
+
+extra:
+  status: # https://squidfunk.github.io/mkdocs-material/reference/#setting-the-page-status
+    new: New pag added
+    ebe: Exclusive to eBE customers
+    saas: Exclusive to SaaS customers
+  generator: true #  MkDocs footer notice
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/processone/ejabberd
+      name: GitHub
+    - icon: fontawesome/brands/docker
+      link: https://github.com/processone/docker-ejabberd/
+      name: Docker Registry
+    - icon: fontawesome/brands/mastodon
+      link: https://social.process-one.net/@ejabberd
+      name: Mastodon
+    - icon: fontawesome/regular/heart
+      link: https://process-one.net
+      name: ProcessOne Website
+  #version:
+  #  provider: mike
+  #analytics:
+  #  feedback:
+  #    title: Was this page helpful?
+  #    ratings:
+  #      - icon: material/emoticon-happy-outline
+  #        name: This page was helpful.
+  #        data: 1
+  #        note: >-
+  #          Thanks for your feedback!
+  #      - icon: material/emoticon-sad-outline
+  #        name: This page could be improved.
+  #        data: 0
+  #        note: >-
+  #          Thanks for your feedback! Can you please fill
+  #          <a href="https://github.com/processone/docs.ejabberd.im/issues/new?title=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">an issue</a>
+  #          explaining how this page could get improved?
+
+#extra_javascript:
+  #- "assets/js/feedback.js"
+
+extra_css:
+  - "assets/css/mdversion.css"
+  - "assets/css/notes.css"
+  - "assets/css/status.css"
+  - "assets/css/headers-underline.css"
+
+#.
+#' markdown and hooks
+#
+
+markdown_extensions:
+  - md_in_html
+  - toc:
+      toc_depth: 3
+      permalink: true # add permalink to headers
+      title: " "
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+
+hooks:
+  - add_old_ids.py
+  - shortcodes.py
+
+#.
+#' plugins
+#
+
+plugins:
+  #- git-committers:
+  #    repository: processone/mkdocs
+  #    branch: main
+  - htmlproofer:
+      enabled: !ENV [TEST, false]
+      validate_external_urls: !ENV [TEST_EXTERNAL, false]
+      raise_error_after_finish: true
+      skip_downloads: true
+      ignore_urls:
+        - 'ejabberd-docs-*'
+        - 'mailto:*'
+        - 'xmpp:*'
+        - 'https://www.faceit.com/'
+  - offline:
+      enabled: !ENV [OFFLINE, false]
+  - redirects:
+      redirect_maps:
+        'admin/installation.md': 'admin/install/index.md'
+  - search
+  #- social
+  - with-pdf:
+      author: " "
+      copyright: Copyright &copy; 2008 - 2024 ProcessOne
+      cover: true
+      cover_subtitle: ejabberd Community Server
+      #cover_logo: assets/img/logo-docs.png
+      ordered_chapter_level: 0
+      excludes_children:
+          - 'developer/ejabberd-api/admin-api.md'
+      exclude_pages:
+        - 'archive/'
+      output_path: ../content/ejabberd-docs.pdf
+      enabled_if_env: WITH_PDF
+      show_anchors: false
+      verbose: false
+
+#.
+#' theme
+#
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/img/logo-docs.png
+  favicon: assets/img/favicon.ico
+  icon:
+    repo: fontawesome/brands/github # Header git icon
+    admonition:
+      tip: simple/riseup
+      success: material/elevation-rise
+
+  palette:
+    # Dark Mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: blue
+    # Light Mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: blue
+
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    #- navigation.sections
+    #- navigation.expand
+    #- navigation.path # Insiders Feature - Show the current path in the navigation (breadcrumbs)
+    #- navigation.prune
+    - navigation.indexes
+    - toc.follow
+    #- toc.integrate
+    - navigation.top
+    - navigation.instant # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/?h=navigation+sections#instant-loading
+    - navigation.instant.progress # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/?h=navigation+sections#progress-indicator
+    - navigation.tracking # address bar is automatically updated with the active anchor
+    - navigation.footer # Previous/Next buttons in footer
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - content.action.edit # Button "Edit on GitHub"
+    - content.action.view # Button "View on GitHub"
+
+#.
+#' nav
+#
+
+nav:
+  - Overview:
+    - get-started/index.md
+    - Features: admin/introduction.md
+    - FAQ: ejabberd-faq/index.md
+    - Use Cases: use-cases/index.md
+    - License: COPYING.md
+    - Quickstart: README-GIT.md
+  - Install:
+    - admin/install/index.md
+    - Containers: admin/install/container/index.md
+    - " ejabberd Container": CONTAINER.md
+    - " ecs Container": README-ECS.md
+    - Binary Installers: admin/install/binary-installer.md
+    - Operating System Package: admin/install/os-package.md
+    - Compile Source Code: admin/install/source.md
+    - Homebrew: admin/install/homebrew.md
+    - Mac OSX: developer/install-osx.md
+    - admin/install/next-steps.md
+  - Configure:
+    - admin/configuration/index.md
+    - File Format: admin/configuration/file-format.md
+    - Basic Configuration: admin/configuration/basic.md
+    - Authentication: admin/configuration/authentication.md
+    - Databases: admin/configuration/database.md
+    - LDAP: admin/configuration/ldap.md
+    - Listen Modules: admin/configuration/listen.md
+    - Listen Options: admin/configuration/listen-options.md
+    - Top-Level Options: admin/configuration/toplevel.md
+    - Modules Options: admin/configuration/modules.md
+  - Advanced:
+    - admin/guide/index.md
+    - Architecture: developer/extending-ejabberd/architecture.md
+    - Clustering: admin/guide/clustering.md
+    - Managing: admin/guide/managing.md
+    - Security: admin/guide/security.md
+    - Troubleshooting: admin/guide/troubleshooting.md
+    - Upgrade: admin/upgrade/index.md
+    - Tutorials: tutorials/index.md
+    - " MIX tutorial": tutorials/mix-010.md
+    - " MQTT tutorial": admin/guide/mqtt/index.md
+    - " MUC vCards": tutorials/muc-vcard.md
+    - " MySQL tutorial": tutorials/mysql.md
+  - Development:
+    - developer/index.md
+    - "Developer Guide": developer/guide.md
+    - " Pubsub Dev": developer/extending-ejabberd/pubsub.md
+    - " Simplified Roster Versioning": developer/xmpp-clients-bots/extensions/roster-versioning.md
+    - " Stanza Routing": developer/extending-ejabberd/stanza-routing.md
+    - " SQL Schema": developer/sql-schema.md
+    - Contributions: admin/contrib/index.md
+    - " Contributing": contributing/index.md
+    - " Contributor Convenant": contributing/CODE_OF_CONDUCT.md
+    - " Contributors": contributing/CONTRIBUTORS.md
+    - Dependencies: developer/repositories.md
+    - Docs: README-DOCS.md
+    - Elixir Dev: developer/extending-ejabberd/elixir.md
+    - Livebook: livebooks/ejabberd-developer-livebook.md
+    - Localization: developer/extending-ejabberd/localization.md
+    - Modules Dev: developer/extending-ejabberd/modules.md
+    - MUC/Sub Extension: developer/xmpp-clients-bots/extensions/muc-sub.md
+    - Testing: developer/extending-ejabberd/testing.md
+    - VSCode: developer/vscode.md
+    - XMPPFramework (iOS): developer/xmpp-clients-bots/ios/getting-started-xmppframework.md
+  - API:
+    - developer/ejabberd-api/index.md
+    - API Reference: developer/ejabberd-api/admin-api.md
+    - API Tags: developer/ejabberd-api/admin-tags.md
+    - Simple Configuration: developer/ejabberd-api/simple-configuration.md
+    - Permissions: developer/ejabberd-api/permissions.md
+    - OAuth Support: developer/ejabberd-api/oauth.md
+    - Commands: developer/ejabberd-api/commands.md
+    - Versioning: developer/ejabberd-api/api_versioning.md
+  - Archive:
+    - archive/index.md
+    - "24.02":
+      - archive/24.02/index.md
+      - archive/24.02/admin-api.md
+      - archive/24.02/admin-tags.md
+      - archive/24.02/listen.md
+      - archive/24.02/listen-options.md
+      - archive/24.02/modules.md
+      - archive/24.02/toplevel.md
+      - archive/24.02/upgrade.md
+    - "23.10":
+      - archive/23.10/index.md
+      - archive/23.10/admin-api.md
+      - archive/23.10/admin-tags.md
+      - archive/23.10/listen.md
+      - archive/23.10/listen-options.md
+      - archive/23.10/modules.md
+      - archive/23.10/toplevel.md
+      - archive/23.10/upgrade.md
+    - "23.04":
+      - archive/23.04/index.md
+      - archive/23.04/admin-api.md
+      - archive/23.04/listen.md
+      - archive/23.04/listen-options.md
+      - archive/23.04/modules.md
+      - archive/23.04/toplevel.md
+      - archive/23.04/upgrade.md
+    - "23.01":
+      - archive/23.01/index.md
+      - archive/23.01/admin-api.md
+      - archive/23.01/listen.md
+      - archive/23.01/listen-options.md
+      - archive/23.01/modules.md
+      - archive/23.01/toplevel.md
+      - archive/23.01/upgrade.md
+    - "22.10":
+      - archive/22.10/index.md
+      - archive/22.10/admin-api.md
+      - archive/22.10/listen.md
+      - archive/22.10/listen-options.md
+      - archive/22.10/modules.md
+      - archive/22.10/toplevel.md
+      - archive/22.10/upgrade.md
+    - "22.05":
+      - archive/22.05/index.md
+      - archive/22.05/admin-api.md
+      - archive/22.05/listen.md
+      - archive/22.05/listen-options.md
+      - archive/22.05/modules.md
+      - archive/22.05/toplevel.md
+      - archive/22.05/upgrade.md
+    - "21.12":
+      - archive/21.12/index.md
+      - archive/21.12/admin-api.md
+      - archive/21.12/listen.md
+      - archive/21.12/listen-options.md
+      - archive/21.12/modules.md
+      - archive/21.12/toplevel.md
+      - archive/21.12/upgrade.md
+    - "21.07":
+      - archive/21.07/index.md
+      - archive/21.07/admin-api.md
+      - archive/21.07/listen.md
+      - archive/21.07/listen-options.md
+      - archive/21.07/modules.md
+      - archive/21.07/toplevel.md
+      - archive/21.07/upgrade.md
+    - "21.04":
+      - archive/21.04/index.md
+      - archive/21.04/admin-api.md
+      - archive/21.04/listen.md
+      - archive/21.04/listen-options.md
+      - archive/21.04/modules.md
+      - archive/21.04/toplevel.md
+      - archive/21.04/upgrade.md
+    - "21.01":
+      - archive/21.01/index.md
+      - archive/21.01/admin-api.md
+      - archive/21.01/listen.md
+      - archive/21.01/listen-options.md
+      - archive/21.01/modules.md
+      - archive/21.01/toplevel.md
+    - "20.12":
+      - archive/20.12/index.md
+      - archive/20.12/admin-api.md
+      - archive/20.12/listen.md
+      - archive/20.12/listen-options.md
+      - archive/20.12/modules.md
+      - archive/20.12/toplevel.md
+    - "20.07":
+      - archive/20.07/index.md
+      - archive/20.07/admin-api.md
+      - archive/20.07/listen.md
+      - archive/20.07/listen-options.md
+      - archive/20.07/modules.md
+      - archive/20.07/toplevel.md
+    - "20.04":
+      - archive/20.04/index.md
+      - archive/20.04/admin-api.md
+      - archive/20.04/listen.md
+      - archive/20.04/listen-options.md
+      - archive/20.04/modules.md
+      - archive/20.04/toplevel.md
+    - "20.03":
+      - archive/20.03/index.md
+    - "20.02":
+      - archive/20.02/index.md
+    - "20.01":
+      - archive/20.01/index.md
+      - archive/20.01/upgrade.md
+    - "Older releases":
+      - archive/older-releases/from_19.05_to_19.08.md
+      - archive/older-releases/from_19.02_to_19.05.md
+      - archive/older-releases/from_18.12_to_19.02.md
+      - archive/older-releases/from_18.09_to_18.12.md
+      - archive/older-releases/from_18.06_to_18.09.md
+      - archive/older-releases/from_18.04_to_18.06.md
+      - archive/older-releases/from_18.03_to_18.04.md
+      - archive/older-releases/from_18.01_to_18.03.md
+      - archive/older-releases/from_17.11_to_18.01.md
+      - archive/older-releases/from_17.09_to_17.11.md
+      - archive/older-releases/from_17.06_to_17.09.md
+      - archive/older-releases/from_17.03_to_17.06.md
+      - archive/older-releases/from_16.08_to_17.03.md
+      - archive/older-releases/from_16.06_to_16.08.md
+      - archive/older-releases/from_16.04_to_16.06.md
+      - archive/older-releases/from_16.03_to_16.04.md
+      - archive/older-releases/from_16.02_to_16.03.md
+      - archive/older-releases/from_15.11_to_16.02.md
+      - archive/older-releases/from_2.1.1x_to_16.02.md
+    - Configure 20.03: archive/old.md
+    - ChangeLog: CHANGELOG.md
+  - Roadmap:
+    - roadmap/index.md
+
+not_in_nav: |
+  index.md
+  admin/upgrade/from*.md
+  admin/ejabberdctl/index.md
+  admin/guide/index.md
+  admin/index.md
+  admin/configuration/old.md
+  admin/ejabberdctl/muc-admin.md
+  admin/guide/unattended.md
+  admin/guide/xep/index.md
+  README-HUB.md
+  developer/extending-ejabberd/index.md
+  developer/hosts.md
+  developer/xmpp-clients-bots/index.md
+
+# admin/ejabberdctl/index.md # just a list of subsections
+# admin/guide/index.md # just a list of subsections
+# admin/index.md # just a list of subsections
+# admin/configuration/old.md # archived in April 2020, only relevant for ejabberd older than 20.01
+# admin/ejabberdctl/muc-admin.md # seems obsolete, as nowadays we have full API section
+# admin/guide/unattended.md # seems obsolete, as it documents Bitrock installers
+# admin/guide/xep/index.md # seems mostly useless nowadays
+
+# vim: foldmarker=#',#. foldmethod=marker:

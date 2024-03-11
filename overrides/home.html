@@ -1,0 +1,276 @@
+{% extends "main.html" %}
+
+{% block tabs %} {{ super() }}
+<link rel="stylesheet" href="{{ 'assets/stylesheets/custom.css' | url }}">
+<link rel="stylesheet" href="{{ 'assets/stylesheets/home.css' | url }}">
+<style>
+  .md-header {
+    position: initial
+  }
+
+  .md-main__inner {
+    margin: 0
+  }
+
+  .md-content {
+    display: none
+  }
+
+  @media screen and (min-width:60em) {
+    .md-sidebar--secondary {
+      display: none
+    }
+  }
+
+  @media screen and (min-width:76.25em) {
+    .md-sidebar--primary {
+      display: none
+    }
+  }
+
+  .md-typeset h2 {
+    font-size: 1.5625em;
+    line-height: 1.4;
+    margin: .3em 0 .64em;
+  }
+
+  .mdx-hero__content p a {
+    color: rgb(29, 216, 197);
+  }
+
+  .mdx-hero__content p a:hover {
+    color: rgb(158, 255, 245);
+  }
+
+  .mdx-hero__content p a:visited:hover {
+    color: rgb(158, 255, 245);
+  }
+
+
+  .mdx-hero__content p a:visited {
+    color: rgb(29, 216, 197);
+  }
+
+  .mdx-hero .md-button:focus,
+  .mdx-hero .md-button:hover {
+    background-color: rgb(29, 216, 197);
+    ;
+    border-color: rgb(29, 216, 197);
+    ;
+  }
+</style>
+
+<section class="mdx-container" data-md-color-scheme=slate>
+  <div class="md-grid md-typeset">
+    <div class="mdx-hero">
+      <div class="mdx-hero__image">
+        <br>
+        <img src="assets/img/banner.png" alt="" width="1659" height="1200" draggable="false">
+      </div>
+      <div class="mdx-hero__content">
+        <img src="assets/img/logo-docs.png" alt="ejabberd Docs" draggable="false">
+        <p>Dive into a wealth of knowledge to master all aspects of <strong>ejabberd Community Server</strong>.
+          From setup to optimization, discover everything you need to know about configuring and deploying your
+          messaging server.
+        </p>
+        <a href="./get-started/" title="Get Started" class="md-button md-button--primary"> Get Started </a>
+        <a href="./roadmap/" title="What's new?" class="md-button">What's new?</a>
+        <br><br>
+        <p>
+          <a href="https://ejabberd.im/"><strong>ejabberd</strong></a> is an open-source, robust, scalable and
+          extensible realtime
+          platform built using <a href="https://www.erlang.org/"><strong>Erlang/OTP</strong></a>, that includes <a
+            href="https://xmpp.org/"><strong>XMPP</strong></a> Server,
+          <a href="https://mqtt.org/"><strong>MQTT</strong></a> Broker and <a
+            href="https://en.wikipedia.org/wiki/Session_Initiation_Protocol"><strong>SIP</strong></a> Service.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mdx-parallax__group" data-md-color-scheme="default">
+  <div class="md-grid" data-md-component=content>
+    <div class=md-content__inner>
+      <div class=mdx-expect>
+        <ul class=mdx-expect__list>
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>earth</title><path d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>Overview</strong></h2>
+              <p>Get an <a href="get-started/">Overview</a> of ejabberd,
+                its <a href="admin/introduction/">features</a>,
+                some big <a href="user-cases/">use cases</a>,
+                its <a href="COPYING/">license</a>,
+                and finally enter a <a href="README-GIT/">Quickstart</a></p>
+            </div>
+          </li>
+
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>folder-download-outline</title><path d="M20 18H4V8H20M20 6H12L10 4H4A2 2 0 0 0 2 6V18A2 2 0 0 0 4 20H20A2 2 0 0 0 22 18V8A2 2 0 0 0 20 6M14 9H16V13H19L15 17L11 13H14Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>Install</strong></h2>
+              <p>You have many ways to <a href="install/">install</a> ejabberd:
+                using <a href="admin/install/container/">containers</a>,
+                binary <a href="admin/install/binary-installer/">installers</a>, ...
+                or <a href="admin/install/source/">compile</a> it yourself from the source code.</a>
+              </p>
+            </div>
+          </li>
+
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>tune-vertical</title><path d="M7 3H5V9H7V3M19 3H17V13H19V3M3 13H5V21H7V13H9V11H3V13M15 7H13V3H11V7H9V9H15V7M11 21H13V11H11V21M15 15V17H17V21H19V17H21V15H15Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>Configure</strong></h2>
+              <p>Once you have ejabberd up and running, it's time to <a href="admin/configuration/">configure</a> to
+                suit your needs,
+                like setting up
+                <a href="admin/configuration/authentication/">authentication</a>,
+                <a href="admin/configuration/database/">databases</a>,
+                <a href="admin/configuration/ldap/">ldap</a>.
+                Then setup <a href="admin/configuration/listeners/">listeners</a>,
+                <a href="admin/configuration/toplevel/">top-level</a> and
+                <a href="admin/configuration/modules/">modules</a> options.
+              </p>
+            </div>
+          </li>
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>hammer-screwdriver</title><path d="M16.06 13.09L21.69 18.68L18.37 21.96L12.78 16.37V15.45L15.14 13.09H16.06M16.97 10.56L16 9.6L11.21 14.4V16.37L5.58 22L2.3 18.68L7.89 13.09H9.86L10.64 12.31L6.8 8.46H5.5L2.69 5.62L5.31 3L8.11 5.8V7.11L12 10.95L14.66 8.29L13.7 7.28L15 5.97H12.34L11.69 5.32L15 2L15.66 2.66V5.32L16.97 4L20.25 7.28C21.34 8.38 21.34 10.17 20.25 11.26L18.28 9.25L16.97 10.56Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>Advanced</strong></h2>
+              <p>Some time happy with it, and it's time to dive into <a href="admin/guide/">advanced</a> administration
+                features like
+                <a href="admin/guide/clustering/">clustering</a>,
+                <a href="admin/guide/managing/">managing</a>,
+                <a href="admin/guide/security/">security</a>,
+                <a href="admin/upgrade/">upgrading</a> to a new release.
+                Check also the <a href="tutorials/">tutorials</a>.
+              </p>
+            </div>
+          </li>
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>sprout-outline</title><path d="M23,4.1V2.3L21.2,2.1C21.1,2.1 20.5,2 19.5,2C15.4,2 12.4,3.2 10.7,5.3C9.4,4.5 7.6,4 5.5,4C4.5,4 3.8,4.1 3.8,4.1L1.9,4.4L2,6.1C2.1,9.1 3.6,14.8 8.8,14.8C8.9,14.8 8.9,14.8 9,14.8V18.2C5.2,18.7 2,20 2,20V22H22V20C22,20 18.8,18.7 15,18.2V15C21.3,14.9 23,7.8 23,4.1M12,18C11.7,18 11.3,18 11,18V12.4C11,12.4 10.8,9 8,9C8,9 9.5,9.8 9.9,12.7C9.5,12.8 9.1,12.8 8.8,12.8C4.2,12.8 4,6.1 4,6.1C4,6.1 4.6,6 5.5,6C7.4,6 10.5,6.4 11.4,9.1C11.9,4.6 17,4 19.5,4C20.4,4 21,4.1 21,4.1C21,4.1 21,13.1 14.7,13.1C14.5,13.1 14.2,13.1 14,13.1C14,11.1 16,8.1 16,8.1C13,9.1 13,13 13,13V18C12.7,18 12.3,18 12,18Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>Development</strong></h2>
+              <p>The <a href="developer/">development</a> section includes details about ejabberd architecture, and how to
+                extend it in various forms.</p>
+            </div>
+          </li>
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>connection</title><path d="M21.4 7.5C22.2 8.3 22.2 9.6 21.4 10.3L18.6 13.1L10.8 5.3L13.6 2.5C14.4 1.7 15.7 1.7 16.4 2.5L18.2 4.3L21.2 1.3L22.6 2.7L19.6 5.7L21.4 7.5M15.6 13.3L14.2 11.9L11.4 14.7L9.3 12.6L12.1 9.8L10.7 8.4L7.9 11.2L6.4 9.8L3.6 12.6C2.8 13.4 2.8 14.7 3.6 15.4L5.4 17.2L1.4 21.2L2.8 22.6L6.8 18.6L8.6 20.4C9.4 21.2 10.7 21.2 11.4 20.4L14.2 17.6L12.8 16.2L15.6 13.3Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>API</strong></h2>
+              <p>ejabberd provides a comprehensive ReST <a href="developer/ejabberd-api/">API</a>, check its
+                <a href="developer/ejabberd-api/admin-api/">API Reference</a>
+                <a href="developer/ejabberd-api/admin-tags/">Tags</a>,
+                and learn how to <a href="developer/ejabberd-api/simple-configuration/">configure it</a>.
+              </p>
+            </div>
+          </li>
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>map-search-outline</title><path d="M15.5,12C18,12 20,14 20,16.5C20,17.38 19.75,18.2 19.31,18.9L22.39,22L21,23.39L17.88,20.32C17.19,20.75 16.37,21 15.5,21C13,21 11,19 11,16.5C11,14 13,12 15.5,12M15.5,14A2.5,2.5 0 0,0 13,16.5A2.5,2.5 0 0,0 15.5,19A2.5,2.5 0 0,0 18,16.5A2.5,2.5 0 0,0 15.5,14M19.5,2A0.5,0.5 0 0,1 20,2.5V11.81C19.42,11.26 18.75,10.81 18,10.5V4.7L15,5.86V10C14.3,10.07 13.62,10.24 13,10.5V5.87L9,4.47V16.13H9V16.5C9,17.14 9.09,17.76 9.26,18.34L8,17.9L2.66,19.97L2.5,20A0.5,0.5 0 0,1 2,19.5V4.38C2,4.15 2.15,3.97 2.36,3.9L8,2L14,4.1L19.34,2.03L19.5,2M4,5.46V17.31L7,16.15V4.45L4,5.46Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>Archive</strong> and <strong>Roadmap</strong></h2>
+              <p>View the <a href="archive/">archived</a> documentation of previous ejabberd releases, and the <a href="roadmap/">plans</a> for the future.</p>
+            </div>
+          </li>
+          <li class="mdx-expect__item md-typeset">
+            <div class=mdx-expect__icon>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>book-open-variant-outline</title><path d="M12 21.5C10.65 20.65 8.2 20 6.5 20C4.85 20 3.15 20.3 1.75 21.05C1.65 21.1 1.6 21.1 1.5 21.1C1.25 21.1 1 20.85 1 20.6V6C1.6 5.55 2.25 5.25 3 5C4.11 4.65 5.33 4.5 6.5 4.5C8.45 4.5 10.55 4.9 12 6C13.45 4.9 15.55 4.5 17.5 4.5C18.67 4.5 19.89 4.65 21 5C21.75 5.25 22.4 5.55 23 6V20.6C23 20.85 22.75 21.1 22.5 21.1C22.4 21.1 22.35 21.1 22.25 21.05C20.85 20.3 19.15 20 17.5 20C15.8 20 13.35 20.65 12 21.5M11 7.5C9.64 6.9 7.84 6.5 6.5 6.5C5.3 6.5 4.1 6.65 3 7V18.5C4.1 18.15 5.3 18 6.5 18C7.84 18 9.64 18.4 11 19V7.5M13 19C14.36 18.4 16.16 18 17.5 18C18.7 18 19.9 18.15 21 18.5V7C19.9 6.65 18.7 6.5 17.5 6.5C16.16 6.5 14.36 6.9 13 7.5V19M14 16.35C14.96 16 16.12 15.83 17.5 15.83C18.54 15.83 19.38 15.91 20 16.07V14.57C19.13 14.41 18.29 14.33 17.5 14.33C16.16 14.33 15 14.5 14 14.76V16.35M14 13.69C14.96 13.34 16.12 13.16 17.5 13.16C18.54 13.16 19.38 13.24 20 13.4V11.9C19.13 11.74 18.29 11.67 17.5 11.67C16.22 11.67 15.05 11.82 14 12.12V13.69M14 11C14.96 10.67 16.12 10.5 17.5 10.5C18.41 10.5 19.26 10.59 20 10.78V9.23C19.13 9.08 18.29 9 17.5 9C16.18 9 15 9.15 14 9.46V11Z" /></svg>
+            </div>
+            <div class=mdx-expect__description>
+              <h2><strong>Offline / Portable Documentation</strong></h2>
+              <p>In addition to view this site online, you can download it as <a href="ejabberd-docs-24.02.pdf">a pdf</a>
+                 and as <a href="ejabberd-docs-24.02.zip">a static site in zip</a>.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <br>
+    </div>
+  </div>
+</section>
+
+<section class="mdx-parallax__group" data-md-color-scheme="default">
+  <div class="md-grid" data-md-component="content">
+    <div class="md-content__inner">
+      <br>
+      <!-- <div class="mdx-content__column">
+        <header class="md-typeset">
+          <h1 id="become-a-sponsor">Lorem ipsum dolor sit amet
+            <a href="#become-a-sponsor" class="headerlink" title="Permanent link">¶</a>
+          </h1>
+        </header>
+        <div class="mdx-connect md-typeset">
+          <div class="mdx-connect__column">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.</p>
+            <p>
+              <a href="contributing.md" class="md-button" aria-label="Insiders">Contributing</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      -->
+      <div class="mdx-content__column">
+        <header class="md-typeset">
+          <h1 id="keep-in-touch">Let's keep in touch
+            <a href="#keep-in-touch" class="headerlink" title="Permanent link">¶</a>
+          </h1>
+        </header>
+
+        <div class="mdx-connect md-typeset">
+          <div class="mdx-connect__inner">
+            <p>
+              <a href="https://social.process-one.net/@ejabberd" class="mdx-connect__link">
+                <span class="twemoji">{% include ".icons/fontawesome/brands/mastodon.svg" %}</span>Follow
+                <strong>@ejabberd</strong> on <strong>Mastodon</strong>
+              </a>
+              <a href="https://github.com/processone/ejabberd" class="mdx-connect__link">
+                <span class="twemoji">{% include ".icons/fontawesome/brands/github.svg"
+                  %}</span><strong>ejabberd</strong> repository on <strong>GitHub</strong>
+              </a>
+              <a href="https://github.com/processone/docs.ejabberd.im" class="mdx-connect__link">
+                <span class="twemoji">{% include ".icons/fontawesome/brands/github.svg"
+                  %}</span><strong>ejabberd Docs</strong> repository on <strong>GitHub</strong>
+              </a>
+              <a href="https://github.com/processone/docker-ejabberd/" class="mdx-connect__link">
+                <span class="twemoji">{% include ".icons/fontawesome/brands/docker.svg" %}</span>
+                <strong>ecs</strong> container on <strong>DockerHub</strong>
+              </a>
+              <a href="https://github.com/processone/ejabberd/pkgs/container/ejabberd" class="mdx-connect__link">
+                <span class="twemoji">{% include ".icons/octicons/container-16.svg" %}</span>
+                <strong>ejabberd</strong> container on <strong>GitHub Container Registry</strong>
+              </a>
+              <a href="https://hex.pm/packages/ejabberd" class="mdx-connect__link">
+                <span class="twemoji">{% include ".icons/material/hexagon-outline.svg" %}</span>
+                <strong>ejabberd</strong> package on <strong>hex.pm</strong>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+{% endblock %}

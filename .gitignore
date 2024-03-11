@@ -1,0 +1,7 @@
+*.swp
+__pycache__
+content/ejabberd-docs-*.pdf
+content/ejabberd-docs-*.zip
+.venv/*
+site/*
+temp/*
