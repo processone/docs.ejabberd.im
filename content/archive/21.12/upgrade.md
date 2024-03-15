@@ -23,7 +23,7 @@ ALTER TABLE vcard_search ADD PRIMARY KEY (server_host, lusername);
 
 ## mod_register_web restrictions
 
-[mod_register_web](../configuration/modules.md#mod_register_web)
+[mod_register_web](../../admin/configuration/modules.md#mod_register_web)
 is now affected by the restrictions that you configure in
-[mod_register](../configuration/modules.md#mod_register).
+[mod_register](../../admin/configuration/modules.md#mod_register).
 

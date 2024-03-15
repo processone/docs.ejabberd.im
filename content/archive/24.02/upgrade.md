@@ -12,7 +12,7 @@ please review those changes:
 
 The table `archive` has a text column named `origin_id` (see [commit 975681](https://github.com/processone/ejabberd/commit/975681)). You have two methods to update the SQL schema of your existing database:
 
-If using MySQL or PosgreSQL, you can enable the option [`update_sql_schema`](https://docs.ejabberd.im/admin/configuration/toplevel/#update_sql_schema) and ejabberd will take care to update the SQL schema when needed: add in your ejabberd configuration file the line `update_sql_schema: true`
+If using MySQL or PosgreSQL, you can enable the option [`update_sql_schema`](../../admin/configuration/toplevel.md#update_sql_schema) and ejabberd will take care to update the SQL schema when needed: add in your ejabberd configuration file the line `update_sql_schema: true`
 
 If you are using other database, or prefer to update manually the SQL schema:
 
@@ -76,7 +76,7 @@ Until now, when a new ejabberd release changed some API command (an argument ren
 
 Now the ejabberd API commands can have different versions, by default the most recent one is used, and the API client can specify the API version it supports.
 
-In fact, this feature was [implemented seven years ago](https://github.com/processone/ejabberd/commit/3dc55c6d47e3093a6147ce275c7269a7d08ffc45), included in [ejabberd 16.04](https://www.process-one.net/blog/ejabberd-16-04/), documented in [ejabberd Docs: API Versioning](https://docs.ejabberd.im/developer/ejabberd-api/api_versioning/)... but it was never actually used!
+In fact, this feature was [implemented seven years ago](https://github.com/processone/ejabberd/commit/3dc55c6d47e3093a6147ce275c7269a7d08ffc45), included in [ejabberd 16.04](https://www.process-one.net/blog/ejabberd-16-04/), documented in [ejabberd Docs: API Versioning](../../developer/ejabberd-api/api_versioning.md)... but it was never actually used!
 
 This ejabberd release includes many fixes to get API versioning up to date, and it starts being used by several commands.
 
@@ -88,7 +88,7 @@ To continue using API version 0:
 
 Check the ejabberd [24.02](../../archive/24.02/index.md) full release notes for more details about the changed commands.
 
-Check the full documentation in [ejabberd Docs: API Versioning](https://docs.ejabberd.im/developer/ejabberd-api/api_versioning/).
+Check the full documentation in [ejabberd Docs: API Versioning](../../developer/ejabberd-api/api_versioning.md).
 
 ## <a name="mixdefault"></a>Use Mix or Rebar3 by default instead of Rebar to compile ejabberd
 
@@ -112,7 +112,7 @@ This ejabberd release includes support for [XEP-0474: SASL SCRAM Downgrade Prote
 
 If you are using [Converse.js](https://github.com/conversejs/converse.js) 10.1.6 or older, [Movim](https://github.com/movim/movim) 0.23 Kojima or older, or any other client based in [Strophe.js](https://github.com/strophe/strophejs) v1.6.2 or older, you may notice that they cannot authenticate correctly to ejabberd.
 
-To solve that problem, either update to newer versions of those programs (if they exist), or you can enable temporarily the option [`disable_sasl_scram_downgrade_protection`](https://docs.ejabberd.im/admin/configuration/toplevel/#disable_sasl_scram_downgrade_protection) in the ejabberd configuration file `ejabberd.yml` like this:
+To solve that problem, either update to newer versions of those programs (if they exist), or you can enable temporarily the option [`disable_sasl_scram_downgrade_protection`](../../admin/configuration/toplevel.md#disable_sasl_scram_downgrade_protection) in the ejabberd configuration file `ejabberd.yml` like this:
 ``` yaml
 disable_sasl_scram_downgrade_protection: true
 ```
