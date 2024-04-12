@@ -6,8 +6,9 @@ menu: Security
 
 # Firewall Settings
 
-You need to take the following TCP ports in mind when configuring your
-firewall (the ports may change depending on your ejabberd configuration):
+You need to take the following ports in mind when configuring your firewall.
+The ports may change depending on your ejabberd configuration.
+Most of them are TCP ports, except the explicitely mentioned ones:
 
 | **Port**              | **Description**                                                                             |
 |:----------------------|:--------------------------------------------------------------------------------------------|
@@ -17,7 +18,8 @@ firewall (the ports may change depending on your ejabberd configuration):
 | 5280/5443             | HTTP/HTTPS for Web Admin and many more ([ejabberd_http](/admin/configuration/listen/#ejabberd-http)) |
 | 1883/8883             | MQTT/MQTTS service ([mod_mqtt](/admin/configuration/listen/#mod-mqtt))                      |
 | 3478/5349             | STUN+TURN/STUNS+TURNS service ([ejabberd_stun](/admin/configuration/listen/#ejabberd-stun-1))           |
-| 49152-65535 range     | STUN+TURN service ([ejabberd_stun](/admin/configuration/listen/#ejabberd-stun-1)), configure with `turn_min_port` and `turn_max_port` |
+| 3478 UDP              | ' '                                                                                         |
+| 49152-65535 range UDP | STUN+TURN service ([ejabberd_stun](/admin/configuration/listen/#ejabberd-stun-1)), configure with `turn_min_port` and `turn_max_port` |
 | 5060/5061             | SIP service ([ejabberd_sip](/admin/configuration/listen/#ejabberd-sip-1))                   |
 | 7777                  | SOCKS5 file transfer proxy ([mod_proxy65](/admin/configuration/modules/#mod-proxy65))       |
 | 4369                  | EPMD (see [epmd](#epmd)) listens for Erlang node name requests                              |
