@@ -234,53 +234,53 @@ when it is impossible to establish direct peer-to-peer connection.
 
 The specific configurable options are:
 
-**`tls: true|false`**:   If enabled, `certfile` option must be set, otherwise `ejabberd` will
+- **`tls: true|false`**:   If enabled, `certfile` option must be set, otherwise `ejabberd` will
 	not be able to accept TLS connections. Obviously, this option makes
 	sense for `tcp` transport only. The default is `false`.
 
-**`certfile: Path`**:   Path to the certificate file. Only makes sense when `tls` is set.
+- **`certfile: Path`**:   Path to the certificate file. Only makes sense when `tls` is set.
 
-**`use_turn: true|false`**:   Enables/disables TURN (media relay) functionality. The default is
+- **`use_turn: true|false`**:   Enables/disables TURN (media relay) functionality. The default is
 	`false`.
 
-**`turn_blacklist: String | [String,...]`**:   Specify one or more IP addresses and/or subnet
+- **`turn_blacklist: String | [String,...]`**:   Specify one or more IP addresses and/or subnet
 	addresses/masks. The TURN server will refuse to relay traffic from/to
 	blacklisted IP addresses. By default, loopback addresses (`127.0.0.0/8`
 	and `::1/128`) are blacklisted.
 
-**`turn_ipv4_address: String`**:   The IPv4 address advertised by your TURN server.
+- **`turn_ipv4_address: String`**:   The IPv4 address advertised by your TURN server.
 	The address should not be NAT’ed or firewalled. There is not default,
 	so you should set this option explicitly. Implies `use_turn`.
 
-**`turn_ipv6_address: String`**:   The IPv6 address advertised by your TURN server.
+- **`turn_ipv6_address: String`**:   The IPv6 address advertised by your TURN server.
 	The address should not be NAT’ed or firewalled. There is not default,
 	so you should set this option explicitly. Implies `use_turn`.
 
-**`turn_min_port: Integer`**:   Together with `turn_max_port` forms port range to allocate from. The
+- **`turn_min_port: Integer`**:   Together with `turn_max_port` forms port range to allocate from. The
 	default is 49152. Implies `use_turn`.
 
-**`turn_max_port: Integer`**:   Together with `turn_min_port` forms port range to allocate from. The
+- **`turn_max_port: Integer`**:   Together with `turn_min_port` forms port range to allocate from. The
 	default is 65535. Implies `use_turn`.
 
-**`turn_max_allocations: Integer|infinity`**:   Maximum number of TURN allocations available from the particular IP
+- **`turn_max_allocations: Integer|infinity`**:   Maximum number of TURN allocations available from the particular IP
 	address. The default value is 10. Implies `use_turn`.
 
-**`turn_max_permissions: Integer|infinity`**:   Maximum number of TURN permissions available from the particular IP
+- **`turn_max_permissions: Integer|infinity`**:   Maximum number of TURN permissions available from the particular IP
 	address. The default value is 10. Implies `use_turn`.
 
-**`auth_type: user|anonymous`**:   Which authentication type to use for TURN allocation requests. When
+- **`auth_type: user|anonymous`**:   Which authentication type to use for TURN allocation requests. When
 	type `user` is set, ejabberd authentication backend is used. For
 	`anonymous` type no authentication is performed (not recommended for
 	public services). The default is `user`. Implies `use_turn`.
 
-**`auth_realm: String`**:   When `auth_type` is set to `user` and you have several virtual hosts
+- **`auth_realm: String`**:   When `auth_type` is set to `user` and you have several virtual hosts
 	configured you should set this option explicitly to the virtual host
 	you want to serve on this particular listening port. Implies
 	`use_turn`.
 
-**`shaper: Atom`**:   For `tcp` transports defines shaper to use. The default is `none`.
+- **`shaper: Atom`**:   For `tcp` transports defines shaper to use. The default is `none`.
 
-**`server_name: String`**:   Defines software version to return with every response. The default
+- **`server_name: String`**:   Defines software version to return with every response. The default
 	is the STUN library version.
 
 Example configuration with disabled TURN functionality (STUN only):
