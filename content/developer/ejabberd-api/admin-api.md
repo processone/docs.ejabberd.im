@@ -38,7 +38,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"status": "Operation aborted"}
+    "Operation aborted"
 ~~~
 
 
@@ -70,7 +70,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"status": "Operation aborted"}
+    "Operation aborted"
 ~~~
 
 
@@ -606,7 +606,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"num_sessions": 2}
+    2
 ~~~
 
 
@@ -1062,7 +1062,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"status": "Operation in progress, delete 5000 messages"}
+    "Operation in progress, delete 5000 messages"
 ~~~
 
 
@@ -1164,7 +1164,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"status": "Operation in progress, delete 5000 messages"}
+    "Operation in progress, delete 5000 messages"
 ~~~
 
 
@@ -1812,7 +1812,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"cookie": "MWTAVMODFELNLSMYXPPD"}
+    "MWTAVMODFELNLSMYXPPD"
 ~~~
 
 
@@ -1886,7 +1886,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"levelatom": "warning"}
+    "warning"
 ~~~
 
 
@@ -1923,7 +1923,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"value": 5}
+    5
 ~~~
 
 
@@ -2017,7 +2017,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"affiliation": "member"}
+    "member"
 ~~~
 
 
@@ -2187,7 +2187,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"occupants": 7}
+    7
 ~~~
 
 
@@ -2467,7 +2467,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"content": "User 1"}
+    "User 1"
 ~~~
 
 
@@ -2526,7 +2526,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"content": "Schubert"}
+    "Schubert"
 ~~~
 
 
@@ -2815,7 +2815,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"s2s_incoming": 1}
+    1
 ~~~
 
 
@@ -2960,7 +2960,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"num_resources": 3}
+    3
 ~~~
 
 
@@ -3206,7 +3206,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"res": "aaaaa"}
+    "aaaaa"
 ~~~
 
 
@@ -3272,7 +3272,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"res": "aaaaa"}
+    "aaaaa"
 ~~~
 
 
@@ -3710,7 +3710,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"resources": 5}
+    5
 ~~~
 
 
@@ -3970,7 +3970,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"s2s_outgoing": 1}
+    1
 ~~~
 
 
@@ -4089,7 +4089,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"res": "aaaaa"}
+    "aaaaa"
 ~~~
 
 
@@ -4672,7 +4672,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"resource": "Psi"}
+    "Psi"
 ~~~
 
 
@@ -4743,7 +4743,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"res": 0}
+    0
 ~~~
 
 
@@ -5938,7 +5938,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"stat": 6}
+    6
 ~~~
 
 
@@ -5978,7 +5978,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"stat": 6}
+    6
 ~~~
 
 
@@ -6132,7 +6132,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"users": 23}
+    23
 ~~~
 
 
@@ -6169,7 +6169,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"users": 23}
+    23
 ~~~
 
 
@@ -6408,7 +6408,7 @@ __Examples:__
     }
     
     HTTP/1.1 200 OK
-        {"unbanned": 3}
+    3
 ~~~
 
 
