@@ -391,7 +391,9 @@ mod\_configure
 --------------
 
 The module provides server configuration functionality via [XEP-0050:
-Ad-Hoc Commands](https://xmpp.org/extensions/xep-0050.html). This module
+Ad-Hoc Commands](https://xmpp.org/extensions/xep-0050.html). Implements
+many commands as defined in [XEP-0133: Service
+Administration](https://xmpp.org/extensions/xep-0133.html). This module
 requires [mod_adhoc](/admin/configuration/modules/#mod-adhoc) to be loaded.
 
 The module has no options.

@@ -1591,6 +1591,8 @@ The type of a request queue for the SQL server. See description of
 [queue_type](/admin/configuration/toplevel/#queue-type) option for the explanation. The default value is the
 value defined in [queue_type](/admin/configuration/toplevel/#queue-type) or *ram* if the latter is not set.
 
+<div class="note-down">improved in <a href="/archive/23_04/">23.04</a></div>
+
 ## sql\_server
 
 *Host*  
@@ -1668,6 +1670,8 @@ for admin purpose, or security configuration (for example using
 *X-Forwarded-For* header if you enable this option as, otherwise, the
 client can set it itself and as a result the IP value cannot be trusted
 for security rules in ejabberd.
+
+<div class="note-down">added in <a href="/archive/23_10/">23.10</a></div>
 
 ## update\_sql\_schema
 
