@@ -197,18 +197,18 @@ The created files and directories depend on the options provided to [`./configur
 
 - `/etc/ejabberd/`:  Configuration directory:
 
-  - `ejabberd.yml`:  ejabberd configuration file (see [File Format](../configuration/file-format.md))
-  - `ejabberdctl.cfg`: Configuration file of the administration script (see [Erlang Runtime System](../guide/managing.md#erlang_runtime_system))
-  - `inetrc`: Network DNS configuration file for Erlang
+    + `ejabberd.yml`:  ejabberd configuration file (see [File Format](../configuration/file-format.md))
+    + `ejabberdctl.cfg`: Configuration file of the administration script (see [Erlang Runtime System](../guide/managing.md#erlang_runtime_system))
+    + `inetrc`: Network DNS configuration file for Erlang
 
 - `/lib/ejabberd/`:
 
-  - `ebin/`: Erlang binary files (\*.beam)
-  - `include/`: Erlang header files (\*.hrl)
-  - `priv/`: Additional files required at runtime
-  - `bin/`: Executable programs
-  - `lib/`: Binary system libraries (\*.so)
-  - `msgs/`: Translation files (\*.msgs) (see [Default Language](../configuration/basic.md#default-language))
+    * `ebin/`: Erlang binary files (\*.beam)
+    * `include/`: Erlang header files (\*.hrl)
+    * `priv/`: Additional files required at runtime
+    * `bin/`: Executable programs
+    * `lib/`: Binary system libraries (\*.so)
+    * `msgs/`: Translation files (\*.msgs) (see [Default Language](../configuration/basic.md#default-language))
 
 - `/sbin/ejabberdctl`: Administration script (see [ejabberdctl](../guide/managing.md#ejabberdctl))
 
@@ -216,13 +216,13 @@ The created files and directories depend on the options provided to [`./configur
 
 - `/var/lib/ejabberd/`: Spool directory:
 
-  - `.erlang.cookie`: The [Erlang cookie file](../guide/security.md#erlang_cookie)
-  - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
+    - `.erlang.cookie`: The [Erlang cookie file](../guide/security.md#erlang_cookie)
+    - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
 
 - `/var/log/ejabberd/`: Log directory (see [Logging](../configuration/basic.md#logging)):
 
-  - `ejabberd.log`:   ejabberd service log
-  - `erlang.log`:   Erlang/OTP system log
+    - `ejabberd.log`:   ejabberd service log
+    - `erlang.log`:   Erlang/OTP system log
 
 ### Production Release
 
@@ -315,7 +315,8 @@ The command to compile ejabberd in BSD systems is `gmake`.
 
 You may want to check [pkgsrc.se for ejabberd](https://pkgsrc.se/chat/ejabberd/).
 
-Up to ejabberd 23.04, some old scripts where included in ejabberd source for NetBSD compilation, and you can take a look to those files for reference in ejabberd [`23.04/examples/mtr/`](https://github.com/processone/ejabberd/tree/23.04/examples/mtr) path.
+Up to ejabberd [23.04](../../archive/23.04/index.md),
+some old scripts where included in ejabberd source for NetBSD compilation, and you can take a look to those files for reference in ejabberd [`23.04/examples/mtr/`](https://github.com/processone/ejabberd/tree/23.04/examples/mtr) path.
 
 ### macOS
 
@@ -339,18 +340,18 @@ You can use the `ejabberdctl` command line administration script to
 start and stop ejabberd. Some examples, depending on your installation method:
 
 - When installed in the system:
-  ```
-  ejabberdctl start
-  /sbin/ejabberdctl start
-  ```
+``` sh
+ejabberdctl start
+/sbin/ejabberdctl start
+```
 
 - When built an OTP production release:
-  ```
-  _build/prod/rel/ejabberd/bin/ejabberdctl start
-  _build/prod/rel/ejabberd/bin/ejabberdctl live
-  ```
+``` sh
+_build/prod/rel/ejabberd/bin/ejabberdctl start
+_build/prod/rel/ejabberd/bin/ejabberdctl live
+```
 
 - Start interactively without installing or building OTP release:
-  ```
-  make relive
-  ```
+``` sh
+make relive
+```
