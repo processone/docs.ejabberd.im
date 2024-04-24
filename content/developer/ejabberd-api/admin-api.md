@@ -1,10 +1,12 @@
-# Administration API reference
+# API Reference
 
-> This section describes API of ejabberd. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
-<div class='note-down'>added in <a href="../../../archive/22.05/">22.05</a></div>
+> This section describes API commands of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The commands that changed in this version are marked with 🟤.
+
+
 
 ## abort_delete_old_mam_messages
 
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
 
 Abort currently running delete old MAM messages operation
 
@@ -26,20 +28,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/abort_delete_old_mam_messages
-    {
-      "host": "localhost"
-    }
-    
-    HTTP/1.1 200 OK
-    "Operation aborted"
+POST /api/abort_delete_old_mam_messages
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation aborted"
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/22.05/">22.05</a></div>
+
 
 ## abort_delete_old_messages
 
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
 
 Abort currently running delete old offline messages operation
 
@@ -58,20 +61,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/abort_delete_old_messages
-    {
-      "host": "localhost"
-    }
-    
-    HTTP/1.1 200 OK
-    "Operation aborted"
+POST /api/abort_delete_old_messages
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation aborted"
 ~~~
 
 
-<div class='note-down'>updated in <a href="../../../archive/24.02/">24.02</a></div>
 
-## add_rosteritem
 
+## add_rosteritem 🟤
+
+<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
 Add an item to a user's roster (supports ODBC)
 
@@ -99,22 +103,22 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/add_rosteritem
-    {
-      "localuser": "user1",
-      "localhost": "myserver.com",
-      "user": "user2",
-      "host": "myserver.com",
-      "nick": "User 2",
-      "groups": [
-        "Friends",
-        "Team 1"
-      ],
-      "subs": "both"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/add_rosteritem
+{
+  "localuser": "user1",
+  "localhost": "myserver.com",
+  "user": "user2",
+  "host": "myserver.com",
+  "nick": "User 2",
+  "groups": [
+    "Friends",
+    "Team 1"
+  ],
+  "subs": "both"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -140,13 +144,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/backup
-    {
-      "file": "/var/lib/ejabberd/database.backup"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/backup
+{
+  "file": "/var/lib/ejabberd/database.backup"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -177,15 +181,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/ban_account
-    {
-      "user": "attacker",
-      "host": "myserver.com",
-      "reason": "Spaming other users"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/ban_account
+{
+  "user": "attacker",
+  "host": "myserver.com",
+  "reason": "Spaming other users"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -215,14 +219,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/bookmarks_to_pep
-    {
-      "user": "bob",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    "Bookmarks exported"
+POST /api/bookmarks_to_pep
+{
+  "user": "bob",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+"Bookmarks exported"
 ~~~
 
 
@@ -253,15 +257,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/change_password
-    {
-      "user": "peter",
-      "host": "myserver.com",
-      "newpass": "blank"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/change_password
+{
+  "user": "peter",
+  "host": "myserver.com",
+  "newpass": "blank"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -293,16 +297,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/change_room_option
-    {
-      "name": "room1",
-      "service": "muc.example.com",
-      "option": "members_only",
-      "value": "true"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/change_room_option
+{
+  "name": "room1",
+  "service": "muc.example.com",
+  "option": "members_only",
+  "value": "true"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -332,14 +336,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/check_account
-    {
-      "user": "peter",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/check_account
+{
+  "user": "peter",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -370,15 +374,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/check_password
-    {
-      "user": "peter",
-      "host": "myserver.com",
-      "password": "secret"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/check_password
+{
+  "user": "peter",
+  "host": "myserver.com",
+  "password": "secret"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -413,16 +417,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/check_password_hash
-    {
-      "user": "peter",
-      "host": "myserver.com",
-      "passwordhash": "5ebe2294ecd0e0f08eab7690d2a6ee69",
-      "hashmethod": "md5"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/check_password_hash
+{
+  "user": "peter",
+  "host": "myserver.com",
+  "passwordhash": "5ebe2294ecd0e0f08eab7690d2a6ee69",
+  "hashmethod": "md5"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -447,13 +451,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/clear_cache
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/clear_cache
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -482,13 +486,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/compile
-    {
-      "file": "/home/me/srcs/ejabberd/mod_example.erl"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/compile
+{
+  "file": "/home/me/srcs/ejabberd/mod_example.erl"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -513,16 +517,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/connected_users
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "user1@example.com",
-      "user2@example.com"
-    ]
+POST /api/connected_users
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  "user1@example.com",
+  "user2@example.com"
+]
 ~~~
 
 
@@ -550,26 +554,26 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/connected_users_info
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "jid": "user1@myserver.com/tka",
-        "connection": "c2s",
-        "ip": "127.0.0.1",
-        "port": 42656,
-        "priority": 8,
-        "node": "ejabberd@localhost",
-        "uptime": 231,
-        "status": "dnd",
-        "resource": "tka",
-        "statustext": ""
-      }
-    ]
+POST /api/connected_users_info
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "jid": "user1@myserver.com/tka",
+    "connection": "c2s",
+    "ip": "127.0.0.1",
+    "port": 42656,
+    "priority": 8,
+    "node": "ejabberd@localhost",
+    "uptime": 231,
+    "status": "dnd",
+    "resource": "tka",
+    "statustext": ""
+  }
+]
 ~~~
 
 
@@ -594,13 +598,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/connected_users_number
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    2
+POST /api/connected_users_number
+{
+  
+}
+
+HTTP/1.1 200 OK
+2
 ~~~
 
 
@@ -629,16 +633,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/connected_users_vhost
-    {
-      "host": "myexample.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "user1@myserver.com/tka",
-      "user2@localhost/tka"
-    ]
+POST /api/connected_users_vhost
+{
+  "host": "myexample.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "user1@myserver.com/tka",
+  "user2@localhost/tka"
+]
 ~~~
 
 
@@ -664,13 +668,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/convert_to_scram
-    {
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/convert_to_scram
+{
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -697,14 +701,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/convert_to_yaml
-    {
-      "in": "/etc/ejabberd/ejabberd.cfg",
-      "out": "/etc/ejabberd/ejabberd.yml"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/convert_to_yaml
+{
+  "in": "/etc/ejabberd/ejabberd.cfg",
+  "out": "/etc/ejabberd/ejabberd.yml"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -735,15 +739,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/create_room
-    {
-      "name": "room1",
-      "service": "muc.example.com",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/create_room
+{
+  "name": "room1",
+  "service": "muc.example.com",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -778,29 +782,29 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/create_room_with_opts
+POST /api/create_room_with_opts
+{
+  "name": "room1",
+  "service": "muc.example.com",
+  "host": "localhost",
+  "options": [
     {
-      "name": "room1",
-      "service": "muc.example.com",
-      "host": "localhost",
-      "options": [
-        {
-          "name": "members_only",
-          "value": "true"
-        },
-        {
-          "name": "affiliations",
-          "value": "owner:bob@example.com,member:peter@example.com"
-        },
-        {
-          "name": "subscribers",
-          "value": "bob@example.com:Bob:messages:subject,anne@example.com:Anne:messages"
-        }
-      ]
+      "name": "members_only",
+      "value": "true"
+    },
+    {
+      "name": "affiliations",
+      "value": "owner:bob@example.com,member:peter@example.com"
+    },
+    {
+      "name": "subscribers",
+      "value": "bob@example.com:Bob:messages:subject,anne@example.com:Anne:messages"
     }
-    
-    HTTP/1.1 200 OK
-    ""
+  ]
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -832,13 +836,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/create_rooms_file
-    {
-      "file": "/home/ejabberd/rooms.txt"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/create_rooms_file
+{
+  "file": "/home/ejabberd/rooms.txt"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -863,20 +867,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_expired_messages
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_expired_messages
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/21.12/">21.12</a></div>
+
 
 ## delete_expired_pubsub_items
 
+<!-- md:version added in [21.12](../../archive/21.12/index.md) -->
 
 Delete expired PubSub items
 
@@ -897,13 +902,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_expired_pubsub_items
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_expired_pubsub_items
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -929,13 +934,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_mnesia
-    {
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_mnesia
+{
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -968,21 +973,22 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_mam_messages
-    {
-      "type": "all",
-      "days": 31
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_old_mam_messages
+{
+  "type": "all",
+  "days": 31
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/22.05/">22.05</a></div>
+
 
 ## delete_old_mam_messages_batch
 
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
 
 Delete MAM messages older than DAYS
 
@@ -1011,24 +1017,25 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_mam_messages_batch
-    {
-      "host": "localhost",
-      "type": "all",
-      "days": 31,
-      "batch_size": 1000,
-      "rate": 10000
-    }
-    
-    HTTP/1.1 200 OK
-    "Removal of 5000 messages in progress"
+POST /api/delete_old_mam_messages_batch
+{
+  "host": "localhost",
+  "type": "all",
+  "days": 31,
+  "batch_size": 1000,
+  "rate": 10000
+}
+
+HTTP/1.1 200 OK
+"Removal of 5000 messages in progress"
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/22.05/">22.05</a></div>
+
 
 ## delete_old_mam_messages_status
 
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
 
 Status of delete old MAM messages operation
 
@@ -1050,13 +1057,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_mam_messages_status
-    {
-      "host": "localhost"
-    }
-    
-    HTTP/1.1 200 OK
-    "Operation in progress, delete 5000 messages"
+POST /api/delete_old_mam_messages_status
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation in progress, delete 5000 messages"
 ~~~
 
 
@@ -1082,20 +1089,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_messages
-    {
-      "days": 31
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_old_messages
+{
+  "days": 31
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/22.05/">22.05</a></div>
+
 
 ## delete_old_messages_batch
 
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
 
 Delete offline messages older than DAYS
 
@@ -1117,23 +1125,24 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_messages_batch
-    {
-      "host": "localhost",
-      "days": 31,
-      "batch_size": 1000,
-      "rate": 10000
-    }
-    
-    HTTP/1.1 200 OK
-    "Removal of 5000 messages in progress"
+POST /api/delete_old_messages_batch
+{
+  "host": "localhost",
+  "days": 31,
+  "batch_size": 1000,
+  "rate": 10000
+}
+
+HTTP/1.1 200 OK
+"Removal of 5000 messages in progress"
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/22.05/">22.05</a></div>
+
 
 ## delete_old_messages_status
 
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
 
 Status of delete old offline messages operation
 
@@ -1152,20 +1161,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_messages_status
-    {
-      "host": "localhost"
-    }
-    
-    HTTP/1.1 200 OK
-    "Operation in progress, delete 5000 messages"
+POST /api/delete_old_messages_status
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation in progress, delete 5000 messages"
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/21.12/">21.12</a></div>
+
 
 ## delete_old_pubsub_items
 
+<!-- md:version added in [21.12](../../archive/21.12/index.md) -->
 
 Keep only NUMBER of PubSub items per node
 
@@ -1187,13 +1197,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_pubsub_items
-    {
-      "number": 1000
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_old_pubsub_items
+{
+  "number": 1000
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1222,13 +1232,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_push_sessions
-    {
-      "days": 1
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_old_push_sessions
+{
+  "days": 1
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1241,7 +1251,7 @@ Delete users that didn't log in last days, or that never logged
 
 
 To protect admin accounts, configure this for example:
-```
+``` yaml
 access_rules:
   protect_old_users:
     - allow: admin
@@ -1267,13 +1277,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_users
-    {
-      "days": 30
-    }
-    
-    HTTP/1.1 200 OK
-    "Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
+POST /api/delete_old_users
+{
+  "days": 30
+}
+
+HTTP/1.1 200 OK
+"Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
 ~~~
 
 
@@ -1286,7 +1296,7 @@ Delete users that didn't log in last days in vhost, or that never logged
 
 
 To protect admin accounts, configure this for example:
-```
+``` yaml
 access_rules:
   delete_old_users:
     - deny: admin
@@ -1313,14 +1323,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_old_users_vhost
-    {
-      "host": "myserver.com",
-      "days": 30
-    }
-    
-    HTTP/1.1 200 OK
-    "Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
+POST /api/delete_old_users_vhost
+{
+  "host": "myserver.com",
+  "days": 30
+}
+
+HTTP/1.1 200 OK
+"Deleted 2 users: ["oldman@myserver.com", "test@myserver.com"]"
 ~~~
 
 
@@ -1352,16 +1362,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/delete_rosteritem
-    {
-      "localuser": "user1",
-      "localhost": "myserver.com",
-      "user": "user2",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/delete_rosteritem
+{
+  "localuser": "user1",
+  "localhost": "myserver.com",
+  "user": "user2",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1391,14 +1401,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/destroy_room
-    {
-      "name": "room1",
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/destroy_room
+{
+  "name": "room1",
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1430,13 +1440,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/destroy_rooms_file
-    {
-      "file": "/home/ejabberd/rooms.txt"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/destroy_rooms_file
+{
+  "file": "/home/ejabberd/rooms.txt"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1462,13 +1472,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/dump
-    {
-      "file": "/var/lib/ejabberd/database.txt"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/dump
+{
+  "file": "/var/lib/ejabberd/database.txt"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -1494,13 +1504,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/dump_config
-    {
-      "out": "/tmp/ejabberd.yml"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/dump_config
+{
+  "out": "/tmp/ejabberd.yml"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1527,14 +1537,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/dump_table
-    {
-      "file": "/var/lib/ejabberd/table-muc-registered.txt",
-      "table": "muc_registered"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/dump_table
+{
+  "file": "/var/lib/ejabberd/table-muc-registered.txt",
+  "table": "muc_registered"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -1564,14 +1574,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/export2sql
-    {
-      "host": "example.com",
-      "file": "/var/lib/ejabberd/example.com.sql"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/export2sql
+{
+  "host": "example.com",
+  "file": "/var/lib/ejabberd/example.com.sql"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1597,13 +1607,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/export_piefxis
-    {
-      "dir": "/var/lib/ejabberd/"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/export_piefxis
+{
+  "dir": "/var/lib/ejabberd/"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1630,21 +1640,22 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/export_piefxis_host
-    {
-      "dir": "/var/lib/ejabberd/",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/export_piefxis_host
+{
+  "dir": "/var/lib/ejabberd/",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/20.01/">20.01</a></div>
+
 
 ## gc
 
+<!-- md:version added in [20.01](../../archive/20.01/index.md) -->
 
 Force full garbage collection
 
@@ -1662,13 +1673,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/gc
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/gc
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1696,15 +1707,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/gen_html_doc_for_commands
-    {
-      "file": "/home/me/docs/api.html",
-      "regexp": "mod_admin",
-      "examples": "java,json"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/gen_html_doc_for_commands
+{
+  "file": "/home/me/docs/api.html",
+  "regexp": "mod_admin",
+  "examples": "java,json"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1732,22 +1743,23 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/gen_markdown_doc_for_commands
-    {
-      "file": "/home/me/docs/api.html",
-      "regexp": "mod_admin",
-      "examples": "java,json"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/gen_markdown_doc_for_commands
+{
+  "file": "/home/me/docs/api.html",
+  "regexp": "mod_admin",
+  "examples": "java,json"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/21.12/">21.12</a></div>
+
 
 ## gen_markdown_doc_for_tags
 
+<!-- md:version added in [21.12](../../archive/21.12/index.md) -->
 
 Generates markdown documentation for ejabberd_commands
 
@@ -1766,13 +1778,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/gen_markdown_doc_for_tags
-    {
-      "file": "/home/me/docs/tags.md"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/gen_markdown_doc_for_tags
+{
+  "file": "/home/me/docs/tags.md"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1800,13 +1812,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_cookie
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    "MWTAVMODFELNLSMYXPPD"
+POST /api/get_cookie
+{
+  
+}
+
+HTTP/1.1 200 OK
+"MWTAVMODFELNLSMYXPPD"
 ~~~
 
 
@@ -1839,17 +1851,17 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_last
-    {
-      "user": "user1",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "timestamp": "2017-06-30T14:32:16.060684Z",
-      "status": "ONLINE"
-    }
+POST /api/get_last
+{
+  "user": "user1",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+{
+  "timestamp": "2017-06-30T14:32:16.060684Z",
+  "status": "ONLINE"
+}
 ~~~
 
 
@@ -1874,13 +1886,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_loglevel
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    "warning"
+POST /api/get_loglevel
+{
+  
+}
+
+HTTP/1.1 200 OK
+"warning"
 ~~~
 
 
@@ -1910,14 +1922,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_offline_count
-    {
-      "user": "aaaaa",
-      "host": "bbbbb"
-    }
-    
-    HTTP/1.1 200 OK
-    5
+POST /api/get_offline_count
+{
+  "user": "aaaaa",
+  "host": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+5
 ~~~
 
 
@@ -1961,18 +1973,18 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_presence
-    {
-      "user": "peter",
-      "host": "myexample.com"
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "jid": "user1@myserver.com/tka",
-      "show": "dnd",
-      "status": "Busy"
-    }
+POST /api/get_presence
+{
+  "user": "peter",
+  "host": "myexample.com"
+}
+
+HTTP/1.1 200 OK
+{
+  "jid": "user1@myserver.com/tka",
+  "show": "dnd",
+  "status": "Busy"
+}
 ~~~
 
 
@@ -2003,15 +2015,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_room_affiliation
-    {
-      "name": "room1",
-      "service": "muc.example.com",
-      "jid": "user1@example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    "member"
+POST /api/get_room_affiliation
+{
+  "name": "room1",
+  "service": "muc.example.com",
+  "jid": "user1@example.com"
+}
+
+HTTP/1.1 200 OK
+"member"
 ~~~
 
 
@@ -2041,28 +2053,29 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_room_affiliations
-    {
-      "name": "room1",
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "username": "user1",
-        "domain": "example.com",
-        "affiliation": "member",
-        "reason": "member"
-      }
-    ]
+POST /api/get_room_affiliations
+{
+  "name": "room1",
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "username": "user1",
+    "domain": "example.com",
+    "affiliation": "member",
+    "reason": "member"
+  }
+]
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/23.04/">23.04</a></div>
+
 
 ## get_room_history
 
+<!-- md:version added in [23.04](../../archive/23.04/index.md) -->
 
 Get history of messages stored inside MUC room state
 
@@ -2085,23 +2098,23 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_room_history
-    {
-      "name": "room1",
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "timestamp": "aaaaa",
-        "message": "bbbbb"
-      },
-      {
-        "timestamp": "ccccc",
-        "message": "ddddd"
-      }
-    ]
+POST /api/get_room_history
+{
+  "name": "room1",
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "timestamp": "aaaaa",
+    "message": "bbbbb"
+  },
+  {
+    "timestamp": "ccccc",
+    "message": "ddddd"
+  }
+]
 ~~~
 
 
@@ -2131,20 +2144,20 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_room_occupants
-    {
-      "name": "room1",
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "jid": "user1@example.com/psi",
-        "nick": "User 1",
-        "role": "owner"
-      }
-    ]
+POST /api/get_room_occupants
+{
+  "name": "room1",
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "jid": "user1@example.com/psi",
+    "nick": "User 1",
+    "role": "owner"
+  }
+]
 ~~~
 
 
@@ -2174,14 +2187,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_room_occupants_number
-    {
-      "name": "room1",
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    7
+POST /api/get_room_occupants_number
+{
+  "name": "room1",
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+7
 ~~~
 
 
@@ -2211,26 +2224,27 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_room_options
-    {
-      "name": "room1",
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "name": "members_only",
-        "value": "true"
-      }
-    ]
+POST /api/get_room_options
+{
+  "name": "room1",
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "name": "members_only",
+    "value": "true"
+  }
+]
 ~~~
 
 
-<div class='note-down'>improved in <a href="../../../archive/23.10/">23.10</a></div>
+
 
 ## get_roster
 
+<!-- md:version improved in [23.10](../../archive/23.10/index.md) -->
 
 Get list of contacts in a local user roster
 
@@ -2258,35 +2272,35 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_roster
-    {
-      "user": "aaaaa",
-      "host": "bbbbb"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "jid": "aaaaa",
-        "nick": "bbbbb",
-        "subscription": "ccccc",
-        "pending": "ddddd",
-        "groups": [
-          "eeeee",
-          "fffff"
-        ]
-      },
-      {
-        "jid": "ggggg",
-        "nick": "hhhhh",
-        "subscription": "iiiii",
-        "pending": "jjjjj",
-        "groups": [
-          "kkkkk",
-          "lllll"
-        ]
-      }
+POST /api/get_roster
+{
+  "user": "aaaaa",
+  "host": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "jid": "aaaaa",
+    "nick": "bbbbb",
+    "subscription": "ccccc",
+    "pending": "ddddd",
+    "groups": [
+      "eeeee",
+      "fffff"
     ]
+  },
+  {
+    "jid": "ggggg",
+    "nick": "hhhhh",
+    "subscription": "iiiii",
+    "pending": "jjjjj",
+    "groups": [
+      "kkkkk",
+      "lllll"
+    ]
+  }
+]
 ~~~
 
 
@@ -2316,17 +2330,17 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_subscribers
-    {
-      "name": "room1",
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "user2@example.com",
-      "user3@example.com"
-    ]
+POST /api/get_subscribers
+{
+  "name": "room1",
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "user2@example.com",
+  "user3@example.com"
+]
 ~~~
 
 
@@ -2356,24 +2370,25 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_user_rooms
-    {
-      "user": "tom",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "room1@muc.example.com",
-      "room2@muc.example.com"
-    ]
+POST /api/get_user_rooms
+{
+  "user": "tom",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "room1@muc.example.com",
+  "room2@muc.example.com"
+]
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/21.04/">21.04</a></div>
+
 
 ## get_user_subscriptions
 
+<!-- md:version added in [21.04](../../archive/21.04/index.md) -->
 
 Get the list of rooms where this user is subscribed
 
@@ -2396,22 +2411,22 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_user_subscriptions
-    {
-      "user": "tom",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "roomjid": "room1@muc.example.com",
-        "usernick": "Tommy",
-        "nodes": [
-          "mucsub:config"
-        ]
-      }
+POST /api/get_user_subscriptions
+{
+  "user": "tom",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "roomjid": "room1@muc.example.com",
+    "usernick": "Tommy",
+    "nodes": [
+      "mucsub:config"
     ]
+  }
+]
 ~~~
 
 
@@ -2453,15 +2468,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_vcard
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "name": "NICKNAME"
-    }
-    
-    HTTP/1.1 200 OK
-    "User 1"
+POST /api/get_vcard
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "name": "NICKNAME"
+}
+
+HTTP/1.1 200 OK
+"User 1"
 ~~~
 
 
@@ -2511,16 +2526,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_vcard2
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "name": "N",
-      "subname": "FAMILY"
-    }
-    
-    HTTP/1.1 200 OK
-    "Schubert"
+POST /api/get_vcard2
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "name": "N",
+  "subname": "FAMILY"
+}
+
+HTTP/1.1 200 OK
+"Schubert"
 ~~~
 
 
@@ -2570,26 +2585,27 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/get_vcard2_multi
-    {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "name": "ccccc",
-      "subname": "ddddd"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "aaaaa",
-      "bbbbb"
-    ]
+POST /api/get_vcard2_multi
+{
+  "user": "aaaaa",
+  "host": "bbbbb",
+  "name": "ccccc",
+  "subname": "ddddd"
+}
+
+HTTP/1.1 200 OK
+[
+  "aaaaa",
+  "bbbbb"
+]
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/23.10/">23.10</a></div>
+
 
 ## halt
 
+<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
 
 Halt ejabberd abruptly with status code 1
 
@@ -2607,13 +2623,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/halt
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/halt
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -2641,13 +2657,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/help
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/help
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -2673,13 +2689,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/import_dir
-    {
-      "file": "/var/lib/ejabberd/jabberd14/"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/import_dir
+{
+  "file": "/var/lib/ejabberd/jabberd14/"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -2705,13 +2721,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/import_file
-    {
-      "file": "/var/lib/ejabberd/jabberd14.spool"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/import_file
+{
+  "file": "/var/lib/ejabberd/jabberd14.spool"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -2737,13 +2753,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/import_piefxis
-    {
-      "file": "/var/lib/ejabberd/example.com.xml"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/import_piefxis
+{
+  "file": "/var/lib/ejabberd/example.com.xml"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -2772,13 +2788,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/import_prosody
-    {
-      "dir": "/var/lib/prosody/datadump/"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/import_prosody
+{
+  "dir": "/var/lib/prosody/datadump/"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -2803,13 +2819,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/incoming_s2s_number
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    1
+POST /api/incoming_s2s_number
+{
+  
+}
+
+HTTP/1.1 200 OK
+1
 ~~~
 
 
@@ -2838,13 +2854,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/install_fallback
-    {
-      "file": "/var/lib/ejabberd/database.fallback"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/install_fallback
+{
+  "file": "/var/lib/ejabberd/database.fallback"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -2873,13 +2889,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/join_cluster
-    {
-      "node": "ejabberd1@machine7"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/join_cluster
+{
+  "node": "ejabberd1@machine7"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -2911,16 +2927,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/kick_session
-    {
-      "user": "peter",
-      "host": "myserver.com",
-      "resource": "Psi",
-      "reason": "Stuck connection"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/kick_session
+{
+  "user": "peter",
+  "host": "myserver.com",
+  "resource": "Psi",
+  "reason": "Stuck connection"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -2947,14 +2963,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/kick_user
-    {
-      "user": "user1",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    3
+POST /api/kick_user
+{
+  "user": "user1",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+3
 ~~~
 
 
@@ -2983,13 +2999,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/leave_cluster
-    {
-      "node": "ejabberd1@machine8"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/leave_cluster
+{
+  "node": "ejabberd1@machine8"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3014,24 +3030,24 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/list_certificates
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "domain": "aaaaa",
-        "file": "bbbbb",
-        "used": "ccccc"
-      },
-      {
-        "domain": "ddddd",
-        "file": "eeeee",
-        "used": "fffff"
-      }
-    ]
+POST /api/list_certificates
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "domain": "aaaaa",
+    "file": "bbbbb",
+    "used": "ccccc"
+  },
+  {
+    "domain": "ddddd",
+    "file": "eeeee",
+    "used": "fffff"
+  }
+]
 ~~~
 
 
@@ -3056,16 +3072,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/list_cluster
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "ejabberd1@machine7",
-      "ejabberd1@machine8"
-    ]
+POST /api/list_cluster
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  "ejabberd1@machine7",
+  "ejabberd1@machine8"
+]
 ~~~
 
 
@@ -3094,20 +3110,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/load
-    {
-      "file": "/var/lib/ejabberd/database.txt"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/load
+{
+  "file": "/var/lib/ejabberd/database.txt"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/20.01/">20.01</a></div>
+
 
 ## man
 
+<!-- md:version added in [20.01](../../archive/20.01/index.md) -->
 
 Generate Unix manpage for current ejabberd version
 
@@ -3125,13 +3142,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/man
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/man
+{
+  
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -3160,16 +3177,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/mnesia_change_nodename
-    {
-      "oldnodename": "ejabberd@machine1",
-      "newnodename": "ejabberd@machine2",
-      "oldbackup": "/var/lib/ejabberd/old.backup",
-      "newbackup": "/var/lib/ejabberd/new.backup"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/mnesia_change_nodename
+{
+  "oldnodename": "ejabberd@machine1",
+  "newnodename": "ejabberd@machine2",
+  "oldbackup": "/var/lib/ejabberd/old.backup",
+  "newbackup": "/var/lib/ejabberd/new.backup"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -3194,20 +3211,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/mnesia_info
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    "aaaaa"
+POST /api/mnesia_info
+{
+  
+}
+
+HTTP/1.1 200 OK
+"aaaaa"
 ~~~
 
 
-<div class='note-down'>renamed in <a href="../../../archive/24.02/">24.02</a></div>
 
-## mnesia_info_ctl
 
+## mnesia_info_ctl 🟤
+
+<!-- md:version renamed in [24.02](../../archive/24.02/index.md) -->
 
 Show information of Mnesia system (only ejabberdctl)
 
@@ -3228,13 +3246,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/mnesia_info_ctl
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/mnesia_info_ctl
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3260,13 +3278,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/mnesia_table_info
-    {
-      "table": "roster"
-    }
-    
-    HTTP/1.1 200 OK
-    "aaaaa"
+POST /api/mnesia_table_info
+{
+  "table": "roster"
+}
+
+HTTP/1.1 200 OK
+"aaaaa"
 ~~~
 
 
@@ -3292,13 +3310,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/module_check
-    {
-      "module": "mod_rest"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/module_check
+{
+  "module": "mod_rest"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3324,13 +3342,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/module_install
-    {
-      "module": "mod_rest"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/module_install
+{
+  "module": "mod_rest"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3356,13 +3374,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/module_uninstall
-    {
-      "module": "mod_rest"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/module_uninstall
+{
+  "module": "mod_rest"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3391,13 +3409,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/module_upgrade
-    {
-      "module": "mod_rest"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/module_upgrade
+{
+  "module": "mod_rest"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3422,16 +3440,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/modules_available
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "mod_cron": "Execute scheduled commands",
-      "mod_rest": "ReST frontend"
-    }
+POST /api/modules_available
+{
+  
+}
+
+HTTP/1.1 200 OK
+{
+  "mod_cron": "Execute scheduled commands",
+  "mod_rest": "ReST frontend"
+}
 ~~~
 
 
@@ -3456,16 +3474,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/modules_installed
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "mod_cron": "Execute scheduled commands",
-      "mod_rest": "ReST frontend"
-    }
+POST /api/modules_installed
+{
+  
+}
+
+HTTP/1.1 200 OK
+{
+  "mod_cron": "Execute scheduled commands",
+  "mod_rest": "ReST frontend"
+}
 ~~~
 
 
@@ -3493,13 +3511,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/modules_update_specs
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/modules_update_specs
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3531,16 +3549,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/muc_online_rooms
-    {
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "room1@muc.example.com",
-      "room2@muc.example.com"
-    ]
+POST /api/muc_online_rooms
+{
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "room1@muc.example.com",
+  "room2@muc.example.com"
+]
 ~~~
 
 
@@ -3573,25 +3591,25 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/muc_online_rooms_by_regex
-    {
-      "service": "muc.example.com",
-      "regex": "^prefix"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "jid": "room1@muc.example.com",
-        "public": "true",
-        "participants": 10
-      },
-      {
-        "jid": "room2@muc.example.com",
-        "public": "false",
-        "participants": 10
-      }
-    ]
+POST /api/muc_online_rooms_by_regex
+{
+  "service": "muc.example.com",
+  "regex": "^prefix"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "jid": "room1@muc.example.com",
+    "public": "true",
+    "participants": 10
+  },
+  {
+    "jid": "room2@muc.example.com",
+    "public": "false",
+    "participants": 10
+  }
+]
 ~~~
 
 
@@ -3622,15 +3640,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/muc_register_nick
-    {
-      "nick": "Tim",
-      "jid": "tim@example.org",
-      "service": "muc.example.org"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/muc_register_nick
+{
+  "nick": "Tim",
+  "jid": "tim@example.org",
+  "service": "muc.example.org"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3660,14 +3678,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/muc_unregister_nick
-    {
-      "jid": "tim@example.org",
-      "service": "muc.example.org"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/muc_unregister_nick
+{
+  "jid": "tim@example.org",
+  "service": "muc.example.org"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -3697,14 +3715,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/num_resources
-    {
-      "user": "peter",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    5
+POST /api/num_resources
+{
+  "user": "peter",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+5
 ~~~
 
 
@@ -3713,7 +3731,7 @@ __Examples:__
 ## oauth_add_client_implicit
 
 
-Add [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) client_id with implicit grant type
+Add [OAuth](oauth.md) client_id with implicit grant type
 
 __Arguments:__
 
@@ -3732,15 +3750,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/oauth_add_client_implicit
-    {
-      "client_id": "aaaaa",
-      "client_name": "bbbbb",
-      "redirect_uri": "ccccc"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/oauth_add_client_implicit
+{
+  "client_id": "aaaaa",
+  "client_name": "bbbbb",
+  "redirect_uri": "ccccc"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -3749,7 +3767,7 @@ __Examples:__
 ## oauth_add_client_password
 
 
-Add [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) client_id with password grant type
+Add [OAuth](oauth.md) client_id with password grant type
 
 __Arguments:__
 
@@ -3768,24 +3786,25 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/oauth_add_client_password
-    {
-      "client_id": "aaaaa",
-      "client_name": "bbbbb",
-      "secret": "ccccc"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/oauth_add_client_password
+{
+  "client_id": "aaaaa",
+  "client_name": "bbbbb",
+  "secret": "ccccc"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
-<div class='note-down'>updated in <a href="../../../archive/24.02/">24.02</a></div>
-
-## oauth_issue_token
 
 
-Issue an [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) token for the given jid
+## oauth_issue_token 🟤
+
+<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
+
+Issue an [OAuth](oauth.md) optionredir token for the given jid
 
 __Arguments:__
 
@@ -3804,25 +3823,25 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/oauth_issue_token
-    {
-      "jid": "user@server.com",
-      "ttl": 3600,
-      "scopes": [
-        "connected_users_number",
-        "muc_online_rooms"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    {
-      "token": "aaaaa",
-      "scopes": [
-        "bbbbb",
-        "ccccc"
-      ],
-      "expires_in": "ddddd"
-    }
+POST /api/oauth_issue_token
+{
+  "jid": "user@server.com",
+  "ttl": 3600,
+  "scopes": [
+    "connected_users_number",
+    "muc_online_rooms"
+  ]
+}
+
+HTTP/1.1 200 OK
+{
+  "token": "aaaaa",
+  "scopes": [
+    "bbbbb",
+    "ccccc"
+  ],
+  "expires_in": "ddddd"
+}
 ~~~
 
 
@@ -3831,7 +3850,7 @@ __Examples:__
 ## oauth_list_tokens
 
 
-List [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) tokens, user, scope, and seconds to expire (only Mnesia)
+List [OAuth](oauth.md) tokens, user, scope, and seconds to expire (only Mnesia)
 
 
 List OAuth tokens, their user and scope, and how many seconds remain until expirity
@@ -3850,26 +3869,26 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/oauth_list_tokens
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "token": "aaaaa",
-        "user": "bbbbb",
-        "scope": "ccccc",
-        "expires_in": "ddddd"
-      },
-      {
-        "token": "eeeee",
-        "user": "fffff",
-        "scope": "ggggg",
-        "expires_in": "hhhhh"
-      }
-    ]
+POST /api/oauth_list_tokens
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "token": "aaaaa",
+    "user": "bbbbb",
+    "scope": "ccccc",
+    "expires_in": "ddddd"
+  },
+  {
+    "token": "eeeee",
+    "user": "fffff",
+    "scope": "ggggg",
+    "expires_in": "hhhhh"
+  }
+]
 ~~~
 
 
@@ -3878,7 +3897,7 @@ __Examples:__
 ## oauth_remove_client
 
 
-Remove [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) client_id
+Remove [OAuth](oauth.md) client_id
 
 __Arguments:__
 
@@ -3895,22 +3914,23 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/oauth_remove_client
-    {
-      "client_id": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/oauth_remove_client
+{
+  "client_id": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
-<div class='note-down'>changed in <a href="../../../archive/22.05/">22.05</a></div>
+
 
 ## oauth_revoke_token
 
+<!-- md:version changed in [22.05](../../archive/22.05/index.md) -->
 
-Revoke authorization for an [OAuth](https://docs.ejabberd.im/developer/ejabberd-api/oauth/) token
+Revoke authorization for an [OAuth](oauth.md) token
 
 __Arguments:__
 
@@ -3927,13 +3947,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/oauth_revoke_token
-    {
-      "token": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/oauth_revoke_token
+{
+  "token": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -3958,20 +3978,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/outgoing_s2s_number
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    1
+POST /api/outgoing_s2s_number
+{
+  
+}
+
+HTTP/1.1 200 OK
+1
 ~~~
 
 
-<div class='note-down'>added in <a href="../../../archive/24.02/">24.02</a></div>
 
-## print_sql_schema
 
+## print_sql_schema 🟤
+
+<!-- md:version added in [24.02](../../archive/24.02/index.md) -->
 
 Print SQL schema for the given RDBMS (only ejabberdctl)
 
@@ -3995,15 +4016,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/print_sql_schema
-    {
-      "db_type": "pgsql",
-      "db_version": "16.1",
-      "new_schema": "true"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/print_sql_schema
+{
+  "db_type": "pgsql",
+  "db_version": "16.1",
+  "new_schema": "true"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4034,15 +4055,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/privacy_set
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "xmlquery": "<query xmlns='jabber:iq:privacy'>..."
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/privacy_set
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "xmlquery": "<query xmlns='jabber:iq:privacy'>..."
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4074,16 +4095,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/private_get
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "element": "storage",
-      "ns": "storage:rosternotes"
-    }
-    
-    HTTP/1.1 200 OK
-    "aaaaa"
+POST /api/private_get
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "element": "storage",
+  "ns": "storage:rosternotes"
+}
+
+HTTP/1.1 200 OK
+"aaaaa"
 ~~~
 
 
@@ -4114,15 +4135,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/private_set
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "element": "<storage xmlns='storage:rosternotes'/>"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/private_set
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "element": "<storage xmlns='storage:rosternotes'/>"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4202,26 +4223,26 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/process_rosteritems
-    {
-      "action": "aaaaa",
-      "subs": "bbbbb",
-      "asks": "ccccc",
-      "users": "ddddd",
-      "contacts": "eeeee"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "user": "aaaaa",
-        "contact": "bbbbb"
-      },
-      {
-        "user": "ccccc",
-        "contact": "ddddd"
-      }
-    ]
+POST /api/process_rosteritems
+{
+  "action": "aaaaa",
+  "subs": "bbbbb",
+  "asks": "ccccc",
+  "users": "ddddd",
+  "contacts": "eeeee"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "user": "aaaaa",
+    "contact": "bbbbb"
+  },
+  {
+    "user": "ccccc",
+    "contact": "ddddd"
+  }
+]
 ~~~
 
 
@@ -4251,14 +4272,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/push_alltoall
-    {
-      "host": "myserver.com",
-      "group": "Everybody"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/push_alltoall
+{
+  "host": "myserver.com",
+  "group": "Everybody"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4297,15 +4318,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/push_roster
-    {
-      "file": "/home/ejabberd/roster.txt",
-      "user": "user1",
-      "host": "localhost"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/push_roster
+{
+  "file": "/home/ejabberd/roster.txt",
+  "user": "user1",
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4339,13 +4360,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/push_roster_all
-    {
-      "file": "/home/ejabberd/roster.txt"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/push_roster_all
+{
+  "file": "/home/ejabberd/roster.txt"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4373,15 +4394,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/register
-    {
-      "user": "bob",
-      "host": "example.com",
-      "password": "SomEPass44"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/register
+{
+  "user": "bob",
+  "host": "example.com",
+  "password": "SomEPass44"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -4407,16 +4428,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/registered_users
-    {
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "user1",
-      "user2"
-    ]
+POST /api/registered_users
+{
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "user1",
+  "user2"
+]
 ~~~
 
 
@@ -4441,16 +4462,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/registered_vhosts
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "example.com",
-      "anon.example.com"
-    ]
+POST /api/registered_vhosts
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  "example.com",
+  "anon.example.com"
+]
 ~~~
 
 
@@ -4475,13 +4496,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/reload_config
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/reload_config
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4511,14 +4532,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/remove_mam_for_user
-    {
-      "user": "bob",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    "MAM archive removed"
+POST /api/remove_mam_for_user
+{
+  "user": "bob",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+"MAM archive removed"
 ~~~
 
 
@@ -4549,15 +4570,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/remove_mam_for_user_with_peer
-    {
-      "user": "bob",
-      "host": "example.com",
-      "with": "anne@example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    "MAM archive removed"
+POST /api/remove_mam_for_user_with_peer
+{
+  "user": "bob",
+  "host": "example.com",
+  "with": "anne@example.com"
+}
+
+HTTP/1.1 200 OK
+"MAM archive removed"
 ~~~
 
 
@@ -4570,7 +4591,7 @@ Reopen maybe the log files after being renamed
 
 
 Has no effect on ejabberd main log files, only on log files generated by some modules.
-This can be useful when an external tool is used for log rotation. See [Log Files](https://docs.ejabberd.im/admin/guide/troubleshooting/#log-files).
+This can be useful when an external tool is used for log rotation. See [Log Files](../../admin/guide/troubleshooting.md#log-files).
 
 __Arguments:__
 
@@ -4586,13 +4607,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/reopen_log
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/reopen_log
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4621,13 +4642,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/request_certificate
-    {
-      "domains": "example.com,domain.tld,conference.domain.tld"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/request_certificate
+{
+  "domains": "example.com,domain.tld,conference.domain.tld"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -4658,15 +4679,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/resource_num
-    {
-      "user": "peter",
-      "host": "myserver.com",
-      "num": 2
-    }
-    
-    HTTP/1.1 200 OK
-    "Psi"
+POST /api/resource_num
+{
+  "user": "peter",
+  "host": "myserver.com",
+  "num": 2
+}
+
+HTTP/1.1 200 OK
+"Psi"
 ~~~
 
 
@@ -4691,13 +4712,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/restart
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/restart
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -4730,14 +4751,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/restart_module
-    {
-      "host": "myserver.com",
-      "module": "mod_admin_extra"
-    }
-    
-    HTTP/1.1 200 OK
-    0
+POST /api/restart_module
+{
+  "host": "myserver.com",
+  "module": "mod_admin_extra"
+}
+
+HTTP/1.1 200 OK
+0
 ~~~
 
 
@@ -4766,13 +4787,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/restore
-    {
-      "file": "/var/lib/ejabberd/database.backup"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/restore
+{
+  "file": "/var/lib/ejabberd/database.backup"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -4798,13 +4819,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/revoke_certificate
-    {
-      "file": "aaaaa"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/revoke_certificate
+{
+  "file": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -4836,16 +4857,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/rooms_empty_destroy
-    {
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "room1@muc.example.com",
-      "room2@muc.example.com"
-    ]
+POST /api/rooms_empty_destroy
+{
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "room1@muc.example.com",
+  "room2@muc.example.com"
+]
 ~~~
 
 
@@ -4877,16 +4898,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/rooms_empty_list
-    {
-      "service": "muc.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "room1@muc.example.com",
-      "room2@muc.example.com"
-    ]
+POST /api/rooms_empty_list
+{
+  "service": "muc.example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "room1@muc.example.com",
+  "room2@muc.example.com"
+]
 ~~~
 
 
@@ -4919,17 +4940,17 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/rooms_unused_destroy
-    {
-      "service": "muc.example.com",
-      "days": 31
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "room1@muc.example.com",
-      "room2@muc.example.com"
-    ]
+POST /api/rooms_unused_destroy
+{
+  "service": "muc.example.com",
+  "days": 31
+}
+
+HTTP/1.1 200 OK
+[
+  "room1@muc.example.com",
+  "room2@muc.example.com"
+]
 ~~~
 
 
@@ -4962,17 +4983,17 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/rooms_unused_list
-    {
-      "service": "muc.example.com",
-      "days": 31
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "room1@muc.example.com",
-      "room2@muc.example.com"
-    ]
+POST /api/rooms_unused_list
+{
+  "service": "muc.example.com",
+  "days": 31
+}
+
+HTTP/1.1 200 OK
+[
+  "room1@muc.example.com",
+  "room2@muc.example.com"
+]
 ~~~
 
 
@@ -5000,25 +5021,26 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/rotate_log
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/rotate_log
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>updated in <a href="../../../archive/24.02/">24.02</a></div>
 
-## send_direct_invitation
 
+## send_direct_invitation 🟤
+
+<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
 Send a direct invitation to several destinations
 
 
-Since ejabberd <a href="../../../archive/20.12/">20.12</a>, this command is asynchronous: the API call may return before the server has send all the invitations.
+Since ejabberd [20.12](../../archive/20.12/index.md), this command is asynchronous: the API call may return before the server has send all the invitations.
 
 `password` and `message` can be set to `none`.
 
@@ -5044,20 +5066,20 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/send_direct_invitation
-    {
-      "name": "room1",
-      "service": "muc.example.com",
-      "password": "",
-      "reason": "Check this out!",
-      "users": [
-        "user2@localhost",
-        "user3@example.com"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/send_direct_invitation
+{
+  "name": "room1",
+  "service": "muc.example.com",
+  "password": "",
+  "reason": "Check this out!",
+  "users": [
+    "user2@localhost",
+    "user3@example.com"
+  ]
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5093,17 +5115,17 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/send_message
-    {
-      "type": "headline",
-      "from": "admin@localhost",
-      "to": "user1@localhost",
-      "subject": "Restart",
-      "body": "In 5 minutes"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/send_message
+{
+  "type": "headline",
+  "from": "admin@localhost",
+  "to": "user1@localhost",
+  "subject": "Restart",
+  "body": "In 5 minutes"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5134,15 +5156,15 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/send_stanza
-    {
-      "from": "admin@localhost",
-      "to": "user1@localhost",
-      "stanza": "<message><ext attr='value'/></message>"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/send_stanza
+{
+  "from": "admin@localhost",
+  "to": "user1@localhost",
+  "stanza": "<message><ext attr='value'/></message>"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5177,16 +5199,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/send_stanza_c2s
-    {
-      "user": "admin",
-      "host": "myserver.com",
-      "resource": "bot",
-      "stanza": "<message to='user1@localhost'><ext attr='value'/></message>"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/send_stanza_c2s
+{
+  "user": "admin",
+  "host": "myserver.com",
+  "resource": "bot",
+  "stanza": "<message to='user1@localhost'><ext attr='value'/></message>"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5221,16 +5243,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_last
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "timestamp": 1500045311,
-      "status": "GoSleeping"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_last
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "timestamp": 1500045311,
+  "status": "GoSleeping"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5260,13 +5282,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_loglevel
-    {
-      "loglevel": "debug"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_loglevel
+{
+  "loglevel": "debug"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5295,13 +5317,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_master
-    {
-      "nodename": "ejabberd@machine7"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/set_master
+{
+  "nodename": "ejabberd@machine7"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -5332,22 +5354,23 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_nickname
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "nickname": "User 1"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_nickname
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "nickname": "User 1"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>updated in <a href="../../../archive/24.02/">24.02</a></div>
 
-## set_presence
 
+## set_presence 🟤
+
+<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
 Set presence of a session
 
@@ -5375,19 +5398,19 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_presence
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "resource": "tka1",
-      "type": "available",
-      "show": "away",
-      "status": "BB",
-      "priority": 7
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_presence
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "resource": "tka1",
+  "type": "available",
+  "show": "away",
+  "status": "BB",
+  "priority": 7
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5419,16 +5442,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_room_affiliation
-    {
-      "name": "room1",
-      "service": "muc.example.com",
-      "jid": "user2@example.com",
-      "affiliation": "member"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_room_affiliation
+{
+  "name": "room1",
+  "service": "muc.example.com",
+  "jid": "user2@example.com",
+  "affiliation": "member"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5471,16 +5494,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_vcard
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "name": "URL",
-      "content": "www.example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_vcard
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "name": "URL",
+  "content": "www.example.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5531,17 +5554,17 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_vcard2
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "name": "TEL",
-      "subname": "NUMBER",
-      "content": "123456"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_vcard2
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "name": "TEL",
+  "subname": "NUMBER",
+  "content": "123456"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5592,27 +5615,28 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/set_vcard2_multi
-    {
-      "user": "aaaaa",
-      "host": "bbbbb",
-      "name": "ccccc",
-      "subname": "ddddd",
-      "contents": [
-        "eeeee",
-        "fffff"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/set_vcard2_multi
+{
+  "user": "aaaaa",
+  "host": "bbbbb",
+  "name": "ccccc",
+  "subname": "ddddd",
+  "contents": [
+    "eeeee",
+    "fffff"
+  ]
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>updated in <a href="../../../archive/24.02/">24.02</a></div>
 
-## srg_create
 
+## srg_create 🟤
+
+<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
 Create a Shared Roster Group
 
@@ -5638,20 +5662,20 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/srg_create
-    {
-      "group": "group3",
-      "host": "myserver.com",
-      "label": "Group3",
-      "description": "Third group",
-      "display": [
-        "group1",
-        "group2"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/srg_create
+{
+  "group": "group3",
+  "host": "myserver.com",
+  "label": "Group3",
+  "description": "Third group",
+  "display": [
+    "group1",
+    "group2"
+  ]
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5681,14 +5705,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/srg_delete
-    {
-      "group": "group3",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/srg_delete
+{
+  "group": "group3",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5718,23 +5742,23 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/srg_get_info
-    {
-      "group": "group3",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "key": "name",
-        "value": "Group 3"
-      },
-      {
-        "key": "displayed_groups",
-        "value": "group1"
-      }
-    ]
+POST /api/srg_get_info
+{
+  "group": "group3",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "key": "name",
+    "value": "Group 3"
+  },
+  {
+    "key": "displayed_groups",
+    "value": "group1"
+  }
+]
 ~~~
 
 
@@ -5764,17 +5788,17 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/srg_get_members
-    {
-      "group": "group3",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "user1@localhost",
-      "user2@localhost"
-    ]
+POST /api/srg_get_members
+{
+  "group": "group3",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "user1@localhost",
+  "user2@localhost"
+]
 ~~~
 
 
@@ -5803,16 +5827,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/srg_list
-    {
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "group1",
-      "group2"
-    ]
+POST /api/srg_list
+{
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "group1",
+  "group2"
+]
 ~~~
 
 
@@ -5844,16 +5868,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/srg_user_add
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "group": "group3",
-      "grouphost": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/srg_user_add
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "group": "group3",
+  "grouphost": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5885,16 +5909,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/srg_user_del
-    {
-      "user": "user1",
-      "host": "myserver.com",
-      "group": "group3",
-      "grouphost": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/srg_user_del
+{
+  "user": "user1",
+  "host": "myserver.com",
+  "group": "group3",
+  "grouphost": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -5926,13 +5950,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/stats
-    {
-      "name": "registeredusers"
-    }
-    
-    HTTP/1.1 200 OK
-    6
+POST /api/stats
+{
+  "name": "registeredusers"
+}
+
+HTTP/1.1 200 OK
+6
 ~~~
 
 
@@ -5965,14 +5989,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/stats_host
-    {
-      "name": "registeredusers",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    6
+POST /api/stats_host
+{
+  "name": "registeredusers",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+6
 ~~~
 
 
@@ -5997,13 +6021,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/status
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    "The node ejabberd@localhost is started with status: startedejabberd X.X is running in that node"
+POST /api/status
+{
+  
+}
+
+HTTP/1.1 200 OK
+"The node ejabberd@localhost is started with status: startedejabberd X.X is running in that node"
 ~~~
 
 
@@ -6032,21 +6056,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/status_list
-    {
-      "status": "dnd"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "user": "peter",
-        "host": "myserver.com",
-        "resource": "tka",
-        "priority": 6,
-        "status": "Busy"
-      }
-    ]
+POST /api/status_list
+{
+  "status": "dnd"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "user": "peter",
+    "host": "myserver.com",
+    "resource": "tka",
+    "priority": 6,
+    "status": "Busy"
+  }
+]
 ~~~
 
 
@@ -6076,22 +6100,22 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/status_list_host
-    {
-      "host": "myserver.com",
-      "status": "dnd"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "user": "peter",
-        "host": "myserver.com",
-        "resource": "tka",
-        "priority": 6,
-        "status": "Busy"
-      }
-    ]
+POST /api/status_list_host
+{
+  "host": "myserver.com",
+  "status": "dnd"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "user": "peter",
+    "host": "myserver.com",
+    "resource": "tka",
+    "priority": 6,
+    "status": "Busy"
+  }
+]
 ~~~
 
 
@@ -6120,13 +6144,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/status_num
-    {
-      "status": "dnd"
-    }
-    
-    HTTP/1.1 200 OK
-    23
+POST /api/status_num
+{
+  "status": "dnd"
+}
+
+HTTP/1.1 200 OK
+23
 ~~~
 
 
@@ -6156,14 +6180,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/status_num_host
-    {
-      "host": "myserver.com",
-      "status": "dnd"
-    }
-    
-    HTTP/1.1 200 OK
-    23
+POST /api/status_num_host
+{
+  "host": "myserver.com",
+  "status": "dnd"
+}
+
+HTTP/1.1 200 OK
+23
 ~~~
 
 
@@ -6188,13 +6212,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/stop
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/stop
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -6225,14 +6249,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/stop_kindly
-    {
-      "delay": 60,
-      "announcement": "Server will stop now."
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/stop_kindly
+{
+  "delay": 60,
+  "announcement": "Server will stop now."
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -6257,20 +6281,21 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/stop_s2s_connections
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/stop_s2s_connections
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
-<div class='note-down'>updated in <a href="../../../archive/24.02/">24.02</a></div>
 
-## subscribe_room
 
+## subscribe_room 🟤
+
+<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
 Subscribe to a MUC conference
 
@@ -6295,29 +6320,30 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/subscribe_room
-    {
-      "user": "tom@localhost",
-      "nick": "Tom",
-      "room": "room1@conference.localhost",
-      "nodes": [
-        "urn:xmpp:mucsub:nodes:messages",
-        "urn:xmpp:mucsub:nodes:affiliations"
-      ]
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "urn:xmpp:mucsub:nodes:messages",
-      "urn:xmpp:mucsub:nodes:affiliations"
-    ]
+POST /api/subscribe_room
+{
+  "user": "tom@localhost",
+  "nick": "Tom",
+  "room": "room1@conference.localhost",
+  "nodes": [
+    "urn:xmpp:mucsub:nodes:messages",
+    "urn:xmpp:mucsub:nodes:affiliations"
+  ]
+}
+
+HTTP/1.1 200 OK
+[
+  "urn:xmpp:mucsub:nodes:messages",
+  "urn:xmpp:mucsub:nodes:affiliations"
+]
 ~~~
 
 
-<div class='note-down'>updated in <a href="../../../archive/24.02/">24.02</a></div>
 
-## subscribe_room_many
 
+## subscribe_room_many 🟤
+
+<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
 Subscribe several users to a MUC conference
 
@@ -6344,27 +6370,27 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/subscribe_room_many
+POST /api/subscribe_room_many
+{
+  "users": [
     {
-      "users": [
-        {
-          "jid": "tom@localhost",
-          "nick": "Tom"
-        },
-        {
-          "jid": "jerry@localhost",
-          "nick": "Jerry"
-        }
-      ],
-      "room": "room1@conference.localhost",
-      "nodes": [
-        "urn:xmpp:mucsub:nodes:messages",
-        "urn:xmpp:mucsub:nodes:affiliations"
-      ]
+      "jid": "tom@localhost",
+      "nick": "Tom"
+    },
+    {
+      "jid": "jerry@localhost",
+      "nick": "Jerry"
     }
-    
-    HTTP/1.1 200 OK
-    ""
+  ],
+  "room": "room1@conference.localhost",
+  "nodes": [
+    "urn:xmpp:mucsub:nodes:messages",
+    "urn:xmpp:mucsub:nodes:affiliations"
+  ]
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -6396,6 +6422,7 @@ __Examples:__
 
 
 ~~~ json
+<<<<<<< HEAD
     POST /api/unban_ip
     {
       "address": "::FFFF:127.0.0.1/128"
@@ -6403,6 +6430,15 @@ __Examples:__
     
     HTTP/1.1 200 OK
     3
+=======
+POST /api/unban_ip
+{
+  "address": "::FFFF:127.0.0.1/128"
+}
+
+HTTP/1.1 200 OK
+{"unbanned": 3}
+>>>>>>> a2c15f3 (Result of running "make all" with updated ejabberd)
 ~~~
 
 
@@ -6432,14 +6468,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/unregister
-    {
-      "user": "bob",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/unregister
+{
+  "user": "bob",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -6469,14 +6505,14 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/unsubscribe_room
-    {
-      "user": "tom@localhost",
-      "room": "room1@conference.localhost"
-    }
-    
-    HTTP/1.1 200 OK
-    ""
+POST /api/unsubscribe_room
+{
+  "user": "tom@localhost",
+  "room": "room1@conference.localhost"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -6505,13 +6541,13 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/update
-    {
-      "module": "mod_vcard"
-    }
-    
-    HTTP/1.1 200 OK
-    "Success"
+POST /api/update
+{
+  "module": "mod_vcard"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -6536,16 +6572,16 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/update_list
-    {
-      
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "mod_configure",
-      "mod_vcard"
-    ]
+POST /api/update_list
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  "mod_configure",
+  "mod_vcard"
+]
 ~~~
 
 
@@ -6572,18 +6608,18 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/user_resources
-    {
-      "user": "user1",
-      "host": "example.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      "tka1",
-      "Gajim",
-      "mobile-app"
-    ]
+POST /api/user_resources
+{
+  "user": "user1",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "tka1",
+  "Gajim",
+  "mobile-app"
+]
 ~~~
 
 
@@ -6613,26 +6649,26 @@ __Examples:__
 
 
 ~~~ json
-    POST /api/user_sessions_info
-    {
-      "user": "peter",
-      "host": "myserver.com"
-    }
-    
-    HTTP/1.1 200 OK
-    [
-      {
-        "connection": "c2s",
-        "ip": "127.0.0.1",
-        "port": 42656,
-        "priority": 8,
-        "node": "ejabberd@localhost",
-        "uptime": 231,
-        "status": "dnd",
-        "resource": "tka",
-        "statustext": ""
-      }
-    ]
+POST /api/user_sessions_info
+{
+  "user": "peter",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "connection": "c2s",
+    "ip": "127.0.0.1",
+    "port": 42656,
+    "priority": 8,
+    "node": "ejabberd@localhost",
+    "uptime": 231,
+    "status": "dnd",
+    "resource": "tka",
+    "statustext": ""
+  }
+]
 ~~~
 
 

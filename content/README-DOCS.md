@@ -11,34 +11,28 @@ in order to improve the docs and benefit the ejabberd community.
 This documentation site is built using [MkDocs](http://www.mkdocs.org/)
 and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
-## Dependencies
+## Installation
 
 To build the site you need Python 3.6 or later, then install the dependencies:
 
-```bash
-pip install mkdocs \
-            mkdocs-material \
-            "mkdocs-material[imaging]" \
-            mkdocs-material-extensions \
-            mkdocs-redirects \
-            mkdocs-with-pdf \
-            asciidoc \
-            beautifulsoup4
-```
-
-If trying to install those dependencies throws `error: externally-managed-environment`,
-you can create a virtual environment, for example:
+### pip
 
 ```bash
-mkdir -p ~/.venvs
-python3 -m venv ~/.venvs/ejadocs
-source ~/.venvs/ejadocs/bin/activate
+mkdir -p .venv
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-then try again to run `pip install`, it should succeed.
-From now on, remember to run the `source` command before running mkserve.
+!!! info
+    From now on, remember to run `source .venv/bin/activate` before running any `mkdocs [...]` command.
 
-In Debian, you could install most dependencies using APT:
+!!! tip
+    You can freeze the dependencies to a file using `pip freeze > requirements.txt`.
+
+### Debian
+
+You could install most dependencies using APT:
 
 ```bash
 apt-get install mkdocs \
@@ -48,12 +42,12 @@ apt-get install mkdocs \
                 python3-bs4
 ```
 
-but unfortunately Debian doesn't package `mkdocs-with-pdf`,
-so you should remove `with-pdf` plugin from `mkdocs.yml`.
+!!! warning
+    Unfortunately Debian doesn't package `mkdocs-with-pdf`, so you should remove `with-pdf` plugin from `mkdocs.yml`.
 
 ## Building
 
-Now you can start a small webserver that builds the site dinamically:
+Now you can start a small webserver that builds the site dynamically:
 
 ```bash
 mkdocs serve
@@ -112,6 +106,7 @@ https://xmpp.org/extensions/xep-0045.html[XEP-0045]
 ```
 
 gets converted into this markdown:
+
 ``` markdown
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
 [bookmarks_to_pep](../../developer/ejabberd-api/admin-api.md#bookmarks_to_pep) API

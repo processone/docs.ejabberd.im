@@ -1,6 +1,7 @@
 # API Tags
 
-This section enumerates the tags and their associated API.
+> This section enumerates the API tags of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+
 
 
 ## accounts

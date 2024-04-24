@@ -1,6 +1,7 @@
 # Modules Options
 
-> This section describes options of all ejabberd modules. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+> This section describes modules options of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
+that changed in this version are marked with 🟤.
 
 mod\_adhoc
 ----------
@@ -46,42 +47,50 @@ __Examples:__
 With this configuration, vCards can only be modified with
 mod\_admin\_extra commands:
 
-    acl:
-      adminextraresource:
-        - resource: "modadminextraf8x,31ad"
-    access_rules:
-      vcard_set:
-        - allow: adminextraresource
-    modules:
-      mod_admin_extra: {}
-      mod_vcard:
-        access_set: vcard_set
+~~~ yaml
+acl:
+  adminextraresource:
+    - resource: "modadminextraf8x,31ad"
+access_rules:
+  vcard_set:
+    - allow: adminextraresource
+modules:
+  mod_admin_extra: {}
+  mod_vcard:
+    access_set: vcard_set
+~~~
 
 Content of roster file for *pushroster* command:
 
-    [{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
-    {<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
-    {<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
+~~~ yaml
+[{<<"bob">>, <<"example.org">>, <<"workers">>, <<"Bob">>},
+{<<"mart">>, <<"example.org">>, <<"workers">>, <<"Mart">>},
+{<<"Rich">>, <<"example.org">>, <<"bosses">>, <<"Rich">>}].
+~~~
 
 With this call, the sessions of the local account which JID is
 <boby@example.org> will be kicked, and its password will be set to
 something like
 *BANNED\_ACCOUNT—20080425T21:45:07—2176635—Spammed\_rooms*
 
-    ejabberdctl vhost example.org ban-account boby "Spammed rooms"
+~~~ yaml
+ejabberdctl vhost example.org ban-account boby "Spammed rooms"
+~~~
 
 Call to srg-create using double-quotes and single-quotes:
 
-    ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
+~~~ yaml
+ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
+~~~
 
 mod\_admin\_update\_sql
 -----------------------
 
 This module can be used to update existing SQL database from the default
-to the new schema. Check the section [Default and New
-Schemas](database.md#default-and-new-schemas) for details.
-Please note that only MS SQL, MySQL, and PostgreSQL are supported. When
-the module is loaded use [update_sql](../../developer/ejabberd-api/admin-api.md#update_sql) API.
+to the new schema. Check the section
+[Default and New Schemas](database.md#default-and-new-schemas) for
+details. Please note that only MS SQL, MySQL, and PostgreSQL are
+supported. When the module is loaded use [update_sql](../../developer/ejabberd-api/admin-api.md#update_sql) API.
 
 The module has no options.
 
@@ -181,9 +190,11 @@ compile time depending on the image libraries installed in the system.
 
     **Example**:
 
-        convert:
-          webp: jpg
-          default: png
+    ~~~ yaml
+    convert:
+      webp: jpg
+      default: png
+    ~~~
 
 - **rate\_limit**: *Number*  
 Limit any given JID by the number of avatars it is able to convert per
@@ -219,7 +230,7 @@ subscription present. The default value is *true*.
 
 - **captcha**: *true | false*  
 Whether to generate CAPTCHA or not in response to messages from
-strangers. See also section [CAPTCHA](http://../#captcha) of the
+strangers. See also section [CAPTCHA](basic.md#captcha) of the
 Configuration Guide. The default value is *false*.
 
 - **drop**: *true | false*  
@@ -300,18 +311,20 @@ Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this
 
 __**Example**:__
 
-    listen:
-      -
-        port: 5222
-        module: ejabberd_c2s
-      -
-        port: 5443
-        module: ejabberd_http
-        request_handlers:
-          /bosh: mod_bosh
+~~~ yaml
+listen:
+  -
+    port: 5222
+    module: ejabberd_c2s
+  -
+    port: 5443
+    module: ejabberd_http
+    request_handlers:
+      /bosh: mod_bosh
 
-    modules:
-      mod_bosh: {}
+modules:
+  mod_bosh: {}
+~~~
 
 mod\_caps
 ---------
@@ -386,7 +399,9 @@ mod\_configure
 --------------
 
 The module provides server configuration functionality via [XEP-0050:
-Ad-Hoc Commands](https://xmpp.org/extensions/xep-0050.html). This module
+Ad-Hoc Commands](https://xmpp.org/extensions/xep-0050.html). Implements
+many commands as defined in [XEP-0133: Service
+Administration](https://xmpp.org/extensions/xep-0133.html). This module
 requires [mod_adhoc](#mod_adhoc) to be loaded.
 
 The module has no options.
@@ -394,19 +409,18 @@ The module has no options.
 mod\_conversejs
 ---------------
 
+<!-- md:version added in [21.12](../../archive/21.12/index.md) and improved in [22.05](../../archive/22.05/index.md) -->
+
+
 This module serves a simple page for the
 [Converse](https://conversejs.org/) XMPP web browser client.
 
-This module is available since ejabberd <a href="../../../archive/21.12/">21.12</a>. Several options were
-improved in ejabberd <a href="../../../archive/22.05/">22.05</a>.
-
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
-[request\_handlers](listen-options.md#request_handlers).
+[request_handlers](listen-options.md#request_handlers).
 
 Make sure either *mod\_bosh* or *ejabberd\_http\_ws*
-[request\_handlers](listen-options.md#request_handlers) are
-enabled.
+[request_handlers](listen-options.md#request_handlers) are enabled.
 
 When *conversejs\_css* and *conversejs\_script* are *auto*, by default
 they point to the public Converse client.
@@ -423,19 +437,18 @@ value is *auto*.
 Converse CSS URL. The keyword *@HOST@* is replaced with the hostname.
 The default value is *auto*.
 
-<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
-
 - **conversejs\_options**: *{Name: Value}*  
-Specify additional options to be passed to Converse. See [Converse
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
+ Specify additional options to
+be passed to Converse. See [Converse
 configuration](https://conversejs.org/docs/html/configuration.html).
 Only boolean, integer and string values are supported; lists are not
 supported.
 
-<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
-
 - **conversejs\_resources**: *Path*  
-Local path to the Converse files. If not set, the public Converse client
-will be used instead.
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
+ Local path to the Converse
+files. If not set, the public Converse client will be used instead.
 
 - **conversejs\_script**: *auto | URL*  
 Converse main script URL. The keyword *@HOST@* is replaced with the
@@ -455,48 +468,54 @@ __Examples:__
 
 Manually setup WebSocket url, and use the public Converse client:
 
-    listen:
-      -
-        port: 5280
-        module: ejabberd_http
-        request_handlers:
-          /bosh: mod_bosh
-          /websocket: ejabberd_http_ws
-          /conversejs: mod_conversejs
+~~~ yaml
+listen:
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      /bosh: mod_bosh
+      /websocket: ejabberd_http_ws
+      /conversejs: mod_conversejs
 
-    modules:
-      mod_bosh: {}
-      mod_conversejs:
-        websocket_url: "ws://@HOST@:5280/websocket"
+modules:
+  mod_bosh: {}
+  mod_conversejs:
+    websocket_url: "ws://@HOST@:5280/websocket"
+~~~
 
 Host Converse locally and let auto detection of WebSocket and Converse
 URLs:
 
-    listen:
-      -
-        port: 443
-        module: ejabberd_http
-        tls: true
-        request_handlers:
-          /websocket: ejabberd_http_ws
-          /conversejs: mod_conversejs
+~~~ yaml
+listen:
+  -
+    port: 443
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /websocket: ejabberd_http_ws
+      /conversejs: mod_conversejs
 
-    modules:
-      mod_conversejs:
-        conversejs_resources: "/home/ejabberd/conversejs-9.0.0/package/dist"
+modules:
+  mod_conversejs:
+    conversejs_resources: "/home/ejabberd/conversejs-9.0.0/package/dist"
+~~~
 
 Configure some additional options for Converse
 
-    modules:
-      mod_conversejs:
-        websocket_url: auto
-        conversejs_options:
-          auto_away: 30
-          clear_cache_on_logout: true
-          i18n: "pt"
-          locked_domain: "@HOST@"
-          message_archiving: always
-          theme: dracula
+~~~ yaml
+modules:
+  mod_conversejs:
+    websocket_url: auto
+    conversejs_options:
+      auto_away: 30
+      clear_cache_on_logout: true
+      i18n: "pt"
+      locked_domain: "@HOST@"
+      message_archiving: always
+      theme: dracula
+~~~
 
 mod\_delegation
 ---------------
@@ -524,11 +543,11 @@ __Available options:__
 If you want to delegate namespaces to a component, specify them in this
 option, and associate them to an access rule. The *Options* are:
 
- - **access**: *AccessName*  
+    - **access**: *AccessName*  
    The option defines which components are
     allowed for namespace delegation. The default value is *none*.
 
- - **filtering**: *Attributes*  
+    - **filtering**: *Attributes*  
    The list of attributes. Currently not
     used.
 
@@ -539,24 +558,25 @@ the same time. As in the example provided later, to have the
 *sat-pubsub.example.org* component perform correctly disable the
 *mod\_pubsub* module.
 
-    access_rules:
-      external_pubsub:
-        allow: external_component
-      external_mam:
-        allow: external_component
+~~~ yaml
+access_rules:
+  external_pubsub:
+    allow: external_component
+  external_mam:
+    allow: external_component
 
-    acl:
-      external_component:
-        server: sat-pubsub.example.org
+acl:
+  external_component:
+    server: sat-pubsub.example.org
 
-    modules:
-      ...
-      mod_delegation:
-        namespaces:
-          urn:xmpp:mam:1:
-            access: external_mam
-          http://jabber.org/protocol/pubsub:
-            access: external_pubsub
+modules:
+  mod_delegation:
+    namespaces:
+      urn:xmpp:mam:1:
+        access: external_mam
+      http://jabber.org/protocol/pubsub:
+        access: external_pubsub
+~~~
 
 mod\_disco
 ----------
@@ -581,47 +601,49 @@ Specify additional information about the server, as described in
 Services](https://xmpp.org/extensions/xep-0157.html). Every *Info*
 element in the list is constructed from the following options:
 
- - **modules**: *all | \[Module, ...\]*  
+    - **modules**: *all | \[Module, ...\]*  
    The value can be the keyword
     *all*, in which case the information is reported in all the
     services, or a list of ejabberd modules, in which case the
     information is only specified for the services provided by those
     modules.
 
- - **name**: *Name*  
+    - **name**: *Name*  
    The field *var* name that will be defined. See
     XEP-0157 for some standardized names.
 
- - **urls**: *\[URI, ...\]*  
+    - **urls**: *\[URI, ...\]*  
    A list of contact URIs, such as HTTP URLs,
     XMPP URIs and so on.
 
     **Example**:
 
-        server_info:
-          -
-            modules: all
-            name: abuse-addresses
-            urls: ["mailto:abuse@shakespeare.lit"]
-          -
-            modules: [mod_muc]
-            name: "Web chatroom logs"
-            urls: ["http://www.example.org/muc-logs"]
-          -
-            modules: [mod_disco]
-            name: feedback-addresses
-            urls:
-              - http://shakespeare.lit/feedback.php
-              - mailto:feedback@shakespeare.lit
-              - xmpp:feedback@shakespeare.lit
-          -
-            modules:
-              - mod_disco
-              - mod_vcard
-            name: admin-addresses
-            urls:
-              - mailto:xmpp@shakespeare.lit
-              - xmpp:admins@shakespeare.lit
+    ~~~ yaml
+    server_info:
+      -
+        modules: all
+        name: abuse-addresses
+        urls: ["mailto:abuse@shakespeare.lit"]
+      -
+        modules: [mod_muc]
+        name: "Web chatroom logs"
+        urls: ["http://www.example.org/muc-logs"]
+      -
+        modules: [mod_disco]
+        name: feedback-addresses
+        urls:
+          - http://shakespeare.lit/feedback.php
+          - mailto:feedback@shakespeare.lit
+          - xmpp:feedback@shakespeare.lit
+      -
+        modules:
+          - mod_disco
+          - mod_vcard
+        name: admin-addresses
+        urls:
+          - mailto:xmpp@shakespeare.lit
+          - xmpp:admins@shakespeare.lit
+    ~~~
 
 mod\_fail2ban
 -------------
@@ -661,15 +683,16 @@ default value is *20*.
 mod\_host\_meta
 ---------------
 
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
+
+
 This module serves small *host-meta* files as described in [XEP-0156:
 Discovering Alternative XMPP Connection
 Methods](https://xmpp.org/extensions/xep-0156.html).
 
-This module is available since ejabberd <a href="../../../archive/22.05/">22.05</a>.
-
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
-[request\_handlers](listen-options.md#request_handlers).
+[request_handlers](listen-options.md#request_handlers).
 
 Notice it only works if ejabberd\_http has tls enabled.
 
@@ -687,33 +710,35 @@ first configured WebSocket request handler. The default value is *auto*.
 
 __**Example**:__
 
-    listen:
-      -
-        port: 443
-        module: ejabberd_http
-        tls: true
-        request_handlers:
-          /bosh: mod_bosh
-          /ws: ejabberd_http_ws
-          /.well-known/host-meta: mod_host_meta
-          /.well-known/host-meta.json: mod_host_meta
+~~~ yaml
+listen:
+  -
+    port: 443
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /bosh: mod_bosh
+      /ws: ejabberd_http_ws
+      /.well-known/host-meta: mod_host_meta
+      /.well-known/host-meta.json: mod_host_meta
 
-    modules:
-      mod_bosh: {}
-      mod_host_meta:
-        bosh_service_url: "https://@HOST@:5443/bosh"
-        websocket_url: "wss://@HOST@:5443/ws"
+modules:
+  mod_bosh: {}
+  mod_host_meta:
+    bosh_service_url: "https://@HOST@:5443/bosh"
+    websocket_url: "wss://@HOST@:5443/ws"
+~~~
 
 mod\_http\_api
 --------------
 
-This module provides a ReST interface to call [ejabberd
-API](https://docs.ejabberd.im/developer/ejabberd-api) commands using
+This module provides a ReST interface to call
+[ejabberd API](../../developer/ejabberd-api/index.md) commands using
 JSON data.
 
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
-[request\_handlers](listen-options.md#request_handlers).
+[request_handlers](listen-options.md#request_handlers).
 
 To use a specific API version N, when defining the URL path in the
 request\_handlers, add a *vN*. For example: */api/v2: mod\_http\_api*
@@ -725,15 +750,17 @@ The module has no options.
 
 __**Example**:__
 
-    listen:
-      -
-        port: 5280
-        module: ejabberd_http
-        request_handlers:
-          /api: mod_http_api
+~~~ yaml
+listen:
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      /api: mod_http_api
 
-    modules:
-      mod_http_api: {}
+modules:
+  mod_http_api: {}
+~~~
 
 mod\_http\_fileserver
 ---------------------
@@ -753,20 +780,22 @@ modify existing ones. The default values are:
 
     **Example**:
 
-        content_types:
-          .css: text/css
-          .gif: image/gif
-          .html: text/html
-          .jar: application/java-archive
-          .jpeg: image/jpeg
-          .jpg: image/jpeg
-          .js: text/javascript
-          .png: image/png
-          .svg: image/svg+xml
-          .txt: text/plain
-          .xml: application/xml
-          .xpi: application/x-xpinstall
-          .xul: application/vnd.mozilla.xul+xml
+    ~~~ yaml
+    content_types:
+      .css: text/css
+      .gif: image/gif
+      .html: text/html
+      .jar: application/java-archive
+      .jpeg: image/jpeg
+      .jpg: image/jpeg
+      .js: text/javascript
+      .png: image/png
+      .svg: image/svg+xml
+      .txt: text/plain
+      .xml: application/xml
+      .xpi: application/x-xpinstall
+      .xul: application/vnd.mozilla.xul+xml
+    ~~~
 
 - **custom\_headers**: *{Name: Value}*  
 Indicate custom HTTP headers to be included in all responses. There are
@@ -796,33 +825,29 @@ This example configuration will serve the files from the local directory
 this example a new content type *ogg* is defined, *png* is redefined,
 and *jpg* definition is deleted:
 
-    listen:
-      ...
-      -
-        port: 5280
-        module: ejabberd_http
-        request_handlers:
-          ...
-          /pub/content: mod_http_fileserver
-          ...
-      ...
+~~~ yaml
+listen:
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      /pub/content: mod_http_fileserver
 
-    modules:
-      ...
-      mod_http_fileserver:
-        docroot: /var/www
-        accesslog: /var/log/ejabberd/access.log
-        directory_indices:
-          - index.html
-          - main.htm
-        custom_headers:
-          X-Powered-By: Erlang/OTP
-          X-Fry: "It's a widely-believed fact!"
-        content_types:
-          .ogg: audio/ogg
-          .png: image/png
-        default_content_type: text/html
-      ...
+modules:
+  mod_http_fileserver:
+    docroot: /var/www
+    accesslog: /var/log/ejabberd/access.log
+    directory_indices:
+      - index.html
+      - main.htm
+    custom_headers:
+      X-Powered-By: Erlang/OTP
+      X-Fry: "It's a widely-believed fact!"
+    content_types:
+      .ogg: audio/ogg
+      .png: image/png
+    default_content_type: text/html
+~~~
 
 mod\_http\_upload
 -----------------
@@ -835,7 +860,7 @@ URL from which that file can later be downloaded.
 
 In order to use this module, it must be enabled in *listen* →
 *ejabberd\_http* →
-[request\_handlers](listen-options.md#request_handlers).
+[request_handlers](listen-options.md#request_handlers).
 
 __Available options:__
 
@@ -940,45 +965,43 @@ clients in Service Discovery. The value of *vCard* is a YAML map
 constructed from an XML representation of vCard. Since the
 representation has no attributes, the mapping is straightforward.
 
-For example, the following XML representation of vCard:
+    **Example**:
 
-    <vCard xmlns='vcard-temp'>
-      <FN>Conferences</FN>
-      <ADR>
-        <WORK/>
-        <STREET>Elm Street</STREET>
-      </ADR>
-    </vCard>
-
-will be translated to:
-
+    ~~~ yaml
+    # This XML representation of vCard:
+    #   <vCard xmlns='vcard-temp'>
+    #     <FN>Conferences</FN>
+    #     <ADR>
+    #       <WORK/>
+    #       <STREET>Elm Street</STREET>
+    #     </ADR>
+    #   </vCard>
+    #
+    # is translated to:
     vcard:
       fn: Conferences
       adr:
         -
           work: true
           street: Elm Street
+    ~~~
 
 __**Example**:__
 
-    listen:
-      ...
-      -
-        port: 5443
-        module: ejabberd_http
-        tls: true
-        request_handlers:
-          ...
-          /upload: mod_http_upload
-          ...
-      ...
+~~~ yaml
+listen:
+  -
+    port: 5443
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /upload: mod_http_upload
 
-    modules:
-      ...
-      mod_http_upload:
-        docroot: /ejabberd/upload
-        put_url: "https://@HOST@:5443/upload"
-      ...
+modules:
+  mod_http_upload:
+    docroot: /ejabberd/upload
+    put_url: "https://@HOST@:5443/upload"
+~~~
 
 mod\_http\_upload\_quota
 ------------------------
@@ -1017,20 +1040,18 @@ and *access\_soft\_quota* options in order to use the quota feature. You
 can stick to the default names and just specify access rules such as
 those in this example:
 
-    shaper_rules:
-      ...
-      soft_upload_quota:
-        1000: all # MiB
-      hard_upload_quota:
-        1100: all # MiB
-      ...
+~~~ yaml
+shaper_rules:
+  soft_upload_quota:
+    1000: all # MiB
+  hard_upload_quota:
+    1100: all # MiB
 
-    modules:
-      ...
-      mod_http_upload: {}
-      mod_http_upload_quota:
-        max_days: 100
-      ...
+modules:
+  mod_http_upload: {}
+  mod_http_upload_quota:
+    max_days: 100
+~~~
 
 mod\_jidprep
 ------------
@@ -1160,12 +1181,13 @@ mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is *false*.
 
-mod\_matrix\_gw
----------------
+mod\_matrix\_gw 🟤
+------------------
+
+<!-- md:version added in [24.02](../../archive/24.02/index.md) -->
+
 
 [Matrix](https://matrix.org/) gateway.
-
-This module is available since ejabberd <a href="../../../archive/24.02/">24.02</a>.
 
 __Available options:__
 
@@ -1182,8 +1204,8 @@ Value of the matrix signing key, in base64.
 Name of the matrix signing key.
 
 - **matrix\_domain**: *Domain*  
-Specify a domain in the Matrix federation.
-This option is mandatory.
+Specify a domain in the Matrix federation. The keyword *@HOST@* is
+replaced with the hostname. The default value is *@HOST@*.
 
 - **matrix\_id\_as\_jid**: *true | false*  
 If set to *false*, all packets failing to be delivered via an XMPP
@@ -1199,20 +1221,21 @@ the *host* option. The default is *false*.
 
 __**Example**:__
 
-    listen:
-      -
-        port: 8448
-        module: ejabberd_http
-        tls: true
-        request_handlers:
-          "/_matrix": mod_matrix_gw
+~~~ yaml
+listen:
+  -
+    port: 8448
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      "/_matrix": mod_matrix_gw
 
-    modules:
-      mod_matrix_gw:
-        key_name: "key1"
-        key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-        matrix_domain: "example.org"
-        matrix_id_as_jid: true
+modules:
+  mod_matrix_gw:
+    key_name: "key1"
+    key: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    matrix_id_as_jid: true
+~~~
 
 mod\_metrics
 ------------
@@ -1255,16 +1278,16 @@ connections/packets. The default value is *11111*.
 mod\_mix
 --------
 
+<!-- md:version added in 16.03 and improved in 19.02 -->
+
+
 This module is an experimental implementation of [XEP-0369: Mediated
 Information eXchange (MIX)](https://xmpp.org/extensions/xep-0369.html).
-MIX support was added in ejabberd 16.03 as an experimental feature,
-updated in 19.02, and is not yet ready to use in production. It’s
-asserted that the MIX protocol is going to replace the MUC protocol in
-the future (see [mod_muc](#mod_muc)).
+It’s asserted that the MIX protocol is going to replace the MUC protocol
+in the future (see [mod_muc](#mod_muc)).
 
 To learn more about how to use that feature, you can refer to our
-tutorial: [Getting started with XEP-0369: Mediated Information eXchange
-(MIX) v0.1](https://docs.ejabberd.im/tutorials/mix-010/).
+tutorial: [Getting started with MIX](../../tutorials/mix-010.md)
 
 The module depends on [mod_mam](#mod_mam).
 
@@ -1330,10 +1353,9 @@ Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this
 mod\_mqtt
 ---------
 
-This module adds [support for the
-MQTT](https://docs.ejabberd.im/admin/guide/mqtt/) protocol version
-*3.1.1* and *5.0*. Remember to configure *mod\_mqtt* in *modules* and
-*listen* sections.
+This module adds [support for the MQTT](../guide/mqtt/index.md)
+protocol version *3.1.1* and *5.0*. Remember to configure *mod\_mqtt* in
+*modules* and *listen* sections.
 
 __Available options:__
 
@@ -1399,7 +1421,7 @@ This module adds ability to synchronize local MQTT topics with data on
 remote servers It can update topics on remote servers when local user
 updates local topic, or can subscribe for changes on remote server, and
 update local copy when remote data is updated. It is available since
-ejabberd <a href="../../../archive/23.01/">23.01</a>.
+ejabberd [23.01](../../archive/23.01/index.md).
 
 __Available options:__
 
@@ -1416,20 +1438,20 @@ used with mqtts, mqtt5s, wss, wss5.
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_mqtt_bridge:
-        servers:
-          "mqtt://server.com":
-            publish:
-              "localA": "remoteA" # local changes to 'localA' will be replicated on remote server as 'remoteA'
-              "topicB": "topicB"
-            subscribe:
-              "remoteB": "localB" # changes to 'remoteB' on remote server will be stored as 'localB' on local server
-            authentication:
-              certfile: "/etc/ejabberd/mqtt_server.pem"
-        replication_user: "mqtt@xmpp.server.com"
-      ...
+~~~ yaml
+modules:
+  mod_mqtt_bridge:
+    servers:
+      "mqtt://server.com":
+        publish:
+          "localA": "remoteA" # local changes to 'localA' will be replicated on remote server as 'remoteA'
+          "topicB": "topicB"
+        subscribe:
+          "remoteB": "localB" # changes to 'remoteB' on remote server will be stored as 'localB' on local server
+        authentication:
+          certfile: "/etc/ejabberd/mqtt_server.pem"
+    replication_user: "mqtt@xmpp.server.com"
+~~~
 
 mod\_muc
 --------
@@ -1486,170 +1508,169 @@ To configure who is allowed to modify the *persistent* room option. The
 default value is *all*, which means everyone is allowed to modify that
 option.
 
-<div class="note-left">improved in <a href="../../../archive/23.10/">23.10</a></div>
-
 - **access\_register**: *AccessName*  
-This option specifies who is allowed to register nickname within the
-Multi-User Chat service and rooms. The default is *all* for backward
-compatibility, which means that any user is allowed to register any free
-nick in the MUC service and in the rooms.
-
-<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
+<!-- md:version improved in [23.10](../../archive/23.10/index.md) -->
+ This option specifies who
+is allowed to register nickname within the Multi-User Chat service and
+rooms. The default is *all* for backward compatibility, which means that
+any user is allowed to register any free nick in the MUC service and in
+the rooms.
 
 - **cleanup\_affiliations\_on\_start**: *true | false*  
-Remove affiliations for non-existing local users on startup. The default
-value is *false*.
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
+ Remove affiliations for
+non-existing local users on startup. The default value is *false*.
 
 - **db\_type**: *mnesia | sql*  
 Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
-
-<div class="note-left">improved in <a href="../../../archive/22.05/">22.05</a></div>
 
 - **default\_room\_options**: *Options*  
 Define the default room options. Note that the creator of a room can
 modify the options of his room at any time using an XMPP client with MUC
 capability. The *Options* are:
 
- - **allow\_change\_subj**: *true | false*  
+    - **allow\_change\_subj**: *true | false*  
    Allow occupants to change
     the subject. The default value is *true*.
 
- - **allow\_private\_messages\_from\_visitors**: *anyone | moderators |
+    - **allow\_private\_messages\_from\_visitors**: *anyone | moderators |
     nobody* Visitors can send private messages to other occupants. The
     default value is *anyone* which means visitors can send private
     messages to any occupant.
 
- - **allow\_query\_users**: *true | false*  
+    - **allow\_query\_users**: *true | false*  
    Occupants can send IQ
     queries to other occupants. The default value is *true*.
 
- - **allow\_subscription**: *true | false*  
+    - **allow\_subscription**: *true | false*  
    Allow users to subscribe to
-    room events as described in [Multi-User Chat
-    Subscriptions](https://docs.ejabberd.im/developer/xmpp-clients-bots/extensions/muc-sub/).
+    room events as described in
+    [Multi-User Chat Subscriptions](../../developer/xmpp-clients-bots/extensions/muc-sub.md).
     The default value is *false*.
 
- - **allow\_user\_invites**: *true | false*  
+    - **allow\_user\_invites**: *true | false*  
    Allow occupants to send
     invitations. The default value is *false*.
 
- - **allow\_visitor\_nickchange**: *true | false*  
+    - **allow\_visitor\_nickchange**: *true | false*  
    Allow visitors to
     change nickname. The default value is *true*.
 
- - **allow\_visitor\_status**: *true | false*  
+    - **allow\_visitor\_status**: *true | false*  
    Allow visitors to send
     status text in presence updates. If disallowed, the status text is
     stripped before broadcasting the presence update to all the room
     occupants. The default value is *true*.
 
- - **allow\_voice\_requests**: *true | false*  
+    - **allow\_voice\_requests**: *true | false*  
    Allow visitors in a
     moderated room to request voice. The default value is *true*.
 
- - **allowpm**: *anyone | participants | moderators | none*  
+    - **allowpm**: *anyone | participants | moderators | none*  
    Who can
     send private messages. The default value is *anyone*.
 
- - **anonymous**: *true | false*  
+    - **anonymous**: *true | false*  
    The room is anonymous: occupants don’t
     see the real JIDs of other occupants. Note that the room moderators
     can always see the real JIDs of the occupants. The default value is
     *true*.
 
- - **captcha\_protected**: *true | false*  
+    - **captcha\_protected**: *true | false*  
    When a user tries to join a
     room where they have no affiliation (not owner, admin or member),
     the room requires them to fill a CAPTCHA challenge (see section
-    [CAPTCHA](http://../#captcha) in order to accept their join in the
+    [CAPTCHA](basic.md#captcha) in order to accept their join in the
     room. The default value is *false*.
 
- - **description**: *Room Description*  
+    - **description**: *Room Description*  
    Short description of the room.
     The default value is an empty string.
 
- - **enable\_hats**: *true | false*  
+    - **enable\_hats**: *true | false*  
    Allow extended roles as defined in
     XEP-0317 Hats. The default value is *false*.
 
- - **lang**: *Language*  
+    - **lang**: *Language*  
    Preferred language for the discussions in the
     room. The language format should conform to RFC 5646. There is no
     value by default.
 
- - **logging**: *true | false*  
+    - **logging**: *true | false*  
    The public messages are logged using
     [mod_muc_log](#mod_muc_log). The default value is *false*.
 
- - **mam**: *true | false*  
+    - **mam**: *true | false*  
    Enable message archiving. Implies mod\_mam
     is enabled. The default value is *false*.
 
- - **max\_users**: *Number*  
+    - **max\_users**: *Number*  
    Maximum number of occupants in the room.
     The default value is *200*.
 
- - **members\_by\_default**: *true | false*  
+    - **members\_by\_default**: *true | false*  
    The occupants that enter
     the room are participants by default, so they have "voice". The
     default value is *true*.
 
- - **members\_only**: *true | false*  
+    - **members\_only**: *true | false*  
    Only members of the room can
     enter. The default value is *false*.
 
- - **moderated**: *true | false*  
+    - **moderated**: *true | false*  
    Only occupants with "voice" can send
     public messages. The default value is *true*.
 
- - **password**: *Password*  
+    - **password**: *Password*  
    Password of the room. Implies option
     *password\_protected* set to *true*. There is no default value.
 
- - **password\_protected**: *true | false*  
+    - **password\_protected**: *true | false*  
    The password is required to
     enter the room. The default value is *false*.
 
- - **persistent**: *true | false*  
+    - **persistent**: *true | false*  
    The room persists even if the last
     participant leaves. The default value is *false*.
 
- - **presence\_broadcast**: *\[moderator | participant | visitor,
+    - **presence\_broadcast**: *\[moderator | participant | visitor,
     ...\]* List of roles for which presence is broadcasted. The list can
     contain one or several of: *moderator*, *participant*, *visitor*.
     The default value is shown in the example below:
 
         **Example**:
 
-            presence_broadcast:
-              - moderator
-              - participant
-              - visitor
+        ~~~ yaml
+        presence_broadcast:
+          - moderator
+          - participant
+          - visitor
+        ~~~
 
- - **public**: *true | false*  
+    - **public**: *true | false*  
    The room is public in the list of the MUC
     service, so it can be discovered. MUC admins and room participants
     will see private rooms in Service Discovery if their XMPP client
     supports this feature. The default value is *true*.
 
- - **public\_list**: *true | false*  
+    - **public\_list**: *true | false*  
    The list of participants is public,
     without requiring to enter the room. The default value is *true*.
 
- - **pubsub**: *PubSub Node*  
+    - **pubsub**: *PubSub Node*  
    XMPP URI of associated Publish/Subscribe
     node. The default value is an empty string.
 
- - **title**: *Room Title*  
+    - **title**: *Room Title*  
    A human-readable title of the room. There is
     no default value
 
- - **vcard**: *vCard*  
+    - **vcard**: *vCard*  
    A custom vCard for the room. See the equivalent
     mod\_muc option.The default value is an empty string.
 
- - **voice\_request\_min\_interval**: *Number*  
+    - **voice\_request\_min\_interval**: *Number*  
    Minimum interval between
     voice requests, in seconds. The default value is *1800*.
 
@@ -1677,18 +1698,17 @@ is not specified, the only Jabber ID will be the hostname of the virtual
 host with the prefix "conference.". The keyword *@HOST@* is replaced
 with the real virtual host name.
 
-<div class="note-left">added in <a href="../../../archive/21.01/">21.01</a></div>
-
 - **max\_captcha\_whitelist**: *Number*  
-This option defines the maximum number of characters that Captcha
-Whitelist can have when configuring the room. The default value is
-*infinity*.
-
-<div class="note-left">added in <a href="../../../archive/21.01/">21.01</a></div>
+<!-- md:version added in [21.01](../../archive/21.01/index.md) -->
+ This option defines the
+maximum number of characters that Captcha Whitelist can have when
+configuring the room. The default value is *infinity*.
 
 - **max\_password**: *Number*  
-This option defines the maximum number of characters that Password can
-have when configuring the room. The default value is *infinity*.
+<!-- md:version added in [21.01](../../archive/21.01/index.md) -->
+ This option defines the
+maximum number of characters that Password can have when configuring the
+room. The default value is *infinity*.
 
 - **max\_room\_desc**: *Number*  
 This option defines the maximum number of characters that Room
@@ -1796,24 +1816,26 @@ clients in Service Discovery. The value of *vCard* is a YAML map
 constructed from an XML representation of vCard. Since the
 representation has no attributes, the mapping is straightforward.
 
-For example, the following XML representation of vCard:
+    **Example**:
 
-    <vCard xmlns='vcard-temp'>
-      <FN>Conferences</FN>
-      <ADR>
-        <WORK/>
-        <STREET>Elm Street</STREET>
-      </ADR>
-    </vCard>
-
-will be translated to:
-
+    ~~~ yaml
+    # This XML representation of vCard:
+    #   <vCard xmlns='vcard-temp'>
+    #     <FN>Conferences</FN>
+    #     <ADR>
+    #       <WORK/>
+    #       <STREET>Elm Street</STREET>
+    #     </ADR>
+    #   </vCard>
+    #
+    # is translated to:
     vcard:
       fn: Conferences
       adr:
         -
           work: true
           street: Elm Street
+    ~~~
 
 mod\_muc\_admin
 ---------------
@@ -1826,11 +1848,11 @@ This module depends on [mod_muc](#mod_muc).
 
 __Available options:__
 
-<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
-
 - **subscribe\_room\_many\_max\_users**: *Number*  
-How many users can be subscribed to a room at once using the
-*subscribe\_room\_many* command. The default value is *50*.
+<!-- md:version added in [22.05](../../archive/22.05/index.md) -->
+ How many users can be
+subscribed to a room at once using the *subscribe\_room\_many* command.
+The default value is *50*.
 
 mod\_muc\_log
 -------------
@@ -1907,9 +1929,11 @@ the files. The default value is shown in the example below:
 
     **Example**:
 
-        file_permissions:
-          mode: 644
-          group: 33
+    ~~~ yaml
+    file_permissions:
+      mode: 644
+      group: 33
+    ~~~
 
 - **outdir**: *Path*  
 This option sets the full path to the directory in which the HTML files
@@ -1933,8 +1957,10 @@ each log file. The default value is shown in the example below:
 
     **Example**:
 
-        top_link:
-          /: Home
+    ~~~ yaml
+    top_link:
+      /: Home
+    ~~~
 
 - **url**: *URL*  
 A top level *URL* where a client can access logs of a particular
@@ -1945,25 +1971,27 @@ option is set to *room\_name* or a conference JID is appended to the
 mod\_muc\_occupantid
 --------------------
 
+<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
+
+
 This module implements [XEP-0421: Anonymous unique occupant identifiers
 for MUCs](https://xmpp.org/extensions/xep-0421.html).
 
 When the module is enabled, the feature is enabled in all semi-anonymous
 rooms.
 
-This module is available since ejabberd <a href="../../../archive/23.10/">23.10</a>.
-
 The module has no options.
 
 mod\_muc\_rtbl
 --------------
 
+<!-- md:version added in [23.04](../../archive/23.04/index.md) -->
+
+
 This module implement Real-time blocklists for MUC rooms.
 
 It works by observing remote pubsub node conforming with specification
 described in <https://xmppbl.org/>.
-
-This module is available since ejabberd <a href="../../../archive/23.04/">23.04</a>.
 
 __Available options:__
 
@@ -2000,21 +2028,23 @@ the real virtual host name. The default value is *multicast.@HOST@*.
 Specify a list of custom limits which override the default ones defined
 in XEP-0033. Limits are defined per sender type and stanza type, where:
 
- - *sender* can be: *local* or *remote*.
+    - *sender* can be: *local* or *remote*.
 
- - *stanza* can be: *message* or *presence*.
+    - *stanza* can be: *message* or *presence*.
 
- - *number* can be a positive integer or *infinite*.
+    - *number* can be a positive integer or *infinite*.
 
         **Example**:
 
-            # Default values:
-            local:
-              message: 100
-              presence: 100
-            remote:
-              message: 20
-              presence: 20
+        ~~~ yaml
+        # Default values:
+        local:
+          message: 100
+          presence: 100
+        remote:
+          message: 20
+          presence: 20
+        ~~~
 
 - **name**  
 Service name to provide in the Info query to the Service Discovery.
@@ -2025,37 +2055,39 @@ vCard element to return when queried. Default value is *undefined*.
 
 __**Example**:__
 
-    # Only admins can send packets to multicast service
-    access_rules:
-      multicast:
-        - allow: admin
+~~~ yaml
+# Only admins can send packets to multicast service
+access_rules:
+  multicast:
+    - allow: admin
 
-    # If you want to allow all your users:
-    access_rules:
-      multicast:
-        - allow
+# If you want to allow all your users:
+access_rules:
+  multicast:
+    - allow
 
-    # This allows both admins and remote users to send packets,
-    # but does not allow local users
-    acl:
-      allservers:
-        server_glob: "*"
-    access_rules:
-      multicast:
-        - allow: admin
-        - deny: local
-        - allow: allservers
+# This allows both admins and remote users to send packets,
+# but does not allow local users
+acl:
+  allservers:
+    server_glob: "*"
+access_rules:
+  multicast:
+    - allow: admin
+    - deny: local
+    - allow: allservers
 
-    modules:
-      mod_multicast:
-         host: multicast.example.org
-         access: multicast
-         limits:
-           local:
-             message: 40
-             presence: infinite
-           remote:
-             message: 150
+modules:
+  mod_multicast:
+     host: multicast.example.org
+     access: multicast
+     limits:
+       local:
+         message: 40
+         presence: infinite
+       remote:
+         message: 150
+~~~
 
 mod\_offline
 ------------
@@ -2072,8 +2104,7 @@ works. A user is considered offline if no session presence priority &gt;
 > **Note**
 >
 > *ejabberdctl* has a command to delete expired messages (see chapter
-> [Managing an ejabberd
-> server](https://docs.ejabberd.im/admin/guide/managing) in online
+> [Managing an ejabberd server](../guide/managing.md) in online
 > documentation.
 
 __Available options:__
@@ -2139,27 +2170,29 @@ __Examples:__
 This example allows power users to have as much as 5000 offline
 messages, administrators up to 2000, and all the other users up to 100:
 
-    acl:
-      admin:
-        user:
-          - admin1@localhost
-          - admin2@example.org
-      poweruser:
-        user:
-          - bob@example.org
-          - jane@example.org
+~~~ yaml
+acl:
+  admin:
+    user:
+      - admin1@localhost
+      - admin2@example.org
+  poweruser:
+    user:
+      - bob@example.org
+      - jane@example.org
 
-    shaper_rules:
-      max_user_offline_messages:
-        - 5000: poweruser
-        - 2000: admin
-        - 100
+shaper_rules:
+  max_user_offline_messages:
+    - 5000: poweruser
+    - 2000: admin
+    - 100
 
-    modules:
-      ...
-      mod_offline:
-        access_max_user_messages: max_user_offline_messages
-      ...
+modules:
+  ...
+  mod_offline:
+    access_max_user_messages: max_user_offline_messages
+  ...
+~~~
 
 mod\_ping
 ---------
@@ -2200,13 +2233,13 @@ chance to resume it. The default value is *none*.
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_ping:
-        send_pings: true
-        ping_interval: 4 min
-        timeout_action: kill
-      ...
+~~~ yaml
+modules:
+  mod_ping:
+    send_pings: true
+    ping_interval: 4 min
+    timeout_action: kill
+~~~
 
 mod\_pres\_counter
 ------------------
@@ -2229,12 +2262,12 @@ The time interval. The default value is *1* minute.
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_pres_counter:
-        count: 5
-        interval: 30 secs
-      ...
+~~~ yaml
+modules:
+  mod_pres_counter:
+    count: 5
+    interval: 30 secs
+~~~
 
 mod\_privacy
 ------------
@@ -2345,7 +2378,7 @@ __Available options:__
 This option defines permissions for messages. By default no permissions
 are given. The *Options* are:
 
- - **outgoing**: *AccessName*  
+    - **outgoing**: *AccessName*  
    The option defines an access rule for
     sending outgoing messages by the component. The default value is
     *none*.
@@ -2354,12 +2387,12 @@ are given. The *Options* are:
 This option defines permissions for presences. By default no permissions
 are given. The *Options* are:
 
- - **managed\_entity**: *AccessName*  
+    - **managed\_entity**: *AccessName*  
    An access rule that gives
     permissions to the component to receive server presences. The
     default value is *none*.
 
- - **roster**: *AccessName*  
+    - **roster**: *AccessName*  
    An access rule that gives permissions to
     the component to receive the presence of both the users and the
     contacts in their roster. The default value is *none*.
@@ -2368,30 +2401,30 @@ are given. The *Options* are:
 This option defines roster permissions. By default no permissions are
 given. The *Options* are:
 
- - **both**: *AccessName*  
+    - **both**: *AccessName*  
    Sets read/write access to a user’s roster.
     The default value is *none*.
 
- - **get**: *AccessName*  
+    - **get**: *AccessName*  
    Sets read access to a user’s roster. The
     default value is *none*.
 
- - **set**: *AccessName*  
+    - **set**: *AccessName*  
    Sets write access to a user’s roster. The
     default value is *none*.
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_privilege:
-        roster:
-          get: all
-        presence:
-          managed_entity: all
-        message:
-          outgoing: all
-      ...
+~~~ yaml
+modules:
+  mod_privilege:
+    roster:
+      get: all
+    presence:
+      managed_entity: all
+    message:
+      outgoing: all
+~~~
 
 mod\_proxy65
 ------------
@@ -2473,58 +2506,39 @@ clients in Service Discovery. The value of *vCard* is a YAML map
 constructed from an XML representation of vCard. Since the
 representation has no attributes, the mapping is straightforward.
 
-For example, the following XML representation of vCard:
-
-    <vCard xmlns='vcard-temp'>
-      <FN>Conferences</FN>
-      <ADR>
-        <WORK/>
-        <STREET>Elm Street</STREET>
-      </ADR>
-    </vCard>
-
-will be translated to:
-
-    vcard:
-      fn: Conferences
-      adr:
-        -
-          work: true
-          street: Elm Street
-
 __**Example**:__
 
-    acl:
-      admin:
-        user: admin@example.org
-      proxy_users:
-        server: example.org
+~~~ yaml
+acl:
+  admin:
+    user: admin@example.org
+  proxy_users:
+    server: example.org
 
-    access_rules:
-      proxy65_access:
-        allow: proxy_users
+access_rules:
+  proxy65_access:
+    allow: proxy_users
 
-    shaper_rules:
-      proxy65_shaper:
-        none: admin
-      proxyrate: proxy_users
+shaper_rules:
+  proxy65_shaper:
+    none: admin
+  proxyrate: proxy_users
 
-    shaper:
-      proxyrate: 10240
+shaper:
+  proxyrate: 10240
 
-    modules:
-      ...
-      mod_proxy65:
-        host: proxy1.example.org
-        name: "File Transfer Proxy"
-        ip: 200.150.100.1
-        port: 7778
-        max_connections: 5
-        access: proxy65_access
-        shaper: proxy65_shaper
-        recbuf: 10240
-        sndbuf: 10240
-      ...
+modules:
+  mod_proxy65:
+    host: proxy1.example.org
+    name: "File Transfer Proxy"
+    ip: 200.150.100.1
+    port: 7778
+    max_connections: 5
+    access: proxy65_access
+    shaper: proxy65_shaper
+    recbuf: 10240
+    sndbuf: 10240
+~~~
 
 mod\_pubsub
 -----------
@@ -2558,10 +2572,12 @@ Define the configuration for given nodes. The default value is: *\[\]*.
 
     **Example**:
 
-        force_node_config:
-          ## Avoid buggy clients to make their bookmarks public
-          storage:bookmarks:
-            access_model: whitelist
+    ~~~ yaml
+    force_node_config:
+      ## Avoid buggy clients to make their bookmarks public
+      storage:bookmarks:
+        access_model: whitelist
+    ~~~
 
 - **host**  
 Deprecated. Use *hosts* instead.
@@ -2585,10 +2601,10 @@ systems with not so many nodes, caching last items speeds up pubsub and
 allows you to raise the user connection rate. The cost is memory usage,
 as every item is stored in memory.
 
-<div class="note-left">added in <a href="../../../archive/21.12/">21.12</a></div>
-
 - **max\_item\_expire\_node**: *timeout() | infinity*  
-Specify the maximum item epiry time. Default value is: *infinity*.
+<!-- md:version added in [21.12](../../archive/21.12/index.md) -->
+ Specify the maximum item epiry
+time. Default value is: *infinity*.
 
 - **max\_items\_node**: *non\_neg\_integer() | infinity*  
 Define the maximum number of items that can be stored in a node. Default
@@ -2613,11 +2629,11 @@ To specify which nodetree to use. If not defined, the default pubsub
 nodetree is used: *tree*. Only one nodetree can be used per host, and is
 shared by all node plugins.
 
- - *tree* nodetree store node configuration and relations on the
+    - *tree* nodetree store node configuration and relations on the
     database. *flat* nodes are stored without any relationship, and
     *hometree* nodes can have child nodes.
 
- - *virtual* nodetree does not store nodes on database. This saves
+    - *virtual* nodetree does not store nodes on database. This saves
     resources on systems with tons of nodes. If using the *virtual*
     nodetree, you can only enable those node plugins: *\[flat, pep\]* or
     *\[flat\]*; any other plugins configuration will not work. Also, all
@@ -2634,12 +2650,14 @@ namespace:
 
     **Example**:
 
-        modules:
-          ...
-          mod_pubsub:
-            pep_mapping:
-              http://jabber.org/protocol/tune: tune
-          ...
+    ~~~ yaml
+    modules:
+      ...
+      mod_pubsub:
+        pep_mapping:
+          http://jabber.org/protocol/tune: tune
+      ...
+    ~~~
 
 - **plugins**: *\[Plugin, ...\]*  
 To specify which pubsub node plugins to use. The first one in the list
@@ -2648,10 +2666,10 @@ list is: *\[flat\]*. PubSub clients can define which plugin to use when
 creating a node: add *type='plugin-name*' attribute to the *create*
 stanza element.
 
- - *flat* plugin handles the default behaviour and follows standard
+    - *flat* plugin handles the default behaviour and follows standard
     XEP-0060 implementation.
 
- - *pep* plugin adds extension to handle Personal Eventing Protocol
+    - *pep* plugin adds extension to handle Personal Eventing Protocol
     (XEP-0163) to the PubSub engine. When enabled, PEP is handled
     automatically.
 
@@ -2661,59 +2679,61 @@ in Service Discovery. The value of *vCard* is a YAML map constructed
 from an XML representation of vCard. Since the representation has no
 attributes, the mapping is straightforward.
 
-The following XML representation of vCard:
+    **Example**:
 
-    <vCard xmlns='vcard-temp'>
-      <FN>PubSub Service</FN>
-      <ADR>
-        <WORK/>
-        <STREET>Elm Street</STREET>
-      </ADR>
-    </vCard>
-
-will be translated to:
-
+    ~~~ yaml
+    # This XML representation of vCard:
+    #   <vCard xmlns='vcard-temp'>
+    #     <FN>Conferences</FN>
+    #     <ADR>
+    #       <WORK/>
+    #       <STREET>Elm Street</STREET>
+    #     </ADR>
+    #   </vCard>
+    #
+    # is translated to:
     vcard:
-      fn: PubSub Service
+      fn: Conferences
       adr:
         -
           work: true
           street: Elm Street
+    ~~~
 
 __Examples:__
 
 Example of configuration that uses flat nodes as default, and allows use
 of flat, hometree and pep nodes:
 
-    modules:
-      ...
-      mod_pubsub:
-        access_createnode: pubsub_createnode
-        max_subscriptions_node: 100
-        default_node_config:
-          notification_type: normal
-          notify_retract: false
-          max_items: 4
-        plugins:
-          - flat
-          - pep
-      ...
+~~~ yaml
+modules:
+  mod_pubsub:
+    access_createnode: pubsub_createnode
+    max_subscriptions_node: 100
+    default_node_config:
+      notification_type: normal
+      notify_retract: false
+      max_items: 4
+    plugins:
+      - flat
+      - pep
+~~~
 
 Using relational database requires using mod\_pubsub with db\_type
 *sql*. Only flat, hometree and pep plugins supports SQL. The following
 example shows previous configuration with SQL usage:
 
-    modules:
-      ...
-      mod_pubsub:
-        db_type: sql
-        access_createnode: pubsub_createnode
-        ignore_pep_from_offline: true
-        last_item_cache: false
-        plugins:
-          - flat
-          - pep
-      ...
+~~~ yaml
+modules:
+  mod_pubsub:
+    db_type: sql
+    access_createnode: pubsub_createnode
+    ignore_pep_from_offline: true
+    last_item_cache: false
+    plugins:
+      - flat
+      - pep
+~~~
 
 mod\_push
 ---------
@@ -2759,14 +2779,13 @@ If this option is set to *true*, the sender’s JID is included with push
 notifications generated for incoming messages with a body. The default
 value is *false*.
 
-<div class="note-left">added in <a href="../../../archive/23.10/">23.10</a></div>
-
 - **notify\_on**: *messages | all*  
-If this option is set to *messages*, notifications are generated only
-for actual chat messages with a body text (or some encrypted payload).
-If it’s set to *all*, any kind of XMPP stanza will trigger a
-notification. If unsure, it’s strongly recommended to stick to *all*,
-which is the default value.
+<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
+ If this option is set to
+*messages*, notifications are generated only for actual chat messages
+with a body text (or some encrypted payload). If it’s set to *all*, any
+kind of XMPP stanza will trigger a notification. If unsure, it’s
+strongly recommended to stick to *all*, which is the default value.
 
 - **use\_cache**: *true | false*  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
@@ -2838,16 +2857,15 @@ to uncontrolled massive accounts creation by rogue users.
 Specify rules to restrict access for user unregistration. By default any
 user is able to unregister their account.
 
-<div class="note-left">added in <a href="../../../archive/21.12/">21.12</a></div>
-
 - **allow\_modules**: *all | \[Module, ...\]*  
-List of modules that can register accounts, or *all*. The default value
-is *all*, which is equivalent to something like *\[mod\_register,
-mod\_register\_web\]*.
+<!-- md:version added in [21.12](../../archive/21.12/index.md) -->
+ List of modules that can
+register accounts, or *all*. The default value is *all*, which is
+equivalent to something like *\[mod\_register, mod\_register\_web\]*.
 
 - **captcha\_protected**: *true | false*  
-Protect registrations with [CAPTCHA](basic.md#captcha). The
-default is *false*.
+Protect registrations with [CAPTCHA](basic.md#captcha). The default is
+*false*.
 
 - **ip\_access**: *AccessName*  
 Define rules to allow or deny account registration depending on the IP
@@ -2885,9 +2903,9 @@ This module provides a web page where users can:
 
 -   Unregister an existing account on the server.
 
-This module supports [CAPTCHA](basic.md#captcha) to register a
-new account. To enable this feature, configure the top-level
-[captcha_cmd](toplevel.md#captcha_cmd) and top-level [captcha_url](toplevel.md#captcha_url) options.
+This module supports [CAPTCHA](basic.md#captcha) to register a new
+account. To enable this feature, configure the top-level [captcha_cmd](toplevel.md#captcha_cmd)
+and top-level [captcha_url](toplevel.md#captcha_url) options.
 
 As an example usage, the users of the host *localhost* can visit the
 page: *https://localhost:5280/register/* It is important to include the
@@ -2895,23 +2913,25 @@ last / character in the URL, otherwise the subpages URL will be
 incorrect.
 
 This module is enabled in *listen* → *ejabberd\_http* →
-[request\_handlers](listen-options.md#request_handlers), no need
-to enable in *modules*. The module depends on [mod_register](#mod_register) where all
+[request_handlers](listen-options.md#request_handlers), no need to
+enable in *modules*. The module depends on [mod_register](#mod_register) where all
 the configuration is performed.
 
 The module has no options.
 
 __**Example**:__
 
-    listen:
-      -
-        port: 5280
-        module: ejabberd_http
-        request_handlers:
-          /register: mod_register_web
+~~~ yaml
+listen:
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      /register: mod_register_web
 
-    modules:
-      mod_register: {}
+modules:
+  mod_register: {}
+~~~
 
 mod\_roster
 -----------
@@ -2964,12 +2984,12 @@ Enables/disables Roster Versioning. The default value is *false*.
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_roster:
-        versioning: true
-        store_current_id: false
-      ...
+~~~ yaml
+modules:
+  mod_roster:
+    versioning: true
+    store_current_id: false
+~~~
 
 mod\_s2s\_dialback
 ------------------
@@ -2997,15 +3017,15 @@ The default value is *all*.
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_s2s_dialback:
-        access:
-          allow:
-            server: legacy.domain.tld
-            server: invalid-cert.example.org
-          deny: all
-      ...
+~~~ yaml
+modules:
+  mod_s2s_dialback:
+    access:
+      allow:
+        server: legacy.domain.tld
+        server: invalid-cert.example.org
+      deny: all
+~~~
 
 mod\_service\_log
 -----------------
@@ -3023,13 +3043,13 @@ forwarded.
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_service_log:
-        loggers:
-          - xmpp-server.tld
-          - component.domain.tld
-      ...
+~~~ yaml
+modules:
+  mod_service_log:
+    loggers:
+      - xmpp-server.tld
+      - component.domain.tld
+~~~
 
 mod\_shared\_roster
 -------------------
@@ -3097,11 +3117,13 @@ Take the case of a computer club that wants all its members seeing each
 other in their rosters. To achieve this, they need to create a shared
 roster group similar to this one:
 
-    Name: club_members
-    Label: Club Members
-    Description: Members from the computer club
-    Members: member1@example.org, member2@example.org, member3@example.org
-    Displayed Groups: club_members
+~~~ yaml
+Name: club_members
+Label: Club Members
+Description: Members from the computer club
+Members: member1@example.org, member2@example.org, member3@example.org
+Displayed Groups: club_members
+~~~
 
 In another case we have a company which has three divisions: Management,
 Marketing and Sales. All group members should see all other members in
@@ -3110,26 +3132,28 @@ sales people in their roster. Simultaneously, all marketeers and the
 whole sales team should see all managers. This scenario can be achieved
 by creating shared roster groups as shown in the following lists:
 
-    First list:
-    Name: management
-    Label: Management
-    Description: Management
-    Members: manager1@example.org, manager2@example.org
-    Displayed: management, marketing, sales
+~~~ yaml
+First list:
+Name: management
+Label: Management
+Description: Management
+Members: manager1@example.org, manager2@example.org
+Displayed: management, marketing, sales
 
-    Second list:
-    Name: marketing
-    Label: Marketing
-    Description: Marketing
-    Members: marketeer1@example.org, marketeer2@example.org, marketeer3@example.org
-    Displayed: management, marketing
+Second list:
+Name: marketing
+Label: Marketing
+Description: Marketing
+Members: marketeer1@example.org, marketeer2@example.org, marketeer3@example.org
+Displayed: management, marketing
 
-    Third list:
-    Name: sales
-    Label: Sales
-    Description: Sales
-    Members: salesman1@example.org, salesman2@example.org, salesman3@example.org
-    Displayed: management, sales
+Third list:
+Name: sales
+Label: Sales
+Description: Sales
+Members: salesman1@example.org, salesman2@example.org, salesman3@example.org
+Displayed: management, sales
+~~~
 
 mod\_shared\_roster\_ldap
 -------------------------
@@ -3167,13 +3191,13 @@ password in multiple places.
 
 -   Connection parameters: The module also accepts the connection
     parameters, all of which default to the top-level parameter of the
-    same name, if unspecified. See [LDAP
-    Connection](ldap.md#ldap-connection) section for more
+    same name, if unspecified. See
+    [LDAP Connection](ldap.md#ldap-connection) section for more
     information about them.
 
-Check also the [Configuration examples](ldap.md#ldap-examples)
-section to get details about retrieving the roster, and configuration
-examples including Flat DIT and Deep DIT.
+Check also the [Configuration examples](ldap.md#ldap-examples) section
+to get details about retrieving the roster, and configuration examples
+including Flat DIT and Deep DIT.
 
 __Available options:__
 
@@ -3211,8 +3235,8 @@ only.
 
 - **ldap\_filter**  
 Additional filter which is AND-ed together with "User Filter" and "Group
-Filter". For more information check the LDAP
-[Filters](ldap.md#filters) section.
+Filter". For more information check the LDAP [Filters](ldap.md#filters)
+section.
 
 - **ldap\_gfilter**  
 "Group Filter", used when retrieving human-readable name (a.k.a.
@@ -3248,8 +3272,8 @@ section Filters.
 
 - **ldap\_memberattr\_format\_re**  
 A regex for extracting user ID from the value of the attribute named by
-*ldap\_memberattr*. Check the LDAP [Control
-Parameters](ldap.md#control-parameters) section.
+*ldap\_memberattr*. Check the LDAP
+[Control Parameters](ldap.md#control-parameters) section.
 
 - **ldap\_password**  
 Same as top-level [ldap_password](toplevel.md#ldap_password) option, but applied to this module
@@ -3340,8 +3364,8 @@ virtual host.
 >
 > It is not enough to just load this module. You should also configure
 > listeners and DNS records properly. For details see the section about
-> the [ejabberd\_sip](listen.md#ejabberd_sip) listen module in
-> the ejabberd Documentation.
+> the [ejabberd_sip](listen.md#ejabberd_sip) listen module in the
+> ejabberd Documentation.
 
 __Available options:__
 
@@ -3383,21 +3407,21 @@ are mandatory (e.g. you cannot omit "port" or "scheme").
 
 __**Example**:__
 
-    modules:
-      ...
-      mod_sip:
-        always_record_route: false
-        record_route: "sip:example.com;lr"
-        routes:
-          - "sip:example.com;lr"
-          - "sip:sip.example.com;lr"
-        flow_timeout_udp: 30 sec
-        flow_timeout_tcp: 1 min
-        via:
-          - tls://sip-tls.example.com:5061
-          - tcp://sip-tcp.example.com:5060
-          - udp://sip-udp.example.com:5060
-      ...
+~~~ yaml
+modules:
+  mod_sip:
+    always_record_route: false
+    record_route: "sip:example.com;lr"
+    routes:
+      - "sip:example.com;lr"
+      - "sip:sip.example.com;lr"
+    flow_timeout_udp: 30 sec
+    flow_timeout_tcp: 1 min
+    via:
+      - tls://sip-tls.example.com:5061
+      - tcp://sip-tcp.example.com:5060
+      - udp://sip-udp.example.com:5060
+~~~
 
 mod\_stats
 ----------
@@ -3495,10 +3519,12 @@ it to *0* effectively disables session resumption. The default value is
 mod\_stun\_disco
 ----------------
 
+<!-- md:version added in [20.04](../../archive/20.04/index.md) -->
+
+
 This module allows XMPP clients to discover STUN/TURN services and to
 obtain temporary credentials for using them as per [XEP-0215: External
-Service Discovery](https://xmpp.org/extensions/xep-0215.html). This
-module is included in ejabberd since version <a href="../../../archive/20.04/">20.04</a>.
+Service Discovery](https://xmpp.org/extensions/xep-0215.html).
 
 __Available options:__
 
@@ -3546,67 +3572,69 @@ Unless the *offer\_local\_services* is set to *false*, the explicitly
 listed services will be offered in addition to those announced
 automatically.
 
- - **host**: *Host*  
+    - **host**: *Host*  
    The hostname or IP address the STUN/TURN service is
     listening on. For non-TLS services, it’s recommended to specify an
     IP address (to avoid additional DNS lookup latency on the client
     side). For TLS services, the hostname (or IP address) should match
     the certificate. Specifying the *host* option is mandatory.
 
- - **port**: *1..65535*  
+    - **port**: *1..65535*  
    The port number the STUN/TURN service is
     listening on. The default port number is 3478 for non-TLS services
     and 5349 for TLS services.
 
- - **restricted**: *true | false*  
+    - **restricted**: *true | false*  
    This option determines whether
     temporary credentials for accessing the service are offered. The
     default is *false* for STUN/STUNS services and *true* for TURN/TURNS
     services.
 
- - **transport**: *tcp | udp*  
+    - **transport**: *tcp | udp*  
    The transport protocol supported by the
     service. The default is *udp* for non-TLS services and *tcp* for TLS
     services.
 
- - **type**: *stun | turn | stuns | turns*  
+    - **type**: *stun | turn | stuns | turns*  
    The type of service. Must be
     *stun* or *turn* for non-TLS services, *stuns* or *turns* for TLS
     services. The default type is *stun*.
 
     **Example**:
 
-        services:
-          -
-            host: 203.0.113.3
-            port: 3478
-            type: stun
-            transport: udp
-            restricted: false
-          -
-            host: 203.0.113.3
-            port: 3478
-            type: turn
-            transport: udp
-            restricted: true
-          -
-            host: 2001:db8::3
-            port: 3478
-            type: stun
-            transport: udp
-            restricted: false
-          -
-            host: 2001:db8::3
-            port: 3478
-            type: turn
-            transport: udp
-            restricted: true
-          -
-            host: server.example.com
-            port: 5349
-            type: turns
-            transport: tcp
-            restricted: true
+    ~~~ yaml
+    services:
+      -
+        host: 203.0.113.3
+        port: 3478
+        type: stun
+        transport: udp
+        restricted: false
+      -
+        host: 203.0.113.3
+        port: 3478
+        type: turn
+        transport: udp
+        restricted: true
+      -
+        host: 2001:db8::3
+        port: 3478
+        type: stun
+        transport: udp
+        restricted: false
+      -
+        host: 2001:db8::3
+        port: 3478
+        type: turn
+        transport: udp
+        restricted: true
+      -
+        host: server.example.com
+        port: 5349
+        type: turns
+        transport: tcp
+        restricted: true
+    ~~~
 
 mod\_time
 ---------
@@ -3685,24 +3713,28 @@ in Service Discovery. The value of *vCard* is a YAML map constructed
 from an XML representation of vCard. Since the representation has no
 attributes, the mapping is straightforward.
 
-For example, the following XML representation of vCard:
+    **Example**:
 
-    <vCard xmlns='vcard-temp'>
-      <FN>Conferences</FN>
-      <ADR>
-        <WORK/>
-        <STREET>Elm Street</STREET>
-      </ADR>
-    </vCard>
-
-will be translated to:
-
+    ~~~ yaml
+    # This XML representation of vCard:
+    #
+    #   <vCard xmlns='vcard-temp'>
+    #     <FN>Conferences</FN>
+    #     <ADR>
+    #       <WORK/>
+    #       <STREET>Elm Street</STREET>
+    #     </ADR>
+    #   </vCard>
+    #
+    # is translated to:
+    #
     vcard:
       fn: Conferences
       adr:
         -
           work: true
           street: Elm Street
+    ~~~
 
 __Available options for *ldap* backend:__
 
@@ -3743,8 +3775,11 @@ automatically translated by using the translation files (see
 *msgs/\*.msg* for available words). *Attribute* is the LDAP attribute or
 the pattern *%u*.
 
-The default is:
+    **Examples**:
 
+    The default is:
+
+    ~~~ yaml
     User: "%u"
     "Full Name": displayName
     "Given Name": givenName
@@ -3757,6 +3792,7 @@ The default is:
     Email: mail
     "Organization Name": o
     "Organization Unit": ou
+    ~~~
 
 - **ldap\_search\_reported**: *{SearchField: VcardField}, ...}*  
 This option defines which search fields should be reported.
@@ -3765,8 +3801,11 @@ automatically translated by using the translation files (see
 *msgs/\*.msg* for available words). *VcardField* is the vCard field name
 defined in the *ldap\_vcard\_map* option.
 
-The default is:
+    **Examples**:
 
+    The default is:
+
+    ~~~ yaml
     "Full Name": FN
     "Given Name": FIRST
     "Middle Name": MIDDLE
@@ -3778,6 +3817,7 @@ The default is:
     "Email": EMAIL
     "Organization Name": ORGNAME
     "Organization Unit": ORGUNIT
+    ~~~
 
 - **ldap\_servers**  
 Same as top-level [ldap_servers](toplevel.md#ldap_servers) option, but applied to this module
@@ -3812,8 +3852,11 @@ sequentially replaced with the values of LDAP attributes from
 *List\_of\_LDAP\_attributes*, *%u* will be replaced with the user part
 of a JID, and *%d* will be replaced with the domain part of a JID.
 
-The default is:
+    **Examples**:
 
+    The default is:
+
+    ~~~ yaml
     NICKNAME: {"%u": []}
     FN: {"%s": [displayName]}
     LAST: {"%s": [sn]}
@@ -3834,6 +3877,7 @@ The default is:
     BDAY: {"%s": [birthDay]}
     ROLE: {"%s": [employeeType]}
     PHOTO: {"%s": [jpegPhoto]}
+    ~~~
 
 __Available options for *mnesia* backend:__
 

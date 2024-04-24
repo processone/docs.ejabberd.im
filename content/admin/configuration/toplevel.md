@@ -1,42 +1,45 @@
 # Top-Level Options
 
-> This section describes top level options of ejabberd. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+> This section describes top level options of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The
+options that changed in this version are marked with 🟤.
 
 ## access\_rules
 
 *{AccessName: {allow|deny: ACLRules|ACLName}}*  
 
-This option defines [Access Rules](basic.md#access-rules). Each
-access rule is assigned a name that can be referenced from other parts
-of the configuration file (mostly from *access* options of ejabberd
-modules). Each rule definition may contain arbitrary number of *allow*
-or *deny* sections, and each section may contain any number of ACL rules
-(see [acl](#acl) option). There are no access rules defined by default.
+This option defines [Access Rules](basic.md#access-rules). Each access
+rule is assigned a name that can be referenced from other parts of the
+configuration file (mostly from *access* options of ejabberd modules).
+Each rule definition may contain arbitrary number of *allow* or *deny*
+sections, and each section may contain any number of ACL rules (see
+[acl](#acl) option). There are no access rules defined by default.
 
 **Example**:
 
-    access_rules:
-      configure:
-        allow: admin
-      something:
-        deny: someone
-        allow: all
-      s2s_banned:
-        deny: problematic_hosts
-        deny: banned_forever
-        deny:
-          ip: 222.111.222.111/32
-        deny:
-          ip: 111.222.111.222/32
-        allow: all
-      xmlrpc_access:
-        allow:
-          user: peter@example.com
-        allow:
-          user: ivone@example.com
-        allow:
-          user: bot@example.com
-          ip: 10.0.0.0/24
+~~~ yaml
+access_rules:
+  configure:
+    allow: admin
+  something:
+    deny: someone
+    allow: all
+  s2s_banned:
+    deny: problematic_hosts
+    deny: banned_forever
+    deny:
+      ip: 222.111.222.111/32
+    deny:
+      ip: 111.222.111.222/32
+    allow: all
+  xmlrpc_access:
+    allow:
+      user: peter@example.com
+    allow:
+      user: ivone@example.com
+    allow:
+      user: bot@example.com
+      ip: 10.0.0.0/24
+~~~
 
 ## acl
 
@@ -149,20 +152,22 @@ certificate requests and renewals are performed to some CA server (aka
 
 **Example**:
 
-    acme:
-      ca_url: https://acme-v02.api.letsencrypt.org/directory
-      contact:
-        - mailto:admin@domain.tld
-        - mailto:bot@domain.tld
-      auto: true
-      cert_type: rsa
+~~~ yaml
+acme:
+  ca_url: https://acme-v02.api.letsencrypt.org/directory
+  contact:
+    - mailto:admin@domain.tld
+    - mailto:bot@domain.tld
+  auto: true
+  cert_type: rsa
+~~~
 
 ## allow\_contrib\_modules
 
 *true | false*  
 
 Whether to allow installation of third-party modules or not. See
-[ejabberd-contrib](https://docs.ejabberd.im/developer/extending-ejabberd/modules/#ejabberd-contrib)
+[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
 documentation section. The default value is *true*.
 
 ## allow\_multiple\_connections
@@ -195,8 +200,8 @@ The default value is *sasl\_anon*.
 *\[Permission, ...\]*  
 
 Define the permissions for API access. Please consult the ejabberd Docs
-web → For Developers → ejabberd ReST API → [API
-Permissions](https://docs.ejabberd.im/developer/ejabberd-api/permissions/).
+web → For Developers → ejabberd ReST API →
+[API Permissions](../../developer/ejabberd-api/permissions.md).
 
 ## append\_host\_config
 
@@ -228,17 +233,17 @@ not set, the value from [cache_missed](#cache_missed) will be used.
 Same as [cache_size](#cache_size), but applied to authentication cache only. If not
 set, the value from [cache_size](#cache_size) will be used.
 
-<div class="note-down">added in <a href="../../../archive/23.10/">23.10</a></div>
-
 ## auth\_external\_user\_exists\_check
 
 *true | false*  
 
-Supplement check for user existence based on *mod\_last* data, for
-authentication methods that don’t have a way to reliably tell if a user
-exists (like is the case for *jwt* and certificate based
-authentication). This helps with processing offline message for those
-users. The default value is *true*.
+<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
+
+Supplement check for user
+existence based on *mod\_last* data, for authentication methods that
+don’t have a way to reliably tell if a user exists (like is the case for
+*jwt* and certificate based authentication). This helps with processing
+offline message for those users. The default value is *true*.
 
 ## auth\_method
 
@@ -257,14 +262,15 @@ be installed from the
 [ejabberd-contrib](https://github.com/processone/ejabberd-contrib) Git
 repository. Please refer to that module’s README file for details.
 
-<div class="note-down">improved in <a href="../../../archive/20.01/">20.01</a></div>
-
 ## auth\_password\_format
 
 *plain | scram*  
 
-The option defines in what format the users passwords are stored, plain
-text or in [SCRAM](authentication.md#scram) format:
+<!-- md:version improved in [20.01](../../archive/20.01/index.md) -->
+
+The option defines in what
+format the users passwords are stored, plain text or in
+[SCRAM](authentication.md#scram) format:
 
 -   *plain*: The password is stored as plain text in the database. This
     is risky because the passwords can be read if your database gets
@@ -287,10 +293,10 @@ The default value is *plain*.
 *sha | sha256 | sha512*  
 
 Hash algorithm that should be used to store password in
-[SCRAM](authentication.md#scram) format. You shouldn’t change
-this if you already have passwords generated with a different
-algorithm - users that have such passwords will not be able to
-authenticate. The default value is *sha*.
+[SCRAM](authentication.md#scram) format. You shouldn’t change this if
+you already have passwords generated with a different algorithm - users
+that have such passwords will not be able to authenticate. The default
+value is *sha*.
 
 ## auth\_use\_cache
 
@@ -323,12 +329,14 @@ is shown in the example below:
 
 **Example**:
 
-    c2s_ciphers:
-      - HIGH
-      - "!aNULL"
-      - "!eNULL"
-      - "!3DES"
-      - "@STRENGTH"
+~~~ yaml
+c2s_ciphers:
+  - HIGH
+  - "!aNULL"
+  - "!eNULL"
+  - "!3DES"
+  - "@STRENGTH"
+~~~
 
 ## c2s\_dhfile
 
@@ -350,10 +358,12 @@ below:
 
 **Example**:
 
-    c2s_protocol_options:
-      - no_sslv3
-      - cipher_server_preference
-      - no_compression
+~~~ yaml
+c2s_protocol_options:
+  - no_sslv3
+  - cipher_server_preference
+  - no_compression
+~~~
 
 ## c2s\_tls\_compression
 
@@ -411,24 +421,29 @@ core ejabberd parts support similar options too, see
 [auth_cache_size](#auth_cache_size), [oauth_cache_size](#oauth_cache_size), [router_cache_size](#router_cache_size), and
 [sm_cache_size](#sm_cache_size).
 
-<div class="note-down">improved in <a href="../../../archive/23.01/">23.01</a></div>
-
 ## captcha\_cmd
 
 *Path | ModuleName*  
 
-Full path to a script that generates [CAPTCHA](basic.md#captcha)
-images. *@VERSION@* is replaced with ejabberd version number in *XX.YY*
-format. *@SEMVER@* is replaced with ejabberd version number in semver
-format when compiled with Elixir’s mix, or XX.YY format otherwise.
-Alternatively, it can be the name of a module that implements ejabberd
-CAPTCHA support. There is no default value: when this option is not set,
-CAPTCHA functionality is completely disabled.
+<!-- md:version improved in [23.01](../../archive/23.01/index.md) -->
+
+Full path to a script that
+generates [CAPTCHA](basic.md#captcha) images. *@VERSION@* is replaced
+with ejabberd version number in *XX.YY* format. *@SEMVER@* is replaced
+with ejabberd version number in semver format when compiled with
+Elixir’s mix, or XX.YY format otherwise. Alternatively, it can be the
+name of a module that implements ejabberd CAPTCHA support. There is no
+default value: when this option is not set, CAPTCHA functionality is
+completely disabled.
+
+**Examples**:
 
 When using the ejabberd installers or container image, the example
 captcha scripts can be used like this:
 
-    captcha_cmd: /opt/ejabberd-@VERSION@/lib/ejabberd-@SEMVER@/priv/bin/captcha.sh
+~~~ yaml
+captcha_cmd: /opt/ejabberd-@VERSION@/lib/ejabberd-@SEMVER@/priv/bin/captcha.sh
+~~~
 
 ## captcha\_host
 
@@ -440,22 +455,23 @@ Deprecated. Use [captcha_url](#captcha_url) instead.
 
 *pos\_integer() | infinity*  
 
-Maximum number of [CAPTCHA](basic.md#captcha) generated images
-per minute for any given JID. The option is intended to protect the
-server from CAPTCHA DoS. The default value is *infinity*.
-
-<div class="note-down">improved in <a href="../../../archive/23.04/">23.04</a></div>
+Maximum number of [CAPTCHA](basic.md#captcha) generated images per
+minute for any given JID. The option is intended to protect the server
+from CAPTCHA DoS. The default value is *infinity*.
 
 ## captcha\_url
 
 *URL | auto | undefined*  
 
-An URL where [CAPTCHA](basic.md#captcha) requests should be
-sent. NOTE: you need to configure *request\_handlers* for
-*ejabberd\_http* listener as well. If set to *auto*, it builds the URL
-using a *request\_handler* already enabled, with encryption if
-available. If set to *undefined*, it builds the URL using the deprecated
-[captcha_host](#captcha_host) + /captcha. The default value is *auto*.
+<!-- md:version improved in [23.04](../../archive/23.04/index.md) -->
+
+An URL where
+[CAPTCHA](basic.md#captcha) requests should be sent. NOTE: you need to
+configure *request\_handlers* for *ejabberd\_http* listener as well. If
+set to *auto*, it builds the URL using a *request\_handler* already
+enabled, with encryption if available. If set to *undefined*, it builds
+the URL using the deprecated [captcha_host](#captcha_host) + /captcha. The default
+value is *auto*.
 
 ## certfiles
 
@@ -471,12 +487,16 @@ this option when TLS is enabled in either of ejabberd listeners:
 certificate files or change the value of the option, run *ejabberdctl
 reload-config* in order to rebuild and reload the certificate chains.
 
+**Examples**:
+
 If you use [Let’s Encrypt](https://letsencrypt.org) certificates for
 your domain "domain.tld", the configuration will look like this:
 
-    certfiles:
-      - /etc/letsencrypt/live/domain.tld/fullchain.pem
-      - /etc/letsencrypt/live/domain.tld/privkey.pem
+~~~ yaml
+certfiles:
+  - /etc/letsencrypt/live/domain.tld/fullchain.pem
+  - /etc/letsencrypt/live/domain.tld/privkey.pem
+~~~
 
 ## cluster\_backend
 
@@ -523,16 +543,18 @@ macro.
 
 **Example**:
 
-    define_macro:
-      DEBUG: debug
-      LOG_LEVEL: DEBUG
-      USERBOB:
-        user: bob@localhost
+~~~ yaml
+define_macro:
+  DEBUG: debug
+  LOG_LEVEL: DEBUG
+  USERBOB:
+    user: bob@localhost
 
-    loglevel: LOG_LEVEL
+loglevel: LOG_LEVEL
 
-    acl:
-      admin: USERBOB
+acl:
+  admin: USERBOB
+~~~
 
 ## disable\_sasl\_mechanisms
 
@@ -582,12 +604,14 @@ connected as *Domain*, available *Options* are:
 
 **Example**:
 
-    domain_balancing:
-      component.domain.tld:
-        type: destination
-        component_number: 5
-      transport.example.org:
-        type: bare_source
+~~~ yaml
+domain_balancing:
+  component.domain.tld:
+    type: destination
+    component_number: 5
+  transport.example.org:
+    type: bare_source
+~~~
 
 ## ext\_api\_headers
 
@@ -665,17 +689,19 @@ example below LDAP authentication method will be used on virtual host
 
 **Example**:
 
-    hosts:
-      - domain.tld
-      - example.org
+~~~ yaml
+hosts:
+  - domain.tld
+  - example.org
 
+auth_method:
+  - sql
+
+host_config:
+  domain.tld:
     auth_method:
-      - sql
-
-    host_config:
-      domain.tld:
-        auth_method:
-          - ldap
+      - ldap
+~~~
 
 ## hosts
 
@@ -703,14 +729,14 @@ following:
     options in the included file *Filename*. The options that match this
     criteria are not accepted. The default value is an empty list.
 
-<div class="note-down">added in <a href="../../../archive/23.10/">23.10</a></div>
-
 ## install\_contrib\_modules
 
 *\[Module, ...\]*  
 
+<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
+
 Modules to install from
-[ejabberd-contrib](https://docs.ejabberd.im/developer/extending-ejabberd/modules/#ejabberd-contrib)
+[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
 at start time. The default value is an empty list of modules: *\[\]*.
 
 ## jwt\_auth\_only\_rule
@@ -790,8 +816,10 @@ option if possible.
 
 **Example**:
 
-    ldap_dn_filter:
-      "(&(name=%s)(owner=%D)(user=%u@%d))": [sn]
+~~~ yaml
+ldap_dn_filter:
+  "(&(name=%s)(owner=%D)(user=%u@%d))": [sn]
+~~~
 
 ## ldap\_encrypt
 
@@ -891,34 +919,36 @@ JID. For example, "%<u@example>.org". If the value is in the form of
 
 *\[Options, ...\]*  
 
-The option for listeners configuration. See the [Listen
-Modules](listen.md) section for details.
-
-<div class="note-down">added in <a href="../../../archive/22.10/">22.10</a></div>
+The option for listeners configuration. See the
+[Listen Modules](listen.md) section for details.
 
 ## log\_burst\_limit\_count
 
 *Number*  
 
-The number of messages to accept in `log_burst_limit_window_time` period
-before starting to drop them. Default 500
+<!-- md:version added in [22.10](../../archive/22.10/index.md) -->
 
-<div class="note-down">added in <a href="../../../archive/22.10/">22.10</a></div>
+The number of messages to
+accept in `log_burst_limit_window_time` period before starting to drop
+them. Default 500
 
 ## log\_burst\_limit\_window\_time
 
 *Number*  
 
-The time period to rate-limit log messages by. Defaults to 1 second.
+<!-- md:version added in [22.10](../../archive/22.10/index.md) -->
 
-<div class="note-down">added in <a href="../../../archive/23.01/">23.01</a></div>
+The time period to rate-limit
+log messages by. Defaults to 1 second.
 
 ## log\_modules\_fully
 
 *\[Module, ...\]*  
 
-List of modules that will log everything independently from the general
-loglevel option.
+<!-- md:version added in [23.01](../../archive/23.01/index.md) -->
+
+List of modules that will log
+everything independently from the general loglevel option.
 
 ## log\_rotate\_count
 
@@ -962,8 +992,8 @@ value is *10000*.
 
 *{Module: Options}*  
 
-The option for modules configuration. See [Modules](modules.md)
-section for details.
+The option for modules configuration. See [Modules](modules.md) section
+for details.
 
 ## negotiation\_timeout
 
@@ -1020,14 +1050,14 @@ set, the value from [cache_life_time](#cache_life_time) will be used.
 Same as [cache_missed](#cache_missed), but applied to OAuth cache only. If not set,
 the value from [cache_missed](#cache_missed) will be used.
 
-<div class="note-down">added in <a href="../../../archive/21.01/">21.01</a></div>
-
 ## oauth\_cache\_rest\_failure\_life\_time
 
 *timeout()*  
 
-The time that a failure in OAuth ReST is cached. The default value is
-*infinity*.
+<!-- md:version added in [21.01](../../archive/21.01/index.md) -->
+
+The time that a failure in
+OAuth ReST is cached. The default value is *infinity*.
 
 ## oauth\_cache\_size
 
@@ -1096,36 +1126,37 @@ activated with some of the processes possibly be killed (see
 [oom_killer](#oom_killer) option). Later, when memory drops below this *Percent*,
 OOM killer is deactivated. The default value is *80* percents.
 
-<div class="note-down">changed in <a href="../../../archive/23.01/">23.01</a></div>
-
 ## outgoing\_s2s\_families
 
 *\[ipv6 | ipv4, ...\]*  
 
-Specify which address families to try, in what order. The default is
-*\[ipv6, ipv4\]* which means it first tries connecting with IPv6, if
-that fails it tries using IPv4. This option is obsolete and irrelevant
-when using ejabberd <a href="../../../archive/23.01/">23.01</a> and Erlang/OTP 22, or newer versions of them.
+<!-- md:version changed in [23.01](../../archive/23.01/index.md) -->
 
-<div class="note-down">added in <a href="../../../archive/20.12/">20.12</a></div>
+Specify which address
+families to try, in what order. The default is *\[ipv6, ipv4\]* which
+means it first tries connecting with IPv6, if that fails it tries using
+IPv4. This option is obsolete and irrelevant when using ejabberd [23.01](../../archive/23.01/index.md)
+and Erlang/OTP 22, or newer versions of them.
 
 ## outgoing\_s2s\_ipv4\_address
 
 *Address*  
 
-Specify the IPv4 address that will be used when establishing an outgoing
-S2S IPv4 connection, for example "127.0.0.1". The default value is
-*undefined*.
+<!-- md:version added in [20.12](../../archive/20.12/index.md) -->
 
-<div class="note-down">added in <a href="../../../archive/20.12/">20.12</a></div>
+Specify the IPv4 address that
+will be used when establishing an outgoing S2S IPv4 connection, for
+example "127.0.0.1". The default value is *undefined*.
 
 ## outgoing\_s2s\_ipv6\_address
 
 *Address*  
 
-Specify the IPv6 address that will be used when establishing an outgoing
-S2S IPv6 connection, for example "::FFFF:127.0.0.1". The default value
-is *undefined*.
+<!-- md:version added in [20.12](../../archive/20.12/index.md) -->
+
+Specify the IPv6 address that
+will be used when establishing an outgoing S2S IPv6 connection, for
+example "::FFFF:127.0.0.1". The default value is *undefined*.
 
 ## outgoing\_s2s\_port
 
@@ -1324,12 +1355,14 @@ is shown in the example below:
 
 **Example**:
 
-    s2s_ciphers:
-      - HIGH
-      - "!aNULL"
-      - "!eNULL"
-      - "!3DES"
-      - "@STRENGTH"
+~~~ yaml
+s2s_ciphers:
+  - HIGH
+  - "!aNULL"
+  - "!eNULL"
+  - "!3DES"
+  - "@STRENGTH"
+~~~
 
 ## s2s\_dhfile
 
@@ -1371,10 +1404,12 @@ below:
 
 **Example**:
 
-    s2s_protocol_options:
-      - no_sslv3
-      - cipher_server_preference
-      - no_compression
+~~~ yaml
+s2s_protocol_options:
+  - no_sslv3
+  - cipher_server_preference
+  - no_compression
+~~~
 
 ## s2s\_queue\_type
 
@@ -1433,9 +1468,11 @@ speed to 1,000 bytes/sec and shaper *fast* limits the traffic speed to
 
 **Example**:
 
-    shaper:
-      normal: 1000
-      fast: 50000
+~~~ yaml
+shaper:
+  normal: 1000
+  fast: 50000
+~~~
 
 ## shaper\_rules
 
@@ -1448,17 +1485,19 @@ that instead using *allow* or *deny*, a name of a shaper (defined in
 
 **Example**:
 
-    shaper_rules:
-      connections_limit:
-        10:
-          user: peter@example.com
-        100: admin
-        5: all
-      download_speed:
-        fast: admin
-        slow: anonymous_users
-        normal: all
-      log_days: 30
+~~~ yaml
+shaper_rules:
+  connections_limit:
+    10:
+      user: peter@example.com
+    100: admin
+    5: all
+  download_speed:
+    fast: admin
+    slow: anonymous_users
+    normal: all
+  log_days: 30
+~~~
 
 ## sm\_cache\_life\_time
 
@@ -1510,15 +1549,15 @@ default value is *5* seconds.
 An SQL database name. For SQLite this must be a full path to a database
 file. The default value is *ejabberd*.
 
-<div class="note-down">added in <a href="../../../archive/24.02/">24.02</a></div>
-
-## sql\_flags
+## sql\_flags 🟤
 
 *\[mysql\_alternative\_upsert\]*  
 
-This option accepts a list of SQL flags, and is empty by default.
-*mysql\_alternative\_upsert* forces the alternative upsert
-implementation in MySQL.
+<!-- md:version added in [24.02](../../archive/24.02/index.md) -->
+
+This option accepts a list of
+SQL flags, and is empty by default. *mysql\_alternative\_upsert* forces
+the alternative upsert implementation in MySQL.
 
 ## sql\_keepalive\_interval
 
@@ -1528,16 +1567,16 @@ An interval to make a dummy SQL request to keep alive the connections to
 the database. There is no default value, so no keepalive requests are
 made.
 
-<div class="note-down">added in <a href="../../../archive/20.12/">20.12</a></div>
-
 ## sql\_odbc\_driver
 
 *Path*  
 
-Path to the ODBC driver to use to connect to a Microsoft SQL Server
-database. This option only applies if the [sql_type](#sql_type) option is set to
-*mssql* and [sql_server](#sql_server) is not an ODBC connection string. The default
-value is: *libtdsodbc.so*
+<!-- md:version added in [20.12](../../archive/20.12/index.md) -->
+
+Path to the ODBC driver to use
+to connect to a Microsoft SQL Server database. This option only applies
+if the [sql_type](#sql_type) option is set to *mssql* and [sql_server](#sql_server) is not
+an ODBC connection string. The default value is: *libtdsodbc.so*
 
 ## sql\_password
 
@@ -1562,14 +1601,15 @@ The port where the SQL server is accepting connections. The default is
 *3306* for MySQL, *5432* for PostgreSQL and *1433* for MS SQL. The
 option has no effect for SQLite.
 
-<div class="note-down">added in <a href="../../../archive/20.01/">20.01</a></div>
-
 ## sql\_prepared\_statements
 
 *true | false*  
 
-This option is *true* by default, and is useful to disable prepared
-statements. The option is valid for PostgreSQL and MySQL.
+<!-- md:version added in [20.01](../../archive/20.01/index.md) -->
+
+This option is *true* by
+default, and is useful to disable prepared statements. The option is
+valid for PostgreSQL and MySQL.
 
 ## sql\_query\_timeout
 
@@ -1586,25 +1626,25 @@ The type of a request queue for the SQL server. See description of
 [queue_type](#queue_type) option for the explanation. The default value is the
 value defined in [queue_type](#queue_type) or *ram* if the latter is not set.
 
-<div class="note-down">improved in <a href="/archive/23_04/">23.04</a></div>
-
 ## sql\_server
 
 *Host*  
 
-The hostname or IP address of the SQL server. For [sql_type](#sql_type) *mssql*
-or *odbc* this can also be an ODBC connection string. The default value
-is *localhost*.
+<!-- md:version improved in [23.04](../../archive/23.04/index.md) -->
 
-<div class="note-down">improved in <a href="../../../archive/20.03/">20.03</a></div>
+The hostname or IP address
+of the SQL server. For [sql_type](#sql_type) *mssql* or *odbc* this can also be
+an ODBC connection string. The default value is *localhost*.
 
 ## sql\_ssl
 
 *true | false*  
 
-Whether to use SSL encrypted connections to the SQL server. The option
-is only available for MySQL, MS SQL and PostgreSQL. The default value is
-*false*.
+<!-- md:version improved in [20.03](../../archive/20.03/index.md) -->
+
+Whether to use SSL
+encrypted connections to the SQL server. The option is only available
+for MySQL, MS SQL and PostgreSQL. The default value is *false*.
 
 ## sql\_ssl\_cafile
 
@@ -1666,13 +1706,14 @@ for admin purpose, or security configuration (for example using
 client can set it itself and as a result the IP value cannot be trusted
 for security rules in ejabberd.
 
-<div class="note-down">added in <a href="/archive/23_10/">23.10</a></div>
-
 ## update\_sql\_schema
 
 *true | false*  
 
-Allow ejabberd to update SQL schema. The default value is *true*.
+<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
+
+Allow ejabberd to update SQL
+schema. The default value is *false*.
 
 ## use\_cache
 

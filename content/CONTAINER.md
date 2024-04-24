@@ -227,7 +227,7 @@ abort start, this can be disabled by prefixing commands with `!`
 Example usage (or check the [full example](#customized-example)):
 ```yaml
     environment:
-      - CTL_ON_CREATE=\! register admin localhost asd
+      - CTL_ON_CREATE=! register admin localhost asd
       - CTL_ON_START=stats registeredusers ;
                      check_password admin localhost asd ;
                      status
@@ -249,7 +249,7 @@ For this you can either:
 
 Example to connect a local `ejabberdctl` to a containerized ejabberd:
 1. When creating the container, export port 5210, and set `ERLANG_COOKIE`:
-```
+```sh
 docker run --name ejabberd -it \
   -e ERLANG_COOKIE=`cat $HOME/.erlang.cookie` \
   -p 5210:5210 -p 5222:5222 \
@@ -260,7 +260,7 @@ docker run --name ejabberd -it \
 4. Now use `ejabberdctl` in your local ejabberd deployment
 
 To connect using a local `ejabberd` script:
-```
+```sh
 ERL_DIST_PORT=5210 _build/dev/rel/ejabberd/bin/ejabberd ping
 ```
 
@@ -299,7 +299,7 @@ docker buildx build \
 It's also possible to use podman instead of docker, just notice:
 - `EXPOSE 4369-4399` port range is not supported, remove that in Dockerfile
 - It mentions that `healthcheck` is not supported by the Open Container Initiative image format
-- If you want to start with command `live`, add environment variable `EJABBERD_BYPASS_WARNINGS=true`
+- to start with command `live`, you may want to add environment variable `EJABBERD_BYPASS_WARNINGS=true`
 ```bash
 podman build \
     -t ejabberd \
@@ -313,6 +313,8 @@ podman exec eja1 ejabberdctl status
 podman exec -it eja1 sh
 
 podman stop eja1
+
+podman run --name eja1 -it -e EJABBERD_BYPASS_WARNINGS=true -p 5222:5222 localhost/ejabberd live
 ```
 
 ### Package build for `arm64`
@@ -433,7 +435,7 @@ services:
     environment:
       - ERLANG_NODE_ARG=ejabberd@main
       - ERLANG_COOKIE=dummycookie123
-      - CTL_ON_CREATE=\! register admin localhost asd
+      - CTL_ON_CREATE=! register admin localhost asd
 
   replica:
     image: ghcr.io/processone/ejabberd
