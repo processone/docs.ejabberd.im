@@ -270,11 +270,11 @@ hide:
     * Added support for WebSocket
     * Customizable session backends
     * SCRAM support for SQL authentication backend
+    * Documentation was [converted from LaTeX to Markdown](https://www.process-one.net/blog/ejabberd-new-documentation-site-a-community-effort/) and published in [docs.ejabberd.im/](https://docs.ejabberd.im/)
 
 * [15.02](https://www.process-one.net/blog/ejabberd-community-15-02/)
     * Added [Elixir support](https://www.process-one.net/blog/ejabberd-joins-the-elixir-revolution/)
     * New command to reload configuration withour restart
-    * [New documentation site published](https://www.process-one.net/blog/ejabberd-new-documentation-site-a-community-effort/): [docs.ejabberd.im/](https://docs.ejabberd.im/)
     * Bug tracker [moves from JIRA to GitHub Issues](https://www.process-one.net/blog/revamped-ejabberd-im-website-logo/)
 
 * [Revamped ejabberd website, new logo, new development process](https://www.process-one.net/blog/revamped-ejabberd-im-website-logo/) and bugtracking migrated from JIRA to GitHub
