@@ -3,11 +3,11 @@
 #
 
 site_name: ejabberd Docs
-site_url: https://processone.github.io/mkdocs/
+site_url:  https://docs.ejabberd.im
 
 repo_url: https://github.com/processone/ejabberd
 repo_name: processone/ejabberd
-edit_uri: https://github.com/processone/mkdocs/edit/main/content
+edit_uri: https://github.com/processone/docs.ejabberd.im/edit/master/content
 
 copyright: |
   Copyright &copy; 2008 - 2024 <a href="https://process-one.net" target="_blank" rel="noopener">ProcessOne</a>
