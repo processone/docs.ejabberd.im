@@ -1,4 +1,9 @@
-# Configuring ejabberd (Outdated)
+---
+search:
+  exclude: true
+---
+
+# Configuring ejabberd 20.03 or older
 
 Here are the main entry points to learn more about ejabberd configuration.
 ejabberd is extremely powerful and can be configured in many ways with many options.
@@ -33,8 +38,8 @@ In previous `ejabberd` version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format using
 `convert_to_yaml` command from `ejabberdctl` (see
-[ejabberdctl](../guide/managing.md#ejabberdctl)
-and [List of ejabberd Commands](../guide/managing.md#list_of_ejabberd_commands)
+[ejabberdctl](../admin/guide/managing.md#ejabberdctl)
+and [List of ejabberd Commands](../admin/guide/managing.md#list_of_ejabberd_commands)
 for details).
 
 If you want to specify some options using the old Erlang format, you
@@ -42,7 +47,7 @@ can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
 [Include Additional Configuration Files](#include-additional-configuration-files)
 for the option description and a related example in
-[Restrict Execution with AccessCommands](../guide/managing.md#restrict_execution_with_accesscommands).
+[Restrict Execution with AccessCommands](../admin/guide/managing.md#restrict_execution_with_accesscommands).
 
 ## Configuring One or Several XMPP Domains
 
@@ -322,11 +327,11 @@ are:
  `trusted_proxies` (global option)
 
 **`ejabberd_xmlrpc`**:   Handles XML-RPC requests to execute
- [ejabberd commands](../guide/managing.md#ejabberd_commands).
+ [ejabberd commands](../admin/guide/managing.md#ejabberd_commands).
  Options: `access_commands`, `maxsessions`, `timeout`.
  For explanations about `access_commands` see
- [Restrict Execution with AccessCommands](../guide/managing.md#restrict_execution_with_accesscommands).
- Check some [XML-RPC examples](../../developer/ejabberd-api/oauth.md#xml_rpc_examples).
+ [Restrict Execution with AccessCommands](../admin/guide/managing.md#restrict_execution_with_accesscommands).
+ Check some [XML-RPC examples](../developer/ejabberd-api/oauth.md#xml_rpc_examples).
  You can find more information in the old
  [`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc).
 
@@ -565,7 +570,7 @@ For example, the following simple configuration defines:
 
 - Port 5280 listens for HTTP requests, and serves the HTTP-Bind (BOSH)  service.
 
-- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../guide/managing.md#web_admin).
+- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../admin/guide/managing.md#web_admin).
 The socket only listens connections to the IP address 127.0.0.1.
 
 ``` yaml
@@ -639,7 +644,7 @@ In this example, the following configuration defines that:
 
 - Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
  all the IPv4 addresses. Note that it is also possible to serve them
- on different ports. The second example in section [Managing: Web Admin](../guide/managing.md#web_admin) shows
+ on different ports. The second example in section [Managing: Web Admin](../admin/guide/managing.md#web_admin) shows
  how exactly this can be done. A request handler to serve MQTT over Websocket is also defined.
 
 - All users except for the administrators have a traffic of limit
@@ -1671,7 +1676,7 @@ For example, to set Russian as default language:
 
  language: ru
 
-The page [Internationalization and Localization](../../developer/extending-ejabberd/localization.md)
+The page [Internationalization and Localization](../developer/extending-ejabberd/localization.md)
 provides more details.
 
 ## CAPTCHA
@@ -3541,7 +3546,7 @@ updated in 19.02, and is not yet ready to use in production.
 
 To learn more about how to use that feature, you can refer to our
 tutorial:
-[Getting started with XEP-0369: Mediated Information eXchange (MIX) v0.1](../../tutorials/mix-010.md).
+[Getting started with XEP-0369: Mediated Information eXchange (MIX) v0.1](../tutorials/mix-010.md).
 
 ## mod_metrics
 
@@ -3710,7 +3715,7 @@ Module options:
 - **`allow_query_users: true|false`**:   Occupants can send IQ queries to other occupants.
 
 - **`allow_subscription: true|false`**:   Allow users to subscribe to room events as described in
- [`Multi-User Chat Subscriptions`](https://docs.ejabberd.im/developer/xmpp-clients-bots/proposed-extensions/muc-sub/).
+ [`Multi-User Chat Subscriptions`](../developer/xmpp-clients-bots/extensions/muc-sub.md).
 
 - **`allow_user_invites: false|true`**:   Allow occupants to send invitations.
 
@@ -4115,7 +4120,7 @@ there's a service called "Multicast".
 
 Instead of sending two stanzas, like this:
 
-```
+``` xml
 <message to='user2@localhost' type='chat'>
    <body>Hello, world!</body>
 </message>
@@ -4126,7 +4131,7 @@ Instead of sending two stanzas, like this:
 
 now you can send a stanza like this:
 
-```
+``` xml
 <message to='multicast.localhost' type='chat'>
    <addresses xmlns='http://jabber.org/protocol/address'>
        <address type='to' jid='user2@localhost'/>
@@ -4140,7 +4145,7 @@ now you can send a stanza like this:
 
 They will receive something like this:
 
-```
+``` xml
 <message from='user1@localhost/tka1'
         to='user3@localhost'
         type='chat'>
@@ -4171,7 +4176,7 @@ email works. A user is considered offline if no session presence
 priority > 0 are currently open.
 
 Note that `ejabberdctl` has a command to delete expired messages (see
-section [Managing: ejabberdctl](../guide/managing.md#ejabberdctl)).
+section [Managing: ejabberdctl](../admin/guide/managing.md#ejabberdctl)).
 
 ### Options
 
@@ -4923,7 +4928,7 @@ Options:
 
 **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
-**`versioning: false|true`**:   Enables Roster Versioning. This option is disabled by default. We use a [simplified version of roster versioning](../../developer/xmpp-clients-bots/extensions/roster-versioning.md).
+**`versioning: false|true`**:   Enables Roster Versioning. This option is disabled by default. We use a [simplified version of roster versioning](../developer/xmpp-clients-bots/extensions/roster-versioning.md).
 
 **`store_current_id: false|true`**:   If this option is enabled, the current version number is stored on
  the database. If disabled, the version number is calculated on the

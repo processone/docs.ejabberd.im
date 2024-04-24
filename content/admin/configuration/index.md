@@ -25,4 +25,5 @@ Detailed documentation in sections:
 - [Top-Level Options](toplevel.md)
 - [Modules Options](modules.md)
 
-There's also a [copy of the old configuration](old.md) document which was used up to ejabberd 20.03.
+There's also a [copy of the old configuration](../../archive/old.md) document
+which was used up to ejabberd [20.03](../../archive/20.02/index.md).
