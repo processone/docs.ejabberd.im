@@ -8,6 +8,15 @@
 
 `ejabberd` is suitable for small deployments, whether they need to be *scalable* or not, as well as extremely large deployments.
 
+Check also the features in [ejabberd.im][im],
+[ejabberd at ProcessOne][p1home], and the list of [supported protocols in ProcessOne][xeps]
+and [XMPP.org][xmppej].
+
+[im]: https://ejabberd.im/
+[p1home]: https://www.process-one.net/en/ejabberd/
+[xeps]: https://www.process-one.net/en/ejabberd/protocols/
+[xmppej]: https://xmpp.org/software/servers/ejabberd/
+
 ## Key Features
 
 `ejabberd` is:
