@@ -7,22 +7,25 @@ hide:
 
 ## In the Works
 
-- Nothing to mention here right now.
+- **Rework ejabberd Docs**
+
+    The [ejabberd Docs](https://docs.ejabberd.im/) site needs some reorganization, as some sections has grown quite a lot and would better be reorganized.
+
 
 ## Planned
 
 - **Set as default automatic SQL schema update**
 
-Automatic SQL schema update was included as a beta-testing feature in ejabberd 23.10 (see the [feature announcement](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/)), and it will become the default. 
+    Automatic SQL schema update was included as a beta-testing feature in ejabberd 23.10 (see the [feature announcement](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/)), and it will become the default. 
 
 - **Remove support for Rebar2**
 
-ejabberd includes many tweaks to support rebar3 and rebar2. By removing support for rebar2, we could simplify rebar.config and other files a lot.
-But more importantly, dependencies would not need to be updated just because other dependencies are updated: Rebar2 requires exact version numbers to be provided, [Rebar3 doesn't require that](https://rebar3.org/docs/configuration/dependencies/#dependency-version-handling), and [neither does Mix](https://hexdocs.pm/elixir/Version.html#module-requirements).
+    ejabberd includes many tweaks to support rebar3 and rebar2. By removing support for rebar2, we could simplify rebar.config and other files a lot.
+    But more importantly, dependencies would not need to be updated just because other dependencies are updated: Rebar2 requires exact version numbers to be provided, [Rebar3 doesn't require that](https://rebar3.org/docs/configuration/dependencies/#dependency-version-handling), and [neither does Mix](https://hexdocs.pm/elixir/Version.html#module-requirements).
 
 ## Released
 
-## 2024
+### 2024
 
 - [24.02](https://www.process-one.net/blog/ejabberd-24-02/)
     - [Matrix gateway](../admin/configuration/modules.md/#mod_matrix_gw)
@@ -345,6 +348,25 @@ But more importantly, dependencies would not need to be updated just because oth
     * STUN server
     * New XEPs supported: XMPP Ping, Roster Versioning, [Import/Export Format](https://www.process-one.net/blog/ejabberd_migration_kit/)
     * Erlang/OTP R13 is supported
+
+* [2.0.5](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.5/) ([announcement](https://www.process-one.net/blog/ejabberd_205_has_been_released/))
+
+* [2.0.4](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.4/) ([announcement](https://www.process-one.net/blog/ejabberd_204_has_been_released/))
+
+* [2.0.3](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.3/) ([announcement](https://www.process-one.net/blog/ejabberd_203_has_been_released/))
+
+### 2008
+
+* [2.0.2](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_202/) ([announcement](https://www.process-one.net/blog/ejabberd_202/))
+
+* [2.0.1](http://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_201) ([announcement](https://www.process-one.net/blog/ejabberd_201/))
+
+* [2.0.0](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_200/) ([announcement](https://www.process-one.net/blog/ejabberd_200/))
+    * New front-end and back-end cluster architecture
+    * Complete rewrite of the PubSub module
+    * New Proxy65 file transfer proxy
+    * BOSH support
+    * Many more improvements
 
 ### 2007
 
