@@ -1,0 +1,9 @@
+.mdx-badge__icon{
+  background:var(--md-accent-fg-color--transparent);
+  padding:.2rem
+}
+.mdx-badge__text{
+  font-size:.85em;
+  box-shadow:0 0 0 1px inset var(--md-accent-fg-color--transparent);
+  padding:.2rem .3rem
+}

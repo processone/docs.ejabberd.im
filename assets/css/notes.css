@@ -1,0 +1,7 @@
+div .note-down,
+div .note-left {
+  font-size: 0.9em;
+  color: red;
+  float: right;
+  position: relative;
+}

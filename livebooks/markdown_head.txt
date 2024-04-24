@@ -1,0 +1,11 @@
+
+<!-- WARNING: Don't edit this file. This is generated from the *.livemd, please edit that one instead -->
+
+!!! info
+    This page is designed to run interactively using [Livebook](https://livebook.dev/).
+    Of course, you could simply reproduce the instructions manually yourself.
+    But, if possible, install Livebook in your machine and get the full experience
+    clicking on the button:
+
+    [![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fprocessone.github.io%2Fmkdocs%2Flivebooks%2FNAME)
+
