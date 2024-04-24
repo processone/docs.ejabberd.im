@@ -2,19 +2,53 @@
 
 > This section describes the most recent ejabberd version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-## Listen Option
+## Listen Options
 
-The **listen option** defines for which ports, addresses and network
+The `listen` option defines for which ports, addresses and network
 protocols `ejabberd` will listen and what services will be run on them.
+
 Each element of the list is an associative array with the following
 elements:
 
-- Port, optionally also the IP address and/or a transport
- protocol.
+- **port**: *Number*
 
-- Listening module that serves this port.
+    Defines which port number to listen for incoming connections:
+    it can be a Jabber/XMPP standard port or any other valid port number.
 
-- Options for the TCP socket and for the listening module.
+    Alternatively, set the option to a string in form `"unix:/path/to/socket"`
+    to create and listen on a unix domain socket `/path/to/socket`.
+
+- **ip**: *IpAddress*
+
+    The socket will listen only in that network interface.
+    Depending on the type of the IP address, IPv4 or IPv6 will be used.
+
+    It is possible to specify a generic address
+    (`"0.0.0.0"` for IPv4 or `"::"` for IPv6),
+    so `ejabberd` will listen in all addresses.
+    Note that on some operating systems and/or OS configurations, listening
+    on `"::"` will mean listening for IPv4 traffic as well as IPv6 traffic.
+
+    Some example values for IP address:
+
+    - `"0.0.0.0"` to listen in all IPv4 network interfaces. This is the
+     default value when the option is not specified.
+
+    - `"::"` to listen in all IPv6 network interfaces
+
+    - `"10.11.12.13"` is the IPv4 address `10.11.12.13`
+
+    - `"::FFFF:127.0.0.1"` is the IPv6 address `::FFFF:127.0.0.1/128`
+
+- **transport**: *tcp|udp*
+
+    Defines the transport protocol. Default is `tcp`.
+
+- **module**: *ModuleName*
+
+    Listening module that serves this port
+
+- Any other options for the socket and for the listening module, described later.
 
 For example:
 
@@ -22,53 +56,20 @@ For example:
 listen:
   -
     port: 5222
-    module: ejabberd_c2s
     ip: 127.0.0.1
+    module: ejabberd_c2s
     starttls: true
   -
     port: 5269
-    module: ejabberd_s2s_in
     transport: tcp
+    module: ejabberd_s2s_in
 ```
 
-The **port** defines which port number to listen for incoming connections:
-it can be a Jabber/XMPP standard port or any other valid port number.
-Alternatively, set the option to a string in form `"unix:/path/to/socket"`
-to create and listen on a unix domain socket `/path/to/socket`.
-
-The **IP address** can be represented as a string. The socket will listen
-only in that network interface. It is possible to specify a generic
-address ("0.0.0.0" for IPv4 or "::" for IPv6), so `ejabberd` will listen
-in all addresses. Depending on the type of the IP address, IPv4 or IPv6
-will be used. When the IP address is not specified, it will listen on
-all IPv4 network addresses.
-
-Note that on some operating systems and/or OS configurations, listening
-on "::" will mean listening for IPv4 traffic as well as IPv6 traffic.
-
-Some example values for IP address:
-
-- `"0.0.0.0"` to listen in all IPv4 network interfaces. This is the
- default value when no IP is specified.
-
-- `"::"` to listen in all IPv6 network interfaces
-
-- `"10.11.12.13"` is the IPv4 address `10.11.12.13`
-
-- `"::FFFF:127.0.0.1"` is the IPv6 address `::FFFF:127.0.0.1/128`
-
-The **transport protocol** can be `tcp` or `udp`. Default is `tcp`.
-
-## Summary of Listen Modules
-
-The available modules, their purpose and the options allowed by each one
-are:
-
-### ejabberd_c2s
+## ejabberd_c2s
 
 Handles c2s connections.
 
-Options:
+General listen options supported:
 [access](listen-options.md#access),
 [cafile](listen-options.md#cafile),
 [ciphers](listen-options.md#ciphers),
@@ -85,11 +86,11 @@ Options:
 [tls_verify](listen-options.md#tls_verify),
 [zlib](listen-options.md#zlib).
 
-### ejabberd_s2s_in
+## ejabberd_s2s_in
 
 Handles incoming s2s connections.
 
-Options:
+General listen options supported:
 [cafile](listen-options.md#cafile),
 [ciphers](listen-options.md#ciphers),
 [dhfile](listen-options.md#dhfile),
@@ -101,14 +102,12 @@ Options:
 [tls](listen-options.md#tls),
 [tls_compression](listen-options.md#tls-compression).
 
-### ejabberd_service
+## ejabberd_service
 
-Interacts with an
- [`external component`](https://ejabberd.im/tutorials-transports)
- (as defined in the Jabber Component Protocol
- ([`XEP-0114`](https://xmpp.org/extensions/xep-0114.html)).
+Interacts with an [`external component`](https://ejabberd.im/tutorials-transports)
+as defined in [XEP-0114: Jabber Component Protocol](https://xmpp.org/extensions/xep-0114.html).
 
-Options:
+General listen options supported:
 [access](listen-options.md#access),
 [cafile](listen-options.md#cafile),
 [certfile](listen-options.md#certfile),
@@ -127,75 +126,7 @@ Options:
 [tls](listen-options.md#tls),
 [tls_compression](listen-options.md#tls-compression).
 
-### ejabberd_sip
-
-Handles SIP requests as defined in [`RFC 3261`](https://tools.ietf.org/html/rfc3261).
-
-For details please check the [ejabberd_sip](#ejabberd_sip_1) and [mod_sip](modules.md#mod_sip) sections.
-
-General listener options:
-[certfile](listen-options.md#certfile),
-[send_timeout](listen-options.md#send_timeout),
-[tls](listen-options.md#tls).
-
-### ejabberd_stun
-
-Handles STUN/TURN requests as defined in
- [`RFC 5389`](https://tools.ietf.org/html/rfc5389) and
- [`RFC 5766`](https://tools.ietf.org/html/rfc5766).
-
-For the specific module options, please check the
-[ejabberd_stun](#ejabberd_stun_1) section:
-`auth_realm`,
-`auth_type`,
-`server_name`,
-`turn_blacklist`,
-`turn_ipv4_address`,
-`turn_ipv6_address`,
-`turn_max_allocations`,
-`turn_max_permissions`,
-`turn_max_port`,
-`turn_min_port`,
-`use_turn`.
-
-General listener options:
-[certfile](listen-options.md#certfile),
-[send_timeout](listen-options.md#send_timeout),
-[shaper](listen-options.md#shaper),
-[tls](listen-options.md#tls),
-
-### ejabberd_http
-
-Handles incoming HTTP connections.
-
-With the proper request handlers configured, this serves HTTP services like
-[ACME](basic.md#acme),
-[API](modules.md#mod_http_api),
-[BOSH](modules.md#mod_bosh),
-[CAPTCHA](basic.md#captcha),
-[Fileserver](modules.md#mod_http_fileserver),
-[OAuth](../../developer/ejabberd-api/oauth.md),
-[RegisterWeb](modules.md#mod_register_web),
-[Upload](modules.md#mod_http_upload),
-[WebAdmin](../guide/managing.md#web_admin),
-[WebSocket](#ejabberd_http_ws),
-[XML-RPC](#ejabberd_xmlrpc).
-
-Options:
-[cafile](listen-options.md#cafile),
-[ciphers](listen-options.md#ciphers),
-[custom_headers](listen-options.md#custom_headers),
-[default_host](listen-options.md#default_host),
-[dhfile](listen-options.md#dhfile),
-[protocol_options](listen-options.md#protocol_options),
-[request_handlers](listen-options.md#request_handlers),
-[send_timeout](listen-options.md#send_timeout),
-[tag](listen-options.md#tag),
-[tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression),
-and the [trusted_proxies](toplevel.md#trusted_proxies) top-level option.
-
-### mod_mqtt
+## mod_mqtt
 
 Support for MQTT requires configuring `mod_mqtt` both in the
 [listen](toplevel.md#listen) and the
@@ -203,7 +134,7 @@ Support for MQTT requires configuring `mod_mqtt` both in the
 Check the [mod_mqtt module](modules.md#mod_mqtt) options,
 and the [MQTT Support](../guide/mqtt/index.md) section.
 
-Listen options:
+General listen options supported:
 [backlog](listen-options.md#backlog),
 [max_fsm_queue](listen-options.md#max_fsm_queue),
 [max_payload_size](listen-options.md#max_payload_size),
@@ -216,7 +147,8 @@ Listen options:
 
 ## ejabberd_stun
 
-`ejabberd` is able to act as a stand-alone STUN/TURN server
+`ejabberd` can act as a stand-alone STUN/TURN server,
+and this module handles STUN/TURN requests as defined in
 ([`RFC 5389`](https://tools.ietf.org/html/rfc5389)/[`RFC 5766`](https://tools.ietf.org/html/rfc5766).
 In that role `ejabberd` helps clients with ICE
 ([`RFC 5245`](https://tools.ietf.org/html/rfc5245) or Jingle ICE
@@ -224,56 +156,87 @@ In that role `ejabberd` helps clients with ICE
 discover their external addresses and ports and to relay media traffic
 when it is impossible to establish direct peer-to-peer connection.
 
-The specific configurable options are:
+General listen options supported:
+[certfile](listen-options.md#certfile),
+[send_timeout](listen-options.md#send_timeout),
+[shaper](listen-options.md#shaper),
+[tls](listen-options.md#tls),
 
-**`tls: true|false`**:   If enabled, `certfile` option must be set, otherwise `ejabberd` will
- not be able to accept TLS connections. Obviously, this option makes
- sense for `tcp` transport only. The default is `false`.
+The specific `ejabberd_stun` configurable options are:
 
-- **`certfile: Path`**:   Path to the certificate file. Only makes sense when `tls` is set.
+- **auth_realm**: *String*
 
-**`use_turn: true|false`**:   Enables/disables TURN (media relay) functionality. The default is
- `false`.
+    When `auth_type` is set to `user` and you have several virtual hosts
+    configured you should set this option explicitly to the virtual host
+    you want to serve on this particular listening port.
+    Implies `use_turn`.
 
-**`turn_blacklist: String | [String,...]`**:   Specify one or more IP addresses and/or subnet
- addresses/masks. The TURN server will refuse to relay traffic from/to
- blacklisted IP addresses. By default, loopback addresses (`127.0.0.0/8`
- and `::1/128`) are blacklisted.
+- **auth_type**: *user|anonymous*
 
-**`turn_ipv4_address: String`**:   The IPv4 address advertised by your TURN server.
- The address should not be NAT’ed or firewalled. There is not default,
- so you should set this option explicitly. Implies `use_turn`.
+    Which authentication type to use for TURN allocation requests.
+    When type `user` is set, ejabberd authentication backend is used.
+    For `anonymous` type no authentication is performed (not recommended for public services).
+    The default is `user`.
+    Implies `use_turn`.
 
-**`turn_ipv6_address: String`**:   The IPv6 address advertised by your TURN server.
- The address should not be NAT’ed or firewalled. There is not default,
- so you should set this option explicitly. Implies `use_turn`.
+- **shaper**: *Atom*
 
-**`turn_min_port: Integer`**:   Together with `turn_max_port` forms port range to allocate from. The
- default is 49152. Implies `use_turn`.
+    For `tcp` transports defines shaper to use.
+    The default is `none`.
 
-**`turn_max_port: Integer`**:   Together with `turn_min_port` forms port range to allocate from. The
- default is 65535. Implies `use_turn`.
+- **server_name**: *String*
 
-**`turn_max_allocations: Integer|infinity`**:   Maximum number of TURN allocations available from the particular IP
- address. The default value is 10. Implies `use_turn`.
+    Defines software version to return with every response.
+    The default is the STUN library version.
 
-**`turn_max_permissions: Integer|infinity`**:   Maximum number of TURN permissions available from the particular IP
- address. The default value is 10. Implies `use_turn`.
+- **turn_blacklist**: *String | [String,...]*
 
-**`auth_type: user|anonymous`**:   Which authentication type to use for TURN allocation requests. When
- type `user` is set, ejabberd authentication backend is used. For
- `anonymous` type no authentication is performed (not recommended for
- public services). The default is `user`. Implies `use_turn`.
+    Specify one or more IP addresses and/or subnet addresses/masks.
+    The TURN server will refuse to relay traffic from/to blacklisted IP addresses.
+    By default, loopback addresses (`127.0.0.0/8` and `::1/128`) are blacklisted.
 
-**`auth_realm: String`**:   When `auth_type` is set to `user` and you have several virtual hosts
- configured you should set this option explicitly to the virtual host
- you want to serve on this particular listening port. Implies
- `use_turn`.
+- **turn_ipv4_address**: *String*
+>>>>>>> 8b12c67 (Major reorganization of the Listen page)
 
-- **`shaper: Atom`**:   For `tcp` transports defines shaper to use. The default is `none`.
+    The IPv4 address advertised by your TURN server.
+    The address should not be NAT’ed or firewalled.
+    There is not default, so you should set this option explicitly.
+    Implies `use_turn`.
 
-**`server_name: String`**:   Defines software version to return with every response. The default
- is the STUN library version.
+- **turn_ipv6_address**: *String*
+
+    The IPv6 address advertised by your TURN server.
+    The address should not be NAT’ed or firewalled.
+    There is not default, so you should set this option explicitly.
+    Implies `use_turn`.
+
+- **turn_max_allocations**: *Integer|infinity*
+
+    Maximum number of TURN allocations available from the particular IP address.
+    The default value is 10. Implies `use_turn`.
+
+- **turn_max_permissions**: *Integer|infinity*
+
+    Maximum number of TURN permissions available from the particular IP address.
+    The default value is 10.
+    Implies `use_turn`.
+
+- **turn_max_port**: *Integer*
+
+    Together with `turn_min_port` forms port range to allocate from.
+    The default is 65535.
+    Implies `use_turn`.
+
+- **turn_min_port**: *Integer*
+
+    Together with `turn_max_port` forms port range to allocate from.
+    The default is 49152.
+    Implies `use_turn`.
+
+- **use_turn**: *true|false*
+
+    Enables/disables TURN (media relay) functionality.
+    The default is `false`.
 
 Example configuration with disabled TURN functionality (STUN only):
 
@@ -315,7 +278,7 @@ of [`RFC 5766`](https://tools.ietf.org/html/rfc5766) for details.
 
 Example DNS SRV configuration for STUN only:
 
-```
+``` sh
 _stun._udp   IN SRV  0 0 3478 stun.example.com.
 _stun._tcp   IN SRV  0 0 3478 stun.example.com.
 _stuns._tcp  IN SRV  0 0 5349 stun.example.com.
@@ -323,7 +286,7 @@ _stuns._tcp  IN SRV  0 0 5349 stun.example.com.
 
 And you should also add these in the case if TURN is enabled:
 
-```
+``` sh
 _turn._udp   IN SRV  0 0 3478 turn.example.com.
 _turn._tcp   IN SRV  0 0 3478 turn.example.com.
 _turns._tcp  IN SRV  0 0 5349 turn.example.com.
@@ -331,19 +294,26 @@ _turns._tcp  IN SRV  0 0 5349 turn.example.com.
 
 ## ejabberd_sip
 
-### SIP Configuration
 
-`ejabberd` has built-in SIP support. To activate this feature,
+`ejabberd` has built-in support to handle SIP requests
+as defined in [`RFC 3261`](https://tools.ietf.org/html/rfc3261).
+
+To activate this feature,
 add the [`ejabberd_sip`](#ejabberd_sip) listen module, enable
 [`mod_sip`](modules.md#mod_sip) module
 for the desired virtual host, and configure DNS properly.
 
 To add a listener you should configure `ejabberd_sip` listening module
-as described in [Listen](#listen-option) section.
+as described in [Listen](#listen-options) section.
 If option [`tls`](listen-options.md#tls) is specified,
 option [`certfile`](listen-options.md#certfile)
 must be specified as well, otherwise incoming TLS connections
 would fail.
+
+General listen options supported:
+[certfile](listen-options.md#certfile),
+[send_timeout](listen-options.md#send_timeout),
+[tls](listen-options.md#tls).
 
 Example configuration with standard ports (as per
 [`RFC 3261`](https://tools.ietf.org/html/rfc3261)):
@@ -379,7 +349,7 @@ recommended.
 
 Example configuration of NAPTR records:
 
-```
+``` sh
 example.com IN NAPTR 10  0 "s" "SIPS+D2T" "" _sips._tcp.example.com.
 example.com IN NAPTR 20  0 "s" "SIP+D2T" "" _sip._tcp.example.com.
 example.com IN NAPTR 30  0 "s" "SIP+D2U" "" _sip._udp.example.com.
@@ -388,24 +358,55 @@ example.com IN NAPTR 30  0 "s" "SIP+D2U" "" _sip._udp.example.com.
 Example configuration of SRV records with standard ports (as per
 [`RFC 3261`](https://tools.ietf.org/html/rfc3261):
 
-```
+``` sh
 _sip._udp   IN SRV  0 0 5060 sip.example.com.
 _sip._tcp   IN SRV  0 0 5060 sip.example.com.
 _sips._tcp  IN SRV  0 0 5061 sip.example.com.
 ```
 
-### Note on SIP usage
+!!! warning
 
-SIP authentication does not support SCRAM. As such, it is not possible
-to use `mod_sip` to authenticate when ejabberd has been set to encrypt
-password with SCRAM.
+    SIP authentication does not support SCRAM. As such, it is not possible
+    to use `mod_sip` to authenticate when ejabberd has been set to encrypt
+    password with SCRAM.
 
-## ejabberd_http_ws
+## ejabberd_http
+
+Handles incoming HTTP connections.
+
+With the proper request handlers configured, this serves HTTP services like
+[ACME](basic.md#acme),
+[API](modules.md#mod_http_api),
+[BOSH](modules.md#mod_bosh),
+[CAPTCHA](basic.md#captcha),
+[Fileserver](modules.md#mod_http_fileserver),
+[OAuth](../../developer/ejabberd-api/oauth.md),
+[RegisterWeb](modules.md#mod_register_web),
+[Upload](modules.md#mod_http_upload),
+[WebAdmin](../guide/managing.md#web_admin),
+[WebSocket](#ejabberd_http_ws),
+[XML-RPC](#ejabberd_xmlrpc).
+
+Options:
+[cafile](listen-options.md#cafile),
+[ciphers](listen-options.md#ciphers),
+[custom_headers](listen-options.md#custom_headers),
+[default_host](listen-options.md#default_host),
+[dhfile](listen-options.md#dhfile),
+[protocol_options](listen-options.md#protocol_options),
+[request_handlers](listen-options.md#request_handlers),
+[send_timeout](listen-options.md#send_timeout),
+[tag](listen-options.md#tag),
+[tls](listen-options.md#tls),
+[tls_compression](listen-options.md#tls-compression),
+and the [trusted_proxies](toplevel.md#trusted_proxies) top-level option.
+
+### ejabberd_http_ws
 
 This module enables XMPP communication over WebSocket connection as
 described in [`RFC 7395`](https://tools.ietf.org/html/rfc7395).
 
-### WebSocket Config
+#### WebSocket Config
 
 To enable WebSocket, simply add a handler to the `request_handlers`
 section of an `ejabberd_http` listener:
@@ -425,7 +426,7 @@ This module can be configured using those top-level options:
 - [websocket\_ping\_interval](toplevel.md#websocket_ping_interval)
 - [websocket\_timeout](toplevel.md#websocket_timeout)
 
-### WebSocket Discovery
+#### WebSocket Discovery
 
 With the example configuration previously mentioned,
 the WebSocket URL would be: `ws://localhost:5280/xmpp`
@@ -436,16 +437,16 @@ easily discover WebSocket service for your XMPP domain
 One easy way to provide that file is using
 [`mod_host_meta`](modules.md#mod_host_meta).
 
-### Testing WebSocket
+#### Testing WebSocket
 
 A test client can be found on Github: [WebSocket test client](https://github.com/processone/xmpp-websocket-client)
 
 There is an example configuration for WebSocket and Converse.js in the
-[ejabberd 21.12 release notes](https://www.process-one.net/blog/ejabberd-21-12/).
+ejabberd [21.12](../../archive/21.12/index.md) release notes.
 
 <!-- TODO We should probably embed a test WebSocket client on the WebSocket info get page. -->
 
-## ejabberd_xmlrpc
+### ejabberd_xmlrpc
 
 Handles XML-RPC requests to execute
 [ejabberd commands](../guide/managing.md#ejabberd_commands).
@@ -535,9 +536,10 @@ server = xmlrpclib.Server("http://127.0.0.1:5280/xmlrpc/");
 It's possible to use OAuth for authentication instead of plain password, see
 [OAuth Support](../../developer/ejabberd-api/oauth.md).
 
-In ejabberd 20.03 and older, it was possible to configure `ejabberd_xmlrpc` as a
+In ejabberd [20.03](../../archive/20.03/index.md) and older,
+it was possible to configure `ejabberd_xmlrpc` as a
 listener, see the old document for reference and example configuration:
-[Listening Module](old.md#listening_module).
+[Listening Module](../../archive/old.md#listening_module).
 
 Just for reference, there's also the old
 [`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc)
