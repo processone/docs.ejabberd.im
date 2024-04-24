@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 18.06
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 18.06
 
 There are few option changes in this version. Please check the blogpost:
 https://www.process-one.net/blog/ejabberd-18-06/

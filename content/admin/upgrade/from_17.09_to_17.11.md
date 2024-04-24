@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 17.11
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 17.11
 
 You should follow this procedure if you are upgrading from ejabberd 17.09
 and running an SQL backend for archives (mod_mam) and/or PubSub (mod_pubsub)
@@ -29,7 +25,7 @@ There are two new tables, one which allows optimization on mucsub subscriptions,
 and another one needed by mod_push.
 
 ### MySQL
-```bash
+``` bash
 DROP INDEX i_username ON archive;
 CREATE INDEX i_username_timestamp USING BTREE ON archive(username,timestamp);
 
@@ -60,7 +56,7 @@ CREATE UNIQUE INDEX i_push_ut ON push_session (username(191), timestamp);
 ```
 
 ### PostgreSQL
-```bash
+``` bash
 DROP INDEX i_username;
 CREATE INDEX i_username_timestamp ON archive USING btree (username, timestamp);
 
@@ -91,7 +87,7 @@ CREATE UNIQUE INDEX i_push_ut ON push_session USING btree (username, timestamp);
 ```
 
 ### SQLite
-```bash
+``` bash
 DROP INDEX i_username ON archive;
 CREATE INDEX i_username_timestamp ON archive(username, timestamp);
 
@@ -124,7 +120,7 @@ CREATE UNIQUE INDEX i_push_ut ON push_session (username, timestamp);
 ```
 
 ### MsSQL
-```bash
+``` bash
 DROP INDEX [archive_username] ON [archive];
 CREATE INDEX [archive_username_timestamp] ON [archive] (username, timestamp)
  WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON);

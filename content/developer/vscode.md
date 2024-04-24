@@ -1,27 +1,18 @@
----
-title: Developing ejabberd with VSCode
-menu: VSCode
-order: 230
-toc: true
----
+# Developing ejabberd with VSCode
+
+<!-- md:version added in [23.01](../archive/23.01/index.md) -->
 
 The ejabberd git repository includes basic configuration and a few
-scripts to get started with VSCode, since ejabberd <a href="/archive/23_01/">23.01</a>.
+scripts to get started with ejabberd development using Visual Studio Code.
 
-There are several VSCode alternatives for ejabberd development:
+There are several Visual Studio Code flavours suitable for ejabberd development:
 
-* [Visual Studio Code](#visual-studio-code) desktop app –
-  local development with no dependencies
-* [VSCodium](#vscodium) desktop app –
-  local development installing dependencies
-* [Coder's code-server](#coder-s-code-server) container image –
-  local or remote development
-* [GitHub Codespaces](#github-codespaces) service –
-  quick and short remote development
+* [Visual Studio Code](#visual-studio-code) desktop app –  local development with no dependencies
+* [VSCodium](#vscodium) desktop app –  local development installing dependencies
+* [Coder's code-server](#coders-code-server) container image –  local or remote development
+* [GitHub Codespaces](#github-codespaces) service –  quick and short remote development
 
-
-Visual Studio Code
-------------------
+## Visual Studio Code
 
 The official [Visual Studio Code](https://code.visualstudio.com/)
 installers provided by Microsoft can use the official marketplace.
@@ -38,9 +29,7 @@ clone the ejabberd git repository locally,
 let it install the Dev Container extension,
 then let it reopen the path inside the devcontainer.
 
-
-VSCodium
---------
+## VSCodium
 
 [VSCodium](https://github.com/VSCodium/vscodium)
 provides Free/Libre Open Source Software Binaries of VSCode.
@@ -56,9 +45,7 @@ Once installed: open your local ejabberd git clone.
 It's highly recommended to go the EXTENSIONS tab
 and install the [Erlang LS extension](https://github.com/erlang-ls/vscode).
 
-
-Coder's code-server
--------------------
+## Coder's code-server
 
 An easy, zero-cost, way to use VSCode in a web browser is through
 the ejabberd's code-server container image.
@@ -68,7 +55,8 @@ Erlang/OTP, Elixir, and all the required libraries.
 
 Download and start the container,
 and provide as volume the path of your local ejabberd git clone:
-```
+
+``` sh
 docker run \
     --name coder \
     -it \
@@ -76,13 +64,12 @@ docker run \
     -v $(pwd)/ejabberd:/workspaces/ejabberd \
     ghcr.io/processone/code-server
 ```
+
 Now open in your web browser: `http://0.0.0.0:5208/`
 
 The next time it can be started with `docker start -i coder`
 
-
-GitHub Codespaces
------------------
+## GitHub Codespaces
 
 The ejabberd git repository contains default configuration to use it in the
 GitHub Codespaces service.
@@ -93,13 +80,11 @@ and later requires a subscription.
 
 To start using it:
 
-1. Go to https://github.com/codespaces
+1. Go to <https://github.com/codespaces>
 2. Click "New codespace"
 3. Select ejabberd repository, desired branch, click "Create codespace"
 
-
-Basic Usage
------------
+## Basic Usage
 
 Once you have VSCode running and ejabberd git repository opened,
 open some erlang file, so Erlang LS extension gets started,
@@ -108,14 +93,12 @@ The first time it will take some time to compile, be patient.
 
 Now you can:
 
-- In RUN click `▷ Relive` to compile and start ejabberd
-- In EXPLORER open any source code, and add a breakpoint
-- In TERMINAL you can call: `ejabberdctl register admin localhost somepass`
-- In PORTS you can view the addresses you can use to connect to the running ejabberd
+* In RUN click `▷ Relive` to compile and start ejabberd
+* In EXPLORER open any source code, and add a breakpoint
+* In TERMINAL you can call: `ejabberdctl register admin localhost somepass`
+* In PORTS you can view the addresses you can use to connect to the running ejabberd
 
 The ejabberd configuration file is in `_build/relive/conf/ejabberd.yml`.
 
 You can connect to ejabberd using a XMPP client using HTTPS BOSH or WS on port 5443.
 Webadmin is on port 5280, if it complains 404, add `admin/` to the URL.
-
-

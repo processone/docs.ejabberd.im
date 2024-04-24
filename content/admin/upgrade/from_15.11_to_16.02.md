@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 16.02
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 16.02
 
 The MySQL schema changed to UTF-8 encoding. If you are using MySQL backend
 you must upgrade the schema before starting ejabberd 16.02.
@@ -10,7 +6,7 @@ you must upgrade the schema before starting ejabberd 16.02.
 ## SQL database upgrade
 
 Example for MySQL:
-```bash
+``` bash
 mysql -h host -u user database -p << EOF
 ALTER DATABASE ejabberd CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 18.03
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 18.03
 
 You should follow this procedure if you are upgrading from ejabberd 18.01
 and running an SQL backend for archives (mod_mam).
@@ -17,7 +13,7 @@ following commands.
 Note: if your archive table is big, this action may take a while to complete.
 
 ### MySQL
-```bash
+``` bash
 DROP INDEX i_username_timestamp ON archive;
 DROP INDEX i_peer ON archive;
 DROP INDEX i_bare_peer ON archive;
@@ -27,7 +23,7 @@ CREATE INDEX i_username_bare_peer USING BTREE ON archive(username(191), bare_pee
 ```
 
 ### PostgreSQL
-```bash
+``` bash
 DROP INDEX i_peer ON archive;
 DROP INDEX i_bare_peer ON archive;
 CREATE INDEX i_username_peer ON archive USING btree (username, peer);
@@ -35,7 +31,7 @@ CREATE INDEX i_username_bare_peer ON archive USING btree (username, bare_peer);
 ```
 
 ### Sqlite
-```bash
+``` bash
 DROP INDEX i_peer ON archive;
 DROP INDEX i_bare_peer ON archive;
 CREATE INDEX i_archive_username_peer ON archive (username, peer);
@@ -43,7 +39,7 @@ CREATE INDEX i_archive_username_bare_peer ON archive (username, bare_peer);
 ```
 
 ### MsSql
-```bash
+``` bash
 DROP INDEX [archive_username_timestamp] ON [archive];
 DROP INDEX [archive_peer] ON [archive];
 DROP INDEX [archive_bare_peer] ON [archive];

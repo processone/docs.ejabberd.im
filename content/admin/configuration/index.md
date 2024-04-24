@@ -1,9 +1,4 @@
----
-title: Configuring ejabberd
-toc: true
-menu: Configuration
-order: 3
----
+# Configuring ejabberd
 
 Here are the main entry points to learn more about ejabberd
 configuration. ejabberd is extremely powerful and can be configured in
@@ -20,14 +15,14 @@ Tutorials for first-time users:
 
 Detailed documentation in sections:
 
-- [File Format](/admin/configuration/file-format/)
-- [Basic Configuration](/admin/configuration/basic/): hosts, acl, logging...
-- [Authentication](/admin/configuration/authentication/): auth_method
-- [Databases](/admin/configuration/database/)
-- [LDAP](/admin/configuration/ldap/)
-- [Listen Modules](/admin/configuration/listen/): c2s, s2s, http, sip, stun...
-- [Listen Options](/admin/configuration/listen-options/)
-- [Top-Level Options](/admin/configuration/toplevel/)
-- [Modules Options](/admin/configuration/modules/)
+- [File Format](file-format.md)
+- [Basic Configuration](basic.md): hosts, acl, logging...
+- [Authentication](authentication.md): auth_method
+- [Databases](database.md)
+- [LDAP](ldap.md)
+- [Listen Modules](listen.md): c2s, s2s, http, sip, stun...
+- [Listen Options](listen-options.md)
+- [Top-Level Options](toplevel.md)
+- [Modules Options](modules.md)
 
-There's also a copy of the old [Configuration](/admin/configuration/old/) document which was used up to ejabberd 20.03.
+There's also a [copy of the old configuration](old.md) document which was used up to ejabberd 20.03.

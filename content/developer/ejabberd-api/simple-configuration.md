@@ -1,9 +1,4 @@
----
-title: Simple ejabberd Rest API Configuration
-menu: Simple Config
-order: 0
-toc: true
----
+# Simple ejabberd Rest API Configuration
 
 <!--
 TODO:
@@ -13,14 +8,12 @@ TODO:
 
 -->
 
-# Restrict to Local network
+## Restrict to Local network
 
 If you are planning to use ejabberd API for admin purpose, it is often enough to configure it to be available local commands.
 Access is thus generally limited by IP addresses, either restricted to localhost only, or restricted to one of your platform back-end.
 
-1. Make sure an [ejabberd_http](/admin/configuration/listen/#ejabberd-http)
-listener is using [mod_http_api](/admin/configuration/modules/#mod-http-api)
- on a given root URL and on a desired port:
+1. Make sure an [ejabberd_http](../../admin/configuration/listen.md#ejabberd_http) listener is using [mod_http_api](../../admin/configuration/modules.md#mod_http_api) on a given root URL and on a desired port:
 
     ``` yaml
     listen:
@@ -30,7 +23,7 @@ listener is using [mod_http_api](/admin/configuration/modules/#mod-http-api)
         ip: 127.0.0.1
         request_handlers:
           /api: mod_http_api
-     ```
+    ```
 
      The `ip` option ensures it listens only on the local interface (127.0.0.1) instead of listening on all interface (0.0.0.0).
 
@@ -51,16 +44,15 @@ listener is using [mod_http_api](/admin/configuration/modules/#mod-http-api)
 
 3. Now you can query the API, for example:
 
-    ``` bash
+    ``` sh
     curl '127.0.0.1:5281/api/registered_users?host=localhost'
 
     ["user2","user8"]
     ```
 
-# Encryption
+## Encryption
 
-If you already defined certificates and your connection is not on a local network,
-you may want to use encryption.
+If you already defined certificates and your connection is not on a local network, you may want to use encryption.
 
 1. Setup encryption like this:
 
@@ -76,7 +68,7 @@ you may want to use encryption.
 
 2. Now you can query using HTTPS:
 
-    ``` bash
+    ``` sh
     curl 'https://127.0.0.1:5281/api/registered_users?host=localhost'
 
     ["user2","user8"]
@@ -84,16 +76,15 @@ you may want to use encryption.
 
 3. If you are using a self-signed certificate, you can bypass the corresponding error message:
 
-    ``` bash
+    ``` sh
     curl --insecure 'https://127.0.0.1:5281/api/registered_users?host=localhost'
 
     ["user2","user8"]
     ```
 
-# Basic Authentication
+## Basic Authentication
 
-Quite probably you will want to require authentication to execute API queries,
-either using basic auth or OAuth.
+Quite probably you will want to require authentication to execute API queries, either using basic auth or OAuth.
 
 1. Assuming you have the simple listener:
 
@@ -105,7 +96,7 @@ either using basic auth or OAuth.
         ip: 127.0.0.1
         request_handlers:
           /api: mod_http_api
-     ```
+    ```
 
 2. Define an ACL with the account that you will use to authenticate:
 
@@ -128,16 +119,15 @@ either using basic auth or OAuth.
         what: "*"
     ```
 
-4. If that account does not yet exist,
-   [register it](/admin/installation/#administration-account):
+4. If that account does not yet exist, [register it](../../admin/install/index.md/#administration_account):
 
-    ``` bash
+    ``` sh
     ejabberdctl register john localhost somePass
     ```
 
 5. Now, when sending an API query, provide the authentication for that account:
 
-    ``` bash
+    ``` sh
     curl --basic --user john@localhost:somePass \
          '127.0.0.1:5281/api/registered_users?host=localhost'
 
@@ -159,13 +149,11 @@ either using basic auth or OAuth.
     print(res.text)
     ```
 
-# OAuth Authentication
+## OAuth Authentication
 
-Before using OAuth to interact with ejabberd API,
-you need to configure [OAuth support in ejabberd](/developer/ejabberd-api/oauth/).
+Before using OAuth to interact with ejabberd API, you need to configure [OAuth support in ejabberd](oauth.md).
 
-Here are example entries to check / change in your ejabberd
-configuration file:
+Here are example entries to check / change in your ejabberd configuration file:
 
 1. Add a request handler for OAuth:
 
@@ -184,7 +172,7 @@ configuration file:
           /oauth: ejabberd_oauth
     ```
 
-2. Set the [oauth_access](/admin/configuration/toplevel/#oauth-access)
+2. Set the [oauth_access](../../admin/configuration/toplevel.md#oauth_access)
    top-level option to allow token creation:
 
     ``` yaml
@@ -215,14 +203,15 @@ configuration file:
     ```
 
 5. If that account does not yet exist,
-   [register it](/admin/installation/#administration-account):
+   [register it](../../admin/install/index.md/#administration_account):
 
-    ``` bash
+    ``` sh
     ejabberdctl register john localhost somePass
     ```
 
 6. Request an authorization token. A quick way is using ejabberdctl:
-    ``` bash
+
+    ``` sh
     ejabberdctl oauth_issue_token user123@localhost 3600 ejabberd:admin
     erHymcBiT2r0QsuOpDjIrsEvnOS4grkj   [<<"ejabberd:admin">>]   3600 seconds
     ```
@@ -244,4 +233,3 @@ configuration file:
 
     ["user2","user8","john"]
     ```
-

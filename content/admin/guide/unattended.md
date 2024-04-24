@@ -1,8 +1,4 @@
----
-title: Unattended Installation
-toc: true
-menu: Unattended
----
+# Unattended Installation
 
 Bitrock framework allow unattended installation. With this mode, the
 installer will not prompt the user for any information and will
@@ -11,19 +7,19 @@ parameters. That way, no input is required from the user during the
 installation. It's also possible to define the values through command
 line or using a configuration file
 
-```sh
+``` sh
 ./sample-installer.bin --mode unattended --param1 value1 --param2 value2 ....
 ./sample-installer.bin --mode unattended --optionfile optionfile
 ```
 
 Where optionfile should contain a list of pairs key=value. For instance:
 
-```
+``` sh
 param1=value1
 param2=value2
 ```
 
-# Available parameters for ejabberd installer
+## Available parameters for ejabberd installer
 
 Installer recognizes those options:
 

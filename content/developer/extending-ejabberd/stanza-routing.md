@@ -1,9 +1,6 @@
----
-title: ejabberd Stanza Routing
-menu: Stanza Routing
----
+# ejabberd Stanza Routing
 
-# Message Routing
+## Message Routing
 
 In case of a message sent from User A to User B, both of whom are
 served by the same domain, the flow of the message through the system
@@ -21,15 +18,15 @@ is as follows:
    do to next. It is easier to understand by looking at an example of
    actual routing table content:
 
-   ~~~ erlang
-   (ejabberd@localhost)2> ets:tab2list(route).
-   [{route,<<"pubsub.localhost">>,
-           {apply_fun,#Fun<ejabberd_router.2.122122122>}},
+    ``` erlang
+    (ejabberd@localhost)2> ets:tab2list(route).
+    [{route,<<"pubsub.localhost">>,
+      {apply_fun,#Fun<ejabberd_router.2.122122122>}},
     {route,<<"muc.localhost">>,
-           {apply_fun,#Fun<mod_muc.2.122122123>}},
+      {apply_fun,#Fun<mod_muc.2.122122123>}},
     {route,<<"localhost">>,{apply,ejabberd_local,route}}]
-   ~~~
-   
+    ```
+
    In that case, user is local so we need to route to same domain (in
    our case localhost). We then can see that we have to call
    `ejabberd_local:route` to route the message to local user. As both
@@ -58,6 +55,4 @@ is as follows:
 
 Here is a broader diagram, including server-to-server routing:
 
-![][image-1]
-
-[image-1]:      /static/images/developer/stanza-flow.png
+![image](./images/stanza-flow.png)

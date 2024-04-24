@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 17.06
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 17.06
 
 You may have to apply few changes if you are upgrading from ejabberd 17.03 or
 17.04. While this is not mandatory, it's recommended to follow this procedure.

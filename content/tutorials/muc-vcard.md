@@ -1,12 +1,10 @@
----
-title: Setting vCards / Avatars for MUC rooms
----
+# Setting vCards / Avatars for MUC rooms
 
 ejabberd supports the ability to set vCard for MUC rooms. One of the
 most common use case is to be able to define an avatar for your own
 MUC room.
 
-# How does it work?
+## How does it work?
 
 To be allowed to set vCard for a given room, you need to be owner of
 that room.
@@ -18,14 +16,14 @@ it on XMPP stream.
 If you want to convert it manually from command line, you can use
 `base64` tool. For example:
 
-~~~ bash
+``` sh
 base64 muc_logo.png > muc_logo.b64
-~~~
+```
 
 However, when coding the client, you can more likely directly do the
 proper image base64 encoding in your code.
 
-# Setting up MUC vCard
+## Setting up MUC vCard
 
 To set the MUC vCard, you can send a vcard-temp set request, as
 defined in
@@ -33,7 +31,7 @@ defined in
 directly addressed to your MUC room. For example, assuming my room id
 is `test@conference.localhost`:
 
-~~~ xml
+``` xml
 <iq id='set1'
     type='set'
     to='test@conference.localhost'>
@@ -46,7 +44,7 @@ iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
     </PHOTO>
 </vCard>
 </iq>
-~~~
+```
 
 Please, note that you have to set the mime type of the image properly
 to help the client displaying it.
@@ -55,19 +53,19 @@ You can of course add other fields to the vCard if needed.
 
 After that IQ `set` stanza, the server will reply with success:
 
-~~~ xml
+``` xml
 <iq from="test@conference.localhost"
     type="result"
     to="owner@localhost/r"
     id="set1">
  <vCard xmlns="vcard-temp"/>
 </iq>
-~~~
+```
 
 The MUC room also broadcasts a notification about non-privacy related
 configuration change to users that are currently in the room:
 
-~~~ xml
+``` xml
 <message from="test@conference.localhost"
          type="groupchat"
          to="owner@localhost/r"
@@ -76,24 +74,24 @@ configuration change to users that are currently in the room:
   <status code="104"/>
  </x>
 </message>
-~~~
+```
 
-# Retrieving a MUC room vCard
+## Retrieving a MUC room vCard
 
 Any user can retrieve the MUC vCard but sending a vcard-temp get IQ to
 the room itself:
 
-~~~ xml
+``` xml
 <iq to='test@conference.localhost'
     id='get1'
     type='get'>
   <vCard xmlns='vcard-temp'/>
 </iq>
-~~~
+```
 
 Server will reply by sending back the vCard:
 
-~~~ xml
+``` xml
 <iq from="test@conference.localhost"
     type="result"
     to="user@localhost/r"
@@ -107,4 +105,4 @@ iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
     </PHOTO>
  </vCard>
 </iq>
-~~~
+```

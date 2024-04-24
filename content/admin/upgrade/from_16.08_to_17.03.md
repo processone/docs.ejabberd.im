@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 17.03
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 17.03
 
 If you are upgrading from ejabberd 16.08, 16.09, 16.12 or 17.01, and
 are using an SQL backend, you need to alter tables for better
@@ -12,7 +8,7 @@ PubSub support before starting ejabberd 17.03.
 
 If you're running MySQL, this change in not mandatory but highly recommended
 
-```bash
+``` bash
 mysql -h host -u user database -p << EOF
 ALTER TABLE rosterusers MODIFY subscribe text NOT NULL;
 
@@ -54,7 +50,7 @@ EOF
 
 If you're running PostgreSQL, this change is mandatory.
 
-```bash
+``` bash
 psql -W -h host database user << EOF
 ALTER TABLE rosterusers ALTER COLUMN subscribe SET NOT NULL;
 

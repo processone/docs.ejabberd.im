@@ -1,13 +1,8 @@
----
-title: ejabberd Frequently Asked Questions (FAQ)
-toc: true
-menu: FAQ
-order: 60
----
+# Frequently Asked Questions
 
-# Development process
+## Development process
 
-## Why is there a commercial version of ejabberd?
+### Why is there a commercial version of ejabberd?
 
 Different needs for different users. Corporations and large scale deployments are very
 different from smaller deployments and community projects.
@@ -34,11 +29,10 @@ a limited time (See next section).
 So, even if you are not using our business edition, this is a great
 benefit for you as a user of the community edition and the reason
 you have seen so many improvements since 2002. Thanks to our business
-edition customers, ejabberd project itself is a [major contributor to
-Erlang and Elixir community](/developer/repositories/).
+edition customers, ejabberd project itself is a [major contributor to Erlang and Elixir community](../developer/repositories.md).
 
 
-## Does ProcessOne voluntarily hold some code in ejabberd community to push toward the business edition?
+### Does ProcessOne voluntarily hold some code in ejabberd community to push toward the business edition?
 
 No. We never do that and have no plan doing so with the code we
 produce and we own.
@@ -60,7 +54,7 @@ edition and the users of the community edition:
 
 - This is fair for the community as the community edition users know
   they will benefit from new extremely advanced features in a relatively near future. 
-  For example, [websocket module](/admin/configuration/listen/#ejabberd-http-ws) was contributed to
+  For example, [websocket module](../admin/configuration/listen.md/#ejabberd_http_ws) was contributed to
   ejabberd community as part of this process.
 
 This is the model we have found to be fair to our broader user base and
@@ -69,9 +63,9 @@ lets us produce an amazing code base that benefits all our users.
 This dual model is the core strength of our approach and our secret
 sauce to make sure everyone benefits.
 
-# Performance
+## Performance
 
-## Is ejabberd the most scalable version?
+### Is ejabberd the most scalable version?
 
 Yes. Definitely. Despite claims that there is small change you can
 make to make it more scalable, we already performed the changes during
@@ -97,7 +91,7 @@ you can handle tens of millions of users on ejabberd systems.
 As a reference, you should read the following blog post:
 [ejabberd Massive Scalability: 1 Node — 2+ Million Concurrent Users](https://www.process-one.net/blog/ejabberd-massive-scalability-1node-2-million-concurrent-users/)
 
-## What are the tips to optimize performance?
+### What are the tips to optimize performance?
 
 Optimisation of XMPP servers performance, including ejabberd, is
 highly dependent on the use case. You really need to find your
@@ -116,9 +110,9 @@ version. Each release of Erlang comes with more optimisation regarding
 locks, especially on SMP servers, and using the latest Erlang version
 can also help tremendously.
 
-# Erlang support
+## Erlang support
 
-## Is ejabberd conforming to the best Erlang practices?
+### Is ejabberd conforming to the best Erlang practices?
 
 Yes. Our build system is primarily based on rebar. However, as we are
 multiplatform and need to run in many various environments, we rely on a

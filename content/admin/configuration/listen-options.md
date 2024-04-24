@@ -1,11 +1,6 @@
----
-title: Listen Options
-toc: true
-menu: Listen Opts
-order: 51
----
+# Listen Options
 
-> This section describes the most recent ejabberd version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+> This section describes the most recent ejabberd version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
 This is a detailed description of each option allowed by the listening
 modules:
@@ -21,10 +16,10 @@ This option defines access to the port. The default value is `all`.
 *Value*
 
 The backlog value defines the maximum length that the queue of
-	pending connections may grow to. This should be increased if the
-	server is going to handle lots of new incoming connections as they
-	may be dropped if there is no space in the queue (and ejabberd was
-	not able to accept them immediately). Default value is 5.
+ pending connections may grow to. This should be increased if the
+ server is going to handle lots of new incoming connections as they
+ may be dropped if there is no space in the queue (and ejabberd was
+ not able to accept them immediately). Default value is 5.
 
 ## cafile
 
@@ -35,18 +30,18 @@ The default is to use system defined file if possible.
 
 This option is useful to define the file for a specific port listener.
 To set a file for all client listeners or for specific vhosts, you can use the
-[`c2s_cafile`](/admin/configuration/toplevel/#c2s-cafile) top-level option.
+[`c2s_cafile`](toplevel.md#c2s_cafile) top-level option.
 To set a file for all server connections, you can use the
-[`s2s_cafile`](/admin/configuration/toplevel/#s2s-cafile) top-level option
+[`s2s_cafile`](toplevel.md#s2s_cafile) top-level option
 or the
-[`ca_file`](/admin/configuration/toplevel/#ca-file) top-level option.
+[`ca_file`](toplevel.md#ca_file) top-level option.
 
 Please note: if this option is set in
-[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
-or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+[`ejabberd_c2s`](listen.md#ejabberd_c2s)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_cafile`](/admin/configuration/toplevel/#c2s-cafile),
-[`s2s_cafile`](/admin/configuration/toplevel/#s2s-cafile)),
+([`c2s_cafile`](toplevel.md#c2s_cafile),
+[`s2s_cafile`](toplevel.md#s2s_cafile)),
 then the top-level option is used, not this one.
 
 ## certfile
@@ -57,36 +52,36 @@ Path to the certificate file.
 Only makes sense when the [`tls`](#tls)
 options is set.
 If this option is not set, you should set the
-[`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
-or configure [ACME](/admin/configuration/basic/#acme).
+[`certfiles`](toplevel.md#certfiles) top-level option
+or configure [ACME](basic.md#acme).
 
 ## check_from
 
 *true | false*
 
 This option can be used with
-[`ejabberd_service`](/admin/configuration/listen/#ejabberd-service) only.
-	[`XEP-0114`](https://xmpp.org/extensions/xep-0114.html) requires that
-	the domain must match the hostname of the component. If this option
-	is set to `false`, `ejabberd` will allow the component to send
-	stanzas with any arbitrary domain in the ’from’ attribute. Only use
-	this option if you are completely sure about it. The default value
-	is `true`, to be compliant with
-	[`XEP-0114`](https://xmpp.org/extensions/xep-0114.html).
+[`ejabberd_service`](listen.md#ejabberd_service) only.
+ [`XEP-0114`](https://xmpp.org/extensions/xep-0114.html) requires that
+ the domain must match the hostname of the component. If this option
+ is set to `false`, `ejabberd` will allow the component to send
+ stanzas with any arbitrary domain in the ’from’ attribute. Only use
+ this option if you are completely sure about it. The default value
+ is `true`, to be compliant with
+ [`XEP-0114`](https://xmpp.org/extensions/xep-0114.html).
 
 ## ciphers
 
 *Ciphers*
 
 OpenSSL ciphers list in the same format accepted by
-	‘`openssl ciphers`’ command.
+ ‘`openssl ciphers`’ command.
 
 Please note: if this option is set in
-[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
-or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+[`ejabberd_c2s`](listen.md#ejabberd_c2s)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_ciphers`](/admin/configuration/toplevel/#c2s-ciphers),
-[`s2s_ciphers`](/admin/configuration/toplevel/#s2s-ciphers)),
+([`c2s_ciphers`](toplevel.md#c2s_ciphers),
+[`s2s_ciphers`](toplevel.md#s2s_ciphers)),
 then the top-level option is used, not this one.
 
 ## custom_headers
@@ -101,29 +96,29 @@ Default value is: `[]`
 *undefined | HostName*
 
 If the HTTP request received by ejabberd contains the HTTP header
-	`Host` with an ambiguous virtual host that doesn’t match any one
-	defined in ejabberd (see
-        [Host Names](/admin/configuration/basic/#host-names)),
+ `Host` with an ambiguous virtual host that doesn’t match any one
+ defined in ejabberd (see
+        [Host Names](basic.md#host_names)),
         then this configured HostName
-	is set as the request Host. The default value of this option is:
-	`undefined`.
+ is set as the request Host. The default value of this option is:
+ `undefined`.
 
 ## dhfile
 
 *Path*
 
 Full path to a file containing custom parameters for Diffie-Hellman key
-	exchange. Such a file could be created with the command
-	`openssl dhparam -out dh.pem 2048`. If this option is not specified,
-	default parameters will be used, which might not provide the same level
-	of security as using custom parameters.
+ exchange. Such a file could be created with the command
+ `openssl dhparam -out dh.pem 2048`. If this option is not specified,
+ default parameters will be used, which might not provide the same level
+ of security as using custom parameters.
 
 Please note: if this option is set in
-[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
-or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+[`ejabberd_c2s`](listen.md#ejabberd_c2s)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_dhfile`](/admin/configuration/toplevel/#c2s-dhfile),
-[`s2s_dhfile`](/admin/configuration/toplevel/#s2s-dhfile)),
+([`c2s_dhfile`](toplevel.md#c2s_dhfile),
+[`s2s_dhfile`](toplevel.md#s2s_dhfile)),
 then the top-level option is used, not this one.
 
 ## global_routes
@@ -131,7 +126,7 @@ then the top-level option is used, not this one.
 *true | false*
 
 This option emulates legacy behaviour which registers all routes
-defined in [`hosts`](/admin/configuration/toplevel/#hosts)
+defined in [`hosts`](toplevel.md#hosts)
 on a component connected. This behaviour
 is considered harmful in the case when it's desired to multiplex
 different components on the same port, so, to disable it,
@@ -146,38 +141,38 @@ to maintain backward compatibility with existing deployments.
 *{Hostname: [HostOption, ...]}*
 
 The external Jabber component that connects to this
-[`ejabberd_service`](/admin/configuration/listen/#ejabberd-service)
+[`ejabberd_service`](listen.md#ejabberd_service)
 can serve one or more hostnames. As `HostOption`
-	you can define options for the component; currently the only allowed
-	option is the password required to the component when attempt to
-	connect to ejabberd: `password: Secret`. Note that you
-	cannot define in a single `ejabberd_service` components of different
-	services: add an `ejabberd_service` for each service, as seen in an
-	example below. This option may not be necessary if the component
-	already provides the host in its packets; in that case, you can simply
-	provide the password option that will be used for all the hosts
-	(see port 5236 definition in the example below).
+ you can define options for the component; currently the only allowed
+ option is the password required to the component when attempt to
+ connect to ejabberd: `password: Secret`. Note that you
+ cannot define in a single `ejabberd_service` components of different
+ services: add an `ejabberd_service` for each service, as seen in an
+ example below. This option may not be necessary if the component
+ already provides the host in its packets; in that case, you can simply
+ provide the password option that will be used for all the hosts
+ (see port 5236 definition in the example below).
 
 ## max_fsm_queue
 
 *Size*
 
 This option specifies the maximum number of elements in the queue of
-	the FSM (Finite State Machine). Roughly speaking, each message in
-	such queues represents one XML stanza queued to be sent into its
-	relevant outgoing stream. If queue size reaches the limit (because,
-	for example, the receiver of stanzas is too slow), the FSM and the
-	corresponding connection (if any) will be terminated and error
-	message will be logged. The reasonable value for this option depends
-	on your hardware configuration. This option can be specified for
-        [`ejabberd_service`](/admin/configuration/listen/#ejabberd-service)
-        and [`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
+ the FSM (Finite State Machine). Roughly speaking, each message in
+ such queues represents one XML stanza queued to be sent into its
+ relevant outgoing stream. If queue size reaches the limit (because,
+ for example, the receiver of stanzas is too slow), the FSM and the
+ corresponding connection (if any) will be terminated and error
+ message will be logged. The reasonable value for this option depends
+ on your hardware configuration. This option can be specified for
+        [`ejabberd_service`](listen.md#ejabberd_service)
+        and [`ejabberd_c2s`](listen.md#ejabberd_c2s)
         listeners, or also globally for
-        [`ejabberd_s2s_out`](/admin/configuration/listen/#ejabberd-s2s-out).
+        [`ejabberd_s2s_out`](listen.md#ejabberd_s2s_out).
         If the option is not specified for
-	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
-	configured value is used. The allowed values are integers and
-	’undefined’. Default value: ’10000’.
+ `ejabberd_service` or `ejabberd_c2s` listeners, the globally
+ configured value is used. The allowed values are integers and
+ ’undefined’. Default value: ’10000’.
 
 ## max_payload_size
 
@@ -192,12 +187,12 @@ The default value is `infinity`.
 *Size*
 
 This option specifies an approximate maximum size in bytes of XML
-	stanzas. Approximate, because it is calculated with the precision of
-	one block of read data. For example `{max_stanza_size, 65536}`. The
-	default value is `infinity`. Recommended values are 65536 for c2s
-	connections and 131072 for s2s connections. s2s max stanza size must
-	always much higher than c2s limit. Change this value with extreme
-	care as it can cause unwanted disconnect if set too low.
+ stanzas. Approximate, because it is calculated with the precision of
+ one block of read data. For example `{max_stanza_size, 65536}`. The
+ default value is `infinity`. Recommended values are 65536 for c2s
+ connections and 131072 for s2s connections. s2s max stanza size must
+ always much higher than c2s limit. Change this value with extreme
+ care as it can cause unwanted disconnect if set too low.
 
 ## password
 
@@ -205,11 +200,11 @@ This option specifies an approximate maximum size in bytes of XML
 
 Specify the password to verify an external component that connects to the port.
 
-<div class="note-down">improved in <a href="/archive/20_07/">20.07</a></div>
-
 ## port
 
 *Port number, or unix domain socket path*
+
+<!-- md:version improved in [20.07](../../archive/20.07/index.md) -->
 
 Declares at which port/unix domain socket should be listening.
 
@@ -222,15 +217,15 @@ on unix domain socket `/path/to/socket`.
 *ProtocolOpts*
 
 List of general options relating to SSL/TLS. These map to
-	[`OpenSSL’s set_options()`](https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_options.html).
-	The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
+ [`OpenSSL’s set_options()`](https://www.openssl.org/docs/manmaster/man3/SSL_CTX_set_options.html).
+ The default entry is: `"no_sslv3|cipher_server_preference|no_compression"`
 
 Please note: if this option is set in
-[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
-or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+[`ejabberd_c2s`](listen.md#ejabberd_c2s)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_protocol_options`](/admin/configuration/toplevel/#c2s-protocol-options),
-[`s2s_protocol_options`](/admin/configuration/toplevel/#s2s-protocol-options)),
+([`c2s_protocol_options`](toplevel.md#c2s_protocol_options),
+[`s2s_protocol_options`](toplevel.md#s2s_protocol_options)),
 then the top-level option is used, not this one.
 
 ## request_handlers
@@ -238,22 +233,24 @@ then the top-level option is used, not this one.
 *{Path: Module}*
 
 To define one or several handlers that will serve HTTP requests in
-[`ejabberd_http`](/admin/configuration/listen/#ejabberd-http). The
-	Path is a string; so the URIs that start with that Path will be
-	served by Module. For example, if you want `mod_foo` to serve the
-	URIs that start with `/a/b/`, and you also want `mod_bosh` to
-	serve the URIs `/bosh/`, use this option:
+[`ejabberd_http`](listen.md#ejabberd_http). The
+ Path is a string; so the URIs that start with that Path will be
+ served by Module. For example, if you want `mod_foo` to serve the
+ URIs that start with `/a/b/`, and you also want `mod_bosh` to
+ serve the URIs `/bosh/`, use this option:
 
-	    request_handlers:
-	      /a/b: mod_foo
-	      /bosh: mod_bosh
-	      /mqtt: mod_mqtt
-
-<div class="note-down">new in <a href="/archive/21_07/">21.07</a></div>
+``` yaml
+request_handlers:
+  /a/b: mod_foo
+  /bosh: mod_bosh
+  /mqtt: mod_mqtt
+```
 
 ## send_timeout
 
 *Integer | infinity*
+
+<!-- md:version new in [21.07](../../archive/21.07/index.md) -->
 
 Sets the longest time that data can wait to be accepted to sent by OS socket. Triggering this timeout will cause the server to close it. By default it's set to 15 seconds, expressed in milliseconds: 15000
 
@@ -261,17 +258,17 @@ Sets the longest time that data can wait to be accepted to sent by OS socket. Tr
 
 *none | ShaperName*
 
-This option defines a shaper for the port (see section 
-[Shapers](/admin/configuration/basic/#shapers)).
-	The default value is `none`.
+This option defines a shaper for the port (see section
+[Shapers](basic.md#shapers)).
+ The default value is `none`.
 
 ## shaper_rule
 
 *none | ShaperRule*
 
 This option defines a shaper rule for
-[`ejabberd_service`](/admin/configuration/listen/#ejabberd-service) (see
-section [Shapers](/admin/configuration/basic/#shapers)).
+[`ejabberd_service`](listen.md#ejabberd_service) (see
+section [Shapers](basic.md#shapers)).
 The recommended value is `fast`.
 
 ## starttls
@@ -280,21 +277,18 @@ The recommended value is `fast`.
 
 This option specifies that STARTTLS encryption is available on
 connections to the port. You should also set the
-[`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
-or configure [ACME](/admin/configuration/basic/#acme).
+[`certfiles`](toplevel.md#certfiles) top-level option
+or configure [ACME](basic.md#acme).
 
 This option gets implicitly enabled when enabling
-[`starttls_required`](#starttls-required) or [`tls_verify`](#tls-verify).
+[`starttls_required`](#starttls_required) or [`tls_verify`](#tls_verify).
 
 ## starttls_required
 
 *true | false*
 
-This option specifies that STARTTLS encryption is required on
-connections to the port. No unencrypted connections will be allowed.
-You should also set the
-[`certfiles`](/admin/configuration/toplevel/#certfiles) top-level option
-or configure [ACME](/admin/configuration/basic/#acme).
+This option specifies that STARTTLS encryption is required on connections to the port. No unencrypted connections will be allowed.
+You should also set the [`certfiles`](toplevel.md#certfiles) top-level option or configure [ACME](basic.md#acme).
 
 Enabling this option implicitly enables also the [`starttls`](#starttls) option.
 
@@ -302,25 +296,24 @@ Enabling this option implicitly enables also the [`starttls`](#starttls) option.
 
 *String*
 
-Allow specifying a tag in a `listen` section
-and later use it to have a special
-[`api_permissions`](/admin/configuration/toplevel/#api-permissions)
-just for it.
+Allow specifying a tag in a `listen` section and later use it to have a special [`api_permissions`](toplevel.md#api_permissions) just for it.
 
 For example:
 
-	    listen:
-	      -
-	        port: 4000
-	        module: ejabberd_http
-	        tag: "magic_listener"
+``` yaml
+listen:
+  -
+    port: 4000
+    module: ejabberd_http
+    tag: "magic_listener"
 
-	    api_permissions:
-	      "magic_access":
-	        from:
-	          - tag: "magic_listener"
-	        who: all
-	        what: "*"
+api_permissions:
+  "magic_access":
+    from:
+      - tag: "magic_listener"
+    who: all
+    what: "*"
+```
 
 The default value is the empty string: `""`.
 
@@ -335,21 +328,21 @@ Timeout of the connections, expressed in milliseconds. Default: 5000
 *true | false*
 
 This option specifies that traffic on the port will be encrypted
-	using SSL immediately after connecting. This was the traditional
-	encryption method in the early Jabber software, commonly on port
-	5223 for client-to-server communications. But this method is
-	nowadays deprecated and not recommended. The preferable encryption
-	method is STARTTLS on port 5222, as defined
-	[`RFC 6120: XMPP Core`](https://xmpp.org/rfcs/rfc6120.html#tls),
-	which can be enabled in `ejabberd` with the option
+ using SSL immediately after connecting. This was the traditional
+ encryption method in the early Jabber software, commonly on port
+ 5223 for client-to-server communications. But this method is
+ nowadays deprecated and not recommended. The preferable encryption
+ method is STARTTLS on port 5222, as defined
+ [`RFC 6120: XMPP Core`](https://xmpp.org/rfcs/rfc6120.html#tls),
+ which can be enabled in `ejabberd` with the option
         [`starttls`](#starttls).
 
 If this option is set, you should also set the
-        [`certfiles`](/admin/configuration/toplevel/#certfiles) top-level
-        option or configure [ACME](/admin/configuration/basic/#acme).
+        [`certfiles`](toplevel.md#certfiles) top-level
+        option or configure [ACME](basic.md#acme).
 
 The option `tls` can also be used in
-        [`ejabberd_http`](/admin/configuration/listen/#ejabberd-http)
+        [`ejabberd_http`](listen.md#ejabberd_http)
         to support HTTPS.
 
 Enabling this option implicitly disables the [`starttls`](#starttls) option.
@@ -359,14 +352,14 @@ Enabling this option implicitly disables the [`starttls`](#starttls) option.
 *true | false*
 
 Whether to enable or disable TLS compression. The default value is
-	`false`.
+ `false`.
 
 Please note: if this option is set in
-[`ejabberd_c2s`](/admin/configuration/listen/#ejabberd-c2s)
-or [`ejabberd_s2s_in`](/admin/configuration/listen/#ejabberd-s2s-in)
+[`ejabberd_c2s`](listen.md#ejabberd_c2s)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_tls_compression`](/admin/configuration/toplevel/#c2s-tls-compression),
-[`s2s_tls_compression`](/admin/configuration/toplevel/#s2s-tls-compression)),
+([`c2s_tls_compression`](toplevel.md#c2s_tls_compression),
+[`s2s_tls_compression`](toplevel.md#s2s_tls_compression)),
 then the top-level option is used, not this one.
 
 ## tls_verify
@@ -397,5 +390,5 @@ Is this listener accessed by proxy service that is using
 *true | false*
 
 This option specifies that Zlib stream compression (as defined in
-	[`XEP-0138`](https://xmpp.org/extensions/xep-0138.html)) is available
-	on connections to the port.
+ [`XEP-0138`](https://xmpp.org/extensions/xep-0138.html)) is available
+ on connections to the port.

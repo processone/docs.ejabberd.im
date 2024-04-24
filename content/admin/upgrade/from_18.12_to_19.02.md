@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 19.02
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 19.02
 
 19.02 adds support of latest MIX specification and MQTT protocol.
 You may improve your current configuration or SQL schema depending on your needs.
@@ -12,7 +8,7 @@ You may improve your current configuration or SQL schema depending on your needs
 To enable MQTT, you need to add a new listener and enable mod_mqtt.
 Here is example of configuration:
 
-```yaml
+``` yaml
 listen:
   -
     port: 1883
@@ -37,7 +33,7 @@ When using PEP with MySQL, due to limitation in size of indexes, some long JIDs 
 Index size on pubsub_node was modified to fix use of PEP. This change is optional and required
 only if you have issues when using PEP.
 
-```bash
+``` bash
 mysql -h host -u user database -p << EOF
 DROP INDEX i_pubsub_node_tuple ON pubsub_node;
 CREATE UNIQUE INDEX i_pubsub_node_tuple ON pubsub_node(host(71), node(120));
@@ -46,7 +42,7 @@ EOF
 
 If you want to use new MIX implementation, you must create some tables.
 
-```sql
+``` sql
 CREATE TABLE mix_channel (
     channel text NOT NULL,
     service text NOT NULL,
@@ -105,7 +101,7 @@ If you want to use new MQTT feature, you need to create a table.
 
 If you're using the new schema (`new_sql_schema`):
 
-```sql
+``` sql
 CREATE TABLE mqtt_pub (
     username varchar(191) NOT NULL,
     server_host varchar(191) NOT NULL,
@@ -125,7 +121,7 @@ CREATE TABLE mqtt_pub (
 
 If you're using the old schema:
 
-```sql
+``` sql
 CREATE TABLE mqtt_pub (
     username varchar(191) NOT NULL,
     resource varchar(191) NOT NULL,
@@ -146,7 +142,7 @@ CREATE TABLE mqtt_pub (
 
 If you want to use new MIX implementation, you must create some tables.
 
-```sql
+``` sql
 CREATE TABLE mix_channel (
     channel text NOT NULL,
     service text NOT NULL,
@@ -205,7 +201,7 @@ If you want to use new MQTT feature, you need to create a table.
 
 If you're using the new schema (`new_sql_schema`):
 
-```sql
+``` sql
 CREATE TABLE mqtt_pub (
     username text NOT NULL,
     server_host text NOT NULL,
@@ -226,7 +222,7 @@ CREATE UNIQUE INDEX i_mqtt_topic_server ON mqtt_pub (topic, server_host);
 
 If you're using the old schema:
 
-```sql
+``` sql
 CREATE TABLE mqtt_pub (
     username text NOT NULL,
     resource text NOT NULL,
@@ -248,7 +244,7 @@ CREATE UNIQUE INDEX i_mqtt_topic ON mqtt_pub (topic, server_host);
 
 If you want to use new MIX implementation, you must create some tables.
 
-```sql
+``` sql
 CREATE TABLE mix_channel (
     channel text NOT NULL,
     service text NOT NULL,
@@ -307,7 +303,7 @@ If you want to use new MQTT feature, you need to create a table.
 
 If you're using the new schema (`new_sql_schema`):
 
-```sql
+``` sql
 CREATE TABLE mqtt_pub (
     username text NOT NULL,
     server_host text NOT NULL,
@@ -328,7 +324,7 @@ CREATE UNIQUE INDEX i_mqtt_topic_server ON mqtt_pub (topic);
 
 If you're using the old schema:
 
-```sql
+``` sql
 CREATE TABLE mqtt_pub (
     username text NOT NULL,
     resource text NOT NULL,

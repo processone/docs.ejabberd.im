@@ -1,7 +1,9 @@
 ---
-title: Upgrade to ejabberd 21.07
-toc: true
+search:
+  exclude: true
 ---
+
+# Upgrade to ejabberd 21.07
 
 ## Database changes
 
@@ -17,7 +19,7 @@ If you store Shared Roster Groups in a SQL database, you can create the index co
 The MySQL database schema has improved to support scram-sha512 ([#3582](https://github.com/processone/ejabberd/issues/3582))
 
 If you have a MySQL database, you can update your schema with:
-```sql
+``` sql
 ALTER TABLE users MODIFY serverkey varchar(128) NOT NULL DEFAULT ’’;
 ALTER TABLE users MODIFY salt varchar(128) NOT NULL DEFAULT ’’;
 ```

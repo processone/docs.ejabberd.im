@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 17.09
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 17.09
 
 You should follow this procedure if you are upgrading from ejabberd 17.06, 17.07
 or 17.08.

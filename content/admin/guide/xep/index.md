@@ -1,8 +1,4 @@
----
-title: Supporting and configuring specific XMPP Extensions in ejabberd
-toc: true
-menu: XMPP Extensions
----
+# Supporting and configuring specific XMPP Extensions in ejabberd
 
 XMPP extensions support can be implemented in different ways in ejabberd. We have several cases:
 
@@ -18,78 +14,71 @@ XEP by XEP in ejabberd. We intend to explain what you can do in case
 you want to support a given XEP or if you want to make sure a specific
 Extension is disabled.
 
-# XEP-0004: Data Forms
+## XEP-0004: Data Forms
 
-## Specification
+### Specification
 
 [XEP-0004: Data Forms](https://xmpp.org/extensions/xep-0004.html)
 
-## Implementation
+### Implementation
 
 ejabberd core
 
-## Comment
+### Comment
 
-This extension is a general design principle for forms in XMPP. The
-principles are applied by all services, components and modules inside
-ejabberd.
+This extension is a general design principle for forms in XMPP. The principles are applied by all services, components and modules inside ejabberd.
 
-## Enabling / Disabling
+### Enabling / Disabling
 
-As it is a general specification, it is used as default and cannot be
-disabled.
+As it is a general specification, it is used as default and cannot be disabled.
 
-# XEP-0012: Last Activity
+## XEP-0012: Last Activity
 
-## Specification
+### Specification
 
 [XEP-0012: Last Activity](https://xmpp.org/extensions/xep-0012.html)
 
-## Implementation
+### Implementation
 
 Main ejabberd module: [mod_last.erl](https://github.com/processone/ejabberd/blob/master/src/mod_last.erl)
 
-## Comment
+### Comment
 
-This extension is optional. It allows the server to send back
-information about when the user disconnected their last session.
+This extension is optional. It allows the server to send back information about when the user disconnected their last session.
 
 It also allows to query the uptime of an ejabberd server.
 
-## Enabling
+### Enabling
 
-Add `mod_last` configuration in `modules` section of the
-   configuration file.
+Add `mod_last` configuration in `modules` section of the configuration file.
 
 It is enabled by default in ejabberd configuration template.
 
-## Disabling
+### Disabling
 
-Make sure `mod_last` is not defined or is commented out in ejabberd
-   config `modules` section.
-   
+Make sure `mod_last` is not defined or is commented out in ejabberd config `modules` section.
+
 No side effect.
 
-## Module documentation
+### Module documentation
 
-* [mod_last](/admin/configuration/modules/#mod-last)
+* [mod_last](../../configuration/modules.md#mod_last)
 
-# XEP-0013: Flexible Offline Message Retrieval
+## XEP-0013: Flexible Offline Message Retrieval
 
-## Specification
+### Specification
 
 [XEP-0013: Flexible Offline Message Retrieval](https://xmpp.org/extensions/xep-0013.html)
 
-## Implementation
+### Implementation
 
 Main ejabberd module: [mod_offline.erl](https://github.com/processone/ejabberd/blob/master/src/mod_offline.erl)
 
-## Comment
+### Comment
 
 This extension is active on server if `mod_offline` module is enabled on ejabberd.
 
-However, it is not used by client automatically. Flexible offline
-message retrieval is enabled in the following cases:
+However, it is not used by client automatically. Flexible offline message retrieval is enabled in the following cases:
 
 * client send request to retrieve number of messages prior to sending
   its initial presence:
@@ -101,22 +90,19 @@ message retrieval is enabled in the following cases:
   initial presence:
   [Retrieving All Messages](https://xmpp.org/extensions/xep-0013.html#retrieve-all)
 
-## Enabling
+### Enabling
 
-Add `mod_offline` configuration in `modules` section of the
-   configuration file.
+Add `mod_offline` configuration in `modules` section of the configuration file.
 
-It is enabled and can be used by client if mod_offline is
-enabled. This is a module enabled by default in default ejabberd
-configuration file template.
+It is enabled and can be used by client if mod_offline is enabled. This is a module enabled by default in default ejabberd configuration file template.
 
-## Disabling
+### Disabling
 
 Make sure `mod_offline` is not defined or is commented out in
    ejabberd config `modules` section.
-   
+
 Side effect: It will disable all offline messages storage.
 
-## Module documentation
+### Module documentation
 
-* [mod_offline](/admin/configuration/modules/#mod-offline)
+* [mod_offline](../../configuration/modules.md#mod_offline)

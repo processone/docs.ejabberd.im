@@ -1,12 +1,8 @@
----
-title: ejabberd for Elixir Developers
-menu: Elixir Dev
-toc: true
----
+# ejabberd for Elixir Developers
 
-<div class="note-down">improved in <a href="/archive/21_07/">21.07</a></div>
+<!-- md:version improved in [21.07](../../archive/21.07/index.md) -->
 
-# Building ejabberd with Mix
+## Building ejabberd with Mix
 
 You can build ejabberd with [Elixir](https://elixir-lang.org/) `mix` tool.
 This allows ejabberd to use Elixir libraries
@@ -18,43 +14,42 @@ Also, if using Erlang/OTP 24, then Elixir 1.11.4 or higher is required.
 <!--- Code blocks in lists have indentation of 3 spaces at first ~~~ -->
 
 1. Make sure you have the
-   [requirements](/admin/installation/#requirements)
+   [requirements](../../admin/install/source.md/#requirements)
    installed. On MacOS you need to use Homebrew and
-   [set up your environment](/admin/installation/#macos).
+   [set up your environment](../../admin/install/homebrew.md).
 
 1. Clone ejabberd project from Github:
 
-    ~~~ bash
+    ``` sh
     git clone https://github.com/processone/ejabberd.git
     cd ejabberd
-    ~~~
+    ```
 
-1.  [Compile](/admin/installation/#compilation) ejabberd:
+1. [Compile](../../admin/install/source.md/#compilation) ejabberd:
 
-    ~~~ bash
+    ``` sh
     ./autogen.sh
     ./configure --with-rebar=mix
     make
-    ~~~
+    ```
 
-1. [Build a development release](/admin/installation/#development-release):
+1. [Build a development release](../../admin/install/source.md/#development-release):
 
-    ~~~ bash
+    ``` sh
     make dev
-    ~~~
+    ```
 
 1. There are many ways to start ejabberd, using the `ejabberdctl` or `ejabberd` scripts:
 
-    ~~~ bash
+    ``` sh
     _build/prod/rel/ejabberd/bin/ejabberdctl iexlive
     _build/prod/rel/ejabberd/bin/ejabberdctl live
     _build/prod/rel/ejabberd/bin/ejabberd start_iex
-    ...
-    ~~~
+    ```
 
 1. You should see that ejabberd is properly started:
 
-    ~~~ bash
+    ``` iex
     Erlang/OTP 23 [erts-11.1.8] [source] [64-bit] [smp:2:2] [ds:2:2:10] [async-threads:1]
 
     2021-08-03 13:37:36.561603+02:00 [info] Loading configuration from /home/bernar/e/git/ejabberd/_build/dev/rel/ejabberd/etc/ejabberd/ejabberd.yml
@@ -65,22 +60,19 @@ Also, if using Erlang/OTP 24, then Elixir 1.11.4 or higher is required.
 
     Interactive Elixir (1.10.3) - press Ctrl+C to exit (type h() ENTER for help)
     iex(ejabberd@localhost)1>
-    ~~~
+    ```
 
 1. Now that ejabberd starts correctly, adapt to your needs the default ejabberd
    configuration file located at `_build/dev/rel/ejabberd/etc/ejabberd/ejabberd.yml`
    For example, enable this example Elixir ejabberd module:
 
-    ~~~ yaml
+    ``` yaml
     modules:
       'ModPresenceDemo': {}
       mod_adhoc: {}
-      ...
-    ~~~
+    ```
 
-<div class="note-down">new in <a href="https://www.process-one.net/blog/ejabberd-16-02-happy-leap-day/">16.02</a></div>
-
-# Embed ejabberd in an elixir app
+## Embed ejabberd in an elixir app
 
 ejabberd is available as an Hex.pm
 application: [ejabberd on hex.pm](https://hex.pm/packages/ejabberd).
@@ -93,63 +85,61 @@ This makes the management of your ejabberd plugins easier and cleaner.
 To create your own application depending on ejabberd, you can go
 through the following steps:
 
-
 1. Create a new Elixir app using `mix`:
 
-    ~~~ bash
+    ``` sh
     mix new ejapp
     cd ejapp
-    ~~~
+    ```
 
 1. Add [ejabberd package](https://hex.pm/packages/ejabberd) as a
    dependency in your `mix.exs` file:
 
-    ~~~ elixir
+    ``` elixir
     defmodule Ejapp.MixProject do
-    ...
       defp deps do
         [
          {:ejabberd, "~> 21.7"}
         ]
       end
     end
-    ~~~
+    ```
 
 1. Compile everything:
 
-    ~~~ bash
+    ``` sh
     mix do deps.get, compile
-    ~~~
+    ```
 
 1. Create paths and files for ejabberd:
 
-    ~~~ bash
+    ``` sh
     mkdir config
     mkdir logs
     mkdir mnesia
     wget -O config/ejabberd.yml https://raw.githubusercontent.com/processone/ejabberd/master/ejabberd.yml.example
-    ~~~
+    ```
 
 1. Define those paths in `config/config.exs`:
 
-    ~~~ elixir
+    ``` elixir
     import Config
     config :ejabberd,
       file: "config/ejabberd.yml",
       log_path: 'logs/ejabberd.log'
     config :mnesia,
       dir: 'mnesia/'
-    ~~~
+    ```
 
 1. Start your app, ejabberd will be started as a dependency:
 
-    ~~~ bash
+    ``` sh
     iex -S mix
-    ~~~
+    ```
 
 1. You should see that ejabberd is properly started:
 
-    ~~~ bash
+    ``` iex
     Erlang/OTP 23 [erts-11.1.8] [source] [64-bit] [smp:2:2] [ds:2:2:10] [async-threads:1]
     
     Compiling 1 file (.ex)
@@ -165,17 +155,17 @@ through the following steps:
     
     Interactive Elixir (1.10.3) - press Ctrl+C to exit (type h() ENTER for help)
     iex(1)>
-    ~~~
+    ```
 
 1. Register user from Elixir console:
 
-    ~~~ elixir
+    ``` elixir
     :ejabberd_auth.try_register("test", "localhost", "passw0rd")
-    ~~~
+    ```
 
 1. You are all set, you can now connect with an XMPP client !
 
-# Call elixir code in erlang code
+## Call elixir code in erlang code
 
 It's possible to use Elixir libraries in an Erlang module,
 both the ones included in Elixir, or any other you add as a dependency.
@@ -185,31 +175,35 @@ This simple example invokes Elixir's
 as shown in one of its documentation examples,
 and uses the result in the ejabberd vCard nickname field:
 
-```diff
+``` diff
 --- a/src/mod_vcard.erl
 +++ b/src/mod_vcard.erl
 @@ -209,6 +209,7 @@ process_local_iq(#iq{type = get, to = To, lang = Lang} = IQ) ->
      VCard = case mod_vcard_opt:vcard(ServerHost) of
- 		undefined ->
- 		    #vcard_temp{fn = <<"ejabberd">>,
-+				nickname = 'Elixir.String':duplicate(<<"abc">>, 2),
- 				url = ejabberd_config:get_uri(),
- 				desc = misc:get_descr(Lang, ?T("Erlang XMPP Server")),
- 				bday = <<"2002-11-16">>};
+   undefined ->
+       #vcard_temp{fn = <<"ejabberd">>,
++    nickname = 'Elixir.String':duplicate(<<"abc">>, 2),
+     url = ejabberd_config:get_uri(),
+     desc = misc:get_descr(Lang, ?T("Erlang XMPP Server")),
+     bday = <<"2002-11-16">>};
 ```
 
 Notice that the elixir code:
-```elixir
+
+``` elixir
 String.duplicate("abc", 2)
 ```
+
 is written in erlang as:
-```erlang
+
+``` erlang
 'Elixir.String':duplicate(<<"abc">>, 2),
 ```
+
 Check [Erlang/Elixir Syntax: A Crash Course](https://elixir-lang.org/crash-course.html)
 for details.
 
-# Use elixir library in erlang code
+## Use elixir library in erlang code
 
 This example demonstrates how to add an elixir library as a dependency in ejabberd,
 and use it in an ejabberd module written in erlang.
@@ -219,7 +213,8 @@ elixir library to build a QR code of ejabberd's URI
 and return it as the server vCard photo.
 
 First add the dependency to `mix.exs`:
-```diff
+
+``` diff
 --- a/mix.exs
 +++ b/mix.exs
 @@ -46,7 +46,7 @@ defmodule Ejabberd.MixProject do
@@ -241,12 +236,9 @@ First add the dependency to `mix.exs`:
       {:yconf, "~> 1.0"}]
 ```
 
-Then call
-[QRCodeEx.encode/2](https://hexdocs.pm/qrcode_ex/QRCodeEx.Encode.html#encode/2),
-[QRCodeEx.png/2](https://hexdocs.pm/qrcode_ex/QRCodeEx.PNG.html#png/2),
-and provide the result as the photo in the server vcard:
+Then call [QRCodeEx.encode/2](https://hexdocs.pm/qrcode_ex/QRCodeEx.Encode.html#encode/2), [QRCodeEx.png/2](https://hexdocs.pm/qrcode_ex/QRCodeEx.PNG.html#png/2), and provide the result as the photo in the server vcard:
 
-```diff
+``` diff
 --- a/src/mod_vcard.erl
 +++ b/src/mod_vcard.erl
 @@ -206,9 +206,13 @@ process_local_iq(#iq{type = set, lang = Lang} = IQ) ->
@@ -257,51 +249,43 @@ and provide the result as the photo in the server vcard:
 +    PhotoBin = 'Elixir.QRCodeEx':png(PhotoEncoded, [{color, <<17, 120, 0>>}]),
 +    PhotoEl = #vcard_photo{type = <<"image/png">>, binval = PhotoBin},
      VCard = case mod_vcard_opt:vcard(ServerHost) of
- 		undefined ->
- 		    #vcard_temp{fn = <<"ejabberd">>,
-+				photo = PhotoEl,
- 				url = ejabberd_config:get_uri(),
- 				desc = misc:get_descr(Lang, ?T("Erlang XMPP Server")),
- 				bday = <<"2002-11-16">>};
+   undefined ->
+       #vcard_temp{fn = <<"ejabberd">>,
++    photo = PhotoEl,
+     url = ejabberd_config:get_uri(),
+     desc = misc:get_descr(Lang, ?T("Erlang XMPP Server")),
+     bday = <<"2002-11-16">>};
 ```
 
-# Write ejabberd module in elixir
+## Write ejabberd module in elixir
 
-If you plan to write an ejabberd module that heavily depends on Elixir dependencies,
-you may want to write it in elixir from scratch.
+If you plan to write an ejabberd module that heavily depends on Elixir dependencies, you may want to write it in elixir from scratch.
 
-The Elixir source code is placed in the
-[ejabberd's lib/](https://github.com/processone/ejabberd/tree/master/lib) path.
-Any elixir module placed in `lib/` will be compiled by Mix,
-installed with all the other erlang modules,
-and available for you to use.
+The Elixir source code is placed in the [ejabberd's lib/](https://github.com/processone/ejabberd/tree/master/lib) path.
+Any elixir module placed in `lib/` will be compiled by Mix, installed with all the other erlang modules, and available for you to use.
 
-As you can see, there's a file named
-[mod_presence_demo.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_presence_demo.ex)
-which defines an ejabberd module written in elixir called `ModPresenceDemo`.
+As you can see, there's a file named [mod_presence_demo.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_presence_demo.ex) which defines an ejabberd module written in elixir called `ModPresenceDemo`.
 To enable `ModPresenceDemo`, add it to `ejabberd.yml` like this:
-```erlang
+
+``` erlang
 modules:
   'Elixir.ModPresenceDemo': {}
-  ...
 ```
 
-Let's write a new ejabberd module in elixir, add it to ejabberd's source code,
-compile and install it.
-This example module requires the QRCodeEx Elixir library,
-and adds a simple web page that generates QR code of any given JID.
+Let's write a new ejabberd module in elixir, add it to ejabberd's source code, compile and install it.
+This example module requires the QRCodeEx Elixir library, and adds a simple web page that generates QR code of any given JID.
 
-1. Copy the [mod_qrcode.ex](#mod-qrcode-ex) source code to ejabberd's `lib/` path:
+1. Copy the [mod_qrcode.ex](#mod_qrcodeex) source code to ejabberd's `lib/` path:
 
-    ~~~ bash
+    ``` sh
     lib/mod_qrcode.ex
-    ~~~
+    ```
 
 2. Recompile and reinstall ejabberd.
 
 3. Enable the module in `ejabberd.yml`:
 
-    ~~~ yaml
+    ``` yaml
     listen:
       -
         port: 5280
@@ -310,125 +294,112 @@ and adds a simple web page that generates QR code of any given JID.
 
     modules:
       'Elixir.ModQrcode': {}
-    ~~~
+    ```
 
 4. When restarting ejabberd, it will show in the logs:
 
-    ~~~
+    ``` erl
     2022-07-06 13:14:35.363081+02:00 [info] Starting ejabberd module Qrcode
-    ~~~
+    ```
 
 5. Now the ejabberd internal web server provides QR codes of any given JID.
    Try visiting an URL like `http://localhost:5280/qrcode/anyusername/somedomain/`
 
+## Elixir module in ejabberd-contrib
 
-# Elixir module in ejabberd-contrib
-
-Using [ejabberd-contrib](https://docs.ejabberd.im/developer/extending-ejabberd/modules/#ejabberd-contrib)
-it's possible to install additional ejabberd modules
-without compiling ejabberd, or requiring ejabberd source code.
+Using [ejabberd-contrib](modules.md#ejabberd-contrib) it's possible to install additional ejabberd modules without compiling ejabberd, or requiring ejabberd source code.
 This is useful if you install ejabberd using binary installers or a container image.
 
-And it's possible to write a custom module and [Add your module]
-(https://docs.ejabberd.im/developer/extending-ejabberd/modules/#add-your-module)
-to an existing ejabberd installation...
+And it's possible to write a custom module and [Add your module](modules.md#add-your-module) to an existing ejabberd installation...
 
-Let's write a new ejabberd module in elixir, compile and install in an existing
-ejabberd deployment without requiring its source code.
-This example module adds a simple section listing PIDs
-in the users page in ejabberd WebAdmin.
+Let's write a new ejabberd module in elixir, compile and install in an existing ejabberd deployment without requiring its source code.
+This example module adds a simple section listing PIDs in the users page in ejabberd WebAdmin.
 
 1. First, create this path
 
-    ~~~ bash
+    ``` sh
     $HOME/.ejabberd-modules/sources/mod_webadmin_pid/lib/
-    ~~~
+    ```
 
-2. and copy the [mod_webadmin_pid.ex](#mod-webadmin-pid-ex) source code to:
+2. and copy the [mod_webadmin_pid.ex](#mod_webadmin_pidex) source code to:
 
-    ~~~ bash
+    ``` sh
     $HOME/.ejabberd-modules/sources/mod_webadmin_pid/lib/mod_webadmin_pid.ex
-    ~~~
+    ```
 
 3. Create a specification file in YAML format as `mod_webadmin_pid.spec`
 (see examples from ejabberd-contrib). So, create the file
 
-    ~~~ bash
+    ``` sh
     $HOME/.ejabberd-modules/sources/mod_webadmin_pid/mod_webadmin_pid.spec
-    ~~~
+    ```
 
     with this content:
 
-    ~~~ yaml
+    ``` yaml
     summary: "Display PIDs in User page in Web Admin"
-    ~~~
+    ```
 
-4.  From that point you should see it as available module:
+4. From that point you should see it as available module:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl modules_available
     mod_webadmin_pid Display PIDs in User page in Web Admin
-    ~~~
+    ```
 
 5. Now you can compile and install that module:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl module_install mod_webadmin_pid
-    ~~~
+    ```
 
 6. Enable the module in `ejabberd.yml`:
 
-    ~~~ yaml
+    ``` yaml
     modules:
       'Elixir.ModWebAdminPid': {}
-    ~~~
+    ```
 
-8. When restarting ejabberd, it will show in the logs:
+7. When restarting ejabberd, it will show in the logs:
 
-    ~~~
+    ``` erl
     2022-07-06 13:14:35.363081+02:00 [info] Starting ejabberd module WebAdminPid
-    ~~~
+    ```
 
-9. Finally, go to ejabberd WebAdmin -> Virtual Hosts -> your vhost -> Users ->
+8. Finally, go to ejabberd WebAdmin -> Virtual Hosts -> your vhost -> Users ->
    some online user -> and there will be a new section "PIDs".
 
+## Record definition
 
-# Record definition
+To use an erlang record defined in ejabberd's header file, use Elixir's [Record](https://hexdocs.pm/elixir/Record.html) to extract the fields and define an Elixir record with its usage macros.
 
-To use an erlang record defined in ejabberd's header file,
-use Elixir's [Record](https://hexdocs.pm/elixir/Record.html)
-to extract the fields and define an Elixir record with its usage macros.
+For example, add this to the beginning of [mod_presence_demo.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_presence_demo.ex):
 
-For example, add this to the beginning of
-[mod_presence_demo.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_presence_demo.ex):
+``` elixir
+require Record
 
-```elixir
-  require Record
-
-  Record.defrecord(:presence,
-    Record.extract(:presence, from_lib: "xmpp/include/xmpp.hrl"))
+Record.defrecord(:presence,
+  Record.extract(:presence, from_lib: "xmpp/include/xmpp.hrl"))
 ```
 
-Later you can use those macros, named like your record,
-see the [examples](https://hexdocs.pm/elixir/Record.html#defrecord/3-examples).
+Later you can use those macros, named like your record, see the [examples](https://hexdocs.pm/elixir/Record.html#defrecord/3-examples).
 
-In our example, let's improve the `on_presence` function
-and use the `presence` macros to get the `to` field:
+In our example, let's improve the `on_presence` function and use the `presence` macros to get the `to` field:
 
-```elixir
-  def on_presence(_user, _server, _resource, packet) do
-    to_jid = presence(packet, :to)
-    to_str = :jid.to_string(to_jid)
-    info('Received presence for #{to_str}:~n~p', [packet])
-    :none
-  end
+``` elixir
+def on_presence(_user, _server, _resource, packet) do
+  to_jid = presence(packet, :to)
+  to_str = :jid.to_string(to_jid)
+  info('Received presence for #{to_str}:~n~p', [packet])
+  :none
+end
 ```
 
-# `mod_qrcode.ex`
+## `mod_qrcode.ex`
 
 Example ejabberd module written in elixir:
 
-```elixir
+``` elixir title="mod_qrcode.ex"
 defmodule ModQrcode do
   use Ejabberd.Module
 
@@ -472,11 +443,11 @@ defmodule ModQrcode do
 end
 ```
 
-# `mod_webadmin_pid.ex`
+## `mod_webadmin_pid.ex`
 
 Example ejabberd module written in elixir:
 
-```elixir
+``` elixir title="mod_webadmin_pid.ex"
 defmodule ModWebAdminPid do
   use Ejabberd.Module
 

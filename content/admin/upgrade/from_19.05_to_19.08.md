@@ -1,6 +1,4 @@
----
-title: Upgrade to ejabberd 19.08
----
+# Upgrade to ejabberd 19.08
 
 ## Database
 
@@ -12,7 +10,7 @@ The only SQL schema that changed since 19.05 is mysql.new.sql.
 
 mysql.new.sql from 19.05 schema can work 19.08, so the migration to 19.08 schema is optional, as it's just a type change from TEXT to VARCHAR for performances reason, but it will improve index utilization.
 
-```sql
+``` sql
 ALTER TABLE users MODIFY server_host varchar(191) NOT NULL;
 ALTER TABLE last MODIFY server_host varchar(191) NOT NULL;
 ALTER TABLE rosterusers MODIFY server_host varchar(191) NOT NULL;

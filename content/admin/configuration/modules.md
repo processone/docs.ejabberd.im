@@ -1,11 +1,6 @@
----
-title: Modules Options
-toc: true
-menu: Modules Opts
-order: 95
----
+# Modules Options
 
-> This section describes options of all ejabberd modules. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](/archive/).
+> This section describes options of all ejabberd modules. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
 mod\_adhoc
 ----------
@@ -84,9 +79,9 @@ mod\_admin\_update\_sql
 
 This module can be used to update existing SQL database from the default
 to the new schema. Check the section [Default and New
-Schemas](/admin/configuration/database/#default-and-new-schemas) for details.
+Schemas](database.md#default-and-new-schemas) for details.
 Please note that only MS SQL, MySQL, and PostgreSQL are supported. When
-the module is loaded use [update_sql](/developer/ejabberd-api/admin-api/#update-sql) API.
+the module is loaded use [update_sql](../../developer/ejabberd-api/admin-api.md#update_sql) API.
 
 The module has no options.
 
@@ -103,7 +98,7 @@ it may broadcast a lot of messages. This module should be disabled for
 instances of ejabberd with hundreds of thousands users.
 
 The Ad-hoc Commands are listed in the Server Discovery. For this feature
-to work, [mod_adhoc](/admin/configuration/modules/#mod-adhoc) must be enabled.
+to work, [mod_adhoc](#mod_adhoc) must be enabled.
 
 The specific JIDs where messages can be sent are listed below. The first
 JID in each entry will apply only to the specified virtual host
@@ -115,7 +110,7 @@ hosts in ejabberd:
     connected to several resources, only the resource with the highest
     priority will receive the message. If the registered user is not
     connected, the message will be stored offline in assumption that
-    offline storage (see [mod_offline](/admin/configuration/modules/#mod-offline)) is enabled.
+    offline storage (see [mod_offline](#mod_offline)) is enabled.
 
 -   example.org/announce/online
     (example.org/announce/all-hosts/online):: The message is sent to all
@@ -144,23 +139,23 @@ the message of the day. The default value is *none* (i.e. nobody is able
 to send such messages).
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_avatar
 -----------
@@ -173,8 +168,8 @@ Conversion](https://xmpp.org/extensions/xep-0398.html).
 Also, the module supports conversion between avatar image formats on the
 fly.
 
-The module depends on [mod_vcard](/admin/configuration/modules/#mod-vcard), [mod_vcard_xupdate](/admin/configuration/modules/#mod-vcard-xupdate) and
-[mod_pubsub](/admin/configuration/modules/#mod-pubsub).
+The module depends on [mod_vcard](#mod_vcard), [mod_vcard_xupdate](#mod_vcard_xupdate) and
+[mod_pubsub](#mod_pubsub).
 
 __Available options:__
 
@@ -224,7 +219,7 @@ subscription present. The default value is *true*.
 
 - **captcha**: *true | false*  
 Whether to generate CAPTCHA or not in response to messages from
-strangers. See also section [CAPTCHA](/admin/configuration/#captcha) of the
+strangers. See also section [CAPTCHA](http://../#captcha) of the
 Configuration Guide. The default value is *false*.
 
 - **drop**: *true | false*  
@@ -261,15 +256,15 @@ while having to get through an HTTP proxy.
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **json**: *true | false*  
@@ -293,15 +288,15 @@ authentication. Basically, it creates a new session with anonymous
 authentication. The default value is *false*.
 
 - **queue\_type**: *ram | file*  
-Same as top-level [queue_type](/admin/configuration/toplevel/#queue-type) option, but applied to this module
+Same as top-level [queue_type](toplevel.md#queue_type) option, but applied to this module
 only.
 
 - **ram\_db\_type**: *mnesia | sql | redis*  
-Same as top-level [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, but applied to this module
+Same as top-level [default_ram_db](toplevel.md#default_ram_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 __**Example**:__
 
@@ -324,28 +319,28 @@ mod\_caps
 This module implements [XEP-0115: Entity
 Capabilities](https://xmpp.org/extensions/xep-0115.html). The main
 purpose of the module is to provide PEP functionality (see
-[mod_pubsub](/admin/configuration/modules/#mod-pubsub)).
+[mod_pubsub](#mod_pubsub)).
 
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_carboncopy
 ---------------
@@ -391,10 +386,8 @@ mod\_configure
 --------------
 
 The module provides server configuration functionality via [XEP-0050:
-Ad-Hoc Commands](https://xmpp.org/extensions/xep-0050.html). Implements
-many commands as defined in [XEP-0133: Service
-Administration](https://xmpp.org/extensions/xep-0133.html). This module
-requires [mod_adhoc](/admin/configuration/modules/#mod-adhoc) to be loaded.
+Ad-Hoc Commands](https://xmpp.org/extensions/xep-0050.html). This module
+requires [mod_adhoc](#mod_adhoc) to be loaded.
 
 The module has no options.
 
@@ -404,15 +397,15 @@ mod\_conversejs
 This module serves a simple page for the
 [Converse](https://conversejs.org/) XMPP web browser client.
 
-This module is available since ejabberd <a href="/archive/21_12/">21.12</a>. Several options were
-improved in ejabberd <a href="/archive/22_05/">22.05</a>.
+This module is available since ejabberd <a href="../../../archive/21.12/">21.12</a>. Several options were
+improved in ejabberd <a href="../../../archive/22.05/">22.05</a>.
 
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
-[request\_handlers](/admin/configuration/listen-options/#request-handlers).
+[request\_handlers](listen-options.md#request_handlers).
 
 Make sure either *mod\_bosh* or *ejabberd\_http\_ws*
-[request\_handlers](/admin/configuration/listen-options/#request-handlers) are
+[request\_handlers](listen-options.md#request_handlers) are
 enabled.
 
 When *conversejs\_css* and *conversejs\_script* are *auto*, by default
@@ -430,7 +423,7 @@ value is *auto*.
 Converse CSS URL. The keyword *@HOST@* is replaced with the hostname.
 The default value is *auto*.
 
-<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
 
 - **conversejs\_options**: *{Name: Value}*  
 Specify additional options to be passed to Converse. See [Converse
@@ -438,7 +431,7 @@ configuration](https://conversejs.org/docs/html/configuration.html).
 Only boolean, integer and string values are supported; lists are not
 supported.
 
-<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
 
 - **conversejs\_resources**: *Path*  
 Local path to the Converse files. If not set, the public Converse client
@@ -522,7 +515,7 @@ external PEP service.
 
 > **Note**
 >
-> This module is complementary to [mod_privilege](/admin/configuration/modules/#mod-privilege) but can also be used
+> This module is complementary to [mod_privilege](#mod_privilege) but can also be used
 > separately.
 
 __Available options:__
@@ -672,11 +665,11 @@ This module serves small *host-meta* files as described in [XEP-0156:
 Discovering Alternative XMPP Connection
 Methods](https://xmpp.org/extensions/xep-0156.html).
 
-This module is available since ejabberd <a href="/archive/22_05/">22.05</a>.
+This module is available since ejabberd <a href="../../../archive/22.05/">22.05</a>.
 
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
-[request\_handlers](/admin/configuration/listen-options/#request-handlers).
+[request\_handlers](listen-options.md#request_handlers).
 
 Notice it only works if ejabberd\_http has tls enabled.
 
@@ -720,7 +713,7 @@ JSON data.
 
 To use this module, in addition to adding it to the *modules* section,
 you must also enable it in *listen* → *ejabberd\_http* →
-[request\_handlers](/admin/configuration/listen-options/#request-handlers).
+[request\_handlers](listen-options.md#request_handlers).
 
 To use a specific API version N, when defining the URL path in the
 request\_handlers, add a *vN*. For example: */api/v2: mod\_http\_api*
@@ -842,7 +835,7 @@ URL from which that file can later be downloaded.
 
 In order to use this module, it must be enabled in *listen* →
 *ejabberd\_http* →
-[request\_handlers](/admin/configuration/listen-options/#request-handlers).
+[request\_handlers](listen-options.md#request_handlers).
 
 __Available options:__
 
@@ -888,7 +881,7 @@ option is *undefined*, this option is set to the same value as
 *put\_url*. The keyword @HOST@ is replaced with the virtual host name.
 NOTE: if GET requests are handled by *mod\_http\_upload*, the *get\_url*
 must match the *put\_url*. Setting it to a different value only makes
-sense if an external web server or [mod_http_fileserver](/admin/configuration/modules/#mod-http-fileserver) is used to
+sense if an external web server or [mod_http_fileserver](#mod_http_fileserver) is used to
 serve the uploaded files.
 
 - **host**  
@@ -1065,23 +1058,23 @@ of the ejabberd server.
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_legacy\_auth
 -----------------
@@ -1113,7 +1106,7 @@ The default value is *all*.
 
 - **assume\_mam\_usage**: *true | false*  
 This option determines how ejabberd’s stream management code (see
-[mod_stream_mgmt](/admin/configuration/modules/#mod-stream-mgmt)) handles unacknowledged messages when the connection
+[mod_stream_mgmt](#mod_stream_mgmt)) handles unacknowledged messages when the connection
 is lost. Usually, such messages are either bounced or resent. However,
 neither is done for messages that were stored in the user’s MAM archive
 if this option is set to *true*. In this case, ejabberd assumes those
@@ -1121,19 +1114,19 @@ messages will be retrieved from the archive. The default value is
 *false*.
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **clear\_archive\_on\_room\_destroy**: *true | false*  
-Whether to destroy message archive of a room (see [mod_muc](/admin/configuration/modules/#mod-muc)) when it
+Whether to destroy message archive of a room (see [mod_muc](#mod_muc)) when it
 gets destroyed. The default value is *true*.
 
 - **compress\_xml**: *true | false*  
@@ -1142,7 +1135,7 @@ custom compression algorithm. This feature works only with SQL backends.
 The default value is *false*.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **default**: *always | never | roster*  
@@ -1159,7 +1152,7 @@ option. Once the server received a request, that user’s messages are
 archived as usual. The default value is *false*.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 - **user\_mucsub\_from\_muc\_archive**: *true | false*  
 When this option is disabled, for each individual subscriber a separa
@@ -1172,7 +1165,7 @@ mod\_matrix\_gw
 
 [Matrix](https://matrix.org/) gateway.
 
-This module is available since ejabberd <a href="/archive/24_02/">24.02</a>.
+This module is available since ejabberd <a href="../../../archive/24.02/">24.02</a>.
 
 __Available options:__
 
@@ -1264,16 +1257,16 @@ mod\_mix
 
 This module is an experimental implementation of [XEP-0369: Mediated
 Information eXchange (MIX)](https://xmpp.org/extensions/xep-0369.html).
-MIX support was added in ejabberd <a href="/archive/16_03/">16.03</a> as an experimental feature,
-updated in <a href="/archive/19_02/">19.02</a>, and is not yet ready to use in production. It’s
+MIX support was added in ejabberd 16.03 as an experimental feature,
+updated in 19.02, and is not yet ready to use in production. It’s
 asserted that the MIX protocol is going to replace the MUC protocol in
-the future (see [mod_muc](/admin/configuration/modules/#mod-muc)).
+the future (see [mod_muc](#mod_muc)).
 
 To learn more about how to use that feature, you can refer to our
 tutorial: [Getting started with XEP-0369: Mediated Information eXchange
 (MIX) v0.1](https://docs.ejabberd.im/tutorials/mix-010/).
 
-The module depends on [mod_mam](/admin/configuration/modules/#mod-mam).
+The module depends on [mod_mam](#mod_mam).
 
 __Available options:__
 
@@ -1282,7 +1275,7 @@ An access rule to control MIX channels creations. The default value is
 *all*.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **host**  
@@ -1316,23 +1309,23 @@ channels (either on your server or on any remote servers).
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_mqtt
 ---------
@@ -1353,19 +1346,19 @@ Access rules to restrict access to topics for subscribers. By default
 there are no restrictions.
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **match\_retained\_limit**: *pos\_integer() | infinity*  
@@ -1384,11 +1377,11 @@ The maximum topic depth, i.e. the number of slashes (*/*) in the topic.
 The default value is *8*.
 
 - **queue\_type**: *ram | file*  
-Same as top-level [queue_type](/admin/configuration/toplevel/#queue-type) option, but applied to this module
+Same as top-level [queue_type](toplevel.md#queue_type) option, but applied to this module
 only.
 
 - **ram\_db\_type**: *mnesia*  
-Same as top-level [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, but applied to this module
+Same as top-level [default_ram_db](toplevel.md#default_ram_db) option, but applied to this module
 only.
 
 - **session\_expiry**: *timeout()*  
@@ -1397,7 +1390,7 @@ When *0* is set, the session gets destroyed when the underlying client
 connection is closed. The default value is *5* minutes.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_mqtt\_bridge
 -----------------
@@ -1406,7 +1399,7 @@ This module adds ability to synchronize local MQTT topics with data on
 remote servers It can update topics on remote servers when local user
 updates local topic, or can subscribe for changes on remote server, and
 update local copy when remote data is updated. It is available since
-ejabberd <a href="/archive/23_01/">23.01</a>.
+ejabberd <a href="../../../archive/23.01/">23.01</a>.
 
 __Available options:__
 
@@ -1493,7 +1486,7 @@ To configure who is allowed to modify the *persistent* room option. The
 default value is *all*, which means everyone is allowed to modify that
 option.
 
-<div class="note-left">improved in <a href="/archive/23_10/">23.10</a></div>
+<div class="note-left">improved in <a href="../../../archive/23.10/">23.10</a></div>
 
 - **access\_register**: *AccessName*  
 This option specifies who is allowed to register nickname within the
@@ -1501,17 +1494,17 @@ Multi-User Chat service and rooms. The default is *all* for backward
 compatibility, which means that any user is allowed to register any free
 nick in the MUC service and in the rooms.
 
-<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
 
 - **cleanup\_affiliations\_on\_start**: *true | false*  
 Remove affiliations for non-existing local users on startup. The default
 value is *false*.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
-<div class="note-left">improved in <a href="/archive/22_05/">22.05</a></div>
+<div class="note-left">improved in <a href="../../../archive/22.05/">22.05</a></div>
 
 - **default\_room\_options**: *Options*  
 Define the default room options. Note that the creator of a room can
@@ -1569,7 +1562,7 @@ capability. The *Options* are:
    When a user tries to join a
     room where they have no affiliation (not owner, admin or member),
     the room requires them to fill a CAPTCHA challenge (see section
-    [CAPTCHA](/admin/configuration/#captcha) in order to accept their join in the
+    [CAPTCHA](http://../#captcha) in order to accept their join in the
     room. The default value is *false*.
 
  - **description**: *Room Description*  
@@ -1587,7 +1580,7 @@ capability. The *Options* are:
 
  - **logging**: *true | false*  
    The public messages are logged using
-    [mod_muc_log](/admin/configuration/modules/#mod-muc-log). The default value is *false*.
+    [mod_muc_log](#mod_muc_log). The default value is *false*.
 
  - **mam**: *true | false*  
    Enable message archiving. Implies mod\_mam
@@ -1684,14 +1677,14 @@ is not specified, the only Jabber ID will be the hostname of the virtual
 host with the prefix "conference.". The keyword *@HOST@* is replaced
 with the real virtual host name.
 
-<div class="note-left">added in <a href="/archive/21_01/">21.01</a></div>
+<div class="note-left">added in <a href="../../../archive/21.01/">21.01</a></div>
 
 - **max\_captcha\_whitelist**: *Number*  
 This option defines the maximum number of characters that Captcha
 Whitelist can have when configuring the room. The default value is
 *infinity*.
 
-<div class="note-left">added in <a href="/archive/21_01/">21.01</a></div>
+<div class="note-left">added in <a href="../../../archive/21.01/">21.01</a></div>
 
 - **max\_password**: *Number*  
 This option defines the maximum number of characters that Password can
@@ -1774,11 +1767,11 @@ rooms is high: this will improve server startup time and memory
 consumption.
 
 - **queue\_type**: *ram | file*  
-Same as top-level [queue_type](/admin/configuration/toplevel/#queue-type) option, but applied to this module
+Same as top-level [queue_type](toplevel.md#queue_type) option, but applied to this module
 only.
 
 - **ram\_db\_type**: *mnesia | sql*  
-Same as top-level [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, but applied to this module
+Same as top-level [default_ram_db](toplevel.md#default_ram_db) option, but applied to this module
 only.
 
 - **regexp\_room\_id**: *string()*  
@@ -1829,11 +1822,11 @@ This module provides commands to administer local MUC services and their
 MUC rooms. It also provides simple WebAdmin pages to view the existing
 rooms.
 
-This module depends on [mod_muc](/admin/configuration/modules/#mod-muc).
+This module depends on [mod_muc](#mod_muc).
 
 __Available options:__
 
-<div class="note-left">added in <a href="/archive/22_05/">22.05</a></div>
+<div class="note-left">added in <a href="../../../archive/22.05/">22.05</a></div>
 
 - **subscribe\_room\_many\_max\_users**: *Number*  
 How many users can be subscribed to a room at once using the
@@ -1875,7 +1868,7 @@ Features:
 
 -   A custom link can be added on top of each page.
 
-The module depends on [mod_muc](/admin/configuration/modules/#mod-muc).
+The module depends on [mod_muc](#mod_muc).
 
 __Available options:__
 
@@ -1958,7 +1951,7 @@ for MUCs](https://xmpp.org/extensions/xep-0421.html).
 When the module is enabled, the feature is enabled in all semi-anonymous
 rooms.
 
-This module is available since ejabberd <a href="/archive/23_10/">23.10</a>.
+This module is available since ejabberd <a href="../../../archive/23.10/">23.10</a>.
 
 The module has no options.
 
@@ -1970,7 +1963,7 @@ This module implement Real-time blocklists for MUC rooms.
 It works by observing remote pubsub node conforming with specification
 described in <https://xmppbl.org/>.
 
-This module is available since ejabberd <a href="/archive/23_04/">23.04</a>.
+This module is available since ejabberd <a href="../../../archive/23.04/">23.04</a>.
 
 __Available options:__
 
@@ -2104,15 +2097,15 @@ on large MucSub services. The default value is *false*, meaning the
 optimisation is enabled.
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **store\_empty\_body**: *true | false | unless\_chat\_state*  
@@ -2127,7 +2120,7 @@ Whether or not to store groupchat messages. The default value is
 *false*.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 - **use\_mam\_for\_storage**: *true | false*  
 This is an experimental option. Enabling this option, *mod\_offline*
@@ -2180,7 +2173,7 @@ __Available options:__
 
 - **ping\_ack\_timeout**: *timeout()*  
 How long to wait before deeming that a client has not answered a given
-server ping request. NOTE: when [mod_stream_mgmt](/admin/configuration/modules/#mod-stream-mgmt) is loaded and stream
+server ping request. NOTE: when [mod_stream_mgmt](#mod_stream_mgmt) is loaded and stream
 management is enabled by a client, this value is ignored, and the
 `ack_timeout` applies instead. The default value is *undefined*.
 
@@ -2200,7 +2193,7 @@ or checking availability. The default value is *false*.
 What to do when a client does not answer to a server ping request in
 less than period defined in *ping\_ack\_timeout* option: *kill* means
 destroying the underlying connection, *none* means to do nothing. NOTE:
-when [mod_stream_mgmt](/admin/configuration/modules/#mod-stream-mgmt) is loaded and stream management is enabled by a
+when [mod_stream_mgmt](#mod_stream_mgmt) is loaded and stream management is enabled by a
 client, killing the client connection doesn’t mean killing the client
 session - the session will be kept alive in order to give the client a
 chance to resume it. The default value is *none*.
@@ -2254,28 +2247,28 @@ Lists](https://xmpp.org/extensions/xep-0016.html).
 > Nowadays modern XMPP clients rely on [XEP-0191: Blocking
 > Command](https://xmpp.org/extensions/xep-0191.html) which is
 > implemented by *mod\_blocking* module. However, you still need
-> *mod\_privacy* loaded in order for [mod_blocking](/admin/configuration/modules/#mod-blocking) to work.
+> *mod\_privacy* loaded in order for [mod_blocking](#mod_blocking) to work.
 
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_private
 ------------
@@ -2292,28 +2285,28 @@ Bookmarks](https://xmpp.org/extensions/xep-0048.html)).
 
 It also implements the bookmark conversion described in [XEP-0402: PEP
 Native Bookmarks](https://xmpp.org/extensions/xep-0402.html), see the
-command [bookmarks_to_pep](/developer/ejabberd-api/admin-api/#bookmarks-to-pep) API.
+command [bookmarks_to_pep](../../developer/ejabberd-api/admin-api.md#bookmarks_to_pep) API.
 
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_privilege
 --------------
@@ -2343,7 +2336,7 @@ Check the section about listening ports for more information.
 
 > **Note**
 >
-> This module is complementary to [mod_delegation](/admin/configuration/modules/#mod-delegation), but can also be
+> This module is complementary to [mod_delegation](#mod_delegation), but can also be
 > used separately.
 
 __Available options:__
@@ -2456,7 +2449,7 @@ A port number to listen for incoming connections. The default value is
 *7777*.
 
 - **ram\_db\_type**: *mnesia | redis | sql*  
-Same as top-level [default_ram_db](/admin/configuration/toplevel/#default-ram-db) option, but applied to this module
+Same as top-level [default_ram_db](toplevel.md#default_ram_db) option, but applied to this module
 only.
 
 - **recbuf**: *Size*  
@@ -2541,7 +2534,7 @@ Publish-Subscribe](https://xmpp.org/extensions/xep-0060.html). The
 functionality in *mod\_pubsub* can be extended using plugins. The plugin
 that implements PEP ([XEP-0163: Personal Eventing via
 Pubsub](https://xmpp.org/extensions/xep-0163.html)) is enabled in the
-default ejabberd configuration file, and it requires [mod_caps](/admin/configuration/modules/#mod-caps).
+default ejabberd configuration file, and it requires [mod_caps](#mod_caps).
 
 __Available options:__
 
@@ -2551,7 +2544,7 @@ using *acl* and *access*. By default any account in the local ejabberd
 server is allowed to create pubsub nodes. The default value is: *all*.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **default\_node\_config**: *List of Key:Value*  
@@ -2592,7 +2585,7 @@ systems with not so many nodes, caching last items speeds up pubsub and
 allows you to raise the user connection rate. The cost is memory usage,
 as every item is stored in memory.
 
-<div class="note-left">added in <a href="/archive/21_12/">21.12</a></div>
+<div class="note-left">added in <a href="../../../archive/21.12/">21.12</a></div>
 
 - **max\_item\_expire\_node**: *timeout() | infinity*  
 Specify the maximum item epiry time. Default value is: *infinity*.
@@ -2737,19 +2730,19 @@ platform-dependant backend services such as FCM or APNS.
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **include\_body**: *true | false | Text*  
@@ -2766,7 +2759,7 @@ If this option is set to *true*, the sender’s JID is included with push
 notifications generated for incoming messages with a body. The default
 value is *false*.
 
-<div class="note-left">added in <a href="/archive/23_10/">23.10</a></div>
+<div class="note-left">added in <a href="../../../archive/23.10/">23.10</a></div>
 
 - **notify\_on**: *messages | all*  
 If this option is set to *messages*, notifications are generated only
@@ -2776,19 +2769,19 @@ notification. If unsure, it’s strongly recommended to stick to *all*,
 which is the default value.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_push\_keepalive
 --------------------
 
 This module tries to keep the stream management session (see
-[mod_stream_mgmt](/admin/configuration/modules/#mod-stream-mgmt)) of a disconnected mobile client alive if the client
+[mod_stream_mgmt](#mod_stream_mgmt)) of a disconnected mobile client alive if the client
 enabled push notifications for that session. However, the normal session
 resumption timeout is restored once a push notification is issued, so
 the session will be closed if the client doesn’t respond to push
 notifications.
 
-The module depends on [mod_push](/admin/configuration/modules/#mod-push).
+The module depends on [mod_push](#mod_push).
 
 __Available options:__
 
@@ -2796,7 +2789,7 @@ __Available options:__
 This option specifies the period of time until the session of a
 disconnected push client times out. This timeout is only in effect as
 long as no push notification is issued. Once that happened, the
-resumption timeout configured for [mod_stream_mgmt](/admin/configuration/modules/#mod-stream-mgmt) is restored. The
+resumption timeout configured for [mod_stream_mgmt](#mod_stream_mgmt) is restored. The
 default value is *72* hours.
 
 - **wake\_on\_start**: *true | false*  
@@ -2824,7 +2817,7 @@ enables end users to use an XMPP client to:
 
 -   Delete an existing account on the server.
 
-This module reads also the top-level [registration_timeout](/admin/configuration/toplevel/#registration-timeout) option
+This module reads also the top-level [registration_timeout](toplevel.md#registration_timeout) option
 defined globally for the server, so please check that option
 documentation too.
 
@@ -2845,7 +2838,7 @@ to uncontrolled massive accounts creation by rogue users.
 Specify rules to restrict access for user unregistration. By default any
 user is able to unregister their account.
 
-<div class="note-left">added in <a href="/archive/21_12/">21.12</a></div>
+<div class="note-left">added in <a href="../../../archive/21.12/">21.12</a></div>
 
 - **allow\_modules**: *all | \[Module, ...\]*  
 List of modules that can register accounts, or *all*. The default value
@@ -2853,7 +2846,7 @@ is *all*, which is equivalent to something like *\[mod\_register,
 mod\_register\_web\]*.
 
 - **captcha\_protected**: *true | false*  
-Protect registrations with [CAPTCHA](/admin/configuration/basic/#captcha). The
+Protect registrations with [CAPTCHA](basic.md#captcha). The
 default is *false*.
 
 - **ip\_access**: *AccessName*  
@@ -2892,9 +2885,9 @@ This module provides a web page where users can:
 
 -   Unregister an existing account on the server.
 
-This module supports [CAPTCHA](/admin/configuration/basic/#captcha) to register a
+This module supports [CAPTCHA](basic.md#captcha) to register a
 new account. To enable this feature, configure the top-level
-[captcha_cmd](/admin/configuration/toplevel/#captcha-cmd) and top-level [captcha_url](/admin/configuration/toplevel/#captcha-url) options.
+[captcha_cmd](toplevel.md#captcha_cmd) and top-level [captcha_url](toplevel.md#captcha_url) options.
 
 As an example usage, the users of the host *localhost* can visit the
 page: *https://localhost:5280/register/* It is important to include the
@@ -2902,8 +2895,8 @@ last / character in the URL, otherwise the subpages URL will be
 incorrect.
 
 This module is enabled in *listen* → *ejabberd\_http* →
-[request\_handlers](/admin/configuration/listen-options/#request-handlers), no need
-to enable in *modules*. The module depends on [mod_register](/admin/configuration/modules/#mod-register) where all
+[request\_handlers](listen-options.md#request_handlers), no need
+to enable in *modules*. The module depends on [mod_register](#mod_register) where all
 the configuration is performed.
 
 The module has no options.
@@ -2938,19 +2931,19 @@ add/remove/modify contacts or send presence subscriptions. The default
 value is *all*, i.e. no restrictions.
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **store\_current\_id**: *true | false*  
@@ -2960,11 +2953,11 @@ calculated on the fly each time. Enabling this option reduces the load
 for both ejabberd and the database. This option does not affect the
 client in any way. This option is only useful if option *versioning* is
 set to *true*. The default value is *false*. IMPORTANT: if you use
-[mod_shared_roster](/admin/configuration/modules/#mod-shared-roster) or [mod_shared_roster_ldap](/admin/configuration/modules/#mod-shared-roster-ldap), you must set the
+[mod_shared_roster](#mod_shared_roster) or [mod_shared_roster_ldap](#mod_shared_roster_ldap), you must set the
 value of the option to *false*.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 - **versioning**: *true | false*  
 Enables/disables Roster Versioning. The default value is *false*.
@@ -3074,29 +3067,29 @@ parameters:
     group’s members. A group of other vhost can be identified with
     *groupid@vhost*.
 
-This module depends on [mod_roster](/admin/configuration/modules/#mod-roster). If not enabled, roster queries
+This module depends on [mod_roster](#mod_roster). If not enabled, roster queries
 will return 503 errors.
 
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 __Examples:__
 
@@ -3175,25 +3168,25 @@ password in multiple places.
 -   Connection parameters: The module also accepts the connection
     parameters, all of which default to the top-level parameter of the
     same name, if unspecified. See [LDAP
-    Connection](/admin/configuration/ldap/#ldap-connection) section for more
+    Connection](ldap.md#ldap-connection) section for more
     information about them.
 
-Check also the [Configuration examples](/admin/configuration/ldap/#ldap-examples)
+Check also the [Configuration examples](ldap.md#ldap-examples)
 section to get details about retrieving the roster, and configuration
 examples including Flat DIT and Deep DIT.
 
 __Available options:__
 
 - **cache\_life\_time**  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **ldap\_auth\_check**: *true | false*  
@@ -3202,24 +3195,24 @@ subsystem) for existence of each user in the shared LDAP roster. Set to
 *false* if you want to disable the check. Default value is *true*.
 
 - **ldap\_backups**  
-Same as top-level [ldap_backups](/admin/configuration/toplevel/#ldap-backups) option, but applied to this module
+Same as top-level [ldap_backups](toplevel.md#ldap_backups) option, but applied to this module
 only.
 
 - **ldap\_base**  
-Same as top-level [ldap_base](/admin/configuration/toplevel/#ldap-base) option, but applied to this module only.
+Same as top-level [ldap_base](toplevel.md#ldap_base) option, but applied to this module only.
 
 - **ldap\_deref\_aliases**  
-Same as top-level [ldap_deref_aliases](/admin/configuration/toplevel/#ldap-deref-aliases) option, but applied to this
+Same as top-level [ldap_deref_aliases](toplevel.md#ldap_deref_aliases) option, but applied to this
 module only.
 
 - **ldap\_encrypt**  
-Same as top-level [ldap_encrypt](/admin/configuration/toplevel/#ldap-encrypt) option, but applied to this module
+Same as top-level [ldap_encrypt](toplevel.md#ldap_encrypt) option, but applied to this module
 only.
 
 - **ldap\_filter**  
 Additional filter which is AND-ed together with "User Filter" and "Group
 Filter". For more information check the LDAP
-[Filters](/admin/configuration/ldap/#filters) section.
+[Filters](ldap.md#filters) section.
 
 - **ldap\_gfilter**  
 "Group Filter", used when retrieving human-readable name (a.k.a.
@@ -3256,14 +3249,14 @@ section Filters.
 - **ldap\_memberattr\_format\_re**  
 A regex for extracting user ID from the value of the attribute named by
 *ldap\_memberattr*. Check the LDAP [Control
-Parameters](/admin/configuration/ldap/#control-parameters) section.
+Parameters](ldap.md#control-parameters) section.
 
 - **ldap\_password**  
-Same as top-level [ldap_password](/admin/configuration/toplevel/#ldap-password) option, but applied to this module
+Same as top-level [ldap_password](toplevel.md#ldap_password) option, but applied to this module
 only.
 
 - **ldap\_port**  
-Same as top-level [ldap_port](/admin/configuration/toplevel/#ldap-port) option, but applied to this module only.
+Same as top-level [ldap_port](toplevel.md#ldap_port) option, but applied to this module only.
 
 - **ldap\_rfilter**  
 So called "Roster Filter". Used to find names of all "shared roster"
@@ -3272,37 +3265,37 @@ defaults to the top-level parameter of the same name. You must specify
 it in some place in the configuration, there is no default.
 
 - **ldap\_rootdn**  
-Same as top-level [ldap_rootdn](/admin/configuration/toplevel/#ldap-rootdn) option, but applied to this module
+Same as top-level [ldap_rootdn](toplevel.md#ldap_rootdn) option, but applied to this module
 only.
 
 - **ldap\_servers**  
-Same as top-level [ldap_servers](/admin/configuration/toplevel/#ldap-servers) option, but applied to this module
+Same as top-level [ldap_servers](toplevel.md#ldap_servers) option, but applied to this module
 only.
 
 - **ldap\_tls\_cacertfile**  
-Same as top-level [ldap_tls_cacertfile](/admin/configuration/toplevel/#ldap-tls-cacertfile) option, but applied to this
+Same as top-level [ldap_tls_cacertfile](toplevel.md#ldap_tls_cacertfile) option, but applied to this
 module only.
 
 - **ldap\_tls\_certfile**  
-Same as top-level [ldap_tls_certfile](/admin/configuration/toplevel/#ldap-tls-certfile) option, but applied to this
+Same as top-level [ldap_tls_certfile](toplevel.md#ldap_tls_certfile) option, but applied to this
 module only.
 
 - **ldap\_tls\_depth**  
-Same as top-level [ldap_tls_depth](/admin/configuration/toplevel/#ldap-tls-depth) option, but applied to this module
+Same as top-level [ldap_tls_depth](toplevel.md#ldap_tls_depth) option, but applied to this module
 only.
 
 - **ldap\_tls\_verify**  
-Same as top-level [ldap_tls_verify](/admin/configuration/toplevel/#ldap-tls-verify) option, but applied to this module
+Same as top-level [ldap_tls_verify](toplevel.md#ldap_tls_verify) option, but applied to this module
 only.
 
 - **ldap\_ufilter**  
 "User Filter", used for retrieving the human-readable name of roster
 entries (usually full names of people in the roster). See also the
 parameters *ldap\_userdesc* and *ldap\_useruid*. For more information
-check the LDAP [Filters](/admin/configuration/ldap/#filters) section.
+check the LDAP [Filters](ldap.md#filters) section.
 
 - **ldap\_uids**  
-Same as top-level [ldap_uids](/admin/configuration/toplevel/#ldap-uids) option, but applied to this module only.
+Same as top-level [ldap_uids](toplevel.md#ldap_uids) option, but applied to this module only.
 
 - **ldap\_userdesc**  
 The name of the attribute which holds the human-readable user name.
@@ -3320,7 +3313,7 @@ retrieved from the *ldap\_memberattr* attribute of a group object.
 Retrieved from results of the "User Filter". Defaults to *cn*.
 
 - **use\_cache**  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_sic
 --------
@@ -3347,7 +3340,7 @@ virtual host.
 >
 > It is not enough to just load this module. You should also configure
 > listeners and DNS records properly. For details see the section about
-> the [ejabberd\_sip](/admin/configuration/listen/#ejabberd-sip) listen module in
+> the [ejabberd\_sip](listen.md#ejabberd_sip) listen module in
 > the ejabberd Documentation.
 
 __Available options:__
@@ -3449,11 +3442,11 @@ A time to wait for stanza acknowledgements. Setting it to *infinity*
 effectively disables the timeout. The default value is *1* minute.
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only. The default value is *48 hours*.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **max\_ack\_queue**: *Size*  
@@ -3476,7 +3469,7 @@ default *resume\_timeout*. By default, it is set to the same value as
 the *resume\_timeout* option.
 
 - **queue\_type**: *ram | file*  
-Same as top-level [queue_type](/admin/configuration/toplevel/#queue-type) option, but applied to this module
+Same as top-level [queue_type](toplevel.md#queue_type) option, but applied to this module
 only.
 
 - **resend\_on\_timeout**: *true | false | if\_offline*  
@@ -3505,7 +3498,7 @@ mod\_stun\_disco
 This module allows XMPP clients to discover STUN/TURN services and to
 obtain temporary credentials for using them as per [XEP-0215: External
 Service Discovery](https://xmpp.org/extensions/xep-0215.html). This
-module is included in ejabberd since version <a href="/archive/20_04/">20.04</a>.
+module is included in ejabberd since version <a href="../../../archive/20.04/">20.04</a>.
 
 __Available options:__
 
@@ -3642,19 +3635,19 @@ fields should return all users who added some information to their
 vCard. The default value is *false*.
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **db\_type**: *mnesia | sql | ldap*  
-Same as top-level [default_db](/admin/configuration/toplevel/#default-db) option, but applied to this module
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
 - **host**  
@@ -3684,7 +3677,7 @@ ignored and the Jabber User Directory service will not appear in the
 Service Discovery item list. The default value is *false*.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 - **vcard**: *vCard*  
 A custom vCard of the server that will be displayed by some XMPP clients
@@ -3714,33 +3707,33 @@ will be translated to:
 __Available options for *ldap* backend:__
 
 - **ldap\_backups**  
-Same as top-level [ldap_backups](/admin/configuration/toplevel/#ldap-backups) option, but applied to this module
+Same as top-level [ldap_backups](toplevel.md#ldap_backups) option, but applied to this module
 only.
 
 - **ldap\_base**  
-Same as top-level [ldap_base](/admin/configuration/toplevel/#ldap-base) option, but applied to this module only.
+Same as top-level [ldap_base](toplevel.md#ldap_base) option, but applied to this module only.
 
 - **ldap\_deref\_aliases**  
-Same as top-level [ldap_deref_aliases](/admin/configuration/toplevel/#ldap-deref-aliases) option, but applied to this
+Same as top-level [ldap_deref_aliases](toplevel.md#ldap_deref_aliases) option, but applied to this
 module only.
 
 - **ldap\_encrypt**  
-Same as top-level [ldap_encrypt](/admin/configuration/toplevel/#ldap-encrypt) option, but applied to this module
+Same as top-level [ldap_encrypt](toplevel.md#ldap_encrypt) option, but applied to this module
 only.
 
 - **ldap\_filter**  
-Same as top-level [ldap_filter](/admin/configuration/toplevel/#ldap-filter) option, but applied to this module
+Same as top-level [ldap_filter](toplevel.md#ldap_filter) option, but applied to this module
 only.
 
 - **ldap\_password**  
-Same as top-level [ldap_password](/admin/configuration/toplevel/#ldap-password) option, but applied to this module
+Same as top-level [ldap_password](toplevel.md#ldap_password) option, but applied to this module
 only.
 
 - **ldap\_port**  
-Same as top-level [ldap_port](/admin/configuration/toplevel/#ldap-port) option, but applied to this module only.
+Same as top-level [ldap_port](toplevel.md#ldap_port) option, but applied to this module only.
 
 - **ldap\_rootdn**  
-Same as top-level [ldap_rootdn](/admin/configuration/toplevel/#ldap-rootdn) option, but applied to this module
+Same as top-level [ldap_rootdn](toplevel.md#ldap_rootdn) option, but applied to this module
 only.
 
 - **ldap\_search\_fields**: *{Name: Attribute, ...}*  
@@ -3787,27 +3780,27 @@ The default is:
     "Organization Unit": ORGUNIT
 
 - **ldap\_servers**  
-Same as top-level [ldap_servers](/admin/configuration/toplevel/#ldap-servers) option, but applied to this module
+Same as top-level [ldap_servers](toplevel.md#ldap_servers) option, but applied to this module
 only.
 
 - **ldap\_tls\_cacertfile**  
-Same as top-level [ldap_tls_cacertfile](/admin/configuration/toplevel/#ldap-tls-cacertfile) option, but applied to this
+Same as top-level [ldap_tls_cacertfile](toplevel.md#ldap_tls_cacertfile) option, but applied to this
 module only.
 
 - **ldap\_tls\_certfile**  
-Same as top-level [ldap_tls_certfile](/admin/configuration/toplevel/#ldap-tls-certfile) option, but applied to this
+Same as top-level [ldap_tls_certfile](toplevel.md#ldap_tls_certfile) option, but applied to this
 module only.
 
 - **ldap\_tls\_depth**  
-Same as top-level [ldap_tls_depth](/admin/configuration/toplevel/#ldap-tls-depth) option, but applied to this module
+Same as top-level [ldap_tls_depth](toplevel.md#ldap_tls_depth) option, but applied to this module
 only.
 
 - **ldap\_tls\_verify**  
-Same as top-level [ldap_tls_verify](/admin/configuration/toplevel/#ldap-tls-verify) option, but applied to this module
+Same as top-level [ldap_tls_verify](toplevel.md#ldap_tls_verify) option, but applied to this module
 only.
 
 - **ldap\_uids**  
-Same as top-level [ldap_uids](/admin/configuration/toplevel/#ldap-uids) option, but applied to this module only.
+Same as top-level [ldap_uids](toplevel.md#ldap_uids) option, but applied to this module only.
 
 - **ldap\_vcard\_map**: *{Name: {Pattern, LDAPattributes}, ...}*  
 With this option you can set the table that maps LDAP attributes to
@@ -3873,31 +3866,31 @@ that change frequently their presence. However, the overhead is
 significantly reduced by the use of caching, so you probably don’t want
 to set *use\_cache* to *false*.
 
-The module depends on [mod_vcard](/admin/configuration/modules/#mod-vcard).
+The module depends on [mod_vcard](#mod_vcard).
 
 > **Note**
 >
 > Nowadays [XEP-0153](https://xmpp.org/extensions/xep-0153.html) is used
 > mostly as "read-only", i.e. modern clients don’t publish their avatars
 > inside vCards. Thus in the majority of cases the module is only used
-> along with [mod_avatar](/admin/configuration/modules/#mod-avatar) for providing backward compatibility.
+> along with [mod_avatar](#mod_avatar) for providing backward compatibility.
 
 __Available options:__
 
 - **cache\_life\_time**: *timeout()*  
-Same as top-level [cache_life_time](/admin/configuration/toplevel/#cache-life-time) option, but applied to this module
+Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
 
 - **cache\_missed**: *true | false*  
-Same as top-level [cache_missed](/admin/configuration/toplevel/#cache-missed) option, but applied to this module
+Same as top-level [cache_missed](toplevel.md#cache_missed) option, but applied to this module
 only.
 
 - **cache\_size**: *pos\_integer() | infinity*  
-Same as top-level [cache_size](/admin/configuration/toplevel/#cache-size) option, but applied to this module
+Same as top-level [cache_size](toplevel.md#cache_size) option, but applied to this module
 only.
 
 - **use\_cache**: *true | false*  
-Same as top-level [use_cache](/admin/configuration/toplevel/#use-cache) option, but applied to this module only.
+Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 mod\_version
 ------------

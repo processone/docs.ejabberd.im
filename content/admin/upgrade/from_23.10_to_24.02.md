@@ -1,74 +1,71 @@
----
-title: Upgrade to ejabberd 24.02
-toc: true
----
+# Upgrade to ejabberd 24.02
 
-If you upgrade ejabberd from a previous release to [24.02](/archive/20_02/),
+If you upgrade ejabberd from a previous release to [24.02](../../archive/24.02/index.md),
 please review those changes:
 
-- [Update the SQL schema](#sql)
-- Update API commands as explained below, or use [API versioning](#api)
-- [Mix or Rebar3 used by default instead of Rebar to compile ejabberd](#mixdefault)
-- [Authentication workaround for Converse.js and Strophe.js](#converse)
+- Update the SQL schema
+- Update API commands as explained below, or use API versioning
+- Mix or Rebar3 used by default instead of Rebar to compile ejabberd
+- Authentication workaround for Converse.js and Strophe.js
 
 ## <a name="sql"></a>Update the SQL schema
 
 The table `archive` has a text column named `origin_id` (see [commit 975681](https://github.com/processone/ejabberd/commit/975681)). You have two methods to update the SQL schema of your existing database:
 
-If using MySQL or PosgreSQL, you can enable the option [`update_sql_schema`](https://docs.ejabberd.im/admin/configuration/toplevel/#update-sql-schema) and ejabberd will take care to update the SQL schema when needed: add in your ejabberd configuration file the line `update_sql_schema: true`
+If using MySQL or PosgreSQL, you can enable the option [`update_sql_schema`](https://docs.ejabberd.im/admin/configuration/toplevel/#update_sql_schema) and ejabberd will take care to update the SQL schema when needed: add in your ejabberd configuration file the line `update_sql_schema: true`
 
 If you are using other database, or prefer to update manually the SQL schema:
 
 * MySQL default schema:
-```sql
+``` sql
 ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
 ALTER TABLE archive ALTER COLUMN origin_id DROP DEFAULT;
 CREATE INDEX i_archive_username_origin_id USING BTREE ON archive(username(191), origin_id(191));
 ```
 
 * MySQL new schema:
-```sql
+``` sql
 ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
 ALTER TABLE archive ALTER COLUMN origin_id DROP DEFAULT;
 CREATE INDEX i_archive_sh_username_origin_id USING BTREE ON archive(server_host(191), username(191), origin_id(191));
 ```
 
 * PostgreSQL default schema:
-```sql
+``` sql
 ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
 ALTER TABLE archive ALTER COLUMN origin_id DROP DEFAULT;
 CREATE INDEX i_archive_username_origin_id ON archive USING btree (username, origin_id);
 ```
 
 * PostgreSQL new schema:
-```sql
+``` sql
 ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
 ALTER TABLE archive ALTER COLUMN origin_id DROP DEFAULT;
 CREATE INDEX i_archive_sh_username_origin_id ON archive USING btree (server_host, username, origin_id);
 ```
 
 * MSSQL default schema:
-```sql
+``` sql
 ALTER TABLE [dbo].[archive] ADD [origin_id] VARCHAR (250) NOT NULL;
 CREATE INDEX [archive_username_origin_id] ON [archive] (username, origin_id)
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON);
 ```
 
 * MSSQL new schema:
-```sql
+``` sql
 ALTER TABLE [dbo].[archive] ADD [origin_id] VARCHAR (250) NOT NULL;
 CREATE INDEX [archive_sh_username_origin_id] ON [archive] (server_host, username, origin_id)
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON);
 ```
 
 * SQLite default schema:
-```sql
+``` sql
 ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
 CREATE INDEX i_archive_username_origin_id ON archive (username, origin_id);
 ```
 
 * SQLite new schema:
-```sql
+``` sql
 ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
 CREATE INDEX i_archive_sh_username_origin_id ON archive (server_host, username, origin_id);
 ```
@@ -89,7 +86,7 @@ To continue using API version 0:
 - if using ejabberdctl, use the switch `--version 0`. For example: `ejabberdctl --version 0 get_roster admin localhost`
 - if using mod_http_api, in ejabberd configuration file add `v0` to the `request_handlers` path. For example: `/api/v0: mod_http_api`
 
-Check the ejabberd [24.02](/archive/20_02/) full release notes for more details about the changed commands.
+Check the ejabberd [24.02](../../archive/24.02/index.md) full release notes for more details about the changed commands.
 
 Check the full documentation in [ejabberd Docs: API Versioning](https://docs.ejabberd.im/developer/ejabberd-api/api_versioning/).
 
@@ -99,7 +96,7 @@ ejabberd uses [Rebar](https://github.com/rebar/rebar) to manage dependencies and
 
 [Rebar3](https://github.com/erlang/rebar3) is supported by ejabberd since [20.12](https://www.process-one.net/blog/ejabberd-20-12/) [0fc1aea](https://github.com/processone/ejabberd/commit/0fc1aea379924b6f83f274f173d0bbd163cae1c2). Among other benefits, this allows to download dependencies from [hex.pm](https://hex.pm/) and cache them in your system instead of downloading them from git every time, and allows to compile Elixir files and Elixir dependencies.
 
-In fact, ejabberd can be compiled using `mix` (a tool included with the [Elixir programming language](https://elixir-lang.org/)) since ejabberd [15.04](https://www.process-one.net/blog/ejabberd-15-04/) [ea8db99](https://github.com/processone/ejabberd/commit/ea8db9967fbfe53f581c3ae721657d9e6f919864) (with improvements in ejabberd [21.07](https://www.process-one.net/blog/ejabberd-22-07/) [4c5641a](https://github.com/processone/ejabberd/commit/4c5641a6489d0669b4220b5ac759a4e1271af3b5))
+In fact, ejabberd can be compiled using `mix` (a tool included with the [Elixir programming language](https://elixir-lang.org/)) since ejabberd [15.04](https://www.process-one.net/blog/ejabberd-15-04/) [ea8db99](https://github.com/processone/ejabberd/commit/ea8db9967fbfe53f581c3ae721657d9e6f919864) (with improvements in ejabberd [21.07](https://www.process-one.net/blog/ejabberd-21-07/) [4c5641a](https://github.com/processone/ejabberd/commit/4c5641a6489d0669b4220b5ac759a4e1271af3b5))
 
 For those reasons, the tool selection performed by `./configure` will now be:
 
@@ -115,8 +112,7 @@ This ejabberd release includes support for [XEP-0474: SASL SCRAM Downgrade Prote
 
 If you are using [Converse.js](https://github.com/conversejs/converse.js) 10.1.6 or older, [Movim](https://github.com/movim/movim) 0.23 Kojima or older, or any other client based in [Strophe.js](https://github.com/strophe/strophejs) v1.6.2 or older, you may notice that they cannot authenticate correctly to ejabberd.
 
-To solve that problem, either update to newer versions of those programs (if they exist), or you can enable temporarily the option [`disable_sasl_scram_downgrade_protection`](https://docs.ejabberd.im/admin/configuration/toplevel/#disable-sasl-scram-downgrade-protection) in the ejabberd configuration file `ejabberd.yml` like this:
-```yaml
+To solve that problem, either update to newer versions of those programs (if they exist), or you can enable temporarily the option [`disable_sasl_scram_downgrade_protection`](https://docs.ejabberd.im/admin/configuration/toplevel/#disable_sasl_scram_downgrade_protection) in the ejabberd configuration file `ejabberd.yml` like this:
+``` yaml
 disable_sasl_scram_downgrade_protection: true
 ```
-

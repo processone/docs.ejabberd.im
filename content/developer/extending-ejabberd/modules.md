@@ -1,55 +1,38 @@
----
-title: ejabberd Modules Development
-menu: Modules Dev
-toc: true
----
+# ejabberd Modules Development
 
-# Introduction
+## Introduction
 
-ejabberd is based on a modular architecture that makes it highly
-customizable and infinitely extensible.
+ejabberd is based on a modular architecture that makes it highly customizable and infinitely extensible.
 
 Here is an overview of ejabberd internal architecture:
 
-[![][image-1]](/static/images/architect/ejabberd_internals.pdf)
+![image1](./images/ejabberd_internals.png)
 
-[*Click for large size PDF*](/static/images/architect/ejabberd_internals.pdf)
+## What is a module ?
 
-# What is a module ?
+Outside of a few infrastructure core components most of ejabberd features are developed as modules. Modules are used to extend the features of ejabberd (plugins).
 
-Outside of a few infrastructure core components most of ejabberd
-features are developed as modules. Modules are used to extend the
-features of ejabberd (plugins).
+## How to write a custom module ?
 
-# How to write a custom module ?
+Ejabberd comes with a lot of modules, but sometimes you may need an unsupported feature from the official sources or maybe you need to write your own custom implementation for your very special needs.
 
-Ejabberd comes with a lot of modules, but sometimes you may need an
-unsupported feature from the official sources or maybe you need to
-write your own custom implementation for your very special needs.
+Each modules is written in either Erlang or Elixir. To use them, you typically declare them in ejabberd configuration file. That's also the place where you can configure the module, by passing supported options to overload its default behaviour.
 
-Each modules is written in either Erlang or Elixir. To use them, you
-typically declare them in ejabberd configuration file. That's also the
-place where you can configure the module, by passing supported options
-to overload its default behaviour.
+On ejabberd launch, the server will start all the declared modules. You can start (or stop) them manually from Erlang shell as well.
 
-On ejabberd launch, the server will start all the declared
-modules. You can start (or stop) them manually from Erlang shell as
-well.
+As a convention, module names starts with "mod_", but you can actually call them as you want.
 
-As a convention, module names starts with "mod_", but you can actually
-call them as you want.
-
-# The `gen_mod` behaviour
+## The `gen_mod` behaviour
 
 All ejabberd modules are implementing the `gen_mod` behaviour. It
 means that a module must provide the following API:
 
-~~~ erlang
+``` erlang
 start(Host, Opts) -> ok
 stop(Host) -> ok
 depends(Host, Opts) -> []
 mod_options(Host) -> []
-~~~
+```
 
 Parameters are:
 
@@ -63,13 +46,13 @@ stop time of the server.
 
 `Opts` is a lists of options as defined in the configuration file for
 the module. They can be retrieved with the `gen_mod:get_opt/3`
-function. 
+function.
 
-# mod_hello_world
+## mod_hello_world
 
 The following code shows the simplest possible module.
 
-~~~ erlang
+``` erlang title="mod_hello_world.erl"
 -module(mod_hello_world).
 
 -behaviour(gen_mod).
@@ -100,49 +83,44 @@ mod_options(_Host) ->
 mod_doc() ->
     #{desc =>
           ?T("This is an example module.")}.
-~~~
+```
 
 Now you have two ways to compile and install the module:
 If you compiled ejabberd from source code, you can copy that source code file
 with all the other ejabberd source code files, so it will be compiled and installed with them.
 If you installed some compiled ejabberd package, you can create your own module dir, see
-[Managing Your Own Modules](/developer/extending-ejabberd/modules/#managing-your-own-modules).
+[Add Your Module](#add-your-module).
 
 You can enable your new module by adding it in the ejabberd config file.
-Adding the following
-snippet in the config file will integrate the module in ejabberd
-module lifecycle management. It means the module will be started at
-ejabberd launch and stopped during ejabberd shutdown process:
+Adding the following snippet in the config file will integrate the module in ejabberd module lifecycle management. It means the module will be started at ejabberd launch and stopped during ejabberd shutdown process:
 
-~~~ yaml
+``` yaml
 modules:
   ...
   mod_hello_world: {}
-~~~
+```
 
-Or you can start / stop it manually by typing the following commands
-in an Erlang shell running ejabberd:
+Or you can start / stop it manually by typing the following commands in an Erlang shell running ejabberd:
 
 * To manually start your module:
 
-  ~~~ erlang
-gen_mod:start_module(<<"localhost">>, mod_hello_world, []).
-~~~
+    ``` erlang
+    gen_mod:start_module(<<"localhost">>, mod_hello_world, []).
+    ```
 
 * To manually stop your module:
 
-  ~~~ erlang
-gen_mod:stop_module(<<"localhost">>, mod_hello_world).
-~~~
+    ``` erlang
+    gen_mod:stop_module(<<"localhost">>, mod_hello_world).
+    ```
 
-When the module is started, either on ejabberd start or manually, you
-should see the following message in ejabberd log file:
+When the module is started, either on ejabberd start or manually, you should see the following message in ejabberd log file:
 
-~~~ python
+``` python
 19:13:29.717 [info] Hello, ejabberd world!
-~~~
+```
 
-# ejabberd-contrib
+## ejabberd-contrib
 
 ejabberd is able to fetch module sources by itself, compile with correct flags
 and install in a local repository, without any external dependencies. You do not
@@ -153,7 +131,7 @@ It contains
 most used contributions and also can link to any other external repository.
 This works with ejabberd modules written in Erlang and will also support new Elixir modules.
 
-# Basic usage
+## Basic usage
 
 As a user, this is how it works:
 
@@ -162,13 +140,13 @@ As a user, this is how it works:
     You may want to repeat this command before you need installing a new module
     or an attended server upgrade.
 
-    ~~~ bash
+    ``` sh
     ejabberdctl modules_update_specs
-    ~~~
+    ```
 
 2. Then you can list available modules:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl modules_available
     ...
     mod_admin_extra Additional ejabberd commands
@@ -176,105 +154,105 @@ As a user, this is how it works:
     mod_cron Execute scheduled commands
     mod_log_chat Logging chat messages in text files
     ...
-    ~~~
+    ```
 
 3. Let’s install `mod_cron` from ejabberd-contrib repository:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl module_install mod_cron
     ok
-    ~~~
+    ```
 
 4. You can check anytime what modules are installed:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl modules_installed
     mod_cron
-    ~~~
+    ```
 
 5. An example default configuration is installed, and will be read by ejabberd
     when it starts. You can find that small configuration in:
 
-    ~~~
+    ``` sh
     $HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
-    ~~~
+    ```
 
 6. And finally, you can remove the module:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl module_uninstall mod_cron
     ok
-    ~~~
+    ```
 
-# Add your module
+## Add your module
 
 If you install ejabberd using the official ProcessOne installer,
 it includes everything needed to build ejabberd modules on its own.
 
 1. First, create this path
 
-    ~~~ bash
+    ``` sh
     $HOME/.ejabberd-modules/sources/mod_hello_world/src/
-    ~~~
+    ```
 
 2. and copy your source code to this location:
 
-    ~~~ bash
+    ``` sh
     $HOME/.ejabberd-modules/sources/mod_hello_world/src/mod_hello_world.erl
-    ~~~
+    ```
 
 3. Create a specification file in YAML format as mod_hello_world.spec
 (see examples from ejabberd-contrib). So, create the file
 
-    ~~~ bash
+    ``` sh
     $HOME/.ejabberd-modules/sources/mod_hello_world/mod_hello_world.spec
-    ~~~
+    ```
 
     with this content:
 
-    ~~~ yaml
+    ``` yaml title="mod_hello_world.spec"
     summary: "Hello World example module"
-    ~~~
+    ```
 
-4.  From that point you should see it as available module:
+4. From that point you should see it as available module:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl modules_available
     mod_hello_world Hello World example module
-    ~~~
+    ```
 
 5. Now you can install and uninstall that module like any other,
     as described in the previous section.
 
-6.  If you plan to publish your module, you should check if your module
+6. If you plan to publish your module, you should check if your module
     follows the policy and if it compiles correctly:
 
-    ~~~ bash
+    ``` sh
     ejabberdctl module_check mod_mysupermodule
     ok
-    ~~~
+    ```
 
-    if all is OK, your’re done ! Else, just follow the warning/error messages to fix the issues.
+    If all is OK, your’re done ! Else, just follow the warning/error messages to fix the issues.
 
 You may consider publishing your module as a tgz/zip archive or git repository,
 and send your spec file for integration in ejabberd-contrib repository.
 ejabberd-contrib will only host a copy of your
 spec file and does not need your code to make it available to all ejabberd users.
 
-# Your module with Docker
+## Your module with Docker
 
 If you installed ejabberd using the Docker image, these specific instructions
 allow you to use your module with your Docker image:
 
 1. Create a local directory for the contributed modules:
 
-    ~~~ bash
+    ``` sh
     mkdir docker-modules
-    ~~~
+    ```
 
 2. Then create the directory structure for your custom module:
 
-    ~~~ bash
+    ``` sh
     cd docker-modules
 
     mkdir -p sources/mod_hello_world/
@@ -287,17 +265,17 @@ allow you to use your module with your Docker image:
     echo -e "modules:\n  mod_hello_world: {}" > sources/mod_hello_world/conf/mod_hello_world.yml
 
     cd ..
-    ~~~
+    ```
 
 3. Grant ownership of that directory to the UID that ejabberd will use inside the Docker image:
 
-    ~~~ bash
+    ``` sh
     sudo chown 9000 -R docker-modules/
-    ~~~
+    ```
 
 4. Start ejabberd in Docker:
 
-    ~~~ bash
+    ``` sh
     sudo docker run \
       --name hellotest \
       -d \
@@ -305,26 +283,26 @@ allow you to use your module with your Docker image:
       -p 5222:5222 \
       -p 5280:5280 \
       ejabberd/ecs
-    ~~~
+    ```
 
 5. Check the module is available for installing, and then install it:
 
-    ~~~ bash
+    ``` sh
     sudo docker exec -it hellotest bin/ejabberdctl modules_available
     mod_hello_world []
 
     sudo docker exec -it hellotest bin/ejabberdctl module_install mod_hello_world
-    ~~~
+    ```
 
 6. If the module works correctly, you will see the Hello string in the ejabberd logs when it starts:
 
-    ~~~ bash
+    ``` sh
     sudo docker exec -it hellotest grep Hello logs/ejabberd.log
     2020-10-06 13:40:13.154335+00:00 [info]
       <0.492.0>@mod_hello_world:start/2:15 Hello, ejabberd world!
-    ~~~
+    ```
 
-# Status
+## Status
 
 Please note this is provided as a beta version. We want the work in progress to be released
 early to gather feedback from developers and users.
@@ -337,7 +315,7 @@ However, our plan is to keep iterating on the tool and to make our best to make 
 installation as easy as possible and avoid need to change main configuration:
 ejabberd should be able to include module configuration snippets on the fly in a near future.
 
-# Next steps
+## Next steps
 
 From there, you know how to package a module to integrate it inside
 ejabberd environment. Packaging a module allows you to:
@@ -349,10 +327,8 @@ ejabberd environment. Packaging a module allows you to:
 Now, to do useful stuff, you need to integrate with ejabberd data
 flow. You have two mechanisms available from ejabberd modules:
 
-* [Events and Hooks](/developer/guide/#hooks): This is to handle internal ejabberd triggers and
+* [Events and Hooks](../guide.md#hooks): This is to handle internal ejabberd triggers and
   subscribe to them to perform actions or provide data.
 
-* [IQ Handlers](/developer/guide/#iq-handlers): This is a way to register ejabberd module to handle
+* [IQ Handlers](../guide.md#iq_handlers): This is a way to register ejabberd module to handle
   XMPP Info Queries. This is the XMPP way to provide new services.
-
-[image-1]:	/static/images/architect/ejabberd_internals.png

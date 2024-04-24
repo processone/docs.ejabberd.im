@@ -1,25 +1,19 @@
----
-title: Troubleshooting ejabberd
-toc: true
-menu: Troubleshooting
----
+# Troubleshooting ejabberd
 
-# Log Files
+## Log Files
 
 An `ejabberd` node writes three log files:
 
-**`ejabberd.log`**:   is the ejabberd service log, with the messages reported by
-	`ejabberd` code
+- **`ejabberd.log`**:   is the ejabberd service log, with the messages reported by `ejabberd` code
 
-**`error.log`**:   is the file accumulating error messages from `ejabberd.log`
+- **`error.log`**:   is the file accumulating error messages from `ejabberd.log`
 
-**`crash.log`**:   is the Erlang/OTP log, with the crash messages reported by
-	Erlang/OTP using SASL (System Architecture Support Libraries)
+- **`crash.log`**:   is the Erlang/OTP log, with the crash messages reported by Erlang/OTP using SASL (System Architecture Support Libraries)
 
 The option `loglevel` modifies the verbosity of the file ejabberd.log.
 The syntax:
 
-**`loglevel: Level`**:   The standard form to set a global log level.
+**`loglevel: Level`**: The standard form to set a global log level.
 
 The possible `Level` are:
 
@@ -37,27 +31,27 @@ The possible `Level` are:
 
 For example, the default configuration is:
 
-	loglevel: 4
+ `loglevel: 4`
 
 By default `ejabberd` rotates the log files when they get grown above a
 certain size. The exact value is controlled by the
-[log_rotate_size](/admin/configuration/toplevel/#log-rotate-size)
+[log_rotate_size](../configuration/toplevel.md#log_rotate_size)
 top-level option.
 
 However, you can rotate the log files manually. You can
 either use an external tool for log rotation and the
-[reopen_log](/developer/ejabberd-api/admin-api/#reopen-log)
+[reopen_log](../../developer/ejabberd-api/admin-api.md#reopen_log)
 API command to reopen the log files, or the
-[rotate_log](/developer/ejabberd-api/admin-api/#rotate-log) API command
+[rotate_log](../../developer/ejabberd-api/admin-api.md#rotate_log) API command
 to perform both steps (please refer to section [ejabberd
-Commands](/admin/guide/managing/#ejabberd-commands)).
+Commands](managing.md#ejabberd_commands)).
 
-The [log_rotate_count](/admin/configuration/toplevel/#log-rotate-count)
+The [log_rotate_count](../configuration/toplevel.md#log_rotate_count)
 toplevel option defines the number of rotated files to
-keep by the [reopen_log](/developer/ejabberd-api/admin-api/#reopen-log)
+keep by the [reopen_log](../../developer/ejabberd-api/admin-api.md#reopen_log)
 API command. Every such file has a numeric suffix.
 
-# Debug Console
+## Debug Console
 
 The Debug Console is an Erlang shell attached to an already running
 `ejabberd` server. With this Erlang shell, an experienced administrator
@@ -71,7 +65,7 @@ examples in the article
 To exit the shell, close the window or press the keys: control+c
 control+c.
 
-# Too many db tables
+## Too many db tables
 
 When running ejabberd, the log shows this error:
 
@@ -83,4 +77,4 @@ error occurs, it means that you have reached this limit.
 For a solution, please read the
 [section about ERL_MAX_ETS_TABLES on the Performance Tuning page](https://ejabberd.im/tuning#erl_max_ets_tables).
 
-[1]:	https://ejabberd.im/interconnect-erl-nodes
+[1]: https://ejabberd.im/interconnect-erl-nodes

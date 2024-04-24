@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 18.01
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 18.01
 
 There is no significant change in code and database since 17.11. There is no
 specific upgrade procedure.

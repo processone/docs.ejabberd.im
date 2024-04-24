@@ -1,10 +1,4 @@
----
-title: Upgrade Procedure for ejabberd
-menu: Upgrading ejabberd
-categories: ecs
-toc: true
-order: 15
----
+# Upgrade Procedure for ejabberd
 
 This document contains administration procedure for each version upgrade.
 Only upgrade from version N to N+1 is documented and supported.
@@ -18,7 +12,7 @@ cluster, upgrade from older release than previous one, or have explicit note
 soft upgrade does not work, then you have to fallback to standalone upgrade
 process.
 
-# Generic upgrade process
+## Generic upgrade process
 
 This is the simplest process, and require service restart.
 
@@ -29,14 +23,14 @@ This is the simplest process, and require service restart.
 - install new version
 - extract database archive in new path
 - if systemctl is used to manage ejabberd, copy the new service file and reload systemctl:
-```
+``` sh
 cp ejabberd-21.12/bin/ejabberd.service /etc/systemd/system/
 systemctl daemon-reload
 ```
 
 - start new node
 
-# Soft upgrade process
+## Soft upgrade process
 
 This process needs you to run in cluster, with at least two nodes. In this case,
 we assume you run node A and B with version N, and will upgrade to version N+1.
@@ -45,19 +39,19 @@ we assume you run node A and B with version N, and will upgrade to version N+1.
 make sure it does not explicitly states "soft upgrade is not supported".
 - apply the required changes in database from the upgrade note.
 - make sure node A is running
-- run [leave_cluster](/developer/ejabberd-api/admin-api/#leave-cluster) on node B
+- run [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster) on node B
 - stop old node B
 - install new version on B's host
 - start new node B
-- run [join_cluster](/developer/ejabberd-api/admin-api/#join-cluster) on node B, passing node A as parameter
+- run [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) on node B, passing node A as parameter
 - make sure both nodes are running and working as expected
-- run [leave_cluster](/developer/ejabberd-api/admin-api/#leave-cluster) on node A
+- run [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster) on node A
 - stop old node A
 - install new version on A's host
 - start new node A
-- run [join_cluster](/developer/ejabberd-api/admin-api/#join-cluster) on node A, passing node B as parameter
+- run [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) on node A, passing node B as parameter
 
-# Module update process
+## Module update process
 
 Instead of upgrading all ejabberd to a brand new version,
 maybe you just want to update a few modules with bugfixes...
@@ -77,49 +71,50 @@ How to do this?
 5. This will load into memory the corresponding `*.beam` files
 
 If you prefer to use commands, check
-[update_list](/developer/ejabberd-api/admin-api/#update-list)
-+ [update](/developer/ejabberd-api/admin-api/#update).
+[update_list](../../developer/ejabberd-api/admin-api.md#update_list)
++ [update](../../developer/ejabberd-api/admin-api.md#update).
 
-Notice this does not restart [modules](/admin/configuration/modules/)
+Notice this does not restart [modules](../configuration/modules.md)
 or any other tasks. If the fix you plan to apply requires a module restart,
 you can use this alternative:
-[restart_module](/developer/ejabberd-api/admin-api/#restart-module).
+[restart_module](../../developer/ejabberd-api/admin-api.md#restart_module).
 
-# Note on database schema upgrade
+## Note on database schema upgrade
 
 `ejabberd` automatically updates the Mnesia table definitions at startup when needed.
-If you also use an external [database](/admin/configuration/database/) (like MySQL, ...)
+If you also use an external [database](../configuration/database.md) (like MySQL, ...)
 for storage of some modules, check in the corresponding
 [upgrade notes](#specific-version-upgrade-notes)
 of the new ejabberd version if you need to update those tables yourself manually.
 
-# Specific version upgrade notes
+## Specific version upgrade notes
 
-- [Upgrading from ejabberd 23.04 to 23.10](/admin/upgrade/from_23.04_to_23.10/)
-- [Upgrading from ejabberd 23.01 to 23.04](/admin/upgrade/from_23.01_to_23.04/)
-- [Upgrading from ejabberd 22.10 to 23.01](/admin/upgrade/from_22.10_to_23.01/)
-- [Upgrading from ejabberd 22.05 to 22.10](/admin/upgrade/from_22.05_to_22.10/)
-- [Upgrading from ejabberd 21.12 to 22.05](/admin/upgrade/from_21.12_to_22.05/)
-- [Upgrading from ejabberd 21.07 to 21.12](/admin/upgrade/from_21.07_to_21.12/)
-- [Upgrading from ejabberd 21.04 to 21.07](/admin/upgrade/from_21.04_to_21.07/)
-- [Upgrading from ejabberd 21.01 to 21.04](/admin/upgrade/from_21.01_to_21.04/)
-- [Upgrading from ejabberd 19.08 to 20.01](/admin/upgrade/from_19.08_to_20.01/)
-- [Upgrading from ejabberd 19.05 to 19.08](/admin/upgrade/from_19.05_to_19.08/)
-- [Upgrading from ejabberd 19.02 to 19.05](/admin/upgrade/from_19.02_to_19.05/)
-- [Upgrading from ejabberd 18.12 to 19.02](/admin/upgrade/from_18.12_to_19.02/)
-- [Upgrading from ejabberd 18.09 to 18.12](/admin/upgrade/from_18.09_to_18.12/)
-- [Upgrading from ejabberd 18.06 to 18.09](/admin/upgrade/from_18.06_to_18.09/)
-- [Upgrading from ejabberd 18.04 to 18.06](/admin/upgrade/from_18.04_to_18.06/)
-- [Upgrading from ejabberd 18.03 to 18.04](/admin/upgrade/from_18.03_to_18.04/)
-- [Upgrading from ejabberd 18.01 to 18.03](/admin/upgrade/from_18.01_to_18.03/)
-- [Upgrading from ejabberd 17.11 to 18.01](/admin/upgrade/from_17.11_to_18.01/)
-- [Upgrading from ejabberd 17.09 to 17.11](/admin/upgrade/from_17.09_to_17.11/)
-- [Upgrading from ejabberd ≥17.06 and ≤17.08 to 17.09](/admin/upgrade/from_17.06_to_17.09/)
-- [Upgrading from ejabberd 17.03 or 17.04 to 17.06](/admin/upgrade/from_17.03_to_17.06/)
-- [Upgrading from ejabberd ≥16.08 and ≤17.01 to 17.03](/admin/upgrade/from_16.08_to_17.03/)
-- [Upgrading from ejabberd 16.06 to 16.08](/admin/upgrade/from_16.06_to_16.08/)
-- [Upgrading from ejabberd 16.04 to 16.06](/admin/upgrade/from_16.04_to_16.06/)
-- [Upgrading from ejabberd 16.03 to 16.04](/admin/upgrade/from_16.03_to_16.04/)
-- [Upgrading from ejabberd 16.02 to 16.03](/admin/upgrade/from_16.02_to_16.03/)
-- [Upgrading from ejabberd 15.11 to 16.02](/admin/upgrade/from_15.11_to_16.02/)
-- [Upgrading from ejabberd 2.1.1x to 16.02](/admin/upgrade/from_2.1.1x_to_16.02/)
+- [Upgrading from ejabberd 2.1.1x to 16.02](from_2.1.1x_to_16.02.md)
+- [Upgrading from ejabberd 15.11 to 16.02](from_15.11_to_16.02.md)
+- [Upgrading from ejabberd 16.02 to 16.03](from_16.02_to_16.03.md)
+- [Upgrading from ejabberd 16.03 to 16.04](from_16.03_to_16.04.md)
+- [Upgrading from ejabberd 16.04 to 16.06](from_16.04_to_16.06.md)
+- [Upgrading from ejabberd 16.06 to 16.08](from_16.06_to_16.08.md)
+- [Upgrading from ejabberd ≥16.08 and ≤17.01 to 17.03](from_16.08_to_17.03.md)
+- [Upgrading from ejabberd 17.03 or 17.04 to 17.06](from_17.03_to_17.06.md)
+- [Upgrading from ejabberd ≥17.06 and ≤17.08 to 17.09](from_17.06_to_17.09.md)
+- [Upgrading from ejabberd 17.09 to 17.11](from_17.09_to_17.11.md)
+- [Upgrading from ejabberd 17.11 to 18.01](from_17.11_to_18.01.md)
+- [Upgrading from ejabberd 18.01 to 18.03](from_18.01_to_18.03.md)
+- [Upgrading from ejabberd 18.03 to 18.04](from_18.03_to_18.04.md)
+- [Upgrading from ejabberd 18.04 to 18.06](from_18.04_to_18.06.md)
+- [Upgrading from ejabberd 18.06 to 18.09](from_18.06_to_18.09.md)
+- [Upgrading from ejabberd 18.09 to 18.12](from_18.09_to_18.12.md)
+- [Upgrading from ejabberd 18.12 to 19.02](from_18.12_to_19.02.md)
+- [Upgrading from ejabberd 19.02 to 19.05](from_19.02_to_19.05.md)
+- [Upgrading from ejabberd 19.05 to 19.08](from_19.05_to_19.08.md)
+- [Upgrading from ejabberd 19.08 to 20.01](from_19.08_to_20.01.md)
+- [Upgrading from ejabberd 21.01 to 21.04](from_21.01_to_21.04.md)
+- [Upgrading from ejabberd 21.04 to 21.07](from_21.04_to_21.07.md)
+- [Upgrading from ejabberd 21.07 to 21.12](from_21.07_to_21.12.md)
+- [Upgrading from ejabberd 21.12 to 22.05](from_21.12_to_22.05.md)
+- [Upgrading from ejabberd 22.05 to 22.10](from_22.05_to_22.10.md)
+- [Upgrading from ejabberd 22.10 to 23.01](from_22.10_to_23.01.md)
+- [Upgrading from ejabberd 23.01 to 23.04](from_23.01_to_23.04.md)
+- [Upgrading from ejabberd 23.04 to 23.10](from_23.04_to_23.10.md)
+- [Upgrading from ejabberd 23.10 to 24.02](from_23.10_to_24.02.md)

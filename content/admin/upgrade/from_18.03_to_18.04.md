@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 18.04
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 18.04
 
 You may follow this procedure if you are upgrading from ejabberd 18.03 or
 older, and running an SQL backend for PubSub.
@@ -15,14 +11,14 @@ This change will speedup requests reading and sorting items.
 Note: if you're happy with performances, you don't need to apply this change.
 
 ### MySQL
-```bash
+``` bash
 ALTER TABLE pubsub_item
  MODIFY creation varchar(32) NOT NULL,
  MODIFY modification varchar(32) NOT NULL;
 ```
 
 ### PostgreSQL
-```bash
+``` bash
 ALTER TABLE pubsub_item
  ALTER COLUMN creation TYPE varchar(32),
  ALTER COLUMN creation SET NOT NULL,
@@ -31,7 +27,7 @@ ALTER TABLE pubsub_item
 ```
 
 ### Sqlite
-```bash
+``` bash
 ALTER TABLE pubsub_item
  MODIFY creation varchar(32) NOT NULL,
  MODIFY modification varchar(32) NOT NULL;
@@ -42,7 +38,7 @@ ALTER TABLE pubsub_item
 Note: We do not provide tested upgrade procedure on MsSQL Server.
 Following query should to the conversion. If you have problems with it please
 create an issue on ejabberd's github page.
-```bash
+``` bash
 ALTER TABLE [pubsub_item]
  ALTER COLUMN creation varchar(32) NOT NULL,
  ALTER COLUMN modification varchar(32) NOT NULL;

@@ -1,11 +1,6 @@
----
-title: File Format
-toc: true
-menu: File Format
-order: 10
----
+# File format
 
-# Yaml File Format
+## Yaml File Format
 
 `ejabberd` loads its configuration file during startup.
 This configuration file is written in
@@ -24,7 +19,7 @@ changing parameters at runtime from web admin interface, you will need to apply
 them to configuration file manually. This is to prevent messing up
 with your config file comments, syntax, etc.
 
-# Reload at Runtime
+## Reload at Runtime
 
 You can modify the `ejabberd` configuration file
 and reload it at runtime:
@@ -37,7 +32,7 @@ How to do this?
 
 1. Let's assume your ejabberd server is already running
 2. Modify the configuration file
-3. Run the [reload_config](/developer/ejabberd-api/admin-api/#reload-config) command
+3. Run the [reload_config](../../developer/ejabberd-api/admin-api.md#reload_config) command
 4. ejabberd will read that file, check its YAML syntax is valid,
    check the options are valid and known...
 5. If there's any problem in the configuration file,
@@ -46,121 +41,132 @@ How to do this?
 6. If the file is right, it detects the changed options,
    and applies them immediately (add/remove hosts, add/remove modules, ...)
 
-# Legacy Configuration File
+## Legacy Configuration File
 
 In previous `ejabberd` version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format with the
-[convert_to_yaml](/developer/ejabberd-api/admin-api/#convert-to-yaml)
-API command using [ejabberdctl](/admin/guide/managing/#ejabberdctl).
+[convert_to_yaml](../../developer/ejabberd-api/admin-api.md#convert_to_yaml)
+API command using [ejabberdctl](../guide/managing.md#ejabberdctl).
 
 If you want to specify some options using the old Erlang format, you
 can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
-[Include Additional Configuration Files](#include-additional-configuration-files)
+[Include Additional Files](#include-additional-files)
 for the option description and a related example in
-[Restrict Execution with AccessCommands](/admin/guide/managing/#restrict-execution-with-accesscommands).
+[Restrict Execution with AccessCommands](../guide/managing.md#restrict_execution_with_accesscommands).
 
+## Include Additional Files
 
-# Include Additional Files
-
-The option [include_config_file](/admin/configuration/toplevel/#include-config-file)
+The option [include_config_file](toplevel.md#include_config_file)
  in a configuration file instructs
 `ejabberd` to include other configuration files immediately.
 
 This is a basic example:
 
-	include_config_file: /etc/ejabberd/additional.yml
+``` yaml
+include_config_file: /etc/ejabberd/additional.yml
+```
 
 In this example, the included file is not allowed to contain a `listen`
 option. If such an option is present, the option will not be accepted.
 The file is in a subdirectory from where the main configuration file is.
 
-	include_config_file:
-	  ./example.org/additional_not_listen.yml:
-	    disallow: [listen]
+``` yaml
+include_config_file:
+  ./example.org/additional_not_listen.yml:
+    disallow: [listen]
+```
 
 Please notice that options already defined in the main configuration file
 cannot be redefined in the included configuration files.
-But you can use [host_config](/admin/configuration/toplevel/#host-config)
-and [append_host_config](/admin/configuration/toplevel/#append-host-config)
-as usual (see [Virtual Hosting](/admin/configuration/basic/#virtual-hosting)).
+But you can use [host_config](toplevel.md#host_config)
+and [append_host_config](toplevel.md#append_host_config)
+as usual (see [Virtual Hosting](basic.md#virtual_hosting)).
 
 In this example, `ejabberd.yml` defines some ACL for the whole ejabberd server, and later includes another file:
 
-	acl:
-	  admin:
-	    user:
-	      - admin@localhost
-	include_config_file:
-	  /etc/ejabberd/acl.yml
+``` yaml
+acl:
+  admin:
+    user:
+      - admin@localhost
+include_config_file:
+  /etc/ejabberd/acl.yml
+```
 
 The file `acl.yml` can add additional administrators to one of the virtual hosts:
 
-	append_host_config:
-	  localhost:
-	    acl:
-	      admin:
-	        user:
-	          - bob@localhost
-	          - jan@localhost
+``` yaml
+append_host_config:
+  localhost:
+    acl:
+      admin:
+        user:
+          - bob@localhost
+          - jan@localhost
+```
 
-# Macros in Configuration File
+## Macros in Configuration File
 
 In the `ejabberd` configuration file, it is possible to define a macro
 for a value and later use this macro when defining an option.
 
-A macro is defined using the [define_macro](/admin/configuration/toplevel/#define-macro) option.
+A macro is defined using the [define_macro](toplevel.md#define_macro) option.
 
 This example shows the basic usage of a macro:
 
-
-	define_macro:
-	  LOG_LEVEL_NUMBER: 5
-	loglevel: LOG_LEVEL_NUMBER
+``` yaml
+define_macro:
+  LOG_LEVEL_NUMBER: 5
+loglevel: LOG_LEVEL_NUMBER
+```
 
 The resulting option interpreted by `ejabberd` is: `loglevel: 5`.
 
 This example shows that values can be any arbitrary YAML value:
 
-
-	define_macro:
-	  USERBOB:
-	    user:
-	      - bob@localhost
-	acl:
-	  admin: USERBOB
+``` yaml
+define_macro:
+  USERBOB:
+    user:
+      - bob@localhost
+acl:
+  admin: USERBOB
+```
 
 The resulting option interpreted by `ejabberd` is:
 
-
-	acl:
-	  admin:
-	    user:
-	      - bob@localhost
+``` yaml
+acl:
+  admin:
+    user:
+      - bob@localhost
+```
 
 This complex example:
 
-
-	define_macro:
-	  NUMBER_PORT_C2S: 5222
-	  NUMBER_PORT_HTTP: 5280
-	listen:
-	  -
-	    port: NUMBER_PORT_C2S
-	    module: ejabberd_c2s
-	  -
-	    port: NUMBER_PORT_HTTP
-	    module: ejabberd_http
+``` yaml
+define_macro:
+  NUMBER_PORT_C2S: 5222
+  NUMBER_PORT_HTTP: 5280
+listen:
+  -
+    port: NUMBER_PORT_C2S
+    module: ejabberd_c2s
+  -
+    port: NUMBER_PORT_HTTP
+    module: ejabberd_http
+```
 
 produces this result after being interpreted:
 
-
-	listen:
-	  -
-	    port: 5222
-	    module: ejabberd_c2s
-	  -
-	    port: 5280
-	    module: ejabberd_http
-
+``` yaml
+listen:
+  -
+    port: 5222
+    module: ejabberd_c2s
+  -
+    port: 5280
+    module: ejabberd_http
+```

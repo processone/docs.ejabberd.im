@@ -1,18 +1,13 @@
----
-title: Basic Configuration
-toc: true
-menu: Basic Config
-order: 20
----
+# Basic Configuration
 
-# XMPP Domains
+## XMPP Domains
 
-## Host Names
+### Host Names
 
 `ejabberd` supports managing several independent XMPP domains on a
 single ejabberd instance, using a feature called virtual hosting.
 
-The option [`hosts`](/admin/configuration/toplevel/#hosts)
+The option [`hosts`](toplevel.md#hosts)
  defines a list containing one or more domains that
 `ejabberd` will serve.
 
@@ -21,142 +16,149 @@ want to host multiple XMPP domains on the same instance.
 
 Examples:
 
--   Serving one domain:
+- Serving one domain:
 
+    ``` yaml
+    hosts: [example.org]
+    ```
 
-		hosts: [example.org]
+- Serving three domains:
 
--   Serving three domains:
+    ``` yaml
+    hosts:
+      - example.net
+      - example.com
+      - jabber.somesite.org
+    ```
 
-
-		hosts:
-		  - example.net
-		  - example.com
-		  - jabber.somesite.org
-
-## Virtual Hosting
+### Virtual Hosting
 
 When managing several XMPP domains in a single instance, those domains
 are truly independent. It means they can even have different
 configuration parameters.
 
 Options can be defined separately for every virtual host using the
-[`host_config`](/admin/configuration/toplevel/#host-config) option.
+[`host_config`](toplevel.md#host_config) option.
 
 Examples:
 
--   Domain `example.net` is using the internal authentication method
-	while domain `example.com` is using the LDAP server running on the
-	domain `localhost` to perform authentication:
+- Domain `example.net` is using the internal authentication method
+ while domain `example.com` is using the LDAP server running on the
+ domain `localhost` to perform authentication:
 
+    ``` yaml
+    host_config:
+      example.net:
+        auth_method: internal
+      example.com:
+        auth_method: ldap
+        ldap_servers:
+          - localhost
+        ldap_uids:
+          - uid
+        ldap_rootdn: "dc=localdomain"
+        ldap_password: ""
+    ```
 
-		host_config:
-		  example.net:
-		    auth_method: internal
-		  example.com:
-		    auth_method: ldap
-		    ldap_servers:
-		      - localhost
-		    ldap_uids:
-		      - uid
-		    ldap_rootdn: "dc=localdomain"
-		    ldap_password: ""
+- Domain `example.net` is using SQL to perform authentication while
+ domain `example.com` is using the LDAP servers running on the
+ domains `localhost` and `otherhost`:
 
--   Domain `example.net` is using SQL to perform authentication while
-	domain `example.com` is using the LDAP servers running on the
-	domains `localhost` and `otherhost`:
-
-
-		host_config:
-		  example.net:
-		    auth_method: sql
-		    sql_type: odbc
-		    sql_server: "DSN=ejabberd;UID=ejabberd;PWD=ejabberd"
-		  example.com:
-		    auth_method: ldap
-		    ldap_servers:
-		      - localhost
-		      - otherhost
-		    ldap_uids:
-		      - uid
-		    ldap_rootdn: "dc=example,dc=com"
-		    ldap_password: ""
+    ``` yaml
+    host_config:
+      example.net:
+        auth_method: sql
+        sql_type: odbc
+        sql_server: "DSN=ejabberd;UID=ejabberd;PWD=ejabberd"
+      example.com:
+        auth_method: ldap
+        ldap_servers:
+          - localhost
+          - otherhost
+        ldap_uids:
+          - uid
+        ldap_rootdn: "dc=example,dc=com"
+        ldap_password: ""
+    ```
 
 To define specific ejabberd modules in a virtual host, you can define
 the global `modules` option with the common modules, and later add
 specific modules to certain virtual hosts. To accomplish that, instead
-of defining each option in [`host_config`](/admin/configuration/toplevel/#host-config)
-use [`append_host_config`](/admin/configuration/toplevel/#append-host-config)
+of defining each option in [`host_config`](toplevel.md#host_config)
+use [`append_host_config`](toplevel.md#append_host_config)
 with the same syntax.
 
 In this example three virtual hosts have some similar modules, but there
 are also other different modules for some specific virtual hosts:
 
+``` yaml
+## This ejabberd server has three vhosts:
+hosts:
+  - one.example.org
+  - two.example.org
+  - three.example.org
 
-	## This ejabberd server has three vhosts:
-	hosts:
-	  - one.example.org
-	  - two.example.org
-	  - three.example.org
+## Configuration of modules that are common to all vhosts
+modules:
+  mod_roster:    {}
+  mod_configure: {}
+  mod_disco:     {}
+  mod_private:   {}
+  mod_time:      {}
+  mod_last:      {}
+  mod_version:   {}
 
-	## Configuration of modules that are common to all vhosts
-	modules:
-	  mod_roster:    {}
-	  mod_configure: {}
-	  mod_disco:     {}
-	  mod_private:   {}
-	  mod_time:      {}
-	  mod_last:      {}
-	  mod_version:   {}
+append_host_config:
+  ## Add some modules to vhost one:
+  one.example.org:
+    modules:
+      mod_muc:
+        host: conference.one.example.org
+      mod_ping: {}
+  ## Add a module just to vhost two:
+  two.example.org:
+    modules:
+      mod_muc:
+        host: conference.two.example.org
+```
 
-	append_host_config:
-	  ## Add some modules to vhost one:
-	  one.example.org:
-	    modules:
-	      mod_muc:
-	        host: conference.one.example.org
-	      mod_ping: {}
-	  ## Add a module just to vhost two:
-	  two.example.org:
-	    modules:
-	      mod_muc:
-	        host: conference.two.example.org
-
-# Logging
+## Logging
 
 `ejabberd` configuration can help a lot by having the right amount of logging set up.
 
 There are several toplevel options to configure logging:
 
-- [`loglevel`](/admin/configuration/toplevel/#loglevel): Verbosity of log files generated by ejabberd.
-- [`hide_sensitive_log_data`](/admin/configuration/toplevel/#hide-sensitive-log-data):
+- [`loglevel`](toplevel.md#loglevel): Verbosity of log files generated by ejabberd.
+- [`hide_sensitive_log_data`](toplevel.md#hide_sensitive_log_data):
     Privacy option to disable logging of IP address or sensitive data.
-- [`log_modules_fully`](/admin/configuration/toplevel/#log-modules-fully):
+- [`log_modules_fully`](toplevel.md#log_modules_fully):
     Modules that will log everything independently from the general `loglevel` option.
-- [`log_rotate_size`](/admin/configuration/toplevel/#log-rotate-size)
-- [`log_rotate_count`](/admin/configuration/toplevel/#log-rotate-count):
+- [`log_rotate_size`](toplevel.md#log_rotate_size)
+- [`log_rotate_count`](toplevel.md#log_rotate_count):
     Setting count to N keeps N rotated logs. Setting count to 0
     does not disable rotation, it instead rotates the file and keeps no previous
     versions around. Setting size to X rotate log when it reaches X bytes.
-- [`log_burst_limit_count`](/admin/configuration/toplevel/#log-burst-limit-count)
-- [`log_burst_limit_window_time`](/admin/configuration/toplevel/#log-burst-limit-window-time)
+- [`log_burst_limit_count`](toplevel.md#log_burst_limit_count)
+- [`log_burst_limit_window_time`](toplevel.md#log_burst_limit_window_time)
 
 The values in default configuration file are:
 
-    log_rotate_size: 10485760
-    log_rotate_count: 1
-
+``` yaml
+log_rotate_size: 10485760
+log_rotate_count: 1
+```
 
 For example, log warning and higher messages, but all c2s messages, and hide sensitive data:
 
-    loglevel: warning
-    hide_sensitive_log_data: true
-    log_modules_fully: [ejabberd_c2s]
+``` yaml
+loglevel: warning
+hide_sensitive_log_data: true
+log_modules_fully: [ejabberd_c2s]
+```
 
+## Default Language
 
-# Default Language
-
-The [`language`](/admin/configuration/toplevel/#language) option
+The [`language`](toplevel.md#language) option
 defines the default language of server strings
 that can be seen by XMPP clients. If a XMPP client does not support
 `xml:lang`, `ejabberd` uses the language specified in this option.
@@ -168,19 +170,21 @@ translation file `Language.msg` in `ejabberd`’s `msgs` directory.
 
 For example, to set Russian as default language:
 
-	language: ru
+``` yaml
+language: ru
+```
 
-The page [Internationalization and Localization](/developer/extending-ejabberd/localization/)
+The page [Internationalization and Localization](../../developer/extending-ejabberd/localization.md)
 provides more details.
 
-# CAPTCHA
+## CAPTCHA
 
 Some `ejabberd` modules can be configured to require a CAPTCHA challenge
 on certain actions, for instance
-[mod_block_strangers](/admin/configuration/modules/#mod-block-strangers),
-[mod_muc](/admin/configuration/modules/#mod-muc),
-[mod_register](/admin/configuration/modules/#mod-register), and
-[mod_register_web](/admin/configuration/modules/#mod-register-web).
+[mod_block_strangers](modules.md#mod_block_strangers),
+[mod_muc](modules.md#mod_muc),
+[mod_register](modules.md#mod_register), and
+[mod_register_web](modules.md#mod_register_web).
 If the client does not support CAPTCHA Forms
 ([`XEP-0158`](https://xmpp.org/extensions/xep-0158.html)), a web link is
 provided so the user can fill the challenge in a web browser.
@@ -194,57 +198,56 @@ in container images check their documentation for details.
 
 The relevant top-level options are:
 
-- [`captcha_cmd`](/admin/configuration/toplevel/#captcha-cmd)`: Path | Module`:
+- [`captcha_cmd`](toplevel.md#captcha_cmd)`: Path | Module`:
   Full path to a script that generates the image,
   or name of a module that supports generating CAPTCHA images
   ([mod_ecaptcha](https://github.com/processone/ejabberd-contrib/tree/master/mod_ecaptcha),
   [mod_captcha_rust](https://github.com/processone/ejabberd-contrib/tree/master/mod_captcha_rust)).
   The default value disables the feature: `undefined`
 
-- [`captcha_url`](/admin/configuration/toplevel/#captcha-url)`: URL | auto`:
+- [`captcha_url`](toplevel.md#captcha_url)`: URL | auto`:
   An URL where CAPTCHA requests should be sent,
   or `auto` to determine the URL automatically.
   The default value is `auto`.
 
-And finally, configure [`request_handlers`](/admin/configuration/listen-options/#request-handlers)
-for the [`ejabberd_http`](/admin/configuration/listen/#ejabberd-http)
+And finally, configure [`request_handlers`](listen-options.md#request_handlers)
+for the [`ejabberd_http`](listen.md#ejabberd_http)
 listener with a path handled by `ejabberd_captcha`,
 where the CAPTCHA images will be served.
 
 Example configuration:
 
+``` yaml
+hosts: [example.org]
 
-	hosts: [example.org]
+captcha_cmd: /lib/ejabberd/priv/bin/captcha.sh
+# captcha_cmd: /opt/ejabberd-23.01/lib/captcha.sh
+# captcha_cmd: mod_ecaptcha
 
-	captcha_cmd: /lib/ejabberd/priv/bin/captcha.sh
-	# captcha_cmd: /opt/ejabberd-23.01/lib/captcha.sh
-	# captcha_cmd: mod_ecaptcha
+captcha_url: auto
+## captcha_url: http://example.org:5280/captcha
+## captcha_url: https://example.org:443/captcha
+## captcha_url: http://example.com/captcha
 
-	captcha_url: auto
-	## captcha_url: http://example.org:5280/captcha
-	## captcha_url: https://example.org:443/captcha
-	## captcha_url: http://example.com/captcha
+listen:
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      /captcha: ejabberd_captcha
+```
 
-	listen:
-	  ...
-	  -
-	    port: 5280
-	    module: ejabberd_http
-	    request_handlers:
-	      /captcha: ejabberd_captcha
-	  ...
-
-# ACME
+## ACME
 
 [ACME](https://tools.ietf.org/html/rfc8555) is used to automatically obtain SSL
 certificates for the domains served by ejabberd, which means that
 certificate requests and renewals are performed to some CA server (aka "ACME server")
 in a fully automated mode.
 
-## Setting up ACME
+### Setting up ACME
 
 In ejabberd, ACME is configured using the
-[`acme`](/admin/configuration/toplevel/#acme)
+[`acme`](toplevel.md#acme)
 top-level option, check there the available options and example configuration.
 
 The automated mode is enabled by default.
@@ -254,16 +257,18 @@ an ACME remote server will connect to your ejabberd server
 on HTTP port 80 during certificate issuance.
 
 For that reason you must have an
-[`ejabberd_http`](/admin/configuration/listen/#ejabberd-http) listener
+[`ejabberd_http`](listen.md#ejabberd_http) listener
 with TLS disabled handling an "ACME well known" path. For example:
 
-    listen:
-      -
-        module: ejabberd_http
-        port: 5280
-        tls: false
-        request_handlers:
-          /.well-known/acme-challenge: ejabberd_acme
+``` yaml
+listen:
+  -
+    module: ejabberd_http
+    port: 5280
+    tls: false
+    request_handlers:
+      /.well-known/acme-challenge: ejabberd_acme
+```
 
 Note that the ACME protocol **requires** challenges to be sent on port 80. Since this is a privileged
 port, ejabberd cannot listen on it directly without root privileges. Thus you need some mechanism
@@ -272,7 +277,7 @@ several ways to do this: using NAT, setcap (Linux only), or HTTP front-ends (e.g
 `haproxy` and so on). Pick one that fits your installation the best, but **DON'T** run ejabberd as root.
 
 If you see errors in the logs with ACME server problem reports, it's **highly** recommended to change `ca_url`
-option in the [`acme`](/admin/configuration/toplevel/#acme) top-level option
+option in the [`acme`](toplevel.md#acme) top-level option
 to the URL pointing to some staging ACME environment, fix the problems until you obtain
 a certificate, and then change the URL back and retry using `request-certificate` ejabberdctl command
 (see below). This is needed because ACME servers typically have rate limits, preventing you from requesting
@@ -281,37 +286,45 @@ By default, ejabberd uses [Let's Encrypt](https://letsencrypt.org) authority.
 Thus, the default value of `ca_url` option is `https://acme-v02.api.letsencrypt.org/directory`
 and the staging URL will be `https://acme-staging-v02.api.letsencrypt.org/directory`:
 
-    acme:
-      ## Staging environment
-      ca_url: https://acme-staging-v02.api.letsencrypt.org/directory
-      ## Production environment (the default):
-      # ca_url: https://acme-v02.api.letsencrypt.org/directory
+``` yaml
+acme:
+  ## Staging environment
+  ca_url: https://acme-staging-v02.api.letsencrypt.org/directory
+  ## Production environment (the default):
+  # ca_url: https://acme-v02.api.letsencrypt.org/directory
+```
 
 The automated mode can be disabled by setting `auto` option to `false`
-in the [`acme`](/admin/configuration/toplevel/#acme) top-level option:
+in the [`acme`](toplevel.md#acme) top-level option:
 
-    acme:
-      auto: false
-      ...
+``` yaml
+acme:
+  auto: false
+```
 
 In this case automated renewals are still enabled, however, in order to request a new certificate,
-you need to run 
-[request_certificate](/developer/ejabberd-api/admin-api/#request-certificate)
+you need to run
+[request_certificate](../../developer/ejabberd-api/admin-api.md#request_certificate)
  API command:
 
-    $ ejabberdctl request-certificate all
+``` sh
+ejabberdctl request-certificate all
+```
 
 If you only want to request certificates for a subset of the domains, run:
 
-    $ ejabberdctl request-certificate domain.tld,pubsub.domain.tld,server.com,conference.server.com,...
+``` sh
+ejabberdctl request-certificate domain.tld,pubsub.domain.tld,server.com,conference.server.com,...
+```
 
 You can view the certificates obtained using ACME and
-[list_certificates](/developer/ejabberd-api/admin-api/#list-certificates):
+[list_certificates](../../developer/ejabberd-api/admin-api.md#list_certificates):
 
-    $ ejabberdctl list-certificates
-    domain.tld /path/to/cert/file1 true
-    server.com /path/to/cert/file2 false
-    ...
+``` sh
+$ ejabberdctl list-certificates
+domain.tld /path/to/cert/file1 true
+server.com /path/to/cert/file2 false
+```
 
 The output is mostly self-explained: every line contains the domain, the corresponding certificate file,
 and whether this certificate file is used or not. A certificate might not be used for several reasons:
@@ -319,14 +332,16 @@ mostly because ejabberd detects a better certificate (i.e. not expired, or havin
 It's recommended to revoke unused certificates if they are not yet expired (see below).
 
 At any point you can revoke a certificate using
-[revoke_certificate](/developer/ejabberd-api/admin-api/#revoke-certificate):
+[revoke_certificate](../../developer/ejabberd-api/admin-api.md#revoke_certificate):
 pick the certificate file from the listing above and run:
 
-    $ ejabberdctl revoke-certificate /path/to/cert/file
+``` sh
+ejabberdctl revoke-certificate /path/to/cert/file
+```
 
 If the commands return errors, consult the log files for details.
 
-## ACME implementation details
+### ACME implementation details
 
 In nutshell, certification requests are performed in two phases. Firstly, ejabberd
 creates an account at the ACME server. That is an EC private key. Secondly,
@@ -334,7 +349,8 @@ a certificate is requested. In the case of a revocation, no account is
 used - only a certificate in question is needed. All information is stored under
 `acme` directory inside spool directory of ejabberd (typically `/var/lib/ejabberd`).
 An example content of the directory is the following:
-```
+
+``` sh
 $ tree /var/lib/ejabberd
 /var/lib/ejabberd
 ├── acme
@@ -344,179 +360,207 @@ $ tree /var/lib/ejabberd
 │       └── 93816a8429ebbaa75574eb3f59d4a806b67d6917
 ...
 ```
+
 Here, `account.key` is the EC private key used to identify the ACME account.
 You can inspect its content using `openssl` command:
+
+``` sh
+openssl ec -text -noout -in /var/lib/ejabberd/acme/account.key
 ```
-$ openssl ec -text -noout -in /var/lib/ejabberd/acme/account.key
-```
+
 Obtained certificates are stored under `acme/live` directory.
 You can inspect any of the certificates using `openssl` command as well:
+
+``` sh
+openssl x509 -text -noout -in /var/lib/ejabberd/acme/live/251ce180d964e98a2f18b65504df2ab7c55943e2
 ```
-$ openssl x509 -text -noout -in /var/lib/ejabberd/acme/live/251ce180d964e98a2f18b65504df2ab7c55943e2
-```
+
 In the case of errors, you can delete the whole `acme` directory - ejabberd
 will recreate its content on next certification request. However, don't delete it
 too frequently - usually there is a rate limit on the number of accounts and
 certificates an ACME server creates. In particular, for [Let's Encrypt](https://letsencrypt.org)
 the limits are described [here](https://letsencrypt.org/docs/rate-limits).
 
-# Access Rights
+## Access Rights
 
 *This section describes new ACL syntax introduced in ejabberd
 16.06. For old access rule and ACL syntax documentation, please refer
 to
 [configuration document archive](https://github.com/processone/docs.ejabberd.im/blob/7391ac375fd8253f74214cbffa2bafb140501981/content/admin/guide/configuration.md)*
 
-## ACL
+### ACL
 
 Access control in `ejabberd` is performed via Access Control Lists
-(ACLs), using the [`acl`](/admin/configuration/toplevel/#acl) option.
+(ACLs), using the [`acl`](toplevel.md#acl) option.
 The declarations of ACLs in the configuration file have the
 following syntax:
 
-**`acl: { ACLName: { ACLType: ACLValue } }`**
+``` yaml
+acl:
+  ACLName:
+    ACLType: ACLValue
+```
 
 `ACLType: ACLValue` can be one of the following:
 
-**`all`**:   Matches all JIDs. Example:
+- **`all`**:   Matches all JIDs. Example:
 
-	    acl:
-	      world: all
+    ``` yaml
+    acl:
+      world: all
+    ```
 
-**`user: Username`**:   Matches the user with the name `Username` on any of the local virtual host.
-	Example:
+- **`user: Username`**:   Matches the user with the name `Username` on any of the local virtual host.
+ Example:
 
+    ``` yaml
+    acl:
+      admin:
+        user: yozhik
+    ```
 
-	    acl:
-	      admin:
-	        user: yozhik
+- **`user: {Username: Server} | Jid`**:   Matches the user with the JID `Username@Server` and any resource.
+ Example:
 
-**`user: {Username: Server} | Jid`**:   Matches the user with the JID `Username@Server` and any resource.
-	Example:
+    ``` yaml
+    acl:
+      admin:
+        - user:
+            yozhik@example.org
+        - user: peter@example.org
+    ```
 
+- **`server: Server`**:   Matches any JID from server `Server`. Example:
 
-	    acl:
-	      admin:
-	        - user:
-	            yozhik@example.org
-	        - user: peter@example.org
+    ``` yaml
+    acl:
+      exampleorg:
+        server: example.org
+    ```
 
-**`server: Server`**:   Matches any JID from server `Server`. Example:
+- **`resource: Resource`**:   Matches any JID with a resource `Resource`. Example:
 
+    ``` yaml
+    acl:
+      mucklres:
+        resource: muckl
+    ```
 
-	    acl:
-	      exampleorg:
-	        server: example.org
+- **`shared_group: Groupname`**:   Matches any member of a Shared Roster Group with name `Groupname` in
+ the virtual host. Example:
 
-**`resource: Resource`**:   Matches any JID with a resource `Resource`. Example:
+    ``` yaml
+    acl:
+      techgroupmembers:
+        shared_group: techteam
+    ```
 
-	    acl:
-	      mucklres:
-	        resource: muckl
+- **`shared_group: {Groupname: Server}`**:   Matches any member of a Shared Roster Group with name `Groupname` in
+ the virtual host `Server`. Example:
 
-**`shared_group: Groupname`**:   Matches any member of a Shared Roster Group with name `Groupname` in
-	the virtual host. Example:
+    ``` yaml
+    acl:
+      techgroupmembers:
+        shared_group:
+          techteam: example.org
+    ```
 
+- **`ip: Network`**:   Matches any IP address from the `Network`. Example:
 
-	    acl:
-	      techgroupmembers:
-	        shared_group: techteam
+    ``` yaml
+    acl:
+      loopback:
+        ip:
+          - 127.0.0.0/8
+          - "::1"
+    ```
 
-**`shared_group: {Groupname: Server}`**:   Matches any member of a Shared Roster Group with name `Groupname` in
-	the virtual host `Server`. Example:
+- **`user_regexp: Regexp`**:   Matches any local user with a name that matches `Regexp` on local
+ virtual hosts. Example:
 
+    ``` yaml
+    acl:
+      tests:
+        user_regexp: "^test[0-9]*$"
+    ```
 
-	    acl:
-	      techgroupmembers:
-	        shared_group:
-	          techteam: example.org
+- **`user_regexp: {Regexp: Server} | JidRegexp`**:   Matches any user with a name that matches `Regexp` at server
+ `Server`. Example:
 
-**`ip: Network`**:   Matches any IP address from the `Network`. Example:
+    ``` yaml
+    acl:
+      tests:
+        user_regexp:
+          - "^test1": example.org
+          - "^test2@example.org"
+    ```
 
+- **`server_regexp: Regexp`**:   Matches any JID from the server that matches `Regexp`. Example:
 
-	    acl:
-	      loopback:
-	        ip:
-	          - 127.0.0.0/8
-	          - "::1"
+    ``` yaml
+    acl:
+      icq:
+        server_regexp: "^icq\\."
+    ```
 
-**`user_regexp: Regexp`**:   Matches any local user with a name that matches `Regexp` on local
-	virtual hosts. Example:
+- **`resource_regexp: Regexp`**:   Matches any JID with a resource that matches `Regexp`. Example:
 
+    ``` yaml
+    acl:
+      icq:
+        resource_regexp: "^laptop\\."
+    ```
 
-	    acl:
-	      tests:
-	        user_regexp: "^test[0-9]*$"
+- **`node_regexp: {UserRegexp: ServerRegexp}`**:   Matches any user with a name that matches `UserRegexp` at any server
+ that matches `ServerRegexp`. Example:
 
-**`user_regexp: {Regexp: Server} | JidRegexp`**:   Matches any user with a name that matches `Regexp` at server
-	`Server`. Example:
-
-
-	    acl:
-	      tests:
-	        user_regexp:
-	          - "^test1": example.org
-	          - "^test2@example.org"
-
-**`server_regexp: Regexp`**:   Matches any JID from the server that matches `Regexp`. Example:
-
-
-	    acl:
-	      icq:
-	        server_regexp: "^icq\\."
-
-**`resource_regexp: Regexp`**:   Matches any JID with a resource that matches `Regexp`. Example:
-
-
-	    acl:
-	      icq:
-	        resource_regexp: "^laptop\\."
-
-**`node_regexp: {UserRegexp: ServerRegexp}`**:   Matches any user with a name that matches `UserRegexp` at any server
-	that matches `ServerRegexp`. Example:
-
-
-	    acl:
-	      yozhik:
-	        node_regexp:
-	          "^yozhik$": "^example.(com|org)$"
+    ``` yaml
+    acl:
+      yozhik:
+        node_regexp:
+          "^yozhik$": "^example.(com|org)$"
+    ```
 
 <!-- TODO: explain remaining parameters -->
 
-**`user_glob: Glob`**:
+- **`user_glob: Glob`**:
 
-**`user_glob: {Glob: Server}`**:
+- **`user_glob: {Glob: Server}`**:
 
-**`server_glob: Glob`**:
+- **`server_glob: Glob`**:
 
-**`resource_glob: Glob`**:
+- **`resource_glob: Glob`**:
 
-**`node_glob: {UserGlob: ServerGlob}`**:   This is the same as above. However, it uses shell glob patterns
+- **`node_glob: {UserGlob: ServerGlob}`**:   This is the same as above. However, it uses shell glob patterns
 instead of regexp. These patterns can have the following special
 characters:
 
-* **`*`**:   matches any string including the null string.
+    - **`*`**:   matches any string including the null string.
 
-* **`?`**:   matches any single character.
+    - **`?`**:   matches any single character.
 
-* **`[...]`**:   matches any of the enclosed characters. Character ranges are
-	    specified by a pair of characters separated by a `-`. If the
-	    first character after `[` is a `!`, any character not enclosed
-	    is matched.
+    - **`[...]`**:   matches any of the enclosed characters. Character ranges are
+     specified by a pair of characters separated by a `-`. If the
+     first character after `[` is a `!`, any character not enclosed
+     is matched.
 
 The following `ACLName` are pre-defined:
 
-**`all`**:   Matches any JID.
+- **`all`**:   Matches any JID.
 
-**`none`**:   Matches no JID.
+- **`none`**:   Matches no JID.
 
-## Access Rules
+### Access Rules
 
-The [`access_rules`](/admin/configuration/toplevel/#access-rules)
+The [`access_rules`](toplevel.md#access_rules)
 option is used to allow or deny access to different services. The syntax
 is:
 
-**`access_rules: { AccessName: { - allow|deny: ACLRule|ACLDefinition } }`**
+``` yaml
+access_rules:
+  AccessName:
+    - allow|deny: ACLRule|ACLDefinition
+```
 
 Each definition may contain arbitrary number of `- allow` or `- deny`
 sections, and each section can contain any number of acl rules
@@ -533,19 +577,20 @@ To simplify configuration two shortcut version are available:
 `- allow: acl` and `- allow`, example below shows equivalent
 definitions where short or long version are used:
 
-
-    access_rules:
-      a_short: admin
-      a_long:
-        - acl: admin
-      b_short:
-        - deny: banned
-        - allow
-      b_long:
-        - deny:
-          - acl: banned
-        - allow:
-          - all
+``` yaml
+access_rules:
+  a_short: admin
+  a_long:
+    - acl: admin
+  b_short:
+    - deny: banned
+    - allow
+  b_long:
+    - deny:
+      - acl: banned
+    - allow:
+      - all
+```
 
 If you define specific Access rights in a virtual host, remember that
 the globally defined Access rights have precedence over those. This
@@ -555,44 +600,49 @@ effect.
 
 Example:
 
-
-      access_rules:
-        configure:
-          - allow: admin
-        something:
-          - deny: someone
-          - allow
-        s2s_banned:
-          - deny: problematic_hosts
-          - deny:
-            - acl: banned_forever
-          - deny:
-            - ip: 222.111.222.111/32
-          - deny:
-            - ip: 111.222.111.222/32
-          - allow
-        xmlrpc_access:
-          - allow:
-            - user: peter@example.com
-          - allow:
-            - user: ivone@example.com
-          - allow:
-            - user: bot@example.com
-            - ip: 10.0.0.0/24
+``` yaml
+access_rules:
+  configure:
+    - allow: admin
+  something:
+    - deny: someone
+    - allow
+  s2s_banned:
+    - deny: problematic_hosts
+    - deny:
+      - acl: banned_forever
+    - deny:
+      - ip: 222.111.222.111/32
+    - deny:
+      - ip: 111.222.111.222/32
+    - allow
+  xmlrpc_access:
+    - allow:
+      - user: peter@example.com
+    - allow:
+      - user: ivone@example.com
+    - allow:
+      - user: bot@example.com
+      - ip: 10.0.0.0/24
+```
 
 The following `AccessName` are pre-defined:
 
-**`all`**:   Always returns the value ‘`allow`’.
+- **`all`**:   Always returns the value ‘`allow`’.
 
-**`none`**:   Always returns the value ‘`deny`’.
+- **`none`**:   Always returns the value ‘`deny`’.
 
-## Shaper Rules
+### Shaper Rules
 
-The [`shaper_rules`](/admin/configuration/toplevel/#shaper-rules)
+The [`shaper_rules`](toplevel.md#shaper_rules)
 top-level option declares shapers to use for matching user/hosts. The syntax
 is:
 
-**`shaper_rules: { ShaperRuleName: { - Number|ShaperName: ACLRule|ACLDefinition } }`**
+``` yaml
+shaper_rules:
+  ShaperRuleName:
+    - Number|ShaperName: ACLRule|ACLDefinition
+```
 
 Semantic is similar to that described in [Access Rights](#access-rights) section,
 only difference is that instead using `- allow` or `- deny`, name of shaper or number
@@ -600,21 +650,22 @@ should be used.
 
 Examples:
 
+``` yaml
+shaper_rules:
+  connections_limit:
+    - 10:
+      - user: peter@example.com
+    - 100: admin
+    - 5
+  download_speed:
+    - fast: admin
+    - slow: anonymous_users
+    - normal
+  log_days: 30
+```
 
-    shaper_rules:
-      connections_limit:
-        - 10:
-          - user: peter@example.com
-        - 100: admin
-        - 5
-      download_speed:
-        - fast: admin
-        - slow: anonymous_users
-        - normal
-      log_days: 30
 
-
-## Limiting Opened Sessions
+### Limiting Opened Sessions
 
 The special access `max_user_sessions` specifies the maximum number of
 sessions (authenticated connections) per user. If a user tries to open
@@ -625,18 +676,23 @@ or `infinity`. The default value is `infinity`.
 
 The syntax is:
 
-**`{ max_user_sessions: { - Number: ACLRule|ACLDefinition } }`**
+``` yaml
+shaper_rules:
+  max_user_sessions:
+    - Number: ACLRule|ACLDefinition
+```
 
 This example limits the number of sessions per user to 5 for all users,
 and to 10 for admins:
 
+``` yaml
+shaper_rules:
+  max_user_sessions:
+    - 10: admin
+    - 5
+```
 
-	shaper_rules:
-	  max_user_sessions:
-	    - 10: admin
-	    - 5
-
-## Connections to Remote Server
+### Connections to Remote Server
 
 The special access `max_s2s_connections` specifies how many simultaneous
 S2S connections can be established to a specific remote XMPP server. The
@@ -645,22 +701,27 @@ default value is `1`. There’s also available the access
 
 The syntax is:
 
-**`{ max_s2s_connections: { ACLName: MaxNumber } }`**
+``` yaml
+shaper_rules:
+  max_s2s_connections: MaxNumber
+```
 
-Examples:
+For example, let's allow up to 3 connections with each remote server:
 
--   Allow up to 3 connections with each remote server:
+``` yaml
+shaper_rules:
+  max_s2s_connections: 3
+```
 
+## Shapers
 
-		shaper_rules:
-		  max_s2s_connections: 3
-
-# Shapers
-
-The [`shaper`](/admin/configuration/toplevel/#shaper)
+The [`shaper`](toplevel.md#shaper)
 top-level option defines limitations in the connection traffic. The basic syntax is:
 
-**`shaper: { ShaperName: Rate }`**
+``` yaml
+shaper:
+  ShaperName: Rate
+```
 
 where `Rate` stands for the maximum allowed incoming rate in bytes per
 second. When a connection exceeds this limit, `ejabberd` stops reading
@@ -671,13 +732,22 @@ This example defines a shaper with name `normal` that limits traffic speed to
 1,000bytes/second, and another shaper with name `fast` that limits traffic
 speed to 50,000bytes/second:
 
-    shaper:
-      normal: 1000
-      fast: 50000
+``` yaml
+shaper:
+  normal: 1000
+  fast: 50000
+```
+
+---
 
 You can use the full syntax to set the `BurstSize` too:
 
-**`shaper: { ShaperName: { rate: Rate, burst_size: BurstSize}}`**
+``` yaml
+shaper:
+  ShaperName:
+    rate: Rate
+    burst_size: BurstSize
+```
 
 With `BurstSize` you can allow client to send more data, but its amount can be
 clamped reasonably. Each connection is allowed to send `BurstSize` of data
@@ -691,8 +761,10 @@ and the `BurstSize` takes that same value.
 The `not_normal` shaper has the same `Rate` that before,
 and sets a higher `BurstSize`:
 
-    shaper:
-      normal: 1000
-      not_normal:
-        rate: 1000
-        burst_size: 20000
+``` yaml
+shaper:
+  normal: 1000
+  not_normal:
+    rate: 1000
+    burst_size: 20000
+```

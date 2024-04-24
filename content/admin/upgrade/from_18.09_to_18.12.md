@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 18.12
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 18.12
 
 You may need to update your database schema if you're using MySQL.
 A minor change on pubsub_item table was added right after 18.09 release and
@@ -20,7 +16,7 @@ If you're a packager, we recommend to apply this change when possible.
 
 As ejabberd now supports XEP-0411, you must perform some actions before starting the service.
 If your users are NOT USING bookmarks, you can dismiss this.
-```bash
+``` bash
 $ for host in $(ejabberdctl registered-vhosts); do
       ejabberdctl registered-users "$host" | while read user; do
           ejabberdctl bookmarks-to-pep "$user" "$host"
@@ -41,7 +37,7 @@ This raised errors when ejabberd was trying to read the content of the database.
 You not done yet, you need to alter your MySQL schema if you're using big stanzas
 on for pubsub items. Else you can simply dismiss this change.
 
-```bash
+``` bash
 mysql -h host -u user database -p << EOF
 ALTER TABLE pubsub_item MODIFY payload mediumtext NOT NULL;
 EOF

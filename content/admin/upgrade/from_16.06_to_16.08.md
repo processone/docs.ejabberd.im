@@ -1,8 +1,4 @@
----
-title: Upgrade to ejabberd 16.08
----
-
-# Ejabberd upgrade process
+# Upgrade to ejabberd 16.08
 
 You need to create a new table to support the new OAuth feature
 before starting ejabberd 16.08.
@@ -10,7 +6,7 @@ before starting ejabberd 16.08.
 ## SQL database upgrade
 
 Example for MySQL:
-```bash
+``` bash
 mysql -h host -u user database -p << EOF
 CREATE TABLE oauth_token (
   token varchar(191) NOT NULL PRIMARY KEY,

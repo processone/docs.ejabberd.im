@@ -1,8 +1,6 @@
----
-title: Upgrade from 2.1.1x to 16.02
----
+# Upgrade from 2.1.1x to 16.02
 
-# Compilation
+## Compilation
 
 Compilation requires Erlang/OTP R17 or higher.
 Requires OpenSSL 1.0.0 or higher.
@@ -21,15 +19,15 @@ You have three options:
 - You can still use your old ejabberd.cfg
 - You can convert your old config file to YAML with the command: `ejabberdctl convert_to_yaml`
 
-# Ejabberd upgrade process
+## Ejabberd upgrade process
 
 If you are using an sql backend for authentication, you need to upgrade
 your schema before starting ejabberd 16.02. This can be safely done
 while a previous version of ejabberd is actually running.
 
-## MySQL database upgrade
+### MySQL database upgrade
 
-```bash
+``` bash
 mysql -h host -u user database -p << EOF
 
 -- Table for mod_caps: Entity Capabilities (XEP-0115)
@@ -105,9 +103,9 @@ EOF
 ```
 
 
-## PgSQL database upgrade
+### PgSQL database upgrade
 
-```bash
+``` bash
 psql -W -h host database user << EOF
 
 -- Table for mod_caps: Entity Capabilities (XEP-0115)
@@ -168,13 +166,13 @@ CREATE TABLE archive_prefs (
 EOF
 ```
 
-## PubSub database upgrade
+### PubSub database upgrade
 
 If you were using PubSub with sql backend and need to keep your pubsub data,
 you must alter the content of pubsub_node tables, changing type 'pep' instead
 of 'pep_odbc', 'flat' instead of 'flat_odbc', and 'hometree' instead of 'hometree_odbc'.
 
-```bash
+``` bash
 UPDATE pubsub_node SET type='pep' WHERE type='pep_odbc';
 UPDATE pubsub_node SET type='flat' WHERE type='flat_odbc';
 UPDATE pubsub_node SET type='hometree' WHERE type='hometree_odbc';

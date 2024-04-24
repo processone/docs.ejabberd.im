@@ -1,7 +1,4 @@
----
-title: Upgrade to ejabberd 23.10
-toc: true
----
+# Upgrade to ejabberd 23.10
 
 There is a new module, several new options, an API command has changed,
 but there are no breaking changes in the configuration, SQL schema.
@@ -14,5 +11,5 @@ The MUC room option `allow_private_messages` is converted to `allowpm`. This con
 
 In summary, you can update from previous ejabberd version to this one without performing any upgrade tasks.
 
-Please check the ejabberd [23.10](/archive/23_10/) release announcement for details about the improvements.
+Please check the ejabberd [23.10](../../archive/23.10/index.md) release announcement for details about the improvements.
 

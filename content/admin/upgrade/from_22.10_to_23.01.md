@@ -1,12 +1,9 @@
----
-title: Upgrade to ejabberd 23.01
-toc: true
----
+# Upgrade to ejabberd 23.01
 
 There is a new module, new hooks, new options, and some option accepts additional values,
 but there are no breaking changes in SQL schemas, configuration, or commands API.
 
-Please check the ejabberd [23.01](/archive/23_01/) release announcement for details
+Please check the ejabberd [23.01](../../archive/23.01/index.md) release announcement for details
 about the improvements.
 
 ## Changes in option `outgoing_s2s_families`
