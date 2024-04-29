@@ -83,6 +83,7 @@ This ejabberd release includes many fixes to get API versioning up to date, and 
 Let's say that ejabberd 23.10 implemented API version 0, and this ejabberd 24.02 adds API version 1. You may want to update your API client to use the new API version 1... or you can continue using API version 0 and delay API update a few weeks or months.
 
 To continue using API version 0:
+
 - if using ejabberdctl, use the switch `--version 0`. For example: `ejabberdctl --version 0 get_roster admin localhost`
 - if using mod_http_api, in ejabberd configuration file add `v0` to the `request_handlers` path. For example: `/api/v0: mod_http_api`
 
