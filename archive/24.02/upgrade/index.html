@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.20">
     
     
       
@@ -5890,9 +5890,11 @@ please review those changes:</p>
 <p>In fact, this feature was <a href="https://github.com/processone/ejabberd/commit/3dc55c6d47e3093a6147ce275c7269a7d08ffc45">implemented seven years ago</a>, included in <a href="https://www.process-one.net/blog/ejabberd-16-04/">ejabberd 16.04</a>, documented in <a href="../../../developer/ejabberd-api/api_versioning/">ejabberd Docs: API Versioning</a>... but it was never actually used!</p>
 <p>This ejabberd release includes many fixes to get API versioning up to date, and it starts being used by several commands.</p>
 <p>Let's say that ejabberd 23.10 implemented API version 0, and this ejabberd 24.02 adds API version 1. You may want to update your API client to use the new API version 1... or you can continue using API version 0 and delay API update a few weeks or months.</p>
-<p>To continue using API version 0:
-- if using ejabberdctl, use the switch <code>--version 0</code>. For example: <code>ejabberdctl --version 0 get_roster admin localhost</code>
-- if using mod_http_api, in ejabberd configuration file add <code>v0</code> to the <code>request_handlers</code> path. For example: <code>/api/v0: mod_http_api</code></p>
+<p>To continue using API version 0:</p>
+<ul>
+<li>if using ejabberdctl, use the switch <code>--version 0</code>. For example: <code>ejabberdctl --version 0 get_roster admin localhost</code></li>
+<li>if using mod_http_api, in ejabberd configuration file add <code>v0</code> to the <code>request_handlers</code> path. For example: <code>/api/v0: mod_http_api</code></li>
+</ul>
 <p>Check the ejabberd <a href="../">24.02</a> full release notes for more details about the changed commands.</p>
 <p>Check the full documentation in <a href="../../../developer/ejabberd-api/api_versioning/">ejabberd Docs: API Versioning</a>.</p>
 <h2 id="use-mix-or-rebar3-by-default-instead-of-rebar-to-compile-ejabberd"><a name="mixdefault"></a>Use Mix or Rebar3 by default instead of Rebar to compile ejabberd<a class="headerlink" href="#use-mix-or-rebar3-by-default-instead-of-rebar-to-compile-ejabberd" title="Permanent link">&para;</a></h2>
