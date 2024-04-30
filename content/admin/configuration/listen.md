@@ -196,7 +196,6 @@ The specific `ejabberd_stun` configurable options are:
     By default, loopback addresses (`127.0.0.0/8` and `::1/128`) are blacklisted.
 
 - **turn_ipv4_address**: *String*
->>>>>>> 8b12c67 (Major reorganization of the Listen page)
 
     The IPv4 address advertised by your TURN server.
     The address should not be NAT’ed or firewalled.
