@@ -6422,23 +6422,13 @@ __Examples:__
 
 
 ~~~ json
-<<<<<<< HEAD
-    POST /api/unban_ip
-    {
-      "address": "::FFFF:127.0.0.1/128"
-    }
-    
-    HTTP/1.1 200 OK
-    3
-=======
 POST /api/unban_ip
 {
   "address": "::FFFF:127.0.0.1/128"
 }
 
 HTTP/1.1 200 OK
-{"unbanned": 3}
->>>>>>> a2c15f3 (Result of running "make all" with updated ejabberd)
+3
 ~~~
 
 
