@@ -382,7 +382,7 @@ With the proper request handlers configured, this serves HTTP services like
 [OAuth](../../developer/ejabberd-api/oauth.md),
 [RegisterWeb](modules.md#mod_register_web),
 [Upload](modules.md#mod_http_upload),
-[WebAdmin](../guide/managing.md#web_admin),
+[WebAdmin](../guide/managing.md#web-admin),
 [WebSocket](#ejabberd_http_ws),
 [XML-RPC](#ejabberd_xmlrpc).
 
@@ -560,7 +560,7 @@ For example, the following simple configuration defines:
 
 - Port 5280 listens for HTTP requests, and serves the HTTP-Bind (BOSH) service.
 
-- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../guide/managing.md#web_admin). The socket only listens connections to the IP address 127.0.0.1.
+- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../guide/managing.md#web-admin). The socket only listens connections to the IP address 127.0.0.1.
 
 ``` yaml
 hosts:
@@ -633,7 +633,7 @@ In this example, the following configuration defines that:
 
 - Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
  all the IPv4 addresses. Note that it is also possible to serve them
- on different ports. The second example in section [Managing: Web Admin](../guide/managing.md#web_admin) shows
+ on different ports. The second example in section [Managing: Web Admin](../guide/managing.md#web-admin) shows
  how exactly this can be done. A request handler to serve MQTT over WebSocket is also defined.
 
 - All users except for the administrators have a traffic of limit

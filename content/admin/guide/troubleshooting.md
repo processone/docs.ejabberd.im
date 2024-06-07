@@ -44,7 +44,7 @@ either use an external tool for log rotation and the
 API command to reopen the log files, or the
 [rotate_log](../../developer/ejabberd-api/admin-api.md#rotate_log) API command
 to perform both steps (please refer to section [ejabberd
-Commands](managing.md#ejabberd_commands)).
+Commands](managing.md#ejabberd-commands)).
 
 The [log_rotate_count](../configuration/toplevel.md#log_rotate_count)
 toplevel option defines the number of rotated files to

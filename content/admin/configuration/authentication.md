@@ -8,9 +8,9 @@ The authentication methods supported by `ejabberd` are:
 
 - `external` — See section [External Script](#external-script).
 
-- `ldap` — See section  [LDAP](ldap.md#ldap_authentication).
+- `ldap` — See section  [LDAP](ldap.md#ldap-authentication).
 
-- `sql` — See section [Relational Databases](database.md#sql_authentication).
+- `sql` — See section [Relational Databases](database.md#sql-authentication).
 
 - `anonymous` — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 
@@ -103,7 +103,7 @@ any programming language.
 
 Please check some example scripts,
 and the details on the interface between ejabberd and the script in the
-[Developers > Internals > External Authentication](../../developer/guide.md#external_authentication) section.
+[Developers > Internals > External Authentication](../../developer/guide.md#external-authentication) section.
 
 Options:
 
@@ -151,7 +151,7 @@ authentication:
 
 The anonymous authentication method can be configured with the following
 options. Remember that you can use the [host_config](toplevel.md#host_config) option to set
-virtual host specific options (see section [Virtual Hosting](basic.md#virtual_hosting)):
+virtual host specific options (see section [Virtual Hosting](basic.md#virtual-hosting)):
 
 - [allow_multiple_connections](toplevel.md#allow_multiple_connections)
 - [anonymous_protocol](toplevel.md#anonymous_protocol)

@@ -49,12 +49,12 @@ hide:
     - MySQL Performance enhancements
 
 - [23.04](https://www.process-one.net/blog/ejabberd-23-04/)
-    - [`mod_mam`](../admin/configuration/modules.md#mod-mam) support for [XEP-0425: Message Moderation](https://xmpp.org/extensions/xep-0425.html)
-    - New [`mod_muc_rtbl`](../admin/configuration/modules.md#mod-muc-rtbl): [Real-Time Block List](https://xmppbl.org/) for MUC rooms
+    - [`mod_mam`](../admin/configuration/modules.md#mod_mam) support for [XEP-0425: Message Moderation](https://xmpp.org/extensions/xep-0425.html)
+    - New [`mod_muc_rtbl`](../admin/configuration/modules.md#mod_muc_rtbl): [Real-Time Block List](https://xmppbl.org/) for MUC rooms
     - Binaries use [Erlang/OTP](https://www.erlang.org/) 25.3, and changes in containers
 
 - [23.01](https://www.process-one.net/blog/ejabberd-23-01/)
-    - New [`mod_mqtt_bridge`](../admin/configuration/modules.md#mod-mqtt-bridge): MQTT bridge
+    - New [`mod_mqtt_bridge`](../admin/configuration/modules.md#mod_mqtt_bridge): MQTT bridge
 
 ### 2022
 
@@ -100,7 +100,7 @@ hide:
     * [Erlang/OTP 23](https://www.erlang.org/) compatibility
 
 * [20.04](https://www.process-one.net/blog/ejabberd-20-04/)
-    * New [`mod_stun_disco`](../admin/configuration/modules.md#mod-stun-disco): support [XEP-0215](https://xmpp.org/extensions/xep-0215.html) including Audio/Video calls
+    * New [`mod_stun_disco`](../admin/configuration/modules.md#mod_stun_disco): support [XEP-0215](https://xmpp.org/extensions/xep-0215.html) including Audio/Video calls
     * Improved MS SQL support
 
 * [20.03](https://www.process-one.net/blog/ejabberd-20-03/)

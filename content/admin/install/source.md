@@ -96,7 +96,7 @@ Options details:
 
 - **`--enable-user[=USER]`**: Allow this normal system user to execute the ejabberdctl script (see section [ejabberdctl](../guide/managing.md#ejabberdctl)), read the configuration files, read and write in the spool directory, read and  write in the log directory.
 The account user and group must exist in  the machine before running `make install`.
-This account needs a HOME directory, because the [Erlang cookie file](../guide/security.md#erlang_cookie) will be created and read there.
+This account needs a HOME directory, because the [Erlang cookie file](../guide/security.md#erlang-cookie) will be created and read there.
 
 - **`--enable-group[=GROUP]`**: Use this option additionally to `--enable-user`
   when that account is in a group that doesn't coincide with its username.
@@ -141,7 +141,7 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/s
 
 - **`--enable-odbc`**: Enable pure ODBC support.
 
-- **`--enable-pam`**: Enable the PAM authentication method (see [PAM Authentication](../configuration/authentication.md/#pam_authentication) section).
+- **`--enable-pam`**: Enable the PAM authentication method (see [PAM Authentication](../configuration/authentication.md#pam-authentication) section).
 
 - **`--enable-pgsql`**: Enable PostgreSQL support (see [Supported storages][18]).
 
@@ -198,7 +198,7 @@ The created files and directories depend on the options provided to [`./configur
 - `/etc/ejabberd/`:  Configuration directory:
 
     + `ejabberd.yml`:  ejabberd configuration file (see [File Format](../configuration/file-format.md))
-    + `ejabberdctl.cfg`: Configuration file of the administration script (see [Erlang Runtime System](../guide/managing.md#erlang_runtime_system))
+    + `ejabberdctl.cfg`: Configuration file of the administration script (see [Erlang Runtime System](../guide/managing.md#erlang-runtime-system))
     + `inetrc`: Network DNS configuration file for Erlang
 
 - `/lib/ejabberd/`:
@@ -216,7 +216,7 @@ The created files and directories depend on the options provided to [`./configur
 
 - `/var/lib/ejabberd/`: Spool directory:
 
-    - `.erlang.cookie`: The [Erlang cookie file](../guide/security.md#erlang_cookie)
+    - `.erlang.cookie`: The [Erlang cookie file](../guide/security.md#erlang-cookie)
     - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
 
 - `/var/log/ejabberd/`: Log directory (see [Logging](../configuration/basic.md#logging)):

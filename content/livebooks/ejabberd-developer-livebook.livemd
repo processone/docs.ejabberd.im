@@ -111,7 +111,7 @@ password == :ejabberd_auth.get_password(username, server)
 
 ## Run API commands
 
-Let's run some ejabberd [API commands](https://docs.ejabberd.im/developer/ejabberd-api/) using the ejabberd_ctl frontend (there is is also [mod_http_api](https://docs.ejabberd.im/admin/configuration/modules/#mod-http-api) and [ejabberd_xmlrpc](https://docs.ejabberd.im/admin/configuration/listen/#ejabberd-xmlrpc)).
+Let's run some ejabberd [API commands](https://docs.ejabberd.im/developer/ejabberd-api/) using the ejabberd_ctl frontend (there is is also [mod_http_api](https://docs.ejabberd.im/admin/configuration/modules/#mod_http_api) and [ejabberd_xmlrpc](https://docs.ejabberd.im/admin/configuration/listen/#ejabberd-xmlrpc)).
 
 For example, the [status](https://docs.ejabberd.im/developer/ejabberd-api/admin-api/#status) API command:
 

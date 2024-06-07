@@ -41,7 +41,7 @@ There are 3 types of rules that can be placed in `who` section:
 
 - **access:** *Name | AccessDefinition*  
   This allows execution if
-  the [Access Rule](../../admin/configuration/basic.md#access_rules)
+  the [Access Rule](../../admin/configuration/basic.md#access-rules)
   `Name` or inline `AccessDefinition`
   returns `allowed` for command's authentication details
 

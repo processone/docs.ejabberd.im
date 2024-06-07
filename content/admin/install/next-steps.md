@@ -63,7 +63,7 @@ After installing ejabberd from source code or other methods, you may want to reg
 
     There are two ways to register an XMPP account in ejabberd:
 
-    - Using an XMPP client and [In-Band Registration](../configuration/modules.md#mod-register).
+    - Using an XMPP client and [In-Band Registration](../configuration/modules.md#mod_register).
 
     - Using [ejabberdctl](../guide/managing.md#ejabberdctl):
 
@@ -92,16 +92,19 @@ After installing ejabberd from source code or other methods, you may want to reg
 
 4. Open the Web Admin page in your favourite browser.
     The exact address depends on your ejabberd configuration,
-    and may be
-    [http://localhost:5280/admin/](http://localhost:5280/admin/),
-    [https://localhost:5443/admin/](https://localhost:5443/admin/),
-    [https://localhost:5280/admin/](https://localhost:5280/admin/) ...
+    and may be:
+    - [http://localhost:5280/admin/](http://localhost:5280/admin/)
+      on [binary installers](binary-installer.md)
+    - [https://localhost:5443/admin/](https://localhost:5443/admin/)
+      on [binary installers](binary-installer.md)
+    - [https://localhost:5280/admin/](https://localhost:5280/admin/)
+      on [Debian package](os-package.md)
 
 5. Your web browser shows a login window. Introduce the **full JID**,
     in this example `admin1@example.org`, and the account password.
     If the web address hostname is the same that the account JID,
     you can provide simply the username instead of the full JID: `admin1`.
-    See [Web Admin](../guide/managing.md#web_admin) for details.
+    See [Web Admin](../guide/managing.md#web-admin) for details.
 
 ## Configuring ejabberd
 

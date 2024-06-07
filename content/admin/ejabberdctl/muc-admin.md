@@ -20,7 +20,7 @@ modules:
 The most updated and detailed list of commands for managing
 a MUC service and MUC rooms is available
 in the [muc API tag](../../developer/ejabberd-api/admin-tags.md#muc)
-and the [muc_room API tag](../../developer/ejabberd-api/admin-tags.md#muc-room).
+and the [muc_room API tag](../../developer/ejabberd-api/admin-tags.md#muc_room).
 
 ### Online Rooms
 

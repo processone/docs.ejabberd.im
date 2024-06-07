@@ -119,7 +119,7 @@ Quite probably you will want to require authentication to execute API queries, e
         what: "*"
     ```
 
-4. If that account does not yet exist, [register it](../../admin/install/index.md/#administration_account):
+4. If that account does not yet exist, register it:
 
     ``` sh
     ejabberdctl register john localhost somePass
@@ -202,8 +202,7 @@ Here are example entries to check / change in your ejabberd configuration file:
         what: "*"
     ```
 
-5. If that account does not yet exist,
-   [register it](../../admin/install/index.md/#administration_account):
+5. If that account does not yet exist, register it:
 
     ``` sh
     ejabberdctl register john localhost somePass

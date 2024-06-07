@@ -52,9 +52,7 @@ API command using [ejabberdctl](../guide/managing.md#ejabberdctl).
 If you want to specify some options using the old Erlang format, you
 can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
-[Include Additional Files](#include-additional-files)
-for the option description and a related example in
-[Restrict Execution with AccessCommands](../guide/managing.md#restrict_execution_with_accesscommands).
+[Include Additional Files](#include-additional-files).
 
 ## Include Additional Files
 
@@ -82,7 +80,7 @@ Please notice that options already defined in the main configuration file
 cannot be redefined in the included configuration files.
 But you can use [host_config](toplevel.md#host_config)
 and [append_host_config](toplevel.md#append_host_config)
-as usual (see [Virtual Hosting](basic.md#virtual_hosting)).
+as usual (see [Virtual Hosting](basic.md#virtual-hosting)).
 
 In this example, `ejabberd.yml` defines some ACL for the whole ejabberd server, and later includes another file:
 

@@ -51,12 +51,12 @@ for details on database schemas.
 ## Virtual Hosting
 
 Important note about virtual hosting: if you define several domains in
-ejabberd.yml (see section [Host Names](basic.md#host_names)), you probably want that each
+ejabberd.yml (see section [Host Names](basic.md#host-names)), you probably want that each
 virtual host uses a different configuration of database, authentication
 and storage, so that usernames do not conflict and mix between different
 virtual hosts. For that purpose, the options described in the next
 sections must be set inside a [host_config](toplevel.md#host_config) for each vhost (see section
-[Virtual Hosting](basic.md#virtual_hosting)). For example:
+[Virtual Hosting](basic.md#virtual-hosting)). For example:
 
 ``` yaml
 host_config:
@@ -87,13 +87,13 @@ the default schema is preferable when serving one massive domain,
 the new schema is preferable when serving many small domains.
 
 The default schema stores only one XMPP domain in the database.
-The [XMPP domain](basic.md#xmpp_domains)
+The [XMPP domain](basic.md#xmpp-domains)
 is not stored as this is the same for all the accounts,
 and this saves space in massive deployments.
 However, to handle several domains,
 you have to setup one database per domain
 and configure each one independently
-using [host_config](basic.md#virtual_hosting),
+using [host_config](basic.md#virtual-hosting),
 so in that case you may prefer the new schema.
 
 The new schema stores the XMPP domain in a new column `server_host`

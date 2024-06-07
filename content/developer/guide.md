@@ -960,7 +960,7 @@ for more details.
 
 You can configure ejabberd to use as authentication method an external script,
 as described in the Administrator section:
-[External Script](../admin/configuration/authentication.md#external_script).
+[External Script](../admin/configuration/authentication.md#external-script).
 
 Let's see the interface between ejabberd and your script,
 and several example scripts.

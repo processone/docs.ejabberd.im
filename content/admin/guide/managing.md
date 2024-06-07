@@ -181,7 +181,7 @@ create and restore backups, view server statistics, …
 
 1. If not done already, register an account and grant administration rights to it
    using the `configure` access rule
-   (see [Administration Account](../install/index.md/#administration_account)):
+   (see [Administration Account](../install/next-steps.md#administration-account)):
 
     ``` yaml
     acl:
@@ -243,7 +243,7 @@ listen:
 ### Vhost permissions
 
 As you may have noticed in the previous examples,
-the `configure` [access rule](../configuration/basic.md#access_rules)
+the `configure` [access rule](../configuration/basic.md#access-rules)
 determines what ACL can access the Web Admin.
 And then you can add specific accounts to that ACL.
 
@@ -307,7 +307,7 @@ If you enable [mod_configure](../configuration/modules.md#mod_configure) and [mo
 
 `ejabberd` uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
-Erlang node in it (see section [Erlang Node Name](security.md#erlang_node_name)). The name of an Erlang node
+Erlang node in it (see section [Erlang Node Name](security.md#erlang-node-name)). The name of an Erlang node
 includes the hostname of the computer. So, the name of the Erlang node
 changes if you change the name of the machine in which `ejabberd` runs,
 or when you move `ejabberd` to a different machine.
