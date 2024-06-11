@@ -103,8 +103,6 @@ The environment variables:
 
 **`EJABBERD_SO_PATH`**:   Path to the directory with binary system libraries.
 
-**`EJABBERD_DOC_PATH`**:   Path to the directory with ejabberd documentation.
-
 **`EJABBERD_PID_PATH`**:   Path to the PID file that ejabberd can create when started.
 
 **`HOME`**:   Path to the directory that is considered `ejabberd`’s home. This
@@ -182,6 +180,7 @@ create and restore backups, view server statistics, …
 ### Basic Setup
 
 1. If not done already, register an account and grant administration rights to it
+   using the `configure` access rule
    (see [Administration Account](../install/index.md/#administration_account)):
 
     ``` yaml
@@ -212,7 +211,7 @@ create and restore backups, view server statistics, …
 
 3. Open the Web Admin page in your favorite web browser.
 The exact address depends on your configuration;
-in this example the address is: `https://example.net:5443/admin/`
+in this example the address is: `https://example.org:5443/admin/`
 
 4. In the login window provide the **full Jabber ID: `admin1@example.org`** and password.
    If the web address hostname is the same that the account JID,
@@ -220,89 +219,85 @@ in this example the address is: `https://example.net:5443/admin/`
 
 5. You're good! You can now use the Web Admin.
 
-### Advanced Configuration
+### Additional Security
 
-There are two [access rules](../configuration/basic.md#access_rules) supported:
+For security reasons, you can serve the Web Admin on a secured connection and bind it to the internal LAN IP.
 
-- `configure` determines what accounts can access the Web Admin and make changes.
-- `webadmin_view` grants only view access:
-   those accounts can browse the Web Admin with read-only access.
+In this example, the Web Admin will be available in the address `https://192.168.1.1:5282/admin/`:
 
-Example configurations:
+``` yaml
+hosts:
+  - example.org
 
-- You can serve the Web Admin on the same port as the HTTP Polling
-  interface. In this example you should point your web browser to
-  `http://example.org:5280/admin/` to administer all virtual hosts or
-  to `http://example.org:5280/admin/server/example.com/` to administer
-  only the virtual host `example.com`. Before you get access to the
-  Web Admin you need to enter as username, the JID and password from a
-  registered user that is allowed to configure `ejabberd`. In this
-  example you can enter as username `admin@example.net` to
-  administer all virtual hosts (first URL). If you log in with
-  `admin@example.com` on
-  `http://example.org:5280/admin/server/example.com/` you can only
-  administer the virtual host `example.com`. The account
-  `reviewer@example.com` can browse that vhost in read-only mode.
+listen:
+  -
+    ip: "192.168.1.1"
+    port: 5282
+    module: ejabberd_http
+    certfile: "/usr/local/etc/server.pem"
+    tls: true
+    request_handlers:
+      /admin: ejabberd_web_admin
+```
 
-    ``` yaml
+### Vhost permissions
+
+As you may have noticed in the previous examples,
+the `configure` [access rule](../configuration/basic.md#access_rules)
+determines what ACL can access the Web Admin.
+And then you can add specific accounts to that ACL.
+
+It is possible to define specific ACL for individual vhosts,
+this allows you to grant administrative privilege to certain accounts
+only to one or some vhosts.
+
+In this example different accounts have different privileges in WebAdmin:
+
+- `adminglobal@example.net` can administer all virtual hosts in `http://example.net:5280/admin/`
+- `admincom@example.com` can administer only `example.com` in `http://example.com:5280/admin/`
+
+``` yaml
+hosts:
+  - example.net
+  - example.com
+
+listen:
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      /admin: ejabberd_web_admin
+
+acl:
+  admin:
+    user:
+      - adminglobal: example.net
+
+access_rules:
+  configure:
+    allow: admin
+
+host_config:
+  example.com:
     acl:
       admin:
         user:
-          - admin: example.net
+          - adminglobal: example.net
+          - admincom: example.com
+```
 
-    host_config:
-      example.com:
-        acl:
-          admin:
-            user:
-              - admin: example.com
-          viewers:
-            user:
-              - reviewer: example.com
+### Commands permissions
 
-    access:
-      configure:
-        admin: allow
-      webadmin_view:
-        viewers: allow
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
-    hosts:
-      - example.org
 
-    listen:
-      -
-        port: 5280
-        module: ejabberd_http
-        request_handlers:
-          /admin: ejabberd_web_admin
-    ```
+### Developer: Add Pages
 
-- For security reasons, you can serve the Web Admin on a secured connection, on a port differing from the HTTP Polling interface, and bind it to the internal LAN IP. The Web Admin will be accessible by pointing your web browser to `https://192.168.1.1:5282/admin/`:
 
-    ``` yaml
-    hosts:
-      - example.org
-    listen:
-      -
-        port: 5280
-        module: ejabberd_http
-      -
-        ip: "192.168.1.1"
-        port: 5282
-        module: ejabberd_http
-        certfile: "/usr/local/etc/server.pem"
-        tls: true
-        request_handlers:
-          /admin: ejabberd_web_admin
-    ```
+### Developer: Use Commands
 
-Certain pages in the ejabberd Web Admin contain a link to a related
-section in the ejabberd Installation and Operation Guide. In order to
-view such links, a copy in HTML format of the Guide must be installed in
-the system. The file is searched by default in
-`/share/doc/ejabberd/guide.html`. The directory of the documentation can
-be specified in the environment variable `EJABBERD_DOC_PATH`. See
-section [Erlang Runtime System](#erlang-runtime-system).
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
 
 ## Ad-hoc Commands
 
