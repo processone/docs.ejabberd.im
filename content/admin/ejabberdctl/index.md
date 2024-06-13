@@ -1,4 +1,4 @@
-# ejabberctl Reference
+# ejabberdctl Reference
 
 Here are main features covered by `ejabberdctl` command-line tool:
 
