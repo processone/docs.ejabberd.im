@@ -23,7 +23,7 @@ This module provides additional administrative commands.
 
 Details for some commands:
 
--   *ban-acount*: This command kicks all the connected sessions of the
+-   *ban-account*: This command kicks all the connected sessions of the
     account from the server. It also changes their password to a
     randomly generated one, so they can’t login anymore unless a server
     administrator changes their password again. It is possible to define
@@ -36,7 +36,7 @@ Details for some commands:
     System, place the file on the same directory where the .beam files
     are installed. See below an example roster file.
 
--   *srg-create*: If you want to put a group Name with blankspaces, use
+-   *srg-create*: If you want to put a group Name with blank spaces, use
     the characters "' and '" to define when the Name starts and ends.
     See an example below.
 
@@ -1176,7 +1176,7 @@ archived as usual. The default value is *false*.
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
 - **user\_mucsub\_from\_muc\_archive**: *true | false*  
-When this option is disabled, for each individual subscriber a separa
+When this option is disabled, for each individual subscriber a separate
 mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is *false*.
@@ -1746,7 +1746,7 @@ reached. The default limit is *5*.
 
 - **max\_users\_presence**: *Number*  
 This option defines after how many users in the room, it is considered
-overcrowded. When a MUC room is considered overcrowed, presence
+overcrowded. When a MUC room is considered overcrowded, presence
 broadcasts are limited to reduce load, traffic and excessive presence
 "storm" received by participants. The default value is *1000*.
 
@@ -2117,7 +2117,7 @@ are discarded, and a &lt;resource-constraint/&gt; error is returned to
 the sender. The default value is *max\_user\_offline\_messages*.
 
 - **bounce\_groupchat**: *true | false*  
-This option is use the disable an optimisation that avoids bouncing
+This option is use the disable an optimization that avoids bouncing
 error messages when groupchat messages could not be stored as offline.
 It will reduce chat room load, without any drawback in standard use
 cases. You may change default value only if you have a custom module
@@ -2125,7 +2125,7 @@ which uses offline hook after *mod\_offline*. This option can be useful
 for both standard MUC and MucSub, but the bounce is much more likely to
 happen in the context of MucSub, so it is even more important to have it
 on large MucSub services. The default value is *false*, meaning the
-optimisation is enabled.
+optimization is enabled.
 
 - **cache\_life\_time**: *timeout()*  
 Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
@@ -2745,7 +2745,7 @@ generate, for example, APNS or FCM notifications directly. Instead, it’s
 designed to work with so-called "app servers" operated by third-party
 vendors of mobile apps. Those app servers will usually trigger
 notification delivery to the user’s mobile device using
-platform-dependant backend services such as FCM or APNS.
+platform-dependent backend services such as FCM or APNS.
 
 __Available options:__
 
@@ -3457,12 +3457,12 @@ mod\_stream\_mgmt
 This module adds support for [XEP-0198: Stream
 Management](https://xmpp.org/extensions/xep-0198.html). This protocol
 allows active management of an XML stream between two XMPP entities,
-including features for stanza acknowledgements and stream resumption.
+including features for stanza acknowledgments and stream resumption.
 
 __Available options:__
 
 - **ack\_timeout**: *timeout()*  
-A time to wait for stanza acknowledgements. Setting it to *infinity*
+A time to wait for stanza acknowledgments. Setting it to *infinity*
 effectively disables the timeout. The default value is *1* minute.
 
 - **cache\_life\_time**: *timeout()*  

@@ -130,7 +130,7 @@ it permanently removed. It's then immediately stopped.
 ### Restarting cluster nodes
 
 Ejabberd Community Server uses mnesia internal database to manage cluster
-and internode synchronisation. As a result, you may restart ejabberd nodes
+and internode synchronization. As a result, you may restart ejabberd nodes
 as long as there is at least one running node. If you stop the last running
 node of a cluster, you MUST restart that node first in order to get a running
 service back.

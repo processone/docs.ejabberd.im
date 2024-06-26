@@ -210,7 +210,7 @@ create and restore backups, view server statistics, …
            /admin: ejabberd_web_admin
     ```
 
-3. Open the Web Admin page in your favourite web browser.
+3. Open the Web Admin page in your favorite web browser.
 The exact address depends on your configuration;
 in this example the address is: `https://example.net:5443/admin/`
 

@@ -145,7 +145,7 @@ authentication:
  advantage of SASL Anonymous is that the protocol was designed to
  give the user a login. This is useful to avoid in some case, where
  the server has many users already logged or registered and when it
- is hard to find a free username. The main disavantage is that you
+ is hard to find a free username. The main disadvantage is that you
  need a client that specifically supports the SASL Anonymous
  protocol.
 
@@ -286,7 +286,7 @@ introduces some security issues:
 - You may want to allow login access only for certain users.
  `pam_listfile.so` module provides such functionality.
 
-- If you use `pam_winbind` to authorise against a Windows Active
+- If you use `pam_winbind` to authorize against a Windows Active
  Directory, then `/etc/nsswitch.conf` must be configured to use
  `winbind` as well.
 
