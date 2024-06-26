@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
@@ -6895,7 +6895,7 @@ Provide the Commands item in the Service Discovery. Default value:
 <p>Details for some commands:</p>
 <ul>
 <li>
-<p><em>ban-acount</em>: This command kicks all the connected sessions of the
+<p><em>ban-account</em>: This command kicks all the connected sessions of the
     account from the server. It also changes their password to a
     randomly generated one, so they can’t login anymore unless a server
     administrator changes their password again. It is possible to define
@@ -6910,7 +6910,7 @@ Provide the Commands item in the Service Discovery. Default value:
     are installed. See below an example roster file.</p>
 </li>
 <li>
-<p><em>srg-create</em>: If you want to put a group Name with blankspaces, use
+<p><em>srg-create</em>: If you want to put a group Name with blank spaces, use
     the characters "' and '" to define when the Name starts and ends.
     See an example below.</p>
 </li>
@@ -8017,7 +8017,7 @@ Same as top-level <a href="../toplevel/#use_cache">use_cache</a> option, but app
 </li>
 <li>
 <p><strong>user_mucsub_from_muc_archive</strong>: <em>true | false</em><br/>
-When this option is disabled, for each individual subscriber a separa
+When this option is disabled, for each individual subscriber a separate
 mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is <em>false</em>.</p>
@@ -8653,7 +8653,7 @@ reached. The default limit is <em>5</em>.</p>
 <li>
 <p><strong>max_users_presence</strong>: <em>Number</em><br/>
 This option defines after how many users in the room, it is considered
-overcrowded. When a MUC room is considered overcrowed, presence
+overcrowded. When a MUC room is considered overcrowded, presence
 broadcasts are limited to reduce load, traffic and excessive presence
 "storm" received by participants. The default value is <em>1000</em>.</p>
 </li>
@@ -9035,7 +9035,7 @@ the sender. The default value is <em>max_user_offline_messages</em>.</p>
 </li>
 <li>
 <p><strong>bounce_groupchat</strong>: <em>true | false</em><br/>
-This option is use the disable an optimisation that avoids bouncing
+This option is use the disable an optimization that avoids bouncing
 error messages when groupchat messages could not be stored as offline.
 It will reduce chat room load, without any drawback in standard use
 cases. You may change default value only if you have a custom module
@@ -9043,7 +9043,7 @@ which uses offline hook after <em>mod_offline</em>. This option can be useful
 for both standard MUC and MucSub, but the bounce is much more likely to
 happen in the context of MucSub, so it is even more important to have it
 on large MucSub services. The default value is <em>false</em>, meaning the
-optimisation is enabled.</p>
+optimization is enabled.</p>
 </li>
 <li>
 <p><strong>cache_life_time</strong>: <em>timeout()</em><br/>
@@ -9685,7 +9685,7 @@ generate, for example, APNS or FCM notifications directly. Instead, it’s
 designed to work with so-called "app servers" operated by third-party
 vendors of mobile apps. Those app servers will usually trigger
 notification delivery to the user’s mobile device using
-platform-dependant backend services such as FCM or APNS.</p>
+platform-dependent backend services such as FCM or APNS.</p>
 <p><strong>Available options:</strong></p>
 <ul>
 <li>
@@ -10431,12 +10431,12 @@ very little sense.</p>
 <p>This module adds support for <a href="https://xmpp.org/extensions/xep-0198.html">XEP-0198: Stream
 Management</a>. This protocol
 allows active management of an XML stream between two XMPP entities,
-including features for stanza acknowledgements and stream resumption.</p>
+including features for stanza acknowledgments and stream resumption.</p>
 <p><strong>Available options:</strong></p>
 <ul>
 <li>
 <p><strong>ack_timeout</strong>: <em>timeout()</em><br/>
-A time to wait for stanza acknowledgements. Setting it to <em>infinity</em>
+A time to wait for stanza acknowledgments. Setting it to <em>infinity</em>
 effectively disables the timeout. The default value is <em>1</em> minute.</p>
 </li>
 <li>
