@@ -7,16 +7,7 @@ hide:
 
 ## In the Works
 
-- **Rework ejabberd Docs**
-
-    The [ejabberd Docs](https://docs.ejabberd.im/) site needs some reorganization, as some sections has grown quite a lot and would better be reorganized.
-
-
 ## Planned
-
-- **Set as default automatic SQL schema update**
-
-    Automatic SQL schema update was included as a beta-testing feature in ejabberd 23.10 (see the [feature announcement](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/)), and it will become the default. 
 
 - **Remove support for Rebar2**
 
@@ -26,6 +17,13 @@ hide:
 ## Released
 
 ### 2024
+
+- [24.06](https://www.process-one.net/blog/ejabberd-24-06/)
+    - Reworked the [ejabberd Docs](https://docs.ejabberd.im/) and moved to MkDocs+Material
+    - [Automatic SQL schema](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/) is now enabled by default
+    - Improved the ejabberd WebAdmin with support to use API commands
+    - Support for UNIX Socket Domain in MySQL and PostgreSQL
+    - Support Elixir 1.17 and Erlang/OTP 27.0
 
 - [24.02](https://www.process-one.net/blog/ejabberd-24-02/)
     - [Matrix gateway](../admin/configuration/modules.md/#mod_matrix_gw)
@@ -39,7 +37,6 @@ hide:
     - [Automatic SQL schema creation and update](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/)
     - Commands [API versioning](https://github.com/processone/ejabberd/pull/4118)
     - Support Elixir 1.16 and Erlang/OTP 27.0-rc1
-
 
 ### 2023
 
