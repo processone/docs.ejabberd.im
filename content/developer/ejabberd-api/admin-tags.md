@@ -1,6 +1,6 @@
 # API Tags
 
-> This section enumerates the API tags of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+> This section enumerates the API tags of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -28,10 +28,16 @@
 * [delete_old_users_vhost](admin-api.md#delete_old_users_vhost)
 
 
+* [get_ban_details](admin-api.md#get_ban_details)
+
+
 * [register](admin-api.md#register)
 
 
 * [registered_users](admin-api.md#registered_users)
+
+
+* [unban_account](admin-api.md#unban_account)
 
 
 * [unban_ip](admin-api.md#unban_ip)
@@ -55,13 +61,22 @@
 ## cluster
 
 
+* [get_master](admin-api.md#get_master)
+
+
 * [join_cluster](admin-api.md#join_cluster)
+
+
+* [join_cluster_here](admin-api.md#join_cluster_here)
 
 
 * [leave_cluster](admin-api.md#leave_cluster)
 
 
 * [list_cluster](admin-api.md#list_cluster)
+
+
+* [list_cluster_detailed](admin-api.md#list_cluster_detailed)
 
 
 * [set_master](admin-api.md#set_master)
@@ -439,6 +454,9 @@
 * [get_roster](admin-api.md#get_roster)
 
 
+* [get_roster_count](admin-api.md#get_roster_count)
+
+
 * [process_rosteritems](admin-api.md#process_rosteritems)
 
 
@@ -550,10 +568,22 @@
 ## shared_roster_group
 
 
+* [srg_add](admin-api.md#srg_add)
+
+
+* [srg_add_displayed](admin-api.md#srg_add_displayed)
+
+
 * [srg_create](admin-api.md#srg_create)
 
 
+* [srg_del_displayed](admin-api.md#srg_del_displayed)
+
+
 * [srg_delete](admin-api.md#srg_delete)
+
+
+* [srg_get_displayed](admin-api.md#srg_get_displayed)
 
 
 * [srg_get_info](admin-api.md#srg_get_info)
@@ -563,6 +593,9 @@
 
 
 * [srg_list](admin-api.md#srg_list)
+
+
+* [srg_set_info](admin-api.md#srg_set_info)
 
 
 * [srg_user_add](admin-api.md#srg_user_add)
@@ -644,6 +677,24 @@
 
 
 * [subscribe_room_many](admin-api.md#subscribe_room_many)
+
+
+## v2
+
+
+* [ban_account](admin-api.md#ban_account)
+
+
+* [get_ban_details](admin-api.md#get_ban_details)
+
+
+* [kick_user](admin-api.md#kick_user)
+
+
+* [rooms_empty_destroy](admin-api.md#rooms_empty_destroy)
+
+
+* [unban_account](admin-api.md#unban_account)
 
 
 ## vcard

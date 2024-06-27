@@ -1,6 +1,6 @@
 # Top-Level Options
 
-> This section describes top level options of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The
+> This section describes top level options of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The
 options that changed in this version are marked with 🟤.
 
 ## access\_rules
@@ -1628,13 +1628,15 @@ value defined in [queue_type](#queue_type) or *ram* if the latter is not set.
 
 ## sql\_server
 
-*Host*  
+*Host | IP Address | ODBC Connection String | Unix Socket Path*  
 
-<!-- md:version improved in [23.04](../../archive/23.04/index.md) -->
+<!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
 The hostname or IP address
 of the SQL server. For [sql_type](#sql_type) *mssql* or *odbc* this can also be
-an ODBC connection string. The default value is *localhost*.
+an ODBC connection string. When [sql_type](#sql_type) is *mysql* or *pgsql*, this
+can be the path to a unix domain socket expressed like:
+"unix:/path/to/socket".The default value is *localhost*.
 
 ## sql\_ssl
 
@@ -1710,10 +1712,11 @@ for security rules in ejabberd.
 
 *true | false*  
 
-<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
+<!-- md:version updated in [24.06](../../archive/24.06/index.md) -->
 
 Allow ejabberd to update SQL
-schema. The default value is *false*.
+schema. This option was added in ejabberd [23.10](../../archive/23.10/index.md), and enabled by default
+since [24.06](../../archive/24.06/index.md). The default value is *true*.
 
 ## use\_cache
 

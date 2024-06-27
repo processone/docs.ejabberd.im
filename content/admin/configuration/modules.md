@@ -1,7 +1,7 @@
 # Modules Options
 
-> This section describes modules options of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
-that changed in this version are marked with 🟤.
+> This section describes modules options of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The
+modules that changed in this version are marked with 🟤.
 
 mod\_adhoc
 ----------
@@ -23,7 +23,7 @@ This module provides additional administrative commands.
 
 Details for some commands:
 
--   *ban-account*: This command kicks all the connected sessions of the
+-   *ban\_account*: This command kicks all the connected sessions of the
     account from the server. It also changes their password to a
     randomly generated one, so they can’t login anymore unless a server
     administrator changes their password again. It is possible to define
@@ -36,9 +36,9 @@ Details for some commands:
     System, place the file on the same directory where the .beam files
     are installed. See below an example roster file.
 
--   *srg-create*: If you want to put a group Name with blank spaces, use
-    the characters "' and '" to define when the Name starts and ends.
-    See an example below.
+-   *srg\_create*: If you want to put a group Name with blank spaces,
+    use the characters "' and '" to define when the Name starts and
+    ends. See an example below.
 
 The module has no options.
 
@@ -74,13 +74,13 @@ something like
 *BANNED\_ACCOUNT—20080425T21:45:07—2176635—Spammed\_rooms*
 
 ~~~ yaml
-ejabberdctl vhost example.org ban-account boby "Spammed rooms"
+ejabberdctl vhost example.org ban_account boby "Spammed rooms"
 ~~~
 
-Call to srg-create using double-quotes and single-quotes:
+Call to srg\_create using double-quotes and single-quotes:
 
 ~~~ yaml
-ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1
+ejabberdctl srg_create g1 example.org "'Group number 1'" this_is_g1 g1
 ~~~
 
 mod\_admin\_update\_sql

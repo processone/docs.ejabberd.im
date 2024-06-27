@@ -1,6 +1,6 @@
 # API Reference
 
-> This section describes API commands of ejabberd [24.02](../../archive/24.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The commands that changed in this version are marked with 🟤.
+> This section describes API commands of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The commands that changed in this version are marked with 🟤.
 
 
 
@@ -158,8 +158,12 @@ HTTP/1.1 200 OK
 
 ## ban_account
 
+<!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
-Ban an account: kick sessions and set random password
+Ban an account
+
+
+This command kicks the account sessions, sets a random password, and stores ban details in the account private storage. This command requires mod_private to be enabled. Check also [get_ban_details](#get_ban_details) API and `_unban_account`_ API.
 
 __Arguments:__
 
@@ -172,7 +176,7 @@ __Result:__
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[accounts](admin-tags.md#accounts)
+[accounts](admin-tags.md#accounts), [v2](admin-tags.md#v2)
 
 __Module:__
 [mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
@@ -300,7 +304,7 @@ __Examples:__
 POST /api/change_room_option
 {
   "name": "room1",
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "option": "members_only",
   "value": "true"
 }
@@ -742,7 +746,7 @@ __Examples:__
 POST /api/create_room
 {
   "name": "room1",
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "host": "example.com"
 }
 
@@ -785,7 +789,7 @@ __Examples:__
 POST /api/create_room_with_opts
 {
   "name": "room1",
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "host": "localhost",
   "options": [
     {
@@ -1404,7 +1408,7 @@ __Examples:__
 POST /api/destroy_room
 {
   "name": "room1",
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
@@ -1790,6 +1794,64 @@ HTTP/1.1 200 OK
 
 
 
+## get_ban_details
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Get ban details about an account
+
+
+Check [ban_account](#ban_account) API.
+
+__Arguments:__
+
+- *user* :: string : User name to unban
+- *host* :: string : Server name
+
+__Result:__
+
+- *ban_details* :: [{name::string, value::string}]
+
+__Tags:__
+[accounts](admin-tags.md#accounts), [v2](admin-tags.md#v2)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/get_ban_details
+{
+  "user": "attacker",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "name": "reason",
+    "value": "Spamming other users"
+  },
+  {
+    "name": "bandate",
+    "value": "2024-04-22T09:16:47.975312Z"
+  },
+  {
+    "name": "lastdate",
+    "value": "2024-04-22T08:39:12Z"
+  },
+  {
+    "name": "lastreason",
+    "value": "Connection reset by peer"
+  }
+]
+~~~
+
+
+
+
 ## get_cookie
 
 
@@ -1893,6 +1955,41 @@ POST /api/get_loglevel
 
 HTTP/1.1 200 OK
 "warning"
+~~~
+
+
+
+
+## get_master
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Get master node of the clustered Mnesia tables
+
+
+If there is no master, returns `none`.
+
+__Arguments:__
+
+
+__Result:__
+
+- *nodename* :: string
+
+__Tags:__
+[cluster](admin-tags.md#cluster)
+
+__Examples:__
+
+
+~~~ json
+POST /api/get_master
+{
+  
+}
+
+HTTP/1.1 200 OK
+"aaaaa"
 ~~~
 
 
@@ -2018,7 +2115,7 @@ __Examples:__
 POST /api/get_room_affiliation
 {
   "name": "room1",
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "jid": "user1@example.com"
 }
 
@@ -2056,7 +2153,7 @@ __Examples:__
 POST /api/get_room_affiliations
 {
   "name": "room1",
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
@@ -2101,7 +2198,7 @@ __Examples:__
 POST /api/get_room_history
 {
   "name": "room1",
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
@@ -2147,7 +2244,7 @@ __Examples:__
 POST /api/get_room_occupants
 {
   "name": "room1",
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
@@ -2190,7 +2287,7 @@ __Examples:__
 POST /api/get_room_occupants_number
 {
   "name": "room1",
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
@@ -2227,7 +2324,7 @@ __Examples:__
 POST /api/get_room_options
 {
   "name": "room1",
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
@@ -2306,6 +2403,44 @@ HTTP/1.1 200 OK
 
 
 
+## get_roster_count
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Get number of contacts in a local user roster
+
+__Arguments:__
+
+- *user* :: string
+- *host* :: string
+
+__Result:__
+
+- *value* :: integer : Number
+
+__Tags:__
+[roster](admin-tags.md#roster)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/get_roster_count
+{
+  "user": "aaaaa",
+  "host": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+5
+~~~
+
+
+
+
 ## get_subscribers
 
 
@@ -2333,7 +2468,7 @@ __Examples:__
 POST /api/get_subscribers
 {
   "name": "room1",
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
@@ -2378,8 +2513,8 @@ POST /api/get_user_rooms
 
 HTTP/1.1 200 OK
 [
-  "room1@muc.example.com",
-  "room2@muc.example.com"
+  "room1@conference.example.com",
+  "room2@conference.example.com"
 ]
 ~~~
 
@@ -2420,7 +2555,7 @@ POST /api/get_user_subscriptions
 HTTP/1.1 200 OK
 [
   {
-    "roomjid": "room1@muc.example.com",
+    "roomjid": "room1@conference.example.com",
     "usernick": "Tommy",
     "nodes": [
       "mucsub:config"
@@ -2868,11 +3003,9 @@ HTTP/1.1 200 OK
 
 ## join_cluster
 
+<!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
-Join this node into the cluster handled by Node
-
-
-This command works only with ejabberdctl, not mod_http_api or other code that runs inside the same ejabberd node that will be joined.
+Join our local node into the cluster handled by Node
 
 __Arguments:__
 
@@ -2880,7 +3013,7 @@ __Arguments:__
 
 __Result:__
 
-- *res* :: integer : Status code (`0` on success, `1` otherwise)
+- *res* :: string : Raw result string
 
 __Tags:__
 [cluster](admin-tags.md#cluster)
@@ -2895,7 +3028,40 @@ POST /api/join_cluster
 }
 
 HTTP/1.1 200 OK
-""
+"Success"
+~~~
+
+
+
+
+## join_cluster_here
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Join a remote Node here, into our cluster
+
+__Arguments:__
+
+- *node* :: string : Nodename of the node to join here
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[cluster](admin-tags.md#cluster)
+
+__Examples:__
+
+
+~~~ json
+POST /api/join_cluster_here
+{
+  "node": "ejabberd1@machine7"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -2944,6 +3110,7 @@ HTTP/1.1 200 OK
 
 ## kick_user
 
+<!-- md:version modified in [24.06](../../archive/24.06/index.md) -->
 
 Disconnect user's active sessions
 
@@ -2954,10 +3121,10 @@ __Arguments:__
 
 __Result:__
 
-- *num_resources* :: integer : Number of resources that were kicked
+- *res* :: string : Raw result string
 
 __Tags:__
-[session](admin-tags.md#session)
+[session](admin-tags.md#session), [v2](admin-tags.md#v2)
 
 __Examples:__
 
@@ -2970,7 +3137,7 @@ POST /api/kick_user
 }
 
 HTTP/1.1 200 OK
-3
+"Kicked sessions: 2"
 ~~~
 
 
@@ -3056,7 +3223,7 @@ HTTP/1.1 200 OK
 ## list_cluster
 
 
-List nodes that are part of the cluster handled by Node
+List running nodes that are part of this cluster
 
 __Arguments:__
 
@@ -3081,6 +3248,48 @@ HTTP/1.1 200 OK
 [
   "ejabberd1@machine7",
   "ejabberd1@machine8"
+]
+~~~
+
+
+
+
+## list_cluster_detailed
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+List nodes (both running and known) and some stats
+
+__Arguments:__
+
+
+__Result:__
+
+- *nodes* :: [{name::string, running::string, status::string, online_users::integer, processes::integer, uptime_seconds::integer, master_node::string}]
+
+__Tags:__
+[cluster](admin-tags.md#cluster)
+
+__Examples:__
+
+
+~~~ json
+POST /api/list_cluster_detailed
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "name": "ejabberd@localhost",
+    "running": "true",
+    "status": "The node ejabberd is started. Status...",
+    "online_users": 7,
+    "processes": 348,
+    "uptime_seconds": 60,
+    "master_node": "none"
+  }
 ]
 ~~~
 
@@ -3551,13 +3760,13 @@ __Examples:__
 ~~~ json
 POST /api/muc_online_rooms
 {
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
 [
-  "room1@muc.example.com",
-  "room2@muc.example.com"
+  "room1@conference.example.com",
+  "room2@conference.example.com"
 ]
 ~~~
 
@@ -3593,19 +3802,19 @@ __Examples:__
 ~~~ json
 POST /api/muc_online_rooms_by_regex
 {
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "regex": "^prefix"
 }
 
 HTTP/1.1 200 OK
 [
   {
-    "jid": "room1@muc.example.com",
+    "jid": "room1@conference.example.com",
     "public": "true",
     "participants": 10
   },
   {
-    "jid": "room2@muc.example.com",
+    "jid": "room2@conference.example.com",
     "public": "false",
     "participants": 10
   }
@@ -3644,7 +3853,7 @@ POST /api/muc_register_nick
 {
   "nick": "Tim",
   "jid": "tim@example.org",
-  "service": "muc.example.org"
+  "service": "conference.example.org"
 }
 
 HTTP/1.1 200 OK
@@ -3681,7 +3890,7 @@ __Examples:__
 POST /api/muc_unregister_nick
 {
   "jid": "tim@example.org",
-  "service": "muc.example.org"
+  "service": "conference.example.org"
 }
 
 HTTP/1.1 200 OK
@@ -4833,6 +5042,7 @@ HTTP/1.1 200 OK
 
 ## rooms_empty_destroy
 
+<!-- md:version modified in [24.06](../../archive/24.06/index.md) -->
 
 Destroy the rooms that have no messages in archive
 
@@ -4845,10 +5055,10 @@ __Arguments:__
 
 __Result:__
 
-- *rooms* :: [room::string] : List of empty rooms that have been destroyed
+- *res* :: string : Raw result string
 
 __Tags:__
-[muc](admin-tags.md#muc)
+[muc](admin-tags.md#muc), [v2](admin-tags.md#v2)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -4859,14 +5069,11 @@ __Examples:__
 ~~~ json
 POST /api/rooms_empty_destroy
 {
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
-[
-  "room1@muc.example.com",
-  "room2@muc.example.com"
-]
+"Destroyed rooms: 2"
 ~~~
 
 
@@ -4900,13 +5107,13 @@ __Examples:__
 ~~~ json
 POST /api/rooms_empty_list
 {
-  "service": "muc.example.com"
+  "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
 [
-  "room1@muc.example.com",
-  "room2@muc.example.com"
+  "room1@conference.example.com",
+  "room2@conference.example.com"
 ]
 ~~~
 
@@ -4942,14 +5149,14 @@ __Examples:__
 ~~~ json
 POST /api/rooms_unused_destroy
 {
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "days": 31
 }
 
 HTTP/1.1 200 OK
 [
-  "room1@muc.example.com",
-  "room2@muc.example.com"
+  "room1@conference.example.com",
+  "room2@conference.example.com"
 ]
 ~~~
 
@@ -4985,14 +5192,14 @@ __Examples:__
 ~~~ json
 POST /api/rooms_unused_list
 {
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "days": 31
 }
 
 HTTP/1.1 200 OK
 [
-  "room1@muc.example.com",
-  "room2@muc.example.com"
+  "room1@conference.example.com",
+  "room2@conference.example.com"
 ]
 ~~~
 
@@ -5069,7 +5276,7 @@ __Examples:__
 POST /api/send_direct_invitation
 {
   "name": "room1",
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "password": "",
   "reason": "Check this out!",
   "users": [
@@ -5445,7 +5652,7 @@ __Examples:__
 POST /api/set_room_affiliation
 {
   "name": "room1",
-  "service": "muc.example.com",
+  "service": "conference.example.com",
   "jid": "user2@example.com",
   "affiliation": "member"
 }
@@ -5634,6 +5841,84 @@ HTTP/1.1 200 OK
 
 
 
+## srg_add
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Add/Create a Shared Roster Group (without details)
+
+__Arguments:__
+
+- *group* :: string : Group identifier
+- *host* :: string : Group server name
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[shared_roster_group](admin-tags.md#shared_roster_group)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/srg_add
+{
+  "group": "group3",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
+## srg_add_displayed
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Add a group to displayed_groups of a Shared Roster Group
+
+__Arguments:__
+
+- *group* :: string : Group identifier
+- *host* :: string : Group server name
+- *add* :: string : Group to add to displayed_groups
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[shared_roster_group](admin-tags.md#shared_roster_group)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/srg_add_displayed
+{
+  "group": "group3",
+  "host": "myserver.com",
+  "add": "group1"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
 ## srg_create 🟤
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
@@ -5681,6 +5966,46 @@ HTTP/1.1 200 OK
 
 
 
+## srg_del_displayed
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Delete a group from displayed_groups of a Shared Roster Group
+
+__Arguments:__
+
+- *group* :: string : Group identifier
+- *host* :: string : Group server name
+- *del* :: string : Group to delete from displayed_groups
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[shared_roster_group](admin-tags.md#shared_roster_group)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/srg_del_displayed
+{
+  "group": "group3",
+  "host": "myserver.com",
+  "del": "group1"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
 ## srg_delete
 
 
@@ -5713,6 +6038,47 @@ POST /api/srg_delete
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## srg_get_displayed
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Get displayed groups of a Shared Roster Group
+
+__Arguments:__
+
+- *group* :: string : Group identifier
+- *host* :: string : Group server name
+
+__Result:__
+
+- *display* :: [group::string] : List of groups to display
+
+__Tags:__
+[shared_roster_group](admin-tags.md#shared_roster_group)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/srg_get_displayed
+{
+  "group": "group3",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "group1",
+  "group2"
+]
 ~~~
 
 
@@ -5837,6 +6203,48 @@ HTTP/1.1 200 OK
   "group1",
   "group2"
 ]
+~~~
+
+
+
+
+## srg_set_info
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Set info of a Shared Roster Group
+
+__Arguments:__
+
+- *group* :: string : Group identifier
+- *host* :: string : Group server name
+- *key* :: string : Information key: label, description
+- *value* :: string : Information value
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[shared_roster_group](admin-tags.md#shared_roster_group)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/srg_set_info
+{
+  "group": "group3",
+  "host": "myserver.com",
+  "key": "label",
+  "value": "Family"
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -6396,6 +6804,47 @@ HTTP/1.1 200 OK
 
 
 
+## unban_account
+
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
+Revert the ban from an account: set back the old password
+
+
+Check [ban_account](#ban_account) API.
+
+__Arguments:__
+
+- *user* :: string : User name to unban
+- *host* :: string : Server name
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[accounts](admin-tags.md#accounts), [v2](admin-tags.md#v2)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/unban_account
+{
+  "user": "gooduser",
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
 ## unban_ip
 
 
@@ -6533,11 +6982,11 @@ __Examples:__
 ~~~ json
 POST /api/update
 {
-  "module": "mod_vcard"
+  "module": "all"
 }
 
 HTTP/1.1 200 OK
-"Success"
+"Updated modules: mod_configure, mod_vcard"
 ~~~
 
 
