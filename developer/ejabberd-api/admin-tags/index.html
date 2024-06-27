@@ -2379,6 +2379,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vcard" class="md-nav__link">
     <span class="md-ellipsis">
       vcard
@@ -6224,6 +6233,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#vcard" class="md-nav__link">
     <span class="md-ellipsis">
       vcard
@@ -6265,7 +6283,7 @@
 
 <h1 id="api-tags">API Tags<a class="headerlink" href="#api-tags" title="Permanent link">¶</a></h1>
 <blockquote>
-<p>This section enumerates the API tags of ejabberd <a href="../../../archive/24.02/">24.02</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>. </p>
+<p>This section enumerates the API tags of ejabberd <a href="../../../archive/24.06/">24.06</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>. </p>
 </blockquote>
 <h2 id="accounts">accounts<a class="headerlink" href="#accounts" title="Permanent link">¶</a></h2>
 <ul>
@@ -6291,10 +6309,16 @@
 <p><a href="../admin-api/#delete_old_users_vhost">delete_old_users_vhost</a></p>
 </li>
 <li>
+<p><a href="../admin-api/#get_ban_details">get_ban_details</a></p>
+</li>
+<li>
 <p><a href="../admin-api/#register">register</a></p>
 </li>
 <li>
 <p><a href="../admin-api/#registered_users">registered_users</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#unban_account">unban_account</a></p>
 </li>
 <li>
 <p><a href="../admin-api/#unban_ip">unban_ip</a></p>
@@ -6318,13 +6342,22 @@
 <h2 id="cluster">cluster<a class="headerlink" href="#cluster" title="Permanent link">¶</a></h2>
 <ul>
 <li>
+<p><a href="../admin-api/#get_master">get_master</a></p>
+</li>
+<li>
 <p><a href="../admin-api/#join_cluster">join_cluster</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#join_cluster_here">join_cluster_here</a></p>
 </li>
 <li>
 <p><a href="../admin-api/#leave_cluster">leave_cluster</a></p>
 </li>
 <li>
 <p><a href="../admin-api/#list_cluster">list_cluster</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#list_cluster_detailed">list_cluster_detailed</a></p>
 </li>
 <li>
 <p><a href="../admin-api/#set_master">set_master</a></p>
@@ -6700,6 +6733,9 @@
 <p><a href="../admin-api/#get_roster">get_roster</a></p>
 </li>
 <li>
+<p><a href="../admin-api/#get_roster_count">get_roster_count</a></p>
+</li>
+<li>
 <p><a href="../admin-api/#process_rosteritems">process_rosteritems</a></p>
 </li>
 <li>
@@ -6811,10 +6847,22 @@
 <a id="shared-roster-group"></a><h2 id="shared_roster_group">shared_roster_group<a class="headerlink" href="#shared_roster_group" title="Permanent link">¶</a></h2>
 <ul>
 <li>
+<p><a href="../admin-api/#srg_add">srg_add</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#srg_add_displayed">srg_add_displayed</a></p>
+</li>
+<li>
 <p><a href="../admin-api/#srg_create">srg_create</a></p>
 </li>
 <li>
+<p><a href="../admin-api/#srg_del_displayed">srg_del_displayed</a></p>
+</li>
+<li>
 <p><a href="../admin-api/#srg_delete">srg_delete</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#srg_get_displayed">srg_get_displayed</a></p>
 </li>
 <li>
 <p><a href="../admin-api/#srg_get_info">srg_get_info</a></p>
@@ -6824,6 +6872,9 @@
 </li>
 <li>
 <p><a href="../admin-api/#srg_list">srg_list</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#srg_set_info">srg_set_info</a></p>
 </li>
 <li>
 <p><a href="../admin-api/#srg_user_add">srg_user_add</a></p>
@@ -6905,6 +6956,24 @@
 </li>
 <li>
 <p><a href="../admin-api/#subscribe_room_many">subscribe_room_many</a></p>
+</li>
+</ul>
+<h2 id="v2">v2<a class="headerlink" href="#v2" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p><a href="../admin-api/#ban_account">ban_account</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#get_ban_details">get_ban_details</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#kick_user">kick_user</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#rooms_empty_destroy">rooms_empty_destroy</a></p>
+</li>
+<li>
+<p><a href="../admin-api/#unban_account">unban_account</a></p>
 </li>
 </ul>
 <h2 id="vcard">vcard<a class="headerlink" href="#vcard" title="Permanent link">¶</a></h2>

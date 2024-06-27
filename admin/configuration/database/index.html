@@ -6025,12 +6025,12 @@ you must create the schema before you run ejabberd.</p>
 for details on database schemas.</p>
 <h2 id="virtual-hosting">Virtual Hosting<a class="headerlink" href="#virtual-hosting" title="Permanent link">&para;</a></h2>
 <p>Important note about virtual hosting: if you define several domains in
-ejabberd.yml (see section <a href="../basic/#host_names">Host Names</a>), you probably want that each
+ejabberd.yml (see section <a href="../basic/#host-names">Host Names</a>), you probably want that each
 virtual host uses a different configuration of database, authentication
 and storage, so that usernames do not conflict and mix between different
 virtual hosts. For that purpose, the options described in the next
 sections must be set inside a <a href="../toplevel/#host_config">host_config</a> for each vhost (see section
-<a href="../basic/#virtual_hosting">Virtual Hosting</a>). For example:</p>
+<a href="../basic/#virtual-hosting">Virtual Hosting</a>). For example:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">host_config</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">public.example.org</span><span class="p">:</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">sql_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pgsql</span>
@@ -6052,13 +6052,13 @@ top-level option:</p>
 the default schema is preferable when serving one massive domain,
 the new schema is preferable when serving many small domains.</p>
 <p>The default schema stores only one XMPP domain in the database.
-The <a href="../basic/#xmpp_domains">XMPP domain</a>
+The <a href="../basic/#xmpp-domains">XMPP domain</a>
 is not stored as this is the same for all the accounts,
 and this saves space in massive deployments.
 However, to handle several domains,
 you have to setup one database per domain
 and configure each one independently
-using <a href="../basic/#virtual_hosting">host_config</a>,
+using <a href="../basic/#virtual-hosting">host_config</a>,
 so in that case you may prefer the new schema.</p>
 <p>The new schema stores the XMPP domain in a new column <code>server_host</code>
 in the database entries,

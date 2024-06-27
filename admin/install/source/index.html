@@ -6102,7 +6102,7 @@ Get the full list:</p>
 <li>
 <p><strong><code>--enable-user[=USER]</code></strong>: Allow this normal system user to execute the ejabberdctl script (see section <a href="../../guide/managing/#ejabberdctl">ejabberdctl</a>), read the configuration files, read and write in the spool directory, read and  write in the log directory.
 The account user and group must exist in  the machine before running <code>make install</code>.
-This account needs a HOME directory, because the <a href="../../guide/security/#erlang_cookie">Erlang cookie file</a> will be created and read there.</p>
+This account needs a HOME directory, because the <a href="../../guide/security/#erlang-cookie">Erlang cookie file</a> will be created and read there.</p>
 </li>
 <li>
 <p><strong><code>--enable-group[=GROUP]</code></strong>: Use this option additionally to <code>--enable-user</code>
@@ -6160,7 +6160,7 @@ This account needs a HOME directory, because the <a href="../../guide/security/#
 <p><strong><code>--enable-odbc</code></strong>: Enable pure ODBC support.</p>
 </li>
 <li>
-<p><strong><code>--enable-pam</code></strong>: Enable the PAM authentication method (see <a href="../../configuration/authentication/#pam_authentication">PAM Authentication</a> section).</p>
+<p><strong><code>--enable-pam</code></strong>: Enable the PAM authentication method (see <a href="../../configuration/authentication/#pam-authentication">PAM Authentication</a> section).</p>
 </li>
 <li>
 <p><strong><code>--enable-pgsql</code></strong>: Enable PostgreSQL support (see [Supported storages][18]).</p>
@@ -6218,7 +6218,7 @@ This account needs a HOME directory, because the <a href="../../guide/security/#
 <p><code>/etc/ejabberd/</code>:  Configuration directory:</p>
 <ul>
 <li><code>ejabberd.yml</code>:  ejabberd configuration file (see <a href="../../configuration/file-format/">File Format</a>)</li>
-<li><code>ejabberdctl.cfg</code>: Configuration file of the administration script (see <a href="../../guide/managing/#erlang_runtime_system">Erlang Runtime System</a>)</li>
+<li><code>ejabberdctl.cfg</code>: Configuration file of the administration script (see <a href="../../guide/managing/#erlang-runtime-system">Erlang Runtime System</a>)</li>
 <li><code>inetrc</code>: Network DNS configuration file for Erlang</li>
 </ul>
 </li>
@@ -6242,7 +6242,7 @@ This account needs a HOME directory, because the <a href="../../guide/security/#
 <li>
 <p><code>/var/lib/ejabberd/</code>: Spool directory:</p>
 <ul>
-<li><code>.erlang.cookie</code>: The <a href="../../guide/security/#erlang_cookie">Erlang cookie file</a></li>
+<li><code>.erlang.cookie</code>: The <a href="../../guide/security/#erlang-cookie">Erlang cookie file</a></li>
 <li><code>acl.DCD, ...</code>: Mnesia database spool files (*.DCD, *.DCL, *.DAT)</li>
 </ul>
 </li>

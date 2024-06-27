@@ -6877,8 +6877,8 @@
 
 <h1 id="modules-options">Modules Options<a class="headerlink" href="#modules-options" title="Permanent link">¶</a></h1>
 <blockquote>
-<p>This section describes modules options of ejabberd <a href="../../../archive/24.02/">24.02</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>. The modules
-that changed in this version are marked with 🟤.</p>
+<p>This section describes modules options of ejabberd <a href="../../../archive/24.06/">24.06</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>. The
+modules that changed in this version are marked with 🟤.</p>
 </blockquote>
 <a id="mod-adhoc"></a><h2 id="mod_adhoc">mod_adhoc<a class="headerlink" href="#mod_adhoc" title="Permanent link">¶</a></h2>
 <p>This module implements <a href="https://xmpp.org/extensions/xep-0050.html">XEP-0050: Ad-Hoc
@@ -6895,7 +6895,7 @@ Provide the Commands item in the Service Discovery. Default value:
 <p>Details for some commands:</p>
 <ul>
 <li>
-<p><em>ban-account</em>: This command kicks all the connected sessions of the
+<p><em>ban_account</em>: This command kicks all the connected sessions of the
     account from the server. It also changes their password to a
     randomly generated one, so they can’t login anymore unless a server
     administrator changes their password again. It is possible to define
@@ -6910,9 +6910,9 @@ Provide the Commands item in the Service Discovery. Default value:
     are installed. See below an example roster file.</p>
 </li>
 <li>
-<p><em>srg-create</em>: If you want to put a group Name with blank spaces, use
-    the characters "' and '" to define when the Name starts and ends.
-    See an example below.</p>
+<p><em>srg_create</em>: If you want to put a group Name with blank spaces,
+    use the characters "' and '" to define when the Name starts and
+    ends. See an example below.</p>
 </li>
 </ul>
 <p>The module has no options.</p>
@@ -6939,10 +6939,10 @@ mod_admin_extra commands:</p>
 <a href="mailto:boby@example.org">boby@example.org</a> will be kicked, and its password will be set to
 something like
 <em>BANNED_ACCOUNT—20080425T21:45:07—2176635—Spammed_rooms</em></p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="l l-Scalar l-Scalar-Plain">ejabberdctl vhost example.org ban-account boby "Spammed rooms"</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="l l-Scalar l-Scalar-Plain">ejabberdctl vhost example.org ban_account boby "Spammed rooms"</span>
 </span></code></pre></div>
-<p>Call to srg-create using double-quotes and single-quotes:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="l l-Scalar l-Scalar-Plain">ejabberdctl srg-create g1 example.org "'Group number 1'" this_is_g1 g1</span>
+<p>Call to srg_create using double-quotes and single-quotes:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="l l-Scalar l-Scalar-Plain">ejabberdctl srg_create g1 example.org "'Group number 1'" this_is_g1 g1</span>
 </span></code></pre></div>
 <a id="mod-admin-update-sql"></a><h2 id="mod_admin_update_sql">mod_admin_update_sql<a class="headerlink" href="#mod_admin_update_sql" title="Permanent link">¶</a></h2>
 <p>This module can be used to update existing SQL database from the default

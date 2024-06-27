@@ -6232,7 +6232,7 @@ built using the
 repository.
 Check the <a href="https://github.com/processone/docker-ejabberd/blob/master/ecs/HUB-README.md#alternative-image-in-github">differences between <code>ejabberd</code> and <code>ecs</code> images</a>.</p>
 <p>If you are using a Windows operating system, check the tutorials mentioned in
-<a href="https://docs.ejabberd.im/admin/installation/#docker-image">ejabberd Docs &gt; Docker Image</a>.</p>
+<a href="https://docs.ejabberd.im/admin/install/container/#ejabberd-container-image">ejabberd Docs &gt; Docker Image</a>.</p>
 <h2 id="start-ejabberd">Start ejabberd<a class="headerlink" href="#start-ejabberd" title="Permanent link">&para;</a></h2>
 <h3 id="with-default-configuration">With default configuration<a class="headerlink" href="#with-default-configuration" title="Permanent link">&para;</a></h3>
 <p>Start ejabberd in a new container:</p>
@@ -6276,7 +6276,7 @@ and grant it admin rights.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>ejabberd<span class="w"> </span>ejabberdctl<span class="w"> </span>register<span class="w"> </span>admin<span class="w"> </span>localhost<span class="w"> </span>passw0rd
 </span></code></pre></div>
 <p>Then edit conf/ejabberd.yml and add the ACL as explained in
-<a href="https://docs.ejabberd.im/admin/installation/#administration-account">ejabberd Docs: Administration Account</a></p>
+<a href="https://docs.ejabberd.im/admin/install/next-steps/#administration-account">ejabberd Docs: Administration Account</a></p>
 <h3 id="check-ejabberd-log-files">Check ejabberd log files<a class="headerlink" href="#check-ejabberd-log-files" title="Permanent link">&para;</a></h3>
 <p>Check the content of the log files inside the container,
 even if you do not put it on a shared persistent drive:</p>

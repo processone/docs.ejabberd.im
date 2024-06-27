@@ -5861,7 +5861,7 @@ in that case you can skip this section.</p>
 <p>There are two ways to register an XMPP account in ejabberd:</p>
 <ul>
 <li>
-<p>Using an XMPP client and <a href="../../configuration/modules/#mod-register">In-Band Registration</a>.</p>
+<p>Using an XMPP client and <a href="../../configuration/modules/#mod_register">In-Band Registration</a>.</p>
 </li>
 <li>
 <p>Using <a href="../../guide/managing/#ejabberdctl">ejabberdctl</a>:</p>
@@ -5891,17 +5891,22 @@ also to accounts in other XMPP servers.</p>
 <li>
 <p>Open the Web Admin page in your favourite browser.
     The exact address depends on your ejabberd configuration,
-    and may be
-    <a href="http://localhost:5280/admin/">http://localhost:5280/admin/</a>,
-    <a href="https://localhost:5443/admin/">https://localhost:5443/admin/</a>,
-    <a href="https://localhost:5280/admin/">https://localhost:5280/admin/</a> ...</p>
+    and may be:</p>
+<ul>
+<li><a href="http://localhost:5280/admin/">http://localhost:5280/admin/</a>
+  on <a href="../binary-installer/">binary installers</a></li>
+<li><a href="https://localhost:5443/admin/">https://localhost:5443/admin/</a>
+  on <a href="../binary-installer/">binary installers</a></li>
+<li><a href="https://localhost:5280/admin/">https://localhost:5280/admin/</a>
+  on <a href="../os-package/">Debian package</a></li>
+</ul>
 </li>
 <li>
 <p>Your web browser shows a login window. Introduce the <strong>full JID</strong>,
     in this example <code>admin1@example.org</code>, and the account password.
     If the web address hostname is the same that the account JID,
     you can provide simply the username instead of the full JID: <code>admin1</code>.
-    See <a href="../../guide/managing/#web_admin">Web Admin</a> for details.</p>
+    See <a href="../../guide/managing/#web-admin">Web Admin</a> for details.</p>
 </li>
 </ol>
 <h2 id="configuring-ejabberd">Configuring ejabberd<a class="headerlink" href="#configuring-ejabberd" title="Permanent link">&para;</a></h2>

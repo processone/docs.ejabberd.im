@@ -8749,7 +8749,7 @@
 
 <h1 id="top-level-options">Top-Level Options<a class="headerlink" href="#top-level-options" title="Permanent link">¶</a></h1>
 <blockquote>
-<p>This section describes top level options of ejabberd <a href="../../../archive/24.02/">24.02</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>. The
+<p>This section describes top level options of ejabberd <a href="../../../archive/24.06/">24.06</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>. The
 options that changed in this version are marked with 🟤.</p>
 </blockquote>
 <a id="access-rules"></a><h2 id="access_rules">access_rules<a class="headerlink" href="#access_rules" title="Permanent link">¶</a></h2>
@@ -9895,11 +9895,13 @@ seconds.</p>
 <a href="#queue_type">queue_type</a> option for the explanation. The default value is the
 value defined in <a href="#queue_type">queue_type</a> or <em>ram</em> if the latter is not set.</p>
 <a id="sql-server"></a><h2 id="sql_server">sql_server<a class="headerlink" href="#sql_server" title="Permanent link">¶</a></h2>
-<p><em>Host</em> </p>
-<p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5Z"></path></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/23.04/">23.04</a></span></span></p>
+<p><em>Host | IP Address | ODBC Connection String | Unix Socket Path</em> </p>
+<p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5Z"></path></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/24.06/">24.06</a></span></span></p>
 <p>The hostname or IP address
 of the SQL server. For <a href="#sql_type">sql_type</a> <em>mssql</em> or <em>odbc</em> this can also be
-an ODBC connection string. The default value is <em>localhost</em>.</p>
+an ODBC connection string. When <a href="#sql_type">sql_type</a> is <em>mysql</em> or <em>pgsql</em>, this
+can be the path to a unix domain socket expressed like:
+"unix:/path/to/socket".The default value is <em>localhost</em>.</p>
 <a id="sql-ssl"></a><h2 id="sql_ssl">sql_ssl<a class="headerlink" href="#sql_ssl" title="Permanent link">¶</a></h2>
 <p><em>true | false</em> </p>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5Z"></path></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/20.03/">20.03</a></span></span></p>
@@ -9947,9 +9949,10 @@ client can set it itself and as a result the IP value cannot be trusted
 for security rules in ejabberd.</p>
 <a id="update-sql-schema"></a><h2 id="update_sql_schema">update_sql_schema<a class="headerlink" href="#update_sql_schema" title="Permanent link">¶</a></h2>
 <p><em>true | false</em> </p>
-<p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5Z"></path></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/23.10/">23.10</a></span></span></p>
+<p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5Z"></path></svg></span></span> <span class="mdx-badge__text">updated in <a href="../../../archive/24.06/">24.06</a></span></span></p>
 <p>Allow ejabberd to update SQL
-schema. The default value is <em>false</em>.</p>
+schema. This option was added in ejabberd <a href="../../../archive/23.10/">23.10</a>, and enabled by default
+since <a href="../../../archive/24.06/">24.06</a>. The default value is <em>true</em>.</p>
 <a id="use-cache"></a><h2 id="use_cache">use_cache<a class="headerlink" href="#use_cache" title="Permanent link">¶</a></h2>
 <p><em>true | false</em> </p>
 <p>Enable or disable cache. The default is <em>true</em>. Several modules have a

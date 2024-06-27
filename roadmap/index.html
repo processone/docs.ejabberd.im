@@ -5943,18 +5943,8 @@
 
 <h1 id="ejabberd-roadmap">ejabberd Roadmap<a class="headerlink" href="#ejabberd-roadmap" title="Permanent link">&para;</a></h1>
 <h2 id="in-the-works">In the Works<a class="headerlink" href="#in-the-works" title="Permanent link">&para;</a></h2>
-<ul>
-<li>
-<p><strong>Rework ejabberd Docs</strong></p>
-<p>The <a href="https://docs.ejabberd.im/">ejabberd Docs</a> site needs some reorganization, as some sections has grown quite a lot and would better be reorganized.</p>
-</li>
-</ul>
 <h2 id="planned">Planned<a class="headerlink" href="#planned" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>Set as default automatic SQL schema update</strong></p>
-<p>Automatic SQL schema update was included as a beta-testing feature in ejabberd 23.10 (see the <a href="https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/">feature announcement</a>), and it will become the default. </p>
-</li>
 <li>
 <p><strong>Remove support for Rebar2</strong></p>
 <p>ejabberd includes many tweaks to support rebar3 and rebar2. By removing support for rebar2, we could simplify rebar.config and other files a lot.
@@ -5964,7 +5954,19 @@ But more importantly, dependencies would not need to be updated just because oth
 <h2 id="released">Released<a class="headerlink" href="#released" title="Permanent link">&para;</a></h2>
 <h3 id="2024">2024<a class="headerlink" href="#2024" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://www.process-one.net/blog/ejabberd-24-02/">24.02</a><ul>
+<li>
+<p><a href="https://www.process-one.net/blog/ejabberd-24-06/">24.06</a></p>
+<ul>
+<li>Reworked the <a href="https://docs.ejabberd.im/">ejabberd Docs</a> and moved to MkDocs+Material</li>
+<li><a href="https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/">Automatic SQL schema</a> is now enabled by default</li>
+<li>Improved the ejabberd WebAdmin with support to use API commands</li>
+<li>Support for UNIX Socket Domain in MySQL and PostgreSQL</li>
+<li>Support Elixir 1.17 and Erlang/OTP 27.0</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.process-one.net/blog/ejabberd-24-02/">24.02</a></p>
+<ul>
 <li><a href="../admin/configuration/modules/#mod_matrix_gw">Matrix gateway</a></li>
 <li><a href="https://www.rfc-editor.org/rfc/rfc9266">RFC 9266 Channel Bindings for TLS 1.3</a></li>
 <li><a href="https://xmpp.org/extensions/xep-0386.html">XEP-0386: Bind 2</a></li>
@@ -5992,15 +5994,15 @@ But more importantly, dependencies would not need to be updated just because oth
 <li>
 <p><a href="https://www.process-one.net/blog/ejabberd-23-04/">23.04</a></p>
 <ul>
-<li><a href="../admin/configuration/modules/#mod-mam"><code>mod_mam</code></a> support for <a href="https://xmpp.org/extensions/xep-0425.html">XEP-0425: Message Moderation</a></li>
-<li>New <a href="../admin/configuration/modules/#mod-muc-rtbl"><code>mod_muc_rtbl</code></a>: <a href="https://xmppbl.org/">Real-Time Block List</a> for MUC rooms</li>
+<li><a href="../admin/configuration/modules/#mod_mam"><code>mod_mam</code></a> support for <a href="https://xmpp.org/extensions/xep-0425.html">XEP-0425: Message Moderation</a></li>
+<li>New <a href="../admin/configuration/modules/#mod_muc_rtbl"><code>mod_muc_rtbl</code></a>: <a href="https://xmppbl.org/">Real-Time Block List</a> for MUC rooms</li>
 <li>Binaries use <a href="https://www.erlang.org/">Erlang/OTP</a> 25.3, and changes in containers</li>
 </ul>
 </li>
 <li>
 <p><a href="https://www.process-one.net/blog/ejabberd-23-01/">23.01</a></p>
 <ul>
-<li>New <a href="../admin/configuration/modules/#mod-mqtt-bridge"><code>mod_mqtt_bridge</code></a>: MQTT bridge</li>
+<li>New <a href="../admin/configuration/modules/#mod_mqtt_bridge"><code>mod_mqtt_bridge</code></a>: MQTT bridge</li>
 </ul>
 </li>
 </ul>
@@ -6076,7 +6078,7 @@ But more importantly, dependencies would not need to be updated just because oth
 <li>
 <p><a href="https://www.process-one.net/blog/ejabberd-20-04/">20.04</a></p>
 <ul>
-<li>New <a href="../admin/configuration/modules/#mod-stun-disco"><code>mod_stun_disco</code></a>: support <a href="https://xmpp.org/extensions/xep-0215.html">XEP-0215</a> including Audio/Video calls</li>
+<li>New <a href="../admin/configuration/modules/#mod_stun_disco"><code>mod_stun_disco</code></a>: support <a href="https://xmpp.org/extensions/xep-0215.html">XEP-0215</a> including Audio/Video calls</li>
 <li>Improved MS SQL support</li>
 </ul>
 </li>

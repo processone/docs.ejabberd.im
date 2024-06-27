@@ -5876,9 +5876,7 @@ API command using <a href="../../guide/managing/#ejabberdctl">ejabberdctl</a>.</
 <p>If you want to specify some options using the old Erlang format, you
 can set them in an additional cfg file, and include it using the
 <code>include_config_file</code> option, see
-<a href="#include-additional-files">Include Additional Files</a>
-for the option description and a related example in
-<a href="../../guide/managing/#restrict_execution_with_accesscommands">Restrict Execution with AccessCommands</a>.</p>
+<a href="#include-additional-files">Include Additional Files</a>.</p>
 <h2 id="include-additional-files">Include Additional Files<a class="headerlink" href="#include-additional-files" title="Permanent link">&para;</a></h2>
 <p>The option <a href="../toplevel/#include_config_file">include_config_file</a>
  in a configuration file instructs
@@ -5897,7 +5895,7 @@ The file is in a subdirectory from where the main configuration file is.</p>
 cannot be redefined in the included configuration files.
 But you can use <a href="../toplevel/#host_config">host_config</a>
 and <a href="../toplevel/#append_host_config">append_host_config</a>
-as usual (see <a href="../basic/#virtual_hosting">Virtual Hosting</a>).</p>
+as usual (see <a href="../basic/#virtual-hosting">Virtual Hosting</a>).</p>
 <p>In this example, <code>ejabberd.yml</code> defines some ACL for the whole ejabberd server, and later includes another file:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">acl</span><span class="p">:</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">admin</span><span class="p">:</span>
