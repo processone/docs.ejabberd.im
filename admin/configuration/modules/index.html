@@ -8050,10 +8050,10 @@ replaced with the hostname. The default value is <em>@HOST@</em>.</p>
 </li>
 <li>
 <p><strong>matrix_id_as_jid</strong>: <em>true | false</em><br/>
-If set to <em>false</em>, all packets failing to be delivered via an XMPP
+If set to <em>true</em>, all packets failing to be delivered via an XMPP
 server-to-server connection will then be routed to the Matrix gateway by
 translating a Jabber ID <em>user@matrixdomain.tld</em> to a Matrix user
-identifier <em>@user:matrixdomain.tld</em>. When set to <em>true</em>, messages must
+identifier <em>@user:matrixdomain.tld</em>. When set to <em>false</em>, messages must
 be explicitly sent to the matrix gateway service Jabber ID to be routed
 to a remote Matrix server. In this case, to send a message to Matrix
 user <em>@user:matrixdomain.tld</em>, the client must send a message to the JID
