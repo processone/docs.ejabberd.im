@@ -1208,10 +1208,10 @@ Specify a domain in the Matrix federation. The keyword *@HOST@* is
 replaced with the hostname. The default value is *@HOST@*.
 
 - **matrix\_id\_as\_jid**: *true | false*  
-If set to *false*, all packets failing to be delivered via an XMPP
+If set to *true*, all packets failing to be delivered via an XMPP
 server-to-server connection will then be routed to the Matrix gateway by
 translating a Jabber ID *user@matrixdomain.tld* to a Matrix user
-identifier *@user:matrixdomain.tld*. When set to *true*, messages must
+identifier *@user:matrixdomain.tld*. When set to *false*, messages must
 be explicitly sent to the matrix gateway service Jabber ID to be routed
 to a remote Matrix server. In this case, to send a message to Matrix
 user *@user:matrixdomain.tld*, the client must send a message to the JID
