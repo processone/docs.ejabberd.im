@@ -73,7 +73,7 @@ HTTP/1.1 200 OK
 
 
 
-## add_rosteritem 🟤
+## add_rosteritem
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
@@ -156,7 +156,7 @@ HTTP/1.1 200 OK
 
 
 
-## ban_account
+## ban_account 🟤
 
 <!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
@@ -1794,7 +1794,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_ban_details
+## get_ban_details 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -1960,7 +1960,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_master
+## get_master 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -2403,7 +2403,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_roster_count
+## get_roster_count 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -3001,7 +3001,7 @@ HTTP/1.1 200 OK
 
 
 
-## join_cluster
+## join_cluster 🟤
 
 <!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
@@ -3034,7 +3034,7 @@ HTTP/1.1 200 OK
 
 
 
-## join_cluster_here
+## join_cluster_here 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -3108,7 +3108,7 @@ HTTP/1.1 200 OK
 
 
 
-## kick_user
+## kick_user 🟤
 
 <!-- md:version modified in [24.06](../../archive/24.06/index.md) -->
 
@@ -3254,7 +3254,7 @@ HTTP/1.1 200 OK
 
 
 
-## list_cluster_detailed
+## list_cluster_detailed 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -3432,7 +3432,7 @@ HTTP/1.1 200 OK
 
 
 
-## mnesia_info_ctl 🟤
+## mnesia_info_ctl
 
 <!-- md:version renamed in [24.02](../../archive/24.02/index.md) -->
 
@@ -4009,7 +4009,7 @@ HTTP/1.1 200 OK
 
 
 
-## oauth_issue_token 🟤
+## oauth_issue_token
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
@@ -4199,7 +4199,7 @@ HTTP/1.1 200 OK
 
 
 
-## print_sql_schema 🟤
+## print_sql_schema
 
 <!-- md:version added in [24.02](../../archive/24.02/index.md) -->
 
@@ -5040,7 +5040,7 @@ HTTP/1.1 200 OK
 
 
 
-## rooms_empty_destroy
+## rooms_empty_destroy 🟤
 
 <!-- md:version modified in [24.06](../../archive/24.06/index.md) -->
 
@@ -5240,7 +5240,7 @@ HTTP/1.1 200 OK
 
 
 
-## send_direct_invitation 🟤
+## send_direct_invitation
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
@@ -5575,7 +5575,7 @@ HTTP/1.1 200 OK
 
 
 
-## set_presence 🟤
+## set_presence
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
@@ -5841,7 +5841,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_add
+## srg_add 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -5879,7 +5879,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_add_displayed
+## srg_add_displayed 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -5919,7 +5919,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_create 🟤
+## srg_create
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
@@ -5966,7 +5966,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_del_displayed
+## srg_del_displayed 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -6043,7 +6043,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_get_displayed
+## srg_get_displayed 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -6208,7 +6208,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_set_info
+## srg_set_info 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -6701,7 +6701,7 @@ HTTP/1.1 200 OK
 
 
 
-## subscribe_room 🟤
+## subscribe_room
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
@@ -6749,7 +6749,7 @@ HTTP/1.1 200 OK
 
 
 
-## subscribe_room_many 🟤
+## subscribe_room_many
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
@@ -6804,7 +6804,7 @@ HTTP/1.1 200 OK
 
 
 
-## unban_account
+## unban_account 🟤
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 

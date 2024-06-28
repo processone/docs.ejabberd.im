@@ -1,7 +1,7 @@
 # Top-Level Options
 
-> This section describes top level options of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The
-options that changed in this version are marked with 🟤.
+> This section describes top level options of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The options
+that changed in this version are marked with 🟤.
 
 ## access\_rules
 
@@ -1019,7 +1019,7 @@ default value is *1 minute*.
 *true | false*  
 
 Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/24.02/sql>. There are two
+<https://github.com/processone/ejabberd/tree/24.06/sql>. There are two
 schemas available. The default legacy schema stores one XMPP domain into
 one ejabberd database. The *new* schema can handle several XMPP domains
 in a single ejabberd database. Using this *new* schema is best when
@@ -1549,7 +1549,7 @@ default value is *5* seconds.
 An SQL database name. For SQLite this must be a full path to a database
 file. The default value is *ejabberd*.
 
-## sql\_flags 🟤
+## sql\_flags
 
 *\[mysql\_alternative\_upsert\]*  
 
@@ -1626,7 +1626,7 @@ The type of a request queue for the SQL server. See description of
 [queue_type](#queue_type) option for the explanation. The default value is the
 value defined in [queue_type](#queue_type) or *ram* if the latter is not set.
 
-## sql\_server
+## sql\_server 🟤
 
 *Host | IP Address | ODBC Connection String | Unix Socket Path*  
 
@@ -1708,7 +1708,7 @@ for admin purpose, or security configuration (for example using
 client can set it itself and as a result the IP value cannot be trusted
 for security rules in ejabberd.
 
-## update\_sql\_schema
+## update\_sql\_schema 🟤
 
 *true | false*  
 

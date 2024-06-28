@@ -1,7 +1,7 @@
 # Modules Options
 
-> This section describes modules options of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The
-modules that changed in this version are marked with 🟤.
+> This section describes modules options of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
+that changed in this version are marked with 🟤.
 
 mod\_adhoc
 ----------
@@ -1181,8 +1181,8 @@ mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is *false*.
 
-mod\_matrix\_gw 🟤
-------------------
+mod\_matrix\_gw
+---------------
 
 <!-- md:version added in [24.02](../../archive/24.02/index.md) -->
 
