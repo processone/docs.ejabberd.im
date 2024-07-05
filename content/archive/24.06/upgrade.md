@@ -10,9 +10,9 @@ please review those changes:
 ## <a name="apiv2"></a>Update commands to API v2
 
 ejabberd 24.06 has changed some commands, which are tagged as
-[API v2](/developer/ejabberd-api/admin-tags.md#v1).
+[API v2](../../developer/ejabberd-api/admin-tags.md#v2).
 
-Check [what commands have changed](#apiv2) as announced in the ejabberd 24.06 release notes,
+Check [what commands have changed](https://www.process-one.net/blog/ejabberd-24-06/#apiv2) as announced in the ejabberd 24.06 release notes,
 and update them in your API client if you use any of them.
 
 ## <a name="apiv0"></a>Continue using previous API version
@@ -30,5 +30,5 @@ Check the full documentation in [ejabberd Docs: API Versioning](../../developer/
 
 There are several changes in WebAdmin hooks that now provide the whole HTTP request instead of only some of its elements.
 
-Check [what hooks have changed](#webadmin-hooks) as announced in the ejabberd 24.06 release notes,
+Check [what hooks have changed](https://www.process-one.net/blog/ejabberd-24-06/#webadmin-hooks) as announced in the ejabberd 24.06 release notes,
 and update them in your custom ejabberd modules if you use any of them.
