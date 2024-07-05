@@ -2892,6 +2892,16 @@ new account is registered.
 Set a welcome message that is sent to each newly registered account. The
 message will have subject *Subject* and text *Body*.
 
+    **Example**:
+
+    ~~~ yaml
+    modules:
+      mod_register:
+        welcome_message:
+          subject: "Welcome!"
+          body: "Hi.\nWelcome to this XMPP server"
+    ~~~
+
 mod\_register\_web
 ------------------
 
