@@ -88,82 +88,68 @@ through the following steps:
 1. Create a new Elixir app using `mix`:
 
     ``` sh
-    mix new ejapp
-    cd ejapp
+    mix new myapp
+    cd myapp
     ```
 
 1. Add [ejabberd package](https://hex.pm/packages/ejabberd) as a
    dependency in your `mix.exs` file:
 
     ``` elixir
-    defmodule Ejapp.MixProject do
       defp deps do
         [
-         {:ejabberd, "~> 21.7"}
+         {:ejabberd, "~> 24.6"}
         ]
       end
     end
     ```
 
-1. Compile everything:
+1. Get the dependencies and compile them:
 
     ``` sh
-    mix do deps.get, compile
+    mix deps.get
+    mix compile
     ```
 
-1. Create paths and files for ejabberd:
+1. Setup runtime options and ejabberd configuration file:
 
     ``` sh
     mkdir config
-    mkdir logs
-    mkdir mnesia
-    wget -O config/ejabberd.yml https://raw.githubusercontent.com/processone/ejabberd/master/ejabberd.yml.example
-    ```
-
-1. Define those paths in `config/config.exs`:
-
-    ``` elixir
-    import Config
-    config :ejabberd,
-      file: "config/ejabberd.yml",
-      log_path: 'logs/ejabberd.log'
-    config :mnesia,
-      dir: 'mnesia/'
+    cp deps/ejabberd/config/runtime.exs config/runtime.exs
+    mkdir conf
+    cp deps/ejabberd/ejabberd.yml.example conf/ejabberd.yml
     ```
 
 1. Start your app, ejabberd will be started as a dependency:
 
     ``` sh
-    iex -S mix
+    iex -S mix # similar to: ejabberdctl iexlive
+    mix run --no-halt # similar to: ejabberdctl foreground
     ```
 
 1. You should see that ejabberd is properly started:
 
     ``` iex
-    Erlang/OTP 23 [erts-11.1.8] [source] [64-bit] [smp:2:2] [ds:2:2:10] [async-threads:1]
-    
-    Compiling 1 file (.ex)
-    Generated ejapp app
-    
-    17:58:35.955 [info]  Loading configuration from config/ejabberd.yml
-    
-    17:58:36.459 [info]  Configuration loaded successfully
+    $ iex -S mix
+    2024-07-15 13:33:12.087 [info] Loading configuration from conf/ejabberd.yml
+    2024-07-15 13:33:12.301 [info] Configuration loaded successfully
     ...
-    17:58:39.897 [info]  ejabberd 21.7.0 is started in the node :nonode@nohost in 4.07s
-    ...
-    17:58:39.908 [info]  Start accepting TCP connections at [::]:5222 for :ejabberd_c2s
-    
-    Interactive Elixir (1.10.3) - press Ctrl+C to exit (type h() ENTER for help)
+    2024-07-15 13:33:12.816 [info] ejabberd 24.6.0 is started in the node :nonode@nohost in 0.75s
+    2024-07-15 13:33:12.842 [info] Start accepting TCP connections at [::]:5222 for :ejabberd_c2s
+    Erlang/OTP 26 [erts-14.2.5] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [jit:ns]
+
+    Interactive Elixir (1.16.3) - press Ctrl+C to exit (type h() ENTER for help)
     iex(1)>
     ```
 
-1. Register user from Elixir console:
+1. Register an account from Elixir console:
 
     ``` elixir
     :ejabberd_auth.try_register("test", "localhost", "passw0rd")
     ```
 
-1. You are all set, you can now connect with an XMPP client !
+1. You are all set, you can now connect with an XMPP client!
+   Notice that the default configuration doesn't have certificates or encryption.
 
 ## Call elixir code in erlang code
 
