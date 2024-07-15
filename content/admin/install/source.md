@@ -1,6 +1,6 @@
 # Install ejabberd from Source Code
 
-The canonical form for distribution of ejabberd stable releases is the source code package.
+The canonical distribution form of ejabberd stable releases is the source code package.
 Compiling ejabberd from source code is quite easy in \*nix systems, as long as your system have all the dependencies.
 
 ## Requirements
@@ -36,25 +36,21 @@ apt-get install libexpat1-dev libgd-dev libpam0g-dev \
 
 There are several ways to obtain the ejabberd source code:
 
-- Source code archive from [ProcessOne Downloads][p1dl]
-- Source code package from [ejabberd GitHub Releases][ghr]
-- Latest development code from [ejabberd Git repository][gitrepo]
+- Source code package from [ProcessOne Downloads][p1dl] or [GitHub Releases][ghr]
+
+- Latest development code from [ejabberd Git repository][gitrepo] using the commands:
+    ``` sh
+    git clone https://github.com/processone/ejabberd.git
+    cd ejabberd
+    ```
 
 [p1dl]: https://www.process-one.net/en/ejabberd/downloads/
 [ghr]: https://github.com/processone/ejabberd/releases
 [gitrepo]: https://github.com/processone/ejabberd
 
-The latest development source code can be retrieved
-from the Git repository using the commands:
-
-``` sh
-git clone git://github.com/processone/ejabberd.git
-cd ejabberd
-```
-
 ## Compile
 
-The general instructions to compile ejabberd are:
+The generic instructions to compile ejabberd are:
 
 ``` sh
 ./autogen.sh
@@ -62,17 +58,7 @@ The general instructions to compile ejabberd are:
 make
 ```
 
-In this example, [`./configure`](#configure) prepares the installed program to run with a user called `ejabberd` that should exist in the system (it isn't recommended to run ejabberd with `root` user):
-
-``` sh
-./autogen.sh
-./configure --enable-user=ejabberd --enable-mysql
-make
-```
-
-[`make`](#make) gets the dependencies and compiles everything.
-
-*Note*: To build ejabberd, you will need Internet access, as dependencies will be downloaded depending on the selected options.
+Let's view them in detail.
 
 ### `./configure`
 
@@ -82,6 +68,16 @@ Get the full list:
 ``` sh
 ./configure --help
 ```
+
+In this example, [`./configure`](#configure) prepares the installed program to run with a user called `ejabberd` that should exist in the system (it isn't recommended to run ejabberd with `root` user):
+
+``` sh
+./configure --enable-user=ejabberd --enable-mysql
+```
+
+If you get `Error loading module rebar3`,
+please consult how to use [rebar with old Erlang](#rebar-with-old-erlang).
+
 
 Options details:
 
@@ -166,7 +162,7 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/s
 
 ### `make`
 
-This tool is used to compile ejabberd and perform other tasks:
+This gets the erlang depencies and compiles everything, among other tasks:
 
 - Get, update, compile dependencies; clean files
 - [System install](#system-install), uninstall
@@ -174,20 +170,30 @@ This tool is used to compile ejabberd and perform other tasks:
 - Development: edoc, [options](../../developer/guide.md#configuration), [translations](../../developer/extending-ejabberd/localization.md), tags
 - Testing: dialyzer, [hooks](../../developer/guide.md#hooks), [test](../../developer/extending-ejabberd/testing.md), xref
 
-Get the full list and details:
+Get the full task list:
 
 ``` sh
 make help
 ```
 
+*Note*: The required erlang dependencies are downloaded from Internet. Or you can copy `$HOME/.hex/` package cache from another machine.
+
 ## Install
 
-There are several ways to install and run the ejabberd compiled from source code:
-[system install](#system-install), building a [production](#production-release) release, or building a [development](#production-release) release.
+There are several ways to install and run ejabberd after it's compiled from source code:
+
+- [system install](#system-install)
+- building a [production](#production-release) release
+- building a [development](#production-release) release
+- don't install at all, just [start](#start) with `make relive`
 
 ### System Install
 
-To install ejabberd in the destination directories, run the command `make install`.
+To install ejabberd in the destination directories, run:
+
+``` sh
+make install
+```
 
 Note that you probably need administrative privileges in the system to install ejabberd.
 
@@ -334,18 +340,33 @@ make
 
 Check also the guide for [Installing ejabberd development environment on OSX](../../developer/install-osx.md)
 
+### rebar with old Erlang
+
+The ejabberd source code package includes `rebar` and `rebar3` binaries
+that work with Erlang/OTP 24.0 up to 27.
+
+To compile ejabberd using rebar/rebar3 and Erlang 20.0 up to 23.3,
+you can install it from your operating system,
+or compile yourself from the rebar source code,
+or download the old binary from ejabberd 21.12:
+
+```sh
+wget https://github.com/processone/ejabberd/raw/21.12/rebar
+wget https://github.com/processone/ejabberd/raw/21.12/rebar3
+```
+
 ## Start
 
 You can use the `ejabberdctl` command line administration script to
 start and stop ejabberd. Some examples, depending on your installation method:
 
-- When installed in the system:
+- When [installed in the system](#system-install):
 ``` sh
 ejabberdctl start
 /sbin/ejabberdctl start
 ```
 
-- When built an OTP production release:
+- When [built an OTP production release](#production-release):
 ``` sh
 _build/prod/rel/ejabberd/bin/ejabberdctl start
 _build/prod/rel/ejabberd/bin/ejabberdctl live
