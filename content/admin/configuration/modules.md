@@ -1,6 +1,6 @@
 # Modules Options
 
-> This section describes modules options of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
+> This section describes modules options of ejabberd [24.07](../../archive/24.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
 that changed in this version are marked with 🟤.
 
 mod\_adhoc
@@ -2899,7 +2899,9 @@ message will have subject *Subject* and text *Body*.
       mod_register:
         welcome_message:
           subject: "Welcome!"
-          body: "Hi.\nWelcome to this XMPP server"
+          body: |-
+            Hi!
+            Welcome to this XMPP server
     ~~~
 
 mod\_register\_web

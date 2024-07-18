@@ -1,6 +1,6 @@
 # API Reference
 
-> This section describes API commands of ejabberd [24.06](../../archive/24.06/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The commands that changed in this version are marked with 🟤.
+> This section describes API commands of ejabberd [24.07](../../archive/24.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The commands that changed in this version are marked with 🟤.
 
 
 
@@ -156,7 +156,7 @@ HTTP/1.1 200 OK
 
 
 
-## ban_account 🟤
+## ban_account
 
 <!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
@@ -1794,7 +1794,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_ban_details 🟤
+## get_ban_details
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -1960,7 +1960,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_master 🟤
+## get_master
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -2403,7 +2403,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_roster_count 🟤
+## get_roster_count
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -3001,7 +3001,7 @@ HTTP/1.1 200 OK
 
 
 
-## join_cluster 🟤
+## join_cluster
 
 <!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
@@ -3034,7 +3034,7 @@ HTTP/1.1 200 OK
 
 
 
-## join_cluster_here 🟤
+## join_cluster_here
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -3108,7 +3108,7 @@ HTTP/1.1 200 OK
 
 
 
-## kick_user 🟤
+## kick_user
 
 <!-- md:version modified in [24.06](../../archive/24.06/index.md) -->
 
@@ -3254,7 +3254,7 @@ HTTP/1.1 200 OK
 
 
 
-## list_cluster_detailed 🟤
+## list_cluster_detailed
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -5040,7 +5040,7 @@ HTTP/1.1 200 OK
 
 
 
-## rooms_empty_destroy 🟤
+## rooms_empty_destroy
 
 <!-- md:version modified in [24.06](../../archive/24.06/index.md) -->
 
@@ -5841,7 +5841,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_add 🟤
+## srg_add
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -5879,7 +5879,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_add_displayed 🟤
+## srg_add_displayed
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -5966,7 +5966,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_del_displayed 🟤
+## srg_del_displayed
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -6043,7 +6043,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_get_displayed 🟤
+## srg_get_displayed
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -6208,7 +6208,7 @@ HTTP/1.1 200 OK
 
 
 
-## srg_set_info 🟤
+## srg_set_info
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
@@ -6804,7 +6804,7 @@ HTTP/1.1 200 OK
 
 
 
-## unban_account 🟤
+## unban_account
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
