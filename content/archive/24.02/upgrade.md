@@ -18,14 +18,14 @@ If you are using other database, or prefer to update manually the SQL schema:
 
 * MySQL default schema:
 ``` sql
-ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
+ALTER TABLE archive ADD COLUMN origin_id varchar(191) NOT NULL DEFAULT '';
 ALTER TABLE archive ALTER COLUMN origin_id DROP DEFAULT;
 CREATE INDEX i_archive_username_origin_id USING BTREE ON archive(username(191), origin_id(191));
 ```
 
 * MySQL new schema:
 ``` sql
-ALTER TABLE archive ADD COLUMN origin_id text NOT NULL DEFAULT '';
+ALTER TABLE archive ADD COLUMN origin_id varchar(191) NOT NULL DEFAULT '';
 ALTER TABLE archive ALTER COLUMN origin_id DROP DEFAULT;
 CREATE INDEX i_archive_sh_username_origin_id USING BTREE ON archive(server_host(191), username(191), origin_id(191));
 ```
