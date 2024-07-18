@@ -18,6 +18,9 @@ hide:
 
 ### 2024
 
+- [24.07](https://www.process-one.net/blog/ejabberd-24-07/)
+    - Bugfixes and minor improvements
+
 - [24.06](https://www.process-one.net/blog/ejabberd-24-06/)
     - Reworked the [ejabberd Docs](https://docs.ejabberd.im/) and moved to MkDocs+Material
     - [Automatic SQL schema](https://www.process-one.net/blog/automatic-schema-update-in-ejabberd/) is now enabled by default

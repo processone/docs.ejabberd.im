@@ -536,9 +536,7 @@ It's possible to use OAuth for authentication instead of plain password, see
 [OAuth Support](../../developer/ejabberd-api/oauth.md).
 
 In ejabberd [20.03](../../archive/20.03/index.md) and older,
-it was possible to configure `ejabberd_xmlrpc` as a
-listener, see the old document for reference and example configuration:
-[Listening Module](../../archive/old.md#listening_module).
+it was possible to configure `ejabberd_xmlrpc` as a listener.
 
 Just for reference, there's also the old
 [`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc)
