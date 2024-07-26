@@ -1136,7 +1136,6 @@ def read():
         write(True)
     else:
         write(False)
-    read()
 
 def write(result):
     if result:
@@ -1147,7 +1146,8 @@ def write(result):
 
 if __name__ == "__main__":
     try:
-        read()
+        while True:
+            read()
     except struct.error:
         pass
 ```
