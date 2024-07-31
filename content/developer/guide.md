@@ -1,31 +1,18 @@
-# ejabberd developer guide
+# ejabberd Developer Guide
 
 ## Introduction
 
-`ejabberd` is a *free and open source* instant messaging server
-written in [`Erlang/OTP`](https://erlang.org/).
-
-`ejabberd` is *cross-platform*, distributed, fault-tolerant, and based
-on open standards to achieve real-time communication.
-
-`ejabberd` is designed to be a *rock-solid and feature rich* XMPP
-server.
-
-`ejabberd` is suitable for small deployments, whether they need to be
-*scalable* or not, as well as extremely big deployments.
-
-### Goals
-
 This guide is a brief explanation of ejabberd internals. It is not
 intended to be a comprehensive ejabberd's internal API documentation.
-You still need to read and understand ejabberd's source code. However,
-the guide is believed to help you understanding ejabberd's code faster:
+You still need to read and understand ejabberd's source code.
+
+This guide should help you to understad ejabberd's code faster:
 it provides entry points from where to start reading relevant parts of
-the code and ignore irrelevant ones. Note that there is absolutely no
+the code and ignore irrelevant ones.
+
+Note that there is absolutely no
 need to know every line of code of ejabberd, but some parts are crucial
 to understand.
-
-### Requirements
 
 In order to read and understand the guide you must be pretty fluent with
 Erlang programming language and understand basics of the XMPP protocol:
@@ -33,11 +20,6 @@ there is no detailed explanation of Erlang syntax and/or features and
 it's assumed that you're familiar with such terms as `xml stream`,
 `stanza`, `c2s`, `s2s` and so on. If you see these words for the first
 time in your life you're unlikely to understand the guide.
-
-### Version
-
-The guide describes ejabberd 17.03. Previous and next versions can differ
-drastically from the one described herein.
 
 ## Coding style convention
 
