@@ -973,35 +973,35 @@ The external authentication script follows the
 
 That script is supposed to do these actions, in an infinite loop:
 
-- read from stdin: AABBBBBBBBB.....
+- read from stdin: `AABBBBBBBBB.....`
 
-  - A: 2 bytes of length data (a short in network byte order)
+  - `A`: 2 bytes of length data (a short in network byte order)
 
-  - B: a string of length found in A that contains operation in
+  - `B`: a string of length found in A that contains operation in
         plain text operation are as follows:
 
-    - auth:User:Server:Password (check if a username/password pair
+    - `auth:User:Server:Password` (check if a username/password pair
             is correct)
 
-    - isuser:User:Server (check if it’s a valid user)
+    - `isuser:User:Server` (check if it’s a valid user)
 
-    - setpass:User:Server:Password (set user’s password)
+    - `setpass:User:Server:Password` (set user’s password)
 
-    - tryregister:User:Server:Password (try to register an
+    - `tryregister:User:Server:Password` (try to register an
             account)
 
-    - removeuser:User:Server (remove this account)
+    - `removeuser:User:Server` (remove this account)
 
-    - removeuser3:User:Server:Password (remove this account if the
+    - `removeuser3:User:Server:Password` (remove this account if the
             password is correct)
 
-- write to stdout: AABB
+- write to stdout: `AABB`
 
-  - A: the number 2 (coded as a short, which is bytes length of
+  - `A`: the number `2` (coded as a short, which is bytes length of
         following result)
 
-  - B: the result code (coded as a short), should be 1 for
-        success/valid, or 0 for failure/invalid
+  - `B`: the result code (coded as a short), should be `1` for
+        success/valid, or `0` for failure/invalid
 
 As you noticed, the `:` character is used to separate the fields.
 This is possible because the User and Server fields can't contain the `:` character;
@@ -1090,7 +1090,7 @@ while(1)
 closelog;
 ```
 
-## Python Example Script
+### Python Example Script
 
 Example Python script:
 
