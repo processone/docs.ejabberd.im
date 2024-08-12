@@ -45,12 +45,13 @@ access_rules:
 
 *{ACLName: {ACLType: ACLValue}}*  
 
-The option defines access control lists: named sets of rules which are
-used to match against different targets (such as a JID or an IP
-address). Every set of rules has name *ACLName*: it can be any string
-except *all* or *none* (those are predefined names for the rules that
-match all or nothing respectively). The name *ACLName* can be referenced
-from other parts of the configuration file, for example in
+This option defines
+[access control lists](../configuration/basic.md#acl): named sets of
+rules which are used to match against different targets (such as a JID
+or an IP address). Every set of rules has name *ACLName*: it can be any
+string except *all* or *none* (those are predefined names for the rules
+that match all or nothing respectively). The name *ACLName* can be
+referenced from other parts of the configuration file, for example in
 [access_rules](#access_rules) option. The rules of *ACLName* are represented by
 mapping *{ACLType: ACLValue}*. These can be one of the following:
 
@@ -184,7 +185,9 @@ option is only useful in very special occasions. The default value is
 
 *login\_anon | sasl\_anon | both*  
 
-Define what anonymous protocol will be used:
+Define what
+[anonymous](authentication.md#anonymous-login-and-sasl-anonymous)
+protocol will be used:
 
 -   *login\_anon* means that the anonymous login method will be used.
 
@@ -207,10 +210,8 @@ web → For Developers → ejabberd ReST API →
 
 *{Host: Options}*  
 
-To define specific ejabberd modules in a virtual host, you can define
-the global *modules* option with the common modules, and later add
-specific modules to certain virtual hosts. To accomplish that,
-*append\_host\_config* option can be used.
+Add a few specific options to a certain
+[virtual host](../configuration/basic.md#virtual-hosting).
 
 ## auth\_cache\_life\_time
 
@@ -249,9 +250,10 @@ offline message for those users. The default value is *true*.
 
 *\[mnesia | sql | anonymous | external | jwt | ldap | pam, ...\]*  
 
-A list of authentication methods to use. If several methods are defined,
-authentication is considered successful as long as authentication of at
-least one of the methods succeeds. The default value is *\[mnesia\]*.
+A list of [authentication](authentication.md) methods to use. If
+several methods are defined, authentication is considered successful as
+long as authentication of at least one of the methods succeeds. The
+default value is *\[mnesia\]*.
 
 ## auth\_opts
 
@@ -517,9 +519,9 @@ default value is an empty list.
 
 *mnesia | sql*  
 
-Default persistent storage for ejabberd. Modules and other components
-(e.g. authentication) may have its own value. The default value is
-*mnesia*.
+[Default database](database.md#default-database) to store persistent
+data in ejabberd. Modules and other components (e.g. authentication) may
+have its own value. The default value is *mnesia*.
 
 ## default\_ram\_db
 
@@ -533,13 +535,14 @@ value is *mnesia*.
 
 *{MacroName: MacroValue}*  
 
-Defines a macro. The value can be any valid arbitrary YAML value. For
-convenience, it’s recommended to define a *MacroName* in capital
-letters. Duplicated macros are not allowed. Macros are processed after
-additional configuration files have been included, so it is possible to
-use macros that are defined in configuration files included before the
-usage. It is possible to use a *MacroValue* in the definition of another
-macro.
+Defines a
+[macro](../configuration/file-format.md#macros-in-configuration-file).
+The value can be any valid arbitrary YAML value. For convenience, it’s
+recommended to define a *MacroName* in capital letters. Duplicated
+macros are not allowed. Macros are processed after additional
+configuration files have been included, so it is possible to use macros
+that are defined in configuration files included before the usage. It is
+possible to use a *MacroValue* in the definition of another macro.
 
 **Example**:
 
@@ -581,12 +584,14 @@ which enables this extension.
 
 *{Domain: Options}*  
 
-An algorithm to load balance the components that are plugged on an
-ejabberd cluster. It means that you can plug one or several instances of
-the same component on each ejabberd node and that the traffic will be
-automatically distributed. The algorithm to deliver messages to the
-component(s) can be specified by this option. For any component
-connected as *Domain*, available *Options* are:
+An algorithm to
+[load-balance](../guide/clustering.md#service-load-balancing) the
+components that are plugged on an ejabberd cluster. It means that you
+can plug one or several instances of the same component on each ejabberd
+node and that the traffic will be automatically distributed. The
+algorithm to deliver messages to the component(s) can be specified by
+this option. For any component connected as *Domain*, available
+*Options* are:
 
 -   **component\_number**: *2..1000*  
     The number of components to
@@ -647,23 +652,25 @@ Define the base URI when performing ReST requests. The default value is:
 
 *Name*  
 
-Define the pool name appendix, so the full pool name will be
-*extauth\_pool\_Name*. The default value is the hostname.
+Define the pool name appendix in
+[external auth](authentication.md#external-script), so the full pool
+name will be *extauth\_pool\_Name*. The default value is the hostname.
 
 ## extauth\_pool\_size
 
 *Size*  
 
-The option defines the number of instances of the same external program
-to start for better load balancing. The default is the number of
-available CPU cores.
+The option defines the number of instances of the same
+[external auth](authentication.md#external-script) program to start for
+better load balancing. The default is the number of available CPU cores.
 
 ## extauth\_program
 
 *Path*  
 
-Indicate in this option the full path to the external authentication
-script. The script must be executable by ejabberd.
+Indicate in this option the full path to the
+[external authentication script](authentication.md#external-script).
+The script must be executable by ejabberd.
 
 ## fqdn
 
@@ -683,9 +690,11 @@ default value is *false* for backward compatibility.
 
 *{Host: Options}*  
 
-The option is used to redefine *Options* for virtual host *Host*. In the
-example below LDAP authentication method will be used on virtual host
-*domain.tld* and SQL method will be used on virtual host *example.org*.
+The option is used to redefine *Options* for
+[virtual host](../configuration/basic.md#virtual-hosting) *Host*. In
+the example below LDAP authentication method will be used on virtual
+host *domain.tld* and SQL method will be used on virtual host
+*example.org*.
 
 **Example**:
 
@@ -707,16 +716,17 @@ host_config:
 
 *\[Domain1, Domain2, ...\]*  
 
-The option defines a list containing one or more domains that *ejabberd*
-will serve. This is a **mandatory** option.
+List of one or more [host names](../configuration/basic.md#host-names)
+(or domains) that *ejabberd* will serve. This is a **mandatory** option.
 
 ## include\_config\_file
 
 *\[Filename, ...\] | {Filename: Options}*  
 
-Read additional configuration from *Filename*. If the value is provided
-in *{Filename: Options}* format, the *Options* must be one of the
-following:
+Read and
+[include additional file](../configuration/file-format.md#include-additional-files)
+from *Filename*. If the value is provided in *{Filename: Options}*
+format, the *Options* must be one of the following:
 
 -   **allow\_only**: *\[OptionName, ...\]*  
     Allows only the usage of
@@ -743,33 +753,38 @@ at start time. The default value is an empty list of modules: *\[\]*.
 
 *AccessName*  
 
-This ACL rule defines accounts that can use only this auth method, even
-if others are also defined in the ejabberd configuration file. In other
-words: if there are several auth methods enabled for this host (JWT,
-SQL, …), users that match this rule can only use JWT. The default value
-is *none*.
+This ACL rule defines accounts that can use only the
+[JWT](authentication.md#jwt-authentication) auth method, even if others
+are also defined in the ejabberd configuration file. In other words: if
+there are several auth methods enabled for this host (JWT, SQL, …),
+users that match this rule can only use JWT. The default value is
+*none*.
 
 ## jwt\_jid\_field
 
 *FieldName*  
 
 By default, the JID is defined in the *"jid"* JWT field. In this option
-you can specify other JWT field name where the JID is defined.
+you can specify other [JWT](authentication.md#jwt-authentication) field
+name where the JID is defined.
 
 ## jwt\_key
 
 *FilePath*  
 
-Path to the file that contains the JWK Key. The default value is
+Path to the file that contains the
+[JWT](authentication.md#jwt-authentication) key. The default value is
 *undefined*.
 
 ## language
 
 *Language*  
 
-The option defines the default language of server strings that can be
-seen by XMPP clients. If an XMPP client does not possess *xml:lang*
-attribute, the specified language is used. The default value is *"en"*.
+Define the
+[default language](../configuration/basic.md#default-language) of
+server strings that can be seen by XMPP clients. If an XMPP client does
+not possess *xml:lang* attribute, the specified language is used. The
+default value is *"en"*.
 
 ## ldap\_backups
 
@@ -969,10 +984,10 @@ The size (in bytes) of a log file to trigger rotation. If set to
 
 *none | emergency | alert | critical | error | warning | notice | info | debug*  
 
-Verbosity of log files generated by ejabberd. The default value is
-*info*. NOTE: previous versions of ejabberd had log levels defined in
-numeric format (*0..5*). The numeric values are still accepted for
-backward compatibility, but are not recommended.
+Verbosity of ejabberd [logging](../configuration/basic.md#logging). The
+default value is *info*. NOTE: previous versions of ejabberd had log
+levels defined in numeric format (*0..5*). The numeric values are still
+accepted for backward compatibility, but are not recommended.
 
 ## max\_fsm\_queue
 
@@ -992,8 +1007,7 @@ value is *10000*.
 
 *{Module: Options}*  
 
-The option for modules configuration. See [Modules](modules.md) section
-for details.
+Set all the [modules](modules.md) configuration options.
 
 ## negotiation\_timeout
 
@@ -1018,15 +1032,17 @@ default value is *1 minute*.
 
 *true | false*  
 
-Whether to use *new* SQL schema. All schemas are located at
-<https://github.com/processone/ejabberd/tree/24.07/sql>. There are two
-schemas available. The default legacy schema stores one XMPP domain into
-one ejabberd database. The *new* schema can handle several XMPP domains
-in a single ejabberd database. Using this *new* schema is best when
-serving several XMPP domains and/or changing domains from time to time.
-This avoid need to manage several databases and handle complex
-configuration changes. The default depends on configuration flag
-*--enable-new-sql-schema* which is set at compile time.
+Whether to use the
+[new SQL schema](database.md#default-and-new-schemas). All schemas are
+located at <https://github.com/processone/ejabberd/tree/24.07/sql>.
+There are two schemas available. The default legacy schema stores one
+XMPP domain into one ejabberd database. The *new* schema can handle
+several XMPP domains in a single ejabberd database. Using this *new*
+schema is best when serving several XMPP domains and/or changing domains
+from time to time. This avoid need to manage several databases and
+handle complex configuration changes. The default depends on
+configuration flag *--enable-new-sql-schema* which is set at compile
+time.
 
 ## oauth\_access
 
@@ -1176,17 +1192,17 @@ value is *10* seconds.
 
 *Name*  
 
-This option defines the PAM service name. Refer to the PAM documentation
-of your operation system for more information. The default value is
-*ejabberd*.
+This option defines the [PAM](authentication.md#pam-authentication)
+service name. Refer to the PAM documentation of your operation system
+for more information. The default value is *ejabberd*.
 
 ## pam\_userinfotype
 
 *username | jid*  
 
 This option defines what type of information about the user ejabberd
-provides to the PAM service: only the username, or the user’s JID.
-Default is *username*.
+provides to the [PAM](authentication.md#pam-authentication) service:
+only the username, or the user’s JID. Default is *username*.
 
 ## pgsql\_users\_number\_estimate
 
@@ -1215,50 +1231,51 @@ option where file queues will be placed. The default value is *ram*.
 
 *timeout()*  
 
-A timeout to wait for the connection to be re-established to the Redis
-server. The default is *1 second*.
+A timeout to wait for the connection to be re-established to the
+[Redis](database.md#redis) server. The default is *1 second*.
 
 ## redis\_db
 
 *Number*  
 
-Redis database number. The default is *0*.
+[Redis](database.md#redis) database number. The default is *0*.
 
 ## redis\_password
 
 *Password*  
 
-The password to the Redis server. The default is an empty string, i.e.
-no password.
+The password to the [Redis](database.md#redis) server. The default is
+an empty string, i.e. no password.
 
 ## redis\_pool\_size
 
 *Number*  
 
-The number of simultaneous connections to the Redis server. The default
-value is *10*.
+The number of simultaneous connections to the
+[Redis](database.md#redis) server. The default value is *10*.
 
 ## redis\_port
 
 *1..65535*  
 
-The port where the Redis server is accepting connections. The default is
-*6379*.
+The port where the [Redis](database.md#redis) server is accepting
+connections. The default is *6379*.
 
 ## redis\_queue\_type
 
 *ram | file*  
 
-The type of request queue for the Redis server. See description of
-[queue_type](#queue_type) option for the explanation. The default value is the
-value defined in [queue_type](#queue_type) or *ram* if the latter is not set.
+The type of request queue for the [Redis](database.md#redis) server.
+See description of [queue_type](#queue_type) option for the explanation. The
+default value is the value defined in [queue_type](#queue_type) or *ram* if the
+latter is not set.
 
 ## redis\_server
 
 *Hostname*  
 
-A hostname or an IP address of the Redis server. The default is
-*localhost*.
+A hostname or an IP address of the [Redis](database.md#redis)
+server.The default is *localhost*.
 
 ## registration\_timeout
 
@@ -1456,10 +1473,11 @@ considered insecure.
 
 *{ShaperName: Rate}*  
 
-The option defines a set of shapers. Every shaper is assigned a name
-*ShaperName* that can be used in other parts of the configuration file,
-such as [shaper_rules](#shaper_rules) option. The shaper itself is defined by its
-*Rate*, where *Rate* stands for the maximum allowed incoming rate in
+The option defines a set of
+[shapers](../configuration/basic.md#shapers). Every shaper is assigned
+a name *ShaperName* that can be used in other parts of the configuration
+file, such as [shaper_rules](#shaper_rules) option. The shaper itself is defined by
+its *Rate*, where *Rate* stands for the maximum allowed incoming rate in
 **bytes** per second. When a connection exceeds this limit, ejabberd
 stops reading from the socket until the average rate is again below the
 allowed maximum. In the example below shaper *normal* limits the traffic
@@ -1478,10 +1496,12 @@ shaper:
 
 *{ShaperRuleName: {Number|ShaperName: ACLRule|ACLName}}*  
 
-An entry allowing to declaring shaper to use for matching user/hosts.
-Semantics is similar to [access_rules](#access_rules) option, the only difference is
-that instead using *allow* or *deny*, a name of a shaper (defined in
-[shaper](#shaper) option) or a positive number should be used.
+This option defines
+[shaper rules](../configuration/basic.md#shaper-rules) to use for
+matching user/hosts. Semantics is similar to [access_rules](#access_rules) option,
+the only difference is that instead using *allow* or *deny*, a name of a
+shaper (defined in [shaper](#shaper) option) or a positive number should be
+used.
 
 **Example**:
 
