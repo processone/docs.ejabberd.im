@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -6326,7 +6326,8 @@
 <h1 id="api-permissions">API Permissions<a class="headerlink" href="#api-permissions" title="Permanent link">&para;</a></h1>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5Z"/></svg></span></span> <span class="mdx-badge__text">added in 16.12</span></span></p>
 <p>This page describes ejabberd's flexible permission mechanism.</p>
-<p>Access to all available endpoints are configured using <code>api_permissions</code> option.</p>
+<p>Access to all available endpoints are configured using
+the <a href="../../../admin/configuration/toplevel/#api_permissions"><code>api_permissions</code></a> top-level option.</p>
 <p>It allows to define multiple groups, each one with separate list of filters on who and what are allowed by rules specified inside it.</p>
 <p>Basic rule looks like this:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">api_permissions</span><span class="p">:</span>
@@ -6340,7 +6341,8 @@
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ejabberd_ctl</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
 </span></code></pre></div>
-<p>It tells that group named <code>Admin access</code> allows all users that are accepted by ACL rule <code>admin</code> to execute all commands except command <code>stop</code>, using the command-line tool <code>ejabberdctl</code> or sending a ReST query handled by <code>mod_http_api</code>.</p>
+<p>It tells that group named <code>Admin access</code> allows all users that are accepted by ACL rule <code>admin</code> to execute all commands except command <code>stop</code>, using the command-line tool <code>ejabberdctl</code> or sending a ReST query handled by
+<a href="../../../admin/configuration/modules/#mod_http_api">mod_http_api</a>.</p>
 <p>Each group has associated name (that is just used in log messages), <code>who</code> section for rules that authentication details must match, <code>what</code> section for specifying list of command, and <code>from</code> with list of modules that API was delivered to.</p>
 <h2 id="rules-inside-who-section">Rules inside <code>who</code> section<a class="headerlink" href="#rules-inside-who-section" title="Permanent link">&para;</a></h2>
 <p>There are 3 types of rules that can be placed in <code>who</code> section:</p>

@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -6491,11 +6491,14 @@ sections must be set inside a <a href="../toplevel/#host_config">host_config</a>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">auth_method</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">sql</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 <h2 id="default-database">Default database<a class="headerlink" href="#default-database" title="Permanent link">&para;</a></h2>
-<p>You can simplify the configuration by setting the default database.
-This can be done with the
-<a href="../toplevel/#default_db"><code>default_db</code></a>
-top-level option:</p>
-<p><strong><code>default_db: mnesia|sql</code></strong>:  This will define the default database for a module lacking <code>db_type</code> option or if <code>auth_method</code> option is not set.</p>
+<p>You can simplify your configuration by setting the default database
+with the <a href="../toplevel/#default_db"><code>default_db</code></a> top-level option:</p>
+<ul>
+<li>it sets the default authentication method when the
+  <a href="../toplevel/#auth_method"><code>auth_method</code></a> top-level option is not configured</li>
+<li>it defines the database to use in ejabberd modules that support the <code>db_type</code> option,
+  but that is not configured.</li>
+</ul>
 <h2 id="relational-databases">Relational Databases<a class="headerlink" href="#relational-databases" title="Permanent link">&para;</a></h2>
 <h3 id="default-and-new-schemas">Default and New Schemas<a class="headerlink" href="#default-and-new-schemas" title="Permanent link">&para;</a></h3>
 <p>There are two database schemas available in ejabberd:
@@ -6617,27 +6620,14 @@ by adding the option <code>db_type: sql</code> to that module.</p>
 you may prefer to set SQL as your <a href="#default-database">default database</a>.</p>
 <h2 id="redis">Redis<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h2>
 <p><a href="https://redis.io/"><code>Redis</code></a> is an advanced key-value cache and store. You can
-use it to store transient data, such as records for C2S (client) sessions.
-There are several options available:</p>
+use it to store transient data, such as records for C2S (client) sessions.</p>
+<p>The available top-level options are:</p>
 <ul>
-<li>
-<p><strong><code>redis_server: String</code></strong>:   A hostname of the Redis server. The default is <code>localhost</code>.</p>
-</li>
-<li>
-<p><strong><code>redis_port: Port</code></strong>:   The port where the Redis server is accepting connections. The default
-    is 6379.</p>
-</li>
-<li>
-<p><strong><code>redis_password: String</code></strong>:   The password to the Redis server. The default is an empty string,
-    i.e. no password.</p>
-</li>
-<li>
-<p><strong><code>redis_db: N</code></strong>:   Redis database number. The default is 0.</p>
-</li>
-<li>
-<p><strong><code>redis_connect_timeout: N</code></strong>:   A number of seconds to wait for the connection to be established to the Redis
-    server. The default is 1 second.</p>
-</li>
+<li><a href="../toplevel/#redis_server">redis_server</a></li>
+<li><a href="../toplevel/#redis_port">redis_port</a></li>
+<li><a href="../toplevel/#redis_password">redis_password</a></li>
+<li><a href="../toplevel/#redis_db">redis_db</a></li>
+<li><a href="../toplevel/#redis_connect_timeout">redis_connect_timeout</a></li>
 </ul>
 <p>Example configuration:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">redis_server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis.server.com</span>

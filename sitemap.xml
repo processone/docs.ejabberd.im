@@ -2,1042 +2,1042 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.ejabberd.im/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/CHANGELOG/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/CONTAINER/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/COPYING/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/README-DOCS/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/README-ECS/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/README-GIT/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/README-HUB/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/introduction/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/authentication/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/basic/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/database/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/file-format/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/ldap/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/configuration/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/contrib/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/ejabberdctl/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/ejabberdctl/muc-admin/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/clustering/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/managing/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/security/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/troubleshooting/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/unattended/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/mqtt/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/guide/xep/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/install/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/install/binary-installer/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/install/homebrew/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/install/next-steps/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/install/os-package/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/install/source/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/install/container/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/admin/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/old/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.01/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.01/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.02/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.03/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.04/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.04/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.04/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.04/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.04/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.04/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.07/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.07/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.07/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.07/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.07/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.07/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.12/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.12/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.12/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.12/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.12/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/20.12/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.01/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.01/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.01/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.01/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.01/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.01/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.04/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.04/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.04/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.04/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.04/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.04/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.04/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.07/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.07/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.07/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.07/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.07/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.07/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.07/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.12/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.12/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.12/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.12/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.12/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.12/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/21.12/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.05/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.05/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.05/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.05/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.05/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.05/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.05/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.10/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.10/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.10/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.10/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.10/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.10/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/22.10/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.01/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.01/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.01/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.01/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.01/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.01/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.01/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.04/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.04/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.04/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.04/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.04/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.04/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.04/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/admin-tags/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/23.10/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/admin-tags/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.02/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/admin-tags/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.06/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/admin-tags/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/listen-options/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/listen/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/toplevel/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/upgrade/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_15.11_to_16.02/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_16.02_to_16.03/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_16.03_to_16.04/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_16.04_to_16.06/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_16.06_to_16.08/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_16.08_to_17.03/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_17.03_to_17.06/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_17.06_to_17.09/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_17.09_to_17.11/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_17.11_to_18.01/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_18.01_to_18.03/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_18.03_to_18.04/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_18.04_to_18.06/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_18.06_to_18.09/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_18.09_to_18.12/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_18.12_to_19.02/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_19.02_to_19.05/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_19.05_to_19.08/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/older-releases/from_2.1.1x_to_16.02/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/contributing/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/contributing/CODE_OF_CONDUCT/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/contributing/CONTRIBUTORS/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/guide/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/hosts/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/install-osx/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/repositories/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/sql-schema/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/vscode/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/admin-api/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/admin-tags/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/api_versioning/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/commands/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/oauth/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/permissions/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/ejabberd-api/simple-configuration/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/architecture/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/elixir/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/localization/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/modules/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/pubsub/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/stanza-routing/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/extending-ejabberd/testing/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/xmpp-clients-bots/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/xmpp-clients-bots/extensions/muc-sub/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/xmpp-clients-bots/extensions/roster-versioning/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/developer/xmpp-clients-bots/ios/getting-started-xmppframework/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/ejabberd-faq/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/get-started/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/livebooks/ejabberd-developer-livebook/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/roadmap/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/tutorials/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/tutorials/mix-010/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/tutorials/muc-vcard/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/tutorials/mysql/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://docs.ejabberd.im/use-cases/</loc>
-         <lastmod>2024-07-31</lastmod>
+         <lastmod>2024-08-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

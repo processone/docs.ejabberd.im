@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -9254,12 +9254,13 @@ sections, and each section may contain any number of ACL rules (see
 </span></code></pre></div>
 <h2 id="acl">acl<a class="headerlink" href="#acl" title="Permanent link">¶</a></h2>
 <p><em>{ACLName: {ACLType: ACLValue}}</em> </p>
-<p>The option defines access control lists: named sets of rules which are
-used to match against different targets (such as a JID or an IP
-address). Every set of rules has name <em>ACLName</em>: it can be any string
-except <em>all</em> or <em>none</em> (those are predefined names for the rules that
-match all or nothing respectively). The name <em>ACLName</em> can be referenced
-from other parts of the configuration file, for example in
+<p>This option defines
+<a href="../basic/#acl">access control lists</a>: named sets of
+rules which are used to match against different targets (such as a JID
+or an IP address). Every set of rules has name <em>ACLName</em>: it can be any
+string except <em>all</em> or <em>none</em> (those are predefined names for the rules
+that match all or nothing respectively). The name <em>ACLName</em> can be
+referenced from other parts of the configuration file, for example in
 <a href="#access_rules">access_rules</a> option. The rules of <em>ACLName</em> are represented by
 mapping <em>{ACLType: ACLValue}</em>. These can be one of the following:</p>
 <ul>
@@ -9398,7 +9399,9 @@ option is only useful in very special occasions. The default value is
 <em>false</em>.</p>
 <a id="anonymous-protocol"></a><h2 id="anonymous_protocol">anonymous_protocol<a class="headerlink" href="#anonymous_protocol" title="Permanent link">¶</a></h2>
 <p><em>login_anon | sasl_anon | both</em> </p>
-<p>Define what anonymous protocol will be used:</p>
+<p>Define what
+<a href="../authentication/#anonymous-login-and-sasl-anonymous">anonymous</a>
+protocol will be used:</p>
 <ul>
 <li>
 <p><em>login_anon</em> means that the anonymous login method will be used.</p>
@@ -9419,10 +9422,8 @@ web → For Developers → ejabberd ReST API →
 <a href="../../../developer/ejabberd-api/permissions/">API Permissions</a>.</p>
 <a id="append-host-config"></a><h2 id="append_host_config">append_host_config<a class="headerlink" href="#append_host_config" title="Permanent link">¶</a></h2>
 <p><em>{Host: Options}</em> </p>
-<p>To define specific ejabberd modules in a virtual host, you can define
-the global <em>modules</em> option with the common modules, and later add
-specific modules to certain virtual hosts. To accomplish that,
-<em>append_host_config</em> option can be used.</p>
+<p>Add a few specific options to a certain
+<a href="../basic/#virtual-hosting">virtual host</a>.</p>
 <a id="auth-cache-life-time"></a><h2 id="auth_cache_life_time">auth_cache_life_time<a class="headerlink" href="#auth_cache_life_time" title="Permanent link">¶</a></h2>
 <p><em>timeout()</em> </p>
 <p>Same as <a href="#cache_life_time">cache_life_time</a>, but applied to authentication cache only.
@@ -9445,9 +9446,10 @@ don’t have a way to reliably tell if a user exists (like is the case for
 offline message for those users. The default value is <em>true</em>.</p>
 <a id="auth-method"></a><h2 id="auth_method">auth_method<a class="headerlink" href="#auth_method" title="Permanent link">¶</a></h2>
 <p><em>[mnesia | sql | anonymous | external | jwt | ldap | pam, ...]</em> </p>
-<p>A list of authentication methods to use. If several methods are defined,
-authentication is considered successful as long as authentication of at
-least one of the methods succeeds. The default value is <em>[mnesia]</em>.</p>
+<p>A list of <a href="../authentication/">authentication</a> methods to use. If
+several methods are defined, authentication is considered successful as
+long as authentication of at least one of the methods succeeds. The
+default value is <em>[mnesia]</em>.</p>
 <a id="auth-opts"></a><h2 id="auth_opts">auth_opts<a class="headerlink" href="#auth_opts" title="Permanent link">¶</a></h2>
 <p><em>[Option, ...]</em> </p>
 <p>This is used by the contributed module <em>ejabberd_auth_http</em> that can
@@ -9633,9 +9635,9 @@ mostly intended for ejabberd customization and sophisticated setups. The
 default value is an empty list.</p>
 <a id="default-db"></a><h2 id="default_db">default_db<a class="headerlink" href="#default_db" title="Permanent link">¶</a></h2>
 <p><em>mnesia | sql</em> </p>
-<p>Default persistent storage for ejabberd. Modules and other components
-(e.g. authentication) may have its own value. The default value is
-<em>mnesia</em>.</p>
+<p><a href="../database/#default-database">Default database</a> to store persistent
+data in ejabberd. Modules and other components (e.g. authentication) may
+have its own value. The default value is <em>mnesia</em>.</p>
 <a id="default-ram-db"></a><h2 id="default_ram_db">default_ram_db<a class="headerlink" href="#default_ram_db" title="Permanent link">¶</a></h2>
 <p><em>mnesia | redis | sql</em> </p>
 <p>Default volatile (in-memory) storage for ejabberd. Modules and other
@@ -9643,13 +9645,14 @@ components (e.g. session management) may have its own value. The default
 value is <em>mnesia</em>.</p>
 <a id="define-macro"></a><h2 id="define_macro">define_macro<a class="headerlink" href="#define_macro" title="Permanent link">¶</a></h2>
 <p><em>{MacroName: MacroValue}</em> </p>
-<p>Defines a macro. The value can be any valid arbitrary YAML value. For
-convenience, it’s recommended to define a <em>MacroName</em> in capital
-letters. Duplicated macros are not allowed. Macros are processed after
-additional configuration files have been included, so it is possible to
-use macros that are defined in configuration files included before the
-usage. It is possible to use a <em>MacroValue</em> in the definition of another
-macro.</p>
+<p>Defines a
+<a href="../file-format/#macros-in-configuration-file">macro</a>.
+The value can be any valid arbitrary YAML value. For convenience, it’s
+recommended to define a <em>MacroName</em> in capital letters. Duplicated
+macros are not allowed. Macros are processed after additional
+configuration files have been included, so it is possible to use macros
+that are defined in configuration files included before the usage. It is
+possible to use a <em>MacroValue</em> in the definition of another macro.</p>
 <p><strong>Example</strong>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nt">define_macro</span><span class="p">:</span>
 </span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="nt">DEBUG</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">debug</span>
@@ -9679,12 +9682,14 @@ decrease MITM protection. The default value of this option is <em>false</em>
 which enables this extension.</p>
 <a id="domain-balancing"></a><h2 id="domain_balancing">domain_balancing<a class="headerlink" href="#domain_balancing" title="Permanent link">¶</a></h2>
 <p><em>{Domain: Options}</em> </p>
-<p>An algorithm to load balance the components that are plugged on an
-ejabberd cluster. It means that you can plug one or several instances of
-the same component on each ejabberd node and that the traffic will be
-automatically distributed. The algorithm to deliver messages to the
-component(s) can be specified by this option. For any component
-connected as <em>Domain</em>, available <em>Options</em> are:</p>
+<p>An algorithm to
+<a href="../../guide/clustering/#service-load-balancing">load-balance</a> the
+components that are plugged on an ejabberd cluster. It means that you
+can plug one or several instances of the same component on each ejabberd
+node and that the traffic will be automatically distributed. The
+algorithm to deliver messages to the component(s) can be specified by
+this option. For any component connected as <em>Domain</em>, available
+<em>Options</em> are:</p>
 <ul>
 <li>
 <p><strong>component_number</strong>: <em>2..1000</em><br/>
@@ -9731,17 +9736,19 @@ default value is: <em>"/oauth"</em>.</p>
 <em>"http://localhost/api"</em>.</p>
 <a id="extauth-pool-name"></a><h2 id="extauth_pool_name">extauth_pool_name<a class="headerlink" href="#extauth_pool_name" title="Permanent link">¶</a></h2>
 <p><em>Name</em> </p>
-<p>Define the pool name appendix, so the full pool name will be
-<em>extauth_pool_Name</em>. The default value is the hostname.</p>
+<p>Define the pool name appendix in
+<a href="../authentication/#external-script">external auth</a>, so the full pool
+name will be <em>extauth_pool_Name</em>. The default value is the hostname.</p>
 <a id="extauth-pool-size"></a><h2 id="extauth_pool_size">extauth_pool_size<a class="headerlink" href="#extauth_pool_size" title="Permanent link">¶</a></h2>
 <p><em>Size</em> </p>
-<p>The option defines the number of instances of the same external program
-to start for better load balancing. The default is the number of
-available CPU cores.</p>
+<p>The option defines the number of instances of the same
+<a href="../authentication/#external-script">external auth</a> program to start for
+better load balancing. The default is the number of available CPU cores.</p>
 <a id="extauth-program"></a><h2 id="extauth_program">extauth_program<a class="headerlink" href="#extauth_program" title="Permanent link">¶</a></h2>
 <p><em>Path</em> </p>
-<p>Indicate in this option the full path to the external authentication
-script. The script must be executable by ejabberd.</p>
+<p>Indicate in this option the full path to the
+<a href="../authentication/#external-script">external authentication script</a>.
+The script must be executable by ejabberd.</p>
 <h2 id="fqdn">fqdn<a class="headerlink" href="#fqdn" title="Permanent link">¶</a></h2>
 <p><em>Domain</em> </p>
 <p>A fully qualified domain name that will be used in SASL DIGEST-MD5
@@ -9752,9 +9759,11 @@ authentication. The default is detected automatically.</p>
 default value is <em>false</em> for backward compatibility.</p>
 <a id="host-config"></a><h2 id="host_config">host_config<a class="headerlink" href="#host_config" title="Permanent link">¶</a></h2>
 <p><em>{Host: Options}</em> </p>
-<p>The option is used to redefine <em>Options</em> for virtual host <em>Host</em>. In the
-example below LDAP authentication method will be used on virtual host
-<em>domain.tld</em> and SQL method will be used on virtual host <em>example.org</em>.</p>
+<p>The option is used to redefine <em>Options</em> for
+<a href="../basic/#virtual-hosting">virtual host</a> <em>Host</em>. In
+the example below LDAP authentication method will be used on virtual
+host <em>domain.tld</em> and SQL method will be used on virtual host
+<em>example.org</em>.</p>
 <p><strong>Example</strong>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nt">hosts</span><span class="p">:</span>
 </span><span id="__span-8-2"><a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain.tld</span>
@@ -9770,13 +9779,14 @@ example below LDAP authentication method will be used on virtual host
 </span></code></pre></div>
 <h2 id="hosts">hosts<a class="headerlink" href="#hosts" title="Permanent link">¶</a></h2>
 <p><em>[Domain1, Domain2, ...]</em> </p>
-<p>The option defines a list containing one or more domains that <em>ejabberd</em>
-will serve. This is a <strong>mandatory</strong> option.</p>
+<p>List of one or more <a href="../basic/#host-names">host names</a>
+(or domains) that <em>ejabberd</em> will serve. This is a <strong>mandatory</strong> option.</p>
 <a id="include-config-file"></a><h2 id="include_config_file">include_config_file<a class="headerlink" href="#include_config_file" title="Permanent link">¶</a></h2>
 <p><em>[Filename, ...] | {Filename: Options}</em> </p>
-<p>Read additional configuration from <em>Filename</em>. If the value is provided
-in <em>{Filename: Options}</em> format, the <em>Options</em> must be one of the
-following:</p>
+<p>Read and
+<a href="../file-format/#include-additional-files">include additional file</a>
+from <em>Filename</em>. If the value is provided in <em>{Filename: Options}</em>
+format, the <em>Options</em> must be one of the following:</p>
 <ul>
 <li>
 <p><strong>allow_only</strong>: <em>[OptionName, ...]</em><br/>
@@ -9800,24 +9810,29 @@ following:</p>
 at start time. The default value is an empty list of modules: <em>[]</em>.</p>
 <a id="jwt-auth-only-rule"></a><h2 id="jwt_auth_only_rule">jwt_auth_only_rule<a class="headerlink" href="#jwt_auth_only_rule" title="Permanent link">¶</a></h2>
 <p><em>AccessName</em> </p>
-<p>This ACL rule defines accounts that can use only this auth method, even
-if others are also defined in the ejabberd configuration file. In other
-words: if there are several auth methods enabled for this host (JWT,
-SQL, …), users that match this rule can only use JWT. The default value
-is <em>none</em>.</p>
+<p>This ACL rule defines accounts that can use only the
+<a href="../authentication/#jwt-authentication">JWT</a> auth method, even if others
+are also defined in the ejabberd configuration file. In other words: if
+there are several auth methods enabled for this host (JWT, SQL, …),
+users that match this rule can only use JWT. The default value is
+<em>none</em>.</p>
 <a id="jwt-jid-field"></a><h2 id="jwt_jid_field">jwt_jid_field<a class="headerlink" href="#jwt_jid_field" title="Permanent link">¶</a></h2>
 <p><em>FieldName</em> </p>
 <p>By default, the JID is defined in the <em>"jid"</em> JWT field. In this option
-you can specify other JWT field name where the JID is defined.</p>
+you can specify other <a href="../authentication/#jwt-authentication">JWT</a> field
+name where the JID is defined.</p>
 <a id="jwt-key"></a><h2 id="jwt_key">jwt_key<a class="headerlink" href="#jwt_key" title="Permanent link">¶</a></h2>
 <p><em>FilePath</em> </p>
-<p>Path to the file that contains the JWK Key. The default value is
+<p>Path to the file that contains the
+<a href="../authentication/#jwt-authentication">JWT</a> key. The default value is
 <em>undefined</em>.</p>
 <h2 id="language">language<a class="headerlink" href="#language" title="Permanent link">¶</a></h2>
 <p><em>Language</em> </p>
-<p>The option defines the default language of server strings that can be
-seen by XMPP clients. If an XMPP client does not possess <em>xml:lang</em>
-attribute, the specified language is used. The default value is <em>"en"</em>.</p>
+<p>Define the
+<a href="../basic/#default-language">default language</a> of
+server strings that can be seen by XMPP clients. If an XMPP client does
+not possess <em>xml:lang</em> attribute, the specified language is used. The
+default value is <em>"en"</em>.</p>
 <a id="ldap-backups"></a><h2 id="ldap_backups">ldap_backups<a class="headerlink" href="#ldap_backups" title="Permanent link">¶</a></h2>
 <p><em>[Host, ...]</em> </p>
 <p>A list of IP addresses or DNS names of LDAP backup servers. When no
@@ -9945,10 +9960,10 @@ means that only keeps <code>ejabberd.log.0</code>, <code>error.log.0</code> and 
 (that is, 10 Mb).</p>
 <h2 id="loglevel">loglevel<a class="headerlink" href="#loglevel" title="Permanent link">¶</a></h2>
 <p><em>none | emergency | alert | critical | error | warning | notice | info | debug</em> </p>
-<p>Verbosity of log files generated by ejabberd. The default value is
-<em>info</em>. NOTE: previous versions of ejabberd had log levels defined in
-numeric format (<em>0..5</em>). The numeric values are still accepted for
-backward compatibility, but are not recommended.</p>
+<p>Verbosity of ejabberd <a href="../basic/#logging">logging</a>. The
+default value is <em>info</em>. NOTE: previous versions of ejabberd had log
+levels defined in numeric format (<em>0..5</em>). The numeric values are still
+accepted for backward compatibility, but are not recommended.</p>
 <a id="max-fsm-queue"></a><h2 id="max_fsm_queue">max_fsm_queue<a class="headerlink" href="#max_fsm_queue" title="Permanent link">¶</a></h2>
 <p><em>Size</em> </p>
 <p>This option specifies the maximum number of elements in the queue of the
@@ -9962,8 +9977,7 @@ configuration. The allowed values are positive integers. The default
 value is <em>10000</em>.</p>
 <h2 id="modules">modules<a class="headerlink" href="#modules" title="Permanent link">¶</a></h2>
 <p><em>{Module: Options}</em> </p>
-<p>The option for modules configuration. See <a href="../modules/">Modules</a> section
-for details.</p>
+<p>Set all the <a href="../modules/">modules</a> configuration options.</p>
 <a id="negotiation-timeout"></a><h2 id="negotiation_timeout">negotiation_timeout<a class="headerlink" href="#negotiation_timeout" title="Permanent link">¶</a></h2>
 <p><em>timeout()</em> </p>
 <p>Time to wait for an XMPP stream negotiation to complete. When timeout
@@ -9979,15 +9993,17 @@ option is best, tweak it only if you know what you are doing. The
 default value is <em>1 minute</em>.</p>
 <a id="new-sql-schema"></a><h2 id="new_sql_schema">new_sql_schema<a class="headerlink" href="#new_sql_schema" title="Permanent link">¶</a></h2>
 <p><em>true | false</em> </p>
-<p>Whether to use <em>new</em> SQL schema. All schemas are located at
-<a href="https://github.com/processone/ejabberd/tree/24.07/sql">https://github.com/processone/ejabberd/tree/24.07/sql</a>. There are two
-schemas available. The default legacy schema stores one XMPP domain into
-one ejabberd database. The <em>new</em> schema can handle several XMPP domains
-in a single ejabberd database. Using this <em>new</em> schema is best when
-serving several XMPP domains and/or changing domains from time to time.
-This avoid need to manage several databases and handle complex
-configuration changes. The default depends on configuration flag
-<em>--enable-new-sql-schema</em> which is set at compile time.</p>
+<p>Whether to use the
+<a href="../database/#default-and-new-schemas">new SQL schema</a>. All schemas are
+located at <a href="https://github.com/processone/ejabberd/tree/24.07/sql">https://github.com/processone/ejabberd/tree/24.07/sql</a>.
+There are two schemas available. The default legacy schema stores one
+XMPP domain into one ejabberd database. The <em>new</em> schema can handle
+several XMPP domains in a single ejabberd database. Using this <em>new</em>
+schema is best when serving several XMPP domains and/or changing domains
+from time to time. This avoid need to manage several databases and
+handle complex configuration changes. The default depends on
+configuration flag <em>--enable-new-sql-schema</em> which is set at compile
+time.</p>
 <a id="oauth-access"></a><h2 id="oauth_access">oauth_access<a class="headerlink" href="#oauth_access" title="Permanent link">¶</a></h2>
 <p><em>AccessName</em> </p>
 <p>By default creating OAuth tokens is not allowed. To define which users
@@ -10079,14 +10095,14 @@ doesn’t have an SRV record. The default value is <em>5269</em>.</p>
 value is <em>10</em> seconds.</p>
 <a id="pam-service"></a><h2 id="pam_service">pam_service<a class="headerlink" href="#pam_service" title="Permanent link">¶</a></h2>
 <p><em>Name</em> </p>
-<p>This option defines the PAM service name. Refer to the PAM documentation
-of your operation system for more information. The default value is
-<em>ejabberd</em>.</p>
+<p>This option defines the <a href="../authentication/#pam-authentication">PAM</a>
+service name. Refer to the PAM documentation of your operation system
+for more information. The default value is <em>ejabberd</em>.</p>
 <a id="pam-userinfotype"></a><h2 id="pam_userinfotype">pam_userinfotype<a class="headerlink" href="#pam_userinfotype" title="Permanent link">¶</a></h2>
 <p><em>username | jid</em> </p>
 <p>This option defines what type of information about the user ejabberd
-provides to the PAM service: only the username, or the user’s JID.
-Default is <em>username</em>.</p>
+provides to the <a href="../authentication/#pam-authentication">PAM</a> service:
+only the username, or the user’s JID. Default is <em>username</em>.</p>
 <a id="pgsql-users-number-estimate"></a><h2 id="pgsql_users_number_estimate">pgsql_users_number_estimate<a class="headerlink" href="#pgsql_users_number_estimate" title="Permanent link">¶</a></h2>
 <p><em>true | false</em> </p>
 <p>Whether to use PostgreSQL estimation when counting registered users. The
@@ -10103,32 +10119,33 @@ If value <em>file</em> is set, you may also specify directory in <a href="#queue
 option where file queues will be placed. The default value is <em>ram</em>.</p>
 <a id="redis-connect-timeout"></a><h2 id="redis_connect_timeout">redis_connect_timeout<a class="headerlink" href="#redis_connect_timeout" title="Permanent link">¶</a></h2>
 <p><em>timeout()</em> </p>
-<p>A timeout to wait for the connection to be re-established to the Redis
-server. The default is <em>1 second</em>.</p>
+<p>A timeout to wait for the connection to be re-established to the
+<a href="../database/#redis">Redis</a> server. The default is <em>1 second</em>.</p>
 <a id="redis-db"></a><h2 id="redis_db">redis_db<a class="headerlink" href="#redis_db" title="Permanent link">¶</a></h2>
 <p><em>Number</em> </p>
-<p>Redis database number. The default is <em>0</em>.</p>
+<p><a href="../database/#redis">Redis</a> database number. The default is <em>0</em>.</p>
 <a id="redis-password"></a><h2 id="redis_password">redis_password<a class="headerlink" href="#redis_password" title="Permanent link">¶</a></h2>
 <p><em>Password</em> </p>
-<p>The password to the Redis server. The default is an empty string, i.e.
-no password.</p>
+<p>The password to the <a href="../database/#redis">Redis</a> server. The default is
+an empty string, i.e. no password.</p>
 <a id="redis-pool-size"></a><h2 id="redis_pool_size">redis_pool_size<a class="headerlink" href="#redis_pool_size" title="Permanent link">¶</a></h2>
 <p><em>Number</em> </p>
-<p>The number of simultaneous connections to the Redis server. The default
-value is <em>10</em>.</p>
+<p>The number of simultaneous connections to the
+<a href="../database/#redis">Redis</a> server. The default value is <em>10</em>.</p>
 <a id="redis-port"></a><h2 id="redis_port">redis_port<a class="headerlink" href="#redis_port" title="Permanent link">¶</a></h2>
 <p><em>1..65535</em> </p>
-<p>The port where the Redis server is accepting connections. The default is
-<em>6379</em>.</p>
+<p>The port where the <a href="../database/#redis">Redis</a> server is accepting
+connections. The default is <em>6379</em>.</p>
 <a id="redis-queue-type"></a><h2 id="redis_queue_type">redis_queue_type<a class="headerlink" href="#redis_queue_type" title="Permanent link">¶</a></h2>
 <p><em>ram | file</em> </p>
-<p>The type of request queue for the Redis server. See description of
-<a href="#queue_type">queue_type</a> option for the explanation. The default value is the
-value defined in <a href="#queue_type">queue_type</a> or <em>ram</em> if the latter is not set.</p>
+<p>The type of request queue for the <a href="../database/#redis">Redis</a> server.
+See description of <a href="#queue_type">queue_type</a> option for the explanation. The
+default value is the value defined in <a href="#queue_type">queue_type</a> or <em>ram</em> if the
+latter is not set.</p>
 <a id="redis-server"></a><h2 id="redis_server">redis_server<a class="headerlink" href="#redis_server" title="Permanent link">¶</a></h2>
 <p><em>Hostname</em> </p>
-<p>A hostname or an IP address of the Redis server. The default is
-<em>localhost</em>.</p>
+<p>A hostname or an IP address of the <a href="../database/#redis">Redis</a>
+server.The default is <em>localhost</em>.</p>
 <a id="registration-timeout"></a><h2 id="registration_timeout">registration_timeout<a class="headerlink" href="#registration_timeout" title="Permanent link">¶</a></h2>
 <p><em>timeout()</em> </p>
 <p>This is a global option for module <a href="../modules/#mod_register">mod_register</a>. It limits the
@@ -10253,10 +10270,11 @@ default value is <em>false</em>. WARNING: this type of compression is nowadays
 considered insecure.</p>
 <h2 id="shaper">shaper<a class="headerlink" href="#shaper" title="Permanent link">¶</a></h2>
 <p><em>{ShaperName: Rate}</em> </p>
-<p>The option defines a set of shapers. Every shaper is assigned a name
-<em>ShaperName</em> that can be used in other parts of the configuration file,
-such as <a href="#shaper_rules">shaper_rules</a> option. The shaper itself is defined by its
-<em>Rate</em>, where <em>Rate</em> stands for the maximum allowed incoming rate in
+<p>The option defines a set of
+<a href="../basic/#shapers">shapers</a>. Every shaper is assigned
+a name <em>ShaperName</em> that can be used in other parts of the configuration
+file, such as <a href="#shaper_rules">shaper_rules</a> option. The shaper itself is defined by
+its <em>Rate</em>, where <em>Rate</em> stands for the maximum allowed incoming rate in
 <strong>bytes</strong> per second. When a connection exceeds this limit, ejabberd
 stops reading from the socket until the average rate is again below the
 allowed maximum. In the example below shaper <em>normal</em> limits the traffic
@@ -10269,10 +10287,12 @@ speed to 1,000 bytes/sec and shaper <em>fast</em> limits the traffic speed to
 </span></code></pre></div>
 <a id="shaper-rules"></a><h2 id="shaper_rules">shaper_rules<a class="headerlink" href="#shaper_rules" title="Permanent link">¶</a></h2>
 <p><em>{ShaperRuleName: {Number|ShaperName: ACLRule|ACLName}}</em> </p>
-<p>An entry allowing to declaring shaper to use for matching user/hosts.
-Semantics is similar to <a href="#access_rules">access_rules</a> option, the only difference is
-that instead using <em>allow</em> or <em>deny</em>, a name of a shaper (defined in
-<a href="#shaper">shaper</a> option) or a positive number should be used.</p>
+<p>This option defines
+<a href="../basic/#shaper-rules">shaper rules</a> to use for
+matching user/hosts. Semantics is similar to <a href="#access_rules">access_rules</a> option,
+the only difference is that instead using <em>allow</em> or <em>deny</em>, a name of a
+shaper (defined in <a href="#shaper">shaper</a> option) or a positive number should be
+used.</p>
 <p><strong>Example</strong>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="nt">shaper_rules</span><span class="p">:</span>
 </span><span id="__span-13-2"><a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">  </span><span class="nt">connections_limit</span><span class="p">:</span>
