@@ -71,12 +71,13 @@ host_config:
 
 ## Default database
 
-You can simplify the configuration by setting the default database.
-This can be done with the
-[`default_db`](toplevel.md#default_db)
-top-level option:
+You can simplify your configuration by setting the default database
+with the [`default_db`](toplevel.md#default_db) top-level option:
 
-**`default_db: mnesia|sql`**:  This will define the default database for a module lacking `db_type` option or if `auth_method` option is not set.
+- it sets the default authentication method when the
+  [`auth_method`](toplevel.md#auth_method) top-level option is not configured
+- it defines the database to use in ejabberd modules that support the `db_type` option,
+  but that is not configured.
 
 ## Relational Databases
 
@@ -230,20 +231,14 @@ you may prefer to set SQL as your [default database](#default-database).
 
 [`Redis`](https://redis.io/) is an advanced key-value cache and store. You can
 use it to store transient data, such as records for C2S (client) sessions.
-There are several options available:
 
-- **`redis_server: String`**:   A hostname of the Redis server. The default is `localhost`.
+The available top-level options are:
 
-- **`redis_port: Port`**:   The port where the Redis server is accepting connections. The default
-	is 6379.
-
-- **`redis_password: String`**:   The password to the Redis server. The default is an empty string,
-	i.e. no password.
-
-- **`redis_db: N`**:   Redis database number. The default is 0.
-
-- **`redis_connect_timeout: N`**:   A number of seconds to wait for the connection to be established to the Redis
-	server. The default is 1 second.
+- [redis_server](toplevel.md#redis_server)
+- [redis_port](toplevel.md#redis_port)
+- [redis_password](toplevel.md#redis_password)
+- [redis_db](toplevel.md#redis_db)
+- [redis_connect_timeout](toplevel.md#redis_connect_timeout)
 
 Example configuration:
 

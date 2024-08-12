@@ -127,7 +127,13 @@ Take note of the access_token value, as this will be used later.
 The users can generate tokens themselves by visiting `/oauth/authorization_token` in a webview in your application or in a web browser.
 For example, URL can be:
 
-    `http://example.net:5280/oauth/authorization_token?response_type=token&client_id=Client1&redirect_uri=http://client.uri&scope=get_roster+sasl_auth`
+``` http
+http://example.net:5280/oauth/authorization_token
+    ?response_type=token
+    &client_id=Client1
+    &redirect_uri=http://client.uri
+    &scope=get_roster+sasl_auth
+```
 
 **Note:** To use the `get_roster` scope, enable `mod_admin_extra`, because the [get_roster](admin-api.md#get_roster)  API is defined in that module. Otherwise, the command is unknown and you will get an `invalid_scope` error.
 See [Module configuration](#module-configuration) for details.
@@ -151,7 +157,14 @@ The `redirect_uri` originally passed in the authorization_token request will be 
 
 For example, redirect URI called by ejabberd can be:
 
-`http://client.uri/?access_token=RHIT8DoudzOctdzBhYL9bYvXz28xQ4Oj&token_type=bearer&expires_in=3600&scope=user_get_roster+sasl_auth&state=`
+``` url
+http://client.uri/
+    ?access_token=RHIT8DoudzOctdzBhYL9bYvXz28xQ4Oj
+    &token_type=bearer
+    &expires_in=3600
+    &scope=user_get_roster+sasl_auth
+    &state=
+```
 
 Parameters are described in OAuth specification:
 
@@ -293,7 +306,14 @@ Or using a web browser:
 
 This redirects to a new URL which contains the access_token, for example:
 
-`http://localhost:5280/oauth/authorization_token?access_token=r9KFladBTYJS71OggKCifo0GJwyT7oY4&token_type=bearer&expires_in=31536000&scope=ejabberd:admin&state=`
+```
+http://localhost:5280/oauth/authorization_token
+  ?access_token=r9KFladBTYJS71OggKCifo0GJwyT7oY4
+  &token_type=bearer
+  &expires_in=31536000
+  &scope=ejabberd:admin
+  &state=
+```
 
 ### Passing credentials
 

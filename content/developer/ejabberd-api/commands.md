@@ -14,14 +14,18 @@ An ejabberd command is defined by an `#ejabberd_commands` Erlang record. The rec
 
 - **name**: This is an atom defining the name of the command.
 - **tags**: This is a list of atoms used to group the command into consistent group of commands. This is mostly used to group commands in `ejabberdctl` command-line tool. Existing categories are:
-  - `session`: For commands related to user XMPP sessions.
-  - `roster`: Commands related to contact list management.
-  <!--  TODO: List other tags that we already use. -->
+
+    - `session`: For commands related to user XMPP sessions.
+    - `roster`: Commands related to contact list management.
+    <!--  TODO: List other tags that we already use. -->
+
 - **desc**: Description of the command for online help.
 - **module** and **function**: Module and function to call to execute the command logic.
 - **args**: Argument of the command. An argument is defined by a tuple of atoms of the form `{argument_name, data_type}`. `data_type` can be one of:
-  - binary
-  <!-- TODO other types -->
+
+    - binary
+    <!-- TODO other types -->
+
 - **result**: defines what the command will return.
 - **policy**: Is an optional field, containing an atom that define restriction policy of the command. It can be on of: `open`, `admin`, `user`, `restricted`. Default is `restricted`, meaning the command can be used from ejabberdctl command-line tool.
 - **version**: API version number where this command is available (see *API versioning* documentation for details).

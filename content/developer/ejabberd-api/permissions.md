@@ -4,7 +4,8 @@
 
 This page describes ejabberd's flexible permission mechanism.
 
-Access to all available endpoints are configured using `api_permissions` option.
+Access to all available endpoints are configured using
+the [`api_permissions`](../../admin/configuration/toplevel.md#api_permissions) top-level option.
 
 It allows to define multiple groups, each one with separate list of filters on who and what are allowed by rules specified inside it.
 
@@ -23,7 +24,8 @@ api_permissions:
       - mod_http_api
 ```
 
-It tells that group named `Admin access` allows all users that are accepted by ACL rule `admin` to execute all commands except command `stop`, using the command-line tool `ejabberdctl` or sending a ReST query handled by `mod_http_api`.
+It tells that group named `Admin access` allows all users that are accepted by ACL rule `admin` to execute all commands except command `stop`, using the command-line tool `ejabberdctl` or sending a ReST query handled by
+[mod_http_api](../../admin/configuration/modules.md#mod_http_api).
 
 Each group has associated name (that is just used in log messages), `who` section for rules that authentication details must match, `what` section for specifying list of command, and `from` with list of modules that API was delivered to.
 
