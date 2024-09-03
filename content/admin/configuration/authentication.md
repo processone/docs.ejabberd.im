@@ -14,7 +14,7 @@ The authentication methods supported by `ejabberd` are:
 
 - `anonymous` — See section [Anonymous Login and SASL Anonymous](#anonymous-login-and-sasl-anonymous).
 
-- `pam` — See section [Pam Authentication](#pam-authentication).
+- `pam` — See section [PAM Authentication](#pam-authentication).
 
 - `jwt` — See section [JWT Authentication](#jwt-authentication).
 
@@ -223,12 +223,12 @@ There are more configuration examples and XMPP client example stanzas in
 
 `ejabberd` supports authentication via Pluggable Authentication Modules
 (PAM). PAM is currently supported in AIX, FreeBSD, HP-UX, Linux, Mac OS
-X, NetBSD and Solaris. PAM authentication is disabled by default, so you
-have to configure and compile `ejabberd` with PAM support enabled:
+X, NetBSD and Solaris.
 
-``` sh
-./configure --enable-pam && make install
-```
+If compiling ejabberd from source code, PAM support is disabled by default,
+so you have to enable PAM support when
+[configuring](../install/source.md#configure)
+the `ejabberd` compilation: `./configure --enable-pam`
 
 Options:
 
@@ -242,8 +242,8 @@ auth_method: [pam]
 pam_service: ejabberd
 ```
 
-Though it is quite easy to set up PAM support in `ejabberd`, PAM itself
-introduces some security issues:
+Though it is quite easy to set up PAM support in `ejabberd`, there are several
+problems that you may need to solve:
 
 - To perform PAM authentication `ejabberd` uses external C-program
  called `epam`. By default, it is located in
@@ -264,10 +264,26 @@ introduces some security issues:
  process periodically to reduce its memory consumption: `ejabberd`
  will restart this process immediately.
 
+- ejabberd [binary installers](../install/binary-installer.md) include `epam`
+ pointing to module paths that may not work in your system.
+ If authentication doesn't work correctly, check if syslog
+ (example: `journalctl -t epam -f`)
+ reports errors like `PAM unable to dlopen(/home/runner/... No such file or directory`.
+ In that case, create a PAM configuration file
+ (example: `/etc/pam.d/ejabberd`)
+ and provide the real path to that file in your machine:
+
+    ```sh
+    #%PAM-1.0
+    auth        sufficient  /usr/lib/x86_64-linux-gnu/security/pam_unix.so audit
+    account     sufficient  /usr/lib/x86_64-linux-gnu/security/pam_unix.so audit
+    ```
+
 - `epam` program tries to turn off delays on authentication failures.
  However, some PAM modules ignore this behavior and rely on their own
  configuration options. You can create a configuration file
- `ejabberd.pam`. This example shows how to turn off delays in
+ (in Debian it would be `/etc/pam.d/ejabberd`).
+ This example shows how to turn off delays in
  `pam_unix.so` module:
 
     ```sh
@@ -276,7 +292,7 @@ introduces some security issues:
     account     sufficient  pam_unix.so
     ```
 
- That is not a ready to use configuration file: you must use it as a
+    That is not a ready to use configuration file: you must use it as a
  hint when building your own PAM configuration instead. Note that if
  you want to disable delays on authentication failures in the PAM
  configuration file, you have to restrict access to this file, so a
