@@ -32,8 +32,10 @@ authentication and other for regular calls.
 To configure the LDAP connection there are these top-level options:
 
 - [ldap_servers](toplevel.md#ldap_servers)
+- [ldap_backups](toplevel.md#ldap_backups)
 - [ldap_encrypt](toplevel.md#ldap_encrypt)
 - [ldap_tls_verify](toplevel.md#ldap_tls_verify)
+- [ldap_tls_certfile](toplevel.md#ldap_tls_certfile)
 - [ldap_tls_cacertfile](toplevel.md#ldap_tls_cacertfile)
 - [ldap_tls_depth](toplevel.md#ldap_tls_depth)
 - [ldap_port](toplevel.md#ldap_port)
