@@ -54,6 +54,23 @@ ldap_rootdn: "cn=Manager,dc=domain,dc=org"
 ldap_password: "**********"
 ```
 
+When there are several LDAP servers available as backup,
+set one in `ldap_servers` and the others in `ldap_backups`.
+At server start, ejabberd connects to all the servers listed in `ldap_servers`.
+If a connection is lost, ejabberd connects to the next server in `ldap_backups`.
+If the connection is lost, the next server in the list is connected,
+and this repeats infinitely with all the servers in `ldap_servers` and `ldap_backups`
+until one is successfully connected:
+
+``` yaml
+ldap_servers:
+  - ldap1.example.org
+
+ldap_backups:
+  - ldap2.example.org
+  - ldap3.example.org
+```
+
 ## LDAP Authentication
 
 You can authenticate users against an LDAP directory. Note that current
