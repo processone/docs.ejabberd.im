@@ -71,6 +71,7 @@ Handles c2s connections.
 
 General listen options supported:
 [access](listen-options.md#access),
+[allow_unencrypted_sasl2](listen-options.md#allow_unencrypted_sasl2),
 [cafile](listen-options.md#cafile),
 [ciphers](listen-options.md#ciphers),
 [dhfile](listen-options.md#dhfile),
