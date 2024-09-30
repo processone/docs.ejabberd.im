@@ -11,6 +11,15 @@ modules:
 
 This option defines access to the port. The default value is `all`.
 
+## allow_unencrypted_sasl2
+
+*true | false*
+
+As per [`XEP-0388`](https://xmpp.org/extensions/xep-0388.html#security),
+ejabberd rejects SASL2 negotiations over non-TLS connections by default. Setting
+this option to `true` allows SASL2 over plaintext connections, which may be
+useful in case TLS is terminated by some proxy in front of ejabberd.
+
 ## backlog
 
 *Value*
