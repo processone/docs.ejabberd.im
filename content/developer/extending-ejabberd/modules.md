@@ -120,71 +120,7 @@ When the module is started, either on ejabberd start or manually, you should see
 19:13:29.717 [info] Hello, ejabberd world!
 ```
 
-## ejabberd-contrib
-
-ejabberd is able to fetch module sources by itself, compile with correct flags
-and install in a local repository, without any external dependencies. You do not
-need to know Erlang and have it installed in order to use the contributed modules.
-The contributed modules repository is
-[ejabberd-contrib on github](https://github.com/processone/ejabberd-contrib).
-It contains
-most used contributions and also can link to any other external repository.
-This works with ejabberd modules written in Erlang and will also support new Elixir modules.
-
-## Basic usage
-
-As a user, this is how it works:
-
-1. First you need to get/update the list of available modules.  This must be
-    done before anything else to let module related features to work correctly.
-    You may want to repeat this command before you need installing a new module
-    or an attended server upgrade.
-
-    ``` sh
-    ejabberdctl modules_update_specs
-    ```
-
-2. Then you can list available modules:
-
-    ``` sh
-    ejabberdctl modules_available
-    ...
-    mod_admin_extra Additional ejabberd commands
-    mod_archive Supports almost all the XEP-0136 version 0.6 except otr
-    mod_cron Execute scheduled commands
-    mod_log_chat Logging chat messages in text files
-    ...
-    ```
-
-3. Let’s install `mod_cron` from ejabberd-contrib repository:
-
-    ``` sh
-    ejabberdctl module_install mod_cron
-    ok
-    ```
-
-4. You can check anytime what modules are installed:
-
-    ``` sh
-    ejabberdctl modules_installed
-    mod_cron
-    ```
-
-5. An example default configuration is installed, and will be read by ejabberd
-    when it starts. You can find that small configuration in:
-
-    ``` sh
-    $HOME/.ejabberd-modules/mod_cron/conf/mod_cron.yml
-    ```
-
-6. And finally, you can remove the module:
-
-    ``` sh
-    ejabberdctl module_uninstall mod_cron
-    ok
-    ```
-
-## Add your module
+## Add module to ejabberd-modules
 
 If you install ejabberd using the official ProcessOne installer,
 it includes everything needed to build ejabberd modules on its own.
@@ -239,12 +175,12 @@ and send your spec file for integration in ejabberd-contrib repository.
 ejabberd-contrib will only host a copy of your
 spec file and does not need your code to make it available to all ejabberd users.
 
-## Your module with Docker
+## Your module in ejabberd-modules with ejabberd container
 
 If you installed ejabberd using the Docker image, these specific instructions
 allow you to use your module with your Docker image:
 
-1. Create a local directory for the contributed modules:
+1. Create a local directory for `ejabberd-modules`:
 
     ``` sh
     mkdir docker-modules
@@ -301,19 +237,6 @@ allow you to use your module with your Docker image:
     2020-10-06 13:40:13.154335+00:00 [info]
       <0.492.0>@mod_hello_world:start/2:15 Hello, ejabberd world!
     ```
-
-## Status
-
-Please note this is provided as a beta version. We want the work in progress to be released
-early to gather feedback from developers and users.
-
-For now, you need to edit the configuration snippet provided in module’s conf directory and
-copy it into your ejabberd’s main configuration. Then you’ll need to restart ejabberd or
-manually start the module.
-
-However, our plan is to keep iterating on the tool and to make our best to make module
-installation as easy as possible and avoid need to change main configuration:
-ejabberd should be able to include module configuration snippets on the fly in a near future.
 
 ## Next steps
 

@@ -21,7 +21,8 @@ All commands can be exposed through interfaces. Available interfaces are:
 - [ejabberdctl](../../admin/guide/managing.md#ejabberdctl) command-line tool,
 - [mod_http_api](../../admin/configuration/modules.md#mod_http_api) for ReST calls using JSON data,
 - [ejabberd_xmlrpc](../../admin/configuration/listen.md#ejabberd_xmlrpc) for XML-RPC calls,
-- to some extend, XMPP protocol itself through discovery and adhoc commands, using [mod_configure](../../admin/configuration/modules.md#mod_configure).
+- [WebAdmin](../../admin/guide/managing.md#web-admin) uses most commands to build the web pages,
+- [mod_configure](../../admin/configuration/modules.md#mod_configure) includes support for a few administrative tasks (using XMPP protocol itself through discovery and adhoc commands)
 
 The [ejabberd-contrib Github repository](https://github.com/processone/ejabberd-contrib) provides other interfaces that can be installed to execute ejabberd commands in different ways: `mod_rest` (HTTP POST service), `mod_shcommands` (ejabberd WebAdmin page).
 

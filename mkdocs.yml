@@ -224,6 +224,7 @@ nav:
     - Architecture: developer/extending-ejabberd/architecture.md
     - Clustering: admin/guide/clustering.md
     - Managing: admin/guide/managing.md
+    - Modules / Contrib: admin/guide/modules.md
     - Security: admin/guide/security.md
     - Troubleshooting: admin/guide/troubleshooting.md
     - Upgrade: admin/upgrade/index.md
@@ -248,7 +249,7 @@ nav:
     - Elixir Dev: developer/extending-ejabberd/elixir.md
     - Livebook: livebooks/ejabberd-developer-livebook.md
     - Localization: developer/extending-ejabberd/localization.md
-    - Modules Dev: developer/extending-ejabberd/modules.md
+    - Modules Development: developer/extending-ejabberd/modules.md
     - MUC/Sub Extension: developer/xmpp-clients-bots/extensions/muc-sub.md
     - Testing: developer/extending-ejabberd/testing.md
     - VSCode: developer/vscode.md
