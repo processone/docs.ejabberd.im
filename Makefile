@@ -98,8 +98,9 @@ $(READMES):
 	sed -i 's|(COPYING)|(COPYING.md)|g' content/README-GIT.md
 	sed -i 's|(CONTRIBUTING.md)|(contributing/index.md)|g' content/README-GIT.md
 	cp $(EJA)/CHANGELOG.md content/CHANGELOG.md
-	sed -i '1i# ChangeLog\n' content/CHANGELOG.md
 	sed -i 's|^\([a-zA-Z0-9_ ]*:\)|#### \1\n|g' content/CHANGELOG.md
+	sed -i '1i# ChangeLog\n' content/CHANGELOG.md
+	sed -i '1i---\nsearch:\n  boost: -1\n---\n' content/CHANGELOG.md
 	cp $(DOCKER)/ecs/README.md content/README-ECS.md
 	sed -i 's|# ejabberd Community Server|# `ecs` Container Image|g' content/README-ECS.md
 	sed -i 's|HUB-README.md|README-HUB.md|g' content/README-ECS.md
@@ -185,6 +186,8 @@ $(TOPLEVEL): $(TTOPLEVEL)
 	sed -i 's|\*`\(.*\)\|\(.*\)`\*|[\2](\1)|g' $(TTOPLEVEL)
 	# Link to Archive when mentioning an ejabberd release 2x.xx
 	sed -i 's| \([2-9][0-9]\)\.\([0-9][0-9]\)| [\1.\2](../../archive/\1.\2/index.md)|g' $(TTOPLEVEL)
+	# Add search boost:
+	sed -i '1i---\nsearch:\n  boost: 1\n---\n' $(TTOPLEVEL)
 	cp $(TTOPLEVEL) $(TOPLEVEL)
 
 $(MODULES): $(TMODULES)
@@ -219,6 +222,8 @@ $(MODULES): $(TMODULES)
 	# Increase indentation of examples of modules options
 	vim $(TMODULES) -c "set expandtab" -c "g/\*\*Example\*\*:\n\n.*\~\~\~ yaml\n.*/normal V}}>" -c "wq"
 	vim $(TMODULES) -c "set expandtab" -c "g/\*\*Examples\*\*:\n\n.*\n\n.*\~\~\~ yaml\n.*/normal V}}}>" -c "wq"
+	# Add search boost:
+	sed -i '1i---\nsearch:\n  boost: 1\n---\n' $(TMODULES)
 	cp $(TMODULES) $(MODULES)
 
 $(API): $(TAPI)
@@ -241,6 +246,8 @@ $(API): $(TAPI)
 	sed -i 's|_`\([a-z0-9_]*\)`_|[\1](admin-tags.md#\1)|g' $(TAPI)
 	# Convert _`url|something`_ into a relative link
 	sed -i 's|_`\(.*\)\|\(.*\)`_|[\2](\1)|g' $(TAPI)
+	# Add search boost:
+	sed -i '1i---\nsearch:\n  boost: 1\n---\n' $(TAPI)
 	cp $(TAPI) $(API)
 
 $(TAGS): $(TTAGS)
@@ -307,17 +314,21 @@ archive:
 	cp content/admin/configuration/toplevel.md $(DEST)/toplevel.md
 	cp content/developer/ejabberd-api/admin-api.md $(DEST)/admin-api.md
 	cp content/developer/ejabberd-api/admin-tags.md $(DEST)/admin-tags.md
-	sed -i '1i---\nsearch:\n  exclude: true\n---\n' $(DEST)/*.md
 	#
-	sed -i 's|../../admin/configuration/modules|modules|g' $(DEST)/*.md
-	sed -i 's|../guide/managing.md|../../admin/guide/managing.md|g' $(DEST)/*.md
-	sed -i 's|../guide/mqtt/index.md|../../admin/guide/mqtt/index.md|g' $(DEST)/*.md
-	sed -i 's|authentication.md|../../admin/configuration/authentication.md|g' $(DEST)/*.md
-	sed -i 's|basic.md|../../admin/configuration/basic.md|g' $(DEST)/*.md
-	sed -i 's|database.md|../../admin/configuration/database.md|g' $(DEST)/*.md
-	sed -i 's|ldap.md|../../admin/configuration/ldap.md|g' $(DEST)/*.md
-	sed -i 's|oauth.md|../../developer/ejabberd-api/oauth.md|g' $(DEST)/*.md
-	sed -i 's|old.md|../../admin/configuration/old.md|g' $(DEST)/*.md
+	sed -i 's|  boost: 1|  exclude: true|' $(DEST)/*.md
+	cd $(DEST) && for i in "admin-tags" "listen-options" "listen"; do sed -i '1i---\nsearch:\n  exclude: true\n---\n' $$i.md; done
+	#
+	sed -i 's|(../../admin/configuration/modules|(modules|g' $(DEST)/*.md
+	sed -i 's|(../configuration/|(../../admin/configuration/|g' $(DEST)/*.md
+	sed -i 's|(../guide/clustering.md|(../../admin/guide/clustering.md|g' $(DEST)/*.md
+	sed -i 's|(../guide/managing.md|(../../admin/guide/managing.md|g' $(DEST)/*.md
+	sed -i 's|(../guide/mqtt/index.md|(../../admin/guide/mqtt/index.md|g' $(DEST)/*.md
+	sed -i 's|(authentication.md|(../../admin/configuration/authentication.md|g' $(DEST)/*.md
+	sed -i 's|(basic.md|(../../admin/configuration/basic.md|g' $(DEST)/*.md
+	sed -i 's|(database.md|(../../admin/configuration/database.md|g' $(DEST)/*.md
+	sed -i 's|(ldap.md|(../../admin/configuration/ldap.md|g' $(DEST)/*.md
+	sed -i 's|(oauth.md|(../../developer/ejabberd-api/oauth.md|g' $(DEST)/*.md
+	sed -i 's|(old.md|(../../admin/configuration/old.md|g' $(DEST)/*.md
 	#
 	sed -i 's|\(RELEASE_LIST -->\)|\1\n* [$(VERSION)]($(VERSION)/index.md)|g' content/archive/index.md
 	#
