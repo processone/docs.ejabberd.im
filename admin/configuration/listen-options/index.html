@@ -1155,6 +1155,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#allow_unencrypted_sasl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      allow_unencrypted_sasl2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backlog" class="md-nav__link">
     <span class="md-ellipsis">
       backlog
@@ -6440,6 +6449,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#allow_unencrypted_sasl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      allow_unencrypted_sasl2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#backlog" class="md-nav__link">
     <span class="md-ellipsis">
       backlog
@@ -6740,6 +6758,12 @@ modules:</p>
 <h2 id="access">access<a class="headerlink" href="#access" title="Permanent link">¶</a></h2>
 <p><em>AccessName</em></p>
 <p>This option defines access to the port. The default value is <code>all</code>.</p>
+<a id="allow-unencrypted-sasl2"></a><h2 id="allow_unencrypted_sasl2">allow_unencrypted_sasl2<a class="headerlink" href="#allow_unencrypted_sasl2" title="Permanent link">¶</a></h2>
+<p><em>true | false</em></p>
+<p>As per <a href="https://xmpp.org/extensions/xep-0388.html#security"><code>XEP-0388</code></a>,
+ejabberd rejects SASL2 negotiations over non-TLS connections by default. Setting
+this option to <code>true</code> allows SASL2 over plaintext connections, which may be
+useful in case TLS is terminated by some proxy in front of ejabberd.</p>
 <h2 id="backlog">backlog<a class="headerlink" href="#backlog" title="Permanent link">¶</a></h2>
 <p><em>Value</em></p>
 <p>The backlog value defines the maximum length that the queue of
