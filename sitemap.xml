@@ -105,6 +105,10 @@
          <lastmod>2024-10-29</lastmod>
     </url>
     <url>
+         <loc>https://docs.ejabberd.im/admin/guide/modules/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
          <loc>https://docs.ejabberd.im/admin/guide/security/</loc>
          <lastmod>2024-10-29</lastmod>
     </url>
@@ -598,6 +602,38 @@
     </url>
     <url>
          <loc>https://docs.ejabberd.im/archive/24.07/upgrade/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/admin-api/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/admin-tags/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/listen-options/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/listen/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/modules/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/toplevel/</loc>
+         <lastmod>2024-10-29</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.ejabberd.im/archive/24.10/upgrade/</loc>
          <lastmod>2024-10-29</lastmod>
     </url>
     <url>
