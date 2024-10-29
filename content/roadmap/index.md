@@ -18,6 +18,13 @@ hide:
 
 ### 2024
 
+- [24.10](https://www.process-one.net/blog/ejabberd-24-10/)
+    - New module [mod_s2s_bidi](../admin/configuration/modules.md/#mod_s2s_bidi)
+    - New module [mod_scram_upgrade](../admin/configuration/modules.md/#mod_scram_upgrade)
+    - IQ permission in [privileged](../admin/configuration/modules.md/#mod_privilege) entities
+    - PubSub varied fixes
+    - WebAdmin improvements
+
 - [24.07](https://www.process-one.net/blog/ejabberd-24-07/)
     - Bugfixes and minor improvements
 
