@@ -1,6 +1,11 @@
+---
+search:
+  boost: 1
+---
+
 # Top-Level Options
 
-> This section describes top level options of ejabberd [24.07](../../archive/24.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The options
+> This section describes top level options of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The options
 that changed in this version are marked with 🟤.
 
 ## access\_rules
@@ -790,13 +795,13 @@ default value is *"en"*.
 
 *\[Host, ...\]*  
 
-A list of IP addresses or DNS names of LDAP backup servers. When no
-servers listed in [ldap_servers](#ldap_servers) option are reachable, ejabberd will
-try to connect to these backup servers. The default is an empty list,
-i.e. no backup servers specified. WARNING: ejabberd doesn’t try to
-reconnect back to the main servers when they become operational again,
-so the only way to restore these connections is to restart ejabberd.
-This limitation might be fixed in future releases.
+A list of IP addresses or DNS names of LDAP backup servers (see
+[LDAP connection](../configuration/ldap.md#ldap-connection)). When no
+servers listed in [ldap_servers](#ldap_servers) option are reachable, ejabberd
+connects to these backup servers. The default is an empty list, i.e. no
+backup servers specified. Please notice that ejabberd only connects to
+the next server when the existing connection is lost; it doesn’t detect
+when a previously-attempted server becomes available again.
 
 ## ldap\_base
 
@@ -878,8 +883,10 @@ means "anonymous connection".
 
 *\[Host, ...\]*  
 
-A list of IP addresses or DNS names of your LDAP servers. The default
-value is *\[localhost\]*.
+A list of IP addresses or DNS names of your LDAP servers (see
+[LDAP connection](../configuration/ldap.md#ldap-connection)). ejabberd
+connects immediately to all of them, and reconnects infinitely if
+connection is lost. The default value is *\[localhost\]*.
 
 ## ldap\_tls\_cacertfile
 
@@ -1034,7 +1041,7 @@ default value is *1 minute*.
 
 Whether to use the
 [new SQL schema](database.md#default-and-new-schemas). All schemas are
-located at <https://github.com/processone/ejabberd/tree/24.07/sql>.
+located at <https://github.com/processone/ejabberd/tree/24.10/sql>.
 There are two schemas available. The default legacy schema stores one
 XMPP domain into one ejabberd database. The *new* schema can handle
 several XMPP domains in a single ejabberd database. Using this *new*
@@ -1735,10 +1742,11 @@ for security rules in ejabberd.
 <!-- md:version updated in [24.06](../../archive/24.06/index.md) -->
 
 Allow ejabberd to update SQL
-schema. This option was added in ejabberd [23.10](../../archive/23.10/index.md), and enabled by default
-since [24.06](../../archive/24.06/index.md). The default value is *true*.
+schema in MySQL, PostgreSQL and SQLite databases. This option was added
+in ejabberd [23.10](../../archive/23.10/index.md), and enabled by default since [24.06](../../archive/24.06/index.md). The default value
+is *true*.
 
-## update\_sql\_schema\_timeout 🟤
+## update\_sql\_schema\_timeout
 
 *timeout()*  
 

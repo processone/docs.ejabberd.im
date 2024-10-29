@@ -1,6 +1,11 @@
+---
+search:
+  boost: 1
+---
+
 # Modules Options
 
-> This section describes modules options of ejabberd [24.07](../../archive/24.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
+> This section describes modules options of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
 that changed in this version are marked with 🟤.
 
 mod\_adhoc
@@ -2341,8 +2346,11 @@ only.
 - **use\_cache**: *true | false*  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
-mod\_privilege
---------------
+mod\_privilege 🟤
+-----------------
+
+<!-- md:version improved in [24.10](../../archive/24.10/index.md) -->
+
 
 This module is an implementation of [XEP-0356: Privileged
 Entity](https://xmpp.org/extensions/xep-0356.html). This extension
@@ -2373,6 +2381,22 @@ Check the section about listening ports for more information.
 > used separately.
 
 __Available options:__
+
+- **iq**: *{Namespace: Options}*  
+This option defines namespaces and their IQ permissions. By default no
+permissions are given. The *Options* are:
+
+    - **both**: *AccessName*  
+   Allows sending IQ stanzas of type *get* and
+    *set*. The default value is *none*.
+
+    - **get**: *AccessName*  
+   Allows sending IQ stanzas of type *get*. The
+    default value is *none*.
+
+    - **set**: *AccessName*  
+   Allows sending IQ stanzas of type *set*. The
+    default value is *none*.
 
 - **message**: *Options*  
 This option defines permissions for messages. By default no permissions
@@ -2418,6 +2442,9 @@ __**Example**:__
 ~~~ yaml
 modules:
   mod_privilege:
+    iq:
+      http://jabber.org/protocol/pubsub:
+        get: all
     roster:
       get: all
     presence:
@@ -2845,7 +2872,10 @@ __Available options:__
 - **access**: *AccessName*  
 Specify rules to restrict what usernames can be registered. If a rule
 returns *deny* on the requested username, registration of that user name
-is denied. There are no restrictions by default.
+is denied. There are no restrictions by default. If *AccessName* is
+*none*, then registering new accounts using In-Band Registration is
+disabled and the corresponding stream feature is not announced to
+clients.
 
 - **access\_from**: *AccessName*  
 By default, *ejabberd* doesn’t allow the client to register new accounts
@@ -3003,6 +3033,25 @@ modules:
     store_current_id: false
 ~~~
 
+mod\_s2s\_bidi 🟤
+-----------------
+
+<!-- md:version added in [24.10](../../archive/24.10/index.md) -->
+
+
+The module adds support for [XEP-0288: Bidirectional Server-to-Server
+Connections](https://xmpp.org/extensions/xep-0288.html) that allows
+using single s2s connection to communicate in both directions.
+
+The module has no options.
+
+__**Example**:__
+
+~~~ yaml
+modules:
+  mod_s2s_bidi: {}
+~~~
+
 mod\_s2s\_dialback
 ------------------
 
@@ -3037,6 +3086,31 @@ modules:
         server: legacy.domain.tld
         server: invalid-cert.example.org
       deny: all
+~~~
+
+mod\_scram\_upgrade 🟤
+----------------------
+
+<!-- md:version added in [24.10](../../archive/24.10/index.md) -->
+
+
+The module adds support for [XEP-0480: SASL Upgrade
+Tasks](https://xmpp.org/extensions/xep-0480.html) that allows users to
+upgrade passwords to more secure representation.
+
+__Available options:__
+
+- **offered\_upgrades**: *list(sha256, sha512)*  
+List with upgrade types that should be offered
+
+__**Example**:__
+
+~~~ yaml
+modules:
+  mod_scram_upgrade:
+    offered_upgrades:
+      - sha256
+      - sha512
 ~~~
 
 mod\_service\_log

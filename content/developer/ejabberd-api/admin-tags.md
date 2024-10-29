@@ -1,6 +1,6 @@
 # API Tags
 
-> This section enumerates the API tags of ejabberd [24.07](../../archive/24.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+> This section enumerates the API tags of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -158,6 +158,21 @@
 
 
 ## mam
+
+
+* [abort_delete_old_mam_messages](admin-api.md#abort_delete_old_mam_messages)
+
+
+* [delete_old_mam_messages](admin-api.md#delete_old_mam_messages)
+
+
+* [delete_old_mam_messages_batch](admin-api.md#delete_old_mam_messages_batch)
+
+
+* [delete_old_mam_messages_status](admin-api.md#delete_old_mam_messages_status)
+
+
+* [get_mam_count](admin-api.md#get_mam_count)
 
 
 * [remove_mam_for_user](admin-api.md#remove_mam_for_user)
@@ -380,6 +395,21 @@
 
 
 ## offline
+
+
+* [abort_delete_old_messages](admin-api.md#abort_delete_old_messages)
+
+
+* [delete_expired_messages](admin-api.md#delete_expired_messages)
+
+
+* [delete_old_messages](admin-api.md#delete_old_messages)
+
+
+* [delete_old_messages_batch](admin-api.md#delete_old_messages_batch)
+
+
+* [delete_old_messages_status](admin-api.md#delete_old_messages_status)
 
 
 * [get_offline_count](admin-api.md#get_offline_count)

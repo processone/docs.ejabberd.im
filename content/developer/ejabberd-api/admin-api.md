@@ -1,6 +1,11 @@
+---
+search:
+  boost: 1
+---
+
 # API Reference
 
-> This section describes API commands of ejabberd [24.07](../../archive/24.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The commands that changed in this version are marked with 🟤.
+> This section describes API commands of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The commands that changed in this version are marked with 🟤.
 
 
 
@@ -19,7 +24,7 @@ __Result:__
 - *status* :: string : Status text
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
 [mod_mam](../../admin/configuration/modules.md#mod_mam)
@@ -55,7 +60,7 @@ __Result:__
 - *status* :: string : Status text
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[offline](admin-tags.md#offline), [purge](admin-tags.md#purge)
 
 __Examples:__
 
@@ -865,7 +870,7 @@ __Result:__
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[offline](admin-tags.md#offline), [purge](admin-tags.md#purge)
 
 __Examples:__
 
@@ -968,7 +973,7 @@ __Result:__
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
 [mod_mam](../../admin/configuration/modules.md#mod_mam)
@@ -1012,7 +1017,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
 [mod_mam](../../admin/configuration/modules.md#mod_mam)
@@ -1052,7 +1057,7 @@ __Result:__
 - *status* :: string : Status test
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
 [mod_mam](../../admin/configuration/modules.md#mod_mam)
@@ -1087,7 +1092,7 @@ __Result:__
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[offline](admin-tags.md#offline), [purge](admin-tags.md#purge)
 
 __Examples:__
 
@@ -1123,7 +1128,7 @@ __Result:__
 - *res* :: string : Raw result string
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[offline](admin-tags.md#offline), [purge](admin-tags.md#purge)
 
 __Examples:__
 
@@ -1159,7 +1164,7 @@ __Result:__
 - *status* :: string : Status test
 
 __Tags:__
-[purge](admin-tags.md#purge)
+[offline](admin-tags.md#offline), [purge](admin-tags.md#purge)
 
 __Examples:__
 
@@ -1955,6 +1960,44 @@ POST /api/get_loglevel
 
 HTTP/1.1 200 OK
 "warning"
+~~~
+
+
+
+
+## get_mam_count 🟤
+
+<!-- md:version added in [24.10](../../archive/24.10/index.md) -->
+
+Get number of MAM messages in a local user archive
+
+__Arguments:__
+
+- *user* :: string
+- *host* :: string
+
+__Result:__
+
+- *value* :: integer : Number
+
+__Tags:__
+[mam](admin-tags.md#mam)
+
+__Module:__
+[mod_mam](../../admin/configuration/modules.md#mod_mam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/get_mam_count
+{
+  "user": "aaaaa",
+  "host": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+5
 ~~~
 
 
@@ -6957,8 +7000,9 @@ HTTP/1.1 200 OK
 
 
 
-## update
+## update 🟤
 
+<!-- md:version improved in [24.10](../../archive/24.10/index.md) -->
 
 Update the given module
 
