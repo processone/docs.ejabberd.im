@@ -252,6 +252,7 @@ listen:
   -
     port: 5349
     module: ejabberd_stun
+    tls: true
     certfile: /etc/ejabberd/server.pem
 ```
 
