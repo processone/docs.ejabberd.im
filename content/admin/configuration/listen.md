@@ -269,30 +269,6 @@ listen:
     module: ejabberd_stun
 ```
 
-You also need to configure DNS SRV records properly so clients can
-easily discover a STUN/TURN server serving your XMPP domain. Refer to
-section
-[`DNS Discovery of a Server`](https://tools.ietf.org/html/rfc5389#section-9)
-of [`RFC 5389`](https://tools.ietf.org/html/rfc5389) and section
-[`Creating an Allocation`](https://tools.ietf.org/html/rfc5766#section-6)
-of [`RFC 5766`](https://tools.ietf.org/html/rfc5766) for details.
-
-Example DNS SRV configuration for STUN only:
-
-``` sh
-_stun._udp   IN SRV  0 0 3478 stun.example.com.
-_stun._tcp   IN SRV  0 0 3478 stun.example.com.
-_stuns._tcp  IN SRV  0 0 5349 stun.example.com.
-```
-
-And you should also add these in the case if TURN is enabled:
-
-``` sh
-_turn._udp   IN SRV  0 0 3478 turn.example.com.
-_turn._tcp   IN SRV  0 0 3478 turn.example.com.
-_turns._tcp  IN SRV  0 0 5349 turn.example.com.
-```
-
 ## ejabberd_sip
 
 
