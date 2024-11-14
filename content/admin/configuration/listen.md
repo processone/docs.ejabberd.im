@@ -243,11 +243,11 @@ Example configuration with disabled TURN functionality (STUN only):
 ``` yaml
 listen:
   -
-    port: 3478
+    port: 5478
     transport: udp
     module: ejabberd_stun
   -
-    port: 3478
+    port: 5478
     module: ejabberd_stun
   -
     port: 5349
@@ -262,7 +262,7 @@ enabled if TURN is enabled. Here, only UDP section is shown:
 ``` yaml
 listen:
   -
-    port: 3478
+    port: 5478
     transport: udp
     use_turn: true
     turn_ipv4_address: 10.20.30.1
@@ -532,7 +532,7 @@ For example, the following simple configuration defines:
 
 - Port 5269 listens for s2s connections with STARTTLS. The socket is set for IPv6 instead of IPv4.
 
-- Port 3478 listens for STUN requests over UDP.
+- Port 5478 listens for STUN requests over UDP.
 
 - Port 5280 listens for HTTP requests, and serves the HTTP-Bind (BOSH) service.
 
@@ -570,7 +570,7 @@ listen:
     shaper: s2s_shaper
     max_stanza_size: 131072
   -
-    port: 3478
+    port: 5478
     transport: udp
     module: ejabberd_stun
   -
