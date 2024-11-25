@@ -296,7 +296,7 @@ This example module requires the QRCodeEx Elixir library, and adds a simple web 
 Using [ejabberd-contrib](modules.md#ejabberd-contrib) it's possible to install additional ejabberd modules without compiling ejabberd, or requiring ejabberd source code.
 This is useful if you install ejabberd using binary installers or a container image.
 
-And it's possible to write a custom module and [Add your module](modules.md#add-your-module) to an existing ejabberd installation...
+And it's possible to write a custom module and [add your module](modules.md#add-module-to-ejabberd-modules) to an existing ejabberd installation...
 
 Let's write a new ejabberd module in elixir, compile and install in an existing ejabberd deployment without requiring its source code.
 This example module adds a simple section listing PIDs in the users page in ejabberd WebAdmin.
