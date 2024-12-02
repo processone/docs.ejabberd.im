@@ -5,8 +5,11 @@ search:
 
 # Modules Options
 
-> This section describes modules options of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). The modules
-that changed in this version are marked with 🟤.
+!!! info "Please note"
+
+    This section describes modules options of ejabberd [24.10](../../archive/24.10/index.md).35.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+
+    The modules that changed in this version are marked with 🟤.
 
 mod\_adhoc
 ----------
@@ -1192,7 +1195,8 @@ mod\_matrix\_gw
 <!-- md:version added in [24.02](../../archive/24.02/index.md) -->
 
 
-[Matrix](https://matrix.org/) gateway.
+[Matrix](https://matrix.org/) gateway. Erlang/OTP 25 or higher is
+required to use this module.
 
 __Available options:__
 

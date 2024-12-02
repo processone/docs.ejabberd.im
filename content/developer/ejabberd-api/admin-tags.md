@@ -1,6 +1,8 @@
 # API Tags
 
-> This section enumerates the API tags of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+!!! info "Please note"
+
+    This section enumerates the API tags of ejabberd [24.10](../../archive/24.10/index.md).35.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
