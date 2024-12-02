@@ -173,7 +173,7 @@ $(TOPLEVEL): $(TTOPLEVEL)
 	# Split paragraph of suboptions, it's nicer to read
 	sed -i 's/^-   \*\*\(.*\)\*\*: \*\([^*]*\)\* \(.*\)/-   **\1**: *\2*  \n    \3/g' $(TTOPLEVEL)
 	# Add disclaimer about Archive page for older ejabberd releases
-	sed -i 's|\(This section.*\)\. |> \1. '$(ARCHIVESTRING)' |g' $(TTOPLEVEL)
+	sed -i -z 's|\(This section.*\)\. \(The\)\n\(options.*\)|!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)'\n\n    \2 \3|g' $(TTOPLEVEL)
 	# Convert *`mod_something`* into a link to modules section
 	sed -i 's|\*`mod_\([a-z_]*\)`\*|[mod_\1](modules.md#mod_\1)|g' $(TTOPLEVEL)
 	# Convert *`something`* API into a link to API Reference
@@ -214,7 +214,7 @@ $(MODULES): $(TMODULES)
 	# Convert _`url|something`_ into a relative link
 	sed -i 's|\*`\(.*\)\|\(.*\)`\*|[\2](\1)|g' $(TMODULES)
 	# Add disclaimer about Archive page for older ejabberd releases
-	sed -i 's|\(This section.*\)\. |> \1. '$(ARCHIVESTRING)' |g' $(TMODULES)
+	sed -i -z 's|\(This section.*\)\. \(The modules\)\n\(that changed.*\)|!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)'\n\n    \2 \3|g' $(TMODULES)
 	# Convert note to div HTML elements
 	sed -i 's|\*Note\* about this option: \(.*\)\.|<!-- md:version \1 -->\n|g' $(TMODULES)
 	# Link to Archive when mentioning an ejabberd release 2x.xx
@@ -233,7 +233,7 @@ $(API): $(TAPI)
 	sed -i 's/^__Module:__/__Module:__\nCLEANLINES/g' $(TAPI)
 	sed -i '/^CLEANLINES/{N;N;N;//d}' $(TAPI)
 	# Add disclaimer about Archive page for older ejabberd releases
-	sed -i 's|\(This section.*\)\. |> \1. '$(ARCHIVESTRING)' |g' $(TAPI)
+	sed -i 's|\(This section.*\)\. \(.*\).|!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)'\n\n    \2|g' $(TAPI)
 	# Convert note to div HTML elements
 	sed -i 's|\*Note\* about this command: \(.*\)\.|\n<!-- md:version \1 -->|g' $(TAPI)
 	# Link to Archive when mentioning an ejabberd release 2x.xx
@@ -257,7 +257,7 @@ $(TAGS): $(TTAGS)
 	# Convert _`something`_ API into a link to API Reference
 	sed -i 's|_`\([a-z0-9_]*\)`_|[\1](admin-api.md#\1)|g' $(TTAGS)
 	# Add disclaimer about Archive page for older ejabberd releases
-	sed -i 's|\(This section.*\)\. |> \1. '$(ARCHIVESTRING)' |g' $(TTAGS)
+	sed -i 's|\(This section.*\)\. |!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)' |g' $(TTAGS)
 	cp $(TTAGS) $(TAGS)
 
 #.

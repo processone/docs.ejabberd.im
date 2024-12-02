@@ -1,6 +1,8 @@
 # Listen Options
 
-> This section describes the most recent ejabberd version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+!!! info "Please note"
+
+    This section describes the most recent ejabberd version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
 This is a detailed description of each option allowed by the listening
 modules:
