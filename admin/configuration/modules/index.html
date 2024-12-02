@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
     
     
       
@@ -7610,10 +7610,11 @@
 
 
 <h1 id="modules-options">Modules Options<a class="headerlink" href="#modules-options" title="Permanent link">¶</a></h1>
-<blockquote>
-<p>This section describes modules options of ejabberd <a href="../../../archive/24.10/">24.10</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>. The modules
-that changed in this version are marked with 🟤.</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">Please note</p>
+<p>This section describes modules options of ejabberd <a href="../../../archive/24.10/">24.10</a>.35.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>.</p>
+<p>The modules that changed in this version are marked with 🟤.</p>
+</div>
 <a id="mod-adhoc"></a><h2 id="mod_adhoc">mod_adhoc<a class="headerlink" href="#mod_adhoc" title="Permanent link">¶</a></h2>
 <p>This module implements <a href="https://xmpp.org/extensions/xep-0050.html">XEP-0050: Ad-Hoc
 Commands</a>. It’s an auxiliary
@@ -8759,7 +8760,8 @@ default value is <em>false</em>.</p>
 </ul>
 <a id="mod-matrix-gw"></a><h2 id="mod_matrix_gw">mod_matrix_gw<a class="headerlink" href="#mod_matrix_gw" title="Permanent link">¶</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"></path></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/24.02/">24.02</a></span></span></p>
-<p><a href="https://matrix.org/">Matrix</a> gateway.</p>
+<p><a href="https://matrix.org/">Matrix</a> gateway. Erlang/OTP 25 or higher is
+required to use this module.</p>
 <p><strong>Available options:</strong></p>
 <ul>
 <li>

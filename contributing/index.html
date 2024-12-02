@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
     
     
       
@@ -6623,10 +6623,11 @@ support platforms, the best being <a href="https://stackoverflow.com/questions/t
 </ul>
 <p>To save your and our time, we will systematically close all issues that are requests for general
 support and redirect people to the section you are reading right now.</p>
-<p>Other channels for support are:
-- ejabberd XMPP room: <a href="xmpp:ejabberd@conference.process-one.net">ejabberd@conference.process-one.net</a>
-- <a href="https://process-one.net/logs/ejabberd@conference.process-one.net/">ejabberd XMPP room logs</a>
-- <a href="https://lists.jabber.ru/mailman/listinfo/ejabberd">ejabberd Mailing List</a></p>
+<p>Other channels for support are:</p>
+<ul>
+<li>ejabberd XMPP room: <a href="xmpp:ejabberd@conference.process-one.net">ejabberd@conference.process-one.net</a></li>
+<li><a href="https://lists.jabber.ru/mailman/listinfo/ejabberd">ejabberd Mailing List</a></li>
+</ul>
 <h3 id="found-an-issue-or-bug">Found an Issue or Bug?<a class="headerlink" href="#found-an-issue-or-bug" title="Permanent link">&para;</a></h3>
 <p>If you find a bug in the source code, you can help us by submitting an issue to our
 <a href="https://github.com/processone/ejabberd">GitHub Repository</a>. Even better, you can submit a Pull Request with a fix.</p>
@@ -6647,7 +6648,7 @@ the effort we can spend fixing issues and adding new features, by not reporting 
 make it easier to understand and categorize the issue.</p>
 <h2 id="pull-request-submission-guidelines">Pull Request Submission Guidelines<a class="headerlink" href="#pull-request-submission-guidelines" title="Permanent link">&para;</a></h2>
 <p>By submitting a pull request for a code or doc contribution, you need to have the right
-to grant your contribution's copyright license to ProcessOne. Please check <a href="https://www.process-one.net/resources/ejabberd-cla.pdf">ProcessOne CLA</a>
+to grant your contribution's copyright license to ProcessOne. Please check <a href="https://cla.process-one.net/">ProcessOne CLA</a>
 for details.</p>
 <p>Before you submit your pull request consider the following guidelines:</p>
 <ul>
@@ -6656,16 +6657,22 @@ for details.</p>
 <li>Create the <a href="https://docs.ejabberd.im/developer/">development environment</a></li>
 <li>
 <p>Make your changes in a new git branch:</p>
-<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-fix-branch<span class="w"> </span>master
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-fix-branch<span class="w"> </span>master
 </span></code></pre></div>
-* Test your changes and, if relevant, expand the automated test suite.
-* Create your patch commit, including appropriate test cases.
-* If the changes affect public APIs, change or add relevant <a href="https://github.com/processone/docs.ejabberd.im">documentation</a>.
-* Commit your changes using a descriptive commit message.</p>
-<p><div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-a
-</span></code></pre></div>
-  Note: the optional commit <code>-a</code> command line option will automatically "add" and "rm" edited files.</p>
 </li>
+<li>
+<p>Test your changes and, if relevant, expand the automated test suite.</p>
+</li>
+<li>Create your patch commit, including appropriate test cases.</li>
+<li>If the changes affect public APIs, change or add relevant <a href="https://github.com/processone/docs.ejabberd.im">documentation</a>.</li>
+<li>
+<p>Commit your changes using a descriptive commit message.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-a
+</span></code></pre></div>
+</li>
+</ul>
+<p>Note: the optional commit <code>-a</code> command line option will automatically "add" and "rm" edited files.</p>
+<ul>
 <li>
 <p>Push your branch to GitHub:</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>my-fix-branch
@@ -6673,7 +6680,7 @@ for details.</p>
 </li>
 <li>
 <p>In GitHub, send a pull request to <code>ejabberd:master</code>. This will trigger the automated testing.
-We will also notify you if you have not yet signed the <a href="https://www.process-one.net/resources/ejabberd-cla.pdf">contribution agreement</a>.</p>
+We will also notify you if you have not yet signed the <a href="https://cla.process-one.net/">contribution agreement</a>.</p>
 </li>
 <li>
 <p>If you find that the tests have failed, look into the logs to find out
@@ -6703,7 +6710,7 @@ iterations that might be interesting to see side-by-side.</p>
 <h2 id="signing-the-contributor-license-agreement-cla">Signing the Contributor License Agreement (CLA)<a class="headerlink" href="#signing-the-contributor-license-agreement-cla" title="Permanent link">&para;</a></h2>
 <p>Upon submitting a Pull Request, we will ask you to sign our CLA if you haven't done
 so before. It's a quick process, we promise, and you will be able to do it all online</p>
-<p>You can read <a href="https://www.process-one.net/resources/ejabberd-cla.pdf">ProcessOne Contribution License Agreement</a> in PDF.</p>
+<p>Here's a link to the  <a href="https://cla.process-one.net/">ProcessOne Contribution License Agreement</a>.</p>
 <p>This is part of the legal framework of the open-source ecosystem that adds some red tape,
 but protects both the contributor and the company / foundation behind the project. It also
 gives us the option to relicense the code with a more permissive license in the future.</p>

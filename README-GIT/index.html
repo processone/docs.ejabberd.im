@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
     
     
       
@@ -6559,18 +6559,22 @@
 robust, scalable and extensible realtime platform built using <a href="https://www.erlang.org/">Erlang/OTP</a>,
 that includes <a href="https://xmpp.org/">XMPP</a> Server, <a href="https://mqtt.org/">MQTT</a> Broker and <a href="https://en.wikipedia.org/wiki/Session_Initiation_Protocol">SIP</a> Service.</p>
 <p>Check the features in <a href="https://ejabberd.im/">ejabberd.im</a>, <a href="https://docs.ejabberd.im/admin/introduction/">ejabberd Docs</a>,
-<a href="https://www.process-one.net/en/ejabberd/">ejabberd at ProcessOne</a>, and the list of <a href="https://www.process-one.net/en/ejabberd/protocols/">supported protocols in ProcessOne</a>
+<a href="https://www.process-one.net/ejabberd/">ejabberd at ProcessOne</a>, and the list of <a href="https://www.process-one.net/ejabberd-features/">supported protocols in ProcessOne</a>
 and <a href="https://xmpp.org/software/servers/ejabberd/">XMPP.org</a>.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>There are several ways to install ejabberd:</p>
 <ul>
 <li>Source code: compile yourself, see <a href="../admin/install/source/">COMPILE</a></li>
-<li>Installers: <a href="https://www.process-one.net/en/ejabberd/downloads/">ProcessOne Download</a> and <a href="https://github.com/processone/ejabberd/releases">GitHub Releases</a> for releases, <a href="https://github.com/processone/ejabberd/actions/workflows/installers.yml">GitHub Actions</a> for master branch (run/deb/rpm for x64 and arm64)</li>
-<li><code>ecs</code> container image: <a href="https://hub.docker.com/r/ejabberd/ecs/">Docker Hub</a> and <a href="https://github.com/processone/docker-ejabberd/pkgs/container/ecs">Github Packages</a>, see <a href="https://github.com/processone/docker-ejabberd/tree/master/ecs#readme">ecs README</a> (for x64)</li>
-<li><code>ejabberd</code> container image: <a href="https://github.com/processone/ejabberd/pkgs/container/ejabberd">Github Packages</a> for releases and master branch, see <a href="../CONTAINER/">CONTAINER</a> (for x64 and arm64)</li>
+<li>Installers:</li>
+<li><a href="https://www.process-one.net/download/ejabberd/">ProcessOne Download Page</a> or <a href="https://github.com/processone/ejabberd/releases">GitHub Releases</a> for releases.</li>
+<li><a href="https://github.com/processone/ejabberd/actions/workflows/installers.yml">GitHub Actions</a> for master branch (<code>run</code>/<code>deb</code>/<code>rpm</code> for <code>x64</code> and <code>arm64</code>)</li>
+<li>Docker Containers:</li>
+<li><code>ecs</code> container image: <a href="https://hub.docker.com/r/ejabberd/ecs/">Docker Hub</a> and <a href="https://github.com/processone/docker-ejabberd/pkgs/container/ecs">Github Packages</a>, see <a href="https://github.com/processone/docker-ejabberd/tree/master/ecs#readme">ecs README</a> (for <code>x64</code>)</li>
+<li><code>ejabberd</code> container image: <a href="https://github.com/processone/ejabberd/pkgs/container/ejabberd">Github Packages</a> for releases and master branch, see <a href="../CONTAINER/">CONTAINER</a> (for <code>x64</code> and <code>arm64</code>)</li>
 <li>Using your <a href="https://docs.ejabberd.im/admin/install/os-package/">Operating System package</a></li>
 <li>Using the <a href="https://docs.ejabberd.im/admin/install/homebrew/">Homebrew</a> package manager</li>
 </ul>
+<p>More info can be found in the <code>Installation</code> part of <a href="https://docs.ejabberd.im/admin/install/">ejabberd Docs</a>.</p>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <p>Please check the <a href="https://docs.ejabberd.im">ejabberd Docs</a> website.</p>
 <p>When compiling from source code, you can get some help with:</p>
@@ -6587,14 +6591,16 @@ please check <a href="../contributing/">CONTRIBUTING</a> for details.</p>
 <p>Translations can be improved online <a href="https://hosted.weblate.org/projects/ejabberd/ejabberd-po/">using Weblate</a>
 or in your local machine as explained in <a href="https://docs.ejabberd.im/developer/extending-ejabberd/localization/">Localization</a>.</p>
 <p>Documentation for developers is available in <a href="https://docs.ejabberd.im/developer/">ejabberd docs: Developers</a>.</p>
-<p>There are nightly builds of ejabberd, both for <code>master</code> branch and for Pull Requests:
-- Installers: go to <a href="https://github.com/processone/ejabberd/actions/workflows/installers.yml">GitHub Actions: Installers</a>, open the most recent commit, on the bottom of that commit page, download the <code>ejabberd-packages.zip</code> artifact.
-- <code>ejabberd</code> container image: go to <a href="https://github.com/processone/ejabberd/pkgs/container/ejabberd">ejabberd Github Packages</a></p>
+<p>There are nightly builds of ejabberd, both for <code>master</code> branch and for Pull Requests:</p>
+<ul>
+<li>Installers: go to <a href="https://github.com/processone/ejabberd/actions/workflows/installers.yml">GitHub Actions: Installers</a>, open the most recent commit, on the bottom of that commit page, download the <code>ejabberd-packages.zip</code> artifact.</li>
+<li><code>ejabberd</code> container image: go to <a href="https://github.com/processone/ejabberd/pkgs/container/ejabberd">ejabberd Github Packages</a></li>
+</ul>
 <p>Security reports or concerns should preferably be reported privately,
 please send an email to the address: contact at process-one dot net
-or some other method from <a href="https://www.process-one.net/en/company/contact/">ProcessOne Contact</a>.</p>
-<p>For commercial offering and support, including <a href="https://www.process-one.net/en/ejabberd/">ejabberd Business Edition</a>
-and <a href="https://fluux.io/">Fluux (ejabberd in the Cloud)</a>, please check <a href="https://www.process-one.net/en/ejabberd/">ProcessOne ejabberd page</a>.</p>
+or some other method from <a href="https://www.process-one.net/contact/">ProcessOne Contact</a>.</p>
+<p>For commercial offering and support, including <a href="https://www.process-one.net/ejabberd/">ejabberd Business Edition</a>
+and <a href="https://fluux.io/">Fluux (ejabberd in the Cloud)</a>, please check <a href="https://www.process-one.net/ejabberd/">ProcessOne ejabberd page</a>.</p>
 <h2 id="community">Community<a class="headerlink" href="#community" title="Permanent link">&para;</a></h2>
 <p>There are several places to get in touch with other ejabberd developers and administrators:</p>
 <ul>
@@ -6603,8 +6609,10 @@ and <a href="https://fluux.io/">Fluux (ejabberd in the Cloud)</a>, please check 
 <li><a href="https://stackoverflow.com/questions/tagged/ejabberd?sort=newest">Stack Overflow</a></li>
 </ul>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
-<p>ejabberd is released under the GNU General Public License v2 (see <a href="../COPYING/">COPYING</a>),
-and <a href="https://github.com/processone/ejabberd-po/">ejabberd translations</a> under MIT License.</p>
+<ul>
+<li><code>ejabberd</code> is released under the <strong>GNU General Public License v2</strong> (see <a href="../COPYING/">COPYING</a>)</li>
+<li><a href="https://github.com/processone/ejabberd-po/">ejabberd translations</a> under <strong>MIT License</strong>.</li>
+</ul>
 
 
 
