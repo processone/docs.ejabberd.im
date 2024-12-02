@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [24.10](../../archive/24.10/index.md).35.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟤.
 
