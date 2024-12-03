@@ -131,8 +131,10 @@ $(TXML): $(TTXT)
 	# Workaround required since Pandoc 2.8
 	# https://github.com/jgm/pandoc/commit/9b5082b086359a63b92bdb40166fa59dea27afe1
 	# Alternate workaround would be: https://github.com/jgm/pandoc/issues/6906
-	sed -i 's|<warning><simpara>\(.*\)</simpara></warning>|<blockquote><formalpara><title>Warning</title><simpara>\1</simpara></formalpara></blockquote>|g' $(TXML)
-	sed -i 's|<note><simpara>\(.*\)</simpara></note>|<blockquote><formalpara><title>Note</title><simpara>\1</simpara></formalpara></blockquote>|g' $(TXML)
+	#
+	# This converts WARNING and NOTE to admonitions (!!! warning), later we will convert the blockquote
+	sed -i 's|<warning><simpara>\(.*\)</simpara></warning>|!!! warning<blockquote><formalpara><simpara>\1</simpara></formalpara></blockquote>|g' $(TXML)
+	sed -i 's|<note><simpara>\(.*\)</simpara></note>|!!! note<blockquote><formalpara><simpara>\1</simpara></formalpara></blockquote>|g' $(TXML)
 
 temp/man-02 temp/man-03: $(TXML)
 	pandoc -f docbook -t markdown_strict+fenced_code_blocks --markdown-headings=setext $(TXML) -o temp/man-tmp1
@@ -215,6 +217,8 @@ $(MODULES): $(TMODULES)
 	sed -i 's|\*`\(.*\)\|\(.*\)`\*|[\2](\1)|g' $(TMODULES)
 	# Add disclaimer about Archive page for older ejabberd releases
 	sed -i -z 's|\(This section.*\)\. \(The modules\)\n\(that changed.*\)|!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)'\n\n    \2 \3|g' $(TMODULES)
+	# WARNING and NOTE were converted to admonitions (!!! warning), and now let's convert blockquote
+	sed -i 's|^> |    |g' $(TMODULES)
 	# Convert note to div HTML elements
 	sed -i 's|\*Note\* about this option: \(.*\)\.|<!-- md:version \1 -->\n|g' $(TMODULES)
 	# Link to Archive when mentioning an ejabberd release 2x.xx
