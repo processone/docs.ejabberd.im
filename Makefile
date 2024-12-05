@@ -177,7 +177,7 @@ $(TOPLEVEL): $(TTOPLEVEL)
 	# Add disclaimer about Archive page for older ejabberd releases
 	sed -i -z 's|\(This section.*\)\. \(The\)\n\(options.*\)|!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)'\n\n    \2 \3|g' $(TTOPLEVEL)
 	# Convert *`mod_something`* into a link to modules section
-	sed -i 's|\*`mod_\([a-z_]*\)`\*|[mod_\1](modules.md#mod_\1)|g' $(TTOPLEVEL)
+	sed -i 's|\*`mod_\([a-z0-9_]*\)`\*|[mod_\1](modules.md#mod_\1)|g' $(TTOPLEVEL)
 	# Convert *`something`* API into a link to API Reference
 	sed -i 's|\*`\([a-z0-9_]*\)`\* API|[\1](/developer/ejabberd-api/admin-api/#\1) API|g' $(TTOPLEVEL)
 	# Convert *`something`* into a link to top-level options
@@ -190,6 +190,17 @@ $(TOPLEVEL): $(TTOPLEVEL)
 	sed -i 's| \([2-9][0-9]\)\.\([0-9][0-9]\)| [\1.\2](../../archive/\1.\2/index.md)|g' $(TTOPLEVEL)
 	# Add search boost:
 	sed -i '1i---\nsearch:\n  boost: 1\n---\n' $(TTOPLEVEL)
+	# Convert *italic* into `verbatim`:
+	sed -i 's/\*\*\([\\_[:alnum:]]*\)\*\*: /OPTIONNAME\1OPTIONNAME: /g' $(TTOPLEVEL)
+	sed -i 's/\([^\*]\)\*\(["-{@\\[:alnum:]][[:alnum:][:blank:]\@\\()}:"|\|\.,-_]*\)\*\([^\*]\)/\1`\2`\3/g' $(TTOPLEVEL)
+	sed -i 's/^\*\([^\*][[:print:]]*\)\*/`\1`/g' $(TTOPLEVEL)
+	sed -i 's/^\*\\\[\([[:print:]]*\)\\\]\*/`[\1]`/g' $(TTOPLEVEL)
+	sed -i 's/\([^\*]\)\*\([[:alnum:]][[:alnum:][:blank:]:|\|\.-]*\)\*$$/\1`\2`/g' $(TTOPLEVEL)
+	sed -i 's/OPTIONNAME\([\\_[:alnum:]]*\)OPTIONNAME: /**\1**: /g' $(TTOPLEVEL)
+	# Remove unneeded escape characters \ in verbatim text:
+	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TTOPLEVEL)
+	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TTOPLEVEL)
+	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TTOPLEVEL)
 	cp $(TTOPLEVEL) $(TOPLEVEL)
 
 $(MODULES): $(TMODULES)
@@ -228,6 +239,17 @@ $(MODULES): $(TMODULES)
 	vim $(TMODULES) -c "set expandtab" -c "g/\*\*Examples\*\*:\n\n.*\n\n.*\~\~\~ yaml\n.*/normal V}}}>" -c "wq"
 	# Add search boost:
 	sed -i '1i---\nsearch:\n  boost: 1\n---\n' $(TMODULES)
+	# Convert *italic* into `verbatim`:
+	sed -i 's/\*\*\([\\_[:alnum:]]*\)\*\*: /OPTIONNAME\1OPTIONNAME: /g' $(TMODULES)
+	sed -i 's/\([^\*]\)\*\(["-{@\\[:alnum:]][[:alnum:][:blank:]\@\\()[{}:"|\|\.,-_]*\)\*\([^\*]\)/\1`\2`\3/g' $(TMODULES)
+	sed -i 's/^\*\([^\*][[:print:]]*\)\*/`\1`/g' $(TMODULES)
+	sed -i 's/^\*\\\[\([[:print:]]*\)\\\]\*/`[\1]`/g' $(TMODULES)
+	sed -i 's/\([^\*]\)\*\([[:alnum:]][[:alnum:][:blank:]:|\|\.-]*\)\*$$/\1`\2`/g' $(TMODULES)
+	sed -i 's/OPTIONNAME\([\\_[:alnum:]]*\)OPTIONNAME: /**\1**: /g' $(TMODULES)
+	# Remove unneeded escape characters \ in verbatim text:
+	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TMODULES)
+	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TMODULES)
+	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TMODULES)
 	cp $(TMODULES) $(MODULES)
 
 $(API): $(TAPI)
