@@ -172,7 +172,7 @@ HTTP/1.1 200 OK
 Ban an account
 
 
-This command kicks the account sessions, sets a random password, and stores ban details in the account private storage. This command requires mod_private to be enabled. Check also [get_ban_details](#get_ban_details) API and `_unban_account`_ API.
+This command kicks the account sessions, sets a random password, and stores ban details in the account private storage. This command requires [mod_private](../../admin/configuration/modules.md#mod_private) to be enabled. Check also [get_ban_details](#get_ban_details) API and [unban_account](#unban_account) API.
 
 __Arguments:__
 
@@ -3196,7 +3196,7 @@ HTTP/1.1 200 OK
 Remove and shutdown Node from the running cluster
 
 
-This command can be run from any running node of the cluster, even the node to be removed. In the removed node, this command works only when using ejabberdctl, not mod_http_api or other code that runs inside the same ejabberd node that will leave.
+This command can be run from any running node of the cluster, even the node to be removed. In the removed node, this command works only when using ejabberdctl, not [mod_http_api](../../admin/configuration/modules.md#mod_http_api) or other code that runs inside the same ejabberd node that will leave.
 
 __Arguments:__
 
@@ -6682,9 +6682,10 @@ HTTP/1.1 200 OK
 ## stop_kindly
 
 
-Inform users and rooms, wait, and stop the server
+Stop kindly the server (informing users)
 
 
+Inform users and rooms, wait, and stop the server.
 Provide the delay in seconds, and the announcement quoted, for example: 
 `ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"`
 
