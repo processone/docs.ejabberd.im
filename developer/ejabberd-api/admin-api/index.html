@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
     
     
       
@@ -9830,7 +9830,7 @@
 <a id="ban-account"></a><h2 id="ban_account">ban_account<a class="headerlink" href="#ban_account" title="Permanent link">¶</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"></path></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/24.06/">24.06</a></span></span></p>
 <p>Ban an account</p>
-<p>This command kicks the account sessions, sets a random password, and stores ban details in the account private storage. This command requires mod_private to be enabled. Check also <a href="#get_ban_details">get_ban_details</a> API and <code>_unban_account</code>_ API.</p>
+<p>This command kicks the account sessions, sets a random password, and stores ban details in the account private storage. This command requires <a href="../../../admin/configuration/modules/#mod_private">mod_private</a> to be enabled. Check also <a href="#get_ban_details">get_ban_details</a> API and <a href="#unban_account">unban_account</a> API.</p>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><em>user</em> :: string : User name to ban</li>
@@ -11877,7 +11877,7 @@
 </span></code></pre></div>
 <a id="leave-cluster"></a><h2 id="leave_cluster">leave_cluster<a class="headerlink" href="#leave_cluster" title="Permanent link">¶</a></h2>
 <p>Remove and shutdown Node from the running cluster</p>
-<p>This command can be run from any running node of the cluster, even the node to be removed. In the removed node, this command works only when using ejabberdctl, not mod_http_api or other code that runs inside the same ejabberd node that will leave.</p>
+<p>This command can be run from any running node of the cluster, even the node to be removed. In the removed node, this command works only when using ejabberdctl, not <a href="../../../admin/configuration/modules/#mod_http_api">mod_http_api</a> or other code that runs inside the same ejabberd node that will leave.</p>
 <p><strong>Arguments:</strong></p>
 <ul>
 <li><em>node</em> :: string : Nodename of the node to kick from the cluster</li>
@@ -14245,8 +14245,9 @@ This can be useful when an external tool is used for log rotation. See <a href="
 </span><span id="__span-171-7"><a href="#__codelineno-171-7" id="__codelineno-171-7" name="__codelineno-171-7"></a><span class="s2">""</span>
 </span></code></pre></div>
 <a id="stop-kindly"></a><h2 id="stop_kindly">stop_kindly<a class="headerlink" href="#stop_kindly" title="Permanent link">¶</a></h2>
-<p>Inform users and rooms, wait, and stop the server</p>
-<p>Provide the delay in seconds, and the announcement quoted, for example: 
+<p>Stop kindly the server (informing users)</p>
+<p>Inform users and rooms, wait, and stop the server.
+Provide the delay in seconds, and the announcement quoted, for example: 
 <code>ejabberdctl stop_kindly 60 \"The server will stop in one minute.\"</code></p>
 <p><strong>Arguments:</strong></p>
 <ul>
