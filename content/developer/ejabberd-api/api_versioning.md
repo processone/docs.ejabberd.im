@@ -2,6 +2,12 @@
 
 <!-- md:version added in [24.02](../../archive/24.02/index.md) -->
 
+## API Versions History
+
+- [API v2](../../archive/24.06/admin-api.md) ([changes](../../archive/24.06/admin-tags.md#v2)) was introduced in ejabberd [24.06](../../archive/24.06/index.md)
+- [API v1](../../archive/24.02/admin-api.md) ([changes](../../archive/24.02/admin-tags.md#v1)) was introduced in ejabberd [24.02](../../archive/24.02/index.md)
+- [API v0](../../archive/23.10/admin-api.md) was used in ejabberd [23.10](../../archive/23.10/index.md)
+
 ## Introduction
 
 It is possible to support different versions of the ejabberd API.
