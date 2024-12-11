@@ -59,6 +59,7 @@ help:
 	@echo ""
 	@echo "  serve    Start MkDocs web server"
 	@echo "  dev      Start MkDocs web server in development mode"
+	@echo "  live     Start MkDocs web server in live mode"
 	@echo ""
 	@echo "  test     Test URLs"
 	@echo ""
@@ -310,6 +311,9 @@ $(ZIP): site
 
 dev:
 	mkdocs serve --no-livereload --dirty
+
+live:
+	mkdocs serve --dirty
 
 serve:
 	mkdocs serve
