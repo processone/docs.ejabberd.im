@@ -183,6 +183,7 @@ make help
 There are several ways to install and run ejabberd after it's compiled from source code:
 
 - [system install](#system-install)
+- [system install a release](#system-install-release)
 - building a [production](#production-release) release
 - building a [development](#production-release) release
 - don't install at all, just [start](#start) with `make relive`
@@ -229,6 +230,26 @@ The created files and directories depend on the options provided to [`./configur
 
     - `ejabberd.log`:   ejabberd service log
     - `erlang.log`:   Erlang/OTP system log
+
+### System Install Release
+
+<!-- md:version added in [24.02](../../archive/24.02/index.md) -->
+
+This builds a [production release](#production-release),
+and then performs a [system install](#system-install) of that release,
+obtaining a result similar to the one mentioned in the previous section.
+
+Simply run:
+
+``` sh
+make install-rel
+```
+
+The benefits of `install-rel` over `install`:
+
+- this uses OTP release code from rebar/rebar3/mix, and consequently requires less code in our `Makefile.in` file
+- `uninstall-rel` correctly deletes all the library files
+- the `*.beam` files are smaller as debug information is stripped
 
 ### Production Release
 
@@ -339,6 +360,19 @@ make
 ```
 
 Check also the guide for [Installing ejabberd development environment on OSX](../../developer/install-osx.md)
+
+### man
+
+ejabberd includes a man page which documents the toplevel and modules options,
+the same information that is published in the
+[Top-Level Options](../../configuration/toplevel.md) and
+[Modules Options](../../configuration/modules.md) sections.
+
+The man file can be read locally with:
+
+``` sh
+man -l man/ejabberd.yml.5
+```
 
 ### rebar with old Erlang
 
