@@ -927,6 +927,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#system-install-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Install Release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#production-release" class="md-nav__link">
     <span class="md-ellipsis">
       Production Release
@@ -981,6 +990,15 @@
   <a href="#macos" class="md-nav__link">
     <span class="md-ellipsis">
       macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#man" class="md-nav__link">
+    <span class="md-ellipsis">
+      man
     </span>
   </a>
   
@@ -6632,6 +6650,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#system-install-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Install Release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#production-release" class="md-nav__link">
     <span class="md-ellipsis">
       Production Release
@@ -6686,6 +6713,15 @@
   <a href="#macos" class="md-nav__link">
     <span class="md-ellipsis">
       macOS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#man" class="md-nav__link">
+    <span class="md-ellipsis">
+      man
     </span>
   </a>
   
@@ -6925,6 +6961,7 @@ This account needs a HOME directory, because the <a href="../../guide/security/#
 <p>There are several ways to install and run ejabberd after it's compiled from source code:</p>
 <ul>
 <li><a href="#system-install">system install</a></li>
+<li><a href="#system-install-release">system install a release</a></li>
 <li>building a <a href="#production-release">production</a> release</li>
 <li>building a <a href="#production-release">development</a> release</li>
 <li>don't install at all, just <a href="#start">start</a> with <code>make relive</code></li>
@@ -6978,6 +7015,20 @@ This account needs a HOME directory, because the <a href="../../guide/security/#
 </ul>
 </li>
 </ul>
+<h3 id="system-install-release">System Install Release<a class="headerlink" href="#system-install-release" title="Permanent link">&para;</a></h3>
+<p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/24.02/">24.02</a></span></span></p>
+<p>This builds a <a href="#production-release">production release</a>,
+and then performs a <a href="#system-install">system install</a> of that release,
+obtaining a result similar to the one mentioned in the previous section.</p>
+<p>Simply run:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>make<span class="w"> </span>install-rel
+</span></code></pre></div>
+<p>The benefits of <code>install-rel</code> over <code>install</code>:</p>
+<ul>
+<li>this uses OTP release code from rebar/rebar3/mix, and consequently requires less code in our <code>Makefile.in</code> file</li>
+<li><code>uninstall-rel</code> correctly deletes all the library files</li>
+<li>the <code>*.beam</code> files are smaller as debug information is stripped</li>
+</ul>
 <h3 id="production-release">Production Release<a class="headerlink" href="#production-release" title="Permanent link">&para;</a></h3>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/21.07/">21.07</a></span></span></p>
 <p>You can build an OTP release that includes ejabberd, Erlang/OTP
@@ -6985,7 +7036,7 @@ and all the required erlang dependencies in a single tar.gz file.
 Then you can copy that file to another machine that has the same machine
 architecture, and run ejabberd without installing anything else.</p>
 <p>To build that production release, run:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>make<span class="w"> </span>prod
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>make<span class="w"> </span>prod
 </span></code></pre></div>
 <p>If you provided to <a href="#configure"><code>./configure</code></a> the option
  <code>--with-rebar</code> to use rebar3 or mix, this will directly
@@ -6994,13 +7045,13 @@ produce a tar.gz that you can copy.</p>
 builds an OTP production release,
 copies the resulting package to a temporary path,
 and starts ejabberd there:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./autogen.sh
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>./configure<span class="w"> </span>--with-rebar<span class="o">=</span>rebar3
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>make
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>make<span class="w"> </span>prod
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>mkdir<span class="w"> </span><span class="nv">$HOME</span>/eja-release
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>tar<span class="w"> </span>-xzvf<span class="w"> </span>_build/prod/ejabberd-*.tar.gz<span class="w"> </span>-C<span class="w"> </span><span class="nv">$HOME</span>/eja-release
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nv">$HOME</span>/eja-release/bin/ejabberdctl<span class="w"> </span>live
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>./autogen.sh
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>./configure<span class="w"> </span>--with-rebar<span class="o">=</span>rebar3
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>make
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>make<span class="w"> </span>prod
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>mkdir<span class="w"> </span><span class="nv">$HOME</span>/eja-release
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>tar<span class="w"> </span>-xzvf<span class="w"> </span>_build/prod/ejabberd-*.tar.gz<span class="w"> </span>-C<span class="w"> </span><span class="nv">$HOME</span>/eja-release
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nv">$HOME</span>/eja-release/bin/ejabberdctl<span class="w"> </span>live
 </span></code></pre></div>
 <h3 id="development-release">Development Release<a class="headerlink" href="#development-release" title="Permanent link">&para;</a></h3>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">new in <a href="../../../archive/21.07/">21.07</a></span></span></p>
@@ -7015,11 +7066,11 @@ if you register the account admin@localhost it has admin rights...</p>
 to manage the compilation,
 builds an OTP development release,
 and starts ejabberd there:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>./autogen.sh
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>./configure<span class="w"> </span>--with-rebar<span class="o">=</span>mix
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>make
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>make<span class="w"> </span>dev
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>_build/dev/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>./autogen.sh
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>./configure<span class="w"> </span>--with-rebar<span class="o">=</span>mix
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>make
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>make<span class="w"> </span>dev
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>_build/dev/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
 </span></code></pre></div>
 <h2 id="specific-notes">Specific notes<a class="headerlink" href="#specific-notes" title="Permanent link">&para;</a></h2>
 <h3 id="asdf">asdf<a class="headerlink" href="#asdf" title="Permanent link">&para;</a></h3>
@@ -7038,11 +7089,11 @@ In that case, you cannot install ejabberd globally in the system, and you cannot
 <p>Use <a href="#system-install">system install</a>, but install it locally:</p>
 </li>
 </ul>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>./autogen.sh
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/eja-install<span class="w"> </span>--enable-user
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>make
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>make<span class="w"> </span>install
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nv">$HOME</span>/eja-install/sbin/ejabberdctl<span class="w"> </span>live
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>./autogen.sh
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/eja-install<span class="w"> </span>--enable-user
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>make
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>make<span class="w"> </span>install
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nv">$HOME</span>/eja-install/sbin/ejabberdctl<span class="w"> </span>live
 </span></code></pre></div>
 <h3 id="bsd">BSD<a class="headerlink" href="#bsd" title="Permanent link">&para;</a></h3>
 <p>The command to compile ejabberd in BSD systems is <code>gmake</code>.</p>
@@ -7052,14 +7103,22 @@ some old scripts where included in ejabberd source for NetBSD compilation, and y
 <h3 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h3>
 <p>If compiling from sources on Mac OS X, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
 The best approach is to use <a href="https://brew.sh/">Homebrew</a> to install your dependencies, then exports your custom path to let configure and make be aware of them.</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>brew<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>erlang<span class="w"> </span>elixir<span class="w"> </span>openssl<span class="w"> </span>expat<span class="w"> </span>libyaml<span class="w"> </span>libiconv<span class="w"> </span>libgd<span class="w"> </span>sqlite<span class="w"> </span>rebar<span class="w"> </span>rebar3<span class="w"> </span>automake<span class="w"> </span>autoconf
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib&quot;</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>./configure
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>make
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>brew<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>erlang<span class="w"> </span>elixir<span class="w"> </span>openssl<span class="w"> </span>expat<span class="w"> </span>libyaml<span class="w"> </span>libiconv<span class="w"> </span>libgd<span class="w"> </span>sqlite<span class="w"> </span>rebar<span class="w"> </span>rebar3<span class="w"> </span>automake<span class="w"> </span>autoconf
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib&quot;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>./configure
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>make
 </span></code></pre></div>
 <p>Check also the guide for <a href="../../../developer/install-osx/">Installing ejabberd development environment on OSX</a></p>
+<h3 id="man">man<a class="headerlink" href="#man" title="Permanent link">&para;</a></h3>
+<p>ejabberd includes a man page which documents the toplevel and modules options,
+the same information that is published in the
+<a href="../../configuration/toplevel.md">Top-Level Options</a> and
+<a href="../../configuration/modules.md">Modules Options</a> sections.</p>
+<p>The man file can be read locally with:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>man<span class="w"> </span>-l<span class="w"> </span>man/ejabberd.yml.5
+</span></code></pre></div>
 <h3 id="rebar-with-old-erlang">rebar with old Erlang<a class="headerlink" href="#rebar-with-old-erlang" title="Permanent link">&para;</a></h3>
 <p>The ejabberd source code package includes <code>rebar</code> and <code>rebar3</code> binaries
 that work with Erlang/OTP 24.0 up to 27.</p>
@@ -7067,8 +7126,8 @@ that work with Erlang/OTP 24.0 up to 27.</p>
 you can install it from your operating system,
 or compile yourself from the rebar source code,
 or download the old binary from ejabberd 21.12:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar3
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar3
 </span></code></pre></div>
 <h2 id="start">Start<a class="headerlink" href="#start" title="Permanent link">&para;</a></h2>
 <p>You can use the <code>ejabberdctl</code> command line administration script to
@@ -7076,19 +7135,19 @@ start and stop ejabberd. Some examples, depending on your installation method:</
 <ul>
 <li>
 <p>When <a href="#system-install">installed in the system</a>:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ejabberdctl<span class="w"> </span>start
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>/sbin/ejabberdctl<span class="w"> </span>start
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ejabberdctl<span class="w"> </span>start
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/sbin/ejabberdctl<span class="w"> </span>start
 </span></code></pre></div></p>
 </li>
 <li>
 <p>When <a href="#production-release">built an OTP production release</a>:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>start
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>start
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Start interactively without installing or building OTP release:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>make<span class="w"> </span>relive
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>make<span class="w"> </span>relive
 </span></code></pre></div></p>
 </li>
 </ul>
