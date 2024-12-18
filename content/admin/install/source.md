@@ -365,8 +365,8 @@ Check also the guide for [Installing ejabberd development environment on OSX](..
 
 ejabberd includes a man page which documents the toplevel and modules options,
 the same information that is published in the
-[Top-Level Options](../../configuration/toplevel.md) and
-[Modules Options](../../configuration/modules.md) sections.
+[Top-Level Options](../configuration/toplevel.md) and
+[Modules Options](../configuration/modules.md) sections.
 
 The man file can be read locally with:
 

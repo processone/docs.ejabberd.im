@@ -196,6 +196,7 @@ nav:
     - FAQ: ejabberd-faq/index.md
     - Use Cases: use-cases/index.md
     - License: COPYING.md
+    - Security: SECURITY.md
     - Quickstart: README-GIT.md
   - Install:
     - admin/install/index.md

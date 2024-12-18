@@ -94,6 +94,7 @@ $(READMES):
 	cp $(EJA)/CODE_OF_CONDUCT.md content/contributing/CODE_OF_CONDUCT.md
 	cp $(EJA)/CONTRIBUTORS.md content/contributing/CONTRIBUTORS.md
 	cp $(EJA)/README.md content/README-GIT.md
+	cp $(EJA)/SECURITY.md content/SECURITY.md
 	sed -i '1i# Readme\n' content/README-GIT.md
 	sed -i 's|(COMPILE.md)|(admin/install/source.md)|g' content/README-GIT.md
 	sed -i 's|(COPYING)|(COPYING.md)|g' content/README-GIT.md
@@ -176,7 +177,7 @@ $(TOPLEVEL): $(TTOPLEVEL)
 	# Split paragraph of suboptions, it's nicer to read
 	sed -i 's/^-   \*\*\(.*\)\*\*: \*\([^*]*\)\* \(.*\)/-   **\1**: *\2*  \n    \3/g' $(TTOPLEVEL)
 	# Add disclaimer about Archive page for older ejabberd releases
-	sed -i -z 's|\(This section.*\)\. \(The\)\n\(options.*\)|!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)'\n\n    \2 \3|g' $(TTOPLEVEL)
+	sed -i -z 's|\(This section.*\)\. \(The options\)\n\(that changed.*\)|!!! info "Please note"\n\n    \1. '$(ARCHIVESTRING)'\n\n    \2 \3|g' $(TTOPLEVEL)
 	# Convert *`mod_something`* into a link to modules section
 	sed -i 's|\*`mod_\([a-z0-9_]*\)`\*|[mod_\1](modules.md#mod_\1)|g' $(TTOPLEVEL)
 	# Convert *`something`* API into a link to API Reference
