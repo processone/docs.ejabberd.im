@@ -92,6 +92,7 @@ of the new ejabberd version if you need to update those tables yourself manually
 The corresponsing ugprade notes are available in the release notes of each release,
 and also available in the [Archive](../../archive/index.md) section:
 
+- [Upgrading from ejabberd 24.10 to 24.12](../../archive/24.12/upgrade.md)
 - [Upgrading from ejabberd 24.07 to 24.10](../../archive/24.10/upgrade.md)
 - [Upgrading from ejabberd 24.06 to 24.07](../../archive/24.07/upgrade.md)
 - [Upgrading from ejabberd 24.02 to 24.06](../../archive/24.06/upgrade.md)
