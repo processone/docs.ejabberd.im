@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -519,6 +519,9 @@
 * [clear_cache](admin-api.md#clear_cache)
 
 
+* [evacuate_kindly](admin-api.md#evacuate_kindly)
+
+
 * [gc](admin-api.md#gc)
 
 
@@ -705,12 +708,6 @@
 * [srg_create](admin-api.md#srg_create)
 
 
-* [subscribe_room](admin-api.md#subscribe_room)
-
-
-* [subscribe_room_many](admin-api.md#subscribe_room_many)
-
-
 ## v2
 
 
@@ -727,6 +724,36 @@
 
 
 * [unban_account](admin-api.md#unban_account)
+
+
+## v3
+
+
+* [get_room_affiliations](admin-api.md#get_room_affiliations)
+
+
+* [muc_register_nick](admin-api.md#muc_register_nick)
+
+
+* [muc_unregister_nick](admin-api.md#muc_unregister_nick)
+
+
+* [set_room_affiliation](admin-api.md#set_room_affiliation)
+
+
+* [status_list](admin-api.md#status_list)
+
+
+* [status_list_host](admin-api.md#status_list_host)
+
+
+* [subscribe_room](admin-api.md#subscribe_room)
+
+
+* [subscribe_room_many](admin-api.md#subscribe_room_many)
+
+
+* [unsubscribe_room](admin-api.md#unsubscribe_room)
 
 
 ## vcard

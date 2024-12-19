@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟤
 
@@ -291,7 +291,7 @@ Change an option in a MUC room
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 - *option* :: string : Option name
 - *value* :: string : Value to assign
@@ -312,7 +312,7 @@ __Examples:__
 ~~~ json
 POST /api/change_room_option
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com",
   "option": "members_only",
   "value": "true"
@@ -521,7 +521,7 @@ __Arguments:__
 
 __Result:__
 
-- *connected_users* :: [sessions::string] : List of users sessions
+- *connected_users* :: [sessions::string] : List of users sessions full JID
 
 __Tags:__
 [session](admin-tags.md#session)
@@ -537,8 +537,8 @@ POST /api/connected_users
 
 HTTP/1.1 200 OK
 [
-  "user1@example.com",
-  "user2@example.com"
+  "user1@example.com/Home",
+  "user2@example.com/54134"
 ]
 ~~~
 
@@ -634,7 +634,7 @@ __Arguments:__
 
 __Result:__
 
-- *connected_users_vhost* :: [sessions::string]
+- *connected_users_vhost* :: [sessions::string] : List of sessions full JIDs
 
 __Tags:__
 [session](admin-tags.md#session)
@@ -734,7 +734,7 @@ Create a MUC room name@service in host
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 - *host* :: string : Server host
 
@@ -754,7 +754,7 @@ __Examples:__
 ~~~ json
 POST /api/create_room
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com",
   "host": "example.com"
 }
@@ -776,7 +776,7 @@ The syntax of `affiliations` is: `Type:JID,Type:JID`. The syntax of `subscribers
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 - *host* :: string : Server host
 - *options* :: [{name::string, value::string}] : List of options
@@ -797,7 +797,7 @@ __Examples:__
 ~~~ json
 POST /api/create_room_with_opts
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com",
   "host": "localhost",
   "options": [
@@ -823,8 +823,9 @@ HTTP/1.1 200 OK
 
 
 
-## create_rooms_file
+## create_rooms_file 🟤
 
+<!-- md:version improved in [24.12](../../archive/24.12/index.md) -->
 
 Create the rooms indicated in file
 
@@ -1397,7 +1398,7 @@ Destroy a MUC room
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 
 __Result:__
@@ -1416,7 +1417,7 @@ __Examples:__
 ~~~ json
 POST /api/destroy_room
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com"
 }
 
@@ -1558,6 +1559,46 @@ POST /api/dump_table
 
 HTTP/1.1 200 OK
 "Success"
+~~~
+
+
+
+
+## evacuate_kindly 🟤
+
+<!-- md:version added in [24.12](../../archive/24.12/index.md) -->
+
+Evacuate kindly all users (kick and prevent login)
+
+
+Inform users and rooms, don't allow login, wait, restart the server, and don't allow new logins.
+Provide the delay in seconds, and the announcement quoted, for example: 
+`ejabberdctl evacuate_kindly 60 \"The server will stop in one minute.\"`
+
+__Arguments:__
+
+- *delay* :: integer : Seconds to wait
+- *announcement* :: string : Announcement to send, with quotes
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[server](admin-tags.md#server)
+
+__Examples:__
+
+
+~~~ json
+POST /api/evacuate_kindly
+{
+  "delay": 60,
+  "announcement": "Server will stop now."
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 
@@ -1969,7 +2010,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_mam_count 🟤
+## get_mam_count
 
 <!-- md:version added in [24.10](../../archive/24.10/index.md) -->
 
@@ -2141,7 +2182,7 @@ Get affiliation of a user in MUC room
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 - *jid* :: string : User JID
 
@@ -2161,7 +2202,7 @@ __Examples:__
 ~~~ json
 POST /api/get_room_affiliation
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com",
   "jid": "user1@example.com"
 }
@@ -2173,22 +2214,23 @@ HTTP/1.1 200 OK
 
 
 
-## get_room_affiliations
+## get_room_affiliations 🟤
 
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 Get the list of affiliations of a MUC room
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 
 __Result:__
 
-- *affiliations* :: [{username::string, domain::string, affiliation::string, reason::string}] : The list of affiliations with username, domain, affiliation and reason
+- *affiliations* :: [{jid::string, affiliation::string, reason::string}] : The list of affiliations with jid, affiliation and reason
 
 __Tags:__
-[muc_room](admin-tags.md#muc_room)
+[muc_room](admin-tags.md#muc_room), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -2199,15 +2241,14 @@ __Examples:__
 ~~~ json
 POST /api/get_room_affiliations
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com"
 }
 
 HTTP/1.1 200 OK
 [
   {
-    "username": "user1",
-    "domain": "example.com",
+    "jid": "user1@example.com",
     "affiliation": "member",
     "reason": "member"
   }
@@ -2225,7 +2266,7 @@ Get history of messages stored inside MUC room state
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 
 __Result:__
@@ -2244,7 +2285,7 @@ __Examples:__
 ~~~ json
 POST /api/get_room_history
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com"
 }
 
@@ -2271,7 +2312,7 @@ Get the list of occupants of a MUC room
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 
 __Result:__
@@ -2290,7 +2331,7 @@ __Examples:__
 ~~~ json
 POST /api/get_room_occupants
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com"
 }
 
@@ -2314,7 +2355,7 @@ Get the number of occupants of a MUC room
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 
 __Result:__
@@ -2333,7 +2374,7 @@ __Examples:__
 ~~~ json
 POST /api/get_room_occupants_number
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com"
 }
 
@@ -2351,7 +2392,7 @@ Get options from a MUC room
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 
 __Result:__
@@ -2370,7 +2411,7 @@ __Examples:__
 ~~~ json
 POST /api/get_room_options
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com"
 }
 
@@ -2425,23 +2466,12 @@ POST /api/get_roster
 HTTP/1.1 200 OK
 [
   {
-    "jid": "aaaaa",
-    "nick": "bbbbb",
-    "subscription": "ccccc",
-    "pending": "ddddd",
+    "jid": "user2@localhost",
+    "nick": "User 2",
+    "subscription": "none",
+    "pending": "subscribe",
     "groups": [
-      "eeeee",
-      "fffff"
-    ]
-  },
-  {
-    "jid": "ggggg",
-    "nick": "hhhhh",
-    "subscription": "iiiii",
-    "pending": "jjjjj",
-    "groups": [
-      "kkkkk",
-      "lllll"
+      "Group1"
     ]
   }
 ]
@@ -2477,8 +2507,8 @@ __Examples:__
 ~~~ json
 POST /api/get_roster_count
 {
-  "user": "aaaaa",
-  "host": "bbbbb"
+  "user": "sun",
+  "host": "localhost"
 }
 
 HTTP/1.1 200 OK
@@ -2495,7 +2525,7 @@ List subscribers of a MUC conference
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 
 __Result:__
@@ -2514,7 +2544,7 @@ __Examples:__
 ~~~ json
 POST /api/get_subscribers
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com"
 }
 
@@ -3053,6 +3083,18 @@ HTTP/1.1 200 OK
 <!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
 
 Join our local node into the cluster handled by Node
+
+
+This command returns immediately,
+			even before the joining process has
+			completed. Consequently, if you are using
+			`ejabberdctl` (or some `CTL_ON_` container
+			environment variables) to run more commands
+			afterwards, you may want to precede them with
+			the [started](admin-tags.md#started) command to ensure the
+			clustering process has completed before
+			proceeding. For example: `join_cluster
+			ejabberd@main` > `started` > `list_cluster`.
 
 __Arguments:__
 
@@ -3793,7 +3835,7 @@ __Arguments:__
 
 __Result:__
 
-- *rooms* :: [room::string] : List of rooms
+- *rooms* :: [room::string] : List of rooms JIDs
 
 __Tags:__
 [muc](admin-tags.md#muc)
@@ -3871,23 +3913,25 @@ HTTP/1.1 200 OK
 
 
 
-## muc_register_nick
+## muc_register_nick 🟤
 
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 Register a nick to a User JID in a MUC service
 
 __Arguments:__
 
-- *nick* :: string : Nick
-- *jid* :: string : User JID
-- *service* :: string : Service
+- *nick* :: string : nick
+- *user* :: string : user name
+- *host* :: string : user host
+- *service* :: string : MUC service
 
 __Result:__
 
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc](admin-tags.md#muc)
+[muc](admin-tags.md#muc), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -3899,7 +3943,8 @@ __Examples:__
 POST /api/muc_register_nick
 {
   "nick": "Tim",
-  "jid": "tim@example.org",
+  "user": "tim",
+  "host": "example.org",
   "service": "conference.example.org"
 }
 
@@ -3910,14 +3955,16 @@ HTTP/1.1 200 OK
 
 
 
-## muc_unregister_nick
+## muc_unregister_nick 🟤
 
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 Unregister the nick registered by that account in the MUC service
 
 __Arguments:__
 
-- *jid* :: string : User JID
+- *user* :: string : user name
+- *host* :: string : user host
 - *service* :: string : MUC service
 
 __Result:__
@@ -3925,7 +3972,7 @@ __Result:__
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc](admin-tags.md#muc)
+[muc](admin-tags.md#muc), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -3936,7 +3983,8 @@ __Examples:__
 ~~~ json
 POST /api/muc_unregister_nick
 {
-  "jid": "tim@example.org",
+  "user": "tim",
+  "host": "example.org",
   "service": "conference.example.org"
 }
 
@@ -5300,7 +5348,7 @@ Since ejabberd [20.12](../../archive/20.12/index.md), this command is asynchrono
 
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : Room name
 - *service* :: string : MUC service
 - *password* :: string : Password, or `none`
 - *reason* :: string : Reason text, or `none`
@@ -5322,7 +5370,7 @@ __Examples:__
 ~~~ json
 POST /api/send_direct_invitation
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com",
   "password": "",
   "reason": "Check this out!",
@@ -5670,24 +5718,29 @@ HTTP/1.1 200 OK
 
 
 
-## set_room_affiliation
+## set_room_affiliation 🟤
 
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 Change an affiliation in a MUC room
 
+
+If affiliation is `none`, then the affiliation is removed.
+
 __Arguments:__
 
-- *name* :: string : Room name
+- *room* :: string : room name
 - *service* :: string : MUC service
-- *jid* :: string : User JID
-- *affiliation* :: string : Affiliation to set
+- *user* :: string : user name
+- *host* :: string : user host
+- *affiliation* :: string : affiliation to set
 
 __Result:__
 
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](admin-tags.md#muc_room)
+[muc_room](admin-tags.md#muc_room), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -5698,9 +5751,10 @@ __Examples:__
 ~~~ json
 POST /api/set_room_affiliation
 {
-  "name": "room1",
+  "room": "room1",
   "service": "conference.example.com",
-  "jid": "user2@example.com",
+  "user": "sun",
+  "host": "localhost",
   "affiliation": "member"
 }
 
@@ -6488,8 +6542,9 @@ HTTP/1.1 200 OK
 
 
 
-## status_list
+## status_list 🟤
 
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 List of logged users with this status
 
@@ -6499,10 +6554,10 @@ __Arguments:__
 
 __Result:__
 
-- *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
+- *users* :: [{jid::string, priority::integer, status::string}]
 
 __Tags:__
-[session](admin-tags.md#session)
+[session](admin-tags.md#session), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
@@ -6519,9 +6574,7 @@ POST /api/status_list
 HTTP/1.1 200 OK
 [
   {
-    "user": "peter",
-    "host": "myserver.com",
-    "resource": "tka",
+    "jid": "peter@myserver.com/tka",
     "priority": 6,
     "status": "Busy"
   }
@@ -6531,8 +6584,9 @@ HTTP/1.1 200 OK
 
 
 
-## status_list_host
+## status_list_host 🟤
 
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 List of users logged in host with their statuses
 
@@ -6543,10 +6597,10 @@ __Arguments:__
 
 __Result:__
 
-- *users* :: [{user::string, host::string, resource::string, priority::integer, status::string}]
+- *users* :: [{jid::string, priority::integer, status::string}]
 
 __Tags:__
-[session](admin-tags.md#session)
+[session](admin-tags.md#session), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
@@ -6564,9 +6618,7 @@ POST /api/status_list_host
 HTTP/1.1 200 OK
 [
   {
-    "user": "peter",
-    "host": "myserver.com",
-    "resource": "tka",
+    "jid": "peter@myserver.com/tka",
     "priority": 6,
     "status": "Busy"
   }
@@ -6749,17 +6801,19 @@ HTTP/1.1 200 OK
 
 
 
-## subscribe_room
+## subscribe_room 🟤
 
-<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 Subscribe to a MUC conference
 
 __Arguments:__
 
-- *user* :: string : User JID
-- *nick* :: string : a user's nick
-- *room* :: string : the room to subscribe
+- *user* :: string : user name
+- *host* :: string : user host
+- *nick* :: string : user nick
+- *room* :: string : room name
+- *service* :: string : MUC service
 - *nodes* :: [node::string] : list of nodes
 
 __Result:__
@@ -6767,7 +6821,7 @@ __Result:__
 - *nodes* :: [node::string] : The list of nodes that has subscribed
 
 __Tags:__
-[muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v1](admin-tags.md#v1)
+[muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -6778,9 +6832,11 @@ __Examples:__
 ~~~ json
 POST /api/subscribe_room
 {
-  "user": "tom@localhost",
+  "user": "tom",
+  "host": "localhost",
   "nick": "Tom",
-  "room": "room1@conference.localhost",
+  "room": "room1",
+  "service": "conference.localhost",
   "nodes": [
     "urn:xmpp:mucsub:nodes:messages",
     "urn:xmpp:mucsub:nodes:affiliations"
@@ -6797,9 +6853,9 @@ HTTP/1.1 200 OK
 
 
 
-## subscribe_room_many
+## subscribe_room_many 🟤
 
-<!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 Subscribe several users to a MUC conference
 
@@ -6808,8 +6864,9 @@ This command accepts up to 50 users at once (this is configurable with the [mod_
 
 __Arguments:__
 
-- *users* :: [{jid::string, nick::string}] : Users JIDs and nicks
-- *room* :: string : the room to subscribe
+- *users* :: [{user::string, host::string, nick::string}] : List of tuples with users name, host and nick
+- *room* :: string : room name
+- *service* :: string : MUC service
 - *nodes* :: [node::string] : nodes separated by commas: `,`
 
 __Result:__
@@ -6817,7 +6874,7 @@ __Result:__
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v1](admin-tags.md#v1)
+[muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -6830,15 +6887,18 @@ POST /api/subscribe_room_many
 {
   "users": [
     {
-      "jid": "tom@localhost",
+      "user": "tom",
+      "host": "localhost",
       "nick": "Tom"
     },
     {
-      "jid": "jerry@localhost",
+      "user": "jerry",
+      "host": "localhost",
       "nick": "Jerry"
     }
   ],
-  "room": "room1@conference.localhost",
+  "room": "room1",
+  "service": "conference.localhost",
   "nodes": [
     "urn:xmpp:mucsub:nodes:messages",
     "urn:xmpp:mucsub:nodes:affiliations"
@@ -6968,22 +7028,25 @@ HTTP/1.1 200 OK
 
 
 
-## unsubscribe_room
+## unsubscribe_room 🟤
 
+<!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
 Unsubscribe from a MUC conference
 
 __Arguments:__
 
-- *user* :: string : User JID
-- *room* :: string : the room to subscribe
+- *user* :: string : user name
+- *host* :: string : user host
+- *room* :: string : room name
+- *service* :: string : MUC service
 
 __Result:__
 
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub)
+[muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v3](admin-tags.md#v3)
 
 __Module:__
 [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
@@ -6994,8 +7057,10 @@ __Examples:__
 ~~~ json
 POST /api/unsubscribe_room
 {
-  "user": "tom@localhost",
-  "room": "room1@conference.localhost"
+  "user": "tom",
+  "host": "localhost",
+  "room": "room1",
+  "service": "conference.localhost"
 }
 
 HTTP/1.1 200 OK
@@ -7005,7 +7070,7 @@ HTTP/1.1 200 OK
 
 
 
-## update 🟤
+## update
 
 <!-- md:version improved in [24.10](../../archive/24.10/index.md) -->
 

@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟤.
 
@@ -1054,7 +1054,7 @@ default value is `1 minute`.
 
 Whether to use the
 [new SQL schema](database.md#default-and-new-schemas). All schemas are
-located at <https://github.com/processone/ejabberd/tree/24.10/sql>.
+located at <https://github.com/processone/ejabberd/tree/24.12/sql>.
 There are two schemas available. The default legacy schema stores one
 XMPP domain into one ejabberd database. The `new` schema can handle
 several XMPP domains in a single ejabberd database. Using this `new`
@@ -1290,12 +1290,16 @@ See description of [queue_type](#queue_type) option for the explanation. The
 default value is the value defined in [queue_type](#queue_type) or `ram` if the
 latter is not set.
 
-## redis\_server
+## redis\_server 🟤
 
-*Hostname*  
+`Host | IP Address | Unix Socket Path`  
 
-A hostname or an IP address of the [Redis](database.md#redis)
-server.The default is *localhost*.
+<!-- md:version improved in [24.12](../../archive/24.12/index.md) -->
+
+A hostname, IP address or
+unix domain socket file of the [Redis](database.md#redis) server. Setup
+the path to unix domain socket like: `"unix:/path/to/socket"`. The
+default value is `localhost`.
 
 ## registration\_timeout
 

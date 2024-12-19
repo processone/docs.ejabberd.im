@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [24.10](../../archive/24.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟤.
 
@@ -173,6 +173,38 @@ only.
 
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
+
+mod\_auth\_fast 🟤
+------------------
+
+<!-- md:version added in [24.12](../../archive/24.12/index.md) -->
+
+
+The module adds support for [XEP-0480: Fast Authentication Streamlining
+Tokens](https://xmpp.org/extensions/xep-0484.html) that allows users to
+authenticate using self managed tokens.
+
+__Available options:__
+
+- **db\_type**: `mnesia | sql`  
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
+only.
+
+- **token\_lifetime**: `timeout()`  
+Time that tokens will be keept, measured from it’s creation time.
+Default value set to 30 days
+
+- **token\_refresh\_age**: `timeout()`  
+This time determines age of token, that qualifies for automatic refresh.
+Default value set to 1 day
+
+__**Example**:__
+
+~~~ yaml
+modules:
+  mod_auth_fast:
+    token_timeout: 14days
+~~~
 
 mod\_avatar
 -----------
@@ -756,7 +788,15 @@ request\_handlers, add a vN. For example: `/api/v2: mod_http_api`.
 To run a command, send a POST request to the corresponding URL:
 `http://localhost:5280/api/COMMAND-NAME`
 
-The module has no options.
+__Available options:__
+
+- **default\_version 🟤`*: `integer() | string()*  
+<!-- md:version added in [24.12](../../archive/24.12/index.md) -->
+ What API version to use when
+none is specified in the URL path. If setting an ejabberd version, it
+will use the latest API version that was available in that ejabberd
+version. For example, setting `"24.06"` in this option implies `2`. The
+default value is the latest version.
 
 __**Example**:__
 
@@ -769,7 +809,8 @@ listen:
       /api: mod_http_api
 
 modules:
-  mod_http_api: {}
+  mod_http_api:
+    default_version: 2
 ~~~
 
 mod\_http\_fileserver
@@ -2363,8 +2404,8 @@ only.
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
-mod\_privilege 🟤
------------------
+mod\_privilege
+--------------
 
 <!-- md:version improved in [24.10](../../archive/24.10/index.md) -->
 
@@ -3050,8 +3091,8 @@ modules:
     store_current_id: false
 ~~~
 
-mod\_s2s\_bidi 🟤
------------------
+mod\_s2s\_bidi
+--------------
 
 <!-- md:version added in [24.10](../../archive/24.10/index.md) -->
 
@@ -3105,8 +3146,8 @@ modules:
       deny: all
 ~~~
 
-mod\_scram\_upgrade 🟤
-----------------------
+mod\_scram\_upgrade
+-------------------
 
 <!-- md:version added in [24.10](../../archive/24.10/index.md) -->
 
