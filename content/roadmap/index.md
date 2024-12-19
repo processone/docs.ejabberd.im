@@ -7,6 +7,10 @@ hide:
 
 ## In the Works
 
+- **Support for joining Matrix rooms as MUC rooms**
+
+- **Remove support for Erlang/OTP older than 25**
+
 ## Planned
 
 - **Remove support for Rebar2**
@@ -17,6 +21,11 @@ hide:
 ## Released
 
 ### 2024
+
+- [24.12](https://www.process-one.net/blog/ejabberd-24-12/)
+    - XEP-0484: Fast Authentication Streamlining Tokens
+    - Deprecation schedule for Erlang/OTP older than 25.0
+    - Commands API v3
 
 - [24.10](https://www.process-one.net/blog/ejabberd-24-10/)
     - New module [mod_s2s_bidi](../admin/configuration/modules.md/#mod_s2s_bidi)
