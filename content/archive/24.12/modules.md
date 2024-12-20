@@ -186,7 +186,7 @@ authenticate using self managed tokens.
 
 __Available options:__
 
-- **db\_type**: `mnesia | sql`  
+- **db\_type**: `mnesia`  
 Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
 
@@ -203,7 +203,7 @@ __**Example**:__
 ~~~ yaml
 modules:
   mod_auth_fast:
-    token_timeout: 14days
+    token_lifetime: 14days
 ~~~
 
 mod\_avatar
