@@ -8032,7 +8032,7 @@ authenticate using self managed tokens.</p>
 <p><strong>Available options:</strong></p>
 <ul>
 <li>
-<p><strong>db_type</strong>: <code>mnesia | sql</code><br/>
+<p><strong>db_type</strong>: <code>mnesia</code><br/>
 Same as top-level <a href="../toplevel/#default_db">default_db</a> option, but applied to this module
 only.</p>
 </li>
@@ -8050,7 +8050,7 @@ Default value set to 1 day</p>
 <p><strong><strong>Example</strong>:</strong></p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">modules</span><span class="p">:</span>
 </span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="nt">mod_auth_fast</span><span class="p">:</span>
-</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="nt">token_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14days</span>
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="nt">token_lifetime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14days</span>
 </span></code></pre></div>
 <a id="mod-avatar"></a><h2 id="mod_avatar">mod_avatar<a class="headerlink" href="#mod_avatar" title="Permanent link">¶</a></h2>
 <p>The purpose of the module is to cope with legacy and modern XMPP clients
