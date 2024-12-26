@@ -12,7 +12,7 @@ to compile, install, upgrade and uninstall those additional modules.
 
     - `$HOME/.ejabberd-modules` when [compiling source code](../install/source.md) or using [installers](../install/binary-installer.md)
     - `/opt/ejabberd/.ejabberd-modules` in the [`ejabberd` container image](../../CONTAINER.md)
-    - `/home/ejabberd/.ejabberd-modules` in the [`ecs` container image](../../README-ECS.md)
+    - `/home/ejabberd/.ejabberd-modules` in the [`ecs` container image](../../CONTAINER.md)
 
     That path can be modified using the variable
     [CONTRIB_MODULES_PATH](https://github.com/processone/ejabberd/blob/master/ejabberdctl.cfg.example#L180)
@@ -127,7 +127,7 @@ it is defined in the `rebar.config` file.
 To download those dependencies during [module installation](#install-module),
 either `git` or `mix` is required,
 but none of them are available in the `ejabberd` or the `ecs`
-[container images](../install/container/index.md).
+[container images](../../CONTAINER.md).
 Consequently, the module installation will fail.
 The solution is quite simple: install `git` or `mix`.
 

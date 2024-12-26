@@ -202,9 +202,7 @@ nav:
     - Quickstart: README-GIT.md
   - Install:
     - admin/install/index.md
-    - Containers: admin/install/container/index.md
-    - " ejabberd Container": CONTAINER.md
-    - " ecs Container": README-ECS.md
+    - Containers: CONTAINER.md
     - Binary Installers: admin/install/binary-installer.md
     - Operating System Package: admin/install/os-package.md
     - Compile Source Code: admin/install/source.md
@@ -449,7 +447,6 @@ not_in_nav: |
   admin/ejabberdctl/muc-admin.md
   admin/guide/unattended.md
   admin/guide/xep/index.md
-  README-HUB.md
   developer/extending-ejabberd/index.md
   developer/hosts.md
   developer/xmpp-clients-bots/index.md

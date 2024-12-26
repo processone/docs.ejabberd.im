@@ -107,10 +107,6 @@ $(READMES):
 	sed -i 's|^\([a-zA-Z0-9_ ]*:\)|#### \1\n|g' content/CHANGELOG.md
 	sed -i '1i# ChangeLog\n' content/CHANGELOG.md
 	sed -i '1i---\nsearch:\n  boost: -1\n---\n' content/CHANGELOG.md
-	cp $(DOCKER)/ecs/README.md content/README-ECS.md
-	sed -i 's|# ejabberd Community Server|# `ecs` Container Image|g' content/README-ECS.md
-	sed -i 's|HUB-README.md|README-HUB.md|g' content/README-ECS.md
-	cp $(DOCKER)/ecs/HUB-README.md content/README-HUB.md
 
 #.
 #' get files

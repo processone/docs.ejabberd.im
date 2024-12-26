@@ -6,7 +6,7 @@ There are several ways to install ejabberd Community Server, depending on your n
 
 ### Container Images
 
-- [`ejabberd` and `ecs` Container Images](./container/index.md) – Ideal for Windows, macOS, Linux, ...
+- [`ejabberd` and `ecs` Container Images](../../CONTAINER.md) – Ideal for Windows, macOS, Linux, ...
 
 ### Binary Installers
 
