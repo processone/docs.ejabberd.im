@@ -180,7 +180,7 @@ mod\_auth\_fast 🟤
 <!-- md:version added in [24.12](../../archive/24.12/index.md) -->
 
 
-The module adds support for [XEP-0480: Fast Authentication Streamlining
+The module adds support for [XEP-0484: Fast Authentication Streamlining
 Tokens](https://xmpp.org/extensions/xep-0484.html) that allows users to
 authenticate using self managed tokens.
 
