@@ -180,9 +180,9 @@ mod\_auth\_fast 🟤
 <!-- md:version added in [24.12](../../archive/24.12/index.md) -->
 
 
-The module adds support for [XEP-0480: Fast Authentication Streamlining
+The module adds support for [XEP-0484: Fast Authentication Streamlining
 Tokens](https://xmpp.org/extensions/xep-0484.html) that allows users to
-authenticate using self managed tokens.
+authenticate using self-managed tokens.
 
 __Available options:__
 
@@ -191,7 +191,7 @@ Same as top-level [default_db](toplevel.md#default_db) option, but applied to th
 only.
 
 - **token\_lifetime**: `timeout()`  
-Time that tokens will be keept, measured from it’s creation time.
+Time that tokens will be kept, measured from it’s creation time.
 Default value set to 30 days
 
 - **token\_refresh\_age**: `timeout()`  
