@@ -6792,15 +6792,15 @@ Most of them are TCP ports, except the explicitely mentioned ones:</p>
 <tbody>
 <tr>
 <td style="text-align: left;">5222</td>
-<td style="text-align: left;">Jabber/XMPP client connections, plain or STARTTLS</td>
+<td style="text-align: left;">Jabber/XMPP client connections, plain or STARTTLS (<a href="../../configuration/listen/#ejabberd_c2s">ejabberd_c2s</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;">5223</td>
-<td style="text-align: left;">Jabber client connections using the old SSL method</td>
+<td style="text-align: left;">Jabber client connections, using the old SSL method (<a href="../../configuration/listen/#ejabberd_c2s">ejabberd_c2s</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;">5269</td>
-<td style="text-align: left;">Jabber/XMPP incoming server connections</td>
+<td style="text-align: left;">Jabber/XMPP incoming server connections (<a href="../../configuration/listen/#ejabberd_s2s_in">ejabberd_s2s_in</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;">5280/5443</td>
@@ -6840,11 +6840,17 @@ Most of them are TCP ports, except the explicitely mentioned ones:</p>
 </tr>
 <tr>
 <td style="text-align: left;">5210</td>
-<td style="text-align: left;">Erlang connectivity when <code>ERL_DIST_PORT</code> is set, alternative to EPMD</td>
+<td style="text-align: left;">Erlang connectivity when <code>ERL_DIST_PORT</code> is set, alternative to <a href="#epmd">epmd</a></td>
 </tr>
 </tbody>
 </table>
 <h2 id="epmd">epmd<a class="headerlink" href="#epmd" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you setup <code>ERL_DIST_PORT</code> in <code>ejabberdctl.cfg</code> to a port number
+(for example <code>5210</code>) then Erlang will listen only in that port,
+instead of starting the <code>epmd</code> program and listen in 4269 + ramdom port.</p>
+</div>
 <p><a href="https://erlang.org/doc/man/epmd.html"><code>epmd (Erlang Port Mapper Daemon)</code></a>
 is a small name server included in Erlang/OTP and used by Erlang
 programs when establishing distributed Erlang communications. <code>ejabberd</code>

@@ -1010,6 +1010,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#erlang-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erlang Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#macos" class="md-nav__link">
     <span class="md-ellipsis">
       macOS
@@ -6958,6 +6967,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#erlang-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erlang Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#macos" class="md-nav__link">
     <span class="md-ellipsis">
       macOS
@@ -7348,6 +7366,30 @@ In that case, you cannot install ejabberd globally in the system, and you cannot
 <p>You may want to check <a href="https://pkgsrc.se/chat/ejabberd/">pkgsrc.se for ejabberd</a>.</p>
 <p>Up to ejabberd <a href="../../../archive/23.04/">23.04</a>,
 some old scripts where included in ejabberd source for NetBSD compilation, and you can take a look to those files for reference in ejabberd <a href="https://github.com/processone/ejabberd/tree/23.04/examples/mtr"><code>23.04/examples/mtr/</code></a> path.</p>
+<h3 id="erlang-configuration">Erlang Configuration<a class="headerlink" href="#erlang-configuration" title="Permanent link">&para;</a></h3>
+<p>Usually ejabberd is started using the <code>ejabberdctl</code> script,
+which takes care to setup the
+<a href="https://docs.ejabberd.im/admin/guide/managing/#erlang-runtime-system">Erlang runtime system options</a>
+following your <code>ejabberdctl.cfg</code> configuration file.</p>
+<p>However, there are other methods to start ejabberd, and they use specific methods to configure those options:</p>
+<ul>
+<li>
+<p>When using rebar3 <code>make relive</code>:<br />
+system is set in <code>rebar.config</code>, apps in <code>rel/relive.config</code></p>
+</li>
+<li>
+<p>When using mix <code>make relive</code>:<br />
+system is set in <code>Makefile</code>, apps in <code>config/runtime.exs</code></p>
+</li>
+<li>
+<p>When using rebar3 <code>make dev &amp;&amp; ejabberd</code>:<br />
+system is set in <code>rel/vm.args</code>, apps in <code>rel/sys.config</code></p>
+</li>
+<li>
+<p>When using mix <code>make dev|prod &amp;&amp; ejabberd</code>:<br />
+system is set in <code>rel/vm.args.eex</code> and <code>rel/env.sh.eex</code>, apps in <code>config/runtime.exs</code></p>
+</li>
+</ul>
 <h3 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h3>
 <p>If compiling from sources on Mac OS X, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
 The best approach is to use <a href="https://brew.sh/">Homebrew</a> to install your dependencies, then exports your custom path to let configure and make be aware of them.</p>
