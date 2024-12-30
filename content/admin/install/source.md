@@ -345,6 +345,28 @@ You may want to check [pkgsrc.se for ejabberd](https://pkgsrc.se/chat/ejabberd/)
 Up to ejabberd [23.04](../../archive/23.04/index.md),
 some old scripts where included in ejabberd source for NetBSD compilation, and you can take a look to those files for reference in ejabberd [`23.04/examples/mtr/`](https://github.com/processone/ejabberd/tree/23.04/examples/mtr) path.
 
+### Erlang Configuration
+
+Usually ejabberd is started using the `ejabberdctl` script,
+which takes care to setup the
+[Erlang runtime system options](https://docs.ejabberd.im/admin/guide/managing/#erlang-runtime-system)
+following your `ejabberdctl.cfg` configuration file.
+
+However, there are other methods to start ejabberd, and they use specific methods to configure those options:
+
+- When using rebar3 `make relive`:  
+system is set in `rebar.config`, apps in `rel/relive.config`
+
+- When using mix `make relive`:  
+system is set in `Makefile`, apps in `config/runtime.exs`
+
+- When using rebar3 `make dev && ejabberd`:  
+system is set in `rel/vm.args`, apps in `rel/sys.config`
+
+- When using mix `make dev|prod && ejabberd`:  
+system is set in `rel/vm.args.eex` and `rel/env.sh.eex`, apps in `config/runtime.exs`
+
+
 ### macOS
 
 If compiling from sources on Mac OS X, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
