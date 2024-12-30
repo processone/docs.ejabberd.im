@@ -8,9 +8,9 @@ Most of them are TCP ports, except the explicitely mentioned ones:
 
 | **Port**              | **Description**                                                                             |
 |:----------------------|:--------------------------------------------------------------------------------------------|
-| 5222                  | Jabber/XMPP client connections, plain or STARTTLS                                           |
-| 5223                  | Jabber client connections using the old SSL method                                          |
-| 5269                  | Jabber/XMPP incoming server connections                                                     |
+| 5222                  | Jabber/XMPP client connections, plain or STARTTLS ([ejabberd_c2s](../configuration/listen.md#ejabberd_c2s)) |
+| 5223                  | Jabber client connections, using the old SSL method ([ejabberd_c2s](../configuration/listen.md#ejabberd_c2s)) |
+| 5269                  | Jabber/XMPP incoming server connections ([ejabberd_s2s_in](../configuration/listen.md#ejabberd_s2s_in)) |
 | 5280/5443             | HTTP/HTTPS for Web Admin and many more ([ejabberd_http](../configuration/listen.md#ejabberd_http)) |
 | 1883/8883             | MQTT/MQTTS service ([mod_mqtt](../configuration/listen.md#mod_mqtt))                        |
 | 3478/5349             | STUN+TURN/STUNS+TURNS service ([ejabberd_stun](../configuration/listen.md#ejabberd_stun))   |
@@ -20,9 +20,14 @@ Most of them are TCP ports, except the explicitely mentioned ones:
 | 7777                  | SOCKS5 file transfer proxy ([mod_proxy65](../configuration/modules.md#mod_proxy65))         |
 | 4369                  | EPMD (see [epmd](#epmd)) listens for Erlang node name requests                              |
 | random port range     | Used by [epmd](#epmd) for connections between Erlang nodes, configure with `inet_dist_listen_min` and `inet_dist_listen_max` |
-| 5210                  | Erlang connectivity when `ERL_DIST_PORT` is set, alternative to EPMD                        |
+| 5210                  | Erlang connectivity when `ERL_DIST_PORT` is set, alternative to [epmd](#epmd)               |
 
 ## epmd
+
+!!! tip
+    If you setup `ERL_DIST_PORT` in `ejabberdctl.cfg` to a port number
+    (for example `5210`) then Erlang will listen only in that port,
+    instead of starting the `epmd` program and listen in 4269 + ramdom port.
 
 [`epmd (Erlang Port Mapper Daemon)`](https://erlang.org/doc/man/epmd.html)
 is a small name server included in Erlang/OTP and used by Erlang
