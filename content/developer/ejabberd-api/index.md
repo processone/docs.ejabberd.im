@@ -24,7 +24,7 @@ All commands can be exposed through interfaces. Available interfaces are:
 - [WebAdmin](../../admin/guide/managing.md#web-admin) uses most commands to build the web pages,
 - [mod_configure](../../admin/configuration/modules.md#mod_configure) includes support for a few administrative tasks (using XMPP protocol itself through discovery and adhoc commands)
 
-The [ejabberd-contrib Github repository](https://github.com/processone/ejabberd-contrib) provides other interfaces that can be installed to execute ejabberd commands in different ways: `mod_rest` (HTTP POST service), `mod_shcommands` (ejabberd WebAdmin page).
+The [ejabberd-contrib Github repository](../../admin/guide/modules.md#ejabberd-contrib) provides other interfaces that can be installed to execute ejabberd commands in different ways: `mod_rest` (HTTP POST service), `mod_shcommands` (ejabberd WebAdmin page).
 
 Any module in ejabberd can add its own command(s) through ejabberd Erlang/Elixir API, making the whole system totally extensible. A third-party module can expose its own command(s) and feel like a real part of the system. A module that exposes commands allows server admins to expose it the way they want.
 

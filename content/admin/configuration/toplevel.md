@@ -176,7 +176,7 @@ acme:
 `true | false`  
 
 Whether to allow installation of third-party modules or not. See
-[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
+[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib)
 documentation section. The default value is `true`.
 
 ## allow\_multiple\_connections
@@ -269,7 +269,7 @@ default value is `[mnesia]`.
 
 This is used by the contributed module `ejabberd_auth_http` that can
 be installed from the
-[ejabberd-contrib](https://github.com/processone/ejabberd-contrib) Git
+[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib) Git
 repository. Please refer to that module’s README file for details.
 
 ## auth\_password\_format
@@ -764,8 +764,8 @@ format, the `Options` must be one of the following:
 <!-- md:version added in [23.10](../../archive/23.10/index.md) -->
 
 Modules to install from
-[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
-at start time. The default value is an empty list of modules: `[]`.
+[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib) at
+start time. The default value is an empty list of modules: `[]`.
 
 ## jwt\_auth\_only\_rule
 
