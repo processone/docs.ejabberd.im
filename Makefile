@@ -53,6 +53,7 @@ help:
 	@echo "  clean    Remove temporary files"
 	@echo ""
 	@echo "  extract  Extract some documentation from ejabberd (requires ejabberd running)"
+	@echo "  export   Export documentation to ecs directory"
 	@echo ""
 	@echo "  site     Generate site as HTML files"
 	@echo "  pdf      Generate PDF file of the offline site"
@@ -393,6 +394,15 @@ test:
 	#linkchecker --no-status http://127.0.0.1:8000/mkdocs/
 	export TEST=true && mkdocs build
 	#export TEST=true && export TEST_EXTERNAL=true && mkdocs build
+
+#.
+#' export
+#
+
+export:
+	cp content/CONTAINER.md ../ejabberd/CONTAINER.md
+	cp content/CONTAINER.md ../docker-ejabberd/ecs/README.md
+	sed -i 's| ghcr.io/processone/ejabberd| docker.io/ejabberd/ecs|g' ../docker-ejabberd/ecs/README.md
 
 #.
 #'
