@@ -6710,7 +6710,7 @@
 <li><a href="../../admin/guide/managing/#web-admin">WebAdmin</a> uses most commands to build the web pages,</li>
 <li><a href="../../admin/configuration/modules/#mod_configure">mod_configure</a> includes support for a few administrative tasks (using XMPP protocol itself through discovery and adhoc commands)</li>
 </ul>
-<p>The <a href="https://github.com/processone/ejabberd-contrib">ejabberd-contrib Github repository</a> provides other interfaces that can be installed to execute ejabberd commands in different ways: <code>mod_rest</code> (HTTP POST service), <code>mod_shcommands</code> (ejabberd WebAdmin page).</p>
+<p>The <a href="../../admin/guide/modules/#ejabberd-contrib">ejabberd-contrib Github repository</a> provides other interfaces that can be installed to execute ejabberd commands in different ways: <code>mod_rest</code> (HTTP POST service), <code>mod_shcommands</code> (ejabberd WebAdmin page).</p>
 <p>Any module in ejabberd can add its own command(s) through ejabberd Erlang/Elixir API, making the whole system totally extensible. A third-party module can expose its own command(s) and feel like a real part of the system. A module that exposes commands allows server admins to expose it the way they want.</p>
 <p>ejabberd commands are universal, extensible and widely available through various configurable entrypoints.</p>
 <p><em>Note: The XML-RPC API still works but is deprecated in favor of the ReST API. You should migrate to ReST if you are using it.</em></p>
