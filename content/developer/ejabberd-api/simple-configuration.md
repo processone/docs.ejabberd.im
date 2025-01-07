@@ -40,7 +40,8 @@ Access is thus generally limited by IP addresses, either restricted to localhost
           - "!start"
     ```
 
-    _Note: stop and start commands are disabled in that example as they are usually restricted to ejabberdctl command-line tool. They are consider too sensitive to be exposed through API._
+    !!! note
+        The `stop` and `start` commands are disabled in that example as they are usually restricted to the [ejabberdctl](../../admin/guide/managing.md#ejabberdctl) command-line tool. They are considered too sensitive to be exposed through API.
 
 3. Now you can query the API, for example:
 

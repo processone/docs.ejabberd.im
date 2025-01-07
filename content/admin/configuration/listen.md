@@ -4,53 +4,21 @@
 
     This section describes the most recent ejabberd version. If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-## Listen Options
+## Listen Option
 
-The `listen` option defines for which ports, addresses and network
+The [listen](toplevel.md#listen) top-level option defines for which ports, addresses and network
 protocols `ejabberd` will listen and what services will be run on them.
 
-Each element of the list is an associative array with the following
-elements:
+Each element of the list is an associative array of [listen options](listen-options.md):
 
-- **port**: *Number*
+- **[port](listen-options.md#port)** and **[module](listen-options.md#module)** mandatory options
 
-    Defines which port number to listen for incoming connections:
-    it can be a Jabber/XMPP standard port or any other valid port number.
+- **[ip](listen-options.md#ip)**,
+  **[transport](listen-options.md#transport)**,
+  **[unix_socket](listen-options.md#unix_socket)**
+  additional options
 
-    Alternatively, set the option to a string in form `"unix:/path/to/socket"`
-    to create and listen on a unix domain socket `/path/to/socket`.
-
-- **ip**: *IpAddress*
-
-    The socket will listen only in that network interface.
-    Depending on the type of the IP address, IPv4 or IPv6 will be used.
-
-    It is possible to specify a generic address
-    (`"0.0.0.0"` for IPv4 or `"::"` for IPv6),
-    so `ejabberd` will listen in all addresses.
-    Note that on some operating systems and/or OS configurations, listening
-    on `"::"` will mean listening for IPv4 traffic as well as IPv6 traffic.
-
-    Some example values for IP address:
-
-    - `"0.0.0.0"` to listen in all IPv4 network interfaces. This is the
-     default value when the option is not specified.
-
-    - `"::"` to listen in all IPv6 network interfaces
-
-    - `"10.11.12.13"` is the IPv4 address `10.11.12.13`
-
-    - `"::FFFF:127.0.0.1"` is the IPv6 address `::FFFF:127.0.0.1/128`
-
-- **transport**: *tcp|udp*
-
-    Defines the transport protocol. Default is `tcp`.
-
-- **module**: *ModuleName*
-
-    Listening module that serves this port
-
-- Any other options for the socket and for the listening module, described later.
+- Other options for listening module, enumerated later.
 
 For example:
 
@@ -283,7 +251,7 @@ add the [`ejabberd_sip`](#ejabberd_sip) listen module, enable
 for the desired virtual host, and configure DNS properly.
 
 To add a listener you should configure `ejabberd_sip` listening module
-as described in [Listen](#listen-options) section.
+as described in [Listen](#listen-option) section.
 If option [`tls`](listen-options.md#tls) is specified,
 option [`certfile`](listen-options.md#certfile)
 must be specified as well, otherwise incoming TLS connections

@@ -164,6 +164,30 @@ can serve one or more hostnames. As `HostOption`
  provide the password option that will be used for all the hosts
  (see port 5236 definition in the example below).
 
+## ip
+
+*string()*
+
+The socket will listen only in that network interface.
+Depending on the type of the IP address, IPv4 or IPv6 will be used.
+
+It is possible to specify a generic address
+(`"0.0.0.0"` for IPv4 or `"::"` for IPv6),
+so `ejabberd` will listen in all addresses.
+Note that on some operating systems and/or OS configurations, listening
+on `"::"` will mean listening for IPv4 traffic as well as IPv6 traffic.
+
+Some example values for IP address:
+
+- `"0.0.0.0"` to listen in all IPv4 network interfaces. This is the
+  default value when the option is not specified.
+
+- `"::"` to listen in all IPv6 network interfaces
+
+- `"10.11.12.13"` is the IPv4 address `10.11.12.13`
+
+- `"::FFFF:127.0.0.1"` is the IPv6 address `::FFFF:127.0.0.1/128`
+
 ## max_fsm_queue
 
 *Size*
@@ -205,6 +229,12 @@ This option specifies an approximate maximum size in bytes of XML
  always much higher than c2s limit. Change this value with extreme
  care as it can cause unwanted disconnect if set too low.
 
+## module
+
+*ModuleName*
+
+Mandatory option to define what module will serve the port.
+
 ## password
 
 *Secret*
@@ -213,15 +243,27 @@ Specify the password to verify an external component that connects to the port.
 
 ## port
 
-*Port number, or unix domain socket path*
+*pos_integer() | string()*
 
 <!-- md:version improved in [20.07](../../archive/20.07/index.md) -->
 
-Declares at which port/unix domain socket should be listening.
+This mandatory option defines which port to listen for incoming connections:
+it can be a Jabber/XMPP standard port or any other valid port number
+between `1` and `65535` to listen on TCP or UDP socket,
 
-Can be set to number between `1` and `65535` to listen on TCP or UDP socket,
-or can be set to string in form `"unix:/path/to/socket"` to create and listen
-on unix domain socket `/path/to/socket`.
+Alternatively, set the option to a string in form `"unix:/path/to/socket"`
+to create and listen on a unix domain socket `/path/to/socket`.
+
+!!! tip
+    <!-- md:version improved in [25.xx](../../archive/25.xx/index.md) -->
+
+    If it's a relative path,
+    then it's created in the mnesia spool directory.
+    For example, if set to `"unix:dir/file.socket"`,
+    then the socket file is created in `/opt/ejabberd/database/dir/file.socket`,
+    or whatever path the Mnesia database is stored in your installation.
+
+File permissions can be set using the [unix_socket](#unix_socket) option.
 
 ## protocol_options
 
@@ -386,6 +428,38 @@ The certificate will be checked against trusted CA roots, either defined at the 
  `subjectAltName` field of that certificate.
 
 Enabling this option implicitly enables also the [`starttls`](#starttls) option.
+
+## transport
+
+*tcp|udp*
+
+Defines the transport protocol. Default is `tcp`.
+
+## unix_socket
+
+*{mode|owner|group: Value}*
+
+<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
+
+Set the mode, owner and group of the unix domain socket defined in the [port](#port) option.
+
+The owner and group must be specified as integers, not as names.
+
+Example:
+
+```yaml
+listen:
+  -
+    port: "unix:sockets/ctl_over_http.socket"
+    unix_socket:
+      mode: '0600'
+      owner: 117
+      group: 135
+    module: ejabberd_http
+    request_handlers:
+      /ctl: ejabberd_ctl
+    tag: "ctl_over_http"
+```
 
 ## use_proxy_protocol
 

@@ -401,6 +401,13 @@ acl:
     ACLType: ACLValue
 ```
 
+`ACLName` is any name you may want to give, and later can use it in other options to reference that ACL.
+The following `ACLName` are pre-defined:
+
+- **`all`**:   Matches any JID.
+
+- **`none`**:   Matches no JID.
+
 `ACLType: ACLValue` can be one of the following:
 
 - **`all`**:   Matches all JIDs. Example:
@@ -425,9 +432,12 @@ acl:
     ``` yaml
     acl:
       admin:
+        - user: peter@example.org
         - user:
             yozhik@example.org
-        - user: peter@example.org
+        - user: {susan: example.org}
+        - user:
+            jan: example.org
     ```
 
 - **`server: Server`**:   Matches any JID from server `Server`. Example:
@@ -461,8 +471,9 @@ acl:
     ``` yaml
     acl:
       techgroupmembers:
-        shared_group:
-          techteam: example.org
+        - shared_group: {techteam: example.org}
+        - shared_group:
+            secteam: example.org
     ```
 
 - **`ip: Network`**:   Matches any IP address from the `Network`. Example:
@@ -544,12 +555,6 @@ characters:
      first character after `[` is a `!`, any character not enclosed
      is matched.
 
-The following `ACLName` are pre-defined:
-
-- **`all`**:   Matches any JID.
-
-- **`none`**:   Matches no JID.
-
 ### Access Rules
 
 The [`access_rules`](toplevel.md#access_rules)
@@ -559,19 +564,19 @@ is:
 ``` yaml
 access_rules:
   AccessName:
-    - allow|deny: ACLRule|ACLDefinition
+    - allow|deny: ACLName|ACLDefinition
 ```
 
 Each definition may contain arbitrary number of `- allow` or `- deny`
 sections, and each section can contain any number of acl rules
 (as defined in [previous section](#acl), it recognizes
-one additional rule `acl: RuleName` that matches when acl rule
-named `RuleName` matches). If no rule or definition is defined, the
-rule `all` is applied.
+one additional rule `acl: ACLName` that matches when the ACL
+named `ACLName` matches). If no ACL name or definition is defined, the
+ACL `all` is applied.
 
 Definition's `- allow` and `- deny` sections are processed in top
 to bottom order, and first one for which all listed acl rules matches
-is returned as result of access rule. If no rule matches `deny` is returned.
+is returned as result of access rule. If no rule matches, `deny` is returned.
 
 To simplify configuration two shortcut version are available:
 `- allow: acl` and `- allow`, example below shows equivalent
@@ -641,7 +646,7 @@ is:
 ``` yaml
 shaper_rules:
   ShaperRuleName:
-    - Number|ShaperName: ACLRule|ACLDefinition
+    - Number|ShaperName: ACLName|ACLDefinition
 ```
 
 Semantic is similar to that described in [Access Rights](#access-rights) section,
@@ -679,7 +684,7 @@ The syntax is:
 ``` yaml
 shaper_rules:
   max_user_sessions:
-    - Number: ACLRule|ACLDefinition
+    - Number: ACLName|ACLDefinition
 ```
 
 This example limits the number of sessions per user to 5 for all users,

@@ -13,7 +13,7 @@ search:
 
 ## access\_rules
 
-`{AccessName: {allow|deny: ACLRules|ACLName}}`  
+`{AccessName: {allow|deny: ACLName|ACLDefinition}}`  
 
 This option defines [Access Rules](basic.md#access-rules). Each access
 rule is assigned a name that can be referenced from other parts of the
@@ -1518,7 +1518,7 @@ shaper:
 
 ## shaper\_rules
 
-`{ShaperRuleName: {Number|ShaperName: ACLRule|ACLName}}`  
+`{ShaperRuleName: {Number|ShaperName: ACLName|ACLDefinition}}`  
 
 This option defines
 [shaper rules](../configuration/basic.md#shaper-rules) to use for
