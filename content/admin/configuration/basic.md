@@ -4,12 +4,12 @@
 
 ### Host Names
 
-`ejabberd` supports managing several independent XMPP domains on a
+ejabberd supports managing several independent XMPP domains on a
 single ejabberd instance, using a feature called virtual hosting.
 
 The option [`hosts`](toplevel.md#hosts)
  defines a list containing one or more domains that
-`ejabberd` will serve.
+ejabberd will serve.
 
 Of course, the `hosts` list can contain just one domain if you do not
 want to host multiple XMPP domains on the same instance.
@@ -124,7 +124,7 @@ append_host_config:
 
 ## Logging
 
-`ejabberd` configuration can help a lot by having the right amount of logging set up.
+ejabberd configuration can help a lot by having the right amount of logging set up.
 
 There are several toplevel options to configure logging:
 
@@ -161,12 +161,12 @@ log_modules_fully: [ejabberd_c2s]
 The [`language`](toplevel.md#language) option
 defines the default language of server strings
 that can be seen by XMPP clients. If a XMPP client does not support
-`xml:lang`, `ejabberd` uses the language specified in this option.
+`xml:lang`, ejabberd uses the language specified in this option.
 
 The option syntax is:
 
 **`language: Language`**: The default value is `en`. In order to take effect there must be a
-translation file `Language.msg` in `ejabberd`’s `msgs` directory.
+translation file `Language.msg` in ejabberd’s `msgs` directory.
 
 For example, to set Russian as default language:
 
@@ -179,7 +179,7 @@ provides more details.
 
 ## CAPTCHA
 
-Some `ejabberd` modules can be configured to require a CAPTCHA challenge
+Some ejabberd modules can be configured to require a CAPTCHA challenge
 on certain actions, for instance
 [mod_block_strangers](modules.md#mod_block_strangers),
 [mod_muc](modules.md#mod_muc),
@@ -390,7 +390,7 @@ to
 
 ### ACL
 
-Access control in `ejabberd` is performed via Access Control Lists
+Access control in ejabberd is performed via Access Control Lists
 (ACLs), using the [`acl`](toplevel.md#acl) option.
 The declarations of ACLs in the configuration file have the
 following syntax:
@@ -729,7 +729,7 @@ shaper:
 ```
 
 where `Rate` stands for the maximum allowed incoming rate in bytes per
-second. When a connection exceeds this limit, `ejabberd` stops reading
+second. When a connection exceeds this limit, ejabberd stops reading
 from the socket until the average rate is again below the allowed
 maximum.
 

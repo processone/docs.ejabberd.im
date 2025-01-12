@@ -2936,7 +2936,7 @@ disabled and the corresponding stream feature is not announced to
 clients.
 
 - **access\_from**: `AccessName`  
-By default, `ejabberd` doesn’t allow the client to register new accounts
+By default, ejabberd doesn’t allow the client to register new accounts
 from s2s or existing c2s sessions. You can change it by defining access
 rule in this option. Use with care: allowing registration from s2s leads
 to uncontrolled massive accounts creation by rogue users.

@@ -735,7 +735,7 @@ host_config:
 `[Domain1, Domain2, ...]`  
 
 List of one or more [host names](../configuration/basic.md#host-names)
-(or domains) that `ejabberd` will serve. This is a **mandatory** option.
+(or domains) that ejabberd will serve. This is a **mandatory** option.
 
 ## include\_config\_file
 

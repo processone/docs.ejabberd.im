@@ -2,7 +2,7 @@
 
 ## Supported Methods
 
-The authentication methods supported by `ejabberd` are:
+The authentication methods supported by ejabberd are:
 
 - `internal` — See section [Internal](#internal).
 
@@ -27,7 +27,7 @@ The option syntax is:
 auth_method: [Method1, Method2, ...]
 ```
 
-When the `auth_method` option is omitted, `ejabberd` relies on the default database which is configured in [`default_db`](toplevel.md#default_db) option. If this option is not set neither, then the default authentication method will be `internal`.
+When the `auth_method` option is omitted, ejabberd relies on the default database which is configured in [`default_db`](toplevel.md#default_db) option. If this option is not set neither, then the default authentication method will be `internal`.
 
 Account creation is only supported by `internal`, `external` and `sql` auth methods.
 
@@ -66,7 +66,7 @@ host_config:
 
 ## Internal
 
-`ejabberd` uses its internal Mnesia database as the default
+ejabberd uses its internal Mnesia database as the default
 authentication method. The value `internal` will enable the internal
 authentication method.
 
@@ -221,14 +221,14 @@ There are more configuration examples and XMPP client example stanzas in
 
 ## PAM Authentication
 
-`ejabberd` supports authentication via Pluggable Authentication Modules
+ejabberd supports authentication via Pluggable Authentication Modules
 (PAM). PAM is currently supported in AIX, FreeBSD, HP-UX, Linux, Mac OS
 X, NetBSD and Solaris.
 
 If compiling ejabberd from source code, PAM support is disabled by default,
 so you have to enable PAM support when
 [configuring](../install/source.md#configure)
-the `ejabberd` compilation: `./configure --enable-pam`
+the ejabberd compilation: `./configure --enable-pam`
 
 Options:
 
@@ -242,15 +242,15 @@ auth_method: [pam]
 pam_service: ejabberd
 ```
 
-Though it is quite easy to set up PAM support in `ejabberd`, there are several
+Though it is quite easy to set up PAM support in ejabberd, there are several
 problems that you may need to solve:
 
-- To perform PAM authentication `ejabberd` uses external C-program
+- To perform PAM authentication, ejabberd uses external C-program
  called `epam`. By default, it is located in
  `/var/lib/ejabberd/priv/bin/` directory. You have to set it root on
  execution in the case when your PAM module requires root privileges
  (`pam_unix.so` for example). Also you have to grant access for
- `ejabberd` to this file and remove all other permissions from it.
+ ejabberd to this file and remove all other permissions from it.
  Execute with root privileges:
 
     ```sh
@@ -261,7 +261,7 @@ problems that you may need to solve:
 - Make sure you have the latest version of PAM installed on your
  system. Some old versions of PAM modules cause memory leaks. If you
  are not able to use the latest version, you can `kill(1)` `epam`
- process periodically to reduce its memory consumption: `ejabberd`
+ process periodically to reduce its memory consumption: ejabberd
  will restart this process immediately.
 
 - ejabberd [binary installers](../install/binary-installer.md) include `epam`
@@ -308,7 +308,7 @@ problems that you may need to solve:
 
 ## JWT Authentication
 
-`ejabberd` supports authentication using JSON Web Token (JWT).  When enabled,
+ejabberd supports authentication using JSON Web Token (JWT).  When enabled,
 clients send signed tokens instead of passwords, which are checked using a
 private key specified in the [jwt_key](toplevel.md#jwt_key) option.
 JWT payload must look like this:

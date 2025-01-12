@@ -7,7 +7,7 @@
 ## Listen Option
 
 The [listen](toplevel.md#listen) top-level option defines for which ports, addresses and network
-protocols `ejabberd` will listen and what services will be run on them.
+protocols ejabberd will listen and what services will be run on them.
 
 Each element of the list is an associative array of [listen options](listen-options.md):
 
@@ -18,7 +18,7 @@ Each element of the list is an associative array of [listen options](listen-opti
   **[unix_socket](listen-options.md#unix_socket)**
   additional options
 
-- Other options for listening module, enumerated later.
+- other options for listening module, enumerated later.
 
 For example:
 
@@ -75,7 +75,7 @@ General listen options supported:
 
 ## ejabberd_service
 
-Interacts with an [`external component`](https://ejabberd.im/tutorials-transports)
+Interacts with an [external component](https://ejabberd.im/tutorials-transports)
 as defined in [XEP-0114: Jabber Component Protocol](https://xmpp.org/extensions/xep-0114.html).
 
 General listen options supported:
@@ -118,10 +118,10 @@ General listen options supported:
 
 ## ejabberd_stun
 
-`ejabberd` can act as a stand-alone STUN/TURN server,
+ejabberd can act as a stand-alone STUN/TURN server,
 and this module handles STUN/TURN requests as defined in
 ([`RFC 5389`](https://tools.ietf.org/html/rfc5389)/[`RFC 5766`](https://tools.ietf.org/html/rfc5766).
-In that role `ejabberd` helps clients with ICE
+In that role ejabberd helps clients with ICE
 ([`RFC 5245`](https://tools.ietf.org/html/rfc5245) or Jingle ICE
 ([`XEP-0176`](https://xmpp.org/extensions/xep-0176.html) support to
 discover their external addresses and ports and to relay media traffic
@@ -242,7 +242,7 @@ listen:
 ## ejabberd_sip
 
 
-`ejabberd` has built-in support to handle SIP requests
+ejabberd has built-in support to handle SIP requests
 as defined in [`RFC 3261`](https://tools.ietf.org/html/rfc3261).
 
 To activate this feature,

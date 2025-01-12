@@ -8,7 +8,7 @@ execute `ejabberdctl commands` (described in the next section,
 `ejabberd commands` (described in section
 [ejabberd Commands](#ejabberd-commands)).
 This means you can start, stop and perform many
-other administrative tasks in a local or remote `ejabberd` server (by
+other administrative tasks in a local or remote ejabberd server (by
 providing the argument `–node NODENAME`).
 
 The `ejabberdctl` script can be configured in the file
@@ -48,20 +48,20 @@ The next time, that file is reused for faster responses.
 ### ejabberdctl Commands
 
 When `ejabberdctl` is executed without any parameter, it displays the
-available options. If there isn't an `ejabberd` server running, the
+available options. If there isn't an ejabberd server running, the
 available parameters are:
 
-- **`start`**:   Start `ejabberd` in background mode. This is the default method.
+- **`start`**:   Start ejabberd in background mode. This is the default method.
 
-- **`debug`**:   Attach an Erlang shell to an already existing `ejabberd` server.
- This allows to execute commands interactively in the `ejabberd`
+- **`debug`**:   Attach an Erlang shell to an already existing ejabberd server.
+ This allows to execute commands interactively in the ejabberd
  server.
 
-- **`live`**:   Start `ejabberd` in live mode: the shell keeps attached to the
+- **`live`**:   Start ejabberd in live mode: the shell keeps attached to the
  started server, showing log messages and allowing to execute
  interactive commands.
 
-If there is an `ejabberd` server running in the system, `ejabberdctl`
+If there is an ejabberd server running in the system, `ejabberdctl`
 shows the `ejabberdctl commands` described below and all the
 `ejabberd commands` available in that server (see
 [List of ejabberd Commands](./managing.md#list-of-ejabberd-commands)).
@@ -71,11 +71,11 @@ The `ejabberdctl commands` are:
 - **`help`**:   Get help about ejabberdctl or any available command. Try
  `ejabberdctl help help`.
 
-- **`status`**:   Check the status of the `ejabberd` server.
+- **`status`**:   Check the status of the ejabberd server.
 
-- **`stop`**:   Stop the `ejabberd` server.
+- **`stop`**:   Stop the ejabberd server.
 
-- **`restart`**:   Restart the `ejabberd` server.
+- **`restart`**:   Restart the ejabberd server.
 
 - **`mnesia`**:   Get information about the Mnesia database.
 
@@ -85,7 +85,7 @@ Please go to the [API](../../developer/ejabberd-api/index.md) section.
 
 ## Erlang Runtime System
 
-`ejabberd` is an Erlang/OTP application that runs inside an Erlang
+ejabberd is an Erlang/OTP application that runs inside an Erlang
 runtime system. This system is configured using environment variables
 and command line parameters. The `ejabberdctl` administration script
 uses many of those possibilities. You can configure some of them with
@@ -105,7 +105,7 @@ The environment variables:
 
 **`EJABBERD_PID_PATH`**:   Path to the PID file that ejabberd can create when started.
 
-**`HOME`**:   Path to the directory that is considered `ejabberd`’s home. This
+**`HOME`**:   Path to the directory that is considered ejabberd’s home. This
  path is used to read the file `.erlang.cookie`.
 
 **`ERL_CRASH_DUMP`**:   Path to the file where crash reports will be dumped.
@@ -126,7 +126,7 @@ The command line parameters:
  contact this node. This is the preferable option in most cases.
 
 **`-name ejabberd`**:   The Erlang node will be fully identified. This is only useful if you
- plan to setup an `ejabberd` cluster with nodes in different
+ plan to setup an ejabberd cluster with nodes in different
  networks.
 
 **`-kernel inetrc ’/etc/ejabberd/inetrc’`**:   Indicates which IP name resolution to use. If using `-sname`,
@@ -147,7 +147,7 @@ The command line parameters:
 **`-pa /var/lib/ejabberd/ebin`**:   Specify the directory where Erlang binary files (\*.beam) are
  located.
 
-**`-s ejabberd`**:   Tell Erlang runtime system to start the `ejabberd` application.
+**`-s ejabberd`**:   Tell Erlang runtime system to start the ejabberd application.
 
 **`-mnesia dir ’/var/lib/ejabberd/’`**:   Specify the Mnesia database directory.
 
@@ -173,7 +173,7 @@ manual page (`erl -man erl`).
 
 ## Web Admin
 
-The `ejabberd` Web Admin allows to administer some parts of `ejabberd` using a
+The ejabberd Web Admin allows to administer some parts of ejabberd using a
 web browser: accounts, Shared Roster Groups, manage the Mnesia database,
 create and restore backups, view server statistics, …
 
@@ -301,16 +301,16 @@ host_config:
 
 ## Ad-hoc Commands
 
-If you enable [mod_configure](../configuration/modules.md#mod_configure) and [mod_adhoc](../configuration/modules.md#mod_adhoc), you can perform several administrative tasks in `ejabberd` with an XMPP client. The client must support Ad-Hoc Commands ([`XEP-0050`](https://xmpp.org/extensions/xep-0050.html)), and you must login in the XMPP server with an account with proper privileges.
+If you enable [mod_configure](../configuration/modules.md#mod_configure) and [mod_adhoc](../configuration/modules.md#mod_adhoc), you can perform several administrative tasks in ejabberd with an XMPP client. The client must support Ad-Hoc Commands ([`XEP-0050`](https://xmpp.org/extensions/xep-0050.html)), and you must login in the XMPP server with an account with proper privileges.
 
 ## Change Computer Hostname
 
-`ejabberd` uses the distributed Mnesia database. Being distributed,
+ejabberd uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
 Erlang node in it (see section [Erlang Node Name](security.md#erlang-node-name)). The name of an Erlang node
 includes the hostname of the computer. So, the name of the Erlang node
-changes if you change the name of the machine in which `ejabberd` runs,
-or when you move `ejabberd` to a different machine.
+changes if you change the name of the machine in which ejabberd runs,
+or when you move ejabberd to a different machine.
 
 You have two ways to use the old Mnesia database in an ejabberd with new
 node name: put the old node name in `ejabberdctl.cfg`, or convert the

@@ -74,7 +74,7 @@ This option can be used with
 [`ejabberd_service`](listen.md#ejabberd_service) only.
  [`XEP-0114`](https://xmpp.org/extensions/xep-0114.html) requires that
  the domain must match the hostname of the component. If this option
- is set to `false`, `ejabberd` will allow the component to send
+ is set to `false`, ejabberd will allow the component to send
  stanzas with any arbitrary domain in the ’from’ attribute. Only use
  this option if you are completely sure about it. The default value
  is `true`, to be compliant with
@@ -173,7 +173,7 @@ Depending on the type of the IP address, IPv4 or IPv6 will be used.
 
 It is possible to specify a generic address
 (`"0.0.0.0"` for IPv4 or `"::"` for IPv6),
-so `ejabberd` will listen in all addresses.
+so ejabberd will listen in all addresses.
 Note that on some operating systems and/or OS configurations, listening
 on `"::"` will mean listening for IPv4 traffic as well as IPv6 traffic.
 
@@ -233,7 +233,8 @@ This option specifies an approximate maximum size in bytes of XML
 
 *ModuleName*
 
-Mandatory option to define what module will serve the port.
+Mandatory option to define what [listening module](listen.md) will serve
+the incoming connections to the port.
 
 ## password
 
@@ -387,7 +388,7 @@ This option specifies that traffic on the port will be encrypted
  nowadays deprecated and not recommended. The preferable encryption
  method is STARTTLS on port 5222, as defined
  [`RFC 6120: XMPP Core`](https://xmpp.org/rfcs/rfc6120.html#tls),
- which can be enabled in `ejabberd` with the option
+ which can be enabled in ejabberd with the option
         [`starttls`](#starttls).
 
 If this option is set, you should also set the

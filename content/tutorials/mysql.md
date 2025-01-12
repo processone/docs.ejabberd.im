@@ -124,14 +124,14 @@ MySQL admins should use this procedure and grant rights to a dedicated
 echo "GRANT ALL ON ejabberd.* TO 'ejabberd'@'localhost' IDENTIFIED BY 'password';" | mysql -h localhost -u root
 ```
 
-You can then create a dedicated `ejabberd` database (use password
+You can then create a dedicated ejabberd database (use password
 created earlier):
 
 ``` sh
 echo "CREATE DATABASE ejabberd;" | mysql -h localhost -u ejabberd -p
 ```
 
-You should now be able to connect to `ejabberd` database with user
+You should now be able to connect to ejabberd database with user
 `ejabberd` (use password defined on GRANT command):
 
 ``` sh
@@ -197,7 +197,7 @@ Those schema files can be found:
 * When installed from source code or binary installer, the SQL schemas are copied to
   `PREFIX/lib/ejabberd-VERSION/priv/sql`
 
-Load the schema in your `ejabberd` database with the command:
+Load the schema in your ejabberd database with the command:
 
 ``` sh
 mysql -h localhost -D ejabberd -u ejabberd -p < mysql.sql

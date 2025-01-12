@@ -1,10 +1,10 @@
 # Database Configuration
 
-`ejabberd` uses its internal Mnesia database by default. However, it is
+ejabberd uses its internal Mnesia database by default. However, it is
 possible to use a relational database, key-value storage or an LDAP
 server to store persistent, long-living data.
 
-`ejabberd` is very
+ejabberd is very
 flexible: you can configure different authentication methods for
 different virtual hosts, you can configure different authentication
 mechanisms for the same virtual host (fallback), you can set different
@@ -12,7 +12,7 @@ storage systems for modules, and so forth.
 
 ## Supported storages
 
-The following databases are supported by `ejabberd`:
+The following databases are supported by ejabberd:
 
 -   [`Mnesia`](https://erlang.org/doc/apps/mnesia/). Used by default, nothing to setup to start using it
 
@@ -240,7 +240,7 @@ see the [SCRAM](authentication.md#scram) section.
 
 ## SQL Storage
 
-Several `ejabberd` [modules](modules.md)
+Several ejabberd [modules](modules.md)
 have options called `db_type`, and can store their tables
 in an SQL database instead of internal.
 

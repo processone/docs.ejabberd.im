@@ -81,7 +81,7 @@ you can use this alternative:
 
 ## Note on database schema upgrade
 
-`ejabberd` automatically updates the Mnesia table definitions at startup when needed.
+ejabberd automatically updates the Mnesia table definitions at startup when needed.
 If you also use an external [database](../configuration/database.md) (like MySQL, ...)
 for storage of some modules, check in the corresponding
 [upgrade notes](#specific-version-upgrade-notes)

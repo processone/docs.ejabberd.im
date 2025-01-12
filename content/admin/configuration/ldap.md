@@ -2,7 +2,7 @@
 
 ## Supported storages
 
-The following LDAP servers are tested with `ejabberd`:
+The following LDAP servers are tested with ejabberd:
 
 - `Active Directory` (see section [Active Directory](#active-directory))
 
@@ -15,10 +15,10 @@ The following LDAP servers are tested with `ejabberd`:
 
 ## LDAP
 
-`ejabberd` has built-in LDAP support. You can authenticate users against
+ejabberd has built-in LDAP support. You can authenticate users against
 LDAP server and use LDAP directory as vCard storage.
 
-Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
+Usually ejabberd treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
 stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
@@ -309,7 +309,7 @@ When the module is called to retrieve the shared roster for a user, the followin
 
         1. the user ID part of it is extracted using `ldap_memberattr_format(_re)`,
 
-        2. then (unless `ldap_auth_check` is set to `off`) for each found user ID, the module checks (using the `ejabberd` authentication subsystem) whether such user exists in the given virtual host. It is skipped if the check is enabled and fails.
+        2. then (unless `ldap_auth_check` is set to `off`) for each found user ID, the module checks (using the ejabberd authentication subsystem) whether such user exists in the given virtual host. It is skipped if the check is enabled and fails.
    This step is here for historical reasons. If you have a tidy DIT and properly defined “Roster Filter” and “Group Filter”, it is safe to disable it by setting `ldap_auth_check` to `off` — it will speed up the roster retrieval.
 
         3. the user ID is stored in the list of members in the cache for the given group.
@@ -480,7 +480,7 @@ modules:
     ldap_userdesc: displayName
 ```
 
-…and connect as user `czesio`, then `ejabberd` will provide
+…and connect as user `czesio`, then ejabberd will provide
 you with the roster shown in this figure:
 
 ![msrl-roster-deep.png](./images/msrl-roster-deep.png)
@@ -490,12 +490,12 @@ you with the roster shown in this figure:
 Since LDAP may be complex to configure in [mod_vcard](modules.md#mod_vcard),
 this section provides more details.
 
-`ejabberd` can map LDAP attributes to vCard fields. This feature is
+ejabberd can map LDAP attributes to vCard fields. This feature is
 enabled when the `mod_vcard` module is configured with `db_type:
 ldap`. Notice that it does not depend on the authentication method
 (see [LDAP Authentication](#ldap-authentication)).
 
-Usually `ejabberd` treats LDAP as a read-only storage: it is possible to
+Usually ejabberd treats LDAP as a read-only storage: it is possible to
 consult data, but not possible to create accounts or edit vCard that is
 stored in LDAP. However, it is possible to change passwords if
 `mod_register` module is enabled and LDAP server supports
@@ -508,7 +508,7 @@ parameters to set the authentication method: `ldap_servers`,
 `ldap_deref_aliases` and `ldap_filter`. See section
 [LDAP Authentication](#ldap-authentication) for
 detailed information about these options. If one of these options is not
-set, `ejabberd` will look for the top-level option with the same name.
+set, ejabberd will look for the top-level option with the same name.
 
 Examples:
 

@@ -2,26 +2,26 @@
 
 ## Yaml File Format
 
-`ejabberd` loads its configuration file during startup.
+ejabberd loads its configuration file during startup.
 This configuration file is written in
 [`YAML`](https://en.wikipedia.org/wiki/YAML) format,
 and its file name MUST have “.yml” or “.yaml” extension.
 This helps ejabberd to differentiate between this new format
 and the [legacy configuration file](#legacy-configuration-file) format.
 
-Please, consult `ejabberd.log` for configuration errors. `ejabberd` will
+Please, consult `ejabberd.log` for configuration errors. ejabberd will
 report syntax related errors, as well as complains about unknown options
 and invalid values. Make sure you respect indentation (YAML is
 sensitive to this) or you will get pretty cryptic errors.
 
-Note that `ejabberd` never edits the configuration file. If you are
+Note that ejabberd never edits the configuration file. If you are
 changing parameters at runtime from web admin interface, you will need to apply
 them to configuration file manually. This is to prevent messing up
 with your config file comments, syntax, etc.
 
 ## Reload at Runtime
 
-You can modify the `ejabberd` configuration file
+You can modify the ejabberd configuration file
 and reload it at runtime:
 the changes you made are applied immediately,
 no need to restart ejabberd.
@@ -43,7 +43,7 @@ How to do this?
 
 ## Legacy Configuration File
 
-In previous `ejabberd` version the configuration file should be
+In previous ejabberd version the configuration file should be
 written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format with the
 [convert_to_yaml](../../developer/ejabberd-api/admin-api.md#convert_to_yaml)
@@ -58,7 +58,7 @@ can set them in an additional cfg file, and include it using the
 
 The option [include_config_file](toplevel.md#include_config_file)
  in a configuration file instructs
-`ejabberd` to include other configuration files immediately.
+ejabberd to include other configuration files immediately.
 
 This is a basic example:
 
@@ -107,7 +107,7 @@ append_host_config:
 
 ## Macros in Configuration File
 
-In the `ejabberd` configuration file, it is possible to define a macro
+In the ejabberd configuration file, it is possible to define a macro
 for a value and later use this macro when defining an option.
 
 A macro is defined using the [define_macro](toplevel.md#define_macro) option.
@@ -120,7 +120,7 @@ define_macro:
 loglevel: LOG_LEVEL_NUMBER
 ```
 
-The resulting option interpreted by `ejabberd` is: `loglevel: 5`.
+The resulting option interpreted by ejabberd is: `loglevel: 5`.
 
 This example shows that values can be any arbitrary YAML value:
 
@@ -133,7 +133,7 @@ acl:
   admin: USERBOB
 ```
 
-The resulting option interpreted by `ejabberd` is:
+The resulting option interpreted by ejabberd is:
 
 ``` yaml
 acl:

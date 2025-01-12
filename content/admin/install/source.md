@@ -69,7 +69,7 @@ Get the full list:
 ./configure --help
 ```
 
-In this example, [`./configure`](#configure) prepares the installed program to run with a user called `ejabberd` that should exist in the system (it isn't recommended to run ejabberd with `root` user):
+In this example, [`./configure`](#configure) prepares the installed program to run with a user called ejabberd that should exist in the system (it isn't recommended to run ejabberd with `root` user):
 
 ``` sh
 ./configure --enable-user=ejabberd --enable-mysql

@@ -15,7 +15,7 @@ clustering is a must have feature.
 
 ## How it Works
 
-A XMPP domain is served by one or more `ejabberd` nodes. These nodes can
+A XMPP domain is served by one or more ejabberd nodes. These nodes can
 be run on different machines that are connected via a network. They all
 must have the ability to connect to port 4369 of all another nodes, and
 must have the same magic cookie (see Erlang/OTP documentation, in other
@@ -23,7 +23,7 @@ words the file `~ejabberd/.erlang.cookie` must be the same on all
 nodes). This is needed because all nodes exchange information about
 connected users, s2s connections, registered services, etc…
 
-Each `ejabberd` node has the following modules:
+Each ejabberd node has the following modules:
 
 - router
 - local router
@@ -77,7 +77,7 @@ need to take into account:
 
 ## Adding a node to a cluster
 
-Suppose you have already configured `ejabberd` on one node named
+Suppose you have already configured ejabberd on one node named
 `ejabberd01`. Let's create an additional node (`ejabberd02`) and connect them
 together.
 
@@ -91,7 +91,7 @@ together.
    you want to have the same `ejabberd.yml` config file on the new node that on the
    other cluster nodes.
 
-3. Adding a node to the cluster is done by starting a new `ejabberd` node within the same network, and running [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) from a cluster node. On the `ejabberd02` node for example, as ejabberd is already started, run the following command as the `ejabberd` daemon user, using the ejabberdctl script:
+3. Adding a node to the cluster is done by starting a new ejabberd node within the same network, and running [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) from a cluster node. On the `ejabberd02` node for example, as ejabberd is already started, run the following command as the ejabberd daemon user, using the ejabberdctl script:
 
 ``` sh
 ejabberdctl --no-timeout join_cluster 'ejabberd@ejabberd01'
@@ -117,7 +117,7 @@ permanently from the cluster.
 
 To permanently remove a running node from the cluster, the
 [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster)
-command must be run as the `ejabberd` daemon user, from one node of the
+command must be run as the ejabberd daemon user, from one node of the
 cluster:
 
 ``` sh
@@ -139,9 +139,9 @@ service back.
 
 ### Domain Load-Balancing Algorithm
 
-`ejabberd` includes an algorithm to load balance the components that are
-plugged on an `ejabberd` cluster. It means that you can plug one or
-several instances of the same component on each `ejabberd` cluster and
+ejabberd includes an algorithm to load balance the components that are
+plugged on an ejabberd cluster. It means that you can plug one or
+several instances of the same component on each ejabberd cluster and
 that the traffic will be automatically distributed.
 
 The default distribution algorithm attempts to deliver to a local instance of

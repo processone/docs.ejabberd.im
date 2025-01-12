@@ -2,9 +2,9 @@
 
 ## Log Files
 
-An `ejabberd` node writes three log files:
+An ejabberd node writes three log files:
 
-- **`ejabberd.log`**:   is the ejabberd service log, with the messages reported by `ejabberd` code
+- **`ejabberd.log`**:   is the ejabberd service log, with the messages reported by ejabberd code
 
 - **`error.log`**:   is the file accumulating error messages from `ejabberd.log`
 
@@ -33,7 +33,7 @@ For example, the default configuration is:
 
  `loglevel: 4`
 
-By default `ejabberd` rotates the log files when they get grown above a
+By default ejabberd rotates the log files when they get grown above a
 certain size. The exact value is controlled by the
 [log_rotate_size](../configuration/toplevel.md#log_rotate_size)
 top-level option.
@@ -54,10 +54,10 @@ API command. Every such file has a numeric suffix.
 ## Debug Console
 
 The Debug Console is an Erlang shell attached to an already running
-`ejabberd` server. With this Erlang shell, an experienced administrator
+ejabberd server. With this Erlang shell, an experienced administrator
 can perform complex tasks.
 
-This shell gives complete control over the `ejabberd` server, so it is
+This shell gives complete control over the ejabberd server, so it is
 important to use it with extremely care. There are some simple and safe
 examples in the article
 [`Interconnecting Erlang Nodes`][1]
