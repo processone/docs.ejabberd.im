@@ -13,6 +13,7 @@ To compile ejabberd you need:
 - Libyaml ≥ 0.1.4
 - [Erlang/OTP](https://www.erlang.org/) ≥ 20.0. We recommend using Erlang OTP 26.2, which is the version used in the binary installers and container images.
 - OpenSSL ≥ 1.0.0
+- Curl. Optional, for ejabberdctl feature [CTL_OVER_HTTP](../guide/managing.md#ctl_over_http)
 
 Other optional libraries are:
 

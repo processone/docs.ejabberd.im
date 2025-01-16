@@ -79,6 +79,59 @@ The `ejabberdctl commands` are:
 
 - **`mnesia`**:   Get information about the Mnesia database.
 
+### CTL_OVER_HTTP
+
+<!-- md:version added in [25.03](../../archive/25.03/index.md) -->
+
+The `ejabberdctl` script can execute ejabberd API commands inside the running ejabberd node. For this, the script starts another erlang virtual machine and connects it to the already existing one that is running ejabberd.
+
+This connection method is acceptable for performing a few administrative tasks (reload configuration, register an account, etc). However, ejabberdctl is noticeably slow for performing multiple calls, for example to register 1000 accounts. In that case, it is preferable to send ReST queries over HTTP to mod_http_api.
+
+ejabberdctl can be configured to use an HTTP connection to execute the command, which is way faster than starting an erlang node, around 20 times faster.
+
+To enable this feature, first configure in `ejabberd.yml`:
+
+```yaml
+listen:
+  -
+    port: "unix:sockets/ctl_over_http.sock"
+    module: ejabberd_http
+    tag: "ctl_over_http"
+    unix_socket:
+      mode: '0600'
+    request_handlers:
+      /ctl: ejabberd_ctl
+
+api_permissions:
+  "console commands over http":
+    from:
+      - tag: "ctl_over_http"
+    who: all
+    what: "*"
+```
+
+Then enable CTL_OVER_HTTP in `ejabberdctl.cfg`:
+
+```sh
+CTL_OVER_HTTP=sockets/ctl_over_http.sock
+```
+
+Let's register 100 accounts using the standard method and CTL_OVER_HTTP:
+
+```sh
+$ time for (( i=100 ; i ; i=i-1 )) ; do ejabberdctl register user$i localhost pass; done
+...
+real    0m43,929s
+user    0m41,878s
+sys     0m10,558s
+
+$ time for (( i=100 ; i  ; i=i-1 )) ; do CTL_OVER_HTTP=sockets/ctl_over_http.socket ejabberdctl register user$i localhost pass; done
+...
+real    0m2,144s
+user    0m1,377s
+sys     0m0,566s
+```
+
 ## ejabberd Commands
 
 Please go to the [API](../../developer/ejabberd-api/index.md) section.
