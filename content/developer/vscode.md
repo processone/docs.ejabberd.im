@@ -60,14 +60,31 @@ and provide as volume the path of your local ejabberd git clone:
 docker run \
     --name coder \
     -it \
-    -p 5208:5208 \
+    -p 1870:1870 \
     -v $(pwd)/ejabberd:/workspaces/ejabberd \
     ghcr.io/processone/code-server
 ```
 
-Now open in your web browser: `http://0.0.0.0:5208/`
+Now open in your web browser: `http://0.0.0.0:1870/`
 
 The next time it can be started with `docker start -i coder`
+
+If you cannot write inside the container directory,
+you need to change the owner of ejabberd directory and its files:
+code-server is ran by the user `1000:1000` inside the container,
+so should run something like this for your ejabberd directory:
+
+=== "docker"
+
+    ``` sh
+    sudo chown -R 1000:1000 ejabberd
+    ```
+
+=== "podman"
+
+    ``` sh
+    podman unshare chown -R 1000:1000 ejabberd
+    ```
 
 ## GitHub Codespaces
 
