@@ -130,6 +130,10 @@ $(TXML): $(TTXT)
 
 	a2x -f docbook $(TTXT)
 
+	# Remove garbage lines when a toplevel option has several paragraphs and example
+	sed -i '/^<simpara>+<\/simpara>/d' $(TXML)
+	sed -i 's/^<simpara>+/<simpara>/g' $(TXML)
+
 	# Workaround required since Pandoc 2.8
 	# https://github.com/jgm/pandoc/commit/9b5082b086359a63b92bdb40166fa59dea27afe1
 	# Alternate workaround would be: https://github.com/jgm/pandoc/issues/6906
