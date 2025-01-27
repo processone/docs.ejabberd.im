@@ -56,18 +56,61 @@ Erlang/OTP, Elixir, and all the required libraries.
 Download and start the container,
 and provide as volume the path of your local ejabberd git clone:
 
-``` sh
-docker run \
-    --name coder \
-    -it \
-    -p 1870:1870 \
-    -v $(pwd)/ejabberd:/workspaces/ejabberd \
-    ghcr.io/processone/code-server
-```
+=== "docker"
 
-Now open in your web browser: `http://0.0.0.0:1870/`
+    ``` sh
+    docker run \
+        --name coder \
+        -it \
+        -p 1870:1870 \
+        -v $(pwd)/ejabberd:/workspaces/ejabberd \
+        ghcr.io/processone/code-server
+    ```
 
-The next time it can be started with `docker start -i coder`
+    The next time it can be started with `docker start -i coder`
+
+=== "pod"
+
+    Write a file named `pod.yml` with the following content:
+
+    ``` yaml
+    apiVersion: v1
+
+    kind: Pod
+
+    metadata:
+      name: codeserver
+
+    spec:
+      containers:
+
+      - name: coder
+        image: ghcr.io/processone/code-server
+        ports:
+        - containerPort: 1870
+          hostPort: 1870
+        - containerPort: 5222
+          hostPort: 5222
+        - containerPort: 5280
+          hostPort: 5280
+        volumeMounts:
+          - mountPath: /workspaces/ejabberd
+            name: eja
+
+      volumes:
+      - name: eja
+        hostPath:
+          path: ejabberd # path to your ejabberd git clone
+          type: DirectoryOrCreate
+    ```
+
+    And then run:
+
+    ``` sh
+    podman play kube pod.yml --replace --wait
+    ```
+
+Now open in your web browser: <http://0.0.0.0:1870/>
 
 If you cannot write inside the container directory,
 you need to change the owner of ejabberd directory and its files:
