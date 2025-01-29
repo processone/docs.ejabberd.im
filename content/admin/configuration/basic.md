@@ -220,9 +220,10 @@ Example configuration:
 ``` yaml
 hosts: [example.org]
 
-captcha_cmd: /lib/ejabberd/priv/bin/captcha.sh
-# captcha_cmd: /opt/ejabberd-23.01/lib/captcha.sh
-# captcha_cmd: mod_ecaptcha
+captcha_cmd: /lib/ejabberd-24.12/priv/bin/captcha.sh # make install or install-rel
+# captcha_cmd: /opt/ejabberd-24.12/lib/captcha.sh # Binary installers and container images
+# captcha_cmd: tools/captcha.sh # if ejabberd started with: make relive
+# captcha_cmd: mod_ecaptcha # if installed: ejabberdctl module_install mod_ecaptcha
 
 captcha_url: auto
 ## captcha_url: http://example.org:5280/captcha
