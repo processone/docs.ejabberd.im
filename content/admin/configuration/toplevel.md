@@ -438,13 +438,13 @@ core ejabberd parts support similar options too, see
 <!-- md:version improved in [23.01](../../archive/23.01/index.md) -->
 
 Full path to a script that
-generates [CAPTCHA](basic.md#captcha) images. `@VERSION@` is replaced
-with ejabberd version number in `XX.YY` format. `@SEMVER@` is replaced
-with ejabberd version number in semver format when compiled with
-Elixir’s mix, or XX.YY format otherwise. Alternatively, it can be the
-name of a module that implements ejabberd CAPTCHA support. There is no
-default value: when this option is not set, CAPTCHA functionality is
-completely disabled.
+generates [CAPTCHA](basic.md#captcha) images. The keyword *@VERSION@*
+is replaced with ejabberd version number in `XX.YY` format. The keyword
+`@SEMVER@` is replaced with ejabberd version number in semver format
+when compiled with Elixir’s mix, or XX.YY format otherwise.
+Alternatively, it can be the name of a module that implements ejabberd
+CAPTCHA support. There is no default value: when this option is not set,
+CAPTCHA functionality is completely disabled.
 
 **Examples**:
 
@@ -837,15 +837,15 @@ Whether to dereference aliases or not. The default value is `never`.
 This filter is applied on the results returned by the main filter. The
 filter performs an additional LDAP lookup to make the complete result.
 This is useful when you are unable to define all filter rules in
-`ldap_filter`. You can define "%u", "%d", "%s" and "%D" pattern
-variables in `Filter`: "%u" is replaced by a user’s part of the JID,
-"%d" is replaced by the corresponding domain (virtual host), all "%s"
-variables are consecutively replaced by values from the attributes in
-`FilterAttrs` and "%D" is replaced by Distinguished Name from the result
-set. There is no default value, which means the result is not filtered.
-WARNING: Since this filter makes additional LDAP lookups, use it only as
-the last resort: try to define all filter rules in [ldap_filter](#ldap_filter)
-option if possible.
+`ldap_filter`. You can define `"%u"`, `"%d"`, `"%s"* and *"%D"` pattern
+variables in *Filter: "%u"* is replaced by a user’s part of the JID,
+`"%d"` is replaced by the corresponding domain (virtual host), all
+`"%s"` variables are consecutively replaced by values from the
+attributes in `FilterAttrs` and *"%D"* is replaced by Distinguished Name
+from the result set. There is no default value, which means the result
+is not filtered. WARNING: Since this filter makes additional LDAP
+lookups, use it only as the last resort: try to define all filter rules
+in [ldap_filter](#ldap_filter) option if possible.
 
 **Example**:
 
@@ -867,10 +867,10 @@ is `none`. NOTE: STARTTLS encryption is not supported.
 
 An LDAP filter as defined in
 [RFC4515](https://tools.ietf.org/html/rfc4515). There is no default
-value. Example: "(&(objectClass=shadowAccount)(memberOf=XMPP Users))".
+value. Example: *"(&(objectClass=shadowAccount)(memberOf=XMPP Users))"*.
 NOTE: don’t forget to close brackets and don’t use superfluous
-whitespaces. Also you must not use "uid" attribute in the filter because
-this attribute will be appended to the filter automatically.
+whitespaces. Also you must not use `"uid"` attribute in the filter
+because this attribute will be appended to the filter automatically.
 
 ## ldap\_password
 
@@ -946,9 +946,9 @@ performed.
 LDAP attributes which hold a list of attributes to use as alternatives
 for getting the JID, where `Attr` is an LDAP attribute which holds the
 user’s part of the JID and `AttrFormat` must contain one and only one
-pattern variable "%u" which will be replaced by the user’s part of the
-JID. For example, "%<u@example>.org". If the value is in the form of
-`[Attr]` then `AttrFormat` is assumed to be "%u".
+pattern variable *"%u"* which will be replaced by the user’s part of the
+JID. For example, *"%<u@example>.org"*. If the value is in the form of
+`[Attr]` then `AttrFormat` is assumed to be *"%u"*.
 
 ## listen
 
