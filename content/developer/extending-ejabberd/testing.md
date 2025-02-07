@@ -64,6 +64,7 @@ CT_BACKENDS=mnesia rebar  ct suites=ejabberd groups=mnesia
 CT_BACKENDS=mnesia rebar  ct suites=ejabberd groups=generic
 CT_BACKENDS=mnesia rebar3 ct --suite=test/ejabberd_SUITE --group=offline_flex,offline_send_all
 CT_BACKENDS=redis  rebar3 ct --suite=test/ejabberd_SUITE --group=offline_flex,offline_send_all
+CT_BACKENDS=mnesia rebar3 ct --suite=test/ejabberd_SUITE --group=commands_single
 ```
 
 If you have every backend configured, you can run all the tests with:
