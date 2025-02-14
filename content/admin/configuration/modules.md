@@ -191,8 +191,8 @@ Same as top-level [default_db](toplevel.md#default_db) option, but applied to th
 only.
 
 - **token\_lifetime**: `timeout()`  
-Time that tokens will be kept, measured from it’s creation time.
-Default value set to 30 days
+Time that tokens will be kept, measured from it’s creation time. Default
+value set to 30 days
 
 - **token\_refresh\_age**: `timeout()`  
 This time determines age of token, that qualifies for automatic refresh.
@@ -790,7 +790,7 @@ To run a command, send a POST request to the corresponding URL:
 
 __Available options:__
 
-- **default\_version 🟤`*: `integer() | string()*  
+- **default\_version 🟤**: `integer() | string()`  
 <!-- md:version added in [24.12](../../archive/24.12/index.md) -->
  What API version to use when
 none is specified in the URL path. If setting an ejabberd version, it
@@ -1171,6 +1171,13 @@ Management](https://xmpp.org/extensions/xep-0313.html) and [XEP-0441:
 Message Archive Management
 Preferences](https://xmpp.org/extensions/xep-0441.html). Compatible XMPP
 clients can use it to store their chat history on the server.
+
+!!! note
+
+    Mnesia backend for mod\_mam is not recommended: it’s limited to 2GB
+    and often gets corrupted when reaching this limit. SQL backend is
+    recommended. Namely, for small servers SQLite is a preferred choice
+    because it’s very easy to configure.
 
 __Available options:__
 
@@ -1654,8 +1661,10 @@ capability. The `Options` are:
     The default value is an empty string.
 
     - **enable\_hats**: `true | false`  
-   Allow extended roles as defined in
-    XEP-0317 Hats. The default value is `false`.
+   `Note` about this option: improved
+    in 25.xx. Allow extended roles as defined in XEP-0317 Hats. Check
+    the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The default
+    value is `false`.
 
     - **lang**: `Language`  
    Preferred language for the discussions in the
@@ -1735,6 +1744,10 @@ capability. The `Options` are:
     - **vcard**: `vCard`  
    A custom vCard for the room. See the equivalent
     mod\_muc option.The default value is an empty string.
+
+    - **vcard\_xupdate**: `undefined | external | AvatarHash`  
+   Set the hash
+    of the avatar image. The default value is `undefined`.
 
     - **voice\_request\_min\_interval**: `Number`  
    Minimum interval between
