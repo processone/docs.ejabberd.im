@@ -56,7 +56,7 @@ there are a few differences:
 
 - the form provided by ejabberd is slightly different to the examples,
   consequently the form filling must be updated.
-- form submission in example 5 should have in the `command` element `status='completed'`
+- form submission in example 5 should have in the `command` element `action='complete'`
 
 In summary, the flow is:
 
