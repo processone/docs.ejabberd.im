@@ -1891,6 +1891,8 @@
       
         
       
+        
+      
     
     
       
@@ -2143,6 +2145,28 @@
   
   <span class="md-ellipsis">
      MQTT tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorials/muc-hats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+     MUC Hats
     
   </span>
   
@@ -8257,8 +8281,8 @@ only.</p>
 </li>
 <li>
 <p><strong>token_lifetime</strong>: <code>timeout()</code><br/>
-Time that tokens will be kept, measured from it’s creation time.
-Default value set to 30 days</p>
+Time that tokens will be kept, measured from it’s creation time. Default
+value set to 30 days</p>
 </li>
 <li>
 <p><strong>token_refresh_age</strong>: <code>timeout()</code><br/>
@@ -8829,7 +8853,7 @@ request_handlers, add a vN. For example: <code>/api/v2: mod_http_api</code>.</p>
 <code>http://localhost:5280/api/COMMAND-NAME</code></p>
 <p><strong>Available options:</strong></p>
 <ul>
-<li>*<em>default_version 🟤<code>*:</code>integer() | string()</em><br/>
+<li><strong>default_version 🟤</strong>: <code>integer() | string()</code><br/>
 <span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"></path></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/24.12/">24.12</a></span></span>
  What API version to use when
 none is specified in the URL path. If setting an ejabberd version, it
@@ -9204,6 +9228,13 @@ Management</a> and <a href="https://xmpp.org/extensions/xep-0441.html">XEP-0441:
 Message Archive Management
 Preferences</a>. Compatible XMPP
 clients can use it to store their chat history on the server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mnesia backend for mod_mam is not recommended: it’s limited to 2GB
+and often gets corrupted when reaching this limit. SQL backend is
+recommended. Namely, for small servers SQLite is a preferred choice
+because it’s very easy to configure.</p>
+</div>
 <p><strong>Available options:</strong></p>
 <ul>
 <li>
@@ -9739,8 +9770,10 @@ The default value is an empty string.</p>
 </li>
 <li>
 <p><strong>enable_hats</strong>: <code>true | false</code><br/>
-   Allow extended roles as defined in
-XEP-0317 Hats. The default value is <code>false</code>.</p>
+<code>Note</code> about this option: improved
+in 25.xx. Allow extended roles as defined in XEP-0317 Hats. Check
+the <a href="../../../tutorials/muc-hats/">MUC Hats</a> tutorial. The default
+value is <code>false</code>.</p>
 </li>
 <li>
 <p><strong>lang</strong>: <code>Language</code><br/>
@@ -9833,6 +9866,11 @@ no default value</p>
 <p><strong>vcard</strong>: <code>vCard</code><br/>
    A custom vCard for the room. See the equivalent
 mod_muc option.The default value is an empty string.</p>
+</li>
+<li>
+<p><strong>vcard_xupdate</strong>: <code>undefined | external | AvatarHash</code><br/>
+   Set the hash
+of the avatar image. The default value is <code>undefined</code>.</p>
 </li>
 <li>
 <p><strong>voice_request_min_interval</strong>: <code>Number</code><br/>
