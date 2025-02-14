@@ -234,6 +234,7 @@ nav:
     - Tutorials: tutorials/index.md
     - " MIX tutorial": tutorials/mix-010.md
     - " MQTT tutorial": admin/guide/mqtt/index.md
+    - " MUC Hats": tutorials/muc-hats.md
     - " MUC vCards": tutorials/muc-vcard.md
     - " MySQL tutorial": tutorials/mysql.md
   - Development:
