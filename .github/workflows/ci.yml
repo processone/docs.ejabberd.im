@@ -38,6 +38,7 @@ jobs:
                          beautifulsoup4
       - run: make home
       - run: make pdf
+      - run: make pdf-test
       - run: make zip
       #- run: make test
       - run: mkdocs gh-deploy --force

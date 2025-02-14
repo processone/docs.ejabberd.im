@@ -3134,7 +3134,11 @@ identity verification based on DNS.
 
     DNS-based verification is vulnerable to [DNS cache
     poisoning](https://en.wikipedia.org/wiki/DNS_spoofing), so modern
-    servers rely on verification based on PKIX certificates. Thus this
+    servers rely on verification based on PKIX certificates.
+
+!!! warning
+
+    This
     module is only recommended for backward compatibility with servers
     running outdated software or non-TLS servers, or those with invalid
     certificates (as long as you accept the risks, e.g. you assume that

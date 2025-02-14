@@ -34,6 +34,7 @@ TAGS=content/developer/ejabberd-api/admin-tags.md
 PDFNAME=ejabberd-docs-$(VERSION).pdf
 PDF=content/ejabberd-docs.pdf
 PDFV=content/$(PDFNAME)
+PDF_SIZE=$(shell stat -c %s $(PDFV))
 
 ZIPNAME=ejabberd-docs-$(VERSION).zip
 ZIP=content/ejabberd-docs.zip
@@ -55,6 +56,7 @@ help:
 	@echo ""
 	@echo "  site     Generate site as HTML files"
 	@echo "  pdf      Generate PDF file of the offline site"
+	@echo "  pdf-test Test the PDF file size (more than 3MB)"
 	@echo "  zip      Generate ZIP file of the offline site"
 	@echo ""
 	@echo "  serve    Start MkDocs web server"
@@ -300,11 +302,14 @@ site:
 	OFFLINE=true mkdocs build
 	find site/* -type f \! -exec sed -i 's/href="\(.*\)" \(title="ejabberd Docs"\)/href="\1\/index.html" \2/g' {} \;
 
-pdf: $(PDF)
+pdf: $(PDFV)
 
-$(PDF):
+$(PDFV):
 	WITH_PDF=1 mkdocs build
 	mv $(PDF) $(PDFV)
+
+pdf-test: $(PDFV)
+	[ $(PDF_SIZE) -gt 3000000 ] || exit 1
 
 zip: $(ZIP)
 
