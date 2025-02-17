@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [25.03](../../archive/25.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -232,6 +232,12 @@
 
 
 * [mnesia_info_ctl](admin-api.md#mnesia_info_ctl)
+
+
+* [mnesia_list_tables](admin-api.md#mnesia_list_tables)
+
+
+* [mnesia_table_change_storage](admin-api.md#mnesia_table_change_storage)
 
 
 * [mnesia_table_info](admin-api.md#mnesia_table_info)

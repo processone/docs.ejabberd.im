@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [25.03](../../archive/25.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟤
 
@@ -407,7 +407,7 @@ HTTP/1.1 200 OK
 Check if the password hash is correct
 
 
-Allows hash methods from the Erlang/OTP [crypto](https://www.erlang.org/doc/man/crypto) application.
+Allows hash methods from the Erlang/OTP [crypto](https://www.erlang.org/doc/apps/crypto/crypto.html) application.
 
 __Arguments:__
 
@@ -766,13 +766,14 @@ HTTP/1.1 200 OK
 
 
 
-## create_room_with_opts
+## create_room_with_opts 🟤
 
+<!-- md:version modified in [25.03](../../archive/25.03/index.md) -->
 
 Create a MUC room name@service in host with given options
 
 
-The syntax of `affiliations` is: `Type:JID,Type:JID`. The syntax of `subscribers` is: `JID:Nick:Node:Node2:Node3,JID:Nick:Node`.
+Options `affiliations` and `subscribers` are lists of tuples. The tuples in the list are separated with `;` and the elements in each tuple are separated with `=` (until ejabberd [24.12](../../archive/24.12/index.md) the separators were `,` and `:` respectively). Each subscriber can have one or more nodes. In summary, `affiliations` is like `Type1=JID1;Type2=JID2` and `subscribers` is like `JID1=Nick1=Node1A=Node1B=Node1C;JID2=Nick2=Node2`.
 
 __Arguments:__
 
@@ -807,11 +808,11 @@ POST /api/create_room_with_opts
     },
     {
       "name": "affiliations",
-      "value": "owner:bob@example.com,member:peter@example.com"
+      "value": "owner=user1@localhost;member=user2@localhost"
     },
     {
       "name": "subscribers",
-      "value": "bob@example.com:Bob:messages:subject,anne@example.com:Anne:messages"
+      "value": "user3@localhost=User3=messages=subject;user4@localhost=User4=messages"
     }
   ]
 }
@@ -823,7 +824,7 @@ HTTP/1.1 200 OK
 
 
 
-## create_rooms_file 🟤
+## create_rooms_file
 
 <!-- md:version improved in [24.12](../../archive/24.12/index.md) -->
 
@@ -1564,7 +1565,7 @@ HTTP/1.1 200 OK
 
 
 
-## evacuate_kindly 🟤
+## evacuate_kindly
 
 <!-- md:version added in [24.12](../../archive/24.12/index.md) -->
 
@@ -2214,7 +2215,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_room_affiliations 🟤
+## get_room_affiliations
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -2507,8 +2508,8 @@ __Examples:__
 ~~~ json
 POST /api/get_roster_count
 {
-  "user": "sun",
-  "host": "localhost"
+  "user": "aaaaa",
+  "host": "bbbbb"
 }
 
 HTTP/1.1 200 OK
@@ -3556,6 +3557,91 @@ HTTP/1.1 200 OK
 
 
 
+## mnesia_list_tables 🟤
+
+<!-- md:version added in [25.03](../../archive/25.03/index.md) -->
+
+List of Mnesia tables
+
+__Arguments:__
+
+
+__Result:__
+
+- *tables* :: [{name::string, storage_type::string, elements::integer, memory_kb::integer, memory_mb::integer}]
+
+__Tags:__
+[mnesia](admin-tags.md#mnesia)
+
+__Examples:__
+
+
+~~~ json
+POST /api/mnesia_list_tables
+{
+  
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "name": "aaaaa",
+    "storage_type": "bbbbb",
+    "elements": 1,
+    "memory_kb": 2,
+    "memory_mb": 3
+  },
+  {
+    "name": "ccccc",
+    "storage_type": "ddddd",
+    "elements": 4,
+    "memory_kb": 5,
+    "memory_mb": 6
+  }
+]
+~~~
+
+
+
+
+## mnesia_table_change_storage 🟤
+
+<!-- md:version added in [25.03](../../archive/25.03/index.md) -->
+
+Change storage type of a Mnesia table
+
+
+Storage type can be: `ram_copies`, `disc_copies`, `disc_only_copies`, `remote_copy`.
+
+__Arguments:__
+
+- *table* :: string
+- *storage_type* :: string
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[mnesia](admin-tags.md#mnesia)
+
+__Examples:__
+
+
+~~~ json
+POST /api/mnesia_table_change_storage
+{
+  "table": "aaaaa",
+  "storage_type": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+"Success"
+~~~
+
+
+
+
 ## mnesia_table_info
 
 
@@ -3913,7 +3999,7 @@ HTTP/1.1 200 OK
 
 
 
-## muc_register_nick 🟤
+## muc_register_nick
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -3955,7 +4041,7 @@ HTTP/1.1 200 OK
 
 
 
-## muc_unregister_nick 🟤
+## muc_unregister_nick
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -4035,7 +4121,7 @@ HTTP/1.1 200 OK
 ## oauth_add_client_implicit
 
 
-Add [OAuth](oauth.md) client_id with implicit grant type
+Add OAuth client_id with implicit grant type
 
 __Arguments:__
 
@@ -4071,7 +4157,7 @@ HTTP/1.1 200 OK
 ## oauth_add_client_password
 
 
-Add [OAuth](oauth.md) client_id with password grant type
+Add OAuth client_id with password grant type
 
 __Arguments:__
 
@@ -4108,7 +4194,7 @@ HTTP/1.1 200 OK
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
 
-Issue an [OAuth](oauth.md) optionredir token for the given jid
+Issue an OAuth token for the given jid
 
 __Arguments:__
 
@@ -4154,10 +4240,10 @@ HTTP/1.1 200 OK
 ## oauth_list_tokens
 
 
-List [OAuth](oauth.md) tokens, user, scope, and seconds to expire (only Mnesia)
+List OAuth tokens, user, scope, and seconds to expire (only Mnesia)
 
 
-List OAuth tokens, their user and scope, and how many seconds remain until expirity
+List  [OAuth](oauth.md) tokens, their user and scope, and how many seconds remain until expiry
 
 __Arguments:__
 
@@ -4201,7 +4287,7 @@ HTTP/1.1 200 OK
 ## oauth_remove_client
 
 
-Remove [OAuth](oauth.md) client_id
+Remove OAuth client_id
 
 __Arguments:__
 
@@ -4234,7 +4320,7 @@ HTTP/1.1 200 OK
 
 <!-- md:version changed in [22.05](../../archive/22.05/index.md) -->
 
-Revoke authorization for an [OAuth](oauth.md) token
+Revoke authorization for an OAuth token
 
 __Arguments:__
 
@@ -5718,7 +5804,7 @@ HTTP/1.1 200 OK
 
 
 
-## set_room_affiliation 🟤
+## set_room_affiliation
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -6542,7 +6628,7 @@ HTTP/1.1 200 OK
 
 
 
-## status_list 🟤
+## status_list
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -6584,7 +6670,7 @@ HTTP/1.1 200 OK
 
 
 
-## status_list_host 🟤
+## status_list_host
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -6801,7 +6887,7 @@ HTTP/1.1 200 OK
 
 
 
-## subscribe_room 🟤
+## subscribe_room
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -6853,7 +6939,7 @@ HTTP/1.1 200 OK
 
 
 
-## subscribe_room_many 🟤
+## subscribe_room_many
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 
@@ -7028,7 +7114,7 @@ HTTP/1.1 200 OK
 
 
 
-## unsubscribe_room 🟤
+## unsubscribe_room
 
 <!-- md:version updated in [24.12](../../archive/24.12/index.md) -->
 

@@ -1,6 +1,6 @@
 # ejabberd Docs Source Code
 
-The [ejabberd](http://ejabberd.im/) Community Server
+The [ejabberd](https://www.ejabberd.im/) Community Server
 has its source code available in the [ejabberd git repository](https://github.com/processone/ejabberd).
 Its documentation is published in the [ejabberd Docs](https://docs.ejabberd.im) website,
 and its source code is available in the [docs git repository](https://github.com/processone/docs.ejabberd.im).
@@ -8,7 +8,7 @@ and its source code is available in the [docs git repository](https://github.com
 This is a community effort and you are welcome to submit issues or pull requests
 in order to improve the docs and benefit the ejabberd community.
 
-This documentation site is built using [MkDocs](http://www.mkdocs.org/)
+This documentation site is built using [MkDocs](https://www.mkdocs.org/)
 and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
 ## Installation

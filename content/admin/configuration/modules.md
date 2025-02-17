@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [25.03](../../archive/25.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟤.
 
@@ -23,6 +23,48 @@ __Available options:__
 - **report\_commands\_node**: `true | false`  
 Provide the Commands item in the Service Discovery. Default value:
 `false`.
+
+mod\_adhoc\_api 🟤
+------------------
+
+<!-- md:version added in [25.03](../../archive/25.03/index.md) -->
+
+
+Execute [API Commands](https://docs.ejabberd.im/developer/ejabberd-api/)
+in a XMPP client using [XEP-0050: Ad-Hoc
+Commands](https://xmpp.org/extensions/xep-0050.html). This module
+requires [mod_adhoc](#mod_adhoc) (to execute the commands), and recommends
+[mod_disco](#mod_disco) (to discover the commands).
+
+__Available options:__
+
+- **default\_version**: `integer() | string()`  
+What API version to use. If setting an ejabberd version, it will use the
+latest API version that was available in that ejabberd version. For
+example, setting `"24.06"` in this option implies `2`. The default value
+is the latest version.
+
+__**Example**:__
+
+~~~ yaml
+acl:
+  admin:
+    user: jan@localhost
+
+api_permissions:
+  "adhoc commands":
+    from: mod_adhoc_api
+    who: admin
+    what:
+      - "[tag:roster]"
+      - "[tag:session]"
+      - stats
+      - status
+
+modules:
+  mod_adhoc_api:
+    default_version: 2
+~~~
 
 mod\_admin\_extra
 -----------------
@@ -107,46 +149,58 @@ mod\_announce
 
 This module enables configured users to broadcast announcements and to
 set the message of the day (MOTD). Configured users can perform these
-actions with an XMPP client either using Ad-hoc Commands or sending
+actions with an XMPP client either using Ad-Hoc Commands or sending
 messages to specific JIDs.
 
-Note that this module can be resource intensive on large deployments as
-it may broadcast a lot of messages. This module should be disabled for
-instances of ejabberd with hundreds of thousands users.
+!!! note
 
-The Ad-hoc Commands are listed in the Server Discovery. For this feature
-to work, [mod_adhoc](#mod_adhoc) must be enabled.
+    This module can be resource intensive on large deployments as it may
+    broadcast a lot of messages. This module should be disabled for
+    instances of ejabberd with hundreds of thousands users.
 
-The specific JIDs where messages can be sent are listed below. The first
-JID in each entry will apply only to the specified virtual host
-example.org, while the JID between brackets will apply to all virtual
-hosts in ejabberd:
+To send announcements using [XEP-0050: Ad-Hoc
+Commands](https://xmpp.org/extensions/xep-0050.html), this module
+requires [mod_adhoc](#mod_adhoc) (to execute the commands), and recommends
+[mod_disco](#mod_disco) (to discover the commands).
 
--   example.org/announce/all (example.org/announce/all-hosts/all):: The
-    message is sent to all registered users. If the user is online and
-    connected to several resources, only the resource with the highest
-    priority will receive the message. If the registered user is not
-    connected, the message will be stored offline in assumption that
-    offline storage (see [mod_offline](#mod_offline)) is enabled.
+To send announcements by sending messages to specific JIDs, these are
+the destination JIDs:
 
--   example.org/announce/online
-    (example.org/announce/all-hosts/online):: The message is sent to all
-    connected users. If the user is online and connected to several
-    resources, all resources will receive the message.
+-   `example.org/announce/all`: Send the message to all registered users
+    in that vhost. If the user is online and connected to several
+    resources, only the resource with the highest priority will receive
+    the message. If the registered user is not connected, the message is
+    stored offline in assumption that offline storage (see
+    [mod_offline](#mod_offline)) is enabled.
 
--   example.org/announce/motd (example.org/announce/all-hosts/motd)::
-    The message is set as the message of the day (MOTD) and is sent to
-    users when they login. In addition the message is sent to all
-    connected users (similar to announce/online).
+-   `example.org/announce/online`: Send the message to all connected
+    users. If the user is online and connected to several resources, all
+    resources will receive the message.
 
--   example.org/announce/motd/update
-    (example.org/announce/all-hosts/motd/update):: The message is set as
-    message of the day (MOTD) and is sent to users when they login. The
-    message is not sent to any currently connected user.
+-   `example.org/announce/motd`: Set the message of the day (MOTD) that
+    is sent to users when they login. Also sends the message to all
+    connected users (similar to `announce/online`).
 
--   example.org/announce/motd/delete
-    (example.org/announce/all-hosts/motd/delete):: Any message sent to
-    this JID removes the existing message of the day (MOTD).
+-   `example.org/announce/motd/update`: Set the message of the day
+    (MOTD) that is sent to users when they login. This does not send the
+    message to any currently connected user.
+
+-   `example.org/announce/motd/delete`: Remove the existing message of
+    the day (MOTD) by sending a message to this JID.
+
+There are similar destination JIDs to apply to all virtual hosts in
+ejabberd:
+
+-   `example.org/announce/all-hosts/all`: send to all registered
+    accounts
+
+-   `example.org/announce/all-hosts/online`: send to online sessions
+
+-   `example.org/announce/all-hosts/motd`: set MOTD and send to online
+
+-   `example.org/announce/all-hosts/motd/update`: update MOTD
+
+-   `example.org/announce/all-hosts/motd/delete`: delete MOTD
 
 __Available options:__
 
@@ -174,8 +228,8 @@ only.
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
-mod\_auth\_fast 🟤
-------------------
+mod\_auth\_fast
+---------------
 
 <!-- md:version added in [24.12](../../archive/24.12/index.md) -->
 
@@ -438,13 +492,50 @@ While a client is inactive, queue presence stanzas that indicate
 mod\_configure
 --------------
 
-The module provides server configuration functionality via [XEP-0050:
-Ad-Hoc Commands](https://xmpp.org/extensions/xep-0050.html). Implements
-many commands as defined in [XEP-0133: Service
-Administration](https://xmpp.org/extensions/xep-0133.html). This module
-requires [mod_adhoc](#mod_adhoc) to be loaded.
+The module provides server configuration functionalities using
+[XEP-0030: Service Discovery](https://xmpp.org/extensions/xep-0030.html)
+and [XEP-0050: Ad-Hoc
+Commands](https://xmpp.org/extensions/xep-0050.html):
 
-The module has no options.
+-   List and discover outgoing s2s, online client sessions and all
+    registered accounts
+
+-   Most of the ad-hoc commands defined in [XEP-0133: Service
+    Administration](https://xmpp.org/extensions/xep-0133.html)
+
+-   Additional custom ad-hoc commands specific to ejabberd
+
+This module requires [mod_adhoc](#mod_adhoc) (to execute the commands), and
+recommends [mod_disco](#mod_disco) (to discover the commands).
+
+Please notice that all the ad-hoc commands implemented by this module
+have an equivalent [API
+Command](https://docs.ejabberd.im/developer/ejabberd-api/) that you can
+execute using [mod_adhoc_api](#mod_adhoc_api) or any other API frontend.
+
+__Available options:__
+
+- **access 🟤`*: `AccessName*  
+<!-- md:version added in [25.03](../../archive/25.03/index.md) -->
+ This option defines which
+access rule will be used to control who is allowed to access the
+features provided by this module. The default value is `configure`.
+
+__**Example**:__
+
+~~~ yaml
+acl:
+  admin:
+    user: sun@localhost
+
+access_rules:
+  configure:
+    allow: admin
+
+modules:
+  mod_configure:
+    access: configure
+~~~
 
 mod\_conversejs
 ---------------
@@ -790,7 +881,7 @@ To run a command, send a POST request to the corresponding URL:
 
 __Available options:__
 
-- **default\_version 🟤**: `integer() | string()`  
+- **default\_version**: `integer() | string()`  
 <!-- md:version added in [24.12](../../archive/24.12/index.md) -->
  What API version to use when
 none is specified in the URL path. If setting an ejabberd version, it
@@ -1241,14 +1332,15 @@ mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is `false`.
 
-mod\_matrix\_gw
----------------
+mod\_matrix\_gw 🟤
+------------------
 
-<!-- md:version added in [24.02](../../archive/24.02/index.md) -->
+<!-- md:version improved in [25.03](../../archive/25.03/index.md) -->
 
 
 [Matrix](https://matrix.org/) gateway. Erlang/OTP 25 or higher is
-required to use this module.
+required to use this module. This module is available since ejabberd
+24.02.
 
 __Available options:__
 
@@ -1660,11 +1752,11 @@ capability. The `Options` are:
    Short description of the room.
     The default value is an empty string.
 
-    - **enable\_hats**: `true | false`  
-   `Note` about this option: improved
-    in 25.xx. Allow extended roles as defined in XEP-0317 Hats. Check
-    the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The default
-    value is `false`.
+    - **enable\_hats 🟤`*: `true | false*  
+   `Note` about this option:
+    improved in [25.03](../../archive/25.03/index.md). Allow extended roles as defined in XEP-0317 Hats.
+    Check the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The
+    default value is `false`.
 
     - **lang**: `Language`  
    Preferred language for the discussions in the

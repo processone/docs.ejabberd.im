@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [24.12](../../archive/24.12/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [25.03](../../archive/25.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟤.
 
@@ -308,6 +308,20 @@ you already have passwords generated with a different algorithm - users
 that have such passwords will not be able to authenticate. The default
 value is `sha`.
 
+## auth\_stored\_password\_types 🟤
+
+`[plain | scram_sha1 | scram_sha256 | scram_sha512]`  
+
+<!-- md:version added in [25.03](../../archive/25.03/index.md) -->
+
+List of password types that
+should be stored simultaneously for each user in database. When the user
+sets the account password, database will be updated to store the
+password in formats compatible with each type listed here. This can be
+used to migrate user passwords to a more secure format. If this option
+if set, it will override values set in [auth_scram_hash](#auth_scram_hash) and
+[auth_password_format](#auth_password_format) options. The default value is `[]`.
+
 ## auth\_use\_cache
 
 `true | false`  
@@ -539,18 +553,38 @@ Default volatile (in-memory) storage for ejabberd. Modules and other
 components (e.g. session management) may have its own value. The default
 value is `mnesia`.
 
-## define\_macro
+## define\_keyword 🟤
 
-`{MacroName: MacroValue}`  
+`{NAME: Value}`  
 
-Defines a
-[macro](../configuration/file-format.md#macros-in-configuration-file).
-The value can be any valid arbitrary YAML value. For convenience, it’s
-recommended to define a `MacroName` in capital letters. Duplicated
-macros are not allowed. Macros are processed after additional
-configuration files have been included, so it is possible to use macros
-that are defined in configuration files included before the usage. It is
-possible to use a `MacroValue` in the definition of another macro.
+<!-- md:version added in [25.03](../../archive/25.03/index.md) -->
+
+Allows to define configuration
+[keywords](../configuration/file-format.md#macros-and-keywords).
+
+**Example**:
+
+~~~ yaml
+define_keyword:
+  SQL_USERNAME: "eja.global"
+
+host_config:
+  localhost:
+    define_keyword:
+      SQL_USERNAME: "eja.localhost"
+
+sql_username: "prefix.@SQL_USERNAME@"
+~~~
+
+## define\_macro 🟤
+
+`{NAME: Value}`  
+
+<!-- md:version improved in [25.03](../../archive/25.03/index.md) -->
+
+Allows to define
+configuration
+[macros](../configuration/file-format.md#macros-and-keywords).
 
 **Example**:
 
@@ -1054,7 +1088,7 @@ default value is `1 minute`.
 
 Whether to use the
 [new SQL schema](database.md#default-and-new-schemas). All schemas are
-located at <https://github.com/processone/ejabberd/tree/24.12/sql>.
+located at <https://github.com/processone/ejabberd/tree/25.03/sql>.
 There are two schemas available. The default legacy schema stores one
 XMPP domain into one ejabberd database. The `new` schema can handle
 several XMPP domains in a single ejabberd database. Using this `new`
@@ -1290,7 +1324,7 @@ See description of [queue_type](#queue_type) option for the explanation. The
 default value is the value defined in [queue_type](#queue_type) or `ram` if the
 latter is not set.
 
-## redis\_server 🟤
+## redis\_server
 
 `Host | IP Address | Unix Socket Path`  
 
