@@ -43,8 +43,26 @@ Access is thus generally limited by IP addresses, either restricted to localhost
     !!! note
         The `stop` and `start` commands are disabled in that example as they are usually restricted to the [ejabberdctl](../../admin/guide/managing.md#ejabberdctl) command-line tool. They are considered too sensitive to be exposed through API.
 
-3. Now you can query the API, for example:
+3. Now you can query the API:
 
+    - Example using `POST` query:
+    ``` sh
+    curl -X POST \
+         -H "Content-type: application/json" \
+         "127.0.0.1:5281/api/registered_users" \
+         -d '{"host": "localhost"}'
+
+    ["user2","user8"]
+    ```
+
+    - Minimal example using `POST`:
+    ``` sh
+    curl 127.0.0.1:5281/api/registered_users -d '{"host": "localhost"}'
+
+    ["user2","user8"]
+    ```
+
+    - `GET` is also supported when the arguments are just string or integers:
     ``` sh
     curl '127.0.0.1:5281/api/registered_users?host=localhost'
 
