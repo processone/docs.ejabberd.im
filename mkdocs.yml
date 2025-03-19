@@ -439,24 +439,5 @@ nav:
 
 not_in_nav: |
   index.md
-  admin/upgrade/from*.md
-  admin/ejabberdctl/index.md
-  admin/guide/index.md
-  admin/index.md
-  admin/configuration/old.md
-  admin/ejabberdctl/muc-admin.md
-  admin/guide/unattended.md
-  admin/guide/xep/index.md
-  developer/extending-ejabberd/index.md
-  developer/hosts.md
-  developer/xmpp-clients-bots/index.md
-
-# admin/ejabberdctl/index.md # just a list of subsections
-# admin/guide/index.md # just a list of subsections
-# admin/index.md # just a list of subsections
-# admin/configuration/old.md # archived in April 2020, only relevant for ejabberd older than 20.01
-# admin/ejabberdctl/muc-admin.md # seems obsolete, as nowadays we have full API section
-# admin/guide/unattended.md # seems obsolete, as it documents Bitrock installers
-# admin/guide/xep/index.md # seems mostly useless nowadays
 
 # vim: foldmarker=#',#. foldmethod=marker:
