@@ -8,7 +8,7 @@ The following LDAP servers are tested with ejabberd:
 
 - [`OpenLDAP`](https://openldap.org/)
 
-- [`CommuniGate Pro`](https://communigate.com/)
+- [`CommuniGate Pro`](https://www.communigate.com/)
 
 - Normally any LDAP compatible server should work; inform us about
  your success with a not-listed server so that we can list it here.

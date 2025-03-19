@@ -27,7 +27,7 @@ There are several ways to install ejabberd Community Server, depending on your n
 
 ## On-Premise (eBE)
 
-- [ejabberd Business Edition](https://www.process-one.net/en/ejabberd/) – Explore professional support and managed services on your infrastructure
+- [ejabberd Business Edition](https://www.process-one.net/ejabberd/) – Explore professional support and managed services on your infrastructure
 
 ## Cloud Hosting (Fluux)
 

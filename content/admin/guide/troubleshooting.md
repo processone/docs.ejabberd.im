@@ -75,6 +75,6 @@ The number of concurrent ETS and Mnesia tables is limited. If this
 error occurs, it means that you have reached this limit.
 
 For a solution, please read the
-[section about ERL_MAX_ETS_TABLES on the Performance Tuning page](https://ejabberd.im/tuning#erl_max_ets_tables).
+[section about ERL_MAX_ETS_TABLES on the Performance Tuning page](https://www.ejabberd.im/tuning/#erl_max_ets_tables).
 
-[1]: https://ejabberd.im/interconnect-erl-nodes
+[1]: https://www.ejabberd.im/interconnect-erl-nodes/

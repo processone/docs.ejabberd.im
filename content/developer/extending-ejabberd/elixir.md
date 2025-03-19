@@ -68,7 +68,7 @@ Also, if using Erlang/OTP 24, then Elixir 1.11.4 or higher is required.
 
     ``` yaml
     modules:
-      'ModPresenceDemo': {}
+      'Ejabberd.Module.Example': {}
       mod_adhoc: {}
     ```
 
@@ -250,12 +250,12 @@ If you plan to write an ejabberd module that heavily depends on Elixir dependenc
 The Elixir source code is placed in the [ejabberd's lib/](https://github.com/processone/ejabberd/tree/master/lib) path.
 Any elixir module placed in `lib/` will be compiled by Mix, installed with all the other erlang modules, and available for you to use.
 
-As you can see, there's a file named [mod_presence_demo.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_presence_demo.ex) which defines an ejabberd module written in elixir called `ModPresenceDemo`.
-To enable `ModPresenceDemo`, add it to `ejabberd.yml` like this:
+As you can see, there's a file named [mod_example.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_example.ex) which defines an ejabberd module written in elixir.
+To enable `Ejabberd.Module.Example`, add it to `ejabberd.yml` like this:
 
 ``` erlang
 modules:
-  'Elixir.ModPresenceDemo': {}
+  'Ejabberd.Module.Example': {}
 ```
 
 Let's write a new ejabberd module in elixir, add it to ejabberd's source code, compile and install it.
@@ -359,7 +359,7 @@ This example module adds a simple section listing PIDs in the users page in ejab
 
 To use an erlang record defined in ejabberd's header file, use Elixir's [Record](https://hexdocs.pm/elixir/Record.html) to extract the fields and define an Elixir record with its usage macros.
 
-For example, add this to the beginning of [mod_presence_demo.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_presence_demo.ex):
+For example, add this to the beginning of [mod_example.ex](https://github.com/processone/ejabberd/blob/master/lib/mod_example.ex):
 
 ``` elixir
 require Record

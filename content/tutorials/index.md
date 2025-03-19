@@ -4,7 +4,7 @@ Learning ejabberd and XMPP through videos and hands-on tutorials.
 
 ## Text tutorials
 
-In the [ProcessOne's blog Tutorial tag](https://www.process-one.net/blog/tag/tutorial/)
+In the [ProcessOne's blog](https://www.process-one.net/blog/)
 you will find tutorials about:
 
 * How to setup
@@ -33,57 +33,57 @@ there are also [old archived ejabberd tutorials](https://www.ejabberd.im/tutoria
 
 ## Architecture
 
-* [Understanding ejabberd SaaS architecture](https://youtu.be/-dqQfCpw98E?t=1m33s)
+* [Understanding ejabberd SaaS architecture](https://www.youtube.com/watch?v=-dqQfCpw98E&t=1m33s)
   > Excerpt from XMPP Academy #1 starting at 1m33s.
 
-* [What are ejabberd backends? What backends are available in ejabberd and how do they work?](https://youtu.be/SbpFgdryyIA?t=2m05s)
+* [What are ejabberd backends? What backends are available in ejabberd and how do they work?](https://www.youtube.com/watch?v=SbpFgdryyIA&t=2m05s)
   > Excerpt from XMPP Academy #2 starting at 2m05s.
 
-* [ejabberd backends architecture](https://youtu.be/SbpFgdryyIA?t=14m00s)
+* [ejabberd backends architecture](https://www.youtube.com/watch?v=SbpFgdryyIA&t=14m00s)
   > Excerpt from XMPP Academy #2 starting at 14m00s.
 
-* [What are ejabberd session backends and how to use them to scale?](https://youtu.be/SbpFgdryyIA?t=19m42s)
+* [What are ejabberd session backends and how to use them to scale?](https://www.youtube.com/watch?v=SbpFgdryyIA&t=19m42s)
   > Excerpt from XMPP Academy #2 starting at 19m42s.
 
 ## XMPP on mobile devices (smartphones)
 
-* [Mobile XMPP support on ejabberd SaaS and Business Edition: Standby, push and detached modes](https://youtu.be/-dqQfCpw98E?t=16m44s)
+* [Mobile XMPP support on ejabberd SaaS and Business Edition: Standby, push and detached modes](https://www.youtube.com/watch?v=-dqQfCpw98E&t=16m44s)
   > Excerpt from XMPP Academy #1 starting at 16m44s.
 
-* [How does Apple and Google Push support work on ejabberd SaaS and ejabberd Business Edition?](https://youtu.be/LToKLTf-N_E?t=1m20s)
+* [How does Apple and Google Push support work on ejabberd SaaS and ejabberd Business Edition?](https://www.youtube.com/watch?v=LToKLTf-N_E&t=1m20s)
   > Excerpt from XMPP Academy #3 starting at 1m20s.
 
-* [What is the relationship between ejabberd Push support and XEP-0357: Push Notifications?](https://youtu.be/LToKLTf-N_E?t=22m34s)
+* [What is the relationship between ejabberd Push support and XEP-0357: Push Notifications?](https://www.youtube.com/watch?v=LToKLTf-N_E&t=22m34s)
   > Excerpt from XMPP Academy #3 starting at 22m34s.
 
-* [What are message carbons and how do they work?](https://youtu.be/SbpFgdryyIA?t=27m30s)
+* [What are message carbons and how do they work?](https://www.youtube.com/watch?v=SbpFgdryyIA&t=27m30s)
   > Excerpt from XMPP Academy #2 starting at 27m30s.
 
-* [Demo: learning message carbons with Psi XMPP console](https://youtu.be/SbpFgdryyIA?t=29m51s)
+* [Demo: learning message carbons with Psi XMPP console](https://www.youtube.com/watch?v=SbpFgdryyIA&t=29m51s)
   > Excerpt from XMPP Academy #2 starting at 29m51s.
 
 ## XMPP for the Web
 
-* [ejabberd roadmap: announcing OAuth2 support](https://youtu.be/-dqQfCpw98E?t=27m43s)
+* [ejabberd roadmap: announcing OAuth2 support](https://www.youtube.com/watch?v=-dqQfCpw98E&t=27m43s)
   > Excerpt from XMPP Academy #1 starting at 27m43s.
 
-* [What is the impact of Websocket on Web chat performance?](https://youtu.be/LToKLTf-N_E?t=25m02s)
+* [What is the impact of Websocket on Web chat performance?](https://www.youtube.com/watch?v=LToKLTf-N_E&t=25m02s)
   > Excerpt from XMPP Academy #3 starting at 25m02s.
 
 ## Multi-User Chat
 
-* [Why do avatars / carbons not work in MUC rooms? What is special about MUC rooms?](https://youtu.be/SbpFgdryyIA?t=34m15s)
+* [Why do avatars / carbons not work in MUC rooms? What is special about MUC rooms?](https://www.youtube.com/watch?v=SbpFgdryyIA&t=34m15s)
   > Excerpt from XMPP Academy #2 starting at 34m15s.
 
 ## Developer tools and techniques
 
-* [What are the typical tools for quick XMPP prototyping?](https://youtu.be/LToKLTf-N_E?t=27m45s)
+* [What are the typical tools for quick XMPP prototyping?](https://www.youtube.com/watch?v=LToKLTf-N_E&t=27m45s)
 
 ## ejabberd and XMPP server-side implementation
 
-* [How does ejabberd internally store messages which are not yet delivered?](https://youtu.be/-dqQfCpw98E?t=22m42s)
+* [How does ejabberd internally store messages which are not yet delivered?](https://www.youtube.com/watch?v=-dqQfCpw98E&t=22m42s)
 
-* [How are privacy lists managed in ejabberd?](https://youtu.be/-dqQfCpw98E?t=25m54s)
+* [How are privacy lists managed in ejabberd?](https://www.youtube.com/watch?v=-dqQfCpw98E&t=25m54s)
 
-* [Why do we seem to find duplicate in Message Archive Management backend?](https://youtu.be/LToKLTf-N_E?t=32m20s)
+* [Why do we seem to find duplicate in Message Archive Management backend?](https://www.youtube.com/watch?v=LToKLTf-N_E&t=32m20s)
   > Excerpt from XMPP Academy #3 starting at 32m20s.

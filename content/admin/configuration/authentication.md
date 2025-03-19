@@ -217,7 +217,7 @@ Examples:
     ```
 
 There are more configuration examples and XMPP client example stanzas in
-[`Anonymous users support`](https://ejabberd.im/Anonymous-users-support).
+[`Anonymous users support`](https://www.ejabberd.im/Anonymous-users-support/).
 
 ## PAM Authentication
 

@@ -12,9 +12,9 @@ Check also the features in [ejabberd.im][im],
 [ejabberd at ProcessOne][p1home], and the list of [supported protocols in ProcessOne][xeps]
 and [XMPP.org][xmppej].
 
-[im]: https://ejabberd.im/
-[p1home]: https://www.process-one.net/en/ejabberd/
-[xeps]: https://www.process-one.net/en/ejabberd/protocols/
+[im]: https://www.ejabberd.im/
+[p1home]: https://www.process-one.net/ejabberd/
+[xeps]: https://www.process-one.net/ejabberd-features/
 [xmppej]: https://xmpp.org/software/servers/ejabberd/
 
 ## Key Features
@@ -95,9 +95,9 @@ and [XMPP.org][xmppej].
  	- SIP support.
  	- Component support: interface with networks such as AIM, ICQ and MSN installing special transports.
 
-[1]: https://erlang.org/
+[1]: https://www.erlang.org/
 [2]: https://tools.ietf.org/html/rfc3490
-[3]: https://ejabberd.im/protocols
+[3]: https://www.ejabberd.im/protocols/
 [4]: https://xmpp.org/extensions/xep-0138.html
 [5]: https://xmpp.org/extensions/xep-0039.html
 [6]: https://xmpp.org/extensions/xep-0045.html

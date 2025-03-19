@@ -29,7 +29,7 @@ Most of them are TCP ports, except the explicitely mentioned ones:
     (for example `5210`) then Erlang will listen only in that port,
     instead of starting the `epmd` program and listen in 4269 + ramdom port.
 
-[`epmd (Erlang Port Mapper Daemon)`](https://erlang.org/doc/man/epmd.html)
+[`epmd (Erlang Port Mapper Daemon)`](https://www.erlang.org/doc/apps/erts/epmd_cmd.html)
 is a small name server included in Erlang/OTP and used by Erlang
 programs when establishing distributed Erlang communications. ejabberd
 needs `epmd` to use `ejabberdctl` and also when clustering ejabberd

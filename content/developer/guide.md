@@ -28,7 +28,7 @@ time in your life you're unlikely to understand the guide.
 > whatever coding style you like.
 
 ejabberd follows [Erlang Coding Standards &
-Guidelines](https://github.com/inaka/erlang_guidelines/blob/master/README.md)
+Guidelines](https://github.com/inaka/erlang_guidelines/blob/main/README.md)
 or at least tries to do so: there is still a lot of poorly written
 legacy code (which is being leisurely rewritten), but the new code
 should be written with keeping these rules in mind. In some cases the
@@ -38,20 +38,20 @@ doesn't like them.
 
 The typical coding style rules found violated in contributors' code are:
 
-- [100 column per line](https://github.com/inaka/erlang_guidelines/blob/master/README.md#100-column-per-line):
+- [100 column per line](https://github.com/inaka/erlang_guidelines/blob/main/README.md#100-column-per-line):
 in fact we have defined 80 columns as a soft and 100 columns as a hard
 limit, which means most of your lines should be no longer than 80
 characters and the rest must never be longer than 100 characters.
 - [no deep
-nesting](https://github.com/inaka/erlang_guidelines/blob/master/README.md#avoid-deep-nesting)
+nesting](https://github.com/inaka/erlang_guidelines/blob/main/README.md#avoid-deep-nesting)
 - [no boolean parameters in case
-control](https://github.com/inaka/erlang_guidelines/blob/master/README.md#avoid-boolean-parameters)
+control](https://github.com/inaka/erlang_guidelines/blob/main/README.md#avoid-boolean-parameters)
 - [only CamelCase variables
-name](https://github.com/inaka/erlang_guidelines/blob/master/README.md#variable-names)
+name](https://github.com/inaka/erlang_guidelines/blob/main/README.md#variable-names)
 - [no
-macros](https://github.com/inaka/erlang_guidelines/blob/master/README.md#no-macros)
+macros](https://github.com/inaka/erlang_guidelines/blob/main/README.md#no-macros)
 - [no
-case-catch](https://github.com/inaka/erlang_guidelines/blob/master/README.md#dont-use-case-catch)
+case-catch](https://github.com/inaka/erlang_guidelines/blob/main/README.md#dont-use-case-catch)
 
 It's worth noting that the code itself should be indented using Emacs
 indentation style (that is the standard indentation style for Erlang
@@ -865,7 +865,7 @@ Every `stanza()` element has `meta` field represented as a `map()`.
 It's useful when there is a need to attach some metadata to the stanza
 before routing it further.
 A programmer can manipulate with this field directly using
-[maps](https://erlang.org/doc/man/maps.html) module,
+[maps](https://www.erlang.org/doc/apps/stdlib/maps.html) module,
 or use `xmpp:get_meta/1,2,3`, `xmpp:set_meta/2`, `xmpp:put_meta/3`,
 `xmpp:update_meta/3` and `xmpp:del_meta/2` functions, which is almost
 always more convenient (except pattern matching).
@@ -946,12 +946,12 @@ as described in the Administrator section:
 
 Let's see the interface between ejabberd and your script,
 and several example scripts.
-There are also several old [example scripts](https://ejabberd.im/extauth).
+There are also several old [example scripts](https://www.ejabberd.im/extauth/).
 
 ### Extauth Interface
 
 The external authentication script follows the
-[Erlang port driver API](https://erlang.org/doc/tutorial/c_portdriver.html).
+[Erlang port driver API](https://www.erlang.org/doc/system/c_portdriver.html).
 
 That script is supposed to do these actions, in an infinite loop:
 

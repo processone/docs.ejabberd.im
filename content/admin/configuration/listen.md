@@ -75,7 +75,7 @@ General listen options supported:
 
 ## ejabberd_service
 
-Interacts with an [external component](https://ejabberd.im/tutorials-transports)
+Interacts with an [external component](https://www.ejabberd.im/tutorials-transports/)
 as defined in [XEP-0114: Jabber Component Protocol](https://xmpp.org/extensions/xep-0114.html).
 
 General listen options supported:
@@ -487,7 +487,7 @@ In ejabberd [20.03](../../archive/20.03/index.md) and older,
 it was possible to configure `ejabberd_xmlrpc` as a listener.
 
 Just for reference, there's also the old
-[`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc)
+[`ejabberd_xmlrpc documentation`](https://www.ejabberd.im/ejabberd_xmlrpc/)
 with example clients in other languages.
 
 ## Examples
@@ -585,27 +585,27 @@ In this example, the following configuration defines that:
 - All users except for the administrators have a traffic of limit
  1,000Bytes/second
 
-- The [`AIM transport`](https://ejabberd.im/pyaimt)
+- The [`AIM transport`](https://www.ejabberd.im/pyaimt/)
  `aim.example.org` is connected to port 5233 on localhost IP
  addresses (127.0.0.1 and ::1) with password ‘`aimsecret`’.
 
 - The ICQ transport JIT (`icq.example.org` and `sms.example.org`) is
  connected to port 5234 with password ‘`jitsecret`’.
 
-- The [`MSN transport`](https://ejabberd.im/pymsnt)
+- The [`MSN transport`](https://www.ejabberd.im/pymsnt/)
  `msn.example.org` is connected to port 5235 with password
  ‘`msnsecret`’.
 
-- The [`Yahoo! transport`](https://ejabberd.im/yahoo-transport-2)
+- The [`Yahoo! transport`](https://www.ejabberd.im/yahoo-transport-2/)
  `yahoo.example.org` is connected to port 5236 with password
  ‘`yahoosecret`’.
 
 - The
- [`Gadu-Gadu transport`](https://ejabberd.im/jabber-gg-transport)
+ [`Gadu-Gadu transport`](https://www.ejabberd.im/jabber-gg-transport/)
  `gg.example.org` is connected to port 5237 with password
  ‘`ggsecret`’.
 
-- The [`Jabber Mail Component`](https://ejabberd.im/jmc)
+- The [`Jabber Mail Component`](https://www.ejabberd.im/jmc/)
  `jmc.example.org` is connected to port 5238 with password
  ‘`jmcsecret`’.
 

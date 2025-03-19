@@ -13,21 +13,21 @@ backbone for a very large number of mobile messaging services.
 This includes:
 
 * Chaatz
-* [Libon](https://www.process-one.net/en/customers/case/libon/)
+* [Libon](https://www.process-one.net/blog/libon-2-0-by-orange-vallee-uses-processone-to-benefit-from-smart-chatting/)
 * [Nokia OVI Chat](https://en.wikipedia.org/wiki/Ovi_(Nokia))
 * Roo Kids : Safe & fun instant messaging app for kids with minimum yet critical parental controls.
 * Swisscom IO
 * Versapp
-* [Whatsapp](http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html)
+* [Whatsapp](https://highscalability.com/the-whatsapp-architecture-facebook-bought-for-19-billion/)
 
 ### Gaming
 
 * [Electronic Arts](https://www.ea.com/)
 * [FACEIT](https://www.faceit.com/)
 * [Kixeye](https://www.kixeye.com/)
-* [Machine Zone (Game of War)](https://www.machinezone.com)
+* [Machine Zone (Game of War)](https://www.mz.com)
 * [Nokia nGage](https://en.wikipedia.org/wiki/N-Gage_(service))
-* [Riot Games (League of Legends)](http://highscalability.com/blog/2014/10/13/how-league-of-legends-scaled-chat-to-70-million-players-it-t.html)
+* [Riot Games (League of Legends)](https://highscalability.com/how-league-of-legends-scaled-chat-to-70-million-players-it-t/)
 
 ### Voice and video messaging
 
@@ -44,7 +44,7 @@ This includes:
 
 ### Telecom / Hosting
 
-* [Fastmail](https://blog.fastmail.com/2011/08/24/new-xmppjabber-server/)
+* [Fastmail](https://www.fastmail.com/blog/new-xmppjabber-server/)
 * GMX
 * [Mailfence](https://blog.mailfence.com/mailfence-groups/)
 * Orange
@@ -66,7 +66,7 @@ This includes:
 * [Facebook](https://www.quora.com/Why-was-Erlang-chosen-for-use-in-Facebook-chat)
 * Nasza Klasa (NKTalk messenger)
 * [StudiVZ](https://en.wikipedia.org/wiki/StudiVZ)
-* [Sify](http://highscalability.com/blog/2010/5/10/sifycom-architecture-a-portal-at-3900-requests-per-second.html)
+* [Sify](https://highscalability.com/sifycom-architecture-a-portal-at-3900-requests-per-second/)
 * [Tuenti](https://en.wikipedia.org/wiki/Tuenti)
 
 ### Sport
@@ -80,8 +80,8 @@ This includes:
 
 ### Push alerts
 
-* [Nokia push notifications](https://www.process-one.net/blog/sea_beyond_2011_talk_7_jukka_alakontiola_on_nokia_push_notifications/)
-* [Notify.me](http://highscalability.com/blog/2008/10/27/notifyme-architecture-synchronicity-kills.html)
+* [Nokia push notifications](https://www.process-one.net/blog/sea-beyond-2011-talk-7-jukka-alakontiola-on-nokia-push-notifications/)
+* [Notify.me](https://highscalability.com/notifyme-architecture-synchronicity-kills/))
 
 ### Dating
 

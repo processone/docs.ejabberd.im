@@ -45,7 +45,7 @@ There are several ways to obtain the ejabberd source code:
     cd ejabberd
     ```
 
-[p1dl]: https://www.process-one.net/en/ejabberd/downloads/
+[p1dl]: https://www.process-one.net/download/
 [ghr]: https://github.com/processone/ejabberd/releases
 [gitrepo]: https://github.com/processone/ejabberd
 

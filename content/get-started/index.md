@@ -24,7 +24,7 @@ Designed at a moment when clients were mostly desktops that only supported a kin
 It was developed at a time when XMPP was still known as "Jabber", but quickly adopted an evolution process in order to support the various versions of XMPP RFCs.
 It now encourages innovation and experimentation by supporting most, if not all, extensions produced by the XSF.
 
-ejabberd relies on a dynamic community all over the world. To get an idea of existing contributions, you can check [ejabberd main repository](https://www.github.com/processone/ejabberd)
+ejabberd relies on a dynamic community all over the world. To get an idea of existing contributions, you can check [ejabberd main repository](https://github.com/processone/ejabberd)
 or the repository containing a great amount of [contributed extensions](https://github.com/processone/ejabberd-contrib).
 
 This is possible thanks to a modular architecture based on a core router and an extremely powerful plugin mechanism that is getting richer every day.
@@ -35,7 +35,7 @@ Welcome to the beginning of your journey of ejabberd mastery!
 
 ejabberd can be used in different ways. The most common one is to use ejabberd Community Edition. This is the standard Open Source version that everyone loves: highly scalable and flexible.
 
-Fortunately, if you need more than just the ejabberd platform software, [ProcessOne](https://process-one.net) can help you with a commercial offering. Commercial offering come in two type of packaging:
+Fortunately, if you need more than just the ejabberd platform software, [ProcessOne](https://www.process-one.net/) can help you with a commercial offering. Commercial offering come in two type of packaging:
 
 - **ejabberd Business Edition**, including features for large companies
   (enhanced geodistributed companies and mobile support to develop
@@ -80,8 +80,8 @@ different features, including:
 - Metrics and full command-line administration
 - and many many more.
 
-The full list of supported protocol and extensions is available on
-[Protocols Supported by ejabberd](https://www.process-one.net/en/ejabberd/protocols/)
+The full list of supported protocol and extensions in the
+[Specification & Reference Sheets](https://www.process-one.net/ejabberd-features/)
 page.
 
 This modular architecture allows high customisability and easy access
@@ -141,8 +141,8 @@ solution design are harder to fix once the project is in production.
 If the service requires a cluster of more than 10 nodes, we recommend
 not relying on Mnesia clustering mode. Many solutions are available, the
 easiest and more inexpensive being to rely on
-[ejabberd Software-as-a-Service](https://www.process-one.net/en/ejabberd/saas/)
-approach.
+ejabberd Software-as-a-Service approach, see
+[Advanced Messaging Infrastructure & Services](https://www.process-one.net/advanced-messaging/).
 
 ejabberd also allows connecting different clusters as parts of larger
 systems. This is a standard XMPP feature call server-to-server (aka
@@ -196,6 +196,6 @@ ideas or improvements to make sure ejabberd is always your most solid
 choice in term of scalability, robustness and manageability.
 
 The best way to start developing for ejabberd is to clone, watch and
-star the [project](https://www.github.com/processone/ejabberd), to get
+star the [project](https://github.com/processone/ejabberd), to get
 in touch on our developer chatroom (<ejabberd@conference.process-one.net>) or
 to join [ejabberd community on StackOverflow](https://stackoverflow.com/questions/tagged/ejabberd?sort=newest).

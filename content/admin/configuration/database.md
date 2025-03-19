@@ -14,7 +14,7 @@ storage systems for modules, and so forth.
 
 The following databases are supported by ejabberd:
 
--   [`Mnesia`](https://erlang.org/doc/apps/mnesia/). Used by default, nothing to setup to start using it
+-   [`Mnesia`](https://www.erlang.org/doc/apps/mnesia/). Used by default, nothing to setup to start using it
 
 -   [`MySQL`](https://www.mysql.com/). Check the tutorial [Using ejabberd with MySQL](../../tutorials/mysql.md)
 
@@ -255,7 +255,7 @@ you may prefer to set SQL as your [default database](#default-database).
 ## Microsoft SQL Server
 
 For now, MS SQL is only supported in Unix-like OS'es. You need to have
-[`unixODBC`](http://www.unixodbc.org/) installed on your machine, and your Erlang/OTP
+[`unixODBC`](https://www.unixodbc.org/) installed on your machine, and your Erlang/OTP
 must be compiled with ODBC support.
 Also, in some cases you need to add machine name to `sql_username`, especially
 when you have `sql_server` defined as an IP address, e.g.:

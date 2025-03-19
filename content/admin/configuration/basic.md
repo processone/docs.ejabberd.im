@@ -380,7 +380,7 @@ In the case of errors, you can delete the whole `acme` directory - ejabberd
 will recreate its content on next certification request. However, don't delete it
 too frequently - usually there is a rate limit on the number of accounts and
 certificates an ACME server creates. In particular, for [Let's Encrypt](https://letsencrypt.org)
-the limits are described [here](https://letsencrypt.org/docs/rate-limits).
+the limits are described [here](https://letsencrypt.org/docs/rate-limits/).
 
 ## Access Rights
 

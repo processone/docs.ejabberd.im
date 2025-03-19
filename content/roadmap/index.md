@@ -149,7 +149,7 @@ hide:
     * Improved MucSub
     * Erlang/OTP 19.1 is required
 
-* [19.02](https://www.process-one.net/blog/ejabberd-19-02/)
+* [19.02](https://www.process-one.net/blog/ejabberd-19-02-the-mqtt-edition/)
     * MQTT Support
     * MIX improvements
 
@@ -186,7 +186,7 @@ hide:
     * Rewrite ejabberd system monitor
     * Support PubSub v1.14 and OMEMO
 
-* [17.11](https://www.process-one.net/blog/ejabberd-17-11/)
+* [17.11](https://www.process-one.net/blog/ejabberd-17-11-happy-birthday-ejabberd/)
     * ACME Support
     * Introduce ‘certfiles’ global option
     * PubSub improved, and SQL storage
@@ -240,11 +240,11 @@ hide:
 
 * [16.04](https://www.process-one.net/blog/ejabberd-16-04/)
 
-* [16.03](https://www.process-one.net/blog/ejabberd-16-03/)
+* [16.03](https://www.process-one.net/blog/ejabberd-16-03-experimental-mix-support-ldap-sql-and-riak-improvements/)
     * Experimental support for [MIX (Mediated Information eXchange)](https://www.process-one.net/blog/experimental-mix-support-for-group-conversations-added-to-ejabberd/)
     * Erlang/OTP 17.5 required
 
-* [16.02](https://www.process-one.net/blog/ejabberd-16-02/)
+* [16.02](https://www.process-one.net/blog/ejabberd-16-02-happy-leap-day/)
     * XEP-0013 Flexible Offline Message Retrieval
     * Improved Message Archive Management (MAM)
     * Published [ejabberd on hex.pm](https://hex.pm/packages/ejabberd)
@@ -256,19 +256,19 @@ hide:
 
 ### 2015
 
-* [15.11](https://www.process-one.net/blog/ejabberd-15-11/)
+* [15.11](https://www.process-one.net/blog/ejabberd-15-11-simpler-cluster-setup/)
     * Improved `join_cluster` and `leave_cluster`
 
-* [15.10](https://www.process-one.net/blog/ejabberd-15-10/)
+* [15.10](https://www.process-one.net/blog/ejabberd-15-10-http-upload-metrics-and-performance/)
     * New mod_http_upload with support for [XEP-0363 HTTP File Upload](https://xmpp.org/extensions/xep-0363.html)
     * Added support for [Grapherl](https://www.process-one.net/blog/grapherl-google-summer-of-code-metrics-for-ejabberd/)
 
-* [15.09](https://www.process-one.net/blog/ejabberd-15-09/)
+* [15.09](https://www.process-one.net/blog/ejabberd-15-09-oauth/)
     * OAuth 2.0 delegation framework
     * Preliminary OAuth and HTTP based ejabberd API
     * X-AUTH2 authentication mechanism
 
-* [15.07](https://www.process-one.net/blog/ejabberd-15-07/)
+* [15.07](https://www.process-one.net/blog/ejabberd-15-07-released-summer-progress/)
 
 * [15.06](https://www.process-one.net/blog/ejabberd-15-06/)
     * New mod_mam with [XEP-0313 Message Archive Management](https://xmpp.org/extensions/xep-0313.html)
@@ -324,7 +324,7 @@ hide:
     * Rebar2 is used to manage dependencies
     * Erlang/OTP R15 is required
 
-* [13.03-beta1](https://www.process-one.net/blog/ejabberd-community-server-13-03-is-launched-in-beta/) ([announcement](http://lists.jabber.ru/pipermail/ejabberd/2013-March/007974.html))
+* [13.03-beta1](https://www.process-one.net/blog/ejabberd-community-server-13-03-is-launched-in-beta/) ([announcement](https://web.archive.org/web/20220128081349/http://lists.jabber.ru/pipermail/ejabberd/2013-March/007974.html))
     * Binarize and indent code
     * New versioning scheme
 
@@ -335,49 +335,49 @@ hide:
 
 ### 2011
 
-* [2.1.10](https://www.process-one.net/blog/new_releases_ejabberd_2110_and_exmpp_099/)
+* [2.1.10](https://www.process-one.net/blog/new-releases-ejabberd-2110-and-exmpp-099/)
 
-* [2.1.9](https://www.process-one.net/blog/new_releases_ejabberd_219_300-alpha-4_and_exmpp_098/)
+* [2.1.9](https://www.process-one.net/blog/new-releases-ejabberd-219-300-alpha-4-and-exmpp-098/)
     * New SASL SCRAM-SHA-1 authentication mechanism
 
 ### 2010
 
-* [2.1.6](https://www.process-one.net/blog/ejabberd_216_release/)
+* [2.1.6](https://www.process-one.net/blog/ejabberd-216-release/)
     * mod_register: New captcha_protected option to require CAPTCHA
     * Support PostgreSQL 9.0
 
 * October: the source code repository and the bug tracker were finally moved to GitHub
 
-* [2.1.5](https://www.process-one.net/blog/ejabberd_215_and_exmpp_095_bugfix_releases/)
+* [2.1.5](https://www.process-one.net/blog/ejabberd-215-and-exmpp-095-bugfix-releases/)
 
-* [2.1.4](https://www.process-one.net/blog/ejabberd_214_and_exmpp_094_bugfix_releases/)
+* [2.1.4](https://www.process-one.net/blog/ejabberd-214-and-exmpp-094-bugfix-releases/)
     * Full support for XEP-0115 Entity Capabilities v1.5
 
-* [2.1.2](https://www.process-one.net/blog/ann_ejabberd_212_bugfix_release/)
+* [2.1.2](https://www.process-one.net/blog/ann-ejabberd-212-bugfix-release/)
 
 ### 2009
 
-* [2.1.1](https://www.process-one.net/blog/ann_ejabberd_211_bugfix_release/)
+* [2.1.1](https://www.process-one.net/blog/ann-ejabberd-211-bugfix-release/)
 
-* [2.1.0](https://www.process-one.net/blog/ejabberd_210_finally_released/)
+* [2.1.0](https://www.process-one.net/blog/ejabberd-210-finally-released/)
     * LDAPS support
     * STUN server
-    * New XEPs supported: XMPP Ping, Roster Versioning, [Import/Export Format](https://www.process-one.net/blog/ejabberd_migration_kit/)
+    * New XEPs supported: XMPP Ping, Roster Versioning, [Import/Export Format](https://www.process-one.net/blog/ejabberd-migration-kit/)
     * Erlang/OTP R13 is supported
 
-* [2.0.5](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.5/) ([announcement](https://www.process-one.net/blog/ejabberd_205_has_been_released/))
+* [2.0.5](https://web.archive.org/web/20120122013929/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.5/) ([announcement](https://www.process-one.net/blog/ejabberd-205-has-been-released/))
 
-* [2.0.4](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.4/) ([announcement](https://www.process-one.net/blog/ejabberd_204_has_been_released/))
+* [2.0.4](https://web.archive.org/web/20120122014454/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.4/) ([announcement](https://www.process-one.net/blog/ejabberd-204-has-been-released/))
 
-* [2.0.3](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.3/) ([announcement](https://www.process-one.net/blog/ejabberd_203_has_been_released/))
+* [2.0.3](https://web.archive.org/web/20120122014449/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_2.0.3/) ([announcement](https://www.process-one.net/blog/ejabberd-203-has-been-released/))
 
 ### 2008
 
-* [2.0.2](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_202/) ([announcement](https://www.process-one.net/blog/ejabberd_202/))
+* [2.0.2](https://web.archive.org/web/20120122014509/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_202/) ([announcement](https://www.process-one.net/blog/ejabberd-202/))
 
-* [2.0.1](http://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_201) ([announcement](https://www.process-one.net/blog/ejabberd_201/))
+* [2.0.1](https://web.archive.org/web/20120122013959/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_201/) ([announcement](https://www.process-one.net/blog/ejabberd-201/))
 
-* [2.0.0](https://web.archive.org/web/20131101194253/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_200/) ([announcement](https://www.process-one.net/blog/ejabberd_200/))
+* [2.0.0](https://web.archive.org/web/20120122013537/https://www.process-one.net/en/ejabberd/release_notes/release_note_ejabberd_200/) ([announcement](https://www.process-one.net/blog/ejabberd-200/))
     * New front-end and back-end cluster architecture
     * Complete rewrite of the PubSub module
     * New Proxy65 file transfer proxy
@@ -386,7 +386,7 @@ hide:
 
 ### 2007
 
-* [1.1.4](https://www.process-one.net/blog/ejabberd_114_released/)
+* [1.1.4](https://www.process-one.net/blog/ejabberd-114-released/)
 
 * [1.1.3](https://web.archive.org/web/20220124230040/http://lists.jabber.ru/pipermail/ejabberd/2007-February/002440.html)
 
@@ -427,7 +427,7 @@ hide:
     * New mod_shared_roster
     * Added PostgreSQL support
 
-* February: source code moved from SVN to Git, and the [bug tracker from Bugzilla to JIRA](https://www.process-one.net/blog/ejabberd_bug_tracker_open_for_registration/)
+* February: source code moved from SVN to Git, and the [bug tracker from Bugzilla to JIRA](https://www.process-one.net/blog/ejabberd-bug-tracker-open-for-registration/)
 
 * Beginning of 2005, source code moved from JabberStudio CVS to ProcessOne SVN
 
