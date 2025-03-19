@@ -65,6 +65,7 @@ help:
 	@echo "  live     Start MkDocs web server in live mode"
 	@echo ""
 	@echo "  test     Test URLs"
+	@echo "  test2    Test external URLs too"
 	@echo ""
 	@echo "  archive  Copy some files and generate Archive page"
 	@echo ""
@@ -391,9 +392,28 @@ archive:
 #
 
 test:
-	#linkchecker --no-status http://127.0.0.1:8000/mkdocs/
 	export TEST=true && mkdocs build
 	#export TEST=true && export TEST_EXTERNAL=true && mkdocs build
+
+test2:
+	linkchecker \
+		--no-status  \
+		--check-extern \
+		--ignore-url 0.0.0.0:1870 \
+		--ignore-url 25.xx \
+		--ignore-url archive/2.* \
+		--ignore-url archive/old/ \
+		--ignore-url coveralls.io/.*/badge.svg \
+		--ignore-url ejabberd-docs- \
+		--ignore-url github.com/codespaces \
+		--ignore-url github.com/processone/ejabberd/issues/ \
+		--ignore-url localhost: \
+		--ignore-url mailto: \
+		--ignore-url web.archive.org \
+		--ignore-url www.meetic.com \
+		--ignore-url www.microsoft.com/sql-server \
+		--ignore-url www.process-one.net/resources/case_studies \
+		http://127.0.0.1:8000/
 
 #.
 #' export

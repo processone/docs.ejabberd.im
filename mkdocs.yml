@@ -184,8 +184,8 @@ theme:
     - content.tabs.link
     - content.code.annotate
     - content.code.copy
-    - content.action.edit # Button "Edit on GitHub"
-    - content.action.view # Button "View on GitHub"
+      #- content.action.edit # Button "Edit on GitHub"
+      #- content.action.view # Button "View on GitHub"
 
 #.
 #' nav
