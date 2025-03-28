@@ -7,8 +7,6 @@ hide:
 
 ## In the Works
 
-- **Support for joining Matrix rooms as MUC rooms**
-
 - **Remove support for Erlang/OTP older than 25**
 
 ## Planned
@@ -19,6 +17,18 @@ hide:
     But more importantly, dependencies would not need to be updated just because other dependencies are updated: Rebar2 requires exact version numbers to be provided, [Rebar3 doesn't require that](https://rebar3.org/docs/configuration/dependencies/#dependency-version-handling), and [neither does Mix](https://hexdocs.pm/elixir/Version.html#module-requirements).
 
 ## Released
+
+This is a brief summary for each released version. For details, please consult ejabberd's [ChangeLog](../CHANGELOG.md).
+
+### 2025
+
+- [25.03](https://www.process-one.net/blog/ejabberd-25-03/)
+    - [mod_matrix_gw](../admin/configuration/modules.md/#mod_matrix_gw): Support for joining Matrix rooms as MUC rooms
+    - [auth_stored_password_types](../admin/configuration/toplevel.md#auth_stored_password_types): Multiple Simultaneous Password Types
+    - [mod_adhoc_api](../admin/configuration/modules.md/#mod_adhoc_api): New module to execute API commands using XMPP client
+    - [Macros and Keywords](../admin/configuration/file-format.md#macros-and-keywords) Improvements
+    - [CTL_OVER_HTTP](../admin/guide/managing.md#ctl_over_http): New option in `ejabberdctl` script
+    - [Container images](../CONTAINER.md#images-comparison): reduce friction, use macros, webadmin port
 
 ### 2024
 
