@@ -37,7 +37,7 @@ By default, all commands are in API version 0, and latest API is used if no vers
 The command documentation indicates the api version as a tag: `v1`, `v2`...
 Commands not versioned do not have such a tag: they are version 0.
 
-The [ejabberd Docs: API Tags](../ejabberd-api/admin-api.md) page lists the most recent API versions, and what commands are included.
+The [API Tags](../ejabberd-api/admin-api.md) page lists the most recent API versions, and what commands are included.
 
 To know exactly what is the format expected for a command in a specific API version, use `ejabberdctl` specifying what API version you want to consult and the command name, for example:
 
@@ -45,9 +45,49 @@ To know exactly what is the format expected for a command in a specific API vers
 ejabberdctl --version 0 help get_roster
 ```
 
+## `ejabberdctl`
+
+[ejabberdctl](../../admin/guide/managing.md#ejabberdctl)
+uses by default the latest API version.
+
+To execute a command from a specific API version, add the `--version` switch,
+followed by the version number, and then the command name.
+
+Example:
+
+``` sh
+ejabberdctl --version 2 set_loglevel 4
+```
+
+Use the most recent API version:
+
+``` sh
+$ ejabberdctl get_roster admin localhost
+jan@localhost jan   none    subscribe       group1,group2
+tom@localhost tom   none    subscribe       group3
+```
+
+Use version 0:
+
+``` sh
+$ ejabberdctl --version 0 get_roster admin localhost
+jan@localhost jan   none    subscribe       group1;group2
+tom@localhost tom   none    subscribe       group3
+```
+## `mod_adhoc_api`
+
+[mod_adhoc_api](../../admin/configuration/modules.md#mod_adhoc_api)
+uses by default the latest API version.
+
+If you want the module to use a specific API version,
+configure the module option `default_version`.
+
 ## `mod_http_api`
 
-The server administrator can set the default version when configuring `request_handlers`, by including a `vN` in its path, where `N` is an integer corresponding to the version.
+[mod_http_api](../../admin/configuration/modules.md#mod_http_api)
+uses by default the latest API version.
+
+You can set the default version when configuring `request_handlers`, by including a `vN` in its path, where `N` is an integer corresponding to the version.
 
 In any case, the API client can specify a version when sending the request, by appending `vN` to the request path.
 
@@ -97,30 +137,3 @@ $ curl -k -X POST -H "Content-type: application/json" \
 "info"
 ```
 
-## `ejabberdctl`
-
-By default the latest version of a given command is used.
-To use a command in a specific API version, use the `--version` switch,
-followed by the version number, and then the command name.
-
-Example:
-
-``` sh
-ejabberdctl --version 2 set_loglevel 4
-```
-
-Use the most recent API version:
-
-``` sh
-$ ejabberdctl get_roster admin localhost
-jan@localhost jan   none    subscribe       group1,group2
-tom@localhost tom   none    subscribe       group3
-```
-
-Use version 0:
-
-``` sh
-$ ejabberdctl --version 0 get_roster admin localhost
-jan@localhost jan   none    subscribe       group1;group2
-tom@localhost tom   none    subscribe       group3
-```

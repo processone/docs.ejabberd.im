@@ -1,38 +1,88 @@
-# ejabberd Rest API
+# ejabberd ReST API
 
 ## Introduction
 
-ejabberd comes with a powerful API serving two goals:
+ejabberd comes with a extensive API that allows to perform administrative tasks from outside ejabberd:
 
-1. Manage the XMPP service and integrate the platform with back-end platforms and script tools.
-2. Allow users to perform tasks via the client, allowing simple basic clients that do not need to use XMPP protocol.
-   This can be handy, for example to send a message from your smartwatch, or show the number of offline messages.
+1. Manage the XMPP server:
+   restart the server, reload configuration, ...
+2. Integrate the XMPP server with your existing platforms:
+   create a MUC room when a new party starts in your platform, ...
+3. Allow users to perform tasks using simple basic programs with no XMPP support:
+   send a message from the smartwatch, show the number of offline messages...
 
-The system is powerful and very versatile and you can configure it very finely, but it can be quite daunting to set up.
+The system is powerful, versatile, and you can configure access permissions very finely.
+In the next sections you will learn the basic concepts,
+how to start using ejabberd's API,
+how to adjust it to your needs,
+and integrate ejabberd with your existing systems.
 
-This section is written to demystify ejabberd API configuration and help you integrate ejabberd with your other back-ends or script through an HTTP / HTTPS ReST API.
+## API Backends
 
-## Understanding ejabberd "commands"
+ejabberd's API currently includes over 200 commands,
+see [API Reference](admin-api.md) for a detailed list of all the existing commands.
+Alternatively you can view the list of commands grouped by their [API Tags](admin-api.md).
 
-ejabberd operations are organised around the concept of commands. ejabberd standard modules already provide many commands, but the mechanism is generic and any module can provide its own set of commands. This exposition of commands for third-party modules make it very powerful.
+Those commands are defined and implemented in Erlang or Elixir modules.
+Some modules included in ejabberd define their commands,
+while the majority of the existing commands are defined and implemented in:
 
-All commands can be exposed through interfaces. Available interfaces are:
+- `ejabberd_admin`
+- [mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+- [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
 
-- [ejabberdctl](../../admin/guide/managing.md#ejabberdctl) command-line tool,
-- [mod_http_api](../../admin/configuration/modules.md#mod_http_api) for ReST calls using JSON data,
-- [ejabberd_xmlrpc](../../admin/configuration/listen.md#ejabberd_xmlrpc) for XML-RPC calls,
-- [WebAdmin](../../admin/guide/managing.md#web-admin) uses most commands to build the web pages,
-- [mod_configure](../../admin/configuration/modules.md#mod_configure) includes support for a few administrative tasks (using XMPP protocol itself through discovery and adhoc commands)
+When developing a module in Erlang or Elixir, it can define new commands,
+see [Commands](commands.md) page for details.
 
-The [ejabberd-contrib Github repository](../../admin/guide/modules.md#ejabberd-contrib) provides other interfaces that can be installed to execute ejabberd commands in different ways: `mod_rest` (HTTP POST service), `mod_shcommands` (ejabberd WebAdmin page).
+## API Frontends
 
-Any module in ejabberd can add its own command(s) through ejabberd Erlang/Elixir API, making the whole system totally extensible. A third-party module can expose its own command(s) and feel like a real part of the system. A module that exposes commands allows server admins to expose it the way they want.
+The API commands are exposed through interfaces. Available interfaces are:
 
-ejabberd commands are universal, extensible and widely available through various configurable entrypoints.
+- [ejabberdctl](../../admin/guide/managing.md#ejabberdctl) command-line tool
+- [mod_http_api](../../admin/configuration/modules.md#mod_http_api) for HTTP ReST calls using JSON data
+- [mod_adhoc_api](../../admin/configuration/modules.md#mod_adhoc_api) for calls using a XMPP client
+- [WebAdmin](../../admin/guide/managing.md#web-admin) uses most commands to build the web pages
+- [ejabberd_xmlrpc](../../admin/configuration/listen.md#ejabberd_xmlrpc) for XML-RPC calls (deprecated in favor of mod_http_api)
 
-_Note: The XML-RPC API still works but is deprecated in favor of the ReST API. You should migrate to ReST if you are using it._
+There are other interfaces available in the [ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib) Github repository:
 
-<!-- TODO A diagram would be nice to have -->
+- [mod_rest](https://github.com/processone/ejabberd-contrib/tree/master/mod_rest) for HTTP ReST calls using plaintext data
+- [mod_shcommands](https://github.com/processone/ejabberd-contrib/tree/master/mod_shcommands) for a WebAdmin page
+
+## Process Flow
+
+Let's review the process flow with one example:
+
+1. API Client: Your web client (in this case Curl) sends an HTTP query
+1. API Frontend: [mod_http_api](../../admin/configuration/modules.md#mod_http_api)
+  checks the client authentication,
+  permissions to execute the command
+  and processes command arguments, then calls
+1. API Backend: [mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+  actually executes the command.
+  In this case, it will query to proper internal ejabberd code.
+
+``` mermaid
+sequenceDiagram
+  autonumber
+  participant C as API Client<br/>curl
+  box ejabberd
+  participant F as API Frontend<br/>mod_http_api
+  participant B as API Backend<br/>mod_admin_extra
+  participant M as Module<br/>mod_last
+  end
+  Note right of C: HTTP Query
+  C-->>F: POST /api/get_last<br/>{"user": "tom",<br/>"host": "localhost"}
+  Note right of F: API Command Call
+  F-->>B: get_last<br/>tom localhost
+  Note right of B: Erlang Function Call
+  B-->>M: mod_last:get_last_info<br/>(tom, localhost)
+  activate M
+  M-->>B: {ok,<br/>1743517196,<br/>"Disconnected"}
+  deactivate M
+  B-->>F: {"2025-04-01T14:19:56Z",<br/>"Disconnected"}
+  F-->>C: 200 OK<br/>{"timestamp":<br/> "2025-04-01T14:19:56Z",<br/>"status":"Disconnected"}
+```
 
 ## The role of ejabberd API
 
@@ -86,4 +136,3 @@ You can dig deeper into ejabberd ReST API configuration on the following pages:
 
 - [API Permissions](permissions.md)
 - [OAuth Support](oauth.md)
-- [Administration API Commands](admin-api.md)
