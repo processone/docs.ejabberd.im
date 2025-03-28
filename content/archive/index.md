@@ -6,6 +6,7 @@ This section contains archived documentation of previous ejabberd releases.
 Please notice that it only contains the pages that most probably change between releases.
 
 <!-- RELEASE_LIST -->
+* [25.03](25.03/index.md)
 * [24.12](24.12/index.md)
 * [24.10](24.10/index.md)
 * [24.07](24.07/index.md)
