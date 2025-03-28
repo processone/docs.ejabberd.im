@@ -1,13 +1,13 @@
 # MUC Hats
 
-<!-- md:version improved in [25.xx](../../archive/25.xx/index.md) -->
+<!-- md:version improved in [25.03](../archive/25.03/index.md) -->
 
 ejabberd implements support for
 [XEP-0317 Hats](https://xmpp.org/extensions/xep-0317.html)
 since version 21.12,
 as implemented in commit
 [5d0e599](https://github.com/processone/ejabberd/commit/5d0e599f1784d7529dcd365ad8c3dd46c1ac85ad).
-In ejabberd 25.xx, support has been improved to XEP v0.2.0,
+In ejabberd 25.03, support has been improved to XEP v0.2.0,
 with some minor differences to the examples in the protocol,
 which are described here.
 

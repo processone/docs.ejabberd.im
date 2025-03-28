@@ -256,7 +256,7 @@ Alternatively, set the option to a string in form `"unix:/path/to/socket"`
 to create and listen on a unix domain socket `/path/to/socket`.
 
 !!! tip
-    <!-- md:version improved in [25.xx](../../archive/25.xx/index.md) -->
+    <!-- md:version improved in [25.03](../../archive/25.03/index.md) -->
 
     If it's a relative path,
     then it's created in the mnesia spool directory.
