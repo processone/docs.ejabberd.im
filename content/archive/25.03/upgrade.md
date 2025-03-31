@@ -52,7 +52,7 @@ CREATE TABLE new_users (
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (username, type)
 );
-INSERT INTO new_users SELECT * FROM users;
+INSERT INTO new_users SELECT username, type, password, serverkey, salt, iterationcount, created_at FROM users;
 DROP TABLE users;
 ALTER TABLE new_users RENAME TO users;
 ```
@@ -71,7 +71,7 @@ CREATE TABLE new_users (
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (server_host, username, type)
 );
-INSERT INTO new_users SELECT * FROM users;
+INSERT INTO new_users SELECT username, server_host, type, password, serverkey, salt, iterationcount, created_at FROM users;
 DROP TABLE users;
 ALTER TABLE new_users RENAME TO users;
 ```
