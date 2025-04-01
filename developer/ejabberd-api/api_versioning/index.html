@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.10">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
     
     
       
@@ -166,11 +166,13 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -204,6 +206,7 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
@@ -2427,18 +2430,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mod_http_api" class="md-nav__link">
+  <a href="#ejabberdctl" class="md-nav__link">
     <span class="md-ellipsis">
-      mod_http_api
+      ejabberdctl
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ejabberdctl" class="md-nav__link">
+  <a href="#mod_adhoc_api" class="md-nav__link">
     <span class="md-ellipsis">
-      ejabberdctl
+      mod_adhoc_api
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mod_http_api" class="md-nav__link">
+    <span class="md-ellipsis">
+      mod_http_api
     </span>
   </a>
   
@@ -7400,18 +7412,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mod_http_api" class="md-nav__link">
+  <a href="#ejabberdctl" class="md-nav__link">
     <span class="md-ellipsis">
-      mod_http_api
+      ejabberdctl
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ejabberdctl" class="md-nav__link">
+  <a href="#mod_adhoc_api" class="md-nav__link">
     <span class="md-ellipsis">
-      ejabberdctl
+      mod_adhoc_api
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mod_http_api" class="md-nav__link">
+    <span class="md-ellipsis">
+      mod_http_api
     </span>
   </a>
   
@@ -7462,20 +7483,45 @@ There is no need to add a new <code>#ejabberd_commands</code> record for command
 <h2 id="api-documentation">API Documentation<a class="headerlink" href="#api-documentation" title="Permanent link">&para;</a></h2>
 <p>The command documentation indicates the api version as a tag: <code>v1</code>, <code>v2</code>...
 Commands not versioned do not have such a tag: they are version 0.</p>
-<p>The <a href="../admin-api/">ejabberd Docs: API Tags</a> page lists the most recent API versions, and what commands are included.</p>
+<p>The <a href="../admin-api/">API Tags</a> page lists the most recent API versions, and what commands are included.</p>
 <p>To know exactly what is the format expected for a command in a specific API version, use <code>ejabberdctl</code> specifying what API version you want to consult and the command name, for example:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ejabberdctl<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="nb">help</span><span class="w"> </span>get_roster
 </span></code></pre></div>
+<h2 id="ejabberdctl"><code>ejabberdctl</code><a class="headerlink" href="#ejabberdctl" title="Permanent link">&para;</a></h2>
+<p><a href="../../../admin/guide/managing/#ejabberdctl">ejabberdctl</a>
+uses by default the latest API version.</p>
+<p>To execute a command from a specific API version, add the <code>--version</code> switch,
+followed by the version number, and then the command name.</p>
+<p>Example:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ejabberdctl<span class="w"> </span>--version<span class="w"> </span><span class="m">2</span><span class="w"> </span>set_loglevel<span class="w"> </span><span class="m">4</span>
+</span></code></pre></div>
+<p>Use the most recent API version:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>ejabberdctl<span class="w"> </span>get_roster<span class="w"> </span>admin<span class="w"> </span>localhost
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>jan@localhost<span class="w"> </span>jan<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group1,group2
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>tom@localhost<span class="w"> </span>tom<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group3
+</span></code></pre></div>
+<p>Use version 0:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>ejabberdctl<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span><span class="w"> </span>get_roster<span class="w"> </span>admin<span class="w"> </span>localhost
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>jan@localhost<span class="w"> </span>jan<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group1<span class="p">;</span>group2
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>tom@localhost<span class="w"> </span>tom<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group3
+</span></code></pre></div>
+<h2 id="mod_adhoc_api"><code>mod_adhoc_api</code><a class="headerlink" href="#mod_adhoc_api" title="Permanent link">&para;</a></h2>
+<p><a href="../../../admin/configuration/modules/#mod_adhoc_api">mod_adhoc_api</a>
+uses by default the latest API version.</p>
+<p>If you want the module to use a specific API version,
+configure the module option <code>default_version</code>.</p>
 <h2 id="mod_http_api"><code>mod_http_api</code><a class="headerlink" href="#mod_http_api" title="Permanent link">&para;</a></h2>
-<p>The server administrator can set the default version when configuring <code>request_handlers</code>, by including a <code>vN</code> in its path, where <code>N</code> is an integer corresponding to the version.</p>
+<p><a href="../../../admin/configuration/modules/#mod_http_api">mod_http_api</a>
+uses by default the latest API version.</p>
+<p>You can set the default version when configuring <code>request_handlers</code>, by including a <code>vN</code> in its path, where <code>N</code> is an integer corresponding to the version.</p>
 <p>In any case, the API client can specify a version when sending the request, by appending <code>vN</code> to the request path.</p>
 <p>For example, when configured like:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">listen</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">request_handlers</span><span class="p">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">/api/v0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="nt">/v1/api</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="nt">/api</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">listen</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">request_handlers</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">/api/v0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">/v1/api</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="nt">/api</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
 </span></code></pre></div>
 <p>See what API version will be used depending on the URL:</p>
 <ul>
@@ -7488,37 +7534,20 @@ Commands not versioned do not have such a tag: they are version 0.</p>
 <li><code>api/v0/command/v1</code> use version 1</li>
 </ul>
 <p>In this example, the server administrator configured the default API version to 0:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">listen</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">request_handlers</span><span class="p">:</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">/api/v0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">listen</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="p p-Indicator">-</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">request_handlers</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nt">/api/v0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mod_http_api</span>
 </span></code></pre></div>
 <p>The client doesn't specify any version, so 0 is used:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>curl<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="w"> </span><span class="s2">&quot;http://localhost:5280/api/v0/get_loglevel&quot;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="o">{</span><span class="s2">&quot;levelatom&quot;</span>:<span class="s2">&quot;info&quot;</span><span class="o">}</span>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>curl<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="w"> </span><span class="s2">&quot;http://localhost:5280/api/v0/get_loglevel&quot;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="o">{</span><span class="s2">&quot;levelatom&quot;</span>:<span class="s2">&quot;info&quot;</span><span class="o">}</span>
 </span></code></pre></div>
 <p>This time the client requests the API version 2:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>curl<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="w"> </span><span class="s2">&quot;http://localhost:5280/api/v0/get_loglevel/v2&quot;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s2">&quot;info&quot;</span>
-</span></code></pre></div>
-<h2 id="ejabberdctl"><code>ejabberdctl</code><a class="headerlink" href="#ejabberdctl" title="Permanent link">&para;</a></h2>
-<p>By default the latest version of a given command is used.
-To use a command in a specific API version, use the <code>--version</code> switch,
-followed by the version number, and then the command name.</p>
-<p>Example:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ejabberdctl<span class="w"> </span>--version<span class="w"> </span><span class="m">2</span><span class="w"> </span>set_loglevel<span class="w"> </span><span class="m">4</span>
-</span></code></pre></div>
-<p>Use the most recent API version:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>ejabberdctl<span class="w"> </span>get_roster<span class="w"> </span>admin<span class="w"> </span>localhost
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>jan@localhost<span class="w"> </span>jan<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group1,group2
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>tom@localhost<span class="w"> </span>tom<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group3
-</span></code></pre></div>
-<p>Use version 0:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>ejabberdctl<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span><span class="w"> </span>get_roster<span class="w"> </span>admin<span class="w"> </span>localhost
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>jan@localhost<span class="w"> </span>jan<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group1<span class="p">;</span>group2
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>tom@localhost<span class="w"> </span>tom<span class="w">   </span>none<span class="w">    </span>subscribe<span class="w">       </span>group3
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>curl<span class="w"> </span>-k<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{}&#39;</span><span class="w"> </span><span class="s2">&quot;http://localhost:5280/api/v0/get_loglevel/v2&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s2">&quot;info&quot;</span>
 </span></code></pre></div>
 
 

@@ -18,11 +18,11 @@
       
       
       <link rel="icon" href="../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.10">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
     
     
       
-        <title>ejabberd Rest API - ejabberd Docs</title>
+        <title>ejabberd ReST API - ejabberd Docs</title>
       
     
     
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ejabberd Rest API
+              ejabberd ReST API
             
           </span>
         </div>
@@ -166,11 +166,13 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -204,6 +206,7 @@
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
@@ -7275,9 +7278,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#understanding-ejabberd-commands" class="md-nav__link">
+  <a href="#api-backends" class="md-nav__link">
     <span class="md-ellipsis">
-      Understanding ejabberd "commands"
+      API Backends
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-frontends" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Frontends
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#process-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process Flow
     </span>
   </a>
   
@@ -7329,32 +7350,81 @@
   
 
 
-<h1 id="ejabberd-rest-api">ejabberd Rest API<a class="headerlink" href="#ejabberd-rest-api" title="Permanent link">&para;</a></h1>
+<h1 id="ejabberd-rest-api">ejabberd ReST API<a class="headerlink" href="#ejabberd-rest-api" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>ejabberd comes with a powerful API serving two goals:</p>
+<p>ejabberd comes with a extensive API that allows to perform administrative tasks from outside ejabberd:</p>
 <ol>
-<li>Manage the XMPP service and integrate the platform with back-end platforms and script tools.</li>
-<li>Allow users to perform tasks via the client, allowing simple basic clients that do not need to use XMPP protocol.
-   This can be handy, for example to send a message from your smartwatch, or show the number of offline messages.</li>
+<li>Manage the XMPP server:
+   restart the server, reload configuration, ...</li>
+<li>Integrate the XMPP server with your existing platforms:
+   create a MUC room when a new party starts in your platform, ...</li>
+<li>Allow users to perform tasks using simple basic programs with no XMPP support:
+   send a message from the smartwatch, show the number of offline messages...</li>
 </ol>
-<p>The system is powerful and very versatile and you can configure it very finely, but it can be quite daunting to set up.</p>
-<p>This section is written to demystify ejabberd API configuration and help you integrate ejabberd with your other back-ends or script through an HTTP / HTTPS ReST API.</p>
-<h2 id="understanding-ejabberd-commands">Understanding ejabberd "commands"<a class="headerlink" href="#understanding-ejabberd-commands" title="Permanent link">&para;</a></h2>
-<p>ejabberd operations are organised around the concept of commands. ejabberd standard modules already provide many commands, but the mechanism is generic and any module can provide its own set of commands. This exposition of commands for third-party modules make it very powerful.</p>
-<p>All commands can be exposed through interfaces. Available interfaces are:</p>
+<p>The system is powerful, versatile, and you can configure access permissions very finely.
+In the next sections you will learn the basic concepts,
+how to start using ejabberd's API,
+how to adjust it to your needs,
+and integrate ejabberd with your existing systems.</p>
+<h2 id="api-backends">API Backends<a class="headerlink" href="#api-backends" title="Permanent link">&para;</a></h2>
+<p>ejabberd's API currently includes over 200 commands,
+see <a href="admin-api/">API Reference</a> for a detailed list of all the existing commands.
+Alternatively you can view the list of commands grouped by their <a href="admin-api/">API Tags</a>.</p>
+<p>Those commands are defined and implemented in Erlang or Elixir modules.
+Some modules included in ejabberd define their commands,
+while the majority of the existing commands are defined and implemented in:</p>
 <ul>
-<li><a href="../../admin/guide/managing/#ejabberdctl">ejabberdctl</a> command-line tool,</li>
-<li><a href="../../admin/configuration/modules/#mod_http_api">mod_http_api</a> for ReST calls using JSON data,</li>
-<li><a href="../../admin/configuration/listen/#ejabberd_xmlrpc">ejabberd_xmlrpc</a> for XML-RPC calls,</li>
-<li><a href="../../admin/guide/managing/#web-admin">WebAdmin</a> uses most commands to build the web pages,</li>
-<li><a href="../../admin/configuration/modules/#mod_configure">mod_configure</a> includes support for a few administrative tasks (using XMPP protocol itself through discovery and adhoc commands)</li>
+<li><code>ejabberd_admin</code></li>
+<li><a href="../../admin/configuration/modules/#mod_admin_extra">mod_admin_extra</a></li>
+<li><a href="../../admin/configuration/modules/#mod_muc_admin">mod_muc_admin</a></li>
 </ul>
-<p>The <a href="../../admin/guide/modules/#ejabberd-contrib">ejabberd-contrib Github repository</a> provides other interfaces that can be installed to execute ejabberd commands in different ways: <code>mod_rest</code> (HTTP POST service), <code>mod_shcommands</code> (ejabberd WebAdmin page).</p>
-<p>Any module in ejabberd can add its own command(s) through ejabberd Erlang/Elixir API, making the whole system totally extensible. A third-party module can expose its own command(s) and feel like a real part of the system. A module that exposes commands allows server admins to expose it the way they want.</p>
-<p>ejabberd commands are universal, extensible and widely available through various configurable entrypoints.</p>
-<p><em>Note: The XML-RPC API still works but is deprecated in favor of the ReST API. You should migrate to ReST if you are using it.</em></p>
-<!-- TODO A diagram would be nice to have -->
-
+<p>When developing a module in Erlang or Elixir, it can define new commands,
+see <a href="commands/">Commands</a> page for details.</p>
+<h2 id="api-frontends">API Frontends<a class="headerlink" href="#api-frontends" title="Permanent link">&para;</a></h2>
+<p>The API commands are exposed through interfaces. Available interfaces are:</p>
+<ul>
+<li><a href="../../admin/guide/managing/#ejabberdctl">ejabberdctl</a> command-line tool</li>
+<li><a href="../../admin/configuration/modules/#mod_http_api">mod_http_api</a> for HTTP ReST calls using JSON data</li>
+<li><a href="../../admin/configuration/modules/#mod_adhoc_api">mod_adhoc_api</a> for calls using a XMPP client</li>
+<li><a href="../../admin/guide/managing/#web-admin">WebAdmin</a> uses most commands to build the web pages</li>
+<li><a href="../../admin/configuration/listen/#ejabberd_xmlrpc">ejabberd_xmlrpc</a> for XML-RPC calls (deprecated in favor of mod_http_api)</li>
+</ul>
+<p>There are other interfaces available in the <a href="../../admin/guide/modules/#ejabberd-contrib">ejabberd-contrib</a> Github repository:</p>
+<ul>
+<li><a href="https://github.com/processone/ejabberd-contrib/tree/master/mod_rest">mod_rest</a> for HTTP ReST calls using plaintext data</li>
+<li><a href="https://github.com/processone/ejabberd-contrib/tree/master/mod_shcommands">mod_shcommands</a> for a WebAdmin page</li>
+</ul>
+<h2 id="process-flow">Process Flow<a class="headerlink" href="#process-flow" title="Permanent link">&para;</a></h2>
+<p>Let's review the process flow with one example:</p>
+<ol>
+<li>API Client: Your web client (in this case Curl) sends an HTTP query</li>
+<li>API Frontend: <a href="../../admin/configuration/modules/#mod_http_api">mod_http_api</a>
+  checks the client authentication,
+  permissions to execute the command
+  and processes command arguments, then calls</li>
+<li>API Backend: <a href="../../admin/configuration/modules/#mod_admin_extra">mod_admin_extra</a>
+  actually executes the command.
+  In this case, it will query to proper internal ejabberd code.</li>
+</ol>
+<pre class="mermaid"><code>sequenceDiagram
+  autonumber
+  participant C as API Client&lt;br/&gt;curl
+  box ejabberd
+  participant F as API Frontend&lt;br/&gt;mod_http_api
+  participant B as API Backend&lt;br/&gt;mod_admin_extra
+  participant M as Module&lt;br/&gt;mod_last
+  end
+  Note right of C: HTTP Query
+  C--&gt;&gt;F: POST /api/get_last&lt;br/&gt;{"user": "tom",&lt;br/&gt;"host": "localhost"}
+  Note right of F: API Command Call
+  F--&gt;&gt;B: get_last&lt;br/&gt;tom localhost
+  Note right of B: Erlang Function Call
+  B--&gt;&gt;M: mod_last:get_last_info&lt;br/&gt;(tom, localhost)
+  activate M
+  M--&gt;&gt;B: {ok,&lt;br/&gt;1743517196,&lt;br/&gt;"Disconnected"}
+  deactivate M
+  B--&gt;&gt;F: {"2025-04-01T14:19:56Z",&lt;br/&gt;"Disconnected"}
+  F--&gt;&gt;C: 200 OK&lt;br/&gt;{"timestamp":&lt;br/&gt; "2025-04-01T14:19:56Z",&lt;br/&gt;"status":"Disconnected"}</code></pre>
 <h2 id="the-role-of-ejabberd-api">The role of ejabberd API<a class="headerlink" href="#the-role-of-ejabberd-api" title="Permanent link">&para;</a></h2>
 <p>As we have seen, ejabberd API role is to provide and control access to ejabberd commands over HTTP/HTTPS.</p>
 <p>Thus, ejabberd API primary goal is to grant access to some or all ejabberd "commands".</p>
@@ -7399,7 +7469,6 @@ Additionally, you can check at runtime what commands are available in your insta
 <ul>
 <li><a href="permissions/">API Permissions</a></li>
 <li><a href="oauth/">OAuth Support</a></li>
-<li><a href="admin-api/">Administration API Commands</a></li>
 </ul>
 
 
