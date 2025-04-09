@@ -6,7 +6,7 @@ This guide is a brief explanation of ejabberd internals. It is not
 intended to be a comprehensive ejabberd's internal API documentation.
 You still need to read and understand ejabberd's source code.
 
-This guide should help you to understad ejabberd's code faster:
+This guide should help you to understand ejabberd's code faster:
 it provides entry points from where to start reading relevant parts of
 the code and ignore irrelevant ones.
 
