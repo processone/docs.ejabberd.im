@@ -22,6 +22,9 @@ This is a brief summary for each released version. For details, please consult e
 
 ### 2025
 
+- [25.04](https://www.process-one.net/blog/ejabberd-25-04/)
+    - Fix handling multiple occupant-id
+
 - [25.03](https://www.process-one.net/blog/ejabberd-25-03/)
     - [mod_matrix_gw](../admin/configuration/modules.md/#mod_matrix_gw): Support for joining Matrix rooms as MUC rooms
     - [auth_stored_password_types](../admin/configuration/toplevel.md#auth_stored_password_types): Multiple Simultaneous Password Types
