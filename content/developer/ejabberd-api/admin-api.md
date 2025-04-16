@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [25.03](../../archive/25.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [25.03](../../archive/25.03/index.md) and [25.04](../../archive/25.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟤
 
@@ -3228,6 +3228,39 @@ POST /api/kick_user
 
 HTTP/1.1 200 OK
 "Kicked sessions: 2"
+~~~
+
+
+
+
+## kick_users 🟤
+
+<!-- md:version added in [25.04](../../archive/25.04/index.md) -->
+
+Disconnect all given host users' active sessions
+
+__Arguments:__
+
+- *host* :: string : Server name
+
+__Result:__
+
+- *num_sessions* :: integer : Number of sessions that were kicked
+
+__Tags:__
+[session](admin-tags.md#session)
+
+__Examples:__
+
+
+~~~ json
+POST /api/kick_users
+{
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+3
 ~~~
 
 

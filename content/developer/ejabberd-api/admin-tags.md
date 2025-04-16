@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [25.03](../../archive/25.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [25.03](../../archive/25.03/index.md) and [25.04](../../archive/25.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -577,6 +577,9 @@
 
 
 * [kick_user](admin-api.md#kick_user)
+
+
+* [kick_users](admin-api.md#kick_users)
 
 
 * [num_resources](admin-api.md#num_resources)

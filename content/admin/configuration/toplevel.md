@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [25.03](../../archive/25.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [25.03](../../archive/25.03/index.md) and [25.04](../../archive/25.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟤.
 
@@ -1088,7 +1088,7 @@ default value is `1 minute`.
 
 Whether to use the
 [new SQL schema](database.md#default-and-new-schemas). All schemas are
-located at <https://github.com/processone/ejabberd/tree/25.03/sql>.
+located at <https://github.com/processone/ejabberd/tree/25.04/sql>.
 There are two schemas available. The default legacy schema stores one
 XMPP domain into one ejabberd database. The `new` schema can handle
 several XMPP domains in a single ejabberd database. Using this `new`
