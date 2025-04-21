@@ -408,7 +408,6 @@ test2:
 		--ignore-url web.archive.org \
 		--ignore-url www.meetic.com \
 		--ignore-url www.microsoft.com/sql-server \
-		--ignore-url www.process-one.net/resources/case_studies \
 		http://127.0.0.1:8000/
 
 #.

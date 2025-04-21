@@ -33,7 +33,7 @@ This includes:
 
 * [Nimbuzz](https://en.wikipedia.org/wiki/Nimbuzz)
 * [ooVoo](https://www.oovoo.com/)
-* [Sipphone](https://www.process-one.net/resources/case_studies/ProcessOne_SIP_Phone_Case_Study_v3.pdf)
+* [Sipphone](https://www.process-one.net/wp-content/uploads/resources/ProcessOne_SIP_Phone_Case_Study_v3.pdf)
 * WowApp
 
 ### Internet of Things
@@ -48,7 +48,7 @@ This includes:
 * GMX
 * [Mailfence](https://blog.mailfence.com/mailfence-groups/)
 * Orange
-* [SAPO - Portugal Telecom](https://www.process-one.net/resources/case_studies/ProcessOne_SAPO_Case_Study_v7.pdf)
+* [SAPO - Portugal Telecom](https://www.process-one.net/wp-content/uploads/resources/ProcessOne_SAPO_Case_Study_v7.pdf)
 
 ### Customer chat / CRM
 
@@ -59,7 +59,7 @@ This includes:
 ### Media
 
 * [AFP](https://www.afp.com/en/)
-* [BBC](https://www.process-one.net/resources/case_studies/ProcessOne_BBC_Case_Study_v2.pdf)
+* [BBC](https://www.process-one.net/wp-content/uploads/resources/ProcessOne_BBC_Case_Study_v2.pdf)
 
 ### Social media
 
@@ -71,7 +71,7 @@ This includes:
 
 ### Sport
 
-* [Major League of Baseball (MLB)](https://www.process-one.net/resources/case_studies/ProcessOne_ML_Baseball_Case_Study_v5.pdf)
+* [Major League of Baseball (MLB)](https://www.process-one.net/wp-content/uploads/resources/ProcessOne_ML_Baseball_Case_Study_v5.pdf)
 
 ### Education
 
