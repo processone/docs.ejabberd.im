@@ -228,6 +228,109 @@ only.
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
+mod\_antispam
+---------------
+
+This module allows for filtering spam messages and subscription requests
+received from remote servers based on RTBL domain lists, lists of known spammer
+JIDs and/or URLs mentioned in spam messages. Traffic classified as spam is
+rejected with an error (and an `[info]` message is logged) unless the sender is
+subscribed to the recipient's presence. An access rule can be specified to
+control which recipients are subject to spam filtering.
+
+__Available options:__
+
+- **rtbl\_host**: `RTBLHost`
+
+  This option specifies which RTBL host to use to query for blocked domains. One
+  such host is located at `xmppbl.org`. Messages and presence-subscribe stanzas
+  originating from domains listed at this host will be blocked in case there is
+  no active roster subscription of the recipeient. If a dump file is configured,
+  messages will get logged. Senders will receive an abuse notification message.
+  The command `ejabberdctl get_blocked_domains` retrieves the current list of
+  blocked domains. Default is `none`. This disables this feature.
+
+- **rtbl\_domains\_node**: `RTBLDomainsNode`
+
+  The name of the RTBL node to query for the list of blocked domains. The
+  default is `spam_source_domains`.
+
+- **spam\_domains\_file**: `SPAMDomainsFile`
+
+  This option specifies the path to a plain text file containing a list of known
+  spam domains, one domain per line. Messages and subscription requests sent
+  from one of the listed domains will be classified as spam if sender is not in
+  recipient's roster. This list of domains will be merged with the one retrieved
+  by an RTBL host if any given. The behavior is the same. The default is `none`.
+
+- **whitelist\_domains\_file**: `WhitelistDomainsFile`
+
+  This option allows you to provide a path to a file containing a list of
+  domains to whitelist from being blocked, one per line. If either it is in
+  `spam_domains_file` or more realistically in a domain sent by a RTBL host (see
+  option `rtbl_host`) then this domain will be ignored and stanzas from there
+  won't be blocked. The default is `none`.
+
+- **spam\_dump\_file**:
+
+  This option specifies the path to a file that messages classified as
+  spam will be written to.  The messages are dumped in raw XML format, and
+  a `<delay/>` tag with the current timestamp is added.  The `@HOST@` keyword
+  will be substituted with the name of the virtual host.  Note that this
+  module doesn't limit the file size, so if you use this option, make sure
+  to monitor disk file usage and to rotate the file if necessary.  After
+  rotation, the command `ejabberdctl reopen-log` can be called to let the
+  module reopen the spam dump file. The default is `none`.
+
+- **spam\_jids\_file**: `SPAMJIDsFile`
+
+  This option specifies the path to a plain text file containing a list of
+  known spammer JIDs, one JID per line.  Messages and subscription
+  requests sent from one of the listed JIDs will be classified as spam.
+  Messages containing at least one of the listed JIDs will be classified
+  as spam as well.  Furthermore, the sender's JID will be cached, so that
+  future traffic originating from that JID will also be classified as
+  spam. The default is `none`.
+
+- **spam\_urls\_file**:
+
+  This option specifies the path to a plain text file containing a list of URLs
+  known to be mentioned in spam message bodies. Messages containing at least one
+  of the listed URLs will be classified as spam. Furthermore, the sender's JID
+  will be cached, so that future traffic originating from that JID will be
+  classified as spam as well. The default is `none`.
+
+- **access\_spam**: `AccessRule`
+
+  This option defines the access rule to control who will be subject to
+  spam filtering.  If the rule returns `allow` for a given recipient, spam
+  messages aren't rejected for that recipient.  By default, all recipients
+  are subject to spam filtering. The default is `none`.
+
+- **cache\_size**: `non_neg_integer()`
+
+  This option specifies the maximum number of JIDs that will be cached due
+  to sending spam URLs (see above).  If that limit is exceeded, the least
+  recently used entries are removed from the cache.  Setting this option
+  to `0` disables the caching feature.  Note that separate caches are used
+  for each virtual host, and that the caches aren't distributed across
+  cluster nodes. The default is `10000`.
+
+__**Example**:__
+
+~~~ yaml
+modules:
+  mod_spam_filter:
+    rtbl_host: "xmppbl.org"
+    spam_domains_file: "/etc/ejabberd/spam-filter/domains.txt"
+    spam_jids_file: "/etc/ejabberd/spam-filter/jids.txt"
+    spam_urls_file: "/etc/ejabberd/spam-filter/urls.txt"
+    spam_dump_file: "/var/log/ejabberd/spam_dump.log"
+    access_spam:
+      allow:
+        user: honeypot@example.org
+~~~
+
 mod\_auth\_fast
 ---------------
 
