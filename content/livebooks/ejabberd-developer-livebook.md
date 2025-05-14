@@ -1,7 +1,7 @@
 # The ejabberd Developer Livebook
 
 
-<!-- WARNING: Don't edit this file. This is generated from the *.livemd, please edit that one instead -->
+<!-- WARNING:: Don't edit this file. This is generated from the *.livemd, please edit that one instead -->
 
 !!! info
     This page is designed to run interactively using [Livebook](https://livebook.dev/).

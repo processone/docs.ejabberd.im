@@ -172,13 +172,13 @@ Parameters are described in OAuth specification:
 - `token_type`: ejabberd supports `bearer` token type.
 - `expires_in`: This is the validity duration of the token, in seconds. When the token expires, a new authorization token will need to be generated an approved by the user.
 
-<!--- TODO: Does oauth2 allow token refresh ? Is it implemented or could
+<!--- TODO:: Does oauth2 allow token refresh ? Is it implemented or could
   it be implemented in ejabberd ? -->
 - `scope`: Confirms the granted scope to the requesting application. Several scopes can be passed, separated by '+'.
 - `state`: If a state parameter was passed by requesting application in authorization_token URL, it will be passed back to the
   application as a parameter of the `redirect_uri` to help with the client workflow.
 
-<!--- TODO: Add Android and iOS examples on how to get the token.  -->
+<!--- TODO:: Add Android and iOS examples on how to get the token.  -->
 
 ## Scopes
 
@@ -189,7 +189,7 @@ Parameters are described in OAuth specification:
   For example, there is a scope `registered_users`  because there is a command called [registered_users](admin-api.md#registered-users).
   Ensure you enable the module that defines the command that you want to use, see [Module configuration](#module-configuration) for details.
 
-<!--- TODO: As scope are generally provided by commands, which are
+<!--- TODO:: As scope are generally provided by commands, which are
 provided by enabled modules, we need to command to list enabled
 scopes.  We should also probably support scopes that are categories of
 commands (like user for example). Finally, we should probably allow

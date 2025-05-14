@@ -533,7 +533,7 @@ The following `ACLName` are pre-defined:
           "^yozhik$": "^example.(com|org)$"
     ```
 
-<!-- TODO: explain remaining parameters -->
+<!-- TODO:: explain remaining parameters -->
 
 - **`user_glob: Glob`**:
 

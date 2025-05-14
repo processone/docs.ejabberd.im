@@ -107,7 +107,7 @@ the following:
 - [Simple API configuration](simple-configuration.md)
 - Using ejabberd client API libraries and tools
 
-<!-- TODO: Using API with ejabberd command-line tool and Go based library -->
+<!-- TODO:: Using API with ejabberd command-line tool and Go based library -->
 
 The list of available commands is available in the [API Reference](admin-api.md) section.
 Additionally, you can check at runtime what commands are available in your installed server using [ejabberdctl](../../admin/guide/managing.md#ejabberdctl):

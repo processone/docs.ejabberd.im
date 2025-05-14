@@ -17,7 +17,7 @@ An ejabberd command is defined by an `#ejabberd_commands` Erlang record. The rec
 
     - `session`: For commands related to user XMPP sessions.
     - `roster`: Commands related to contact list management.
-    <!--  TODO: List other tags that we already use. -->
+    <!--  TODO:: List other tags that we already use. -->
 
 - **desc**: Description of the command for online help.
 - **module** and **function**: Module and function to call to execute the command logic.

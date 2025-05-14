@@ -1468,7 +1468,7 @@ following syntax:
          node_regexp:
            "^yozhik$": "^example.(com|org)$"
 ```
-<!-- TODO: explain remaining parameters -->
+<!-- TODO:: explain remaining parameters -->
 
 **`user_glob: Glob`**:
 
@@ -2863,7 +2863,7 @@ over BOSH.
 
 - **`use_cache: false|true`**:   Use this option and related ones as explained in section [Caching](#caching).
 
-<!-- TODO Document options:
+<!-- TODO:: Document options
 json, max_concat, max_inactivity, max_pause, prebind, ram_db_type,     queue_type, use_cache, cache_size, cache_missed, cache_life_time
 -->
 
@@ -3433,7 +3433,7 @@ Example DNS TXT configuration for Websocket:
 
 A test client can be found on Github: [Websocket test client](https://github.com/processone/xmpp-websocket-client)
 
-<!-- TODO We should probably embed a test Websocket client on the Websocket info get page. -->
+<!-- TODO:: We should probably embed a test Websocket client on the Websocket info get page. -->
 
 ## mod_jidprep
 

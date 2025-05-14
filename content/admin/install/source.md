@@ -201,7 +201,7 @@ Note that you probably need administrative privileges in the system to install e
 
 The created files and directories depend on the options provided to [`./configure`](#configure), by default they are:
 
-<!-- TODO: Check we are up to date -->
+<!-- TODO:: Check we are up to date -->
 
 - `/etc/ejabberd/`:  Configuration directory:
 

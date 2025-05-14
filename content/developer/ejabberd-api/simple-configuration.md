@@ -1,7 +1,7 @@
 # Simple ejabberd Rest API Configuration
 
 <!--
-TODO:
+TODO::
 
   - Link to page showing how to configure TLS on listeners
   - Link to page showing how to use Go ejabberd API client
