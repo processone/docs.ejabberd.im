@@ -64,6 +64,7 @@ extra_css:
   - "assets/css/notes.css"
   - "assets/css/status.css"
   - "assets/css/headers-underline.css"
+  - "assets/css/ezglossary.css"
 
 #.
 #' markdown and hooks
@@ -93,9 +94,12 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
       emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 hooks:
-  - add_old_ids.py
+  #  - add_old_ids.py
   - shortcodes.py
 
 #.
@@ -103,6 +107,15 @@ hooks:
 #
 
 plugins:
+  - ezglossary:
+      ignore_case: true
+      inline_refs: list
+        #list_definitions: false
+        #list_references: false
+      markdown_links: true
+      plurals: en
+      templates: templates
+      tooltip: short
   #- git-committers:
   #    repository: processone/mkdocs
   #    branch: main
@@ -203,6 +216,7 @@ nav:
     - Use Cases: use-cases/index.md
     - License: COPYING.md
     - Security: SECURITY.md
+    - Glossary: glossary.md
     - Quickstart: README-GIT.md
   - Install:
     - admin/install/index.md

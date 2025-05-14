@@ -1,0 +1,12 @@
+<ul>
+    {% for term in terms %}
+        {% for type in types %}
+            {% for entry in glossary.get(section, term, type) %}
+                {% if type[:-1] == "def" %}
+                    <li><a href="{{ root }}{{ entry.page.url }}#{{ entry.target }}">{{term}}</a></li>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</ul>
+

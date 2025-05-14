@@ -252,6 +252,8 @@ $(MODULES): $(TMODULES)
 	sed -i 's/^\*\\\[\([[:print:]]*\)\\\]\*/`[\1]`/g' $(TMODULES)
 	sed -i 's/\([^\*]\)\*\([[:alnum:]][[:alnum:][:blank:]:|\|\.-]*\)\*$$/\1`\2`/g' $(TMODULES)
 	sed -i 's/OPTIONNAME\([\\_[:alnum:]]*\)OPTIONNAME: /**\1**: /g' $(TMODULES)
+	# Fix links to glossary defitions:
+	sed -i 's|\((def:[[:print:]]*)\)|[]\1|g' $(TMODULES)
 	# Remove unneeded escape characters \ in verbatim text:
 	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TMODULES)
 	sed -i 's/`\([[:print:]]*\)\\\([[:print:]]*\)`/`\1\2`/g' $(TMODULES)
