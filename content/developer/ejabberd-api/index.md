@@ -17,13 +17,17 @@ how to start using ejabberd's API,
 how to adjust it to your needs,
 and integrate ejabberd with your existing systems.
 
-## API Backends
+def:API command
+: Command defined in some ejabberd module API backend, that can be executed using some API frontend.
 
-ejabberd's API currently includes over 200 commands,
+ejabberd's API currently includes over 200 API Commands,
 see [API Reference](admin-api.md) for a detailed list of all the existing commands.
 Alternatively you can view the list of commands grouped by their [API Tags](admin-api.md).
 
-Those commands are defined and implemented in Erlang or Elixir modules.
+## API Backends
+
+API commands are defined and implemented in Erlang or Elixir modules
+that can be considered "API backends".
 Some modules included in ejabberd define their commands,
 while the majority of the existing commands are defined and implemented in:
 
@@ -36,7 +40,9 @@ see [Commands](commands.md) page for details.
 
 ## API Frontends
 
-The API commands are exposed through interfaces. Available interfaces are:
+The API commands are exposed through interfaces,
+implemented in modules that can be considered "API frontends".
+Available interfaces are:
 
 - [ejabberdctl](../../admin/guide/managing.md#ejabberdctl) command-line tool
 - [mod_http_api](../../admin/configuration/modules.md#mod_http_api) for HTTP ReST calls using JSON data

@@ -50,6 +50,16 @@ regarding `epmd` consult the section relating to
 
 ## Administration Account
 
+def:admin account
+: Account registered in ejabberd with administrative privileges granted in the ejabberd configuration file.
+  Features that take into consideration those privileges:
+  [api_permissions](../configuration/toplevel.md#api_permissions),
+  [ejabberd_web_admin](../guide/managing.md#web-admin),
+  [mod_announce](../configuration/modules.md#mod_announce),
+  [mod_configure](../configuration/modules.md#mod_configure),
+  [mod_http_api](../configuration/modules.md#mod_http_api),
+  [mod_muc](../configuration/modules.md#mod_muc), ...
+
 Some ejabberd installation methods ask you details for the first account, and take care to register that account and grant it administrative rights;
 in that case you can skip this section.
 

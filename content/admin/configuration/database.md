@@ -72,6 +72,10 @@ with the [`default_db`](toplevel.md#default_db) top-level option:
 
 <!-- md:version updated in [24.06](../../archive/24.06/index.md) -->
 
+def:update
+: Modify the database schema and all its tables to match the installed ejabberd version.
+  Not to be confused with [upgrade ejabberd](def:upgrade) or [switch schema](def:switch).
+
 The [update_sql_schema](toplevel.md#update_sql_schema) top-level option
 allows ejabberd to create and update the tables automatically in the SQL database
 when using MySQL, PostgreSQL or SQLite.
@@ -140,8 +144,12 @@ remember to use the proper SQL schema!
 For example, if you are using MySQL and choose the _default_ schema, use `mysql.sql`.
 If you are using PostgreSQL and need the _new_ schema, use `pg.new.sql`.
 
+def:switch
+: Change the database schema and all its tables from `default` schema to `new` schema.
+  Not to be confused with [upgrade ejabberd](def:upgrade) or [update schema](def:update).
+
 If you already have a MySQL or PostgreSQL database with the _default_ schema and contents,
-you can upgrade it to the _new_ schema:
+you can switch it to the _new_ schema:
 
 * *MySQL*:
 Edit the file `sql/mysql.old-to.new.sql` which is included with ejabberd,

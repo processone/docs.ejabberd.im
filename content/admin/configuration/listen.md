@@ -37,6 +37,10 @@ listen:
 
 ## ejabberd_c2s
 
+def:c2s
+: Client to Server connection in XMPP.
+  Opposed to [](def:s2s).
+
 Handles c2s connections.
 
 General listen options supported:
@@ -58,6 +62,10 @@ General listen options supported:
 [zlib](listen-options.md#zlib).
 
 ## ejabberd_s2s_in
+
+def:s2s
+: Server to Server connection in XMPP.
+  Opposed to [](def:c2s).
 
 Handles incoming s2s connections.
 

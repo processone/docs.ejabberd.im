@@ -24,14 +24,17 @@ Most of them are TCP ports, except the explicitely mentioned ones:
 
 ## epmd
 
+def:epmd
+: Small name server included in Erlang/OTP and used by Erlang
+  programs when establishing distributed Erlang communications.
+  See [`epmd (Erlang Port Mapper Daemon)`](https://www.erlang.org/doc/apps/erts/epmd_cmd.html)
+
 !!! tip
     If you setup `ERL_DIST_PORT` in `ejabberdctl.cfg` to a port number
     (for example `5210`) then Erlang will listen only in that port,
     instead of starting the `epmd` program and listen in 4269 + ramdom port.
 
-[`epmd (Erlang Port Mapper Daemon)`](https://www.erlang.org/doc/apps/erts/epmd_cmd.html)
-is a small name server included in Erlang/OTP and used by Erlang
-programs when establishing distributed Erlang communications. ejabberd
+ejabberd
 needs `epmd` to use `ejabberdctl` and also when clustering ejabberd
 nodes. This small program is automatically started by Erlang, and is
 never stopped. If ejabberd is stopped, and there aren't any other
@@ -74,7 +77,11 @@ erl ... -kernel inet_dist_use_interface "{127,0,0,1}"
 
 ## Erlang Cookie
 
-The Erlang cookie is a string with numbers and letters. An Erlang node
+def:cookie
+: Random alphanumeric string assigned to each erlang [](def:node) used to secure connections between erlang nodes.
+  See [Security in distributed erlang](https://www.erlang.org/doc/system/distributed#security).
+
+An Erlang node
 reads the cookie at startup from the command-line parameter
 `-setcookie`. If not indicated, the cookie is read from the file
 `$HOME/.erlang.cookie`.
@@ -110,7 +117,7 @@ different programs in the same machine.
 Setting a secret cookie is a simple method to difficult unauthorized
 access to your Erlang node. However, the cookie system is not ultimately
 effective to prevent unauthorized access or intrusion to an Erlang node.
-The communication between Erlang nodes are not encrypted, so the cookie
+The communication between Erlang nodes are not encrypted, so the [](def:cookie)
 could be read sniffing the traffic on the network. The recommended way
 to secure the Erlang node is to block the port 4369.
 
@@ -125,7 +132,7 @@ Using the option `-sname` instead of `-name` is a simple method to
 difficult unauthorized access to your Erlang node. However, it is not
 ultimately effective to prevent access to the Erlang node, because it
 may be possible to fake the fact that you are on another network using a
-modified version of Erlang `epmd`. The recommended way to secure the
+modified version of Erlang [](def:epmd). The recommended way to secure the
 Erlang node is to block the port 4369.
 
 ## Securing Sensitive Files

@@ -1,5 +1,14 @@
 # Upgrade Procedure for ejabberd
 
+def:upgrade
+: Install a version of the program newer than the currently installed one.
+  Not to be confused with [update](def:update) or [switch schema](def:switch).
+
+def:update
+: Modify your program installation to match the requirements of the new program version.
+  This usually involves updating your configuration, your database schema, your API client, your custom modules...
+  Not to be confused with [upgrade ejabberd](def:upgrade) or [switch schema](def:switch).
+
 This document contains administration procedure for each version upgrade.
 Only upgrade from version N to N+1 is documented and supported.
 If you upgrade from an older version than previous one, you have to review all
@@ -79,7 +88,7 @@ or any other tasks. If the fix you plan to apply requires a module restart,
 you can use this alternative:
 [restart_module](../../developer/ejabberd-api/admin-api.md#restart_module).
 
-## Note on database schema upgrade
+## Note on database schema update
 
 ejabberd automatically updates the Mnesia table definitions at startup when needed.
 If you also use an external [database](../configuration/database.md) (like MySQL, ...)

@@ -75,6 +75,10 @@ need to take into account:
 
 ## Clustering Setup
 
+def:erlang node
+: A node in erlang connected to a cluster.
+  See [Erlang node name](security.md#erlang-node-name)
+
 ## Adding a node to a cluster
 
 Suppose you have already configured ejabberd on one node named
