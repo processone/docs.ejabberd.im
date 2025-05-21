@@ -103,6 +103,7 @@ _`bookmarks_to_pep`_ API
 _`default_db`_
 _`basic.md#captcha|CAPTCHA`_
 https://xmpp.org/extensions/xep-0045.html[XEP-0045]
+(def:c2s)
 ```
 
 gets converted into this markdown:
@@ -113,6 +114,45 @@ gets converted into this markdown:
 [default_db](toplevel.md#default_db)
 [CAPTCHA](basic.md#captcha)
 [XEP-0045](https://xmpp.org/extensions/xep-0045.html)
+[](def:c2s)
 ```
 
 There are example usage of those shorthands in ejabberd, for example in `mod_muc.erl`.
+
+## Glossary
+
+### Directly in markdown file
+
+To define a new term, write in markdown:
+
+``` markdown
+def:c2s
+: Client to Server connection in XMPP.
+```
+
+To link to that term, write in markdown:
+
+``` markdown
+Most connections in XMPP are [](def:c2s).
+```
+
+Glossary terms can be defined as singular nouns (`connection`, `port`), and later you can link to that term in plural noun (`connections`, `ports`).
+
+### In ejabberd source code
+
+Term definition is done as expected; example usage:
+``` erlang
+mod_doc() ->
+    #{desc =>
+          [?T("def:ad-hoc command"), "",
+           ?T(": Command that can be executed by an XMPP client using XEP-0050."), "",
+           ?T("This module implements XEP-0050.")]
+```
+
+In order to link to a term definition, please write simply `(def:c2s)` because `[]` becomes escaped and wouldn't work. Later `make extract` will add the `[]` automatically. Example usage:
+```erl
+mod_doc() ->
+    #{desc =>
+          ?T("This module implements some (def:ad-hoc commands) for adminitration.")
+```
+

@@ -14,6 +14,10 @@ search:
 mod\_adhoc
 ----------
 
+def:ad-hoc command
+
+: Command that can be executed by an XMPP client using XEP-0050.
+
 This module implements [XEP-0050: Ad-Hoc
 Commands](https://xmpp.org/extensions/xep-0050.html). It’s an auxiliary
 module and is only needed by some of the other modules.
@@ -30,8 +34,7 @@ mod\_adhoc\_api 🟤
 <!-- md:version added in [25.03](../../archive/25.03/index.md) -->
 
 
-Execute [API Commands](https://docs.ejabberd.im/developer/ejabberd-api/)
-in a XMPP client using [XEP-0050: Ad-Hoc
+Execute [](def:API commands) in a XMPP client using [XEP-0050: Ad-Hoc
 Commands](https://xmpp.org/extensions/xep-0050.html). This module
 requires [mod_adhoc](#mod_adhoc) (to execute the commands), and recommends
 [mod_disco](#mod_disco) (to discover the commands).
@@ -40,9 +43,9 @@ __Available options:__
 
 - **default\_version**: `integer() | string()`  
 What API version to use. If setting an ejabberd version, it will use the
-latest API version that was available in that ejabberd version. For
-example, setting `"24.06"` in this option implies `2`. The default value
-is the latest version.
+latest API version that was available in that [](def:c2s) ejabberd
+version. For example, setting `"24.06"` in this option implies `2`. The
+default value is the latest version.
 
 __**Example**:__
 
