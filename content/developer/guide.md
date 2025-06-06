@@ -58,6 +58,84 @@ indentation style (that is the standard indentation style for Erlang
 programs). If you're not using Emacs for ejabberd development, indent
 the code using it first before making a PR/commit.
 
+### Format
+
+You can completely reformat your source code to the standard
+by surrounding the desired code with directives `@format-begin` and `@format-end`,
+for example:
+``` erlang
+%% @format-begin
+foo(xx   ,yy)  ->
+        xxyy;
+
+foo(A,B)->
+A
+           +B
+   .
+%% @format-end
+```
+
+then run `make format` and it will format and indent all the instructed lines and files.
+The resulting source code will be:
+``` erlang
+%% @format-begin
+foo(xx, yy) ->
+    xxyy;
+foo(A, B) ->
+    A + B.
+%% @format-end
+```
+
+This can be applied to any desired part of your module, or all of it,
+see for example [mod_adhoc_api.erl](https://github.com/processone/ejabberd/blob/master/src/mod_adhoc_api.erl).
+In that file, the `@format-begin` directive is provided early in the file,
+and the `@format-end` directive is not even needed.
+
+You can integrate that step in your development cycle,
+for example configuring your git to automatically run
+that procedure before pushing your changes to the upstream repository.
+For that, add a file in your local ejabberd git repository
+named `.git/hooks/pre-push` with the following content:
+
+``` sh
+#!/bin/sh
+
+echo "---> Formatting source code..."
+./tools/rebar3-format.sh ./rebar3
+if git diff --quiet --exit-code; then
+    exit 0
+else
+    echo "---> After formatting ejabberd source code, some files have changed:"
+    echo ""
+    git status --short
+    echo ""
+    echo "---> Please review those changes and include them in your commit before pushing upstream."
+    exit 1
+fi
+```
+
+Furthermore, you can add an alias in git:
+``` sh
+git config --global alias.format '!$(pwd)/.git/hooks/pre-push'
+```
+and now you can run the hook easily anytime:
+```
+git format
+```
+
+### Indent with Emacs
+
+If you are only interested in lines indentation, not in full code formatting,
+install Emacs and surround the desired code or the whole file with lines:
+``` erlang
+%% @indent-begin
+foo(A,B) ->
+A+B.
+%% @indent-end
+```
+then run `make indent` and it will call Emacs to indent all the instructed files.
+
+
 ## Start-up procedure
 
 ejabberd is written as a standard OTP application, so the startup
