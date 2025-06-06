@@ -60,6 +60,8 @@ the code using it first before making a PR/commit.
 
 ### Format
 
+<!-- md:version added in [24.06](../../archive/24.06/index.md) -->
+
 You can completely reformat your source code to the standard
 by surrounding the desired code with directives `@format-begin` and `@format-end`,
 for example:
