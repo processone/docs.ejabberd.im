@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../../../assets/css/headers-underline.css">
     
+      <link rel="stylesheet" href="../../../assets/css/ezglossary.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -482,6 +484,8 @@
       
         
       
+        
+      
     
     
     
@@ -630,6 +634,29 @@
   
   <span class="md-ellipsis">
     Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -7730,15 +7757,21 @@ Most of them are TCP ports, except the explicitely mentioned ones:</p>
 </tbody>
 </table>
 <h2 id="epmd">epmd<a class="headerlink" href="#epmd" title="Permanent link">&para;</a></h2>
+<dl>
+<div class="admonition glossary-definition" id="c9bfd08b0d91fef80fac2f6cfa71963c">
+    <p class="admonition-title">epmd</p>
+    <p>Small name server included in Erlang/OTP and used by Erlang
+  programs when establishing distributed Erlang communications.
+  See <a href="https://www.erlang.org/doc/apps/erts/epmd_cmd.html"><code>epmd (Erlang Port Mapper Daemon)</code></a></p>
+</div>
+</dl>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you setup <code>ERL_DIST_PORT</code> in <code>ejabberdctl.cfg</code> to a port number
 (for example <code>5210</code>) then Erlang will listen only in that port,
 instead of starting the <code>epmd</code> program and listen in 4269 + ramdom port.</p>
 </div>
-<p><a href="https://www.erlang.org/doc/apps/erts/epmd_cmd.html"><code>epmd (Erlang Port Mapper Daemon)</code></a>
-is a small name server included in Erlang/OTP and used by Erlang
-programs when establishing distributed Erlang communications. ejabberd
+<p>ejabberd
 needs <code>epmd</code> to use <code>ejabberdctl</code> and also when clustering ejabberd
 nodes. This small program is automatically started by Erlang, and is
 never stopped. If ejabberd is stopped, and there aren't any other
@@ -7771,7 +7804,18 @@ Erlang command-line parameter used internally is, for example:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>erl<span class="w"> </span>...<span class="w"> </span>-kernel<span class="w"> </span>inet_dist_use_interface<span class="w"> </span><span class="s2">&quot;{127,0,0,1}&quot;</span>
 </span></code></pre></div>
 <h2 id="erlang-cookie">Erlang Cookie<a class="headerlink" href="#erlang-cookie" title="Permanent link">&para;</a></h2>
-<p>The Erlang cookie is a string with numbers and letters. An Erlang node
+<dl>
+<div class="admonition glossary-definition" id="8eec80c83c7d697afd414052b48fcda4">
+    <p class="admonition-title">cookie</p>
+    <p>Random alphanumeric string assigned to each erlang <a class="mkdocs-ezglossary-link"
+    id="f6c21f1c61beffa223aa781b60f706a3"
+    title="May refer to:"
+    name="def:node"
+    href="../../../glossary/#81013e244281e8e8d6f540acc4dd4798">node</a> used to secure connections between erlang nodes.
+  See <a href="https://www.erlang.org/doc/system/distributed#security">Security in distributed erlang</a>.</p>
+</div>
+</dl>
+<p>An Erlang node
 reads the cookie at startup from the command-line parameter
 <code>-setcookie</code>. If not indicated, the cookie is read from the file
 <code>$HOME/.erlang.cookie</code>.</p>
@@ -7798,7 +7842,11 @@ different programs in the same machine.</p>
 <p>Setting a secret cookie is a simple method to difficult unauthorized
 access to your Erlang node. However, the cookie system is not ultimately
 effective to prevent unauthorized access or intrusion to an Erlang node.
-The communication between Erlang nodes are not encrypted, so the cookie
+The communication between Erlang nodes are not encrypted, so the <a class="mkdocs-ezglossary-link"
+    id="e5dbe6d0e166a48df2f5c0fff65e5e59"
+    title="Random alphanumeric string assigned to each erlang  used to secure connections between erlang nodes."
+    name="def:cookie"
+    href="../../../admin/guide/security/#8eec80c83c7d697afd414052b48fcda4">cookie</a>
 could be read sniffing the traffic on the network. The recommended way
 to secure the Erlang node is to block the port 4369.</p>
 <h2 id="erlang-node-name">Erlang Node Name<a class="headerlink" href="#erlang-node-name" title="Permanent link">&para;</a></h2>
@@ -7810,7 +7858,11 @@ communication between Erlang nodes to the LAN.</p>
 difficult unauthorized access to your Erlang node. However, it is not
 ultimately effective to prevent access to the Erlang node, because it
 may be possible to fake the fact that you are on another network using a
-modified version of Erlang <code>epmd</code>. The recommended way to secure the
+modified version of Erlang <a class="mkdocs-ezglossary-link"
+    id="37785e6458f4675b8eb7a2a2e50e64f2"
+    title="Small name server included in Erlang/OTP and used by Erlang"
+    name="def:epmd"
+    href="../../../admin/guide/security/#c9bfd08b0d91fef80fac2f6cfa71963c">epmd</a>. The recommended way to secure the
 Erlang node is to block the port 4369.</p>
 <h2 id="securing-sensitive-files">Securing Sensitive Files<a class="headerlink" href="#securing-sensitive-files" title="Permanent link">&para;</a></h2>
 <p>ejabberd stores sensitive data in the file system either in plain text

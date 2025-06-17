@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../../assets/css/headers-underline.css">
     
+      <link rel="stylesheet" href="../../assets/css/ezglossary.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -482,6 +484,8 @@
       
         
       
+        
+      
     
     
     
@@ -630,6 +634,29 @@
   
   <span class="md-ellipsis">
     Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -1507,9 +1534,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note-on-database-schema-upgrade" class="md-nav__link">
+  <a href="#note-on-database-schema-update" class="md-nav__link">
     <span class="md-ellipsis">
-      Note on database schema upgrade
+      Note on database schema update
     </span>
   </a>
   
@@ -7626,9 +7653,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#note-on-database-schema-upgrade" class="md-nav__link">
+  <a href="#note-on-database-schema-update" class="md-nav__link">
     <span class="md-ellipsis">
-      Note on database schema upgrade
+      Note on database schema update
     </span>
   </a>
   
@@ -7663,6 +7690,35 @@
 
 
 <h1 id="upgrade-procedure-for-ejabberd">Upgrade Procedure for ejabberd<a class="headerlink" href="#upgrade-procedure-for-ejabberd" title="Permanent link">&para;</a></h1>
+<dl>
+<div class="admonition glossary-definition" id="cc146c68becf3f398f80ad24dfd7cffe">
+    <p class="admonition-title">upgrade</p>
+    <p>Install a version of the program newer than the currently installed one.
+  Not to be confused with <a class="mkdocs-ezglossary-link"
+    id="dcbb8e9c8376903e5347d69131826faa"
+    title="Modify your program installation to match the requirements of the new program version."
+    name="def:update"
+    href="../../admin/upgrade/#29159e6ad14c914e612a518aa72045c5">update</a> or <a class="mkdocs-ezglossary-link"
+    id="22c3e9c5ec4b3e5cf6983f0297f286e3"
+    title="Change the database schema and all its tables from default schema to new schema."
+    name="def:switch"
+    href="../../admin/configuration/database/#d60ecdf3c9186a91803e265b995e5f5a">switch schema</a>.</p>
+</div>
+<div class="admonition glossary-definition" id="29159e6ad14c914e612a518aa72045c5">
+    <p class="admonition-title">update</p>
+    <p>Modify your program installation to match the requirements of the new program version.
+  This usually involves updating your configuration, your database schema, your API client, your custom modules...
+  Not to be confused with <a class="mkdocs-ezglossary-link"
+    id="aa139a602c68c398c378b1af1bf73c2e"
+    title="Install a version of the program newer than the currently installed one."
+    name="def:upgrade"
+    href="../../admin/upgrade/#cc146c68becf3f398f80ad24dfd7cffe">upgrade ejabberd</a> or <a class="mkdocs-ezglossary-link"
+    id="781b4f169050d7cacab467b2f2577d2c"
+    title="Change the database schema and all its tables from default schema to new schema."
+    name="def:switch"
+    href="../../admin/configuration/database/#d60ecdf3c9186a91803e265b995e5f5a">switch schema</a>.</p>
+</div>
+</dl>
 <p>This document contains administration procedure for each version upgrade.
 Only upgrade from version N to N+1 is documented and supported.
 If you upgrade from an older version than previous one, you have to review all
@@ -7735,7 +7791,7 @@ and do not involve structural or memory changes
 or any other tasks. If the fix you plan to apply requires a module restart,
 you can use this alternative:
 <a href="../../developer/ejabberd-api/admin-api/#restart_module">restart_module</a>.</p>
-<h2 id="note-on-database-schema-upgrade">Note on database schema upgrade<a class="headerlink" href="#note-on-database-schema-upgrade" title="Permanent link">&para;</a></h2>
+<h2 id="note-on-database-schema-update">Note on database schema update<a class="headerlink" href="#note-on-database-schema-update" title="Permanent link">&para;</a></h2>
 <p>ejabberd automatically updates the Mnesia table definitions at startup when needed.
 If you also use an external <a href="../configuration/database/">database</a> (like MySQL, ...)
 for storage of some modules, check in the corresponding

@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../../../assets/css/headers-underline.css">
     
+      <link rel="stylesheet" href="../../../assets/css/ezglossary.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -482,6 +484,8 @@
       
         
       
+        
+      
     
     
     
@@ -630,6 +634,29 @@
   
   <span class="md-ellipsis">
     Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -7679,6 +7706,19 @@ are <code>beam</code> or <code>beam.smp</code>, and also <code>epmd</code>. For 
 regarding <code>epmd</code> consult the section relating to
 <a href="../../guide/security/#epmd">epmd</a>.</p>
 <h2 id="administration-account">Administration Account<a class="headerlink" href="#administration-account" title="Permanent link">&para;</a></h2>
+<dl>
+<div class="admonition glossary-definition" id="1eaf6bd9e3b4fec7e3149493cf4f88c1">
+    <p class="admonition-title">admin account</p>
+    <p>Account registered in ejabberd with administrative privileges granted in the ejabberd configuration file.
+  Features that take into consideration those privileges:
+  <a href="../../configuration/toplevel/#api_permissions">api_permissions</a>,
+  <a href="../../guide/managing/#web-admin">ejabberd_web_admin</a>,
+  <a href="../../configuration/modules/#mod_announce">mod_announce</a>,
+  <a href="../../configuration/modules/#mod_configure">mod_configure</a>,
+  <a href="../../configuration/modules/#mod_http_api">mod_http_api</a>,
+  <a href="../../configuration/modules/#mod_muc">mod_muc</a>, ...</p>
+</div>
+</dl>
 <p>Some ejabberd installation methods ask you details for the first account, and take care to register that account and grant it administrative rights;
 in that case you can skip this section.</p>
 <p>After installing ejabberd from source code or other methods, you may want to register the first XMPP account and grant it administrative rights:</p>

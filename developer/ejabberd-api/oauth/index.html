@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../../../assets/css/headers-underline.css">
     
+      <link rel="stylesheet" href="../../../assets/css/ezglossary.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -482,6 +484,8 @@
       
         
       
+        
+      
     
     
     
@@ -630,6 +634,29 @@
   
   <span class="md-ellipsis">
     Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -8025,14 +8052,14 @@ If the provided credentials are valid, the browser or webview will redirect the 
 <li><code>token_type</code>: ejabberd supports <code>bearer</code> token type.</li>
 <li><code>expires_in</code>: This is the validity duration of the token, in seconds. When the token expires, a new authorization token will need to be generated an approved by the user.</li>
 </ul>
-<!--- TODO: Does oauth2 allow token refresh ? Is it implemented or could
+<!--- TODO:: Does oauth2 allow token refresh ? Is it implemented or could
   it be implemented in ejabberd ? -->
 <ul>
 <li><code>scope</code>: Confirms the granted scope to the requesting application. Several scopes can be passed, separated by '+'.</li>
 <li><code>state</code>: If a state parameter was passed by requesting application in authorization_token URL, it will be passed back to the
   application as a parameter of the <code>redirect_uri</code> to help with the client workflow.</li>
 </ul>
-<!--- TODO: Add Android and iOS examples on how to get the token.  -->
+<!--- TODO:: Add Android and iOS examples on how to get the token.  -->
 
 <h2 id="scopes">Scopes<a class="headerlink" href="#scopes" title="Permanent link">&para;</a></h2>
 <ul>
@@ -8043,7 +8070,7 @@ If the provided credentials are valid, the browser or webview will redirect the 
   For example, there is a scope <code>registered_users</code>  because there is a command called <a href="../admin-api/#registered-users">registered_users</a>.
   Ensure you enable the module that defines the command that you want to use, see <a href="#module-configuration">Module configuration</a> for details.</li>
 </ul>
-<!--- TODO: As scope are generally provided by commands, which are
+<!--- TODO:: As scope are generally provided by commands, which are
 provided by enabled modules, we need to command to list enabled
 scopes.  We should also probably support scopes that are categories of
 commands (like user for example). Finally, we should probably allow

@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../../assets/css/headers-underline.css">
     
+      <link rel="stylesheet" href="../../assets/css/ezglossary.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -482,6 +484,8 @@
       
         
       
+        
+      
     
     
     
@@ -630,6 +634,29 @@
   
   <span class="md-ellipsis">
     Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -7607,11 +7634,18 @@ In the next sections you will learn the basic concepts,
 how to start using ejabberd's API,
 how to adjust it to your needs,
 and integrate ejabberd with your existing systems.</p>
-<h2 id="api-backends">API Backends<a class="headerlink" href="#api-backends" title="Permanent link">&para;</a></h2>
-<p>ejabberd's API currently includes over 200 commands,
+<dl>
+<div class="admonition glossary-definition" id="6e63f44eb2a62e52193c0a2772614c04">
+    <p class="admonition-title">API command</p>
+    <p>Command defined in some ejabberd module API backend, that can be executed using some API frontend.</p>
+</div>
+</dl>
+<p>ejabberd's API currently includes over 200 API Commands,
 see <a href="admin-api/">API Reference</a> for a detailed list of all the existing commands.
 Alternatively you can view the list of commands grouped by their <a href="admin-api/">API Tags</a>.</p>
-<p>Those commands are defined and implemented in Erlang or Elixir modules.
+<h2 id="api-backends">API Backends<a class="headerlink" href="#api-backends" title="Permanent link">&para;</a></h2>
+<p>API commands are defined and implemented in Erlang or Elixir modules
+that can be considered "API backends".
 Some modules included in ejabberd define their commands,
 while the majority of the existing commands are defined and implemented in:</p>
 <ul>
@@ -7622,7 +7656,9 @@ while the majority of the existing commands are defined and implemented in:</p>
 <p>When developing a module in Erlang or Elixir, it can define new commands,
 see <a href="commands/">Commands</a> page for details.</p>
 <h2 id="api-frontends">API Frontends<a class="headerlink" href="#api-frontends" title="Permanent link">&para;</a></h2>
-<p>The API commands are exposed through interfaces. Available interfaces are:</p>
+<p>The API commands are exposed through interfaces,
+implemented in modules that can be considered "API frontends".
+Available interfaces are:</p>
 <ul>
 <li><a href="../../admin/guide/managing/#ejabberdctl">ejabberdctl</a> command-line tool</li>
 <li><a href="../../admin/configuration/modules/#mod_http_api">mod_http_api</a> for HTTP ReST calls using JSON data</li>
@@ -7685,7 +7721,7 @@ the following:</p>
 <li><a href="simple-configuration/">Simple API configuration</a></li>
 <li>Using ejabberd client API libraries and tools</li>
 </ul>
-<!-- TODO: Using API with ejabberd command-line tool and Go based library -->
+<!-- TODO:: Using API with ejabberd command-line tool and Go based library -->
 
 <p>The list of available commands is available in the <a href="admin-api/">API Reference</a> section.
 Additionally, you can check at runtime what commands are available in your installed server using <a href="../../admin/guide/managing/#ejabberdctl">ejabberdctl</a>:</p>

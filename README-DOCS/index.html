@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../assets/css/headers-underline.css">
     
+      <link rel="stylesheet" href="../assets/css/ezglossary.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -482,6 +484,8 @@
       
         
       
+        
+      
     
     
     
@@ -630,6 +634,29 @@
   
   <span class="md-ellipsis">
     Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -2037,6 +2064,39 @@
       Markdown Shorthands
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Glossary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directly-in-markdown-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directly in markdown file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-ejabberd-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      In ejabberd source code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -7691,6 +7751,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#glossary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glossary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Glossary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directly-in-markdown-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directly in markdown file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-ejabberd-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      In ejabberd source code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -7784,6 +7877,7 @@ there is some additional syntax supported to generate HTML URLs:</p>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">_</span><span class="err">`</span><span class="n">default_db</span><span class="err">`</span><span class="p">_</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">_</span><span class="err">`</span><span class="n">basic</span><span class="p">.</span><span class="n">md</span><span class="nl">#captcha</span><span class="p">|</span><span class="nv">CAPTCHA</span><span class="err">`</span><span class="p">_</span>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">xmpp</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">extensions</span><span class="o">/</span><span class="n">xep</span><span class="o">-</span><span class="mi">0045</span><span class="p">.</span><span class="n">html</span><span class="p">[</span><span class="nv">XEP</span><span class="o">-</span><span class="mi">0045</span><span class="p">]</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">(</span><span class="nn">def</span><span class="p">:</span><span class="n">c2s</span><span class="p">)</span>
 </span></code></pre></div>
 <p>gets converted into this markdown:</p>
 <div class="language-markdown highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[<span class="nt">mod_muc_admin</span>](<span class="na">../../admin/configuration/modules.md#mod_muc_admin</span>)
@@ -7791,8 +7885,32 @@ there is some additional syntax supported to generate HTML URLs:</p>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>[<span class="nt">default_db</span>](<span class="na">toplevel.md#default_db</span>)
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>[<span class="nt">CAPTCHA</span>](<span class="na">basic.md#captcha</span>)
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>[<span class="nt">XEP-0045</span>](<span class="na">https://xmpp.org/extensions/xep-0045.html</span>)
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>[](def:c2s)
 </span></code></pre></div>
 <p>There are example usage of those shorthands in ejabberd, for example in <code>mod_muc.erl</code>.</p>
+<h2 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h2>
+<h3 id="directly-in-markdown-file">Directly in markdown file<a class="headerlink" href="#directly-in-markdown-file" title="Permanent link">&para;</a></h3>
+<p>To define a new term, write in markdown:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>def:c2s
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>: Client to Server connection in XMPP.
+</span></code></pre></div>
+<p>To link to that term, write in markdown:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Most connections in XMPP are [](def:c2s).
+</span></code></pre></div>
+<p>Glossary terms can be defined as singular nouns (<code>connection</code>, <code>port</code>), and later you can link to that term in plural noun (<code>connections</code>, <code>ports</code>).</p>
+<h3 id="in-ejabberd-source-code">In ejabberd source code<a class="headerlink" href="#in-ejabberd-source-code" title="Permanent link">&para;</a></h3>
+<p>Term definition is done as expected; example usage:
+<div class="language-erlang highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nf">mod_doc</span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="p">#{</span><span class="n">desc</span><span class="w"> </span><span class="o">=&gt;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">          </span><span class="p">[</span><span class="o">?</span><span class="nv">T</span><span class="p">(</span><span class="s">&quot;def:ad-hoc command&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">           </span><span class="o">?</span><span class="nv">T</span><span class="p">(</span><span class="s">&quot;: Command that can be executed by an XMPP client using XEP-0050.&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">           </span><span class="o">?</span><span class="nv">T</span><span class="p">(</span><span class="s">&quot;This module implements XEP-0050.&quot;</span><span class="p">)]</span>
+</span></code></pre></div></p>
+<p>In order to link to a term definition, please write simply <code>(def:c2s)</code> because <code>[]</code> becomes escaped and wouldn't work. Later <code>make extract</code> will add the <code>[]</code> automatically. Example usage:
+<div class="language-erl highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">mod_doc() -&gt;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">    #{desc =&gt;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">          ?T(&quot;This module implements some (def:ad-hoc commands) for adminitration.&quot;)</span>
+</span></code></pre></div></p>
 
 
 

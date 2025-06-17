@@ -67,6 +67,8 @@
     
       <link rel="stylesheet" href="../../../assets/css/headers-underline.css">
     
+      <link rel="stylesheet" href="../../../assets/css/ezglossary.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -482,6 +484,8 @@
       
         
       
+        
+      
     
     
     
@@ -630,6 +634,29 @@
   
   <span class="md-ellipsis">
     Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
     
   </span>
   
@@ -7840,6 +7867,21 @@ with the <a href="../toplevel/#default_db"><code>default_db</code></a> top-level
 </ul>
 <h2 id="database-schema">Database Schema<a class="headerlink" href="#database-schema" title="Permanent link">&para;</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">updated in <a href="../../../archive/24.06/">24.06</a></span></span></p>
+<dl>
+<div class="admonition glossary-definition" id="29159e6ad14c914e612a518aa72045c5">
+    <p class="admonition-title">update</p>
+    <p>Modify the database schema and all its tables to match the installed ejabberd version.
+  Not to be confused with <a class="mkdocs-ezglossary-link"
+    id="51a3875221036d7de6f90b769c61cf73"
+    title="Install a version of the program newer than the currently installed one."
+    name="def:upgrade"
+    href="../../../admin/upgrade/#cc146c68becf3f398f80ad24dfd7cffe">upgrade ejabberd</a> or <a class="mkdocs-ezglossary-link"
+    id="737d91299132920ae27fbc3f0dfe405b"
+    title="Change the database schema and all its tables from default schema to new schema."
+    name="def:switch"
+    href="../../../admin/configuration/database/#d60ecdf3c9186a91803e265b995e5f5a">switch schema</a>.</p>
+</div>
+</dl>
 <p>The <a href="../toplevel/#update_sql_schema">update_sql_schema</a> top-level option
 allows ejabberd to create and update the tables automatically in the SQL database
 when using MySQL, PostgreSQL or SQLite.
@@ -7902,8 +7944,23 @@ it will take care to create the tables with the correct schema.</p>
 remember to use the proper SQL schema!
 For example, if you are using MySQL and choose the <em>default</em> schema, use <code>mysql.sql</code>.
 If you are using PostgreSQL and need the <em>new</em> schema, use <code>pg.new.sql</code>.</p>
+<dl>
+<div class="admonition glossary-definition" id="d60ecdf3c9186a91803e265b995e5f5a">
+    <p class="admonition-title">switch</p>
+    <p>Change the database schema and all its tables from <code>default</code> schema to <code>new</code> schema.
+  Not to be confused with <a class="mkdocs-ezglossary-link"
+    id="0331828197a84cdf26c349609d9fdad3"
+    title="Install a version of the program newer than the currently installed one."
+    name="def:upgrade"
+    href="../../../admin/upgrade/#cc146c68becf3f398f80ad24dfd7cffe">upgrade ejabberd</a> or <a class="mkdocs-ezglossary-link"
+    id="942efcb4916c09fa91f66795e82cadfc"
+    title="Modify your program installation to match the requirements of the new program version."
+    name="def:update"
+    href="../../../admin/upgrade/#29159e6ad14c914e612a518aa72045c5">update schema</a>.</p>
+</div>
+</dl>
 <p>If you already have a MySQL or PostgreSQL database with the <em>default</em> schema and contents,
-you can upgrade it to the <em>new</em> schema:</p>
+you can switch it to the <em>new</em> schema:</p>
 <ul>
 <li>
 <p><em>MySQL</em>:

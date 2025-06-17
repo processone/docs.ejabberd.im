@@ -1,0 +1,28 @@
+:root {
+  --md-admonition-icon--glossary-definition: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2h-5v8l-2.5-2.25L8 12V4H6v16h12z"/></svg>');
+  --md-admonition-glossary-fg-color: rgb(0, 184, 212);
+}
+
+.md-typeset .admonition.glossary-definition,
+.md-typeset details.glossary-definition {
+  border-color: var(--md-admonition-glossary-fg-color);
+}
+.md-typeset .glossary-definition > .admonition-title,
+.md-typeset .glossary-definition > summary {
+  background-color: rgba(0, 184, 212, 0.1);
+}
+.md-typeset .glossary-definition > .admonition-title::before,
+.md-typeset .glossary-definition > summary::before {
+  background-color: var(--md-admonition-glossary-fg-color);
+  -webkit-mask-image: var(--md-admonition-icon--glossary-definition);
+          mask-image: var(--md-admonition-icon--glossary-definition);
+}
+
+a.mkdocs-ezglossary-link {
+  text-decoration-color: var(--md-admonition-glossary-fg-color);
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-thickness: 5%;
+  text-underline-offset: 15%;
+}
+
