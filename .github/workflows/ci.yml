@@ -32,6 +32,7 @@ jobs:
       - run: pip install mkdocs-material \
                          "mkdocs-material[imaging]" \
                          mkdocs-material-extensions \
+                         mkdocs-ezglossary-plugin \
                          mkdocs-htmlproofer-plugin \
                          mkdocs-redirects \
                          mkdocs-with-pdf \
