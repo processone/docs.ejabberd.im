@@ -189,7 +189,6 @@ Options:
 [cafile](listen-options.md#cafile),
 [ciphers](listen-options.md#ciphers),
 [custom_headers](listen-options.md#custom_headers),
-[default_host](listen-options.md#default_host),
 [dhfile](listen-options.md#dhfile),
 [protocol_options](listen-options.md#protocol_options),
 [request_handlers](listen-options.md#request_handlers),

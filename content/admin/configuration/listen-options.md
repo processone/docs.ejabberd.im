@@ -102,18 +102,6 @@ then the top-level option is used, not this one.
 Specify additional HTTP headers to be included in all HTTP responses.
 Default value is: `[]`
 
-## default_host
-
-*undefined | HostName*
-
-If the HTTP request received by ejabberd contains the HTTP header
- `Host` with an ambiguous virtual host that doesn’t match any one
- defined in ejabberd (see
-        [Host Names](basic.md#host_names)),
-        then this configured HostName
- is set as the request Host. The default value of this option is:
- `undefined`.
-
 ## dhfile
 
 *Path*

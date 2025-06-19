@@ -5,11 +5,8 @@ search:
 
 # Top-Level Options
 
-!!! info "Please note"
-
-    This section describes top level options of ejabberd [25.03](../../archive/25.03/index.md) and [25.04](../../archive/25.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
-
-    The options that changed in this version are marked with 🟤.
+This section describes top level options of ejabberd [25.04](../../archive/25.04/index.md).71. The
+options that changed in this version are marked with 🟤.
 
 ## access\_rules
 
@@ -308,7 +305,7 @@ you already have passwords generated with a different algorithm - users
 that have such passwords will not be able to authenticate. The default
 value is `sha`.
 
-## auth\_stored\_password\_types 🟤
+## auth\_stored\_password\_types
 
 `[plain | scram_sha1 | scram_sha256 | scram_sha512]`  
 
@@ -553,7 +550,7 @@ Default volatile (in-memory) storage for ejabberd. Modules and other
 components (e.g. session management) may have its own value. The default
 value is `mnesia`.
 
-## define\_keyword 🟤
+## define\_keyword
 
 `{NAME: Value}`  
 
@@ -576,7 +573,7 @@ host_config:
 sql_username: "prefix.@SQL_USERNAME@"
 ~~~
 
-## define\_macro 🟤
+## define\_macro
 
 `{NAME: Value}`  
 
@@ -770,6 +767,30 @@ host_config:
 
 List of one or more [host names](../configuration/basic.md#host-names)
 (or domains) that ejabberd will serve. This is a **mandatory** option.
+
+## hosts\_alias
+
+`{Alias: Host}`  
+
+<!-- md:version added in 25.xx -->
+
+Define aliases for existing
+vhosts managed by ejabberd. An alias may be a regexp expression. This
+option is only consulted by the `ejabberd_http` listener.
+
+**Example**:
+
+~~~ yaml
+hosts:
+  - domain.tld
+  - example.org
+
+hosts_alias:
+  xmpp.domain.tld: domain.tld
+  jabber.domain.tld: domain.tld
+  mytest.net: example.org
+  "exa*": example.org
+~~~
 
 ## include\_config\_file
 
@@ -1357,6 +1378,34 @@ described in [XMPP Core: section
 default value is `closeold`. If the client uses old Jabber Non-SASL
 authentication (XEP-0078), then this option is not respected, and the
 action performed is `closeold`.
+
+## rest\_proxy
+
+`Host`  
+
+Address of a HTTP Connect proxy used by modules issuing rest calls (like
+ejabberd\_oauth\_rest)
+
+## rest\_proxy\_password
+
+`string()`  
+
+Password used to authenticate to HTTP Connect proxy used by modules
+issuing rest calls (like ejabberd\_oauth\_rest)
+
+## rest\_proxy\_port
+
+`1..65535`  
+
+Port of a HTTP Connect proxy used by modules issuing rest calls (like
+ejabberd\_oauth\_rest)
+
+## rest\_proxy\_username
+
+`string()`  
+
+Username used to authenticate to HTTP Connect proxy used by modules
+issuing rest calls (like ejabberd\_oauth\_rest)
 
 ## router\_cache\_life\_time
 

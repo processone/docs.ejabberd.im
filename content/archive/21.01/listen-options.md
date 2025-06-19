@@ -78,18 +78,6 @@ OpenSSL ciphers list in the same format accepted by
 Specify additional HTTP headers to be included in all HTTP responses.
 Default value is: `[]`
 
-## default_host
-
-*undefined | HostName*
-
-If the HTTP request received by ejabberd contains the HTTP header
-	`Host` with an ambiguous virtual host that doesn’t match any one
-	defined in ejabberd (see
-        [Host Names](../../admin/configuration/basic.md#host_names)),
-        then this configured HostName
-	is set as the request Host. The default value of this option is:
-	`undefined`.
-
 ## dhfile
 
 *Path*
