@@ -1380,7 +1380,7 @@
         <li class="md-nav__item">
   <a href="#auth_stored_password_types" class="md-nav__link">
     <span class="md-ellipsis">
-      auth_stored_password_types 🟤
+      auth_stored_password_types
     </span>
   </a>
   
@@ -1560,7 +1560,7 @@
         <li class="md-nav__item">
   <a href="#define_keyword" class="md-nav__link">
     <span class="md-ellipsis">
-      define_keyword 🟤
+      define_keyword
     </span>
   </a>
   
@@ -1569,7 +1569,7 @@
         <li class="md-nav__item">
   <a href="#define_macro" class="md-nav__link">
     <span class="md-ellipsis">
-      define_macro 🟤
+      define_macro
     </span>
   </a>
   
@@ -1696,6 +1696,15 @@
   <a href="#hosts" class="md-nav__link">
     <span class="md-ellipsis">
       hosts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosts_alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      hosts_alias
     </span>
   </a>
   
@@ -2272,6 +2281,42 @@
   <a href="#resource_conflict" class="md-nav__link">
     <span class="md-ellipsis">
       resource_conflict
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest_proxy_password" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy_password
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest_proxy_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy_port
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest_proxy_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy_username
     </span>
   </a>
   
@@ -9257,7 +9302,7 @@
         <li class="md-nav__item">
   <a href="#auth_stored_password_types" class="md-nav__link">
     <span class="md-ellipsis">
-      auth_stored_password_types 🟤
+      auth_stored_password_types
     </span>
   </a>
   
@@ -9437,7 +9482,7 @@
         <li class="md-nav__item">
   <a href="#define_keyword" class="md-nav__link">
     <span class="md-ellipsis">
-      define_keyword 🟤
+      define_keyword
     </span>
   </a>
   
@@ -9446,7 +9491,7 @@
         <li class="md-nav__item">
   <a href="#define_macro" class="md-nav__link">
     <span class="md-ellipsis">
-      define_macro 🟤
+      define_macro
     </span>
   </a>
   
@@ -9573,6 +9618,15 @@
   <a href="#hosts" class="md-nav__link">
     <span class="md-ellipsis">
       hosts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hosts_alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      hosts_alias
     </span>
   </a>
   
@@ -10155,6 +10209,42 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rest_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest_proxy_password" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy_password
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest_proxy_port" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy_port
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest_proxy_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      rest_proxy_username
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#router_cache_life_time" class="md-nav__link">
     <span class="md-ellipsis">
       router_cache_life_time
@@ -10660,11 +10750,8 @@
 
 
 <h1 id="top-level-options">Top-Level Options<a class="headerlink" href="#top-level-options" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Please note</p>
-<p>This section describes top level options of ejabberd <a href="../../../archive/25.03/">25.03</a> and <a href="../../../archive/25.04/">25.04</a>.  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the <a href="../../../archive/">Archive</a>.</p>
-<p>The options that changed in this version are marked with 🟤.</p>
-</div>
+<p>This section describes top level options of ejabberd <a href="../../../archive/25.04/">25.04</a>.71. The
+options that changed in this version are marked with 🟤.</p>
 <h2 id="access_rules">access_rules<a class="headerlink" href="#access_rules" title="Permanent link">&para;</a></h2>
 <p><code>{AccessName: {allow|deny: ACLName|ACLDefinition}}</code>  </p>
 <p>This option defines <a href="../basic/#access-rules">Access Rules</a>. Each access
@@ -10933,7 +11020,7 @@ format the users passwords are stored, plain text or in
 you already have passwords generated with a different algorithm - users
 that have such passwords will not be able to authenticate. The default
 value is <code>sha</code>.</p>
-<h2 id="auth_stored_password_types">auth_stored_password_types 🟤<a class="headerlink" href="#auth_stored_password_types" title="Permanent link">&para;</a></h2>
+<h2 id="auth_stored_password_types">auth_stored_password_types<a class="headerlink" href="#auth_stored_password_types" title="Permanent link">&para;</a></h2>
 <p><code>[plain | scram_sha1 | scram_sha256 | scram_sha512]</code>  </p>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/25.03/">25.03</a></span></span></p>
 <p>List of password types that
@@ -11098,7 +11185,7 @@ have its own value. The default value is <code>mnesia</code>.</p>
 <p>Default volatile (in-memory) storage for ejabberd. Modules and other
 components (e.g. session management) may have its own value. The default
 value is <code>mnesia</code>.</p>
-<h2 id="define_keyword">define_keyword 🟤<a class="headerlink" href="#define_keyword" title="Permanent link">&para;</a></h2>
+<h2 id="define_keyword">define_keyword<a class="headerlink" href="#define_keyword" title="Permanent link">&para;</a></h2>
 <p><code>{NAME: Value}</code>  </p>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/25.03/">25.03</a></span></span></p>
 <p>Allows to define configuration
@@ -11114,7 +11201,7 @@ value is <code>mnesia</code>.</p>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
 </span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nt">sql_username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;prefix.@SQL_USERNAME@&quot;</span>
 </span></code></pre></div>
-<h2 id="define_macro">define_macro 🟤<a class="headerlink" href="#define_macro" title="Permanent link">&para;</a></h2>
+<h2 id="define_macro">define_macro<a class="headerlink" href="#define_macro" title="Permanent link">&para;</a></h2>
 <p><code>{NAME: Value}</code>  </p>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/25.03/">25.03</a></span></span></p>
 <p>Allows to define
@@ -11253,6 +11340,23 @@ host <code>domain.tld</code> and SQL method will be used on virtual host
 <p><code>[Domain1, Domain2, ...]</code>  </p>
 <p>List of one or more <a href="../basic/#host-names">host names</a>
 (or domains) that ejabberd will serve. This is a <strong>mandatory</strong> option.</p>
+<h2 id="hosts_alias">hosts_alias<a class="headerlink" href="#hosts_alias" title="Permanent link">&para;</a></h2>
+<p><code>{Alias: Host}</code>  </p>
+<p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in 25.xx</span></span></p>
+<p>Define aliases for existing
+vhosts managed by ejabberd. An alias may be a regexp expression. This
+option is only consulted by the <code>ejabberd_http</code> listener.</p>
+<p><strong>Example</strong>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">hosts</span><span class="p">:</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain.tld</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.org</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nt">hosts_alias</span><span class="p">:</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="nt">xmpp.domain.tld</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain.tld</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="nt">jabber.domain.tld</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain.tld</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="nt">mytest.net</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.org</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">  </span><span class="s">&quot;exa*&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.org</span>
+</span></code></pre></div>
 <h2 id="include_config_file">include_config_file<a class="headerlink" href="#include_config_file" title="Permanent link">&para;</a></h2>
 <p><em>[Filename, ...] | {Filename: Options}</em>  </p>
 <p>Read and
@@ -11337,8 +11441,8 @@ is not filtered. WARNING: Since this filter makes additional LDAP
 lookups, use it only as the last resort: try to define all filter rules
 in <a href="#ldap_filter">ldap_filter</a> option if possible.</p>
 <p><strong>Example</strong>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">ldap_dn_filter</span><span class="p">:</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="s">&quot;(&amp;(name=%s)(owner=%D)(user=%u@%d))&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">sn</span><span class="p p-Indicator">]</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">ldap_dn_filter</span><span class="p">:</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="s">&quot;(&amp;(name=%s)(owner=%D)(user=%u@%d))&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">sn</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 <h2 id="ldap_encrypt">ldap_encrypt<a class="headerlink" href="#ldap_encrypt" title="Permanent link">&para;</a></h2>
 <p><code>tls | none</code>  </p>
@@ -11640,6 +11744,22 @@ described in <a href="https://tools.ietf.org/html/rfc6120#section-7.7.2.2">XMPP 
 default value is <code>closeold</code>. If the client uses old Jabber Non-SASL
 authentication (XEP-0078), then this option is not respected, and the
 action performed is <code>closeold</code>.</p>
+<h2 id="rest_proxy">rest_proxy<a class="headerlink" href="#rest_proxy" title="Permanent link">&para;</a></h2>
+<p><code>Host</code>  </p>
+<p>Address of a HTTP Connect proxy used by modules issuing rest calls (like
+ejabberd_oauth_rest)</p>
+<h2 id="rest_proxy_password">rest_proxy_password<a class="headerlink" href="#rest_proxy_password" title="Permanent link">&para;</a></h2>
+<p><code>string()</code>  </p>
+<p>Password used to authenticate to HTTP Connect proxy used by modules
+issuing rest calls (like ejabberd_oauth_rest)</p>
+<h2 id="rest_proxy_port">rest_proxy_port<a class="headerlink" href="#rest_proxy_port" title="Permanent link">&para;</a></h2>
+<p><code>1..65535</code>  </p>
+<p>Port of a HTTP Connect proxy used by modules issuing rest calls (like
+ejabberd_oauth_rest)</p>
+<h2 id="rest_proxy_username">rest_proxy_username<a class="headerlink" href="#rest_proxy_username" title="Permanent link">&para;</a></h2>
+<p><code>string()</code>  </p>
+<p>Username used to authenticate to HTTP Connect proxy used by modules
+issuing rest calls (like ejabberd_oauth_rest)</p>
 <h2 id="router_cache_life_time">router_cache_life_time<a class="headerlink" href="#router_cache_life_time" title="Permanent link">&para;</a></h2>
 <p><code>timeout()</code>  </p>
 <p>Same as <a href="#cache_life_time">cache_life_time</a>, but applied to routing table cache only. If
@@ -11683,12 +11803,12 @@ be used.</p>
 <p>A list of OpenSSL ciphers to use for s2s connections. The default value
 is shown in the example below:</p>
 <p><strong>Example</strong>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">s2s_ciphers</span><span class="p">:</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIGH</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;!aNULL&quot;</span>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;!eNULL&quot;</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;!3DES&quot;</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;@STRENGTH&quot;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">s2s_ciphers</span><span class="p">:</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIGH</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;!aNULL&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;!eNULL&quot;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;!3DES&quot;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;@STRENGTH&quot;</span>
 </span></code></pre></div>
 <h2 id="s2s_dhfile">s2s_dhfile<a class="headerlink" href="#s2s_dhfile" title="Permanent link">&para;</a></h2>
 <p><code>Path</code>  </p>
@@ -11714,10 +11834,10 @@ minutes).</p>
 OpenSSL’s <code>set_options()</code>. The default value is shown in the example
 below:</p>
 <p><strong>Example</strong>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">s2s_protocol_options</span><span class="p">:</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no_sslv3</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cipher_server_preference</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no_compression</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">s2s_protocol_options</span><span class="p">:</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no_sslv3</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cipher_server_preference</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">no_compression</span>
 </span></code></pre></div>
 <h2 id="s2s_queue_type">s2s_queue_type<a class="headerlink" href="#s2s_queue_type" title="Permanent link">&para;</a></h2>
 <p><code>ram | file</code>  </p>
@@ -11758,9 +11878,9 @@ allowed maximum. In the example below shaper <code>normal</code> limits the traf
 speed to 1,000 bytes/sec and shaper <code>fast</code> limits the traffic speed to
 50,000 bytes/sec:</p>
 <p><strong>Example</strong>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">shaper</span><span class="p">:</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">normal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50000</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">shaper</span><span class="p">:</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">normal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50000</span>
 </span></code></pre></div>
 <h2 id="shaper_rules">shaper_rules<a class="headerlink" href="#shaper_rules" title="Permanent link">&para;</a></h2>
 <p><code>{ShaperRuleName: {Number|ShaperName: ACLName|ACLDefinition}}</code>  </p>
@@ -11771,17 +11891,17 @@ the only difference is that instead using <code>allow</code> or <code>deny</code
 shaper (defined in <a href="#shaper">shaper</a> option) or a positive number should be
 used.</p>
 <p><strong>Example</strong>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">shaper_rules</span><span class="p">:</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">connections_limit</span><span class="p">:</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="nt">10</span><span class="p">:</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">      </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peter@example.com</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="nt">100</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="nt">5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">  </span><span class="nt">download_speed</span><span class="p">:</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="nt">fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="nt">slow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anonymous_users</span>
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="nt">normal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">  </span><span class="nt">log_days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">shaper_rules</span><span class="p">:</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">connections_limit</span><span class="p">:</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="nt">10</span><span class="p">:</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">      </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peter@example.com</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="nt">100</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="nt">5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="nt">download_speed</span><span class="p">:</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="nt">fast</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="nt">slow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anonymous_users</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="nt">normal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">  </span><span class="nt">log_days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
 </span></code></pre></div>
 <h2 id="sm_cache_life_time">sm_cache_life_time<a class="headerlink" href="#sm_cache_life_time" title="Permanent link">&para;</a></h2>
 <p><code>timeout()</code>  </p>
