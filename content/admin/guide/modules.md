@@ -1,4 +1,4 @@
-# Add More Modules
+# Get More Modules
 
 ## `ejabberd-modules`
 
@@ -7,12 +7,16 @@ in addition to all the [modules included](../configuration/modules.md) with ejab
 There are [API commands](../../developer/ejabberd-api/admin-tags.md#modules)
 to compile, install, upgrade and uninstall those additional modules.
 
-!!! info
-    The exact path to the `ejabberd-modules` directory in your ejabberd installation may be:
+!!! info "`ejabberd-modules` path in your system"
 
-    - `$HOME/.ejabberd-modules` when [compiling source code](../install/source.md) or using [installers](../install/binary-installer.md)
-    - `/opt/ejabberd/.ejabberd-modules` in the [`ejabberd` container image](../../CONTAINER.md)
-    - `/home/ejabberd/.ejabberd-modules` in the [`ecs` container image](../../CONTAINER.md)
+    By default it is `$HOME/.ejabberd-modules`,
+    being that the home path of the system account running ejabberd.
+    The exact path in your ejabberd installation may be:
+
+    - `/home/youraccount/.ejabberd-modules` when [compiling source code](../install/source.md) or using [binary installers](../install/binary-installer.md)
+    - `/opt/ejabberd/.ejabberd-modules` in the [`ejabberd`](../../CONTAINER.md) and the [`ecs`](../../CONTAINER.md) container images
+    - `/home/ejabberd/.ejabberd-modules` in the [`ecs`](../../CONTAINER.md) container image
+    - `/var/lib/ejabberd/.ejabberd-modules` when installed from [Debian package](../install/os-package.md)
 
     That path can be modified using the variable
     [CONTRIB_MODULES_PATH](https://github.com/processone/ejabberd/blob/master/ejabberdctl.cfg.example#L180)
@@ -88,7 +92,18 @@ Configure the module in that file, or remove it
 and configure in your main ejabberd.yml
 ```
 
-That command performs several tasks:
+!!! failure "git not found?"
+
+    Installing a module with dependencies requires `git` or `mix` installed in the system,
+    otherwise compilation fails with errors like:
+    ``` bash
+    /bin/sh: mix: not found
+    /bin/sh: git: not found
+    ```
+    If you are using an ejabberd container image, see the solution in
+    [Install git for dependencies](../../CONTAINER.md#install-git-for-dependencies).
+
+The command `module_install` performs several tasks:
 
 - downloads any Erlang/Elixir dependencies specified in the modules's `rebar.config` file
 - compiles the module and its dependencies (if not yet already compiled)
@@ -118,61 +133,4 @@ which essentially uninstalls and installs the same module with one single comman
 
 ``` sh
 ejabberdctl module_upgrade mod_cron
-```
-
-## Dependencies in container
-
-When a module in `ejabberd-modules` depends on an Erlang or Elixir library,
-it is defined in the `rebar.config` file.
-To download those dependencies during [module installation](#install-module),
-either `git` or `mix` is required,
-but none of them are available in the `ejabberd` or the `ecs`
-[container images](../../CONTAINER.md).
-Consequently, the module installation will fail.
-The solution is quite simple: install `git` or `mix`.
-
-For example, let's start an `ejabberd` container
-and try to install a module with dependencies:
-
-``` sh
-podman run --name ejabberd -d -p 5222:5222 -p 5280:5280 ghcr.io/processone/ejabberd
-
-podman exec ejabberd ejabberdctl module_install mod_ecaptcha
-```
-
-An error message like this will appear:
-``` sh
-Fetching dependency ecaptcha: /bin/sh: git: not found
-/bin/sh: cd: line 1: can't cd to ecaptcha: No such file or directory
-/bin/sh: git: not found
-Module mod_ecaptcha has been installed and started.
-It's configured in the file:
-  /opt/ejabberd/.ejabberd-modules/mod_ecaptcha/conf/mod_ecaptcha.yml
-Configure the module in that file, or remove it
-and configure in your main ejabberd.yml
-```
-
-In order to download modules dependencies, first of all install `git` in the container:
-
-``` sh
-podman exec --user root ejabberd apk add git
-```
-
-Now remove the module `deps/` folder and install again:
-
-``` sh
-podman exec ejabberd rm -rf /opt/ejabberd/.ejabberd-modules/sources/ejabberd-contrib/mod_ecaptcha/deps/
-
-podman exec ejabberd ejabberdctl module_upgrade mod_ecaptcha
-```
-
-This time dependencies will be downloaded, compiled and installed:
-
-``` sh
-Fetching dependency ecaptcha: Cloning into 'ecaptcha'...
-Module mod_ecaptcha has been installed and started.
-It's configured in the file:
-  /opt/ejabberd/.ejabberd-modules/mod_ecaptcha/conf/mod_ecaptcha.yml
-Configure the module in that file, or remove it
-and configure in your main ejabberd.yml
 ```
