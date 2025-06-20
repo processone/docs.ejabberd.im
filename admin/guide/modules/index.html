@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-more-modules" class="md-skip">
+        <a href="#get-more-modules" class="md-skip">
           Skip to content
         </a>
       
@@ -1486,15 +1486,6 @@
   <a href="#uninstall-module" class="md-nav__link">
     <span class="md-ellipsis">
       Uninstall Module
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dependencies-in-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dependencies in container
     </span>
   </a>
   
@@ -7697,15 +7688,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#dependencies-in-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dependencies in container
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -7725,19 +7707,22 @@
   
 
 
-<h1 id="add-more-modules">Add More Modules<a class="headerlink" href="#add-more-modules" title="Permanent link">&para;</a></h1>
+<h1 id="get-more-modules">Get More Modules<a class="headerlink" href="#get-more-modules" title="Permanent link">&para;</a></h1>
 <h2 id="ejabberd-modules"><code>ejabberd-modules</code><a class="headerlink" href="#ejabberd-modules" title="Permanent link">&para;</a></h2>
 <p>ejabberd starts automatically modules installed in <code>.ejabberd-modules</code>,
 in addition to all the <a href="../../configuration/modules/">modules included</a> with ejabberd.
 There are <a href="../../../developer/ejabberd-api/admin-tags/#modules">API commands</a>
 to compile, install, upgrade and uninstall those additional modules.</p>
 <div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>The exact path to the <code>ejabberd-modules</code> directory in your ejabberd installation may be:</p>
+<p class="admonition-title"><code>ejabberd-modules</code> path in your system</p>
+<p>By default it is <code>$HOME/.ejabberd-modules</code>,
+being that the home path of the system account running ejabberd.
+The exact path in your ejabberd installation may be:</p>
 <ul>
-<li><code>$HOME/.ejabberd-modules</code> when <a href="../../install/source/">compiling source code</a> or using <a href="../../install/binary-installer/">installers</a></li>
-<li><code>/opt/ejabberd/.ejabberd-modules</code> in the <a href="../../../CONTAINER/"><code>ejabberd</code> container image</a></li>
-<li><code>/home/ejabberd/.ejabberd-modules</code> in the <a href="../../../CONTAINER/"><code>ecs</code> container image</a></li>
+<li><code>/home/youraccount/.ejabberd-modules</code> when <a href="../../install/source/">compiling source code</a> or using <a href="../../install/binary-installer/">binary installers</a></li>
+<li><code>/opt/ejabberd/.ejabberd-modules</code> in the <a href="../../../CONTAINER/"><code>ejabberd</code></a> and the <a href="../../../CONTAINER/"><code>ecs</code></a> container images</li>
+<li><code>/home/ejabberd/.ejabberd-modules</code> in the <a href="../../../CONTAINER/"><code>ecs</code></a> container image</li>
+<li><code>/var/lib/ejabberd/.ejabberd-modules</code> when installed from <a href="../../install/os-package/">Debian package</a></li>
 </ul>
 <p>That path can be modified using the variable
 <a href="https://github.com/processone/ejabberd/blob/master/ejabberdctl.cfg.example#L180">CONTRIB_MODULES_PATH</a>
@@ -7798,7 +7783,17 @@ to install:</p>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Configure<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>that<span class="w"> </span>file,<span class="w"> </span>or<span class="w"> </span>remove<span class="w"> </span>it
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>and<span class="w"> </span>configure<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>main<span class="w"> </span>ejabberd.yml
 </span></code></pre></div>
-<p>That command performs several tasks:</p>
+<div class="admonition failure">
+<p class="admonition-title">git not found?</p>
+<p>Installing a module with dependencies requires <code>git</code> or <code>mix</code> installed in the system,
+otherwise compilation fails with errors like:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/bin/sh:<span class="w"> </span>mix:<span class="w"> </span>not<span class="w"> </span>found
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/bin/sh:<span class="w"> </span>git:<span class="w"> </span>not<span class="w"> </span>found
+</span></code></pre></div>
+If you are using an ejabberd container image, see the solution in
+<a href="../../../CONTAINER/#install-git-for-dependencies">Install git for dependencies</a>.</p>
+</div>
+<p>The command <code>module_install</code> performs several tasks:</p>
 <ul>
 <li>downloads any Erlang/Elixir dependencies specified in the modules's <code>rebar.config</code> file</li>
 <li>compiles the module and its dependencies (if not yet already compiled)</li>
@@ -7815,52 +7810,11 @@ move the content of that file,
 but remember that the file will be overwritten if you install or upgrade the module.</p>
 <h2 id="uninstall-module">Uninstall Module<a class="headerlink" href="#uninstall-module" title="Permanent link">&para;</a></h2>
 <p>And finally, you can <a href="../../../developer/ejabberd-api/admin-api/#module_uninstall">uninstall the module</a>:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ejabberdctl<span class="w"> </span>module_uninstall<span class="w"> </span>mod_cron
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ejabberdctl<span class="w"> </span>module_uninstall<span class="w"> </span>mod_cron
 </span></code></pre></div>
 <p>By the way, you can <a href="../../../developer/ejabberd-api/admin-api/#module_upgrade">upgrade the module</a>,
 which essentially uninstalls and installs the same module with one single command call:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ejabberdctl<span class="w"> </span>module_upgrade<span class="w"> </span>mod_cron
-</span></code></pre></div>
-<h2 id="dependencies-in-container">Dependencies in container<a class="headerlink" href="#dependencies-in-container" title="Permanent link">&para;</a></h2>
-<p>When a module in <code>ejabberd-modules</code> depends on an Erlang or Elixir library,
-it is defined in the <code>rebar.config</code> file.
-To download those dependencies during <a href="#install-module">module installation</a>,
-either <code>git</code> or <code>mix</code> is required,
-but none of them are available in the <code>ejabberd</code> or the <code>ecs</code>
-<a href="../../../CONTAINER/">container images</a>.
-Consequently, the module installation will fail.
-The solution is quite simple: install <code>git</code> or <code>mix</code>.</p>
-<p>For example, let's start an <code>ejabberd</code> container
-and try to install a module with dependencies:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>podman<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>ejabberd<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">5222</span>:5222<span class="w"> </span>-p<span class="w"> </span><span class="m">5280</span>:5280<span class="w"> </span>ghcr.io/processone/ejabberd
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>ejabberd<span class="w"> </span>ejabberdctl<span class="w"> </span>module_install<span class="w"> </span>mod_ecaptcha
-</span></code></pre></div>
-<p>An error message like this will appear:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Fetching<span class="w"> </span>dependency<span class="w"> </span>ecaptcha:<span class="w"> </span>/bin/sh:<span class="w"> </span>git:<span class="w"> </span>not<span class="w"> </span>found
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>/bin/sh:<span class="w"> </span>cd:<span class="w"> </span>line<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>can<span class="s1">&#39;t cd to ecaptcha: No such file or directory</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s1">/bin/sh: git: not found</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s1">Module mod_ecaptcha has been installed and started.</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s1">It&#39;</span>s<span class="w"> </span>configured<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>file:
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span>/opt/ejabberd/.ejabberd-modules/mod_ecaptcha/conf/mod_ecaptcha.yml
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Configure<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>that<span class="w"> </span>file,<span class="w"> </span>or<span class="w"> </span>remove<span class="w"> </span>it
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>and<span class="w"> </span>configure<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>main<span class="w"> </span>ejabberd.yml
-</span></code></pre></div></p>
-<p>In order to download modules dependencies, first of all install <code>git</code> in the container:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--user<span class="w"> </span>root<span class="w"> </span>ejabberd<span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>git
-</span></code></pre></div>
-<p>Now remove the module <code>deps/</code> folder and install again:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>ejabberd<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/opt/ejabberd/.ejabberd-modules/sources/ejabberd-contrib/mod_ecaptcha/deps/
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>ejabberd<span class="w"> </span>ejabberdctl<span class="w"> </span>module_upgrade<span class="w"> </span>mod_ecaptcha
-</span></code></pre></div>
-<p>This time dependencies will be downloaded, compiled and installed:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Fetching<span class="w"> </span>dependency<span class="w"> </span>ecaptcha:<span class="w"> </span>Cloning<span class="w"> </span>into<span class="w"> </span><span class="s1">&#39;ecaptcha&#39;</span>...
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Module<span class="w"> </span>mod_ecaptcha<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>installed<span class="w"> </span>and<span class="w"> </span>started.
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>It<span class="err">&#39;</span>s<span class="w"> </span>configured<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>file:
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>/opt/ejabberd/.ejabberd-modules/mod_ecaptcha/conf/mod_ecaptcha.yml
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Configure<span class="w"> </span>the<span class="w"> </span>module<span class="w"> </span><span class="k">in</span><span class="w"> </span>that<span class="w"> </span>file,<span class="w"> </span>or<span class="w"> </span>remove<span class="w"> </span>it
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>and<span class="w"> </span>configure<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>main<span class="w"> </span>ejabberd.yml
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ejabberdctl<span class="w"> </span>module_upgrade<span class="w"> </span>mod_cron
 </span></code></pre></div>
 
 

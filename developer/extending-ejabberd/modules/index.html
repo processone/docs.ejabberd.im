@@ -2145,15 +2145,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#your-module-in-ejabberd-modules-with-ejabberd-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Your module in ejabberd-modules with ejabberd container
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       Next steps
@@ -7707,15 +7698,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#your-module-in-ejabberd-modules-with-ejabberd-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      Your module in ejabberd-modules with ejabberd container
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       Next steps
@@ -7838,6 +7820,10 @@ Adding the following snippet in the config file will integrate the module in eja
 <h2 id="add-module-to-ejabberd-modules">Add module to ejabberd-modules<a class="headerlink" href="#add-module-to-ejabberd-modules" title="Permanent link">&para;</a></h2>
 <p>If you install ejabberd using the official ProcessOne installer,
 it includes everything needed to build ejabberd modules on its own.</p>
+<p>If using a container image, follow the specific steps to
+<a href="../../../CONTAINER/#install-your-module">install your module in a container image</a>.</p>
+<p>The value of <code>$HOME</code> vary depending on your ejabberd installation method,
+check <a href="../../../admin/guide/modules/#ejabberd-modules">ejabberd-modules</a> for details.</p>
 <ol>
 <li>
 <p>First, create this path</p>
@@ -7881,63 +7867,6 @@ it includes everything needed to build ejabberd modules on its own.</p>
 and send your spec file for integration in ejabberd-contrib repository.
 ejabberd-contrib will only host a copy of your
 spec file and does not need your code to make it available to all ejabberd users.</p>
-<h2 id="your-module-in-ejabberd-modules-with-ejabberd-container">Your module in ejabberd-modules with ejabberd container<a class="headerlink" href="#your-module-in-ejabberd-modules-with-ejabberd-container" title="Permanent link">&para;</a></h2>
-<p>If you installed ejabberd using the Docker image, these specific instructions
-allow you to use your module with your Docker image:</p>
-<ol>
-<li>
-<p>Create a local directory for <code>ejabberd-modules</code>:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mkdir<span class="w"> </span>docker-modules
-</span></code></pre></div>
-</li>
-<li>
-<p>Then create the directory structure for your custom module:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span>docker-modules
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>sources/mod_hello_world/
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>touch<span class="w"> </span>sources/mod_hello_world/mod_hello_world.spec
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>mkdir<span class="w"> </span>sources/mod_hello_world/src/
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>mv<span class="w"> </span>mod_hello_world.erl<span class="w"> </span>sources/mod_hello_world/src/
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>mkdir<span class="w"> </span>sources/mod_hello_world/conf/
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;modules:\n  mod_hello_world: {}&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>sources/mod_hello_world/conf/mod_hello_world.yml
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="nb">cd</span><span class="w"> </span>..
-</span></code></pre></div>
-</li>
-<li>
-<p>Grant ownership of that directory to the UID that ejabberd will use inside the Docker image:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>chown<span class="w"> </span><span class="m">9000</span><span class="w"> </span>-R<span class="w"> </span>docker-modules/
-</span></code></pre></div>
-</li>
-<li>
-<p>Start ejabberd in Docker:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>--name<span class="w"> </span>hellotest<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>--volume<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/docker-modules:/home/ejabberd/.ejabberd-modules/&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">5222</span>:5222<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">5280</span>:5280<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span>ejabberd/ecs
-</span></code></pre></div>
-</li>
-<li>
-<p>Check the module is available for installing, and then install it:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>hellotest<span class="w"> </span>bin/ejabberdctl<span class="w"> </span>modules_available
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>mod_hello_world<span class="w"> </span><span class="o">[]</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>hellotest<span class="w"> </span>bin/ejabberdctl<span class="w"> </span>module_install<span class="w"> </span>mod_hello_world
-</span></code></pre></div>
-</li>
-<li>
-<p>If the module works correctly, you will see the Hello string in the ejabberd logs when it starts:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>hellotest<span class="w"> </span>grep<span class="w"> </span>Hello<span class="w"> </span>logs/ejabberd.log
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="m">2020</span>-10-06<span class="w"> </span><span class="m">13</span>:40:13.154335+00:00<span class="w"> </span><span class="o">[</span>info<span class="o">]</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>&lt;<span class="m">0</span>.492.0&gt;@mod_hello_world:start/2:15<span class="w"> </span>Hello,<span class="w"> </span>ejabberd<span class="w"> </span>world!
-</span></code></pre></div>
-</li>
-</ol>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p>From there, you know how to package a module to integrate it inside
 ejabberd environment. Packaging a module allows you to:</p>
