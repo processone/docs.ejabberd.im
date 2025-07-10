@@ -227,7 +227,7 @@ $(MODULES): $(TMODULES)
 	# Convert *`mod_something`* into a link to $(TMODULES)
 	sed -i 's|\*`mod_\([a-z_]*\)`\*|[mod_\1](#mod_\1)|g' $(TMODULES)
 	# Convert *`something`* API into a link to API Reference
-	sed -i 's|\*`\([a-z_]*\)`\* API|[\1](../../developer/ejabberd-api/admin-api.md#\1) API|g' $(TMODULES)
+	sed -i 's|\*`\([a-z0-9_]*\)`\* API|[\1](../../developer/ejabberd-api/admin-api.md#\1) API|g' $(TMODULES)
 	# Convert *`something`* into a link to top-level options
 	sed -i 's|\*`\([a-z_]*\)`\*|[\1](toplevel.md#\1)|g' $(TMODULES)
 	# Convert _`url|something`_ into a relative link
