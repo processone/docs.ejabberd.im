@@ -11,7 +11,7 @@ To compile ejabberd you need:
 - GCC
 - Libexpat ≥ 1.95
 - Libyaml ≥ 0.1.4
-- [Erlang/OTP](https://www.erlang.org/) ≥ 20.0. We recommend using Erlang OTP 26.2, which is the version used in the binary installers and container images.
+- [Erlang/OTP](https://www.erlang.org/) ≥ 25.0. It is recommended Erlang/OTP 27.3, which is the version used in the binary installers and container images.
 - OpenSSL ≥ 1.0.0
 - Curl. Optional, for ejabberdctl feature [CTL_OVER_HTTP](../guide/managing.md#ctl_over_http)
 
@@ -20,7 +20,7 @@ Other optional libraries are:
 - Zlib ≥ 1.2.3, For [Zlib Stream Compression](../configuration/listen-options.md#zlib)
 - PAM library, for [PAM Authentication](../configuration/authentication.md#pam-authentication)
 - ImageMagick’s Convert program and Ghostscript fonts, for [CAPTCHA challenges](../configuration/basic.md/#captcha).
-- [Elixir](https://elixir-lang.org/) ≥ 1.10.3, for [Elixir Development](../../developer/extending-ejabberd/elixir.md). It is recommended Elixir 1.13.4 or higher and Erlang/OTP 23.0 or higher.
+- [Elixir](https://elixir-lang.org/) ≥ 1.10.3, for [Elixir Development](../../developer/extending-ejabberd/elixir.md). It is recommended Elixir 1.14.0 or higher.
 
 If your system splits packages in libraries and development headers,
 install the development packages too.
@@ -85,6 +85,12 @@ Options details:
 - **`--bindir=/`**: Specify the path to the user executables (where `epmd` and `iex` are available).
 
 - **`--prefix=/`**: Specify the path prefix where the files will be copied when running the `make install` command.
+
+- **`--with-min-erlang=9.0.5`**: Allow to compile ejabberd with Erlang/OTP 20.0,
+    bypassing the verification of lower supported version.
+    Use only if you know what you are doing.
+
+    <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
 - **`--with-rebar=/`**: Specify the path to rebar, rebar3 or
   [mix](../../developer/extending-ejabberd/elixir.md)
