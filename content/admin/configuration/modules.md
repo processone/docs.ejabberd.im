@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [25.03](../../archive/25.03/index.md) and [25.04](../../archive/25.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟤.
 
@@ -28,8 +28,8 @@ __Available options:__
 Provide the Commands item in the Service Discovery. Default value:
 `false`.
 
-mod\_adhoc\_api 🟤
-------------------
+mod\_adhoc\_api
+---------------
 
 <!-- md:version added in [25.03](../../archive/25.03/index.md) -->
 
@@ -230,6 +230,116 @@ only.
 
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
+
+mod\_antispam 🟤
+----------------
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+
+Filter spam messages and subscription requests received from remote
+servers based on [Real-Time Block Lists (RTBL)](https://xmppbl.org/),
+lists of known spammer JIDs and/or URLs mentioned in spam messages.
+Traffic classified as spam is rejected with an error (and an *\[info\]*
+message is logged) unless the sender is subscribed to the recipient’s
+presence.
+
+__Available options:__
+
+- **access\_spam**: `Access`  
+Access rule that controls what accounts may receive spam messages. If
+the rule returns `allow` for a given recipient, spam messages aren’t
+rejected for that recipient. The default value is `none`, which means
+that all recipients are subject to spam filtering verification.
+
+- **cache\_size**: `pos_integer()`  
+Maximum number of JIDs that will be cached due to sending spam URLs. If
+that limit is exceeded, the least recently used entries are removed from
+the cache. Setting this option to `0` disables the caching feature. Note
+that separate caches are used for each virtual host, and that the caches
+aren’t distributed across cluster nodes. The default value is `10000`.
+
+- **rtbl\_services**: `[Service]`  
+Query a RTBL service to get domains to block, as provided by
+[xmppbl.org](https://xmppbl.org/). Please note right now this option
+only supports one service in that list. For blocking spam and abuse on
+MUC channels, please use [mod_muc_rtbl](#mod_muc_rtbl) for now. If only the host is
+provided, the default node names will be assumed. If the node name is
+different than `spam_source_domains`, you can setup the custom node
+name with the option `spam_source_domains_node`. The default value is
+an empty list of services.
+
+    **Example**:
+
+    ~~~ yaml
+    rtbl_services:
+      - pubsub.server1.localhost:
+          spam_source_domains_node: actual_custom_pubsub_node
+    ~~~
+
+- **spam\_domains\_file**: `none | Path`  
+Path to a plain text file containing a list of known spam domains, one
+domain per line. Messages and subscription requests sent from one of the
+listed domains are classified as spam if sender is not in recipient’s
+roster. This list of domains gets merged with the one retrieved by an
+RTBL host if any given. Use an absolute path, or the *@CONFIG\_PATH@*
+[predefined
+keyword](https://docs.ejabberd.im/admin/configuration/file-format/#predefined-keywords)
+if the file is available in the configuration directory. The default
+value is `none`.
+
+- **spam\_dump\_file**: `false | true | Path`  
+Path to the file to store blocked messages. Use an absolute path, or the
+`@LOG_PATH@` [predefined
+keyword](https://docs.ejabberd.im/admin/configuration/file-format/#predefined-keywords)
+to store logs in the same place that the other ejabberd log files. If
+set to `false`, it doesn’t dump stanzas, which is the default. If set to
+`true`, it stores in `"@LOG_PATH@/spam_dump_@HOST@.log"`.
+
+- **spam\_jids\_file**: `none | Path`  
+Path to a plain text file containing a list of known spammer JIDs, one
+JID per line. Messages and subscription requests sent from one of the
+listed JIDs are classified as spam. Messages containing at least one of
+the listed JIDsare classified as spam as well. Furthermore, the sender’s
+JID will be cached, so that future traffic originating from that JID
+will also be classified as spam. Use an absolute path, or the
+`@CONFIG_PATH@` [predefined
+keyword](https://docs.ejabberd.im/admin/configuration/file-format/#predefined-keywords)
+if the file is available in the configuration directory. The default
+value is `none`.
+
+- **spam\_urls\_file**: `none | Path`  
+Path to a plain text file containing a list of URLs known to be
+mentioned in spam message bodies. Messages containing at least one of
+the listed URLs are classified as spam. Furthermore, the sender’s JID
+will be cached, so that future traffic originating from that JID will be
+classified as spam as well. Use an absolute path, or the
+`@CONFIG_PATH@` [predefined
+keyword](https://docs.ejabberd.im/admin/configuration/file-format/#predefined-keywords)
+if the file is available in the configuration directory. The default
+value is `none`.
+
+- **whitelist\_domains\_file**: `none | Path`  
+Path to a file containing a list of domains to whitelist from being
+blocked, one per line. If either it is in `spam_domains_file` or more
+realistically in a domain sent by a RTBL host (see option
+`rtbl_services`) then this domain will be ignored and stanzas from
+there won’t be blocked. Use an absolute path, or the *@CONFIG\_PATH@*
+[predefined
+keyword](https://docs.ejabberd.im/admin/configuration/file-format/#predefined-keywords)
+if the file is available in the configuration directory. The default
+value is `none`.
+
+__**Example**:__
+
+~~~ yaml
+modules:
+  mod_antispam:
+    rtbl_services:
+      - xmppbl.org
+    spam_jids_file: "@CONFIG_PATH@/spam_jids.txt"
+    spam_dump_file: "@LOG_PATH@/spam/host-@HOST@.log"
+~~~
 
 mod\_auth\_fast
 ---------------
@@ -518,7 +628,7 @@ execute using [mod_adhoc_api](#mod_adhoc_api) or any other API frontend.
 
 __Available options:__
 
-- **access 🟤`*: `AccessName*  
+- **access**: `AccessName`  
 <!-- md:version added in [25.03](../../archive/25.03/index.md) -->
  This option defines which
 access rule will be used to control who is allowed to access the
@@ -540,10 +650,10 @@ modules:
     access: configure
 ~~~
 
-mod\_conversejs
----------------
+mod\_conversejs 🟤
+------------------
 
-<!-- md:version added in [21.12](../../archive/21.12/index.md) and improved in [22.05](../../archive/22.05/index.md) -->
+<!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
 
 
 This module serves a simple page for the
@@ -559,6 +669,8 @@ one `request_handlers`.
 
 When `conversejs_css` and `conversejs_script` are `auto`, by default
 they point to the public Converse client.
+
+This module is available since ejabberd [21.12](../../archive/21.12/index.md).
 
 __Available options:__
 
@@ -1338,7 +1450,7 @@ default value is `false`.
 mod\_matrix\_gw 🟤
 ------------------
 
-<!-- md:version improved in [25.03](../../archive/25.03/index.md) -->
+<!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
 
 
 [Matrix](https://matrix.org/) gateway. Erlang/OTP 25 or higher is
@@ -1755,11 +1867,11 @@ capability. The `Options` are:
    Short description of the room.
     The default value is an empty string.
 
-    - **enable\_hats 🟤`*: `true | false*  
-   `Note` about this option:
-    improved in [25.03](../../archive/25.03/index.md). Allow extended roles as defined in XEP-0317 Hats.
-    Check the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The
-    default value is `false`.
+    - **enable\_hats**: `true | false`  
+   `Note` about this option: improved
+    in [25.03](../../archive/25.03/index.md). Allow extended roles as defined in XEP-0317 Hats. Check
+    the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The default
+    value is `false`.
 
     - **lang**: `Language`  
    Preferred language for the discussions in the
@@ -2928,6 +3040,48 @@ modules:
       - pep
 ~~~
 
+mod\_pubsub\_serverinfo 🟤
+--------------------------
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+
+This module adds support for [XEP-0485: PubSub Server
+Information](https://xmpp.org/extensions/xep-0485.html) to expose S2S
+information over the Pub/Sub service.
+
+Active S2S connections are published to a local PubSub node. Currently
+the node name is hardcoded as `"serverinfo"`.
+
+Connections that support this feature are exposed with their domain
+names, otherwise they are shown as anonymous nodes. At startup a list of
+well known public servers is fetched. Those are not shown as anonymous
+even if they don’t support this feature.
+
+Please note that the module only shows S2S connections established while
+the module is running. If you install the module at runtime, run
+[stop_s2s_connections](../../developer/ejabberd-api/admin-api.md#stop_s2s_connections) API or restart ejabberd to force S2S
+reconnections that the module will detect and publish.
+
+This module depends on [mod_pubsub](#mod_pubsub) and [mod_disco](#mod_disco).
+
+__Available options:__
+
+- **pubsub\_host**: `undefined | string()`  
+Use this local PubSub host to advertise S2S connections. This must be a
+host local to this service handled by [mod_pubsub](#mod_pubsub). This option is
+only needed if your configuration has more than one host in
+mod\_pubsub’s `hosts` option. The default value is the first host
+defined in mod\_pubsub `hosts` option.
+
+__**Example**:__
+
+~~~ yaml
+modules:
+  mod_pubsub_serverinfo:
+    pubsub_host: custom.pubsub.domain.local
+~~~
+
 mod\_push
 ---------
 
@@ -3229,11 +3383,7 @@ identity verification based on DNS.
 
     DNS-based verification is vulnerable to [DNS cache
     poisoning](https://en.wikipedia.org/wiki/DNS_spoofing), so modern
-    servers rely on verification based on PKIX certificates.
-
-!!! warning
-
-    This
+    servers rely on verification based on PKIX certificates. Thus this
     module is only recommended for backward compatibility with servers
     running outdated software or non-TLS servers, or those with invalid
     certificates (as long as you accept the risks, e.g. you assume that

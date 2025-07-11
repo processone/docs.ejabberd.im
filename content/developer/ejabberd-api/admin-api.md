@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [25.03](../../archive/25.03/index.md) and [25.04](../../archive/25.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟤
 
@@ -82,6 +82,44 @@ HTTP/1.1 200 OK
 
 
 
+## add_blocked_domain 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Add domain to list of blocked domains
+
+__Arguments:__
+
+- *host* :: string
+- *domain* :: string
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/add_blocked_domain
+{
+  "host": "aaaaa",
+  "domain": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+"Success"
+~~~
+
+
+
+
 ## add_rosteritem
 
 <!-- md:version updated in [24.02](../../archive/24.02/index.md) -->
@@ -128,6 +166,44 @@ POST /api/add_rosteritem
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## add_to_spam_filter_cache 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Add JID to spam filter cache
+
+__Arguments:__
+
+- *host* :: string
+- *jid* :: string
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/add_to_spam_filter_cache
+{
+  "host": "aaaaa",
+  "jid": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -766,7 +842,7 @@ HTTP/1.1 200 OK
 
 
 
-## create_room_with_opts 🟤
+## create_room_with_opts
 
 <!-- md:version modified in [25.03](../../archive/25.03/index.md) -->
 
@@ -1467,6 +1543,44 @@ HTTP/1.1 200 OK
 
 
 
+## drop_from_spam_filter_cache 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Drop JID from spam filter cache
+
+__Arguments:__
+
+- *host* :: string
+- *jid* :: string
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/drop_from_spam_filter_cache
+{
+  "host": "aaaaa",
+  "jid": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+"Success"
+~~~
+
+
+
+
 ## dump
 
 
@@ -1600,6 +1714,44 @@ POST /api/evacuate_kindly
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## expire_spam_filter_cache 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Remove old/unused spam JIDs from cache
+
+__Arguments:__
+
+- *host* :: string
+- *seconds* :: integer
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/expire_spam_filter_cache
+{
+  "host": "aaaaa",
+  "seconds": 1
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 
@@ -1897,6 +2049,45 @@ HTTP/1.1 200 OK
     "name": "lastreason",
     "value": "Connection reset by peer"
   }
+]
+~~~
+
+
+
+
+## get_blocked_domains 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Get list of domains being blocked
+
+__Arguments:__
+
+- *host* :: string
+
+__Result:__
+
+- *blocked_domains* :: [jid::string]
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/get_blocked_domains
+{
+  "host": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+[
+  "aaaaa",
+  "bbbbb"
 ]
 ~~~
 
@@ -2514,6 +2705,51 @@ POST /api/get_roster_count
 
 HTTP/1.1 200 OK
 5
+~~~
+
+
+
+
+## get_spam_filter_cache 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Show spam filter cache contents
+
+__Arguments:__
+
+- *host* :: string
+
+__Result:__
+
+- *spammers* :: [{jid::string, timestamp::integer}]
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/get_spam_filter_cache
+{
+  "host": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "jid": "aaaaa",
+    "timestamp": 1
+  },
+  {
+    "jid": "bbbbb",
+    "timestamp": 2
+  }
+]
 ~~~
 
 
@@ -3233,7 +3469,7 @@ HTTP/1.1 200 OK
 
 
 
-## kick_users 🟤
+## kick_users
 
 <!-- md:version added in [25.04](../../archive/25.04/index.md) -->
 
@@ -3590,7 +3826,7 @@ HTTP/1.1 200 OK
 
 
 
-## mnesia_list_tables 🟤
+## mnesia_list_tables
 
 <!-- md:version added in [25.03](../../archive/25.03/index.md) -->
 
@@ -3637,7 +3873,7 @@ HTTP/1.1 200 OK
 
 
 
-## mnesia_table_change_storage 🟤
+## mnesia_table_change_storage
 
 <!-- md:version added in [25.03](../../archive/25.03/index.md) -->
 
@@ -3803,13 +4039,14 @@ HTTP/1.1 200 OK
 
 
 
-## module_upgrade
+## module_upgrade 🟤
 
+<!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
 
 Upgrade the running code of an installed module
 
 
-In practice, this uninstalls and installs the module
+In practice, this uninstalls, cleans the compiled files, and installs the module
 
 __Arguments:__
 
@@ -4926,6 +5163,80 @@ POST /api/reload_config
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## reload_spam_filter_files 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Reload spam JID/URL files
+
+__Arguments:__
+
+- *host* :: string
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/reload_spam_filter_files
+{
+  "host": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
+## remove_blocked_domain 🟤
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Remove domain from list of blocked domains
+
+__Arguments:__
+
+- *host* :: string
+- *domain* :: string
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[spam](admin-tags.md#spam)
+
+__Module:__
+[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/remove_blocked_domain
+{
+  "host": "aaaaa",
+  "domain": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+"Success"
 ~~~
 
 

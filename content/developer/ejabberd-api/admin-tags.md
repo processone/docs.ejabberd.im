@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [25.03](../../archive/25.03/index.md) and [25.04](../../archive/25.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -646,6 +646,33 @@
 
 
 * [srg_user_del](admin-api.md#srg_user_del)
+
+
+## spam
+
+
+* [add_blocked_domain](admin-api.md#add_blocked_domain)
+
+
+* [add_to_spam_filter_cache](admin-api.md#add_to_spam_filter_cache)
+
+
+* [drop_from_spam_filter_cache](admin-api.md#drop_from_spam_filter_cache)
+
+
+* [expire_spam_filter_cache](admin-api.md#expire_spam_filter_cache)
+
+
+* [get_blocked_domains](admin-api.md#get_blocked_domains)
+
+
+* [get_spam_filter_cache](admin-api.md#get_spam_filter_cache)
+
+
+* [reload_spam_filter_files](admin-api.md#reload_spam_filter_files)
+
+
+* [remove_blocked_domain](admin-api.md#remove_blocked_domain)
 
 
 ## sql

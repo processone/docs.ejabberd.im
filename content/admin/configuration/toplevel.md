@@ -5,8 +5,11 @@ search:
 
 # Top-Level Options
 
-This section describes top level options of ejabberd [25.04](../../archive/25.04/index.md).71. The
-options that changed in this version are marked with 🟤.
+!!! info "Please note"
+
+    This section describes top level options of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+
+    The options that changed in this version are marked with 🟤.
 
 ## access\_rules
 
@@ -294,6 +297,21 @@ format the users passwords are stored, plain text or in
     depends on the [auth_scram_hash](#auth_scram_hash) option.
 
 The default value is `plain`.
+
+## auth\_password\_types\_hidden\_in\_scram1 🟤
+
+`[plain | scram_sha1 | scram_sha256 | scram_sha512]`  
+
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+List of password types that
+should not be offered in SCRAM1 authenticatication. Because SCRAM1,
+unlike SCRAM2, can’t have list of available mechanisms tailored to
+individual user, it’s possible that offered mechanisms will not be
+compatible with stored password, especially if new password type was
+added recently. This option allows disabling offering some mechanisms in
+SASL1, to a time until new password type will be available for all
+users.
 
 ## auth\_scram\_hash
 
@@ -768,11 +786,11 @@ host_config:
 List of one or more [host names](../configuration/basic.md#host-names)
 (or domains) that ejabberd will serve. This is a **mandatory** option.
 
-## hosts\_alias
+## hosts\_alias 🟤
 
 `{Alias: Host}`  
 
-<!-- md:version added in 25.xx -->
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
 Define aliases for existing
 vhosts managed by ejabberd. An alias may be a regexp expression. This
@@ -1109,7 +1127,7 @@ default value is `1 minute`.
 
 Whether to use the
 [new SQL schema](database.md#default-and-new-schemas). All schemas are
-located at <https://github.com/processone/ejabberd/tree/25.04/sql>.
+located at <https://github.com/processone/ejabberd/tree/25.07/sql>.
 There are two schemas available. The default legacy schema stores one
 XMPP domain into one ejabberd database. The `new` schema can handle
 several XMPP domains in a single ejabberd database. Using this `new`
@@ -1379,33 +1397,43 @@ default value is `closeold`. If the client uses old Jabber Non-SASL
 authentication (XEP-0078), then this option is not respected, and the
 action performed is `closeold`.
 
-## rest\_proxy
+## rest\_proxy 🟤
 
 `Host`  
 
-Address of a HTTP Connect proxy used by modules issuing rest calls (like
-ejabberd\_oauth\_rest)
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
-## rest\_proxy\_password
+Address of a HTTP Connect
+proxy used by modules issuing rest calls (like ejabberd\_oauth\_rest)
+
+## rest\_proxy\_password 🟤
 
 `string()`  
 
-Password used to authenticate to HTTP Connect proxy used by modules
-issuing rest calls (like ejabberd\_oauth\_rest)
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
-## rest\_proxy\_port
+Password used to authenticate
+to HTTP Connect proxy used by modules issuing rest calls (like
+ejabberd\_oauth\_rest)
+
+## rest\_proxy\_port 🟤
 
 `1..65535`  
 
-Port of a HTTP Connect proxy used by modules issuing rest calls (like
-ejabberd\_oauth\_rest)
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
-## rest\_proxy\_username
+Port of a HTTP Connect proxy
+used by modules issuing rest calls (like ejabberd\_oauth\_rest)
+
+## rest\_proxy\_username 🟤
 
 `string()`  
 
-Username used to authenticate to HTTP Connect proxy used by modules
-issuing rest calls (like ejabberd\_oauth\_rest)
+<!-- md:version added in [25.07](../../archive/25.07/index.md) -->
+
+Username used to authenticate
+to HTTP Connect proxy used by modules issuing rest calls (like
+ejabberd\_oauth\_rest)
 
 ## router\_cache\_life\_time
 
