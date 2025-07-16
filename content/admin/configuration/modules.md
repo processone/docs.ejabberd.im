@@ -136,6 +136,19 @@ Call to [srg_create](../../developer/ejabberd-api/admin-api.md#srg_create) API u
 ejabberdctl srg_create g1 example.org "'Group number 1'" this_is_g1 g1
 ~~~
 
+**API Tags:**
+[accounts](../../developer/ejabberd-api/admin-tags.md#accounts),
+[erlang](../../developer/ejabberd-api/admin-tags.md#erlang),
+[last](../../developer/ejabberd-api/admin-tags.md#last),
+[private](../../developer/ejabberd-api/admin-tags.md#private),
+[purge](../../developer/ejabberd-api/admin-tags.md#purge),
+[roster](../../developer/ejabberd-api/admin-tags.md#roster),
+[session](../../developer/ejabberd-api/admin-tags.md#session),
+[shared_roster_group](../../developer/ejabberd-api/admin-tags.md#shared_roster_group),
+[stanza](../../developer/ejabberd-api/admin-tags.md#stanza),
+[statistics](../../developer/ejabberd-api/admin-tags.md#statistics),
+[vcard](../../developer/ejabberd-api/admin-tags.md#vcard)
+
 mod\_admin\_update\_sql
 -----------------------
 
@@ -340,6 +353,8 @@ modules:
     spam_jids_file: "@CONFIG_PATH@/spam_jids.txt"
     spam_dump_file: "@LOG_PATH@/spam/host-@HOST@.log"
 ~~~
+
+**API Tags:** [spam](../../developer/ejabberd-api/admin-tags.md#spam)
 
 mod\_auth\_fast
 ---------------
@@ -927,6 +942,9 @@ failures. The default value is `1` hour.
 The number of C2S authentication failures to trigger the IP ban. The
 default value is `20`.
 
+**API Tags:**
+[accounts](../../developer/ejabberd-api/admin-tags.md#accounts)
+
 mod\_host\_meta
 ---------------
 
@@ -1446,6 +1464,9 @@ When this option is disabled, for each individual subscriber a separate
 mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is `false`.
+
+**API Tags:** [mam](../../developer/ejabberd-api/admin-tags.md#mam),
+[purge](../../developer/ejabberd-api/admin-tags.md#purge)
 
 mod\_matrix\_gw 🟤
 ------------------
@@ -2140,6 +2161,10 @@ __Available options:__
 subscribed to a room at once using the [subscribe_room_many](../../developer/ejabberd-api/admin-api.md#subscribe_room_many) API. The
 default value is `50`.
 
+**API Tags:** [muc](../../developer/ejabberd-api/admin-tags.md#muc),
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room),
+[muc_sub](../../developer/ejabberd-api/admin-tags.md#muc_sub)
+
 mod\_muc\_log
 -------------
 
@@ -2477,6 +2502,9 @@ modules:
   ...
 ~~~
 
+**API Tags:**
+[offline](../../developer/ejabberd-api/admin-tags.md#offline)
+
 mod\_ping
 ---------
 
@@ -2623,6 +2651,9 @@ only.
 
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
+
+**API Tags:**
+[private](../../developer/ejabberd-api/admin-tags.md#private)
 
 mod\_privilege
 --------------
@@ -3040,6 +3071,8 @@ modules:
       - pep
 ~~~
 
+**API Tags:** [purge](../../developer/ejabberd-api/admin-tags.md#purge)
+
 mod\_pubsub\_serverinfo 🟤
 --------------------------
 
@@ -3136,6 +3169,8 @@ strongly recommended to stick to `all`, which is the default value.
 
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
+
+**API Tags:** [purge](../../developer/ejabberd-api/admin-tags.md#purge)
 
 mod\_push\_keepalive
 --------------------
@@ -3352,6 +3387,9 @@ modules:
     versioning: true
     store_current_id: false
 ~~~
+
+**API Tags:**
+[roster](../../developer/ejabberd-api/admin-tags.md#roster)
 
 mod\_s2s\_bidi
 --------------
