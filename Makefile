@@ -119,6 +119,7 @@ TTXT=temp/ejabberd.yml.5.txt
 
 $(TTXT):
 	ejabberdctl man
+	rm $(EJA)/ejabberd.yml.5
 	mv $(EJA)/ejabberd.yml.5.txt $(TTXT)
 
 TXML=temp/ejabberd.yml.5.xml
