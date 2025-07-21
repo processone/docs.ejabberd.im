@@ -434,7 +434,7 @@ man -l man/ejabberd.yml.5
 ### rebar with old Erlang
 
 The ejabberd source code package includes `rebar` and `rebar3` binaries
-that work with Erlang/OTP 24.0 up to 27.
+that work with Erlang/OTP 25.0 up to 28.
 
 To compile ejabberd using rebar/rebar3 and Erlang 20.0 up to 23.3,
 you can install it from your operating system,
@@ -444,6 +444,16 @@ or download the old binary from ejabberd 21.12:
 ```sh
 wget https://github.com/processone/ejabberd/raw/21.12/rebar
 wget https://github.com/processone/ejabberd/raw/21.12/rebar3
+```
+
+To compile ejabberd using rebar/rebar3 and Erlang 24.0 up to 24.3,
+you can install it from your operating system,
+or compile yourself from the rebar source code,
+or download the old binary from ejabberd 24.12:
+
+```sh
+wget https://github.com/processone/ejabberd/raw/24.12/rebar
+wget https://github.com/processone/ejabberd/raw/24.12/rebar3
 ```
 
 ## Start
