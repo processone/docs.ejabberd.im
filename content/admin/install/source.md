@@ -379,7 +379,7 @@ system is set in `rel/vm.args.eex` and `rel/env.sh.eex`, apps in `config/runtime
 ### Erlang Local Install
 
 If you compile Erlang/OTP from source code and install in a local folder,
-for example in `$HOME/erl27` like this:
+for example in `$HOME/erl-local` like this:
 
 ```bash
 cd otp_src
