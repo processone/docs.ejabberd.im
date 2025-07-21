@@ -8609,7 +8609,7 @@ the same information that is published in the
 </span></code></pre></div>
 <h3 id="rebar-with-old-erlang">rebar with old Erlang<a class="headerlink" href="#rebar-with-old-erlang" title="Permanent link">&para;</a></h3>
 <p>The ejabberd source code package includes <code>rebar</code> and <code>rebar3</code> binaries
-that work with Erlang/OTP 24.0 up to 27.</p>
+that work with Erlang/OTP 25.0 up to 28.</p>
 <p>To compile ejabberd using rebar/rebar3 and Erlang 20.0 up to 23.3,
 you can install it from your operating system,
 or compile yourself from the rebar source code,
@@ -8617,25 +8617,32 @@ or download the old binary from ejabberd 21.12:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar3
 </span></code></pre></div>
+<p>To compile ejabberd using rebar/rebar3 and Erlang 24.0 up to 24.3,
+you can install it from your operating system,
+or compile yourself from the rebar source code,
+or download the old binary from ejabberd 24.12:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/24.12/rebar
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/24.12/rebar3
+</span></code></pre></div>
 <h2 id="start">Start<a class="headerlink" href="#start" title="Permanent link">&para;</a></h2>
 <p>You can use the <code>ejabberdctl</code> command line administration script to
 start and stop ejabberd. Some examples, depending on your installation method:</p>
 <ul>
 <li>
 <p>When <a href="#system-install">installed in the system</a>:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ejabberdctl<span class="w"> </span>start
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>/sbin/ejabberdctl<span class="w"> </span>start
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ejabberdctl<span class="w"> </span>start
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>/sbin/ejabberdctl<span class="w"> </span>start
 </span></code></pre></div></p>
 </li>
 <li>
 <p>When <a href="#production-release">built an OTP production release</a>:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>start
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>start
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Start interactively without installing or building OTP release:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>make<span class="w"> </span>relive
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>make<span class="w"> </span>relive
 </span></code></pre></div></p>
 </li>
 </ul>
