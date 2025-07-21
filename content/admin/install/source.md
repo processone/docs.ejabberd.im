@@ -86,6 +86,8 @@ Options details:
 
 - **`--prefix=/`**: Specify the path prefix where the files will be copied when running the `make install` command.
 
+- **`--with-erlang=/`**: Specify the directory where [Erlang/OTP is installed](#erlang-local-install).
+
 - **`--with-min-erlang=9.0.5`**: Allow to compile ejabberd with Erlang/OTP 20.0,
     bypassing the verification of lower supported version.
     Use only if you know what you are doing.
@@ -372,6 +374,32 @@ system is set in `rel/vm.args`, apps in `rel/sys.config`
 
 - When using mix `make dev|prod && ejabberd`:  
 system is set in `rel/vm.args.eex` and `rel/env.sh.eex`, apps in `config/runtime.exs`
+
+
+### Erlang Local Install
+
+If you compile Erlang/OTP from source code and install in a local folder,
+for example in `$HOME/erl27` like this:
+
+```bash
+cd otp_src
+./configure --prefix=$HOME/erl-local
+make
+make install
+```
+
+then those are the steps to compile ejabberd:
+
+```bash
+cd ejabberd-master
+export PATH=$HOME/erl-local/bin/:$PATH
+./autogen.sh
+./configure --with-erlang=$HOME/erl-local --with-rebar=./rebar3
+make
+```
+
+Also notice that Erlang and ejabberd can be used only from that system account,
+see section [asdf](#asdf) for details.
 
 
 ### macOS
