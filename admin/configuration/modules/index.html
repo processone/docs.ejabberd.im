@@ -9192,6 +9192,18 @@ something like
 <p>Call to <a href="../../../developer/ejabberd-api/admin-api/#srg_create">srg_create</a> API using double-quotes and single-quotes:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="l l-Scalar l-Scalar-Plain">ejabberdctl srg_create g1 example.org &quot;&#39;Group number 1&#39;&quot; this_is_g1 g1</span>
 </span></code></pre></div>
+<p><strong>API Tags:</strong>
+<a href="../../../developer/ejabberd-api/admin-tags/#accounts">accounts</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#erlang">erlang</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#last">last</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#private">private</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#purge">purge</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#roster">roster</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#session">session</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#shared_roster_group">shared_roster_group</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#stanza">stanza</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#statistics">statistics</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#vcard">vcard</a></p>
 <h2 id="mod_admin_update_sql">mod_admin_update_sql<a class="headerlink" href="#mod_admin_update_sql" title="Permanent link">&para;</a></h2>
 <p>This module can be used to update existing SQL database from the default
 to the new schema. Check the section
@@ -9406,6 +9418,7 @@ value is <code>none</code>.</p>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nt">spam_jids_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;@CONFIG_PATH@/spam_jids.txt&quot;</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nt">spam_dump_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;@LOG_PATH@/spam/host-@HOST@.log&quot;</span>
 </span></code></pre></div>
+<p><strong>API Tags:</strong> <a href="../../../developer/ejabberd-api/admin-tags/#spam">spam</a></p>
 <h2 id="mod_auth_fast">mod_auth_fast<a class="headerlink" href="#mod_auth_fast" title="Permanent link">&para;</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/24.12/">24.12</a></span></span></p>
 <p>The module adds support for <a href="https://xmpp.org/extensions/xep-0484.html">XEP-0484: Fast Authentication Streamlining
@@ -9975,6 +9988,8 @@ The number of C2S authentication failures to trigger the IP ban. The
 default value is <code>20</code>.</p>
 </li>
 </ul>
+<p><strong>API Tags:</strong>
+<a href="../../../developer/ejabberd-api/admin-tags/#accounts">accounts</a></p>
 <h2 id="mod_host_meta">mod_host_meta<a class="headerlink" href="#mod_host_meta" title="Permanent link">&para;</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/22.05/">22.05</a></span></span></p>
 <p>This module serves small <code>host-meta</code> files as described in <a href="https://xmpp.org/extensions/xep-0156.html">XEP-0156:
@@ -10488,6 +10503,8 @@ archive virtual mucsub, messages are generated from muc archives. The
 default value is <code>false</code>.</p>
 </li>
 </ul>
+<p><strong>API Tags:</strong> <a href="../../../developer/ejabberd-api/admin-tags/#mam">mam</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#purge">purge</a></p>
 <h2 id="mod_matrix_gw">mod_matrix_gw 🟤<a class="headerlink" href="#mod_matrix_gw" title="Permanent link">&para;</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/25.07/">25.07</a></span></span></p>
 <p><a href="https://matrix.org/">Matrix</a> gateway. Erlang/OTP 25 or higher is
@@ -11257,6 +11274,9 @@ rooms.</p>
 subscribed to a room at once using the <a href="../../../developer/ejabberd-api/admin-api/#subscribe_room_many">subscribe_room_many</a> API. The
 default value is <code>50</code>.</li>
 </ul>
+<p><strong>API Tags:</strong> <a href="../../../developer/ejabberd-api/admin-tags/#muc">muc</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#muc_room">muc_room</a>,
+<a href="../../../developer/ejabberd-api/admin-tags/#muc_sub">muc_sub</a></p>
 <h2 id="mod_muc_log">mod_muc_log<a class="headerlink" href="#mod_muc_log" title="Permanent link">&para;</a></h2>
 <p>This module enables optional logging of Multi-User Chat (MUC) public
 conversations to HTML. Once you enable this module, users can join a
@@ -11603,6 +11623,8 @@ messages, administrators up to 2000, and all the other users up to 100:</p>
 </span><span id="__span-31-20"><a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a><span class="w">    </span><span class="nt">access_max_user_messages</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">max_user_offline_messages</span>
 </span><span id="__span-31-21"><a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </span></code></pre></div>
+<p><strong>API Tags:</strong>
+<a href="../../../developer/ejabberd-api/admin-tags/#offline">offline</a></p>
 <h2 id="mod_ping">mod_ping<a class="headerlink" href="#mod_ping" title="Permanent link">&para;</a></h2>
 <p>This module implements support for <a href="https://xmpp.org/extensions/xep-0199.html">XEP-0199: XMPP
 Ping</a> and periodic
@@ -11750,6 +11772,8 @@ only.</p>
 Same as top-level <a href="../toplevel/#use_cache">use_cache</a> option, but applied to this module only.</p>
 </li>
 </ul>
+<p><strong>API Tags:</strong>
+<a href="../../../developer/ejabberd-api/admin-tags/#private">private</a></p>
 <h2 id="mod_privilege">mod_privilege<a class="headerlink" href="#mod_privilege" title="Permanent link">&para;</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">improved in <a href="../../../archive/24.10/">24.10</a></span></span></p>
 <p>This module is an implementation of <a href="https://xmpp.org/extensions/xep-0356.html">XEP-0356: Privileged
@@ -12192,6 +12216,7 @@ example shows previous configuration with SQL usage:</p>
 </span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flat</span>
 </span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pep</span>
 </span></code></pre></div>
+<p><strong>API Tags:</strong> <a href="../../../developer/ejabberd-api/admin-tags/#purge">purge</a></p>
 <h2 id="mod_pubsub_serverinfo">mod_pubsub_serverinfo 🟤<a class="headerlink" href="#mod_pubsub_serverinfo" title="Permanent link">&para;</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/25.07/">25.07</a></span></span></p>
 <p>This module adds support for <a href="https://xmpp.org/extensions/xep-0485.html">XEP-0485: PubSub Server
@@ -12283,6 +12308,7 @@ strongly recommended to stick to <code>all</code>, which is the default value.</
 Same as top-level <a href="../toplevel/#use_cache">use_cache</a> option, but applied to this module only.</p>
 </li>
 </ul>
+<p><strong>API Tags:</strong> <a href="../../../developer/ejabberd-api/admin-tags/#purge">purge</a></p>
 <h2 id="mod_push_keepalive">mod_push_keepalive<a class="headerlink" href="#mod_push_keepalive" title="Permanent link">&para;</a></h2>
 <p>This module tries to keep the stream management session (see
 <a href="#mod_stream_mgmt">mod_stream_mgmt</a>) of a disconnected mobile client alive if the client
@@ -12506,6 +12532,8 @@ Enables/disables Roster Versioning. The default value is <code>false</code>.</p>
 </span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="nt">versioning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="w">    </span><span class="nt">store_current_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </span></code></pre></div>
+<p><strong>API Tags:</strong>
+<a href="../../../developer/ejabberd-api/admin-tags/#roster">roster</a></p>
 <h2 id="mod_s2s_bidi">mod_s2s_bidi<a class="headerlink" href="#mod_s2s_bidi" title="Permanent link">&para;</a></h2>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/24.10/">24.10</a></span></span></p>
 <p>The module adds support for <a href="https://xmpp.org/extensions/xep-0288.html">XEP-0288: Bidirectional Server-to-Server

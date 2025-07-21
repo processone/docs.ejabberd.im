@@ -1039,6 +1039,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#erlang-local-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erlang Local Install
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#macos" class="md-nav__link">
     <span class="md-ellipsis">
       macOS
@@ -8141,6 +8150,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#erlang-local-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erlang Local Install
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#macos" class="md-nav__link">
     <span class="md-ellipsis">
       macOS
@@ -8265,6 +8283,9 @@ please consult how to use <a href="#rebar-with-old-erlang">rebar with old Erlang
 </li>
 <li>
 <p><strong><code>--prefix=/</code></strong>: Specify the path prefix where the files will be copied when running the <code>make install</code> command.</p>
+</li>
+<li>
+<p><strong><code>--with-erlang=/</code></strong>: Specify the directory where <a href="#erlang-local-install">Erlang/OTP is installed</a>.</p>
 </li>
 <li>
 <p><strong><code>--with-min-erlang=9.0.5</code></strong>: Allow to compile ejabberd with Erlang/OTP 20.0,
@@ -8550,15 +8571,32 @@ system is set in <code>rel/vm.args</code>, apps in <code>rel/sys.config</code></
 system is set in <code>rel/vm.args.eex</code> and <code>rel/env.sh.eex</code>, apps in <code>config/runtime.exs</code></p>
 </li>
 </ul>
+<h3 id="erlang-local-install">Erlang Local Install<a class="headerlink" href="#erlang-local-install" title="Permanent link">&para;</a></h3>
+<p>If you compile Erlang/OTP from source code and install in a local folder,
+for example in <code>$HOME/erl27</code> like this:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>otp_src
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$HOME</span>/erl-local
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>make
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>make<span class="w"> </span>install
+</span></code></pre></div>
+<p>then those are the steps to compile ejabberd:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span>ejabberd-master
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/erl-local/bin/:<span class="nv">$PATH</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>./autogen.sh
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>./configure<span class="w"> </span>--with-erlang<span class="o">=</span><span class="nv">$HOME</span>/erl-local<span class="w"> </span>--with-rebar<span class="o">=</span>./rebar3
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>make
+</span></code></pre></div>
+<p>Also notice that Erlang and ejabberd can be used only from that system account,
+see section <a href="#asdf">asdf</a> for details.</p>
 <h3 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h3>
 <p>If compiling from sources on Mac OS X, you must configure ejabberd to use custom OpenSSL, Yaml, iconv.
 The best approach is to use <a href="https://brew.sh/">Homebrew</a> to install your dependencies, then exports your custom path to let configure and make be aware of them.</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>brew<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>erlang<span class="w"> </span>elixir<span class="w"> </span>openssl<span class="w"> </span>expat<span class="w"> </span>libyaml<span class="w"> </span>libiconv<span class="w"> </span>libgd<span class="w"> </span>sqlite<span class="w"> </span>rebar<span class="w"> </span>rebar3<span class="w"> </span>automake<span class="w"> </span>autoconf
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib&quot;</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>./configure
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>make
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>brew<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>erlang<span class="w"> </span>elixir<span class="w"> </span>openssl<span class="w"> </span>expat<span class="w"> </span>libyaml<span class="w"> </span>libiconv<span class="w"> </span>libgd<span class="w"> </span>sqlite<span class="w"> </span>rebar<span class="w"> </span>rebar3<span class="w"> </span>automake<span class="w"> </span>autoconf
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;-L/usr/local/opt/openssl/lib -L/usr/local/lib -L/usr/local/opt/expat/lib&quot;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">&quot;-I/usr/local/opt/openssl/include/ -I/usr/local/include -I/usr/local/opt/expat/include&quot;</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>./configure
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>make
 </span></code></pre></div>
 <p>Check also the guide for <a href="../../../developer/install-osx/">Installing ejabberd development environment on OSX</a></p>
 <h3 id="man">man<a class="headerlink" href="#man" title="Permanent link">&para;</a></h3>
@@ -8567,7 +8605,7 @@ the same information that is published in the
 <a href="../../configuration/toplevel/">Top-Level Options</a> and
 <a href="../../configuration/modules/">Modules Options</a> sections.</p>
 <p>The man file can be read locally with:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>man<span class="w"> </span>-l<span class="w"> </span>man/ejabberd.yml.5
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>man<span class="w"> </span>-l<span class="w"> </span>man/ejabberd.yml.5
 </span></code></pre></div>
 <h3 id="rebar-with-old-erlang">rebar with old Erlang<a class="headerlink" href="#rebar-with-old-erlang" title="Permanent link">&para;</a></h3>
 <p>The ejabberd source code package includes <code>rebar</code> and <code>rebar3</code> binaries
@@ -8576,8 +8614,8 @@ that work with Erlang/OTP 24.0 up to 27.</p>
 you can install it from your operating system,
 or compile yourself from the rebar source code,
 or download the old binary from ejabberd 21.12:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar3
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>wget<span class="w"> </span>https://github.com/processone/ejabberd/raw/21.12/rebar3
 </span></code></pre></div>
 <h2 id="start">Start<a class="headerlink" href="#start" title="Permanent link">&para;</a></h2>
 <p>You can use the <code>ejabberdctl</code> command line administration script to
@@ -8585,19 +8623,19 @@ start and stop ejabberd. Some examples, depending on your installation method:</
 <ul>
 <li>
 <p>When <a href="#system-install">installed in the system</a>:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ejabberdctl<span class="w"> </span>start
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/sbin/ejabberdctl<span class="w"> </span>start
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ejabberdctl<span class="w"> </span>start
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>/sbin/ejabberdctl<span class="w"> </span>start
 </span></code></pre></div></p>
 </li>
 <li>
 <p>When <a href="#production-release">built an OTP production release</a>:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>start
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>start
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>_build/prod/rel/ejabberd/bin/ejabberdctl<span class="w"> </span>live
 </span></code></pre></div></p>
 </li>
 <li>
 <p>Start interactively without installing or building OTP release:
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>make<span class="w"> </span>relive
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>make<span class="w"> </span>relive
 </span></code></pre></div></p>
 </li>
 </ul>
