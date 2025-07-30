@@ -31,6 +31,19 @@ Examples:
       - jabber.somesite.org
     ```
 
+Notice that Unicode is used natively by XMPP, Erlang/OTP, YAML... and ejabberd.
+You can setup non-latin host names using Unicode/UTF8.
+Since ejabberd 25.xx the host can be expressed in IDNA/punycode.
+For example:
+
+```yaml
+hosts:
+  - localhost1
+  - locälhost2
+  - 日本語
+  - xn--loclhost4-x2a
+```
+
 ### Virtual Hosting
 
 When managing several XMPP domains in a single instance, those domains
