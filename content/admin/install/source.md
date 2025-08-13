@@ -171,9 +171,10 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/s
 
 ### `make`
 
-This gets the erlang depencies and compiles everything, among other tasks:
+This manages many tasks:
 
-- Get, update, compile dependencies; clean files
+- Download and compile [erlang dependencies](../../developer/repositories.md)
+- Compile ejabberd
 - [System install](#system-install), uninstall
 - Build OTP [production](#production-release) / [development](#production-release) releases
 - Development: edoc, [options](../../developer/guide.md#configuration), [translations](../../developer/extending-ejabberd/localization.md), tags
@@ -184,8 +185,6 @@ Get the full task list:
 ``` sh
 make help
 ```
-
-*Note*: The required erlang dependencies are downloaded from Internet. Or you can copy `$HOME/.hex/` package cache from another machine.
 
 ## Install
 
