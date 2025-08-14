@@ -17,7 +17,7 @@ how to start using ejabberd's API,
 how to adjust it to your needs,
 and integrate ejabberd with your existing systems.
 
-def:API command
+def:api command
 : Command defined in some ejabberd module API backend, that can be executed using some API frontend.
 
 ejabberd's API currently includes over 200 API Commands,

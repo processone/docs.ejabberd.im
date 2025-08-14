@@ -4,7 +4,7 @@
 
 **ejabberd** is *cross-platform*, distributed, fault-tolerant, and based on open standards to achieve real-time communication.
 
-**ejabberd** is designed to be a *rock-solid and feature rich* XMPP server.
+**ejabberd** is designed to be a *rock-solid and feature rich* [](def:XMPP) server.
 
 **ejabberd** is suitable for small deployments, whether they need to be *scalable* or not, as well as extremely large deployments.
 

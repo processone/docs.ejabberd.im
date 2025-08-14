@@ -2,14 +2,21 @@
 
 ## ejabberdctl
 
-With the `ejabberdctl` command line administration script you can
-execute `ejabberdctl commands` (described in the next section,
-[ejabberdctl Commands](#ejabberdctl-commands)) and also many general
-`ejabberd commands` (described in section
-[ejabberd Commands](#ejabberd-commands)).
-This means you can start, stop and perform many
-other administrative tasks in a local or remote ejabberd server (by
-providing the argument `–node NODENAME`).
+def:ejabberdctl
+: Command line administration script to start/stop ejabberd and execute API commands.
+
+With `ejabberdctl` you can execute:
+
+- [ejabberdctl commands](#ejabberdctl-commands)
+  like `start` and `stop` an ejabberd server
+
+- [ejabberd API commands](#ejabberd-commands)
+  for everyday administrative tasks in your running ejabberd servers
+
+`ejabberdctl` can connect to a local ejabberd server,
+and even remote ones if you properly set the
+[erlang cookie](security.md#erlang-cookie)
+and provide the argument `–node NODENAME`.
 
 The `ejabberdctl` script can be configured in the file
 `ejabberdctl.cfg`. This file includes detailed information about each

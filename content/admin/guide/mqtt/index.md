@@ -27,10 +27,10 @@ In summary:
 - You get support on solution design for real-time infrastructure and can get help choosing between XMPP and MQTT, from
 a vendor that has no interest in selling one protocol more than another.
 
-ejabberd Business Edition offers a different clustering than eCS. Using MQTT with ejabberd Business Edition means
+ejabberd Business Edition offers a different clustering than [](def:eCS). Using MQTT with ejabberd Business Edition means
 you can leverage:
 
-- The clustering engine of eBE will be used for the MQTT service. It means that you have a more scalable cluster, that supports
+- The clustering engine of [](def:eBE) will be used for the MQTT service. It means that you have a more scalable cluster, that supports
 geoclustering. With geoclustering, you can deploy a single MQTT service across different datacenters, spread in different
 regions. You can deploy a truly global service.
 - The backend integration that are supported in ejabberd Business Edition will be available in MQTT. You have no need

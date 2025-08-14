@@ -2,7 +2,7 @@
 
 ## Meet **ejabberd**, your superpowerful messaging framework
 
-This web site is dedicated to help you use and develop for ejabberd XMPP messaging server.
+This web site is dedicated to help you use and develop for ejabberd [](def:XMPP) messaging server.
 
 ejabberd has been in development since 2002 and is used all over the world to power the largest XMPP deployments.
 This project is so versatile that you can deploy it and customize it for very large scale, no matter what your use case is.
@@ -33,16 +33,21 @@ Welcome to the beginning of your journey of ejabberd mastery!
 
 ## Options to use ejabberd
 
-ejabberd can be used in different ways. The most common one is to use ejabberd Community Edition. This is the standard Open Source version that everyone loves: highly scalable and flexible.
+ejabberd can be used in different ways. The most common one is:
+
+- [**ejabberd Community Server**](https://www.process-one.net/ejabberd/),
+  the public Open Source version
+  that everyone loves: highly scalable and flexible.
 
 Fortunately, if you need more than just the ejabberd platform software, [ProcessOne](https://www.process-one.net/) can help you with a commercial offering. Commercial offering come in two type of packaging:
 
-- **ejabberd Business Edition**, including features for large companies
+- [**ejabberd Business Edition**](https://www.process-one.net/ejabberd-features/)
+  including features for large companies
   (enhanced geodistributed companies and mobile support to develop
   own, rich clients) and world-class support, that can please even the
   most demanding businesses, with 24/7 options.
 
-- [Fluux.io](https://fluux.io) being a way to access and benefit of all the features
+- [**Fluux.io**](https://fluux.io) being a way to access and benefit of all the features
   of ejabberd Business Edition at an attractive and scalable
   price. Fluux.io allows you to keep control of your data thanks
   to integration API you can implement on your backend to become a
