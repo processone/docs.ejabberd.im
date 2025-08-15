@@ -8136,14 +8136,27 @@
 
 <h1 id="managing-an-ejabberd-server">Managing an ejabberd server<a class="headerlink" href="#managing-an-ejabberd-server" title="Permanent link">&para;</a></h1>
 <h2 id="ejabberdctl">ejabberdctl<a class="headerlink" href="#ejabberdctl" title="Permanent link">&para;</a></h2>
-<p>With the <code>ejabberdctl</code> command line administration script you can
-execute <code>ejabberdctl commands</code> (described in the next section,
-<a href="#ejabberdctl-commands">ejabberdctl Commands</a>) and also many general
-<code>ejabberd commands</code> (described in section
-<a href="#ejabberd-commands">ejabberd Commands</a>).
-This means you can start, stop and perform many
-other administrative tasks in a local or remote ejabberd server (by
-providing the argument <code>–node NODENAME</code>).</p>
+<dl>
+<div class="admonition glossary-definition" id="fec89e79cf92af8431af355e4d58aaba">
+    <p class="admonition-title">ejabberdctl</p>
+    <p>Command line administration script to start/stop ejabberd and execute API commands.</p>
+</div>
+</dl>
+<p>With <code>ejabberdctl</code> you can execute:</p>
+<ul>
+<li>
+<p><a href="#ejabberdctl-commands">ejabberdctl commands</a>
+  like <code>start</code> and <code>stop</code> an ejabberd server</p>
+</li>
+<li>
+<p><a href="#ejabberd-commands">ejabberd API commands</a>
+  for everyday administrative tasks in your running ejabberd servers</p>
+</li>
+</ul>
+<p><code>ejabberdctl</code> can connect to a local ejabberd server,
+and even remote ones if you properly set the
+<a href="../security/#erlang-cookie">erlang cookie</a>
+and provide the argument <code>–node NODENAME</code>.</p>
 <p>The <code>ejabberdctl</code> script can be configured in the file
 <code>ejabberdctl.cfg</code>. This file includes detailed information about each
 configurable option. See section <a href="#erlang-runtime-system">Erlang Runtime System</a>.</p>
