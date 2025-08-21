@@ -9,7 +9,7 @@ search:
 
 *{AccessName: {allow|deny: ACLRules|ACLName}}*  
 
-This option defines [Access Rules](../../admin/configuration/basic.md#access_rules). Each
+This option defines [Access Rules](../../admin/configuration/basic.md#access-rules). Each
 access rule is assigned a name that can be referenced from other parts
 of the configuration file (mostly from *access* options of ejabberd
 modules). Each rule definition may contain arbitrary number of *allow*
@@ -356,7 +356,7 @@ Path to a file of CA root certificates. The default is to use system
 defined file if possible.
 
 For server connections, this *ca\_file* option is overridden by the
-[s2s\_cafile](toplevel.md#s2s-cafile) option.
+[s2s\_cafile](toplevel.md#s2s_cafile) option.
 
 ## cache\_life\_time
 
@@ -1247,7 +1247,7 @@ are used for internal needs only. The default value is *5* seconds.
 
 *Access*  
 
-This [Access Rule](../../admin/configuration/basic.md#access_rules) defines to what remote
+This [Access Rule](../../admin/configuration/basic.md#access-rules) defines to what remote
 servers can s2s connections be established. The default value is *all*;
 no restrictions are applied, it is allowed to connect s2s to/from all
 remote servers.

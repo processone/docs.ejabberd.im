@@ -219,7 +219,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -661,7 +661,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -701,7 +701,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -1151,7 +1151,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -1761,7 +1761,7 @@ __Result:__
 - *affiliation* :: string : Affiliation of the user
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -1799,7 +1799,7 @@ __Result:__
 - *affiliations* :: [{username::string, domain::string, affiliation::string, reason::string}] : The list of affiliations with username, domain, affiliation and reason
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -1843,7 +1843,7 @@ __Result:__
 - *occupants* :: [{jid::string, nick::string, role::string}] : The list of occupants with JID, nick and affiliation
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -1886,7 +1886,7 @@ __Result:__
 - *occupants* :: integer : Number of room occupants
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -1923,7 +1923,7 @@ __Result:__
 - *options* :: [{name::string, value::string}] : List of room options tuples with name and value
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -2017,7 +2017,7 @@ __Result:__
 - *subscribers* :: [jid::string] : The list of users that are subscribed to that room
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -4590,7 +4590,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -4958,7 +4958,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -5832,7 +5832,7 @@ __Result:__
 - *nodes* :: [node::string] : The list of nodes that has subscribed
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)
@@ -5946,7 +5946,7 @@ __Result:__
 - *res* :: integer : Status code (0 on success, 1 otherwise)
 
 __Tags:__
-[muc_room](../../developer/ejabberd-api/admin-tags.md#muc-room) 
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room) 
 
 __Module:__
 [mod_muc_admin](modules.md#mod_muc_admin)

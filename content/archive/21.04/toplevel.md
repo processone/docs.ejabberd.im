@@ -345,7 +345,7 @@ Path to a file of CA root certificates. The default is to use system
 defined file if possible.
 
 For server connections, this *ca\_file* option is overridden by the
-[s2s\_cafile](toplevel.md#s2s-cafile) option.
+[s2s\_cafile](toplevel.md#s2s_cafile) option.
 
 ## cache\_life\_time
 

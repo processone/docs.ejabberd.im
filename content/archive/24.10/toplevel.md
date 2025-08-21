@@ -173,7 +173,7 @@ acme:
 *true | false*  
 
 Whether to allow installation of third-party modules or not. See
-[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
+[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib)
 documentation section. The default value is *true*.
 
 ## allow\_multiple\_connections
@@ -541,7 +541,7 @@ value is *mnesia*.
 *{MacroName: MacroValue}*  
 
 Defines a
-[macro](../../admin/configuration/file-format.md#macros-in-configuration-file).
+[macro](../../admin/configuration/file-format.md#macros-and-keywords).
 The value can be any valid arbitrary YAML value. For convenience, it’s
 recommended to define a *MacroName* in capital letters. Duplicated
 macros are not allowed. Macros are processed after additional
@@ -751,7 +751,7 @@ format, the *Options* must be one of the following:
 <!-- md:version added in [23.10](../../archive/23.10/index.md) -->
 
 Modules to install from
-[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
+[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib)
 at start time. The default value is an empty list of modules: *\[\]*.
 
 ## jwt\_auth\_only\_rule

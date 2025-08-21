@@ -103,7 +103,7 @@ Default value is: `[]`
 If the HTTP request received by ejabberd contains the HTTP header
  `Host` with an ambiguous virtual host that doesn’t match any one
  defined in ejabberd (see
-        [Host Names](../../admin/configuration/basic.md#host_names)),
+        [Host Names](../../admin/configuration/basic.md#host-names)),
         then this configured HostName
  is set as the request Host. The default value of this option is:
  `undefined`.
@@ -173,7 +173,7 @@ This option specifies the maximum number of elements in the queue of
         [`ejabberd_service`](listen.md#ejabberd_service)
         and [`ejabberd_c2s`](listen.md#ejabberd_c2s)
         listeners, or also globally for
-        [`ejabberd_s2s_out`](listen.md#ejabberd_s2s_out).
+        `ejabberd_s2s_out`.
         If the option is not specified for
  `ejabberd_service` or `ejabberd_c2s` listeners, the globally
  configured value is used. The allowed values are integers and

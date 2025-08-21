@@ -25,7 +25,7 @@ Also, if using Erlang/OTP 24, then Elixir 1.11.4 or higher is required.
     cd ejabberd
     ```
 
-1. [Compile](../../admin/install/source.md/#compilation) ejabberd:
+1. [Compile](../../admin/install/source.md/#compile) ejabberd:
 
     ``` sh
     ./autogen.sh

@@ -168,7 +168,7 @@ certificate requests and renewals are performed to some CA server (aka
 *true | false*  
 
 Whether to allow installation of third-party modules or not. See
-[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
+[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib)
 documentation section. The default value is *true*.
 
 ## allow\_multiple\_connections
@@ -719,7 +719,7 @@ following:
 <!-- md:version added in [23.10](../../archive/23.10/index.md) -->
 
 Modules to install from
-[ejabberd-contrib](../../developer/extending-ejabberd/modules.md#ejabberd-contrib)
+[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib)
 at start time. The default value is an empty list of modules: *\[\]*.
 
 ## jwt\_auth\_only\_rule

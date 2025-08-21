@@ -3045,7 +3045,7 @@ __Examples:__
 Restore Mnesia database from a text dump file
 
 
-Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use [install_fallback](admin-api.md#backup[backup] and http://./#install_fallback).
+Restore immediately. This is not recommended for big databases, as it will consume much time, memory and processor. In that case it's preferable to use [backup](#backup) API and [install_fallback](#install_fallback) API.
 
 __Arguments:__
 

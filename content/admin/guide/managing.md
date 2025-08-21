@@ -70,8 +70,8 @@ available parameters are:
 
 If there is an ejabberd server running in the system, `ejabberdctl`
 shows the `ejabberdctl commands` described below and all the
-`ejabberd commands` available in that server (see
-[List of ejabberd Commands](./managing.md#list-of-ejabberd-commands)).
+`API commands` available in that server (see the
+[full list of API Commands](../../developer/ejabberd-api/admin-api.md)).
 
 The `ejabberdctl commands` are:
 
@@ -425,14 +425,14 @@ NEWFILE=/tmp/new.backup
     ```
 
 6. Convert the backup to new node name using
-    [mnesia_change_nodename](../../developer/ejabberd-api/admin-api.md/#mnesia-change-nodename):
+    [mnesia_change_nodename](../../developer/ejabberd-api/admin-api.md/#mnesia_change_nodename):
 
     ``` sh
     ejabberdctl mnesia_change_nodename $OLDNODE $NEWNODE $OLDFILE $NEWFILE
     ```
 
 7. Install the backup file as a fallback using
-    [install_fallback](../../developer/ejabberd-api/admin-api.md#install-fallback):
+    [install_fallback](../../developer/ejabberd-api/admin-api.md#install_fallback):
 
     ``` sh
     ejabberdctl install_fallback $NEWFILE

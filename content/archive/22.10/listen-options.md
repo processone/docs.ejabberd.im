@@ -33,18 +33,18 @@ The default is to use system defined file if possible.
 
 This option is useful to define the file for a specific port listener.
 To set a file for all client listeners or for specific vhosts, you can use the
-[`c2s_cafile`](toplevel.md#c2s-cafile) top-level option.
+[`c2s_cafile`](toplevel.md#c2s_cafile) top-level option.
 To set a file for all server connections, you can use the
-[`s2s_cafile`](toplevel.md#s2s-cafile) top-level option
+[`s2s_cafile`](toplevel.md#s2s_cafile) top-level option
 or the
 [`ca_file`](toplevel.md#ca_file) top-level option.
 
 Please note: if this option is set in
 [`ejabberd_c2s`](listen.md#ejabberd_c2s)
-or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s-in)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_cafile`](toplevel.md#c2s-cafile),
-[`s2s_cafile`](toplevel.md#s2s-cafile)),
+([`c2s_cafile`](toplevel.md#c2s_cafile),
+[`s2s_cafile`](toplevel.md#s2s_cafile)),
 then the top-level option is used, not this one.
 
 ## certfile
@@ -81,10 +81,10 @@ OpenSSL ciphers list in the same format accepted by
 
 Please note: if this option is set in
 [`ejabberd_c2s`](listen.md#ejabberd_c2s)
-or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s-in)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_ciphers`](toplevel.md#c2s-ciphers),
-[`s2s_ciphers`](toplevel.md#s2s-ciphers)),
+([`c2s_ciphers`](toplevel.md#c2s_ciphers),
+[`s2s_ciphers`](toplevel.md#s2s_ciphers)),
 then the top-level option is used, not this one.
 
 ## custom_headers
@@ -106,10 +106,10 @@ Full path to a file containing custom parameters for Diffie-Hellman key
 
 Please note: if this option is set in
 [`ejabberd_c2s`](listen.md#ejabberd_c2s)
-or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s-in)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_dhfile`](toplevel.md#c2s-dhfile),
-[`s2s_dhfile`](toplevel.md#s2s-dhfile)),
+([`c2s_dhfile`](toplevel.md#c2s_dhfile),
+[`s2s_dhfile`](toplevel.md#s2s_dhfile)),
 then the top-level option is used, not this one.
 
 ## global_routes
@@ -159,7 +159,7 @@ This option specifies the maximum number of elements in the queue of
         [`ejabberd_service`](listen.md#ejabberd_service)
         and [`ejabberd_c2s`](listen.md#ejabberd_c2s)
         listeners, or also globally for
-        [`ejabberd_s2s_out`](listen.md#ejabberd_s2s-out).
+        `ejabberd_s2s_out`.
         If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and
@@ -213,10 +213,10 @@ List of general options relating to SSL/TLS. These map to
 
 Please note: if this option is set in
 [`ejabberd_c2s`](listen.md#ejabberd_c2s)
-or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s-in)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_protocol_options`](toplevel.md#c2s-protocol-options),
-[`s2s_protocol_options`](toplevel.md#s2s-protocol-options)),
+([`c2s_protocol_options`](toplevel.md#c2s_protocol_options),
+[`s2s_protocol_options`](toplevel.md#s2s_protocol_options)),
 then the top-level option is used, not this one.
 
 ## request_handlers
@@ -349,10 +349,10 @@ Whether to enable or disable TLS compression. The default value is
 
 Please note: if this option is set in
 [`ejabberd_c2s`](listen.md#ejabberd_c2s)
-or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s-in)
+or [`ejabberd_s2s_in`](listen.md#ejabberd_s2s_in)
 and the corresponding top-level option is also set
-([`c2s_tls_compression`](toplevel.md#c2s-tls-compression),
-[`s2s_tls_compression`](toplevel.md#s2s-tls-compression)),
+([`c2s_tls_compression`](toplevel.md#c2s_tls_compression),
+[`s2s_tls_compression`](toplevel.md#s2s_tls_compression)),
 then the top-level option is used, not this one.
 
 ## tls_verify

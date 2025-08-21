@@ -3328,7 +3328,8 @@ This command returns immediately,
 			`ejabberdctl` (or some `CTL_ON_` container
 			environment variables) to run more commands
 			afterwards, you may want to precede them with
-			the [started](admin-tags.md#started) command to ensure the
+			the [started ejabberdctl command](../../admin/guide/managing.md#ejabberdctl-commands)
+            to ensure the
 			clustering process has completed before
 			proceeding. For example: `join_cluster
 			ejabberd@main` > `started` > `list_cluster`.
@@ -7601,6 +7602,38 @@ HTTP/1.1 200 OK
   "mod_configure",
   "mod_vcard"
 ]
+~~~
+
+
+
+
+## update_sql
+
+<!-- md:version improved in [23.04](../../archive/23.04/index.md) -->
+
+Convert MS SQL, MySQL or PostgreSQL DB to the new format
+
+__Arguments:__
+
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[sql](admin-tags.md#sql)
+
+__Examples:__
+
+
+~~~ json
+POST /api/update_sql
+{
+  
+}
+
+HTTP/1.1 200 OK
+""
 ~~~
 
 

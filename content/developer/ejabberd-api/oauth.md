@@ -186,7 +186,7 @@ Parameters are described in OAuth specification:
 - `ejabberd:admin`
 - `ejabberd:user`
 - Scopes for each existing [API command](admin-api.md).
-  For example, there is a scope `registered_users`  because there is a command called [registered_users](admin-api.md#registered-users).
+  For example, there is a scope `registered_users`  because there is a command called [registered_users](admin-api.md#registered_users).
   Ensure you enable the module that defines the command that you want to use, see [Module configuration](#module-configuration) for details.
 
 <!--- TODO:: As scope are generally provided by commands, which are

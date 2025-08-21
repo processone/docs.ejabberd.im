@@ -39,15 +39,14 @@ written in Erlang terms. The format is still supported, but it is
 highly recommended to convert it to the new YAML format using
 `convert_to_yaml` command from `ejabberdctl` (see
 [ejabberdctl](../admin/guide/managing.md#ejabberdctl)
-and [List of ejabberd Commands](../admin/guide/managing.md#list_of_ejabberd_commands)
-for details).
+and [full list of API Commands](../developer/ejabberd-api/admin-api.md)).
 
 If you want to specify some options using the old Erlang format, you
 can set them in an additional cfg file, and include it using the
 `include_config_file` option, see
 [Include Additional Configuration Files](#include-additional-configuration-files)
 for the option description and a related example in
-[Restrict Execution with AccessCommands](../admin/guide/managing.md#restrict_execution_with_accesscommands).
+[Restrict Execution with AccessCommands](../developer/ejabberd-api/permissions.md).
 
 ## Configuring One or Several XMPP Domains
 
@@ -327,11 +326,11 @@ are:
  `trusted_proxies` (global option)
 
 **`ejabberd_xmlrpc`**:   Handles XML-RPC requests to execute
- [ejabberd commands](../admin/guide/managing.md#ejabberd_commands).
+ [API commands](../developer/ejabberd-api/index.md).
  Options: `access_commands`, `maxsessions`, `timeout`.
  For explanations about `access_commands` see
- [Restrict Execution with AccessCommands](../admin/guide/managing.md#restrict_execution_with_accesscommands).
- Check some [XML-RPC examples](../developer/ejabberd-api/oauth.md#xml_rpc_examples).
+[Restrict Execution with AccessCommands](../developer/ejabberd-api/permissions.md).
+ Check some [XML-RPC examples](../developer/ejabberd-api/oauth.md#xml-rpc-example).
  You can find more information in the old
  [`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc).
 
@@ -570,7 +569,7 @@ For example, the following simple configuration defines:
 
 - Port 5280 listens for HTTP requests, and serves the HTTP-Bind (BOSH)  service.
 
-- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../admin/guide/managing.md#web_admin).
+- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../admin/guide/managing.md#web-admin).
 The socket only listens connections to the IP address 127.0.0.1.
 
 ``` yaml
@@ -644,7 +643,7 @@ In this example, the following configuration defines that:
 
 - Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
  all the IPv4 addresses. Note that it is also possible to serve them
- on different ports. The second example in section [Managing: Web Admin](../admin/guide/managing.md#web_admin) shows
+ on different ports. The second example in section [Managing: Web Admin](../admin/guide/managing.md#web-admin) shows
  how exactly this can be done. A request handler to serve MQTT over Websocket is also defined.
 
 - All users except for the administrators have a traffic of limit

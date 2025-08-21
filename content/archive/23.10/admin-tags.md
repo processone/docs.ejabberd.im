@@ -422,13 +422,13 @@ This section enumerates the tags and their associated API.
 ## s2s
 
 
-* [incoming_s2s_number](admin-api.md#incoming_s2s-number)
+* [incoming_s2s_number](admin-api.md#incoming_s2s_number)
 
 
-* [outgoing_s2s_number](admin-api.md#outgoing_s2s-number)
+* [outgoing_s2s_number](admin-api.md#outgoing_s2s_number)
 
 
-* [stop_s2s_connections](admin-api.md#stop_s2s-connections)
+* [stop_s2s_connections](admin-api.md#stop_s2s_connections)
 
 
 ## server
@@ -569,10 +569,10 @@ This section enumerates the tags and their associated API.
 * [connected_users_number](admin-api.md#connected_users_number)
 
 
-* [incoming_s2s_number](admin-api.md#incoming_s2s-number)
+* [incoming_s2s_number](admin-api.md#incoming_s2s_number)
 
 
-* [outgoing_s2s_number](admin-api.md#outgoing_s2s-number)
+* [outgoing_s2s_number](admin-api.md#outgoing_s2s_number)
 
 
 * [stats](admin-api.md#stats)
@@ -596,7 +596,7 @@ This section enumerates the tags and their associated API.
 * [get_vcard2](admin-api.md#get_vcard2)
 
 
-* [get_vcard2_multi](admin-api.md#get_vcard2-multi)
+* [get_vcard2_multi](admin-api.md#get_vcard2_multi)
 
 
 * [set_nickname](admin-api.md#set_nickname)
@@ -608,4 +608,4 @@ This section enumerates the tags and their associated API.
 * [set_vcard2](admin-api.md#set_vcard2)
 
 
-* [set_vcard2_multi](admin-api.md#set_vcard2-multi)
+* [set_vcard2_multi](admin-api.md#set_vcard2_multi)

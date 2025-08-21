@@ -197,5 +197,5 @@ flow. You have two mechanisms available from ejabberd modules:
 * [Events and Hooks](../guide.md#hooks): This is to handle internal ejabberd triggers and
   subscribe to them to perform actions or provide data.
 
-* [IQ Handlers](../guide.md#iq_handlers): This is a way to register ejabberd module to handle
+* [IQ Handlers](../guide.md#iq-handlers): This is a way to register ejabberd module to handle
   XMPP Info Queries. This is the XMPP way to provide new services.

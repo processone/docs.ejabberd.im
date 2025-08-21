@@ -196,7 +196,7 @@ This option specifies the maximum number of elements in the queue of
         [`ejabberd_service`](listen.md#ejabberd_service)
         and [`ejabberd_c2s`](listen.md#ejabberd_c2s)
         listeners, or also globally for
-        [`ejabberd_s2s_out`](listen.md#ejabberd_s2s_out).
+        `ejabberd_s2s_out`.
         If the option is not specified for
  `ejabberd_service` or `ejabberd_c2s` listeners, the globally
  configured value is used. The allowed values are integers and

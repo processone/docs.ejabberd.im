@@ -181,7 +181,7 @@ With the proper request handlers configured, this serves HTTP services like
 [OAuth](../../developer/ejabberd-api/oauth.md),
 [RegisterWeb](modules.md#mod_register_web),
 [Upload](modules.md#mod_http_upload),
-[WebAdmin](../../admin/guide/managing.md#web_admin),
+[WebAdmin](../../admin/guide/managing.md#web-admin),
 [WebSocket](listen.md#ejabberd_http_ws),
 [XMP-RPC](listen.md#ejabberd_xmlrpc).
 
@@ -438,7 +438,7 @@ A test client can be found on Github: [Websocket test client](https://github.com
 # ejabberd_xmlrpc
 
 Handles XML-RPC requests to execute
-[ejabberd commands](../../admin/guide/managing.md#ejabberd_commands).
+[API commands](../../developer/ejabberd-api/admin-api.md).
 It is configured as a request handler in
 [ejabberd_http](listen.md#ejabberd_http).
 
@@ -503,7 +503,7 @@ It's possible to use OAuth for authentication instead of plain password, see
 
 In ejabberd 20.03 and older, it was possible to configure `ejabberd_xmlrpc` as a
 listener, see the old document for reference and example configuration:
-[Listening Module](../old.md#listening_module).
+[Listening Ports](../old.md#listening-ports).
 
 Just for reference, there's also the old
 [`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc).
@@ -530,7 +530,7 @@ For example, the following simple configuration defines:
 	service.
 
 -   Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind
-	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../../admin/guide/managing.md#web_admin). The
+	(BOSH) and the Web Admin as explained in [Managing: Web Admin](../../admin/guide/managing.md#web-admin). The
 	socket only listens connections to the IP address 127.0.0.1.
 
 
@@ -604,7 +604,7 @@ In this example, the following configuration defines that:
 
 -   Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
 	all the IPv4 addresses. Note that it is also possible to serve them
-	on different ports. The second example in section [Managing: Web Admin](../../admin/guide/managing.md#web_admin) shows
+	on different ports. The second example in section [Managing: Web Admin](../../admin/guide/managing.md#web-admin) shows
 	how exactly this can be done. A request handler to serve MQTT over Websocket is also defined.
 
 -   All users except for the administrators have a traffic of limit

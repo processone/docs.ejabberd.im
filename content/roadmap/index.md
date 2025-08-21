@@ -31,7 +31,7 @@ This is a brief summary for each released version. For details, please consult e
     - New module [mod_antispam](../admin/configuration/modules.md/#mod_antispam)
     - New module [mod_pubsub_serverinfo](../admin/configuration/modules.md/#mod_pubsub_serverinfo)
     - [mod_matrix_gw](../admin/configuration/modules.md/#mod_matrix_gw): Support for joining old versions of Matrix rooms too
-    - New options [rest_proxy](../admin/configuration/toplevel.md#rest_proxy), [hosts_alias](../admin/configuration/toplevel.md#hosts_alias), [auth_password_types_hidden_in_scram1](../admin/configuration/toplevel.md#auth_password_types_hidden_in_scram1)
+    - New options [rest_proxy](../admin/configuration/toplevel.md#rest_proxy), [hosts_alias](../admin/configuration/toplevel.md#hosts_alias), [auth_password_types_hidden_in_sasl1](../admin/configuration/toplevel.md#auth_password_types_hidden_in_sasl1)
     - Erlang/OTP 25 required, OTP 28 supported
 
 - [25.04](https://www.process-one.net/blog/ejabberd-25-04/)

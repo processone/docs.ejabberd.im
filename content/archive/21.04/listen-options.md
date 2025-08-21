@@ -33,9 +33,9 @@ The default is to use system defined file if possible.
 
 This option is useful to define the file for a specific port listener.
 To set a file for all client listeners or for specific vhosts, you can use the
-[`c2s_cafile`](toplevel.md#c2s-cafile) top-level option.
+[`c2s_cafile`](toplevel.md#c2s_cafile) top-level option.
 To set a file for all server connections, you can use the
-[`s2s_cafile`](toplevel.md#s2s-cafile) top-level option
+[`s2s_cafile`](toplevel.md#s2s_cafile) top-level option
 or the
 [`ca_file`](toplevel.md#ca_file) top-level option.
 
@@ -135,7 +135,7 @@ This option specifies the maximum number of elements in the queue of
         [`ejabberd_service`](listen.md#ejabberd_service)
         and [`ejabberd_c2s`](listen.md#ejabberd_c2s)
         listeners, or also globally for
-        [`ejabberd_s2s_out`](listen.md#ejabberd_s2s-out).
+        `ejabberd_s2s_out`.
         If the option is not specified for
 	`ejabberd_service` or `ejabberd_c2s` listeners, the globally
 	configured value is used. The allowed values are integers and

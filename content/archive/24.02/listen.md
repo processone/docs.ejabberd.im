@@ -86,7 +86,7 @@ Options:
 [starttls](listen-options.md#starttls),
 [starttls_required](listen-options.md#starttls_required),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression),
+[tls_compression](listen-options.md#tls_compression),
 [tls_verify](listen-options.md#tls_verify),
 [zlib](listen-options.md#zlib).
 
@@ -104,7 +104,7 @@ Options:
 [send_timeout](listen-options.md#send_timeout),
 [shaper](listen-options.md#shaper),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression).
+[tls_compression](listen-options.md#tls_compression).
 
 ### ejabberd_service
 
@@ -128,9 +128,9 @@ Options:
 [protocol_options](listen-options.md#protocol_options),
 [send_timeout](listen-options.md#send_timeout),
 [shaper](listen-options.md#shaper),
-[shaper_rule](listen-options.md#shaper-rule),
+[shaper_rule](listen-options.md#shaper_rule),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression).
+[tls_compression](listen-options.md#tls_compression).
 
 ### ejabberd_sip
 
@@ -182,7 +182,7 @@ With the proper request handlers configured, this serves HTTP services like
 [OAuth](../../developer/ejabberd-api/../../developer/ejabberd-api/oauth.md),
 [RegisterWeb](modules.md#mod_register_web),
 [Upload](modules.md#mod_http_upload),
-[WebAdmin](../../admin/guide/managing.md#web_admin),
+[WebAdmin](../../admin/guide/managing.md#web-admin),
 [WebSocket](#ejabberd_http_ws),
 [XML-RPC](#ejabberd_xmlrpc).
 
@@ -196,7 +196,7 @@ Options:
 [send_timeout](listen-options.md#send_timeout),
 [tag](listen-options.md#tag),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression),
+[tls_compression](listen-options.md#tls_compression),
 and the [trusted_proxies](toplevel.md#trusted_proxies) top-level option.
 
 ### mod_mqtt
@@ -452,7 +452,7 @@ There is an example configuration for WebSocket and Converse.js in the
 ## ejabberd_xmlrpc
 
 Handles XML-RPC requests to execute
-[ejabberd commands](../../admin/guide/managing.md#ejabberd_commands).
+[API commands](../../developer/ejabberd-api/admin-api.md).
 It is configured as a request handler in
 [ejabberd_http](#ejabberd_http).
 
@@ -541,7 +541,7 @@ It's possible to use OAuth for authentication instead of plain password, see
 
 In ejabberd 20.03 and older, it was possible to configure `ejabberd_xmlrpc` as a
 listener, see the old document for reference and example configuration:
-[Listening Module](../old.md#listening_module).
+[Listening Ports](../old.md#listening-ports).
 
 Just for reference, there's also the old
 [`ejabberd_xmlrpc documentation`](https://ejabberd.im/ejabberd_xmlrpc)
@@ -563,7 +563,7 @@ For example, the following simple configuration defines:
 
 - Port 5280 listens for HTTP requests, and serves the HTTP-Bind (BOSH) service.
 
-- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../../admin/guide/managing.md#web_admin). The socket only listens connections to the IP address 127.0.0.1.
+- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../../admin/guide/managing.md#web-admin). The socket only listens connections to the IP address 127.0.0.1.
 
 ``` yaml
 hosts:
@@ -636,7 +636,7 @@ In this example, the following configuration defines that:
 
 - Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
  all the IPv4 addresses. Note that it is also possible to serve them
- on different ports. The second example in section [Managing: Web Admin](../../admin/guide/managing.md#web_admin) shows
+ on different ports. The second example in section [Managing: Web Admin](../../admin/guide/managing.md#web-admin) shows
  how exactly this can be done. A request handler to serve MQTT over WebSocket is also defined.
 
 - All users except for the administrators have a traffic of limit

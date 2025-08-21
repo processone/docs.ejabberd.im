@@ -62,7 +62,7 @@ General listen options supported:
 [starttls](listen-options.md#starttls),
 [starttls_required](listen-options.md#starttls_required),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression),
+[tls_compression](listen-options.md#tls_compression),
 [tls_verify](listen-options.md#tls_verify),
 [zlib](listen-options.md#zlib).
 
@@ -84,7 +84,7 @@ General listen options supported:
 [send_timeout](listen-options.md#send_timeout),
 [shaper](listen-options.md#shaper),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression).
+[tls_compression](listen-options.md#tls_compression).
 
 ## ejabberd_service
 
@@ -106,9 +106,9 @@ General listen options supported:
 [protocol_options](listen-options.md#protocol_options),
 [send_timeout](listen-options.md#send_timeout),
 [shaper](listen-options.md#shaper),
-[shaper_rule](listen-options.md#shaper-rule),
+[shaper_rule](listen-options.md#shaper_rule),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression).
+[tls_compression](listen-options.md#tls_compression).
 
 ## mod_mqtt
 
@@ -357,7 +357,7 @@ Options:
 [send_timeout](listen-options.md#send_timeout),
 [tag](listen-options.md#tag),
 [tls](listen-options.md#tls),
-[tls_compression](listen-options.md#tls-compression),
+[tls_compression](listen-options.md#tls_compression),
 and the [trusted_proxies](toplevel.md#trusted_proxies) top-level option.
 
 ### ejabberd_http_ws
@@ -408,7 +408,7 @@ ejabberd [21.12](../../archive/21.12/index.md) release notes.
 ### ejabberd_xmlrpc
 
 Handles XML-RPC requests to execute
-[ejabberd commands](../../admin/guide/managing.md#ejabberd_commands).
+[API commands](../../developer/ejabberd-api/admin-api.md).
 It is configured as a request handler in
 [ejabberd_http](#ejabberd_http).
 

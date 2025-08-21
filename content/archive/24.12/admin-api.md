@@ -3091,7 +3091,7 @@ This command returns immediately,
 			`ejabberdctl` (or some `CTL_ON_` container
 			environment variables) to run more commands
 			afterwards, you may want to precede them with
-			the [started](admin-tags.md#started) command to ensure the
+			the [started ejabberdctl command](../../admin/guide/managing.md#ejabberdctl-commands) command to ensure the
 			clustering process has completed before
 			proceeding. For example: `join_cluster
 			ejabberd@main` > `started` > `list_cluster`.

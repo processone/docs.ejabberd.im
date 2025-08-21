@@ -2753,11 +2753,11 @@ password in multiple places.
 - Connection parameters: The module also accepts the connection
     parameters, all of which default to the top-level parameter of the
     same name, if unspecified. See [LDAP
-    Connection](../../admin/configuration/ldap.md#ldap_connection) section for
+    Connection](../../admin/configuration/ldap.md#ldap-connection) section for
     more information about them.
 
 Check also the [Configuration
-examples](../../admin/configuration/ldap.md#configuration_examples) section to
+examples](../../admin/configuration/ldap.md#configuration-examples) section to
 get details about retrieving the roster, and configuration examples
 including Flat DIT and Deep DIT.
 
@@ -2834,7 +2834,7 @@ section Filters.
 - __ldap\_memberattr\_format\_re__  
 A regex for extracting user ID from the value of the attribute named by
 *ldap\_memberattr*. Check the LDAP [Control
-Parameters](../../admin/configuration/ldap.md#control_parameters) section.
+Parameters](../../admin/configuration/ldap.md#control-parameters) section.
 
 - __ldap\_password__  
 Same as top-level *ldap\_password* option, but applied to this module

@@ -82,7 +82,7 @@ mod\_admin\_update\_sql
 
 This module can be used to update existing SQL database from the default
 to the new schema. Check the section [Default and New
-Schemas](../../admin/configuration/database.md#default_and_new_schemas) for details.
+Schemas](../../admin/configuration/database.md#default-and-new-schemas) for details.
 Please note that only MS SQL, MySQL, and PostgreSQL are supported. When
 the module is loaded use [update_sql](admin-api.md#update_sql) API.
 
@@ -3115,10 +3115,10 @@ password in multiple places.
 -   Connection parameters: The module also accepts the connection
     parameters, all of which default to the top-level parameter of the
     same name, if unspecified. See [LDAP
-    Connection](../../admin/configuration/ldap.md#ldap_connection) section for more
+    Connection](../../admin/configuration/ldap.md#ldap-connection) section for more
     information about them.
 
-Check also the [Configuration examples](../../admin/configuration/ldap.md#ldap_examples)
+Check also the [Configuration examples](../../admin/configuration/ldap.md#ldap-examples)
 section to get details about retrieving the roster, and configuration
 examples including Flat DIT and Deep DIT.
 
@@ -3196,7 +3196,7 @@ section Filters.
 - **ldap\_memberattr\_format\_re**  
 A regex for extracting user ID from the value of the attribute named by
 *ldap\_memberattr*. Check the LDAP [Control
-Parameters](../../admin/configuration/ldap.md#control_parameters) section.
+Parameters](../../admin/configuration/ldap.md#control-parameters) section.
 
 - **ldap\_password**  
 Same as top-level [ldap_password](toplevel.md#ldap_password) option, but applied to this module
