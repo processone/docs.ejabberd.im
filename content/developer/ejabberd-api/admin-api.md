@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [25.08](../../archive/25.08/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟤
 
@@ -82,7 +82,7 @@ HTTP/1.1 200 OK
 
 
 
-## add_blocked_domain 🟤
+## add_blocked_domain
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -171,7 +171,7 @@ HTTP/1.1 200 OK
 
 
 
-## add_to_spam_filter_cache 🟤
+## add_to_spam_filter_cache
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -241,14 +241,14 @@ HTTP/1.1 200 OK
 
 
 
-## ban_account
+## ban_account 🟤
 
-<!-- md:version improved in [24.06](../../archive/24.06/index.md) -->
+<!-- md:version improved in [25.08](../../archive/25.08/index.md) -->
 
 Ban an account
 
 
-This command kicks the account sessions, sets a random password, and stores ban details in the account private storage. This command requires [mod_private](../../admin/configuration/modules.md#mod_private) to be enabled. Check also [get_ban_details](#get_ban_details) API and [unban_account](#unban_account) API.
+This command kicks the account sessions, stores ban details in the account private storage, which blocks login to the account. This command requires [mod_private](../../admin/configuration/modules.md#mod_private) to be enabled. Check also [get_ban_details](#get_ban_details) API and [unban_account](#unban_account) API.
 
 __Arguments:__
 
@@ -1543,7 +1543,7 @@ HTTP/1.1 200 OK
 
 
 
-## drop_from_spam_filter_cache 🟤
+## drop_from_spam_filter_cache
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -1719,7 +1719,7 @@ HTTP/1.1 200 OK
 
 
 
-## expire_spam_filter_cache 🟤
+## expire_spam_filter_cache
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -2055,7 +2055,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_blocked_domains 🟤
+## get_blocked_domains
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -2710,7 +2710,7 @@ HTTP/1.1 200 OK
 
 
 
-## get_spam_filter_cache 🟤
+## get_spam_filter_cache
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -3722,6 +3722,42 @@ HTTP/1.1 200 OK
 
 
 
+## mnesia_change 🟤
+
+<!-- md:version added in [25.08](../../archive/25.08/index.md) -->
+
+Change the erlang node name in the mnesia database (only ejabberdctl)
+
+
+This command internally calls the [mnesia_change_nodename](#mnesia_change_nodename) API. This is a special command that starts and stops ejabberd several times: do not attempt to run this command when ejabberd is running. This command is exclusive for the ejabberdctl command-line script, don't attempt to execute it using any other API frontend.
+
+__Arguments:__
+
+- *old_node_name* :: string : Old erlang node name
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[ejabberdctl](admin-tags.md#ejabberdctl), [mnesia](admin-tags.md#mnesia)
+
+__Examples:__
+
+
+~~~ json
+POST /api/mnesia_change
+{
+  "old_node_name": "ejabberd@oldmachine"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
 ## mnesia_change_nodename
 
 
@@ -4039,7 +4075,7 @@ HTTP/1.1 200 OK
 
 
 
-## module_upgrade 🟤
+## module_upgrade
 
 <!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
 
@@ -5168,7 +5204,7 @@ HTTP/1.1 200 OK
 
 
 
-## reload_spam_filter_files 🟤
+## reload_spam_filter_files
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -5204,7 +5240,7 @@ HTTP/1.1 200 OK
 
 
 
-## remove_blocked_domain 🟤
+## remove_blocked_domain
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -7346,7 +7382,7 @@ HTTP/1.1 200 OK
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
-Revert the ban from an account: set back the old password
+Remove the ban from an account
 
 
 Check [ban_account](#ban_account) API.

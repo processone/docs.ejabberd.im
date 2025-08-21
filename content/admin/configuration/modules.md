@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [25.08](../../archive/25.08/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟤.
 
@@ -244,8 +244,8 @@ only.
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
-mod\_antispam 🟤
-----------------
+mod\_antispam
+-------------
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -665,8 +665,8 @@ modules:
     access: configure
 ~~~
 
-mod\_conversejs 🟤
-------------------
+mod\_conversejs
+---------------
 
 <!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
 
@@ -707,6 +707,13 @@ configuration](https://conversejs.org/docs/html/configuration.html).
 Only boolean, integer and string values are supported; lists are not
 supported.
 
+- **conversejs\_plugins**: `[Filename]`  
+List of additional local files to include as scripts in the homepage.
+Please make sure those files are available in the path specified in
+`conversejs_resources` option, in subdirectory `plugins/`. If using the
+public Converse client, then `"libsignal"` gets replaced with the URL of
+the public library. The default value is `[]`.
+
 - **conversejs\_resources**: `Path`  
 <!-- md:version added in [22.05](../../archive/22.05/index.md) -->
  Local path to the Converse
@@ -743,6 +750,7 @@ listen:
 modules:
   mod_bosh: {}
   mod_conversejs:
+    conversejs_plugins: ["libsignal"]
     websocket_url: "ws://@HOST@:5280/websocket"
 ~~~
 
@@ -761,7 +769,9 @@ listen:
 
 modules:
   mod_conversejs:
-    conversejs_resources: "/home/ejabberd/conversejs-9.0.0/package/dist"
+    conversejs_resources: "/home/ejabberd/conversejs-x.y.z/package/dist"
+    conversejs_plugins: ["libsignal-protocol.min.js"]
+    # File path is: /home/ejabberd/conversejs-x.y.z/package/dist/plugins/libsignal-protocol.min.js
 ~~~
 
 Configure some additional options for Converse
@@ -1213,8 +1223,10 @@ XMPP clients.
 - **put\_url**: `URL`  
 This option specifies the initial part of the PUT URLs used for file
 uploads. The keyword `@HOST@` is replaced with the virtual host name.
-NOTE: different virtual hosts cannot use the same PUT URL. The default
-value is `"https://@HOST@:5443/upload"`.
+And `@HOST_URL_ENCODE@` is replaced with the host name encoded for
+URL, useful when your virtual hosts contain non-latin characters. NOTE:
+different virtual hosts cannot use the same PUT URL. The default value
+is `"https://@HOST@:5443/upload"`.
 
 - **rm\_on\_unregister**: `true | false`  
 This option specifies whether files uploaded by a user should be removed
@@ -1471,12 +1483,14 @@ default value is `false`.
 mod\_matrix\_gw 🟤
 ------------------
 
-<!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
+<!-- md:version improved in [25.08](../../archive/25.08/index.md) -->
 
 
-[Matrix](https://matrix.org/) gateway. Erlang/OTP 25 or higher is
-required to use this module. This module is available since ejabberd
-24.02.
+[Matrix](https://matrix.org/) gateway. Supports room versions 9, 10 and
+11 since ejabberd [25.03](../../archive/25.03/index.md); room versions 4 and higher since ejabberd
+25.07; room version 12 (hydra rooms) since ejabberd [25.08](../../archive/25.08/index.md). Erlang/OTP 25
+or higher is required to use this module. This module is available since
+ejabberd [24.02](../../archive/24.02/index.md).
 
 __Available options:__
 
@@ -1491,6 +1505,10 @@ Value of the matrix signing key, in base64.
 
 - **key\_name**: `string()`  
 Name of the matrix signing key.
+
+- **leave\_timeout**: `integer()`  
+Delay in seconds between a user leaving a MUC room and sending `leave`
+Matrix event.
 
 - **matrix\_domain**: `Domain`  
 Specify a domain in the Matrix federation. The keyword `@HOST@` is
@@ -1507,6 +1525,9 @@ user `@user:matrixdomain.tld`, the client must send a message to the JID
 `user%<matrixdomain.tld@matrix.myxmppdomain>.tld`, where
 `matrix.myxmppdomain.tld` is the JID of the gateway service as set by
 the `host` option. The default is `false`.
+
+- **notary\_servers**: `[Server, ...]`  
+A list of notary servers.
 
 __**Example**:__
 
@@ -2762,6 +2783,133 @@ modules:
       outgoing: all
 ~~~
 
+mod\_providers 🟤
+-----------------
+
+<!-- md:version added in [25.08](../../archive/25.08/index.md) -->
+
+
+This module serves JSON provider files API v2 as described by [XMPP
+Providers](https://providers.xmpp.net/provider-file-generator/).
+
+It attempts to fill some properties gathering values automatically from
+your existing ejabberd configuration. Try enabling the module, check
+what values are displayed, and then customize using the options.
+
+To use this module, in addition to adding it to the `modules` section,
+you must also enable it in `listen` → `ejabberd_http` →
+[request_handlers](listen-options.md#request_handlers). Notice you
+should set in [ejabberd_http](listen.md#ejabberd_http) the option
+[tls](listen-options.md#tls) enabled.
+
+__Available options:__
+
+- **alternativeJids**: `[string()]`  
+List of JIDs (XMPP server domains) a provider offers for registration
+other than its main JID. The default value is `[]`.
+
+- **busFactor**: `integer()`  
+Bus factor of the XMPP service (i.e., the minimum number of team members
+that the service could not survive losing) or `-1` for n/a. The default
+value is `-1`.
+
+- **freeOfCharge**: `true | false`  
+Whether the XMPP service can be used for free. The default value is
+`false`.
+
+- **languages**: `[string()]`  
+List of language codes that your pages are available. Some options
+define URL where the keyword `@LANGUAGE_URL@` will be replaced with
+each of those language codes. The default value is a list with the
+language set in the option [language](toplevel.md#language), for example: `[en]`.
+
+- **legalNotice**: `string()`  
+Legal notice web page (per language). The keyword `@LANGUAGE_URL@` is
+replaced with each language. The default value is `""`.
+
+- **maximumHttpFileUploadStorageTime**: `integer()`  
+Maximum storage duration of each shared file (number in days, `0` for no
+limit or `-1` for less than 1 day). The default value is the same as
+option `max_days` from module [mod_http_upload_quota](#mod_http_upload_quota), or `0`
+otherwise.
+
+- **maximumHttpFileUploadTotalSize**: `integer()`  
+Maximum size of all shared files in total per user (number in megabytes
+(MB), `0` for no limit or `-1` for less than 1 MB). Attention: MB is
+used instead of MiB (e.g., 104,857,600 bytes = 100 MiB H 104 MB). This
+property is not about the maximum size of each shared file, which is
+already retrieved via XMPP. The default value is the value of the shaper
+value of option `access_hard_quota` from module
+[mod_http_upload_quota](#mod_http_upload_quota), or `0` otherwise.
+
+- **maximumMessageArchiveManagementStorageTime**: `integer()`  
+Maximum storage duration of each exchanged message (number in days, `0`
+for no limit or `-1` for less than 1 day). The default value is `0`.
+
+- **organization**: `string()`  
+Type of organization providing the XMPP service. Allowed values are:
+`company`, `"commercial person"`, `"private person"`, `governmental`,
+`"non-governmental"` or `""`. The default value is `""`.
+
+- **passwordReset**: `string()`  
+Password reset web page (per language) used for an automatic password
+reset (e.g., via email) or describing how to manually reset a password
+(e.g., by contacting the provider). The keyword `@LANGUAGE_URL@` is
+replaced with each language. The default value is an URL built
+automatically if [mod_register_web](#mod_register_web) is configured as a
+`request_handler`, or `""` otherwise.
+
+- **professionalHosting**: `true | false`  
+Whether the XMPP server is hosted with good internet connection speed,
+uninterruptible power supply, access protection and regular backups. The
+default value is `false`.
+
+- **serverLocations**: `[string()]`  
+List of language codes of Server/Backup locations. The default value is
+an empty list: `[]`.
+
+- **serverTesting**: `true | false`  
+Whether tests against the provider’s server are allowed (e.g.,
+certificate checks and uptime monitoring). The default value is `false`.
+
+- **since**: `string()`  
+Date since the XMPP service is available. The default value is an empty
+string: `""`.
+
+- **website**: `string()`  
+Provider website. The keyword `@LANGUAGE_URL@` is replaced with each
+language. The default value is `""`.
+
+__**Example**:__
+
+~~~ yaml
+listen:
+  -
+    port: 443
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /.well-known/xmpp-provider-v2.json: mod_providers
+
+modules:
+  mod_providers:
+    alternativeJids: ["example1.com", "example2.com"]
+    busFactor: 1
+    freeOfCharge: true
+    languages: [ag, ao, bg, en]
+    legalNotice: "http://@HOST@/legal/@LANGUAGE_URL@/"
+    maximumHttpFileUploadStorageTime: 0
+    maximumHttpFileUploadTotalSize: 0
+    maximumMessageArchiveManagementStorageTime: 0
+    organization: "non-governmental"
+    passwordReset: "http://@HOST@/reset/@LANGUAGE_URL@/"
+    professionalHosting: true
+    serverLocations: [ao, bg]
+    serverTesting: true
+    since: "2025-12-31"
+    website: "http://@HOST@/website/@LANGUAGE_URL@/"
+~~~
+
 mod\_proxy65
 ------------
 
@@ -3073,8 +3221,8 @@ modules:
 
 **API Tags:** [purge](../../developer/ejabberd-api/admin-tags.md#purge)
 
-mod\_pubsub\_serverinfo 🟤
---------------------------
+mod\_pubsub\_serverinfo
+-----------------------
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 

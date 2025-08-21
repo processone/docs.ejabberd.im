@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [25.08](../../archive/25.08/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟤.
 
@@ -298,20 +298,19 @@ format the users passwords are stored, plain text or in
 
 The default value is `plain`.
 
-## auth\_password\_types\_hidden\_in\_scram1 🟤
+## auth\_password\_types\_hidden\_in\_sasl1
 
 `[plain | scram_sha1 | scram_sha256 | scram_sha512]`  
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
 List of password types that
-should not be offered in SCRAM1 authenticatication. Because SCRAM1,
-unlike SCRAM2, can’t have list of available mechanisms tailored to
-individual user, it’s possible that offered mechanisms will not be
-compatible with stored password, especially if new password type was
-added recently. This option allows disabling offering some mechanisms in
-SASL1, to a time until new password type will be available for all
-users.
+should not be offered in SASL1 authenticatication. Because SASL1, unlike
+SASL2, can’t have list of available mechanisms tailored to individual
+user, it’s possible that offered mechanisms will not be compatible with
+stored password, especially if new password type was added recently.
+This option allows disabling offering some mechanisms in SASL1, to a
+time until new password type will be available for all users.
 
 ## auth\_scram\_hash
 
@@ -557,16 +556,19 @@ default value is an empty list.
 `mnesia | sql`  
 
 [Default database](database.md#default-database) to store persistent
-data in ejabberd. Modules and other components (e.g. authentication) may
-have its own value. The default value is `mnesia`.
+data in ejabberd. Some components can be configured with specific
+toplevel options like [oauth_db_type](#oauth_db_type). Many modules can be configured
+with specific module options, usually named `db_type`. The default value
+is `mnesia`.
 
 ## default\_ram\_db
 
 `mnesia | redis | sql`  
 
-Default volatile (in-memory) storage for ejabberd. Modules and other
-components (e.g. session management) may have its own value. The default
-value is `mnesia`.
+Default volatile (in-memory) storage for ejabberd. Some components can
+be configured with specific toplevel options like [router_db_type](#router_db_type) and
+[sm_db_type](#sm_db_type). Some modules can be configured with specific module
+options, usually named `ram_db_type`. The default value is `mnesia`.
 
 ## define\_keyword
 
@@ -786,7 +788,7 @@ host_config:
 List of one or more [host names](../configuration/basic.md#host-names)
 (or domains) that ejabberd will serve. This is a **mandatory** option.
 
-## hosts\_alias 🟤
+## hosts\_alias
 
 `{Alias: Host}`  
 
@@ -1127,7 +1129,7 @@ default value is `1 minute`.
 
 Whether to use the
 [new SQL schema](database.md#default-and-new-schemas). All schemas are
-located at <https://github.com/processone/ejabberd/tree/25.07/sql>.
+located at <https://github.com/processone/ejabberd/tree/25.08/sql>.
 There are two schemas available. The default legacy schema stores one
 XMPP domain into one ejabberd database. The `new` schema can handle
 several XMPP domains in a single ejabberd database. Using this `new`
@@ -1397,7 +1399,7 @@ default value is `closeold`. If the client uses old Jabber Non-SASL
 authentication (XEP-0078), then this option is not respected, and the
 action performed is `closeold`.
 
-## rest\_proxy 🟤
+## rest\_proxy
 
 `Host`  
 
@@ -1406,7 +1408,7 @@ action performed is `closeold`.
 Address of a HTTP Connect
 proxy used by modules issuing rest calls (like ejabberd\_oauth\_rest)
 
-## rest\_proxy\_password 🟤
+## rest\_proxy\_password
 
 `string()`  
 
@@ -1416,7 +1418,7 @@ Password used to authenticate
 to HTTP Connect proxy used by modules issuing rest calls (like
 ejabberd\_oauth\_rest)
 
-## rest\_proxy\_port 🟤
+## rest\_proxy\_port
 
 `1..65535`  
 
@@ -1425,7 +1427,7 @@ ejabberd\_oauth\_rest)
 Port of a HTTP Connect proxy
 used by modules issuing rest calls (like ejabberd\_oauth\_rest)
 
-## rest\_proxy\_username 🟤
+## rest\_proxy\_username
 
 `string()`  
 
