@@ -285,6 +285,15 @@ nav:
     - Versioning: developer/ejabberd-api/api_versioning.md
   - Archive:
     - archive/index.md
+    - "25.08":
+      - archive/25.08/index.md
+      - archive/25.08/admin-api.md
+      - archive/25.08/admin-tags.md
+      - archive/25.08/listen.md
+      - archive/25.08/listen-options.md
+      - archive/25.08/modules.md
+      - archive/25.08/toplevel.md
+      - archive/25.08/upgrade.md
     - "25.07":
       - archive/25.07/index.md
       - archive/25.07/admin-api.md
