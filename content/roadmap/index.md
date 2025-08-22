@@ -22,6 +22,11 @@ This is a brief summary for each released version. For details, please consult e
 
 ### 2025
 
+- [25.08](https://www.process-one.net/blog/ejabberd-25-08/)
+    - New module [mod_providers](../admin/configuration/modules.md/#mod_providers)
+    - [mod_matrix_gw](../admin/configuration/modules.md/#mod_matrix_gw): Support for Hydra rooms (room version 12, and other improvements
+    - Fixed ACME in Erlang/OTP 28.0.2
+
 - [25.07](https://www.process-one.net/blog/ejabberd-25-07/)
     - New module [mod_antispam](../admin/configuration/modules.md/#mod_antispam)
     - New module [mod_pubsub_serverinfo](../admin/configuration/modules.md/#mod_pubsub_serverinfo)
