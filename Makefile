@@ -129,7 +129,7 @@ $(TXML): $(TTXT)
 	sed -E 's/\*(.*)\*: (.*):::/- *\1*: \2/g' $(TTXT) >$(TTXT).1
 	mv $(TTXT).1 $(TTXT)
 
-	a2x -f docbook $(TTXT)
+	a2x --no-xmllint -f docbook $(TTXT)
 
 	# Remove garbage lines when a toplevel option has several paragraphs and example
 	sed -i '/^<simpara>+<\/simpara>/d' $(TXML)
