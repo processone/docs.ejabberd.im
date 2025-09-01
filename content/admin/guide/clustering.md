@@ -66,7 +66,7 @@ Before you start implementing clustering, there are a few things you
 need to take into account:
 
 - Cluster should be set up in a single data center: The clustering in
-  ejabberd Community Edition relies on low latency networking. While it may
+  ejabberd Community Server relies on low latency networking. While it may
   work across regions, it is recommended that you run an ejabberd
   cluster in a single Amazon region.
 - Clustering relies on Erlang features and Mnesia shared schemas. Before
