@@ -91,9 +91,8 @@ and [XMPP.org][xmppej].
  	- [`Publish-Subscribe`][7] component with support for
   [`Personal Eventing via Pubsub`][8].
  	- Support for web clients: Support for [XMPP subprotocol for WebSocket][9] and [`HTTP Binding (BOSH)`][10] services.
- 	- IRC transport.
  	- SIP support.
- 	- Component support: interface with networks such as AIM, ICQ and MSN installing special transports.
+ 	- Component support: interface with networks such as AIM, ICQ, IRC and MSN installing special transports.
 
 [1]: https://www.erlang.org/
 [2]: https://tools.ietf.org/html/rfc3490
