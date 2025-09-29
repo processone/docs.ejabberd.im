@@ -126,6 +126,8 @@ HTTP/1.1 200 OK
 
 Add an item to a user's roster (supports ODBC)
 
+The client will receive a `jabber:iq:roster` IQ notifying them of the added entry.
+
 __Arguments:__
 
 - *localuser* :: string : User name
@@ -1431,6 +1433,8 @@ HTTP/1.1 200 OK
 
 
 Delete an item from a user's roster (supports ODBC)
+
+The client will receive a `jabber:iq:roster` IQ notifying them of the removed entry.
 
 __Arguments:__
 
