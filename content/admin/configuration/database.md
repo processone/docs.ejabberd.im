@@ -262,11 +262,12 @@ you may prefer to set SQL as your [default database](#default-database).
 
 ## Microsoft SQL Server
 
-For now, MS SQL is only supported in Unix-like OS'es. You need to have
-[`unixODBC`](https://www.unixodbc.org/) installed on your machine, and your Erlang/OTP
+For now, MS SQL is only supported in Unix-like OS'es. Your Erlang/OTP
 must be compiled with ODBC support.
-Also, in some cases you need to add machine name to `sql_username`, especially
-when you have `sql_server` defined as an IP address, e.g.:
+
+Also, in some cases you need to the add machine name to
+`sql_username`, especially when you have `sql_server` defined as an IP
+address, e.g.:
 
 ``` yaml
 sql_type: mssql
@@ -303,13 +304,15 @@ connect using a an ODBC DSN connection string constructed with:
 - ENCRYPTION=required (only if [sql_ssl](toplevel.md#sql_ssl) is true)
 - CLIENT_CHARSET=UTF-8
 
-Since ejabberd [23.04](../../archive/23.04/index.md),
-t is possible to use different connection options by
-putting a full ODBC connection string in `sql_server` (e.g.
-`DSN=database;UID=ejabberd;PWD=password`). The DSN must be configured in
-existing system or user odbc.ini file, where it can be configured as desired,
-using a driver from system odbcinst.ini. The [sql_odbc_driver](toplevel.md#sql_odbc_driver)
-option will have no effect in this case.
+Since ejabberd [23.04](../../archive/23.04/index.md), it is possible
+to use different connection options by putting a full ODBC connection
+string in `sql_server` (e.g.
+`DSN=database;UID=ejabberd;PWD=password`). The DSN must be configured
+in existing system or user `odbc.ini` file, where it can be configured
+as desired, using a driver from system `odbcinst.ini`. The
+[sql_odbc_driver](toplevel.md#sql_odbc_driver) option will have no
+effect in this case and [`unixODBC`](http://www.unixodbc.org/) must be
+installed on your machine.
 
 If specifying an ODBC connection string, an ODBC connection string must also be
 specified for any other hosts using MS SQL DB, otherwise the auto-generated
