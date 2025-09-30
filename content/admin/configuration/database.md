@@ -265,7 +265,7 @@ you may prefer to set SQL as your [default database](#default-database).
 For now, MS SQL is only supported in Unix-like OS'es. Your Erlang/OTP
 must be compiled with ODBC support.
 
-Also, in some cases you need to the add machine name to
+Also, in some cases you need to add the machine name to
 `sql_username`, especially when you have `sql_server` defined as an IP
 address, e.g.:
 
