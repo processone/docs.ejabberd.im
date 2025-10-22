@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [25.08](../../archive/25.08/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [25.10](../../archive/25.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟤.
 
@@ -160,13 +160,15 @@ supported. When the module is loaded use [update_sql](../../developer/ejabberd-a
 
 The module has no options.
 
+**API Tags:** [sql](../../developer/ejabberd-api/admin-tags.md#sql)
+
 mod\_announce
 -------------
 
 This module enables configured users to broadcast announcements and to
 set the message of the day (MOTD). Configured users can perform these
 actions with an XMPP client either using Ad-Hoc Commands or sending
-messages to specific JIDs.
+messages to specific JIDs. Equivalent API commands are also available.
 
 !!! note
 
@@ -243,6 +245,9 @@ only.
 
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
+
+**API Tags:**
+[announce](../../developer/ejabberd-api/admin-tags.md#announce)
 
 mod\_antispam
 -------------
@@ -435,11 +440,11 @@ __Available options:__
 
 - **access**: `AccessName`  
 The option is supposed to be used when `allow_local_users` and
-`allow_transports` are not enough. It’s an ACL where `deny` means the
-message will be rejected (or a CAPTCHA would be generated for a
-presence, if configured), and `allow` means the sender is whitelisted
-and the stanza will pass through. The default value is `none`, which
-means nothing is whitelisted.
+`allow_transports* are not enough. It’s an Access Rule where *deny`
+means the stanza will be rejected; there’s an exception if option
+`captcha` is configured. And `allow` means the sender is whitelisted and
+the stanza will pass through. The default value is `none`, which means
+nothing is whitelisted.
 
 - **allow\_local\_users**: `true | false`  
 This option specifies if strangers from the same local host should be
@@ -451,9 +456,10 @@ messages from any user of this server are accepted even if no
 subscription present. The default value is `true`.
 
 - **captcha**: `true | false`  
-Whether to generate CAPTCHA or not in response to messages from
-strangers. See also section [CAPTCHA](basic.md#captcha) of the
-Configuration Guide. The default value is `false`.
+Whether to generate CAPTCHA challenges in response to incoming presence
+subscription requests from strangers. See also section
+[CAPTCHA](basic.md#captcha) of the Configuration Guide. The default
+value is `false`.
 
 - **drop**: `true | false`  
 This option specifies if strangers messages should be dropped or not.
@@ -617,8 +623,11 @@ delivered. The default value is `true`.
 While a client is inactive, queue presence stanzas that indicate
 (un)availability. The default value is `true`.
 
-mod\_configure
---------------
+mod\_configure 🟤
+-----------------
+
+<!-- md:version improved in [25.10](../../archive/25.10/index.md) -->
+
 
 The module provides server configuration functionalities using
 [XEP-0030: Service Discovery](https://xmpp.org/extensions/xep-0030.html)
@@ -632,6 +641,30 @@ Commands](https://xmpp.org/extensions/xep-0050.html):
     Administration](https://xmpp.org/extensions/xep-0133.html)
 
 -   Additional custom ad-hoc commands specific to ejabberd
+
+Ad-hoc commands from XEP-0133 that behave differently to the XEP:
+
+-   `get-user-roster`: returns standard fields instead of roster items
+    that client cannot display
+
+Those ad-hoc commands from XEP-0133 do not include in the response the
+client that executed the command:
+
+-   `get-active-users-num`
+
+-   `get-idle-users-num`
+
+-   `get-active-users`
+
+-   `get-idle-users`
+
+Those ad-hoc commands from XEP-0133 are not implemented:
+
+-   `edit-blacklist`
+
+-   `edit-whitelist`
+
+-   `edit-admin`
 
 This module requires [mod_adhoc](#mod_adhoc) (to execute the commands), and
 recommends [mod_disco](#mod_disco) (to discover the commands).
@@ -1421,6 +1454,14 @@ __Available options:__
 This access rule defines who is allowed to modify the MAM preferences.
 The default value is `all`.
 
+- **archive\_muc\_as\_mucsub 🟤`*: `true | false*  
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+ When this option is enabled
+incoming groupchat messages for users that have mucsub subscription to a
+room from which message originated will have those messages archived
+after being converted to mucsub event messages.The default value is
+`false`.
+
 - **assume\_mam\_usage**: `true | false`  
 This option determines how ejabberd’s stream management code (see
 [mod_stream_mgmt](#mod_stream_mgmt)) handles unacknowledged messages when the connection
@@ -1480,8 +1521,8 @@ default value is `false`.
 **API Tags:** [mam](../../developer/ejabberd-api/admin-tags.md#mam),
 [purge](../../developer/ejabberd-api/admin-tags.md#purge)
 
-mod\_matrix\_gw 🟤
-------------------
+mod\_matrix\_gw
+---------------
 
 <!-- md:version improved in [25.08](../../archive/25.08/index.md) -->
 
@@ -1909,11 +1950,11 @@ capability. The `Options` are:
    Short description of the room.
     The default value is an empty string.
 
-    - **enable\_hats**: `true | false`  
-   `Note` about this option: improved
-    in [25.03](../../archive/25.03/index.md). Allow extended roles as defined in XEP-0317 Hats. Check
-    the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The default
-    value is `false`.
+    - **enable\_hats 🟤`*: `true | false*  
+   `Note` about this option:
+    improved in [25.10](../../archive/25.10/index.md). Allow extended roles as defined in XEP-0317 Hats.
+    Check the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The
+    default value is `false`.
 
     - **lang**: `Language`  
    Preferred language for the discussions in the
@@ -2783,8 +2824,8 @@ modules:
       outgoing: all
 ~~~
 
-mod\_providers 🟤
------------------
+mod\_providers
+--------------
 
 <!-- md:version added in [25.08](../../archive/25.08/index.md) -->
 

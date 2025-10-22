@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [25.08](../../archive/25.08/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [25.10](../../archive/25.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -24,6 +24,9 @@
 * [check_password_hash](admin-api.md#check_password_hash)
 
 
+* [count_banned](admin-api.md#count_banned)
+
+
 * [delete_old_users](admin-api.md#delete_old_users)
 
 
@@ -31,6 +34,9 @@
 
 
 * [get_ban_details](admin-api.md#get_ban_details)
+
+
+* [list_banned](admin-api.md#list_banned)
 
 
 * [register](admin-api.md#register)
@@ -58,6 +64,36 @@
 
 
 * [revoke_certificate](admin-api.md#revoke_certificate)
+
+
+## announce
+
+
+* [announce_motd_delete](admin-api.md#announce_motd_delete)
+
+
+* [announce_motd_get](admin-api.md#announce_motd_get)
+
+
+* [announce_motd_set_online](admin-api.md#announce_motd_set_online)
+
+
+* [announce_motd_update](admin-api.md#announce_motd_update)
+
+
+* [announce_send_all](admin-api.md#announce_send_all)
+
+
+* [announce_send_online](admin-api.md#announce_send_online)
+
+
+## async
+
+
+* [restart_kindly](admin-api.md#restart_kindly)
+
+
+* [stop_kindly](admin-api.md#stop_kindly)
 
 
 ## cluster
@@ -289,6 +325,12 @@
 
 
 * [get_user_subscriptions](admin-api.md#get_user_subscriptions)
+
+
+* [muc_get_registered_nick](admin-api.md#muc_get_registered_nick)
+
+
+* [muc_get_registered_nicks](admin-api.md#muc_get_registered_nicks)
 
 
 * [muc_online_rooms](admin-api.md#muc_online_rooms)
@@ -546,6 +588,9 @@
 * [restart](admin-api.md#restart)
 
 
+* [restart_kindly](admin-api.md#restart_kindly)
+
+
 * [status](admin-api.md#status)
 
 
@@ -691,6 +736,9 @@
 
 
 * [print_sql_schema](admin-api.md#print_sql_schema)
+
+
+* [update_sql](admin-api.md#update_sql)
 
 
 ## stanza

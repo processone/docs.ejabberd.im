@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [25.08](../../archive/25.08/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [25.10](../../archive/25.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟤
 
@@ -126,6 +126,7 @@ HTTP/1.1 200 OK
 
 Add an item to a user's roster (supports ODBC)
 
+
 The client will receive a `jabber:iq:roster` IQ notifying them of the added entry.
 
 __Arguments:__
@@ -211,6 +212,259 @@ HTTP/1.1 200 OK
 
 
 
+## announce_motd_delete 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Delete Message Of The Day
+
+
+If HOST is `all`, send to all hosts. 
+
+__Arguments:__
+
+- *host* :: string
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[announce](admin-tags.md#announce)
+
+__Module:__
+[mod_announce](../../admin/configuration/modules.md#mod_announce)
+
+__Examples:__
+
+
+~~~ json
+POST /api/announce_motd_delete
+{
+  "host": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
+## announce_motd_get 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Get Message Of The Day
+
+
+You can use ' \n ' in the message body to write a newline.
+
+__Arguments:__
+
+- *host* :: string
+
+__Result:__
+
+- *motd* :: {subject::string, body::string}
+
+__Tags:__
+[announce](admin-tags.md#announce)
+
+__Module:__
+[mod_announce](../../admin/configuration/modules.md#mod_announce)
+
+__Examples:__
+
+
+~~~ json
+POST /api/announce_motd_get
+{
+  "host": "aaaaa"
+}
+
+HTTP/1.1 200 OK
+{
+  "subject": "aaaaa",
+  "body": "bbbbb"
+}
+~~~
+
+
+
+
+## announce_motd_set_online 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Set Message Of The Day and send to online users
+
+
+If HOST is `all`, send to all hosts. You can use ' \n ' in the message body to write a newline.
+
+__Arguments:__
+
+- *host* :: string
+- *subject* :: string
+- *body* :: string
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[announce](admin-tags.md#announce)
+
+__Module:__
+[mod_announce](../../admin/configuration/modules.md#mod_announce)
+
+__Examples:__
+
+
+~~~ json
+POST /api/announce_motd_set_online
+{
+  "host": "aaaaa",
+  "subject": "bbbbb",
+  "body": "ccccc"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
+## announce_motd_update 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Update Message Of The Day
+
+
+If HOST is `all`, send to all hosts. You can use ' \n ' in the message body to write a newline.
+
+__Arguments:__
+
+- *host* :: string
+- *subject* :: string
+- *body* :: string
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[announce](admin-tags.md#announce)
+
+__Module:__
+[mod_announce](../../admin/configuration/modules.md#mod_announce)
+
+__Examples:__
+
+
+~~~ json
+POST /api/announce_motd_update
+{
+  "host": "aaaaa",
+  "subject": "bbbbb",
+  "body": "ccccc"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
+## announce_send_all 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Send announcement to all users
+
+
+If HOST is `all`, send to all hosts. You can use ' \n ' in the message body to write a newline.
+
+__Arguments:__
+
+- *host* :: string
+- *subject* :: string
+- *body* :: string
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[announce](admin-tags.md#announce)
+
+__Module:__
+[mod_announce](../../admin/configuration/modules.md#mod_announce)
+
+__Examples:__
+
+
+~~~ json
+POST /api/announce_send_all
+{
+  "host": "aaaaa",
+  "subject": "bbbbb",
+  "body": "ccccc"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
+## announce_send_online 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Send announcement to online users
+
+
+If HOST is `all`, send to all hosts. You can use ' \n ' in the message body to write a newline.
+
+__Arguments:__
+
+- *host* :: string
+- *subject* :: string
+- *body* :: string
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[announce](admin-tags.md#announce)
+
+__Module:__
+[mod_announce](../../admin/configuration/modules.md#mod_announce)
+
+__Examples:__
+
+
+~~~ json
+POST /api/announce_send_online
+{
+  "host": "aaaaa",
+  "subject": "bbbbb",
+  "body": "ccccc"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
 ## backup
 
 
@@ -243,7 +497,7 @@ HTTP/1.1 200 OK
 
 
 
-## ban_account 🟤
+## ban_account
 
 <!-- md:version improved in [25.08](../../archive/25.08/index.md) -->
 
@@ -800,6 +1054,45 @@ POST /api/convert_to_yaml
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## count_banned 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Count number of banned accounts
+
+
+The HOST argument can be `all` to query all vhosts.
+
+__Arguments:__
+
+- *host* :: string : Server name
+
+__Result:__
+
+- *banned* :: integer : Number of banned accounts
+
+__Tags:__
+[accounts](admin-tags.md#accounts)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/count_banned
+{
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+6
 ~~~
 
 
@@ -1434,6 +1727,7 @@ HTTP/1.1 200 OK
 
 Delete an item from a user's roster (supports ODBC)
 
+
 The client will receive a `jabber:iq:roster` IQ notifying them of the removed entry.
 
 __Arguments:__
@@ -2012,7 +2306,7 @@ Check [ban_account](#ban_account) API.
 
 __Arguments:__
 
-- *user* :: string : User name to unban
+- *user* :: string : Name of a user to check ban information
 - *host* :: string : Server name
 
 __Result:__
@@ -3543,6 +3837,48 @@ HTTP/1.1 200 OK
 
 
 
+## list_banned 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+List banned accounts
+
+
+The HOST argument can be `all` to query all vhosts.
+
+__Arguments:__
+
+- *host* :: string : Server name
+
+__Result:__
+
+- *banned* :: [jid::string] : The list of accounts that are banned
+
+__Tags:__
+[accounts](admin-tags.md#accounts)
+
+__Module:__
+[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+
+__Examples:__
+
+
+~~~ json
+POST /api/list_banned
+{
+  "host": "myserver.com"
+}
+
+HTTP/1.1 200 OK
+[
+  "attacker@example.com",
+  "user3@example.com"
+]
+~~~
+
+
+
+
 ## list_certificates
 
 
@@ -3728,7 +4064,7 @@ HTTP/1.1 200 OK
 
 
 
-## mnesia_change 🟤
+## mnesia_change
 
 <!-- md:version added in [25.08](../../archive/25.08/index.md) -->
 
@@ -4214,6 +4550,93 @@ POST /api/modules_update_specs
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## muc_get_registered_nick 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Get nick registered for that account in the MUC service
+
+__Arguments:__
+
+- *user* :: string : user name
+- *host* :: string : user host
+- *service* :: string : MUC service
+
+__Result:__
+
+- *nick* :: string : nick registered
+
+__Tags:__
+[muc](admin-tags.md#muc)
+
+__Module:__
+[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+
+__Examples:__
+
+
+~~~ json
+POST /api/muc_get_registered_nick
+{
+  "user": "tim",
+  "host": "example.org",
+  "service": "conference.example.org"
+}
+
+HTTP/1.1 200 OK
+"Tim"
+~~~
+
+
+
+
+## muc_get_registered_nicks 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+List all nicks registered in the MUC service
+
+__Arguments:__
+
+- *service* :: string : MUC service
+
+__Result:__
+
+- *registrations* :: [{user::string, host::string, nick::string}]
+
+__Tags:__
+[muc](admin-tags.md#muc)
+
+__Module:__
+[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+
+__Examples:__
+
+
+~~~ json
+POST /api/muc_get_registered_nicks
+{
+  "service": "conference.example.org"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "user": "Tim",
+    "host": "timexa",
+    "nick": "example.com"
+  },
+  {
+    "user": "Laia",
+    "host": "laia001",
+    "nick": "example2.org"
+  }
+]
 ~~~
 
 
@@ -4705,7 +5128,7 @@ __Arguments:__
 
 - *db_type* :: string : Database type: pgsql | mysql | sqlite
 - *db_version* :: string : Your database version: 16.1, 8.2.0...
-- *new_schema* :: string : Use new schema: 0, false, 1 or true
+- *multihost_schema* :: string : Use multihost schema: 0, false, 1 or true
 
 __Result:__
 
@@ -4722,7 +5145,7 @@ POST /api/print_sql_schema
 {
   "db_type": "pgsql",
   "db_version": "16.1",
-  "new_schema": "true"
+  "multihost_schema": "true"
 }
 
 HTTP/1.1 200 OK
@@ -5491,6 +5914,46 @@ __Examples:__
 POST /api/restart
 {
   
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
+## restart_kindly 🟤
+
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+
+Restart kindly the server
+
+
+Inform users and rooms, wait, and restart the server.
+Provide the delay in seconds, and the announcement quoted, for example: 
+`ejabberdctl restart_kindly 60 \"The server will stop in one minute.\"`
+
+__Arguments:__
+
+- *delay* :: integer : Seconds to wait
+- *announcement* :: string : Announcement to send, with quotes
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[server](admin-tags.md#server), [async](admin-tags.md#async)
+
+__Examples:__
+
+
+~~~ json
+POST /api/restart_kindly
+{
+  "delay": 60,
+  "announcement": "Server will restart now."
 }
 
 HTTP/1.1 200 OK
@@ -7223,7 +7686,7 @@ __Result:__
 - *res* :: integer : Status code (`0` on success, `1` otherwise)
 
 __Tags:__
-[server](admin-tags.md#server)
+[server](admin-tags.md#server), [async](admin-tags.md#async)
 
 __Examples:__
 
@@ -7616,7 +8079,7 @@ HTTP/1.1 200 OK
 
 <!-- md:version improved in [23.04](../../archive/23.04/index.md) -->
 
-Convert MS SQL, MySQL or PostgreSQL DB to the new format
+Convert SQL database from singlehost to multihost (MS SQL, MySQL, PostgreSQL)
 
 __Arguments:__
 
@@ -7627,6 +8090,9 @@ __Result:__
 
 __Tags:__
 [sql](admin-tags.md#sql)
+
+__Module:__
+[mod_admin_update_sql](../../admin/configuration/modules.md#mod_admin_update_sql)
 
 __Examples:__
 
