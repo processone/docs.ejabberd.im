@@ -33,7 +33,8 @@ Examples:
 
 Notice that Unicode is used natively by XMPP, Erlang/OTP, YAML... and ejabberd.
 You can setup non-latin host names using Unicode/UTF8.
-Since ejabberd 25.xx the host can be expressed in IDNA/punycode.
+Since ejabberd [25.08](../../archive/25.08/index.md)
+the host can be expressed in IDNA/punycode.
 For example:
 
 ```yaml

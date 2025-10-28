@@ -3,11 +3,11 @@
 !!! info "Please note"
 
     This page is useful only for ejabberd 25.08 and older versions.
-    If you are using ejabberd 25.xx or newer,
+    If you are using ejabberd 25.10 or newer,
     please consult [XEP-0317 Hats](https://xmpp.org/extensions/xep-0317.html)
     as ejabberd nowadays supports XEP-0317 0.3.1.
 
-<!-- md:version improved in [25.xx](../archive/25.xx/index.md) -->
+<!-- md:version improved in [25.10](../archive/25.10/index.md) -->
 
 ejabberd [21.12](../archive/21.12/index.md) introduced support for
 [XEP-0317 Hats](https://xmpp.org/extensions/xep-0317.html).
@@ -16,9 +16,9 @@ In ejabberd [25.03](../archive/25.03/index.md) support was improved to XEP versi
 with some minor differences to the examples in the protocol,
 which are described in this page.
 
-In ejabberd [25.xx](../archive/25.xx/index.md) support has been improved to XEP version 0.3.1,
+In ejabberd [25.10](../archive/25.10/index.md) support has been improved to XEP version 0.3.1,
 strictly following the protocol and all its examples.
-Consequently, if you are using ejabberd 25.xx or newer,
+Consequently, if you are using ejabberd 25.10 or newer,
 please use [XEP-0317 Hats](https://xmpp.org/extensions/xep-0317.html)
 instead of this page.
 
