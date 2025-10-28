@@ -22,6 +22,12 @@ This is a brief summary for each released version. For details, please consult e
 
 ### 2025
 
+- [25.10](https://www.process-one.net/blog/ejabberd-25-10/)
+    - [mod_configure](../admin/configuration/modules.md/#mod_configure): Added more Ad-Hoc Commands from [XEP-0133: Service Administration](https://xmpp.org/extensions/xep-0133.html)
+    - [mod_muc](../admin/configuration/modules.md/#mod_muc): Updated support for [XEP-0317: Hats](https://xmpp.org/extensions/xep-0317.html)
+    - Removed support for Erlang/OTP older than 25.0
+    - Rename `New` SQL schema to `Multihost`, and `Default` to `Singlehost`
+
 - [25.08](https://www.process-one.net/blog/ejabberd-25-08/)
     - New module [mod_providers](../admin/configuration/modules.md/#mod_providers)
     - [mod_matrix_gw](../admin/configuration/modules.md/#mod_matrix_gw): Support for Hydra rooms (room version 12, and other improvements
