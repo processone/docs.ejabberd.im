@@ -7,7 +7,6 @@ hide:
 
 ## In the Works
 
-- **Remove support for Erlang/OTP older than 25**
 
 ## Planned
 
