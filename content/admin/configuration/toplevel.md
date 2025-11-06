@@ -176,7 +176,7 @@ acme:
 `true | false`  
 
 Whether to allow installation of third-party modules or not. See
-[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib)
+[ejabberd-modules](../../admin/guide/modules.md#ejabberd-modules)
 documentation section. The default value is `true`.
 
 ## allow\_multiple\_connections
@@ -838,9 +838,20 @@ format, the `Options` must be one of the following:
 
 <!-- md:version added in [23.10](../../archive/23.10/index.md) -->
 
-Modules to install from
-[ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib) at
-start time. The default value is an empty list of modules: `[]`.
+Modules from
+[ejabberd-modules](../../admin/guide/modules.md#ejabberd-modules) to
+install automatically at start time. The default value is an empty list
+of modules: `[]`.
+
+**Example**:
+
+~~~ yaml
+install_contrib_modules:
+  - mod_tombstones
+
+modules:
+  mod_tombstones: {}
+~~~
 
 ## jwt\_auth\_only\_rule
 

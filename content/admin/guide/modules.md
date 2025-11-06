@@ -54,6 +54,8 @@ Once you have placed the modules source code in `ejabberd-modules`, you can:
 - [list modules](#list-modules)
 - [install a module](#install-module)
 - [uninstall a module](#uninstall-module), or upgrade it
+- configure [install_contrib_modules](../configuration/toplevel.md#install_contrib_modules)
+  toplevel option so ejabberd installs the module automatically at start time
 
 ## List Modules
 
