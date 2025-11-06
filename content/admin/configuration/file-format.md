@@ -262,7 +262,7 @@ modules:
   mod_muc:
     name: NAME
     default_room_options:
-      persistent: true
+      persistent: PERSISTENT
       title: TITLE
 ```
 
@@ -273,7 +273,7 @@ modules:
   mod_muc:
     name: "MUC Service"
     default_room_options:
-      persistent: PERSISTENT
+      persistent: true
       title: "Example Room"
 ```
 
