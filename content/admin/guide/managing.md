@@ -239,20 +239,32 @@ create and restore backups, view server statistics, …
 
 ### Basic Setup
 
-1. If not done already, register an account and grant administration rights to it
-   using the `configure` access rule
-   (see [Administration Account](../install/next-steps.md#administration-account)):
+1. If not done already, register a Jabber/XMPP account in ejabberd:
+
+    ``` shell
+    ejabberdctl register admin1 example.org s0mePass
+    ```
+
+2. Define an Access Control List ([ACL](../configuration/basic.md#acl))
+   called `admin` (or any name you prefer) and include the account in that ACL:
 
     ``` yaml
     acl:
       admin:
         user: admin1@example.org
+    ```
+
+2. Grant administration rights to that account using the `configure`
+   [access rule](../configuration/basic.md#access-rules)
+   (see [Administration Account](../install/next-steps.md#administration-account)):
+
+    ``` yaml
     access_rules:
       configure:
         allow: admin
     ```
 
-2. Make sure `ejabberd_web_admin` is available in
+3. Make sure `ejabberd_web_admin` is available in
    [request_handlers](../configuration/listen-options.md#request_handlers)
    of a [ejabberd_http](../configuration/listen.md#ejabberd_http) listener.
    If you want to use HTTPS, enable [tls](../configuration/listen-options.md#tls).
@@ -269,15 +281,24 @@ create and restore backups, view server statistics, …
            /admin: ejabberd_web_admin
     ```
 
-3. Open the Web Admin page in your favorite web browser.
-The exact address depends on your configuration;
-in this example the address is: `https://example.org:5443/admin/`
+4. Grant permission to that ACL to execute all API Commands in WebAdmin using
+   [api_permissions](../../developer/ejabberd-api/permissions.md):
 
-4. In the login window provide the **full Jabber ID: `admin1@example.org`** and password.
+    ``` yaml
+    api_permissions:
+      "webadmin commands":
+        from: ejabberd_web_admin
+        who: admin
+        what: "*"
+    ```
+
+5. Open the Web Admin page in your favorite web browser.
+   The exact address depends on your configuration;
+   in this example the address is: `https://example.org:5443/admin/`
+
+6. In the login window provide the **full Jabber ID: `admin1@example.org`** and password.
    If the web address hostname is the same that the account JID,
    you can provide simply the username instead of the full JID: `admin1`.
-
-5. You're good! You can now use the Web Admin.
 
 ### Additional Security
 
