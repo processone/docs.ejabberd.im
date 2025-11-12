@@ -9907,7 +9907,7 @@ soft upgrade does not work, then you have to fallback to standalone upgrade
 process.</p>
 <h2 id="generic-upgrade-process">Generic upgrade process<a class="headerlink" href="#generic-upgrade-process" title="Permanent link">&para;</a></h2>
 <p>This is the simplest process, and require service restart.</p>
-<ul>
+<ol>
 <li>read the corresponding <a href="#specific-version-upgrade-notes">upgrade notes</a></li>
 <li>apply the required changes in database from the upgrade note.</li>
 <li>stop old node</li>
@@ -9923,11 +9923,11 @@ process.</p>
 <li>
 <p>start new node</p>
 </li>
-</ul>
+</ol>
 <h2 id="soft-upgrade-process">Soft upgrade process<a class="headerlink" href="#soft-upgrade-process" title="Permanent link">&para;</a></h2>
 <p>This process needs you to run in cluster, with at least two nodes. In this case,
 we assume you run node A and B with version N, and will upgrade to version N+1.</p>
-<ul>
+<ol>
 <li>read the corresponding <a href="#specific-version-upgrade-notes">upgrade notes</a>,
 make sure it does not explicitly states "soft upgrade is not supported".</li>
 <li>apply the required changes in database from the upgrade note.</li>
@@ -9943,7 +9943,7 @@ make sure it does not explicitly states "soft upgrade is not supported".</li>
 <li>install new version on A's host</li>
 <li>start new node A</li>
 <li>run <a href="../../developer/ejabberd-api/admin-api/#join_cluster">join_cluster</a> on node A, passing node B as parameter</li>
-</ul>
+</ol>
 <h2 id="module-update-process">Module update process<a class="headerlink" href="#module-update-process" title="Permanent link">&para;</a></h2>
 <p>Instead of upgrading all ejabberd to a brand new version,
 maybe you just want to update a few modules with bugfixes...

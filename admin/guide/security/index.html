@@ -9895,24 +9895,24 @@ Most of them are TCP ports, except the explicitely mentioned ones:</p>
 <td style="text-align: left;">HTTP/HTTPS for Web Admin and many more (<a href="../../configuration/listen/#ejabberd_http">ejabberd_http</a>)</td>
 </tr>
 <tr>
+<td style="text-align: left;">1880</td>
+<td style="text-align: left;">HTTP for Web Admin in container images, useful for desktop container apps</td>
+</tr>
+<tr>
 <td style="text-align: left;">1883/8883</td>
 <td style="text-align: left;">MQTT/MQTTS service (<a href="../../configuration/listen/#mod_mqtt">mod_mqtt</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">3478/5349</td>
+<td style="text-align: left;">5478/5349 UDP</td>
 <td style="text-align: left;">STUN+TURN/STUNS+TURNS service (<a href="../../configuration/listen/#ejabberd_stun">ejabberd_stun</a>)</td>
 </tr>
 <tr>
-<td style="text-align: left;">3478 UDP</td>
-<td style="text-align: left;">' '</td>
-</tr>
-<tr>
-<td style="text-align: left;">49152-65535 range UDP</td>
+<td style="text-align: left;">49152-65535 UDP</td>
 <td style="text-align: left;">STUN+TURN service (<a href="../../configuration/listen/#ejabberd_stun">ejabberd_stun</a>), configure with <code>turn_min_port</code> and <code>turn_max_port</code></td>
 </tr>
 <tr>
 <td style="text-align: left;">5060/5061</td>
-<td style="text-align: left;">SIP service (<a href="../../configuration/listen/#ejabberd_sip">ejabberd_sip</a>)</td>
+<td style="text-align: left;">SIP/SIPS service (<a href="../../configuration/listen/#ejabberd_sip">ejabberd_sip</a>)</td>
 </tr>
 <tr>
 <td style="text-align: left;">7777</td>
