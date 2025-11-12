@@ -128,10 +128,10 @@ General listen options supported:
 
 ejabberd can act as a stand-alone STUN/TURN server,
 and this module handles STUN/TURN requests as defined in
-([`RFC 5389`](https://tools.ietf.org/html/rfc5389)/[`RFC 5766`](https://tools.ietf.org/html/rfc5766).
+[`RFC 5389`](https://tools.ietf.org/html/rfc5389)/[`RFC 5766`](https://tools.ietf.org/html/rfc5766).
 In that role ejabberd helps clients with ICE
-([`RFC 5245`](https://tools.ietf.org/html/rfc5245) or Jingle ICE
-([`XEP-0176`](https://xmpp.org/extensions/xep-0176.html) support to
+([`RFC 5245`](https://tools.ietf.org/html/rfc5245)) or Jingle ICE
+([`XEP-0176`](https://xmpp.org/extensions/xep-0176.html)) support to
 discover their external addresses and ports and to relay media traffic
 when it is impossible to establish direct peer-to-peer connection.
 
