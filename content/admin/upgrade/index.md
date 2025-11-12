@@ -25,13 +25,13 @@ process.
 
 This is the simplest process, and require service restart.
 
-- read the corresponding [upgrade notes](#specific-version-upgrade-notes)
-- apply the required changes in database from the upgrade note.
-- stop old node
-- archive content of mnesia database directory (database, i.e. `/opt/ejabberd-XX.YY/database`, `/usr/local/var/lib/ejabberd`, ...)
-- install new version
-- extract database archive in new path
-- if systemctl is used to manage ejabberd, copy the new service file and reload systemctl:
+1. read the corresponding [upgrade notes](#specific-version-upgrade-notes)
+1. apply the required changes in database from the upgrade note.
+1. stop old node
+1. archive content of mnesia database directory (database, i.e. `/opt/ejabberd-XX.YY/database`, `/usr/local/var/lib/ejabberd`, ...)
+1. install new version
+1. extract database archive in new path
+1. if systemctl is used to manage ejabberd, copy the new service file and reload systemctl:
 ``` sh
 cp ejabberd-21.12/bin/ejabberd.service /etc/systemd/system/
 systemctl daemon-reload
@@ -44,21 +44,21 @@ systemctl daemon-reload
 This process needs you to run in cluster, with at least two nodes. In this case,
 we assume you run node A and B with version N, and will upgrade to version N+1.
 
-- read the corresponding [upgrade notes](#specific-version-upgrade-notes),
+1. read the corresponding [upgrade notes](#specific-version-upgrade-notes),
 make sure it does not explicitly states "soft upgrade is not supported".
-- apply the required changes in database from the upgrade note.
-- make sure node A is running
-- run [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster) on node B
-- stop old node B
-- install new version on B's host
-- start new node B
-- run [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) on node B, passing node A as parameter
-- make sure both nodes are running and working as expected
-- run [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster) on node A
-- stop old node A
-- install new version on A's host
-- start new node A
-- run [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) on node A, passing node B as parameter
+1. apply the required changes in database from the upgrade note.
+1. make sure node A is running
+1. run [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster) on node B
+1. stop old node B
+1. install new version on B's host
+1. start new node B
+1. run [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) on node B, passing node A as parameter
+1. make sure both nodes are running and working as expected
+1. run [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster) on node A
+1. stop old node A
+1. install new version on A's host
+1. start new node A
+1. run [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) on node A, passing node B as parameter
 
 ## Module update process
 
