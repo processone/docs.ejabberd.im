@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This page is useful only for ejabberd 25.08 and older versions.
+    This page is useful only for ejabberd versions older than 25.10.
     If you are using ejabberd 25.10 or newer,
     please consult [XEP-0317 Hats](https://xmpp.org/extensions/xep-0317.html)
     as ejabberd nowadays supports XEP-0317 0.3.1.
