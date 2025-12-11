@@ -152,9 +152,9 @@ ejabberdctl srg_create g1 example.org "'Group number 1'" this_is_g1 g1
 mod\_admin\_update\_sql
 -----------------------
 
-This module can be used to update existing SQL database from the default
-to the new schema. Check the section
-[Default and New Schemas](database.md#default-and-new-schemas) for
+This module can be used to convert your existing SQL database from the
+singlehost to the multihost schema. Check the section
+[Singlehost or Multihost](database.md#singlehost-or-multihost) for
 details. Please note that only MS SQL, MySQL, and PostgreSQL are
 supported. When the module is loaded use [update_sql](../../developer/ejabberd-api/admin-api.md#update_sql) API.
 

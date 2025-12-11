@@ -1784,7 +1784,7 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 <!-- md:version renamed in [25.10](../../archive/25.10/index.md) -->
 
 Whether to use the
-[multihost SQL schema](../../admin/configuration/database.md#default-and-new-schemas). All
+[multihost SQL schema](../../admin/configuration/database.md#singlehost-or-multihost). All
 schemas are located at
 <https://github.com/processone/ejabberd/tree/25.10/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain

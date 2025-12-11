@@ -74,7 +74,7 @@ with the [`default_db`](toplevel.md#default_db) top-level option:
 
 def:update
 : Modify the database schema and all its tables to match the installed ejabberd version.
-  Not to be confused with [upgrade ejabberd](def:upgrade) or [switch schema](def:switch).
+  Not to be confused with [upgrade ejabberd](def:upgrade) or [convert schema](def:convert).
 
 The [update_sql_schema](toplevel.md#update_sql_schema) top-level option
 allows ejabberd to create and update the tables automatically in the SQL database
@@ -103,15 +103,17 @@ The SQL database schema files are available:
 See [ejabberd SQL Database Schema](../../developer/sql-schema.md)
 for details on database schemas.
 
-## _Default_ and _New_ Schemas
+## _Singlehost_ or _Multihost_
+
+<!-- md:version renamed from default/new to singlehost/multihost in [25.10](../../archive/25.10/index.md) -->
 
 If using MySQL, PostgreSQL, Microsoft SQL or SQLite,
 you can choose between two database schemas:
 
-- the _default_ schema is preferable when serving one massive domain,
-- the _new_ schema is preferable when serving many small domains.
+- the _singlehost_ schema is preferable when serving one massive domain, or just a few domains,
+- the _multihost_ schema is preferable when serving many small domains.
 
-The _default_ schema stores only one XMPP domain in the database.
+The _singlehost_ schema stores only one XMPP domain in the database.
 The [XMPP domain](basic.md#xmpp-domains)
 is not stored as this is the same for all the accounts,
 and this saves space in massive deployments.
@@ -119,20 +121,20 @@ However, to handle several domains,
 you have to setup one database per domain
 and configure each one independently
 using [host_config](basic.md#virtual-hosting),
-so in that case you may prefer the _new_ schema.
+so in that case you may prefer the _multihost_ schema.
 
-The _new_ schema stores the XMPP domain in a new column `server_host`
+The _multihost_ schema stores the XMPP domain in a new column `server_host`
 in the database entries,
 so it allows to handle several XMPP domains in a single ejabberd database.
 Using this schema is preferable when serving several XMPP domains
 and changing domains from time to time.
-However, if you have only one massive domain, you may prefer to use the _default_ schema.
+However, if you have only one massive domain, you may prefer to use the _singlehost_ schema.
 
-To use the _new_ schema, edit the ejabberd configuration file and enable
-[new_sql_schema](toplevel.md#new_sql_schema) top-level option:
+To use the _multihost_ schema, edit the ejabberd configuration file and enable
+[sql_schema_multihost](toplevel.md#sql_schema_multihost) top-level option:
 
 ``` yaml
-new_sql_schema: true
+sql_schema_multihost: true
 ```
 
 When creating the tables, if ejabberd can use the [update_sql_schema](toplevel.md#update_sql_schema)
@@ -141,29 +143,29 @@ it will take care to create the tables with the correct schema.
 
 On the other hand, if you are creating the tables manually,
 remember to use the proper SQL schema!
-For example, if you are using MySQL and choose the _default_ schema, use `mysql.sql`.
-If you are using PostgreSQL and need the _new_ schema, use `pg.new.sql`.
+For example, if you are using MySQL and choose the _singlehost_ schema, use `mysql.sql`.
+If you are using PostgreSQL and need the _multihost_ schema, use `pg.new.sql`.
 
-def:switch
-: Change the database schema and all its tables from `default` schema to `new` schema.
+def:convert
+: Change the database schema and all its tables from `singlehost` schema to `multihost` schema.
   Not to be confused with [upgrade ejabberd](def:upgrade) or [update schema](def:update).
 
-If you already have a MySQL or PostgreSQL database with the _default_ schema and contents,
-you can switch it to the _new_ schema:
+If you already have a MySQL or PostgreSQL database with the _singlehost_ schema and contents,
+you can convert it to the _multihost_ schema:
 
 * *MySQL*:
 Edit the file `sql/mysql.old-to.new.sql` which is included with ejabberd,
 fill DEFAULT_HOST in the first line,
 and import that SQL file in your database.
-Then enable the `new_sql_schema` option in the ejabberd configuration,
+Then enable the `sql_schema_multihost` top-level option in the ejabberd configuration,
 and restart ejabberd.
 
 * *PostgreSQL*:
-First enable `new_sql_schema` and
+First enable the `sql_schema_multihost` top-level option and
 [mod_admin_update_sql](modules.md#mod_admin_update_sql)
 in your ejabberd configuration:
     ``` yaml
-    new_sql_schema: true
+    sql_schema_multihost: true
     modules:
       mod_admin_update_sql: {}
     ```
@@ -197,7 +199,7 @@ To configure SQL there are several top-level options:
 - [sql_start_interval](toplevel.md#sql_start_interval)
 - [sql_prepared_statements](toplevel.md#sql_prepared_statements)
 - [update_sql_schema](toplevel.md#update_sql_schema), see section [Database Schema](#database-schema)
-- [new_sql_schema](toplevel.md#new_sql_schema), see section [Default and New Schemas](#default-and-new-schemas)
+- [sql_schema_multihost](toplevel.md#sql_schema_multihost), see section [Singlehost or Multihost](#singlehost-or-multihost)
 
 Example of plain ODBC connection:
 

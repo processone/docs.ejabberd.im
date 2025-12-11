@@ -1087,7 +1087,7 @@ default value is `1 minute`.
 `true | false`  
 
 Whether to use the
-[new SQL schema](../../admin/configuration/database.md#default-and-new-schemas). All schemas are
+[new SQL schema](../../admin/configuration/database.md#singlehost-or-multihost). All schemas are
 located at <https://github.com/processone/ejabberd/tree/25.04/sql>.
 There are two schemas available. The default legacy schema stores one
 XMPP domain into one ejabberd database. The `new` schema can handle

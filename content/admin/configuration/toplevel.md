@@ -1795,7 +1795,7 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 <!-- md:version renamed in [25.10](../../archive/25.10/index.md) -->
 
 Whether to use the
-[multihost SQL schema](database.md#default-and-new-schemas). All
+[multihost SQL schema](database.md#singlehost-or-multihost). All
 schemas are located at
 <https://github.com/processone/ejabberd/tree/25.10/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain
@@ -1804,8 +1804,8 @@ XMPP domains in a single ejabberd database. The `multihost` schema is
 preferable when serving several XMPP domains and/or changing domains
 from time to time. This avoid need to manage several databases and
 handle complex configuration changes. The default depends on
-configuration flag `--enable-sql-schema-multihost` which is set at
-compile time.
+[./configure](../install/source.md#configure) flag
+`--enable-sql-schema-multihost` which is set at compile time.
 
 ## sql\_server
 

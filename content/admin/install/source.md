@@ -138,17 +138,15 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/s
     <!-- md:version added in [21.04](../../archive/21.04/index.md) -->
 
 - **`--enable-mssql`**: Enable Microsoft SQL Server support, this
-    option requires --enable-odbc (see [Supported storages][18]).
+    option requires --enable-odbc (see [Supported storages](../configuration/database.md#supported-storages)).
 
-- **`--enable-mysql`**: Enable MySQL support (see [Supported storages][18]).
-
-- **`--enable-new-sql-schema`**: Use new SQL schema.
+- **`--enable-mysql`**: Enable MySQL support (see [Supported storages](../configuration/database.md#supported-storages)).
 
 - **`--enable-odbc`**: Enable pure ODBC support.
 
 - **`--enable-pam`**: Enable the PAM authentication method (see [PAM Authentication](../configuration/authentication.md#pam-authentication) section).
 
-- **`--enable-pgsql`**: Enable PostgreSQL support (see [Supported storages][18]).
+- **`--enable-pgsql`**: Enable PostgreSQL support (see [Supported storages](../configuration/database.md#supported-storages)).
 
 - **`--enable-redis`**: Enable Redis support to use for external session storage.
 
@@ -156,7 +154,9 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/s
 
 - **`--enable-sip`**: Enable SIP support.
 
-- **`--enable-sqlite`**: Enable SQLite support (see [Supported storages][18]).
+- **`--enable-sql-schema-multihost`**: Use multihost SQL schema by default.
+
+- **`--enable-sqlite`**: Enable SQLite support (see [Supported storages](../configuration/database.md#supported-storages)).
 
 - **`--disable-stun`**: Disable STUN/TURN support.
 

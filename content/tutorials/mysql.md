@@ -155,13 +155,13 @@ mysql>
 ### Decide which SQL schema to use
 
 Read carefully the
-[Default and New Schemas](../admin/configuration/database.md/#default-and-new-schemas)
-section and decide which schema is preferable in your case: the default or the new schema.
+[Singlehost or Multihost](../admin/configuration/database.md/#singlehost-or-multihost)
+section and decide which schema is preferable in your case: the singlehost or the multihost schema.
 
 Then modify the `ejabberd.yml` configuration file to setup your desired option value:
 
 ``` yaml
-new_sql_schema: true
+sql_schema_multihost: true
 ```
 
 ### Use automatic schema update
@@ -185,8 +185,8 @@ no need to read the next section.
 
 ### Load database schema manually
 
-MySQL default schema is defined in a file called `mysql.sql`,
-and the new schema is `mysql.new.sql`.
+MySQL singlehost schema is defined in a file called `mysql.sql`,
+and the multihost schema is `mysql.new.sql`.
 Some tables of the schema are described in:
 [ejabberd SQL database schema documentation](../developer/sql-schema.md/).
 
@@ -356,9 +356,9 @@ configured MySQL database. For example:
 
 You should be set now.
 
-## Converting database from default to new schema
+## Converting database from singlehost to multihost schema
 
-Please check the section [Default and New Schemas](../admin/configuration/database.md/#default-and-new-schemas).
+Please check the section [Singlehost or Multihost](../admin/configuration/database.md/#singlehost-or-multihost).
 
 ## Getting further
 

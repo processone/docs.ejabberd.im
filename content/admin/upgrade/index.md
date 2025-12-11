@@ -2,12 +2,12 @@
 
 def:upgrade
 : Install a version of the program newer than the currently installed one.
-  Not to be confused with [update](def:update) or [switch schema](def:switch).
+  Not to be confused with [update](def:update) or [convert schema](def:convert).
 
 def:update
 : Modify your program installation to match the requirements of the new program version.
   This usually involves updating your configuration, your database schema, your API client, your custom modules...
-  Not to be confused with [upgrade ejabberd](def:upgrade) or [switch schema](def:switch).
+  Not to be confused with [upgrade ejabberd](def:upgrade) or [convert schema](def:convert).
 
 This document contains administration procedure for each version upgrade.
 Only upgrade from version N to N+1 is documented and supported.
