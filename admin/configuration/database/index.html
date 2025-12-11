@@ -1314,10 +1314,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#default-and-new-schemas" class="md-nav__link">
+  <a href="#singlehost-or-multihost" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Default and New Schemas
+        Singlehost or Multihost
       
     </span>
   </a>
@@ -9901,10 +9901,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#default-and-new-schemas" class="md-nav__link">
+  <a href="#singlehost-or-multihost" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Default and New Schemas
+        Singlehost or Multihost
       
     </span>
   </a>
@@ -10076,10 +10076,10 @@ with the <a href="../toplevel/#default_db"><code>default_db</code></a> top-level
     title="Install a version of the program newer than the currently installed one."
     name="def:upgrade"
     href="../../../admin/upgrade/#cc146c68becf3f398f80ad24dfd7cffe">upgrade ejabberd</a> or <a class="mkdocs-ezglossary-link"
-    id="737d91299132920ae27fbc3f0dfe405b"
-    title="Change the database schema and all its tables from default schema to new schema."
-    name="def:switch"
-    href="../../../admin/configuration/database/#d60ecdf3c9186a91803e265b995e5f5a">switch schema</a>.</p>
+    id="45a4f6d9e1ec1da790fe14b5cff62a70"
+    title="Change the database schema and all its tables from singlehost schema to multihost schema."
+    name="def:convert"
+    href="../../../admin/configuration/database/#08a0b3db54e056f6af68184e10ec29b3">convert schema</a>.</p>
 </div>
 </dl>
 <p>The <a href="../toplevel/#update_sql_schema">update_sql_schema</a> top-level option
@@ -10111,14 +10111,15 @@ The SQL database schema files are available:</p>
 </ul>
 <p>See <a href="../../../developer/sql-schema/">ejabberd SQL Database Schema</a>
 for details on database schemas.</p>
-<h2 id="default-and-new-schemas"><em>Default</em> and <em>New</em> Schemas<a class="headerlink" href="#default-and-new-schemas" title="Permanent link">&para;</a></h2>
+<h2 id="singlehost-or-multihost"><em>Singlehost</em> or <em>Multihost</em><a class="headerlink" href="#singlehost-or-multihost" title="Permanent link">&para;</a></h2>
+<p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">renamed from default/new to singlehost/multihost in <a href="../../../archive/25.10/">25.10</a></span></span></p>
 <p>If using MySQL, PostgreSQL, Microsoft SQL or SQLite,
 you can choose between two database schemas:</p>
 <ul>
-<li>the <em>default</em> schema is preferable when serving one massive domain,</li>
-<li>the <em>new</em> schema is preferable when serving many small domains.</li>
+<li>the <em>singlehost</em> schema is preferable when serving one massive domain, or just a few domains,</li>
+<li>the <em>multihost</em> schema is preferable when serving many small domains.</li>
 </ul>
-<p>The <em>default</em> schema stores only one XMPP domain in the database.
+<p>The <em>singlehost</em> schema stores only one XMPP domain in the database.
 The <a href="../basic/#xmpp-domains">XMPP domain</a>
 is not stored as this is the same for all the accounts,
 and this saves space in massive deployments.
@@ -10126,28 +10127,28 @@ However, to handle several domains,
 you have to setup one database per domain
 and configure each one independently
 using <a href="../basic/#virtual-hosting">host_config</a>,
-so in that case you may prefer the <em>new</em> schema.</p>
-<p>The <em>new</em> schema stores the XMPP domain in a new column <code>server_host</code>
+so in that case you may prefer the <em>multihost</em> schema.</p>
+<p>The <em>multihost</em> schema stores the XMPP domain in a new column <code>server_host</code>
 in the database entries,
 so it allows to handle several XMPP domains in a single ejabberd database.
 Using this schema is preferable when serving several XMPP domains
 and changing domains from time to time.
-However, if you have only one massive domain, you may prefer to use the <em>default</em> schema.</p>
-<p>To use the <em>new</em> schema, edit the ejabberd configuration file and enable
-<a href="../toplevel/#new_sql_schema">new_sql_schema</a> top-level option:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">new_sql_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+However, if you have only one massive domain, you may prefer to use the <em>singlehost</em> schema.</p>
+<p>To use the <em>multihost</em> schema, edit the ejabberd configuration file and enable
+<a href="../toplevel/#sql_schema_multihost">sql_schema_multihost</a> top-level option:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">sql_schema_multihost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
 <p>When creating the tables, if ejabberd can use the <a href="../toplevel/#update_sql_schema">update_sql_schema</a>
 top-level option as explained in the <a href="#database-schema">Database Schema</a> section,
 it will take care to create the tables with the correct schema.</p>
 <p>On the other hand, if you are creating the tables manually,
 remember to use the proper SQL schema!
-For example, if you are using MySQL and choose the <em>default</em> schema, use <code>mysql.sql</code>.
-If you are using PostgreSQL and need the <em>new</em> schema, use <code>pg.new.sql</code>.</p>
+For example, if you are using MySQL and choose the <em>singlehost</em> schema, use <code>mysql.sql</code>.
+If you are using PostgreSQL and need the <em>multihost</em> schema, use <code>pg.new.sql</code>.</p>
 <dl>
-<div class="admonition glossary-definition" id="d60ecdf3c9186a91803e265b995e5f5a">
-    <p class="admonition-title">switch</p>
-    <p>Change the database schema and all its tables from <code>default</code> schema to <code>new</code> schema.
+<div class="admonition glossary-definition" id="08a0b3db54e056f6af68184e10ec29b3">
+    <p class="admonition-title">convert</p>
+    <p>Change the database schema and all its tables from <code>singlehost</code> schema to <code>multihost</code> schema.
   Not to be confused with <a class="mkdocs-ezglossary-link"
     id="0331828197a84cdf26c349609d9fdad3"
     title="Install a version of the program newer than the currently installed one."
@@ -10159,23 +10160,23 @@ If you are using PostgreSQL and need the <em>new</em> schema, use <code>pg.new.s
     href="../../../admin/upgrade/#29159e6ad14c914e612a518aa72045c5">update schema</a>.</p>
 </div>
 </dl>
-<p>If you already have a MySQL or PostgreSQL database with the <em>default</em> schema and contents,
-you can switch it to the <em>new</em> schema:</p>
+<p>If you already have a MySQL or PostgreSQL database with the <em>singlehost</em> schema and contents,
+you can convert it to the <em>multihost</em> schema:</p>
 <ul>
 <li>
 <p><em>MySQL</em>:
 Edit the file <code>sql/mysql.old-to.new.sql</code> which is included with ejabberd,
 fill DEFAULT_HOST in the first line,
 and import that SQL file in your database.
-Then enable the <code>new_sql_schema</code> option in the ejabberd configuration,
+Then enable the <code>sql_schema_multihost</code> top-level option in the ejabberd configuration,
 and restart ejabberd.</p>
 </li>
 <li>
 <p><em>PostgreSQL</em>:
-First enable <code>new_sql_schema</code> and
+First enable the <code>sql_schema_multihost</code> top-level option and
 <a href="../modules/#mod_admin_update_sql">mod_admin_update_sql</a>
 in your ejabberd configuration:
-    <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">new_sql_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+    <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">sql_schema_multihost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">modules</span><span class="p">:</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">mod_admin_update_sql</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </span></code></pre></div>
@@ -10207,7 +10208,7 @@ the two native interface available, PostgreSQL or MySQL.</p>
 <li><a href="../toplevel/#sql_start_interval">sql_start_interval</a></li>
 <li><a href="../toplevel/#sql_prepared_statements">sql_prepared_statements</a></li>
 <li><a href="../toplevel/#update_sql_schema">update_sql_schema</a>, see section <a href="#database-schema">Database Schema</a></li>
-<li><a href="../toplevel/#new_sql_schema">new_sql_schema</a>, see section <a href="#default-and-new-schemas">Default and New Schemas</a></li>
+<li><a href="../toplevel/#sql_schema_multihost">sql_schema_multihost</a>, see section <a href="#singlehost-or-multihost">Singlehost or Multihost</a></li>
 </ul>
 <p>Example of plain ODBC connection:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">sql_server</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DSN=database;UID=ejabberd;PWD=password&quot;</span>

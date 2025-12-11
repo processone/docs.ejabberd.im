@@ -10473,7 +10473,7 @@ with UID 9000 and group <code>ejabberd</code> with GID 9000,
 and the volumes you mount must grant proper rights to that account.</p>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <h3 id="register-admin-account">Register admin account<a class="headerlink" href="#register-admin-account" title="Permanent link">&para;</a></h3>
-<h4 id="_1"><a href="https://github.com/processone/ejabberd/pkgs/container/ejabberd"><img alt="ejabberd Container" src="https://img.shields.io/badge/ejabberd-grey?logo=opencontainersinitiative&amp;logoColor=2094f3" /></a> <a href="#images-comparison"><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></a><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h4 id="_1"><a href="https://github.com/processone/ejabberd/pkgs/container/ejabberd"><img alt="ejabberd Container" src="https://img.shields.io/badge/ejabberd-grey?logo=opencontainersinitiative&amp;logoColor=2094f3" /></a> <a href="#images-comparison"><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></a><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
 <p>If you set the <code>REGISTER_ADMIN_PASSWORD</code> environment variable,
 an account is automatically registered with that password,
 and admin privileges are granted to it.
@@ -10541,11 +10541,11 @@ documentation section.</p>
 <li><code>5222</code>: The default port for XMPP clients.</li>
 <li><code>5269</code>: For XMPP federation. Only needed if you want to communicate with users on other servers.</li>
 <li><code>5280</code>: For admin interface (URL is <code>admin/</code>).</li>
-<li><code>1880</code>: For admin interface (URL is <code>/</code>, useful for <a href="https://podman-desktop.io/">podman-desktop</a> and <a href="https://www.docker.com/products/docker-desktop/">docker-desktop</a>) <a href="#images-comparison"><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></a></li>
+<li><code>1880</code>: For admin interface (URL is <code>/</code>, useful for <a href="https://podman-desktop.io/">podman-desktop</a> and <a href="https://www.docker.com/products/docker-desktop/">docker-desktop</a>) <a href="#images-comparison"><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></a></li>
 <li><code>5443</code>: With encryption, used for admin interface, API, CAPTCHA, OAuth, Websockets and XMPP BOSH.</li>
 <li><code>1883</code>: Used for MQTT</li>
 <li><code>4369-4399</code>: EPMD and Erlang connectivity, used for <code>ejabberdctl</code> and clustering</li>
-<li><code>5210</code>: Erlang connectivity when <code>ERL_DIST_PORT</code> is set, alternative to EPMD <a href="#images-comparison"><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></a></li>
+<li><code>5210</code>: Erlang connectivity when <code>ERL_DIST_PORT</code> is set, alternative to EPMD <a href="#images-comparison"><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></a></li>
 </ul>
 <h3 id="volumes">Volumes<a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h3>
 <p>ejabberd produces two types of data: log files and database spool files (Mnesia).
@@ -10595,7 +10595,7 @@ and shows the ejabberd starts (check also the <a href="#customized-example">full
 </span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">                     </span><span class="l l-Scalar l-Scalar-Plain">! change_password bot123 localhost qqq ;</span>
 </span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">                     </span><span class="l l-Scalar l-Scalar-Plain">status</span>
 </span></code></pre></div></p>
-<h3 id="macros-in-environment">Macros in environment <a href="#images-comparison"><img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f506.svg" title=":high_brightness:" /></a><a class="headerlink" href="#macros-in-environment" title="Permanent link">&para;</a></h3>
+<h3 id="macros-in-environment">Macros in environment <a href="#images-comparison"><img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f506.svg" title=":high_brightness:" /></a><a class="headerlink" href="#macros-in-environment" title="Permanent link">&para;</a></h3>
 <p>ejabberd reads <code>EJABBERD_MACRO_*</code> environment variables
 and uses them to define the corresponding
 <a href="https://docs.ejabberd.im/admin/configuration/file-format/#macros-in-configuration-file">macros</a>,
@@ -11244,10 +11244,10 @@ and start it with <code>podman kube play cluster.yml</code>:</p>
 <h2 id="images-comparison">Images Comparison<a class="headerlink" href="#images-comparison" title="Permanent link">&para;</a></h2>
 <p>Let's summarize the differences between both container images. Legend:</p>
 <ul>
-<li><img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> is the recommended alternative</li>
-<li><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /> added in the latest release (ejabberd 25.03)</li>
-<li><img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f506.svg" title=":high_brightness:" /> added in the previous release (ejabberd 24.12)</li>
-<li><img alt="🔅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f505.svg" title=":low_brightness:" /> added in the pre-previous release (ejabberd 24.10)</li>
+<li><img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> is the recommended alternative</li>
+<li><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /> added in the latest release (ejabberd 25.03)</li>
+<li><img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f506.svg" title=":high_brightness:" /> added in the previous release (ejabberd 24.12)</li>
+<li><img alt="🔅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f505.svg" title=":low_brightness:" /> added in the pre-previous release (ejabberd 24.10)</li>
 </ul>
 <table>
 <thead>
@@ -11289,7 +11289,7 @@ and start it with <code>podman kube play cluster.yml</code>:</p>
 <td style="text-align: left;"><a href="https://hub.docker.com/r/ejabberd/ecs/">docker.io/ejabberd/ecs</a> <br /> <a href="https://github.com/processone/docker-ejabberd/pkgs/container/ecs">ghcr.io/processone/ecs</a></td>
 </tr>
 <tr>
-<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Additional content</strong></td>
+<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Additional content</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -11300,26 +11300,26 @@ and start it with <code>podman kube play cluster.yml</code>:</p>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="#ejabberdapi">ejabberdapi</a></td>
-<td style="text-align: left;">included <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">included <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 <td style="text-align: left;">included</td>
 </tr>
 <tr>
-<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Ports</strong></td>
+<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Ports</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="#ports">1880</a> for WebAdmin</td>
-<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
-<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="#ports">5210</a> for <code>ERL_DIST_PORT</code></td>
 <td style="text-align: left;">supported</td>
-<td style="text-align: left;">supported <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">supported <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 </tr>
 <tr>
-<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Paths</strong></td>
+<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Paths</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
@@ -11330,57 +11330,57 @@ and start it with <code>podman kube play cluster.yml</code>:</p>
 </tr>
 <tr>
 <td style="text-align: left;">User data</td>
-<td style="text-align: left;"><code>$HOME</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <br /> <code>/home/ejabberd/</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
-<td style="text-align: left;"><code>$HOME</code> <br /> <code>/opt/ejabberd/</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🔅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f505.svg" title=":low_brightness:" /></td>
+<td style="text-align: left;"><code>$HOME</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <br /> <code>/home/ejabberd/</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>$HOME</code> <br /> <code>/opt/ejabberd/</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🔅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f505.svg" title=":low_brightness:" /></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>ejabberdctl</code></td>
-<td style="text-align: left;"><code>ejabberdctl</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <br /> <code>bin/ejabberdctl</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
-<td style="text-align: left;"><code>bin/ejabberdctl</code> <br /> <code>ejabberdctl</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🔅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f505.svg" title=":low_brightness:" /></td>
+<td style="text-align: left;"><code>ejabberdctl</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <br /> <code>bin/ejabberdctl</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>bin/ejabberdctl</code> <br /> <code>ejabberdctl</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🔅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f505.svg" title=":low_brightness:" /></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="#captcha"><code>captcha.sh</code></a></td>
-<td style="text-align: left;"><code>$HOME/bin/captcha.sh</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
-<td style="text-align: left;"><code>$HOME/bin/captcha.sh</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>$HOME/bin/captcha.sh</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>$HOME/bin/captcha.sh</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>*.sql</code> files</td>
-<td style="text-align: left;"><code>$HOME/sql/*.sql</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /> <br />  <code>$HOME/database/*.sql</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
-<td style="text-align: left;"><code>$HOME/database/*.sql</code> <br /> <code>$HOME/sql/*.sql</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>$HOME/sql/*.sql</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /> <br />  <code>$HOME/database/*.sql</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>$HOME/database/*.sql</code> <br /> <code>$HOME/sql/*.sql</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 </tr>
 <tr>
 <td style="text-align: left;">Mnesia spool files</td>
-<td style="text-align: left;"><code>$HOME/database/</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <br /> <code>$HOME/database/NODENAME/</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
-<td style="text-align: left;"><code>$HOME/database/NODENAME/</code> <br /> <code>$HOME/database/</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>$HOME/database/</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <br /> <code>$HOME/database/NODENAME/</code> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;"><code>$HOME/database/NODENAME/</code> <br /> <code>$HOME/database/</code> <img alt="❇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2747.svg" title=":sparkle:" /> <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 </tr>
 <tr>
-<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Variables</strong></td>
+<td style="text-align: left;"><img alt="🔲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f532.svg" title=":black_square_button:" /> <strong>Variables</strong></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="#macros-in-environment"><code>EJABBERD_MACRO_*</code></a></td>
-<td style="text-align: left;">supported <img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f506.svg" title=":high_brightness:" /></td>
-<td style="text-align: left;">supported <img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f506.svg" title=":high_brightness:" /></td>
+<td style="text-align: left;">supported <img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f506.svg" title=":high_brightness:" /></td>
+<td style="text-align: left;">supported <img alt="🔆" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f506.svg" title=":high_brightness:" /></td>
 </tr>
 <tr>
 <td style="text-align: left;">Macros used in <code>ejabberd.yml</code></td>
-<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
-<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">yes <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="#register-admin-account"><code>EJABBERD_MACRO_ADMIN</code></a></td>
-<td style="text-align: left;">Grant admin rights <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /> <br /> (default <code>admin@localhost</code>) <br /></td>
+<td style="text-align: left;">Grant admin rights <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /> <br /> (default <code>admin@localhost</code>) <br /></td>
 <td style="text-align: left;">Hardcoded <code>admin@localhost</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><a href="#register-admin-account"><code>REGISTER_ADMIN_PASSWORD</code></a></td>
-<td style="text-align: left;">Register admin account <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">Register admin account <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 <td style="text-align: left;">unsupported</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>CTL_OVER_HTTP</code></td>
-<td style="text-align: left;">enabled <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
+<td style="text-align: left;">enabled <img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f7e0.svg" title=":orange_circle:" /></td>
 <td style="text-align: left;">unsupported</td>
 </tr>
 </tbody>

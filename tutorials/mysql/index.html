@@ -2107,10 +2107,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#converting-database-from-default-to-new-schema" class="md-nav__link">
+  <a href="#converting-database-from-singlehost-to-multihost-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Converting database from default to new schema
+        Converting database from singlehost to multihost schema
       
     </span>
   </a>
@@ -10168,10 +10168,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#converting-database-from-default-to-new-schema" class="md-nav__link">
+  <a href="#converting-database-from-singlehost-to-multihost-schema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Converting database from default to new schema
+        Converting database from singlehost to multihost schema
       
     </span>
   </a>
@@ -10309,10 +10309,10 @@ created earlier):</p>
 </span></code></pre></div>
 <h3 id="decide-which-sql-schema-to-use">Decide which SQL schema to use<a class="headerlink" href="#decide-which-sql-schema-to-use" title="Permanent link">&para;</a></h3>
 <p>Read carefully the
-<a href="../../admin/configuration/database/#default-and-new-schemas">Default and New Schemas</a>
-section and decide which schema is preferable in your case: the default or the new schema.</p>
+<a href="../../admin/configuration/database/#singlehost-or-multihost">Singlehost or Multihost</a>
+section and decide which schema is preferable in your case: the singlehost or the multihost schema.</p>
 <p>Then modify the <code>ejabberd.yml</code> configuration file to setup your desired option value:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">new_sql_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">sql_schema_multihost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
 <h3 id="use-automatic-schema-update">Use automatic schema update<a class="headerlink" href="#use-automatic-schema-update" title="Permanent link">&para;</a></h3>
 <p>Since ejabberd <a href="../../archive/23.10/">23.10</a>,
@@ -10326,8 +10326,8 @@ and also takes care to update the database schema when you upgrade ejabberd to a
 <p>In that case, you don't need to load the database schema manually:
 no need to read the next section.</p>
 <h3 id="load-database-schema-manually">Load database schema manually<a class="headerlink" href="#load-database-schema-manually" title="Permanent link">&para;</a></h3>
-<p>MySQL default schema is defined in a file called <code>mysql.sql</code>,
-and the new schema is <code>mysql.new.sql</code>.
+<p>MySQL singlehost schema is defined in a file called <code>mysql.sql</code>,
+and the multihost schema is <code>mysql.new.sql</code>.
 Some tables of the schema are described in:
 <a href="../../developer/sql-schema/">ejabberd SQL database schema documentation</a>.</p>
 <p>Those schema files can be found:</p>
@@ -10468,8 +10468,8 @@ configured MySQL database. For example:</p>
 </li>
 </ol>
 <p>You should be set now.</p>
-<h2 id="converting-database-from-default-to-new-schema">Converting database from default to new schema<a class="headerlink" href="#converting-database-from-default-to-new-schema" title="Permanent link">&para;</a></h2>
-<p>Please check the section <a href="../../admin/configuration/database/#default-and-new-schemas">Default and New Schemas</a>.</p>
+<h2 id="converting-database-from-singlehost-to-multihost-schema">Converting database from singlehost to multihost schema<a class="headerlink" href="#converting-database-from-singlehost-to-multihost-schema" title="Permanent link">&para;</a></h2>
+<p>Please check the section <a href="../../admin/configuration/database/#singlehost-or-multihost">Singlehost or Multihost</a>.</p>
 <h2 id="getting-further">Getting further<a class="headerlink" href="#getting-further" title="Permanent link">&para;</a></h2>
 <p>To get further you can read the ejabberd Configuration section about
 <a href="../../admin/configuration/database/">Databases</a>.</p>
