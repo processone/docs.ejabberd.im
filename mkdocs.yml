@@ -243,6 +243,7 @@ nav:
     - Architecture: developer/extending-ejabberd/architecture.md
     - Clustering: admin/guide/clustering.md
     - Dependencies: developer/repositories.md
+    - Distribution: admin/guide/distribution.md
     - Managing: admin/guide/managing.md
     - Modules / Contrib: admin/guide/modules.md
     - Security: admin/guide/security.md

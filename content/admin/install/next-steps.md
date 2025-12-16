@@ -46,7 +46,7 @@ Or if you have a `systemd` distribution:
 When ejabberd is started, the processes that are started in the system
 are `beam` or `beam.smp`, and also `epmd`. For more information
 regarding `epmd` consult the section relating to
-[epmd](../guide/security.md#epmd).
+[epmd](../guide/distribution.md#epmd).
 
 ## Administration Account
 

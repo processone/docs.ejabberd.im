@@ -15,7 +15,7 @@ With `ejabberdctl` you can execute:
 
 `ejabberdctl` can connect to a local ejabberd server,
 and even remote ones if you properly set the
-[erlang cookie](security.md#erlang-cookie)
+[erlang cookie](distribution.md#cookie)
 and provide the argument `–node NODENAME`.
 
 The `ejabberdctl` script can be configured in the file
@@ -139,11 +139,7 @@ user    0m1,377s
 sys     0m0,566s
 ```
 
-## ejabberd Commands
-
-Please go to the [API](../../developer/ejabberd-api/index.md) section.
-
-## Erlang Runtime System
+### Erlang Runtime System
 
 ejabberd is an Erlang/OTP application that runs inside an Erlang
 runtime system. This system is configured using environment variables
@@ -155,75 +151,75 @@ variables and command line parameters.
 
 The environment variables:
 
-**`EJABBERD_CONFIG_PATH`**:   Path to the ejabberd configuration file.
+- `EJABBERD_CONFIG_PATH`:   Path to the ejabberd configuration file.
 
-**`EJABBERD_MSGS_PATH`**:   Path to the directory with translated strings.
+- `EJABBERD_MSGS_PATH`:   Path to the directory with translated strings.
 
-**`EJABBERD_LOG_PATH`**:   Path to the ejabberd service log file.
+- `EJABBERD_LOG_PATH`:   Path to the ejabberd service log file.
 
-**`EJABBERD_SO_PATH`**:   Path to the directory with binary system libraries.
+- `EJABBERD_SO_PATH`:   Path to the directory with binary system libraries.
 
-**`EJABBERD_PID_PATH`**:   Path to the PID file that ejabberd can create when started.
+- `EJABBERD_PID_PATH`:   Path to the PID file that ejabberd can create when started.
 
-**`HOME`**:   Path to the directory that is considered ejabberd’s home. This
+- `HOME`:   Path to the directory that is considered ejabberd’s home. This
  path is used to read the file `.erlang.cookie`.
 
-**`ERL_CRASH_DUMP`**:   Path to the file where crash reports will be dumped.
+- `ERL_CRASH_DUMP`:   Path to the file where crash reports will be dumped.
 
-**`ERL_EPMD_ADDRESS`**:   IP address where epmd listens for connections (see [epmd](security.md#epmd)).
+- `ERL_EPMD_ADDRESS`:   IP address where epmd listens for connections (see [epmd](distribution.md#epmd)).
 
-**`ERL_INETRC`**:   Indicates which IP name resolution to use. If using `-sname`,
+- `ERL_INETRC`:   Indicates which IP name resolution to use. If using `-sname`,
  specify either this option or `-kernel inetrc filepath`.
 
-**`ERL_MAX_PORTS`**:   Maximum number of simultaneously open Erlang ports.
+- `ERL_MAX_PORTS`:   Maximum number of simultaneously open Erlang ports.
 
-**`ERL_MAX_ETS_TABLES`**:   Maximum number of ETS and Mnesia tables.
+- `ERL_MAX_ETS_TABLES`:   Maximum number of ETS and Mnesia tables.
 
 The command line parameters:
 
-**`-sname ejabberd`**:   The Erlang node will be identified using only the first part of the
+- `-sname ejabberd`:   The Erlang node will be identified using only the first part of the
  host name, i.e. other Erlang nodes outside this domain cannot
  contact this node. This is the preferable option in most cases.
 
-**`-name ejabberd`**:   The Erlang node will be fully identified. This is only useful if you
+- `-name ejabberd`:   The Erlang node will be fully identified. This is only useful if you
  plan to setup an ejabberd cluster with nodes in different
  networks.
 
-**`-kernel inetrc ’/etc/ejabberd/inetrc’`**:   Indicates which IP name resolution to use. If using `-sname`,
+- `-kernel inetrc ’/etc/ejabberd/inetrc’`:   Indicates which IP name resolution to use. If using `-sname`,
  specify either this option or `ERL_INETRC`.
 
-**`-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210`**:   Define the first and last ports that `epmd` can listen to
- (see [epmd](security.md#epmd)).
+- `-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210`:   Define the first and last ports that `epmd` can listen to
+ (see [epmd](distribution.md#epmd)).
 
-**`-kernel inet_dist_use_interface { 127,0,0,1 }`**:   Define the IP address where this Erlang node listens for other nodes
- connections (see [epmd](security.md#epmd)).
+- `-kernel inet_dist_use_interface { 127,0,0,1 }`:   Define the IP address where this Erlang node listens for other nodes
+ connections (see [epmd](distribution.md#epmd)).
 
-**`-detached`**:   Starts the Erlang system detached from the system console. Useful
+- `-detached`:   Starts the Erlang system detached from the system console. Useful
  for running daemons and background processes.
 
-**`-noinput`**:   Ensures that the Erlang system never tries to read any input. Useful
+- `-noinput`:   Ensures that the Erlang system never tries to read any input. Useful
  for running daemons and background processes.
 
-**`-pa /var/lib/ejabberd/ebin`**:   Specify the directory where Erlang binary files (\*.beam) are
+- `-pa /var/lib/ejabberd/ebin`:   Specify the directory where Erlang binary files (\*.beam) are
  located.
 
-**`-s ejabberd`**:   Tell Erlang runtime system to start the ejabberd application.
+- `-s ejabberd`:   Tell Erlang runtime system to start the ejabberd application.
 
-**`-mnesia dir ’/var/lib/ejabberd/’`**:   Specify the Mnesia database directory.
+- `-mnesia dir ’/var/lib/ejabberd/’`:   Specify the Mnesia database directory.
 
-**`-sasl sasl_error_logger {file, /var/log/ejabberd/erlang.log}`**:   Path to the Erlang/OTP system log file. SASL here means “System
+- `-sasl sasl_error_logger {file, /var/log/ejabberd/erlang.log}`:   Path to the Erlang/OTP system log file. SASL here means “System
  Architecture Support Libraries” not “Simple Authentication and
  Security Layer”.
 
-**`+K [true|false]`**:   Kernel polling.
+- `+K [true|false]`:   Kernel polling.
 
-**`-smp [auto|enable|disable]`**:   SMP support.
+- `-smp [auto|enable|disable]`:   SMP support.
 
-**`+P 250000`**:   Maximum number of Erlang processes.
+- `+P 250000`:   Maximum number of Erlang processes.
 
-**`-remsh ejabberd@localhost`**:   Open an Erlang shell in a remote Erlang node.
+- `-remsh ejabberd@localhost`:   Open an Erlang shell in a remote Erlang node.
 
-**`-hidden`**:   The connections to other nodes are hidden (not published). The
+- `-hidden`:   The connections to other nodes are hidden (not published). The
  result is that this node is not considered part of the cluster. This
  is important when starting a temporary `ctl` or `debug` node.
 
@@ -371,14 +367,21 @@ host_config:
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
+TODO
 
 ### Developer: Add Pages
 
+TODO
 
 ### Developer: Use Commands
 
 <!-- md:version added in [24.06](../../archive/24.06/index.md) -->
 
+TODO
+
+## ejabberd Commands
+
+Please go to the [API](../../developer/ejabberd-api/index.md) section.
 
 ## Ad-hoc Commands
 
@@ -388,7 +391,7 @@ If you enable [mod_configure](../configuration/modules.md#mod_configure) and [mo
 
 ejabberd uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
-Erlang node in it (see section [Erlang Node Name](security.md#erlang-node-name)). The name of an Erlang node
+Erlang node in it (see section [Erlang Node Name](distribution.md#node-name)). The name of an Erlang node
 includes the hostname of the computer. So, the name of the Erlang node
 changes if you change the name of the machine in which ejabberd runs,
 or when you move ejabberd to a different machine.
