@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1693,6 +1693,8 @@
       
         
       
+        
+      
     
     
     
@@ -1816,6 +1818,34 @@
     
   
     Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guide/distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distribution
   
 
     
@@ -10292,7 +10322,7 @@ please consult how to use <a href="#rebar-with-old-erlang">rebar with old Erlang
 <li>
 <p><strong><code>--enable-user[=USER]</code></strong>: Allow this normal system user to execute the ejabberdctl script (see section <a href="../../guide/managing/#ejabberdctl">ejabberdctl</a>), read the configuration files, read and write in the spool directory, read and  write in the log directory.
 The account user and group must exist in  the machine before running <code>make install</code>.
-This account needs a HOME directory, because the <a href="../../guide/security/#erlang-cookie">Erlang cookie file</a> will be created and read there.</p>
+This account needs a HOME directory, because the <a href="../../guide/distribution/#cookie">Erlang cookie file</a> will be created and read there.</p>
 </li>
 <li>
 <p><strong><code>--enable-group[=GROUP]</code></strong>: Use this option additionally to <code>--enable-user</code>
@@ -10441,7 +10471,7 @@ This account needs a HOME directory, because the <a href="../../guide/security/#
 <li>
 <p><code>/var/lib/ejabberd/</code>: Spool directory:</p>
 <ul>
-<li><code>.erlang.cookie</code>: The <a href="../../guide/security/#erlang-cookie">Erlang cookie file</a></li>
+<li><code>.erlang.cookie</code>: The <a href="../../guide/distribution/#cookie">Erlang cookie file</a></li>
 <li><code>acl.DCD, ...</code>: Mnesia database spool files (*.DCD, *.DCL, *.DAT)</li>
 </ul>
 </li>
@@ -10780,10 +10810,10 @@ start and stop ejabberd. Some examples, depending on your installation method:</
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

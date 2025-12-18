@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://docs.ejabberd.im/admin/guide/managing/">
       
       
-        <link rel="prev" href="../../../developer/repositories/">
+        <link rel="prev" href="../distribution/">
       
       
         <link rel="next" href="../modules/">
@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1414,6 +1414,8 @@
       
         
       
+        
+      
     
     
     
@@ -1557,6 +1559,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distribution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1666,23 +1696,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ejabberd-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ejabberd Commands
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#erlang-runtime-system" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1690,6 +1704,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1773,6 +1792,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejabberd-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ejabberd Commands
+      
+    </span>
+  </a>
   
 </li>
       
@@ -9957,23 +9987,7 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ejabberd-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ejabberd Commands
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#erlang-runtime-system" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9981,6 +9995,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -10068,6 +10087,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ejabberd-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ejabberd Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ad-hoc-commands" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10130,7 +10160,7 @@
 </ul>
 <p><code>ejabberdctl</code> can connect to a local ejabberd server,
 and even remote ones if you properly set the
-<a href="../security/#erlang-cookie">erlang cookie</a>
+<a href="../distribution/#cookie">erlang cookie</a>
 and provide the argument <code>–node NODENAME</code>.</p>
 <p>The <code>ejabberdctl</code> script can be configured in the file
 <code>ejabberdctl.cfg</code>. This file includes detailed information about each
@@ -10241,9 +10271,7 @@ shows the <code>ejabberdctl commands</code> described below and all the
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>user<span class="w">    </span>0m1,377s
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>sys<span class="w">     </span>0m0,566s
 </span></code></pre></div>
-<h2 id="ejabberd-commands">ejabberd Commands<a class="headerlink" href="#ejabberd-commands" title="Permanent link">&para;</a></h2>
-<p>Please go to the <a href="../../../developer/ejabberd-api/">API</a> section.</p>
-<h2 id="erlang-runtime-system">Erlang Runtime System<a class="headerlink" href="#erlang-runtime-system" title="Permanent link">&para;</a></h2>
+<h3 id="erlang-runtime-system">Erlang Runtime System<a class="headerlink" href="#erlang-runtime-system" title="Permanent link">&para;</a></h3>
 <p>ejabberd is an Erlang/OTP application that runs inside an Erlang
 runtime system. This system is configured using environment variables
 and command line parameters. The <code>ejabberdctl</code> administration script
@@ -10252,50 +10280,108 @@ the file <code>ejabberdctl.cfg</code>, which includes detailed description about
 them. This section describes for reference purposes all the environment
 variables and command line parameters.</p>
 <p>The environment variables:</p>
-<p><strong><code>EJABBERD_CONFIG_PATH</code></strong>:   Path to the ejabberd configuration file.</p>
-<p><strong><code>EJABBERD_MSGS_PATH</code></strong>:   Path to the directory with translated strings.</p>
-<p><strong><code>EJABBERD_LOG_PATH</code></strong>:   Path to the ejabberd service log file.</p>
-<p><strong><code>EJABBERD_SO_PATH</code></strong>:   Path to the directory with binary system libraries.</p>
-<p><strong><code>EJABBERD_PID_PATH</code></strong>:   Path to the PID file that ejabberd can create when started.</p>
-<p><strong><code>HOME</code></strong>:   Path to the directory that is considered ejabberd’s home. This
+<ul>
+<li>
+<p><code>EJABBERD_CONFIG_PATH</code>:   Path to the ejabberd configuration file.</p>
+</li>
+<li>
+<p><code>EJABBERD_MSGS_PATH</code>:   Path to the directory with translated strings.</p>
+</li>
+<li>
+<p><code>EJABBERD_LOG_PATH</code>:   Path to the ejabberd service log file.</p>
+</li>
+<li>
+<p><code>EJABBERD_SO_PATH</code>:   Path to the directory with binary system libraries.</p>
+</li>
+<li>
+<p><code>EJABBERD_PID_PATH</code>:   Path to the PID file that ejabberd can create when started.</p>
+</li>
+<li>
+<p><code>HOME</code>:   Path to the directory that is considered ejabberd’s home. This
  path is used to read the file <code>.erlang.cookie</code>.</p>
-<p><strong><code>ERL_CRASH_DUMP</code></strong>:   Path to the file where crash reports will be dumped.</p>
-<p><strong><code>ERL_EPMD_ADDRESS</code></strong>:   IP address where epmd listens for connections (see <a href="../security/#epmd">epmd</a>).</p>
-<p><strong><code>ERL_INETRC</code></strong>:   Indicates which IP name resolution to use. If using <code>-sname</code>,
+</li>
+<li>
+<p><code>ERL_CRASH_DUMP</code>:   Path to the file where crash reports will be dumped.</p>
+</li>
+<li>
+<p><code>ERL_EPMD_ADDRESS</code>:   IP address where epmd listens for connections (see <a href="../distribution/#epmd">epmd</a>).</p>
+</li>
+<li>
+<p><code>ERL_INETRC</code>:   Indicates which IP name resolution to use. If using <code>-sname</code>,
  specify either this option or <code>-kernel inetrc filepath</code>.</p>
-<p><strong><code>ERL_MAX_PORTS</code></strong>:   Maximum number of simultaneously open Erlang ports.</p>
-<p><strong><code>ERL_MAX_ETS_TABLES</code></strong>:   Maximum number of ETS and Mnesia tables.</p>
+</li>
+<li>
+<p><code>ERL_MAX_PORTS</code>:   Maximum number of simultaneously open Erlang ports.</p>
+</li>
+<li>
+<p><code>ERL_MAX_ETS_TABLES</code>:   Maximum number of ETS and Mnesia tables.</p>
+</li>
+</ul>
 <p>The command line parameters:</p>
-<p><strong><code>-sname ejabberd</code></strong>:   The Erlang node will be identified using only the first part of the
+<ul>
+<li>
+<p><code>-sname ejabberd</code>:   The Erlang node will be identified using only the first part of the
  host name, i.e. other Erlang nodes outside this domain cannot
  contact this node. This is the preferable option in most cases.</p>
-<p><strong><code>-name ejabberd</code></strong>:   The Erlang node will be fully identified. This is only useful if you
+</li>
+<li>
+<p><code>-name ejabberd</code>:   The Erlang node will be fully identified. This is only useful if you
  plan to setup an ejabberd cluster with nodes in different
  networks.</p>
-<p><strong><code>-kernel inetrc ’/etc/ejabberd/inetrc’</code></strong>:   Indicates which IP name resolution to use. If using <code>-sname</code>,
+</li>
+<li>
+<p><code>-kernel inetrc ’/etc/ejabberd/inetrc’</code>:   Indicates which IP name resolution to use. If using <code>-sname</code>,
  specify either this option or <code>ERL_INETRC</code>.</p>
-<p><strong><code>-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210</code></strong>:   Define the first and last ports that <code>epmd</code> can listen to
- (see <a href="../security/#epmd">epmd</a>).</p>
-<p><strong><code>-kernel inet_dist_use_interface { 127,0,0,1 }</code></strong>:   Define the IP address where this Erlang node listens for other nodes
- connections (see <a href="../security/#epmd">epmd</a>).</p>
-<p><strong><code>-detached</code></strong>:   Starts the Erlang system detached from the system console. Useful
+</li>
+<li>
+<p><code>-kernel inet_dist_listen_min 4200 inet_dist_listen_min 4210</code>:   Define the first and last ports that <code>epmd</code> can listen to
+ (see <a href="../distribution/#epmd">epmd</a>).</p>
+</li>
+<li>
+<p><code>-kernel inet_dist_use_interface { 127,0,0,1 }</code>:   Define the IP address where this Erlang node listens for other nodes
+ connections (see <a href="../distribution/#epmd">epmd</a>).</p>
+</li>
+<li>
+<p><code>-detached</code>:   Starts the Erlang system detached from the system console. Useful
  for running daemons and background processes.</p>
-<p><strong><code>-noinput</code></strong>:   Ensures that the Erlang system never tries to read any input. Useful
+</li>
+<li>
+<p><code>-noinput</code>:   Ensures that the Erlang system never tries to read any input. Useful
  for running daemons and background processes.</p>
-<p><strong><code>-pa /var/lib/ejabberd/ebin</code></strong>:   Specify the directory where Erlang binary files (*.beam) are
+</li>
+<li>
+<p><code>-pa /var/lib/ejabberd/ebin</code>:   Specify the directory where Erlang binary files (*.beam) are
  located.</p>
-<p><strong><code>-s ejabberd</code></strong>:   Tell Erlang runtime system to start the ejabberd application.</p>
-<p><strong><code>-mnesia dir ’/var/lib/ejabberd/’</code></strong>:   Specify the Mnesia database directory.</p>
-<p><strong><code>-sasl sasl_error_logger {file, /var/log/ejabberd/erlang.log}</code></strong>:   Path to the Erlang/OTP system log file. SASL here means “System
+</li>
+<li>
+<p><code>-s ejabberd</code>:   Tell Erlang runtime system to start the ejabberd application.</p>
+</li>
+<li>
+<p><code>-mnesia dir ’/var/lib/ejabberd/’</code>:   Specify the Mnesia database directory.</p>
+</li>
+<li>
+<p><code>-sasl sasl_error_logger {file, /var/log/ejabberd/erlang.log}</code>:   Path to the Erlang/OTP system log file. SASL here means “System
  Architecture Support Libraries” not “Simple Authentication and
  Security Layer”.</p>
-<p><strong><code>+K [true|false]</code></strong>:   Kernel polling.</p>
-<p><strong><code>-smp [auto|enable|disable]</code></strong>:   SMP support.</p>
-<p><strong><code>+P 250000</code></strong>:   Maximum number of Erlang processes.</p>
-<p><strong><code>-remsh ejabberd@localhost</code></strong>:   Open an Erlang shell in a remote Erlang node.</p>
-<p><strong><code>-hidden</code></strong>:   The connections to other nodes are hidden (not published). The
+</li>
+<li>
+<p><code>+K [true|false]</code>:   Kernel polling.</p>
+</li>
+<li>
+<p><code>-smp [auto|enable|disable]</code>:   SMP support.</p>
+</li>
+<li>
+<p><code>+P 250000</code>:   Maximum number of Erlang processes.</p>
+</li>
+<li>
+<p><code>-remsh ejabberd@localhost</code>:   Open an Erlang shell in a remote Erlang node.</p>
+</li>
+<li>
+<p><code>-hidden</code>:   The connections to other nodes are hidden (not published). The
  result is that this node is not considered part of the cluster. This
  is important when starting a temporary <code>ctl</code> or <code>debug</code> node.</p>
+</li>
+</ul>
 <p>Note that some characters need to be escaped when used in shell scripts,
 for instance <code>"</code> and <code>{}</code>. You can find other options in the Erlang
 manual page (<code>erl -man erl</code>).</p>
@@ -10423,15 +10509,20 @@ only to one or some vhosts.</p>
 </span></code></pre></div>
 <h3 id="commands-permissions">Commands permissions<a class="headerlink" href="#commands-permissions" title="Permanent link">&para;</a></h3>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/24.06/">24.06</a></span></span></p>
+<p>TODO</p>
 <h3 id="developer-add-pages">Developer: Add Pages<a class="headerlink" href="#developer-add-pages" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
 <h3 id="developer-use-commands">Developer: Use Commands<a class="headerlink" href="#developer-use-commands" title="Permanent link">&para;</a></h3>
 <p><span class="mdx-badge"><span class="mdx-badge__icon"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5"/></svg></span></span> <span class="mdx-badge__text">added in <a href="../../../archive/24.06/">24.06</a></span></span></p>
+<p>TODO</p>
+<h2 id="ejabberd-commands">ejabberd Commands<a class="headerlink" href="#ejabberd-commands" title="Permanent link">&para;</a></h2>
+<p>Please go to the <a href="../../../developer/ejabberd-api/">API</a> section.</p>
 <h2 id="ad-hoc-commands">Ad-hoc Commands<a class="headerlink" href="#ad-hoc-commands" title="Permanent link">&para;</a></h2>
 <p>If you enable <a href="../../configuration/modules/#mod_configure">mod_configure</a> and <a href="../../configuration/modules/#mod_adhoc">mod_adhoc</a>, you can perform several administrative tasks in ejabberd with an XMPP client. The client must support Ad-Hoc Commands (<a href="https://xmpp.org/extensions/xep-0050.html"><code>XEP-0050</code></a>), and you must login in the XMPP server with an account with proper privileges.</p>
 <h2 id="change-computer-hostname">Change Computer Hostname<a class="headerlink" href="#change-computer-hostname" title="Permanent link">&para;</a></h2>
 <p>ejabberd uses the distributed Mnesia database. Being distributed,
 Mnesia enforces consistency of its file, so it stores the name of the
-Erlang node in it (see section <a href="../security/#erlang-node-name">Erlang Node Name</a>). The name of an Erlang node
+Erlang node in it (see section <a href="../distribution/#node-name">Erlang Node Name</a>). The name of an Erlang node
 includes the hostname of the computer. So, the name of the Erlang node
 changes if you change the name of the machine in which ejabberd runs,
 or when you move ejabberd to a different machine.</p>
@@ -10549,7 +10640,7 @@ node name. If you don’t know them, look for them by executing
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../../developer/repositories/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Dependencies">
+          <a href="../distribution/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distribution">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -10559,7 +10650,7 @@ node name. If you don’t know them, look for them by executing
                 Previous
               </span>
               <div class="md-ellipsis">
-                Dependencies
+                Distribution
               </div>
             </div>
           </a>
@@ -10655,10 +10746,10 @@ node name. If you don’t know them, look for them by executing
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
