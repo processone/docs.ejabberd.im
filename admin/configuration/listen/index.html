@@ -10378,7 +10378,7 @@ section of an <code>ejabberd_http</code> listener:</p>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5280</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">module</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ejabberd_http</span>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nt">request_handlers</span><span class="p">:</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">      </span><span class="nt">/xmpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ejabberd_http_ws</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">      </span><span class="nt">/websocket</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ejabberd_http_ws</span>
 </span></code></pre></div>
 <p>This module can be configured using those top-level options:</p>
 <ul>
@@ -10388,7 +10388,7 @@ section of an <code>ejabberd_http</code> listener:</p>
 </ul>
 <h4 id="websocket-discovery">WebSocket Discovery<a class="headerlink" href="#websocket-discovery" title="Permanent link">&para;</a></h4>
 <p>With the example configuration previously mentioned,
-the WebSocket URL would be: <code>ws://localhost:5280/xmpp</code></p>
+the WebSocket URL would be: <code>ws://localhost:5280/websocket</code></p>
 <p>You may want to provide a <code>host-meta</code> file so clients can
 easily discover WebSocket service for your XMPP domain
 (see <a href="https://xmpp.org/extensions/xep-0156.html#http">XEP-0156</a>).
