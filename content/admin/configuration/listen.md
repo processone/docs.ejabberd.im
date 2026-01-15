@@ -371,7 +371,7 @@ listen:
     port: 5280
     module: ejabberd_http
     request_handlers:
-      /xmpp: ejabberd_http_ws
+      /websocket: ejabberd_http_ws
 ```
 
 This module can be configured using those top-level options:
@@ -383,7 +383,7 @@ This module can be configured using those top-level options:
 #### WebSocket Discovery
 
 With the example configuration previously mentioned,
-the WebSocket URL would be: `ws://localhost:5280/xmpp`
+the WebSocket URL would be: `ws://localhost:5280/websocket`
 
 You may want to provide a `host-meta` file so clients can
 easily discover WebSocket service for your XMPP domain
