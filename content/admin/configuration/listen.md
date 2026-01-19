@@ -331,16 +331,30 @@ Handles incoming HTTP connections.
 
 With the proper request handlers configured, this serves HTTP services like
 [ACME](basic.md#acme),
-[API](modules.md#mod_http_api),
+[API ReST](modules.md#mod_http_api),
 [BOSH](modules.md#mod_bosh),
 [CAPTCHA](basic.md#captcha),
+[Converse.js](modules.md#mod_conversejs),
 [Fileserver](modules.md#mod_http_fileserver),
+[Matrix](modules.md#mod_matrix_gw),
 [OAuth](../../developer/ejabberd-api/oauth.md),
 [RegisterWeb](modules.md#mod_register_web),
 [Upload](modules.md#mod_http_upload),
 [WebAdmin](../guide/managing.md#web-admin),
 [WebSocket](#ejabberd_http_ws),
-[XML-RPC](#ejabberd_xmlrpc).
+[XML-RPC](#ejabberd_xmlrpc),
+[XMPP Provider](modules.md#mod_providers),
+[XMPP `host-meta`](modules.md#mod_host_meta).
+
+The [ejabberd-contrib](../guide/modules.md#ejabberd-contrib) git repository contains other useful HTTP services:
+[CAPTCHA (Rust)](https://github.com/processone/ejabberd-contrib/tree/master/mod_captcha_rust),
+[CAPTCHA (Erlang)](https://github.com/processone/ejabberd-contrib/tree/master/mod_ecaptcha),
+[HTTP Redirect](https://github.com/processone/ejabberd-contrib/tree/master/mod_http_redirect),
+[MUC Logs](https://github.com/processone/ejabberd-contrib/tree/master/mod_muc_log_http),
+[Prometheus](https://github.com/processone/ejabberd-contrib/tree/master/mod_prometheus),
+[ReST (stanzas and API)](https://github.com/processone/ejabberd-contrib/tree/master/mod_rest),
+[Unified Push](https://github.com/processone/ejabberd-contrib/tree/master/mod_unified_push),
+[WebPresence](https://github.com/processone/ejabberd-contrib/tree/master/mod_webpresence).
 
 Options:
 [cafile](listen-options.md#cafile),
