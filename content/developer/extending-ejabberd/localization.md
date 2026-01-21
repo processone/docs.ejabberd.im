@@ -5,9 +5,9 @@ all built-in modules support the `xml:lang` attribute inside IQ queries, and the
 
 There are two ways to improve the translation of a language:
 
-- Edit the corresponding .po file in [ejabberd-po git repository](https://github.com/processone/ejabberd-po) with a gettext-compatible program (Poedit, KBabel, Lokalize, ...). Then submit a Pull Request.
+- Preferably using the [ejabberd-po Weblate](https://hosted.weblate.org/projects/ejabberd/ejabberd-po/) online service, which ensures syntax and formatting, can be more easily managed, and translations are immediately visible to other translators.
 
-- Using the [ejabberd-po Weblate](https://hosted.weblate.org/projects/ejabberd/ejabberd-po/) online service.
+- Manually edit the corresponding .po file in [ejabberd-po git repository](https://github.com/processone/ejabberd-po) with a gettext-compatible program (Poedit, KBabel, Lokalize, ...). Then submit a Pull Request.
 
 Once the translators have improved the `po` files, you can run `make translations`.
 With that command, the translatable strings are extracted from source code to generate the file `ejabberd.pot`.
