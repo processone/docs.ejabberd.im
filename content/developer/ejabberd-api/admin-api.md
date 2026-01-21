@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [25.10](../../archive/25.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟤
 
@@ -212,7 +212,7 @@ HTTP/1.1 200 OK
 
 
 
-## announce_motd_delete 🟤
+## announce_motd_delete
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -251,7 +251,7 @@ HTTP/1.1 200 OK
 
 
 
-## announce_motd_get 🟤
+## announce_motd_get
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -293,7 +293,7 @@ HTTP/1.1 200 OK
 
 
 
-## announce_motd_set_online 🟤
+## announce_motd_set_online
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -336,7 +336,7 @@ HTTP/1.1 200 OK
 
 
 
-## announce_motd_update 🟤
+## announce_motd_update
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -379,7 +379,7 @@ HTTP/1.1 200 OK
 
 
 
-## announce_send_all 🟤
+## announce_send_all
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -422,7 +422,7 @@ HTTP/1.1 200 OK
 
 
 
-## announce_send_online 🟤
+## announce_send_online
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -777,6 +777,41 @@ HTTP/1.1 200 OK
 
 
 
+## cleanup_expired_invite_tokens 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Delete invite tokens that have expired
+
+__Arguments:__
+
+
+__Result:__
+
+- *num_deleted* :: integer
+
+__Tags:__
+[purge](admin-tags.md#purge)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/cleanup_expired_invite_tokens
+{
+  
+}
+
+HTTP/1.1 200 OK
+42
+~~~
+
+
+
+
 ## clear_cache
 
 
@@ -1059,7 +1094,7 @@ HTTP/1.1 200 OK
 
 
 
-## count_banned 🟤
+## count_banned
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -2017,6 +2052,44 @@ HTTP/1.1 200 OK
 
 
 
+## expire_invite_tokens 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Sets expiration to a date in the past for all tokens belonging to user
+
+__Arguments:__
+
+- *username* :: string
+- *host* :: string
+
+__Result:__
+
+- *num_deleted* :: integer
+
+__Tags:__
+[purge](admin-tags.md#purge)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/expire_invite_tokens
+{
+  "username": "aaaaa",
+  "host": "bbbbb"
+}
+
+HTTP/1.1 200 OK
+42
+~~~
+
+
+
+
 ## expire_spam_filter_cache
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
@@ -2087,6 +2160,107 @@ POST /api/export2sql
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## export_db 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Export database records for host to files
+
+__Arguments:__
+
+- *host* :: string : Name of host that should be exported
+- *dir* :: string : Directory name where exported files should be created
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[db](admin-tags.md#db)
+
+__Examples:__
+
+
+~~~ json
+POST /api/export_db
+{
+  "host": "localhost",
+  "dir": "/home/ejabberd/export"
+}
+
+HTTP/1.1 200 OK
+"Export started"
+~~~
+
+
+
+
+## export_db_abort 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Abort currently running export peration
+
+__Arguments:__
+
+- *host* :: string : Name of host where export is performed
+
+__Result:__
+
+- *status* :: string : Operation status
+
+__Tags:__
+[db](admin-tags.md#db)
+
+__Examples:__
+
+
+~~~ json
+POST /api/export_db_abort
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation aborted"
+~~~
+
+
+
+
+## export_db_status 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Return current status of export operation
+
+__Arguments:__
+
+- *host* :: string : Name of host where export is performed
+
+__Result:__
+
+- *status* :: string : Current operation status
+
+__Tags:__
+[db](admin-tags.md#db)
+
+__Examples:__
+
+
+~~~ json
+POST /api/export_db_status
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation in progress: 'Exporting mod_mam', exported 5000 records so far"
 ~~~
 
 
@@ -2290,6 +2464,86 @@ POST /api/gen_markdown_doc_for_tags
 
 HTTP/1.1 200 OK
 ""
+~~~
+
+
+
+
+## generate_invite 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Create a new 'create account' invite
+
+__Arguments:__
+
+- *host* :: string : Hostname to generate 'create account' invite for.
+
+__Result:__
+
+- *invite* :: {invite_uri::string, landing_page::string}
+
+__Tags:__
+[accounts](admin-tags.md#accounts)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/generate_invite
+{
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+{
+  "invite_uri": "xmpp:example.com?register;preauth=4bsdpwVrRDQYnF9aQQKXGbF7",
+  "landing_page": "https://example.com/invites/4bsdpwVrRDQYnF9aQQKXGbF7"
+}
+~~~
+
+
+
+
+## generate_invite_with_username 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Create a new 'create account' invite token with a preselected username
+
+__Arguments:__
+
+- *username* :: string : Preselected Username
+- *host* :: string : hostname  to generate 'create account' invite for.
+
+__Result:__
+
+- *invite* :: {invite_uri::string, landing_page::string}
+
+__Tags:__
+[accounts](admin-tags.md#accounts)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/generate_invite_with_username
+{
+  "username": "juliet",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+{
+  "invite_uri": "xmpp:juliet@example.com?register;preauth=4bsdpwVrRDQYnF9aQQKXGbF7",
+  "landing_page": "https://example.com/invites/4bsdpwVrRDQYnF9aQQKXGbF7"
+}
 ~~~
 
 
@@ -3416,6 +3670,107 @@ HTTP/1.1 200 OK
 
 
 
+## import_db 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Import database records for host to files
+
+__Arguments:__
+
+- *host* :: string : Name of host that should be imported
+- *dir* :: string : Directory name where imported files should be created
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[db](admin-tags.md#db)
+
+__Examples:__
+
+
+~~~ json
+POST /api/import_db
+{
+  "host": "localhost",
+  "dir": "/home/ejabberd/export"
+}
+
+HTTP/1.1 200 OK
+"Import started"
+~~~
+
+
+
+
+## import_db_abort 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Abort currently running import peration
+
+__Arguments:__
+
+- *host* :: string : Name of host where import is performed
+
+__Result:__
+
+- *status* :: string : Operation status
+
+__Tags:__
+[db](admin-tags.md#db)
+
+__Examples:__
+
+
+~~~ json
+POST /api/import_db_abort
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation aborted"
+~~~
+
+
+
+
+## import_db_status 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Return current status of import operation
+
+__Arguments:__
+
+- *host* :: string : Name of host where import is performed
+
+__Result:__
+
+- *status* :: string : Current operation status
+
+__Tags:__
+[db](admin-tags.md#db)
+
+__Examples:__
+
+
+~~~ json
+POST /api/import_db_status
+{
+  "host": "localhost"
+}
+
+HTTP/1.1 200 OK
+"Operation in progress: 'Importing mod_mam', imported 5000 records so far"
+~~~
+
+
+
+
 ## import_dir
 
 
@@ -3837,7 +4192,7 @@ HTTP/1.1 200 OK
 
 
 
-## list_banned 🟤
+## list_banned
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -3990,6 +4345,67 @@ HTTP/1.1 200 OK
     "processes": 348,
     "uptime_seconds": 60,
     "master_node": "none"
+  }
+]
+~~~
+
+
+
+
+## list_invites 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+List invite tokens
+
+__Arguments:__
+
+- *host* :: string : Hostname tokens are valid for
+
+__Result:__
+
+- *invites* :: [{token::string, valid::string, created_at::string, expires::string, type::string, inviter::string, invitee::string, account_name::string, token_uri::string, landing_page::string}]
+
+__Tags:__
+[accounts](admin-tags.md#accounts)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/list_invites
+{
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+[
+  {
+    "token": "aaaaa",
+    "valid": "bbbbb",
+    "created_at": "ccccc",
+    "expires": "ddddd",
+    "type": "eeeee",
+    "inviter": "fffff",
+    "invitee": "ggggg",
+    "account_name": "hhhhh",
+    "token_uri": "iiiii",
+    "landing_page": "jjjjj"
+  },
+  {
+    "token": "kkkkk",
+    "valid": "lllll",
+    "created_at": "mmmmm",
+    "expires": "nnnnn",
+    "type": "ooooo",
+    "inviter": "ppppp",
+    "invitee": "qqqqq",
+    "account_name": "rrrrr",
+    "token_uri": "sssss",
+    "landing_page": "ttttt"
   }
 ]
 ~~~
@@ -4555,7 +4971,7 @@ HTTP/1.1 200 OK
 
 
 
-## muc_get_registered_nick 🟤
+## muc_get_registered_nick
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -4595,7 +5011,7 @@ HTTP/1.1 200 OK
 
 
 
-## muc_get_registered_nicks 🟤
+## muc_get_registered_nicks
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 
@@ -4729,6 +5145,45 @@ HTTP/1.1 200 OK
     "participants": 10
   }
 ]
+~~~
+
+
+
+
+## muc_online_rooms_count 🟤
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Return number of online rooms
+
+
+Ask for a specific host, or `global` to use all vhosts.
+
+__Arguments:__
+
+- *service* :: string : MUC service, or `global` for all
+
+__Result:__
+
+- *count* :: integer : Number of active rooms
+
+__Tags:__
+[muc](admin-tags.md#muc)
+
+__Module:__
+[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+
+__Examples:__
+
+
+~~~ json
+POST /api/muc_online_rooms_count
+{
+  "service": "conference.example.com"
+}
+
+HTTP/1.1 200 OK
+2137
 ~~~
 
 
@@ -5923,7 +6378,7 @@ HTTP/1.1 200 OK
 
 
 
-## restart_kindly 🟤
+## restart_kindly
 
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
 

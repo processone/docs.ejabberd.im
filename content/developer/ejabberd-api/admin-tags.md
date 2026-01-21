@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [25.10](../../archive/25.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -33,10 +33,19 @@
 * [delete_old_users_vhost](admin-api.md#delete_old_users_vhost)
 
 
+* [generate_invite](admin-api.md#generate_invite)
+
+
+* [generate_invite_with_username](admin-api.md#generate_invite_with_username)
+
+
 * [get_ban_details](admin-api.md#get_ban_details)
 
 
 * [list_banned](admin-api.md#list_banned)
+
+
+* [list_invites](admin-api.md#list_invites)
 
 
 * [register](admin-api.md#register)
@@ -130,6 +139,27 @@
 
 
 * [reload_config](admin-api.md#reload_config)
+
+
+## db
+
+
+* [export_db](admin-api.md#export_db)
+
+
+* [export_db_abort](admin-api.md#export_db_abort)
+
+
+* [export_db_status](admin-api.md#export_db_status)
+
+
+* [import_db](admin-api.md#import_db)
+
+
+* [import_db_abort](admin-api.md#import_db_abort)
+
+
+* [import_db_status](admin-api.md#import_db_status)
 
 
 ## documentation
@@ -339,6 +369,9 @@
 * [muc_online_rooms_by_regex](admin-api.md#muc_online_rooms_by_regex)
 
 
+* [muc_online_rooms_count](admin-api.md#muc_online_rooms_count)
+
+
 * [muc_register_nick](admin-api.md#muc_register_nick)
 
 
@@ -492,6 +525,9 @@
 * [abort_delete_old_messages](admin-api.md#abort_delete_old_messages)
 
 
+* [cleanup_expired_invite_tokens](admin-api.md#cleanup_expired_invite_tokens)
+
+
 * [delete_expired_messages](admin-api.md#delete_expired_messages)
 
 
@@ -526,6 +562,9 @@
 
 
 * [delete_old_users_vhost](admin-api.md#delete_old_users_vhost)
+
+
+* [expire_invite_tokens](admin-api.md#expire_invite_tokens)
 
 
 ## roster

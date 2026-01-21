@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [25.10](../../archive/25.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟤.
 
@@ -1134,7 +1134,7 @@ or it will lead to subtle bugs. Usually leaving default value of this is
 option is best, tweak it only if you know what you are doing. The
 default value is `1 minute`.
 
-## new\_sql\_schema 🟤
+## new\_sql\_schema
 
 `true | false`  
 
@@ -1391,6 +1391,17 @@ tries to register a new account from the same IP address or JID during
 this time after their previous registration will receive an error with
 the corresponding explanation. To disable this limitation, set the value
 to `infinity`. The default value is `600 seconds`.
+
+## replaced\_connection\_timeout 🟤
+
+`timeout()`  
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+Maximum time that new session
+will wait for termination of session that it’s replacing. This allows
+old session to properly sends its unavailable presences, and helps with
+potetnial race conditions between old and new sessions presences.
 
 ## resource\_conflict
 
@@ -1788,7 +1799,7 @@ The type of a request queue for the SQL server. See description of
 [queue_type](#queue_type) option for the explanation. The default value is the
 value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 
-## sql\_schema\_multihost 🟤
+## sql\_schema\_multihost
 
 `true | false`  
 
@@ -1797,7 +1808,7 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 Whether to use the
 [multihost SQL schema](database.md#singlehost-or-multihost). All
 schemas are located at
-<https://github.com/processone/ejabberd/tree/25.10/sql>. There are two
+<https://github.com/processone/ejabberd/tree/26.01/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain
 into one ejabberd database. The `multihost` schema can handle several
 XMPP domains in a single ejabberd database. The `multihost` schema is
