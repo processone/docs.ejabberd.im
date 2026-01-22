@@ -204,9 +204,12 @@ There are several ways to install and run ejabberd after it's compiled from sour
 
 - [system install](#system-install)
 - [system install a release](#system-install-release)
-- building a [production](#production-release) release
-- building a [development](#production-release) release
-- don't install at all, just [start](#start) with `make relive`
+- building a [production](#production-release) OTP release
+- building a [development](#production-release) OTP release
+- start directly with [relivectl](#relivectl)
+- start directly with [relive](#relive) which uses Rebar3/Mix
+
+Check the [Install Comparison](#install-comparison) table to find the differences.
 
 ### System Install
 
@@ -332,6 +335,52 @@ make dev
 _build/dev/rel/ejabberd/bin/ejabberdctl live
 ```
 
+### Relivectl 🟠
+
+<!-- md:version new in [26.01](../../archive/26.01/index.md) -->
+
+`make relivectl` starts an interactive ejabberd
+without requiring installation or building OTP release.
+It uses the `ejabberdctl` script,
+and stores data in local path `_build/relivectl/`.
+
+Example usage:
+
+``` sh
+./autogen.sh
+./configure
+make relivectl
+```
+
+The benefit over [`make dev`](#development-release)
+is that `relivectl` doesn't build an OTP release, so it's faster to start.
+
+
+### Relive
+
+<!-- md:version new in [22.05](../../archive/22.05/index.md) -->
+
+`make relive` starts an interactive ejabberd
+without requiring installation or building OTP release.
+It uses `rebar3 shell` or `mix run`,
+and stores data in local path `_build/relive/`.
+
+Example usage:
+
+``` sh
+./autogen.sh
+./configure
+make relive
+```
+
+As it uses Rebar3/Mix tools,
+it automatically compiles code at start
+and [recompiles changed code at runtime](https://www.process-one.net/blog/ejabberd-24-06/#support-for-code-automatic-update).
+
+However, as it doesn't use the `ejabberdctl` script,
+it doesn't read `ejabberdctl.cfg`.
+
+
 ## Specific notes
 
 ### asdf
@@ -411,6 +460,23 @@ make
 
 Also notice that Erlang and ejabberd can be used only from that system account,
 see section [asdf](#asdf) for details.
+
+
+### Install Comparison 🟠
+
+Let's summarize all the [make](#make) targets related to installation to determine their usage differences:
+
+| `make ...`           | [install](#system-install)   | [install-rel](#system-install-release)   | [prod](#production-release)   | [dev](#development-release)   | [relivectl](#relivectl)   | [relive](#relive)   |
+|:---------------------|:-----------:|:---------------:|:--------:|:-------:|:-------------:|:----------:|
+| Writes files in path | `/`         | `/`             | `_build/`<br>`prod/`|`_build/`<br>`dev/`| `_build/`<br>`relivectl/`     | `_build/`<br>`relive/`  |
+| Installs             | ✅          | ✅              | manually uncompress `*.tar.gz`| - | - | -  |
+| Uninstall with       | `uninstall`<br>⚠️  [incomplete](https://github.com/processone/ejabberd/issues/1496)| `uninstall-rel`<br>✅| manual remove | - | - | - |
+| Start tool           | ejabberdctl |ejabberdctl|ejabberdctl|ejabberdctl|ejabberdctl | rebar3/mix |
+| Reads `ejabberdctl.cfg`| ✅        | ✅              | ✅       | ✅      | ✅            | ❌         |
+| Recompiles           | -           | ✅              | ✅       | ✅      | ❌            | ✅         |
+| Starts ejabberd      | -           | -               | -        | -       | ✅            | ✅         |
+| Recompiles at runtime| -           | -               | -        | -       | ❌            | ✅         |
+| Execution time (s.)  | 13          | 40              | 57       | 35      | 4             | 9          |
 
 
 ### macOS
