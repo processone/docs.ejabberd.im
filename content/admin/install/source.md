@@ -107,10 +107,22 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/d
   when that account is in a group that doesn't coincide with its username.
 
 - **`--enable-all`**: Enable many of the database and dependencies
-    options described here, this is useful for Dialyzer checks:
-    --enable-debug --enable-elixir --enable-mysql --enable-odbc
-    --enable-pam --enable-pgsql --enable-redis --enable-sip
-    --enable-sqlite --enable-stun --enable-tools --enable-zlib
+    options described here:
+    `debug`,
+    `elixir`,
+    `lua`,
+    `mssql`,
+    `mysql`,
+    `odbc`,
+    `pam`,
+    `pgsql`,
+    `redis`,
+    `sip`,
+    `sqlite`,
+    `stun`,
+    `tools`,
+    `zlib`.
+    This is specially useful for Dialyzer checks.
 
 - **`--disable-debug`**: Compile without `+debug_info`.
 
