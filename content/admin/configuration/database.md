@@ -264,8 +264,12 @@ you may prefer to set SQL as your [default database](#default-database).
 
 ## Microsoft SQL Server
 
-For now, MS SQL is only supported in Unix-like OS'es. Your Erlang/OTP
-must be compiled with ODBC support.
+For now, MS SQL is only supported in Unix-like OS'es.
+Your Erlang/OTP must be compiled with ODBC support.
+And ejabberd too:
+either [configuring](../install/source.md#configure)
+compilation with `./configure --enable-mssql --enable-odbc`
+or `./configure --enable-all`.
 
 Also, in some cases you need to add the machine name to
 `sql_username`, especially when you have `sql_server` defined as an IP
@@ -280,6 +284,7 @@ sql_username: user1@host
 By default, ejabberd will use the [`FreeTDS`](https://www.freetds.org/) driver.
 You need to have the driver file `libtdsodbc.so` installed in your library PATH
 on your system.
+For example, in Debian, install with `apt-get install tdsodbc`.
 
 If the FreeTDS driver is not installed in a standard location, or if you want
 to use another ODBC driver, you can specify the path to the driver using the
