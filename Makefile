@@ -363,6 +363,7 @@ archive:
 	sed -i 's|(../configuration/|(../../admin/configuration/|g' $(DEST)/*.md
 	sed -i 's|(../guide/clustering.md|(../../admin/guide/clustering.md|g' $(DEST)/*.md
 	sed -i 's|(../guide/managing.md|(../../admin/guide/managing.md|g' $(DEST)/*.md
+	sed -i 's|(../guide/modules.md|(../../admin/guide/modules.md|g' $(DEST)/*.md
 	sed -i 's|(../guide/mqtt/index.md|(../../admin/guide/mqtt/index.md|g' $(DEST)/*.md
 	sed -i 's|(authentication.md|(../../admin/configuration/authentication.md|g' $(DEST)/*.md
 	sed -i 's|(basic.md|(../../admin/configuration/basic.md|g' $(DEST)/*.md

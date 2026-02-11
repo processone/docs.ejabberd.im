@@ -1815,7 +1815,7 @@ XMPP domains in a single ejabberd database. The `multihost` schema is
 preferable when serving several XMPP domains and/or changing domains
 from time to time. This avoid need to manage several databases and
 handle complex configuration changes. The default depends on
-[./configure](../install/source.md#configure) flag
+[./configure](../../admin/install/source.md#configure) flag
 `--enable-sql-schema-multihost` which is set at compile time.
 
 ## sql\_server
