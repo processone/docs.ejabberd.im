@@ -21,6 +21,9 @@ This is a brief summary for each released version. For details, please consult e
 
 ### 2026
 
+- [26.02](https://www.process-one.net/blog/ejabberd-26-02/)
+    - Bugfixes
+
 - [26.01](https://www.process-one.net/blog/ejabberd-26-01/)
     - Database Serialization
     - [mod_invites](../admin/configuration/modules.md/#mod_invites): Roster Invites and Invite-based Account Registration
@@ -112,7 +115,7 @@ This is a brief summary for each released version. For details, please consult e
 
 - [22.10](https://www.process-one.net/blog/ejabberd-22-10/)
     - Improved [MIX](https://xmpp.org/extensions/xep-0369.html) support
-    -  Improved SQL reconnection Mechanism
+    - Improved SQL reconnection Mechanism
     - Better burst traffix handling
 
 - [22.05](https://www.process-one.net/blog/ejabberd-22-05/)
