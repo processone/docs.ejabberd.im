@@ -9,7 +9,7 @@ search:
 
     This section describes API commands of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-    The commands that changed in this version are marked with 🟤
+    The commands that changed in this version are marked with 🟠
 
 
 
@@ -777,7 +777,7 @@ HTTP/1.1 200 OK
 
 
 
-## cleanup_expired_invite_tokens 🟤
+## cleanup_expired_invite_tokens
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2052,7 +2052,7 @@ HTTP/1.1 200 OK
 
 
 
-## expire_invite_tokens 🟤
+## expire_invite_tokens
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2165,7 +2165,7 @@ HTTP/1.1 200 OK
 
 
 
-## export_db 🟤
+## export_db
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2200,7 +2200,7 @@ HTTP/1.1 200 OK
 
 
 
-## export_db_abort 🟤
+## export_db_abort
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2233,7 +2233,7 @@ HTTP/1.1 200 OK
 
 
 
-## export_db_status 🟤
+## export_db_status
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2469,7 +2469,7 @@ HTTP/1.1 200 OK
 
 
 
-## generate_invite 🟤
+## generate_invite
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2508,7 +2508,7 @@ HTTP/1.1 200 OK
 
 
 
-## generate_invite_with_username 🟤
+## generate_invite_with_username
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -3670,7 +3670,7 @@ HTTP/1.1 200 OK
 
 
 
-## import_db 🟤
+## import_db
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -3705,7 +3705,7 @@ HTTP/1.1 200 OK
 
 
 
-## import_db_abort 🟤
+## import_db_abort
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -3738,7 +3738,7 @@ HTTP/1.1 200 OK
 
 
 
-## import_db_status 🟤
+## import_db_status
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -4352,7 +4352,7 @@ HTTP/1.1 200 OK
 
 
 
-## list_invites 🟤
+## list_invites
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -5150,7 +5150,7 @@ HTTP/1.1 200 OK
 
 
 
-## muc_online_rooms_count 🟤
+## muc_online_rooms_count
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 

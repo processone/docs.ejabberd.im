@@ -7,9 +7,9 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [26.02](../../archive/26.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-    The options that changed in this version are marked with 🟤.
+    The options that changed in this version are marked with 🟠.
 
 ## access\_rules
 
@@ -1392,7 +1392,7 @@ this time after their previous registration will receive an error with
 the corresponding explanation. To disable this limitation, set the value
 to `infinity`. The default value is `600 seconds`.
 
-## replaced\_connection\_timeout 🟤
+## replaced\_connection\_timeout
 
 `timeout()`  
 
@@ -1808,7 +1808,7 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 Whether to use the
 [multihost SQL schema](database.md#singlehost-or-multihost). All
 schemas are located at
-<https://github.com/processone/ejabberd/tree/26.01/sql>. There are two
+<https://github.com/processone/ejabberd/tree/26.02/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain
 into one ejabberd database. The `multihost` schema can handle several
 XMPP domains in a single ejabberd database. The `multihost` schema is

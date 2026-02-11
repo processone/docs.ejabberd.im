@@ -7,9 +7,9 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [26.02](../../archive/26.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-    The modules that changed in this version are marked with 🟤.
+    The modules that changed in this version are marked with 🟠.
 
 mod\_adhoc
 ----------
@@ -718,6 +718,9 @@ one `request_handlers`.
 When `conversejs_css` and `conversejs_script` are `auto`, by default
 they point to the public Converse client.
 
+When this module is enabled in `modules`, it adds automatically a
+requesthandler and link in WebAdmin. .
+
 This module is available since ejabberd [21.12](../../archive/21.12/index.md).
 
 __Available options:__
@@ -1080,8 +1083,8 @@ modules:
     default_version: 2
 ~~~
 
-mod\_http\_fileserver 🟤
-------------------------
+mod\_http\_fileserver
+---------------------
 
 <!-- md:version improved `docroot` in [26.01](../../archive/26.01/index.md) -->
 
@@ -1155,7 +1158,7 @@ Indicate one or more directory index files, similarly to Apache’s
 of a regular file, those directory indices are looked in order, and the
 first one found is returned. The default value is an empty list.
 
-- **docroot 🟤`*: `PathDir | {PathURL, PathDir}*  
+- **docroot**: `PathDir | {PathURL, PathDir}`  
 <!-- md:version improved in [26.01](../../archive/26.01/index.md) -->
  Directory to serve the
 files from, or a map with several URL path (as specified in
@@ -1216,8 +1219,8 @@ modules:
     default_content_type: text/html
 ~~~
 
-mod\_http\_upload 🟤
---------------------
+mod\_http\_upload
+-----------------
 
 <!-- md:version added `content_types` in [26.01](../../archive/26.01/index.md) -->
 
@@ -1239,7 +1242,7 @@ This option defines the access rule to limit who is permitted to use the
 HTTP upload service. The default value is `local`. If no access rule of
 that name exists, no user will be allowed to use the service.
 
-- **content\_types 🟤`*: `{Extension: Type}*  
+- **content\_types**: `{Extension: Type}`  
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
  Specify mappings of extension
 to content type, similarly to the option `content_types` of
@@ -1433,8 +1436,8 @@ modules:
     max_days: 100
 ~~~
 
-mod\_invites 🟤
----------------
+mod\_invites
+------------
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -1465,12 +1468,14 @@ required.
 
 In order to use the included landing page feature, you have to
 
--   have a copy of [jQuery 3](https://jquery.com) and [Bootstrap
-    4](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+-   have a copy of [jQuery
+    3](https://code.jquery.com/jquery-3.7.1.min.js) and [Bootstrap
+    4](https://github.com/twbs/bootstrap/releases/download/v4.6.2/bootstrap-4.6.2-dist.zip)
     in a shared directory on your system. If you’re using Debian or
     derivatives this is easiest accomplished by installing both
     `libjs-jquery` and `libjs-bootstrap4` which will put them under
-    `/usr/share/javascript/{jquery,bootstrap4}`
+    `/usr/share/javascript/{jquery,bootstrap4}`. Alternatively you can
+    use `tools/dl_invites_page_deps.sh <outdir>`.
 
 -   in `ejabberd.yml` configure a listener for module `ejabberd_http`
     with a request handler for `/share: mod_http_fileserver`
@@ -1530,7 +1535,7 @@ account creation. Default is `infinity`.
 A human readable name for your site. E.g. `"My Beautiful Laundrette"`.
 Used in landing page templates.
 
-- **templates\_dir**: `binary()`  
+- **templates\_dir**: `Path`  
 The directory containing templates and static files used for landing
 page and web registration form. Only needs to be set if you want to ship
 your own set of templates or list of recommended apps.
@@ -2045,13 +2050,32 @@ modules:
           "remoteB": "localB" # changes to 'remoteB' on remote server will be stored as 'localB' on local server
 ~~~
 
-mod\_muc
---------
+mod\_muc 🟠
+-----------
 
-This module provides support for [XEP-0045: Multi-User
-Chat](https://xmpp.org/extensions/xep-0045.html). Users can discover
-existing rooms, join or create them. Occupants of a room can chat in
-public or have private chats.
+<!-- md:version incorporated `mod_muc_occupantid` in [26.02](../../archive/26.02/index.md) -->
+
+
+This module provides support for [Multi-User
+Chat](https://xmpp.org/extensions/xep-0045.html) (MUC). Users can
+discover existing rooms, join or create them. Occupants of a room can
+chat in public or have private chats.
+
+Protocols implemented in this module:
+
+-   [XEP-0045: Multi-User
+    Chat](https://xmpp.org/extensions/xep-0045.html)
+
+-   [XEP-0249: Direct MUC
+    Invitations](https://xmpp.org/extensions/xep-0249.html)
+
+-   [XEP-0421: Occupant identifiers for semi-anonymous
+    MUCs](https://xmpp.org/extensions/xep-0421.html)
+
+-   [XEP-0486: MUC Avatars](https://xmpp.org/extensions/xep-0486.html)
+
+-   [Muc/Sub: Multi-User Chat
+    Subscriptions](https://docs.ejabberd.im/developer/xmpp-clients-bots/extensions/muc-sub/)
 
 The MUC service allows any Jabber ID to register a nickname, so nobody
 else can use that nickname in any room in the MUC service. To register a
@@ -2571,20 +2595,6 @@ A top level `URL` where a client can access logs of a particular
 conference. The conference name is appended to the URL if `dirname`
 option is set to `room_name` or a conference JID is appended to the
 `URL` otherwise. There is no default value.
-
-mod\_muc\_occupantid
---------------------
-
-<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
-
-
-This module implements [XEP-0421: Anonymous unique occupant identifiers
-for MUCs](https://xmpp.org/extensions/xep-0421.html).
-
-When the module is enabled, the feature is enabled in all semi-anonymous
-rooms.
-
-The module has no options.
 
 mod\_muc\_rtbl
 --------------
@@ -3730,9 +3740,11 @@ last / character in the URL, otherwise the subpages URL will be
 incorrect.
 
 This module is enabled in `listen` → `ejabberd_http` →
-[request_handlers](listen-options.md#request_handlers), no need to
-enable in `modules`. The module depends on [mod_register](#mod_register) where all
-the configuration is performed.
+[request_handlers](listen-options.md#request_handlers).
+
+There is no need to enable this module in `modules`, but it adds a link
+to the register page in WebAdmin menu. The module depends on
+[mod_register](#mod_register) where all the configuration is performed.
 
 The module has no options.
 
