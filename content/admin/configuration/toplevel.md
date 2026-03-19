@@ -880,6 +880,12 @@ Path to the file that contains the
 [JWT](authentication.md#jwt-authentication) key. The default value is
 `undefined`.
 
+Supported formats:
+
+- **PEM format** - Standard PEM-encoded keys (RSA, EC, EdDSA, etc.)
+- **JWK (JSON Web Key)** - JSON format
+- **JWK Set** - JSON with a `"keys"` array (but must contain exactly one key)
+
 ## language
 
 `Language`  

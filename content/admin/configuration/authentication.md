@@ -308,10 +308,12 @@ problems that you may need to solve:
 
 ## JWT Authentication
 
-ejabberd supports authentication using JSON Web Token (JWT).  When enabled,
-clients send signed tokens instead of passwords, which are checked using a
-private key specified in the [jwt_key](toplevel.md#jwt_key) option.
-JWT payload must look like this:
+ejabberd supports authentication using JSON Web Token (JWT).  When
+enabled, clients send signed tokens instead of passwords, which are
+checked using a public key (for asymmetric algorithms) or secret key (for
+ symmetric algorithms) specified in the
+[jwt_key](toplevel.md#jwt_key) option. JWT payload must look like
+this:
 
 ``` json
 {
