@@ -10886,10 +10886,12 @@ problems that you may need to solve:</p>
 </li>
 </ul>
 <h2 id="jwt-authentication">JWT Authentication<a class="headerlink" href="#jwt-authentication" title="Permanent link">&para;</a></h2>
-<p>ejabberd supports authentication using JSON Web Token (JWT).  When enabled,
-clients send signed tokens instead of passwords, which are checked using a
-private key specified in the <a href="../toplevel/#jwt_key">jwt_key</a> option.
-JWT payload must look like this:</p>
+<p>ejabberd supports authentication using JSON Web Token (JWT).  When
+enabled, clients send signed tokens instead of passwords, which are
+checked using a public key (for asymmetric algorithms) or secret key (for
+ symmetric algorithms) specified in the
+<a href="../toplevel/#jwt_key">jwt_key</a> option. JWT payload must look like
+this:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">{</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span><span class="nt">&quot;jid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test@example.org&quot;</span><span class="p">,</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1564436511</span>

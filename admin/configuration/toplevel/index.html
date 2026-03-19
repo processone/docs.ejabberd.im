@@ -14948,6 +14948,12 @@ name where the JID is defined.</p>
 <p>Path to the file that contains the
 <a href="../authentication/#jwt-authentication">JWT</a> key. The default value is
 <code>undefined</code>.</p>
+<p>Supported formats:</p>
+<ul>
+<li><strong>PEM format</strong> - Standard PEM-encoded keys (RSA, EC, EdDSA, etc.)</li>
+<li><strong>JWK (JSON Web Key)</strong> - JSON format</li>
+<li><strong>JWK Set</strong> - JSON with a <code>"keys"</code> array (but must contain exactly one key)</li>
+</ul>
 <h2 id="language">language<a class="headerlink" href="#language" title="Permanent link">&para;</a></h2>
 <p><code>Language</code>  </p>
 <p>Define the
