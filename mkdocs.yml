@@ -10,7 +10,7 @@ repo_name: processone/ejabberd
 edit_uri: https://github.com/processone/docs.ejabberd.im/edit/master/content
 
 copyright: |
-  Copyright &copy; 2008 - 2025 <a href="https://www.process-one.net" target="_blank" rel="noopener">ProcessOne</a>
+  Copyright &copy; 2008 - 2026 <a href="https://www.process-one.net" target="_blank" rel="noopener">ProcessOne</a>
 
 docs_dir: content
 
@@ -243,6 +243,7 @@ nav:
     - Architecture: developer/extending-ejabberd/architecture.md
     - Clustering: admin/guide/clustering.md
     - Dependencies: developer/repositories.md
+    - Distribution: admin/guide/distribution.md
     - Managing: admin/guide/managing.md
     - Modules / Contrib: admin/guide/modules.md
     - Security: admin/guide/security.md
@@ -285,6 +286,24 @@ nav:
     - Versioning: developer/ejabberd-api/api_versioning.md
   - Archive:
     - archive/index.md
+    - "26.02":
+      - archive/26.02/index.md
+      - archive/26.02/admin-api.md
+      - archive/26.02/admin-tags.md
+      - archive/26.02/listen.md
+      - archive/26.02/listen-options.md
+      - archive/26.02/modules.md
+      - archive/26.02/toplevel.md
+      - archive/26.02/upgrade.md
+    - "26.01":
+      - archive/26.01/index.md
+      - archive/26.01/admin-api.md
+      - archive/26.01/admin-tags.md
+      - archive/26.01/listen.md
+      - archive/26.01/listen-options.md
+      - archive/26.01/modules.md
+      - archive/26.01/toplevel.md
+      - archive/26.01/upgrade.md
     - "25.10":
       - archive/25.10/index.md
       - archive/25.10/admin-api.md

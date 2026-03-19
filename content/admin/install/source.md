@@ -101,16 +101,28 @@ Options details:
 
 - **`--enable-user[=USER]`**: Allow this normal system user to execute the ejabberdctl script (see section [ejabberdctl](../guide/managing.md#ejabberdctl)), read the configuration files, read and write in the spool directory, read and  write in the log directory.
 The account user and group must exist in  the machine before running `make install`.
-This account needs a HOME directory, because the [Erlang cookie file](../guide/security.md#erlang-cookie) will be created and read there.
+This account needs a HOME directory, because the [Erlang cookie file](../guide/distribution.md#cookie) will be created and read there.
 
 - **`--enable-group[=GROUP]`**: Use this option additionally to `--enable-user`
   when that account is in a group that doesn't coincide with its username.
 
 - **`--enable-all`**: Enable many of the database and dependencies
-    options described here, this is useful for Dialyzer checks:
-    --enable-debug --enable-elixir --enable-mysql --enable-odbc
-    --enable-pam --enable-pgsql --enable-redis --enable-sip
-    --enable-sqlite --enable-stun --enable-tools --enable-zlib
+    options described here:
+    `debug`,
+    `elixir`,
+    `lua`,
+    `mssql`,
+    `mysql`,
+    `odbc`,
+    `pam`,
+    `pgsql`,
+    `redis`,
+    `sip`,
+    `sqlite`,
+    `stun`,
+    `tools`,
+    `zlib`.
+    This is specially useful for Dialyzer checks.
 
 - **`--disable-debug`**: Compile without `+debug_info`.
 
@@ -138,17 +150,15 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/s
     <!-- md:version added in [21.04](../../archive/21.04/index.md) -->
 
 - **`--enable-mssql`**: Enable Microsoft SQL Server support, this
-    option requires --enable-odbc (see [Supported storages][18]).
+    option requires --enable-odbc (see [Supported storages](../configuration/database.md#supported-storages)).
 
-- **`--enable-mysql`**: Enable MySQL support (see [Supported storages][18]).
-
-- **`--enable-new-sql-schema`**: Use new SQL schema.
+- **`--enable-mysql`**: Enable MySQL support (see [Supported storages](../configuration/database.md#supported-storages)).
 
 - **`--enable-odbc`**: Enable pure ODBC support.
 
 - **`--enable-pam`**: Enable the PAM authentication method (see [PAM Authentication](../configuration/authentication.md#pam-authentication) section).
 
-- **`--enable-pgsql`**: Enable PostgreSQL support (see [Supported storages][18]).
+- **`--enable-pgsql`**: Enable PostgreSQL support (see [Supported storages](../configuration/database.md#supported-storages)).
 
 - **`--enable-redis`**: Enable Redis support to use for external session storage.
 
@@ -156,7 +166,9 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/s
 
 - **`--enable-sip`**: Enable SIP support.
 
-- **`--enable-sqlite`**: Enable SQLite support (see [Supported storages][18]).
+- **`--enable-sql-schema-multihost`**: Use multihost SQL schema by default.
+
+- **`--enable-sqlite`**: Enable SQLite support (see [Supported storages](../configuration/database.md#supported-storages)).
 
 - **`--disable-stun`**: Disable STUN/TURN support.
 
@@ -192,9 +204,12 @@ There are several ways to install and run ejabberd after it's compiled from sour
 
 - [system install](#system-install)
 - [system install a release](#system-install-release)
-- building a [production](#production-release) release
-- building a [development](#production-release) release
-- don't install at all, just [start](#start) with `make relive`
+- building a [production](#production-release) OTP release
+- building a [development](#production-release) OTP release
+- start directly with [relivectl](#relivectl)
+- start directly with [relive](#relive) which uses Rebar3/Mix
+
+Check the [Install Comparison](#install-comparison) table to find the differences.
 
 ### System Install
 
@@ -231,7 +246,7 @@ The created files and directories depend on the options provided to [`./configur
 
 - `/var/lib/ejabberd/`: Spool directory:
 
-    - `.erlang.cookie`: The [Erlang cookie file](../guide/security.md#erlang-cookie)
+    - `.erlang.cookie`: The [Erlang cookie file](../guide/distribution.md#cookie)
     - `acl.DCD, ...`: Mnesia database spool files (\*.DCD, \*.DCL, \*.DAT)
 
 - `/var/log/ejabberd/`: Log directory (see [Logging](../configuration/basic.md#logging)):
@@ -320,6 +335,52 @@ make dev
 _build/dev/rel/ejabberd/bin/ejabberdctl live
 ```
 
+### Relivectl 🟠
+
+<!-- md:version new in [26.01](../../archive/26.01/index.md) -->
+
+`make relivectl` starts an interactive ejabberd
+without requiring installation or building OTP release.
+It uses the `ejabberdctl` script,
+and stores data in local path `_build/relivectl/`.
+
+Example usage:
+
+``` sh
+./autogen.sh
+./configure
+make relivectl
+```
+
+The benefit over [`make dev`](#development-release)
+is that `relivectl` doesn't build an OTP release, so it's faster to start.
+
+
+### Relive
+
+<!-- md:version new in [22.05](../../archive/22.05/index.md) -->
+
+`make relive` starts an interactive ejabberd
+without requiring installation or building OTP release.
+It uses `rebar3 shell` or `mix run`,
+and stores data in local path `_build/relive/`.
+
+Example usage:
+
+``` sh
+./autogen.sh
+./configure
+make relive
+```
+
+As it uses Rebar3/Mix tools,
+it automatically compiles code at start
+and [recompiles changed code at runtime](https://www.process-one.net/blog/ejabberd-24-06/#support-for-code-automatic-update).
+
+However, as it doesn't use the `ejabberdctl` script,
+it doesn't read `ejabberdctl.cfg`.
+
+
 ## Specific notes
 
 ### asdf
@@ -399,6 +460,23 @@ make
 
 Also notice that Erlang and ejabberd can be used only from that system account,
 see section [asdf](#asdf) for details.
+
+
+### Install Comparison 🟠
+
+Let's summarize all the [make](#make) targets related to installation to determine their usage differences:
+
+| `make ...`           | [install](#system-install)   | [install-rel](#system-install-release)   | [prod](#production-release)   | [dev](#development-release)   | [relivectl](#relivectl)   | [relive](#relive)   |
+|:---------------------|:-----------:|:---------------:|:--------:|:-------:|:-------------:|:----------:|
+| Writes files in path | `/`         | `/`             | `_build/`<br>`prod/`|`_build/`<br>`dev/`| `_build/`<br>`relivectl/`     | `_build/`<br>`relive/`  |
+| Installs             | ✅          | ✅              | manually uncompress `*.tar.gz`| - | - | -  |
+| Uninstall with       | `uninstall`<br>⚠️  [incomplete](https://github.com/processone/ejabberd/issues/1496)| `uninstall-rel`<br>✅| manual remove | - | - | - |
+| Start tool           | ejabberdctl |ejabberdctl|ejabberdctl|ejabberdctl|ejabberdctl | rebar3/mix |
+| Reads `ejabberdctl.cfg`| ✅        | ✅              | ✅       | ✅      | ✅            | ❌         |
+| Recompiles           | -           | ✅              | ✅       | ✅      | ❌            | ✅         |
+| Starts ejabberd      | -           | -               | -        | -       | ✅            | ✅         |
+| Recompiles at runtime| -           | -               | -        | -       | ❌            | ✅         |
+| Execution time (s.)  | 13          | 40              | 57       | 35      | 4             | 9          |
 
 
 ### macOS

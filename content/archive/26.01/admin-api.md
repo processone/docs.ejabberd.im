@@ -1,6 +1,6 @@
 ---
 search:
-  boost: 1
+  exclude: true
 ---
 
 # API Reference
@@ -9,7 +9,7 @@ search:
 
     This section describes API commands of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-    The commands that changed in this version are marked with 🟠
+    The commands that changed in this version are marked with 🟤
 
 
 
@@ -31,7 +31,7 @@ __Tags:__
 [mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_mam](../../admin/configuration/modules.md#mod_mam)
+[mod_mam](modules.md#mod_mam)
 
 __Examples:__
 
@@ -101,7 +101,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -147,7 +147,7 @@ __Tags:__
 [roster](admin-tags.md#roster), [v1](admin-tags.md#v1)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -193,7 +193,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -233,7 +233,7 @@ __Tags:__
 [announce](admin-tags.md#announce)
 
 __Module:__
-[mod_announce](../../admin/configuration/modules.md#mod_announce)
+[mod_announce](modules.md#mod_announce)
 
 __Examples:__
 
@@ -272,7 +272,7 @@ __Tags:__
 [announce](admin-tags.md#announce)
 
 __Module:__
-[mod_announce](../../admin/configuration/modules.md#mod_announce)
+[mod_announce](modules.md#mod_announce)
 
 __Examples:__
 
@@ -316,7 +316,7 @@ __Tags:__
 [announce](admin-tags.md#announce)
 
 __Module:__
-[mod_announce](../../admin/configuration/modules.md#mod_announce)
+[mod_announce](modules.md#mod_announce)
 
 __Examples:__
 
@@ -359,7 +359,7 @@ __Tags:__
 [announce](admin-tags.md#announce)
 
 __Module:__
-[mod_announce](../../admin/configuration/modules.md#mod_announce)
+[mod_announce](modules.md#mod_announce)
 
 __Examples:__
 
@@ -402,7 +402,7 @@ __Tags:__
 [announce](admin-tags.md#announce)
 
 __Module:__
-[mod_announce](../../admin/configuration/modules.md#mod_announce)
+[mod_announce](modules.md#mod_announce)
 
 __Examples:__
 
@@ -445,7 +445,7 @@ __Tags:__
 [announce](admin-tags.md#announce)
 
 __Module:__
-[mod_announce](../../admin/configuration/modules.md#mod_announce)
+[mod_announce](modules.md#mod_announce)
 
 __Examples:__
 
@@ -504,7 +504,7 @@ HTTP/1.1 200 OK
 Ban an account
 
 
-This command kicks the account sessions, stores ban details in the account private storage, which blocks login to the account. This command requires [mod_private](../../admin/configuration/modules.md#mod_private) to be enabled. Check also [get_ban_details](#get_ban_details) API and [unban_account](#unban_account) API.
+This command kicks the account sessions, stores ban details in the account private storage, which blocks login to the account. This command requires [mod_private](modules.md#mod_private) to be enabled. Check also [get_ban_details](#get_ban_details) API and [unban_account](#unban_account) API.
 
 __Arguments:__
 
@@ -520,7 +520,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts), [v2](admin-tags.md#v2)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -558,7 +558,7 @@ __Tags:__
 [private](admin-tags.md#private)
 
 __Module:__
-[mod_private](../../admin/configuration/modules.md#mod_private)
+[mod_private](modules.md#mod_private)
 
 __Examples:__
 
@@ -596,7 +596,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -636,7 +636,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -675,7 +675,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -713,7 +713,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -756,7 +756,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -777,7 +777,7 @@ HTTP/1.1 200 OK
 
 
 
-## cleanup_expired_invite_tokens
+## cleanup_expired_invite_tokens 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -794,7 +794,7 @@ __Tags:__
 [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_invites](../../admin/configuration/modules.md#mod_invites)
+[mod_invites](modules.md#mod_invites)
 
 __Examples:__
 
@@ -860,7 +860,7 @@ __Tags:__
 [erlang](admin-tags.md#erlang)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -928,7 +928,7 @@ __Tags:__
 [session](admin-tags.md#session)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -1007,7 +1007,7 @@ __Tags:__
 [session](admin-tags.md#session)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -1115,7 +1115,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -1152,7 +1152,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -1196,7 +1196,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -1251,7 +1251,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -1317,7 +1317,7 @@ __Tags:__
 [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_pubsub](../../admin/configuration/modules.md#mod_pubsub)
+[mod_pubsub](modules.md#mod_pubsub)
 
 __Examples:__
 
@@ -1388,7 +1388,7 @@ __Tags:__
 [mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_mam](../../admin/configuration/modules.md#mod_mam)
+[mod_mam](modules.md#mod_mam)
 
 __Examples:__
 
@@ -1432,7 +1432,7 @@ __Tags:__
 [mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_mam](../../admin/configuration/modules.md#mod_mam)
+[mod_mam](modules.md#mod_mam)
 
 __Examples:__
 
@@ -1472,7 +1472,7 @@ __Tags:__
 [mam](admin-tags.md#mam), [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_mam](../../admin/configuration/modules.md#mod_mam)
+[mod_mam](modules.md#mod_mam)
 
 __Examples:__
 
@@ -1612,7 +1612,7 @@ __Tags:__
 [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_pubsub](../../admin/configuration/modules.md#mod_pubsub)
+[mod_pubsub](modules.md#mod_pubsub)
 
 __Examples:__
 
@@ -1647,7 +1647,7 @@ __Tags:__
 [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_push](../../admin/configuration/modules.md#mod_push)
+[mod_push](modules.md#mod_push)
 
 __Examples:__
 
@@ -1692,7 +1692,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts), [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -1738,7 +1738,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts), [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -1780,7 +1780,7 @@ __Tags:__
 [roster](admin-tags.md#roster)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -1819,7 +1819,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -1858,7 +1858,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -1895,7 +1895,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -2052,7 +2052,7 @@ HTTP/1.1 200 OK
 
 
 
-## expire_invite_tokens
+## expire_invite_tokens 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2071,7 +2071,7 @@ __Tags:__
 [purge](admin-tags.md#purge)
 
 __Module:__
-[mod_invites](../../admin/configuration/modules.md#mod_invites)
+[mod_invites](modules.md#mod_invites)
 
 __Examples:__
 
@@ -2109,7 +2109,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -2165,7 +2165,7 @@ HTTP/1.1 200 OK
 
 
 
-## export_db
+## export_db 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2200,7 +2200,7 @@ HTTP/1.1 200 OK
 
 
 
-## export_db_abort
+## export_db_abort 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2233,7 +2233,7 @@ HTTP/1.1 200 OK
 
 
 
-## export_db_status
+## export_db_status 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2469,7 +2469,7 @@ HTTP/1.1 200 OK
 
 
 
-## generate_invite
+## generate_invite 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2487,7 +2487,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_invites](../../admin/configuration/modules.md#mod_invites)
+[mod_invites](modules.md#mod_invites)
 
 __Examples:__
 
@@ -2508,7 +2508,7 @@ HTTP/1.1 200 OK
 
 
 
-## generate_invite_with_username
+## generate_invite_with_username 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -2527,7 +2527,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_invites](../../admin/configuration/modules.md#mod_invites)
+[mod_invites](modules.md#mod_invites)
 
 __Examples:__
 
@@ -2571,7 +2571,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts), [v2](admin-tags.md#v2)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -2625,7 +2625,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -2662,7 +2662,7 @@ __Tags:__
 [erlang](admin-tags.md#erlang)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -2701,7 +2701,7 @@ __Tags:__
 [last](admin-tags.md#last)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -2773,7 +2773,7 @@ __Tags:__
 [mam](admin-tags.md#mam)
 
 __Module:__
-[mod_mam](../../admin/configuration/modules.md#mod_mam)
+[mod_mam](modules.md#mod_mam)
 
 __Examples:__
 
@@ -2845,7 +2845,7 @@ __Tags:__
 [offline](admin-tags.md#offline)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -2896,7 +2896,7 @@ __Tags:__
 [session](admin-tags.md#session)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -2938,7 +2938,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -2977,7 +2977,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3021,7 +3021,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3067,7 +3067,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3110,7 +3110,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3147,7 +3147,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3195,7 +3195,7 @@ __Tags:__
 [roster](admin-tags.md#roster)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -3243,7 +3243,7 @@ __Tags:__
 [roster](admin-tags.md#roster)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -3280,7 +3280,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -3325,7 +3325,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3365,7 +3365,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3406,7 +3406,7 @@ __Tags:__
 [muc](admin-tags.md#muc), [muc_sub](admin-tags.md#muc_sub)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -3463,7 +3463,7 @@ __Tags:__
 [vcard](admin-tags.md#vcard)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -3521,7 +3521,7 @@ __Tags:__
 [vcard](admin-tags.md#vcard)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -3580,7 +3580,7 @@ __Tags:__
 [vcard](admin-tags.md#vcard)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -3670,7 +3670,7 @@ HTTP/1.1 200 OK
 
 
 
-## import_db
+## import_db 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -3705,7 +3705,7 @@ HTTP/1.1 200 OK
 
 
 
-## import_db_abort
+## import_db_abort 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -3738,7 +3738,7 @@ HTTP/1.1 200 OK
 
 
 
-## import_db_status
+## import_db_status 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -4068,7 +4068,7 @@ __Tags:__
 [session](admin-tags.md#session)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -4163,7 +4163,7 @@ HTTP/1.1 200 OK
 Remove and shutdown Node from the running cluster
 
 
-This command can be run from any running node of the cluster, even the node to be removed. In the removed node, this command works only when using ejabberdctl, not [mod_http_api](../../admin/configuration/modules.md#mod_http_api) or other code that runs inside the same ejabberd node that will leave.
+This command can be run from any running node of the cluster, even the node to be removed. In the removed node, this command works only when using ejabberdctl, not [mod_http_api](modules.md#mod_http_api) or other code that runs inside the same ejabberd node that will leave.
 
 __Arguments:__
 
@@ -4213,7 +4213,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -4352,7 +4352,7 @@ HTTP/1.1 200 OK
 
 
 
-## list_invites
+## list_invites 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -4370,7 +4370,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_invites](../../admin/configuration/modules.md#mod_invites)
+[mod_invites](modules.md#mod_invites)
 
 __Examples:__
 
@@ -4991,7 +4991,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -5029,7 +5029,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -5078,7 +5078,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -5120,7 +5120,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -5150,7 +5150,7 @@ HTTP/1.1 200 OK
 
 
 
-## muc_online_rooms_count
+## muc_online_rooms_count 🟤
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
 
@@ -5171,7 +5171,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -5210,7 +5210,7 @@ __Tags:__
 [muc](admin-tags.md#muc), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -5251,7 +5251,7 @@ __Tags:__
 [muc](admin-tags.md#muc), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -5289,7 +5289,7 @@ __Tags:__
 [session](admin-tags.md#session)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -5433,7 +5433,7 @@ HTTP/1.1 200 OK
 List OAuth tokens, user, scope, and seconds to expire (only Mnesia)
 
 
-List  [OAuth](oauth.md) tokens, their user and scope, and how many seconds remain until expiry
+List  [OAuth](../../developer/ejabberd-api/oauth.md) tokens, their user and scope, and how many seconds remain until expiry
 
 __Arguments:__
 
@@ -5629,7 +5629,7 @@ __Tags:__
 [stanza](admin-tags.md#stanza)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -5669,7 +5669,7 @@ __Tags:__
 [private](admin-tags.md#private)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -5709,7 +5709,7 @@ __Tags:__
 [private](admin-tags.md#private)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -5797,7 +5797,7 @@ __Tags:__
 [roster](admin-tags.md#roster)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -5846,7 +5846,7 @@ __Tags:__
 [roster](admin-tags.md#roster)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -5892,7 +5892,7 @@ __Tags:__
 [roster](admin-tags.md#roster)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -5934,7 +5934,7 @@ __Tags:__
 [roster](admin-tags.md#roster)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -6106,7 +6106,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -6143,7 +6143,7 @@ __Tags:__
 [spam](admin-tags.md#spam)
 
 __Module:__
-[mod_antispam](../../admin/configuration/modules.md#mod_antispam)
+[mod_antispam](modules.md#mod_antispam)
 
 __Examples:__
 
@@ -6180,7 +6180,7 @@ __Tags:__
 [mam](admin-tags.md#mam)
 
 __Module:__
-[mod_mam](../../admin/configuration/modules.md#mod_mam)
+[mod_mam](modules.md#mod_mam)
 
 __Examples:__
 
@@ -6218,7 +6218,7 @@ __Tags:__
 [mam](admin-tags.md#mam)
 
 __Module:__
-[mod_mam](../../admin/configuration/modules.md#mod_mam)
+[mod_mam](modules.md#mod_mam)
 
 __Examples:__
 
@@ -6327,7 +6327,7 @@ __Tags:__
 [session](admin-tags.md#session)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -6439,7 +6439,7 @@ __Tags:__
 [erlang](admin-tags.md#erlang)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -6546,7 +6546,7 @@ __Tags:__
 [muc](admin-tags.md#muc), [v2](admin-tags.md#v2)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -6584,7 +6584,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -6626,7 +6626,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -6669,7 +6669,7 @@ __Tags:__
 [muc](admin-tags.md#muc)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -6752,7 +6752,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [v1](admin-tags.md#v1)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -6801,7 +6801,7 @@ __Tags:__
 [stanza](admin-tags.md#stanza)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -6842,7 +6842,7 @@ __Tags:__
 [stanza](admin-tags.md#stanza)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -6885,7 +6885,7 @@ __Tags:__
 [stanza](admin-tags.md#stanza)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -6929,7 +6929,7 @@ __Tags:__
 [last](admin-tags.md#last)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7040,7 +7040,7 @@ __Tags:__
 [vcard](admin-tags.md#vcard)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7084,7 +7084,7 @@ __Tags:__
 [session](admin-tags.md#session), [v1](admin-tags.md#v1)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7133,7 +7133,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -7186,7 +7186,7 @@ __Tags:__
 [vcard](admin-tags.md#vcard)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7246,7 +7246,7 @@ __Tags:__
 [vcard](admin-tags.md#vcard)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7307,7 +7307,7 @@ __Tags:__
 [vcard](admin-tags.md#vcard)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7351,7 +7351,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7390,7 +7390,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7432,7 +7432,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group), [v1](admin-tags.md#v1)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7477,7 +7477,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7515,7 +7515,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7553,7 +7553,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7593,7 +7593,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7639,7 +7639,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7678,7 +7678,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7720,7 +7720,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7761,7 +7761,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7802,7 +7802,7 @@ __Tags:__
 [shared_roster_group](admin-tags.md#shared_roster_group)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7843,7 +7843,7 @@ __Tags:__
 [statistics](admin-tags.md#statistics)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7882,7 +7882,7 @@ __Tags:__
 [statistics](admin-tags.md#statistics)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7950,7 +7950,7 @@ __Tags:__
 [session](admin-tags.md#session), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -7993,7 +7993,7 @@ __Tags:__
 [session](admin-tags.md#session), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -8035,7 +8035,7 @@ __Tags:__
 [session](admin-tags.md#session), [statistics](admin-tags.md#statistics)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -8071,7 +8071,7 @@ __Tags:__
 [session](admin-tags.md#session), [statistics](admin-tags.md#statistics)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -8214,7 +8214,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -8250,7 +8250,7 @@ HTTP/1.1 200 OK
 Subscribe several users to a MUC conference
 
 
-This command accepts up to 50 users at once (this is configurable with the [mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin) option `subscribe_room_many_max_users`)
+This command accepts up to 50 users at once (this is configurable with the [mod_muc_admin](modules.md#mod_muc_admin) option `subscribe_room_many_max_users`)
 
 __Arguments:__
 
@@ -8267,7 +8267,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -8324,7 +8324,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts), [v2](admin-tags.md#v2)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 
@@ -8363,7 +8363,7 @@ __Tags:__
 [accounts](admin-tags.md#accounts)
 
 __Module:__
-[mod_fail2ban](../../admin/configuration/modules.md#mod_fail2ban)
+[mod_fail2ban](modules.md#mod_fail2ban)
 
 __Examples:__
 
@@ -8439,7 +8439,7 @@ __Tags:__
 [muc_room](admin-tags.md#muc_room), [muc_sub](admin-tags.md#muc_sub), [v3](admin-tags.md#v3)
 
 __Module:__
-[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+[mod_muc_admin](modules.md#mod_muc_admin)
 
 __Examples:__
 
@@ -8547,7 +8547,7 @@ __Tags:__
 [sql](admin-tags.md#sql)
 
 __Module:__
-[mod_admin_update_sql](../../admin/configuration/modules.md#mod_admin_update_sql)
+[mod_admin_update_sql](modules.md#mod_admin_update_sql)
 
 __Examples:__
 
@@ -8621,7 +8621,7 @@ __Tags:__
 [session](admin-tags.md#session)
 
 __Module:__
-[mod_admin_extra](../../admin/configuration/modules.md#mod_admin_extra)
+[mod_admin_extra](modules.md#mod_admin_extra)
 
 __Examples:__
 

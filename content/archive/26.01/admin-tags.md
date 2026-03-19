@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 # API Tags
 
 !!! info "Please note"

@@ -82,7 +82,7 @@ mod\_admin\_update\_sql
 
 This module can be used to update existing SQL database from the default
 to the new schema. Check the section [Default and New
-Schemas](../../admin/configuration/database.md#default-and-new-schemas) for details.
+Schemas](../../admin/configuration/database.md#singlehost-or-multihost) for details.
 Please note that only PostgreSQL is supported. When the module is loaded
 use *update\_sql* ejabberdctl command.
 

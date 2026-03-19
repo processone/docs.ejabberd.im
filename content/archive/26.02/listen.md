@@ -1,3 +1,8 @@
+---
+search:
+  exclude: true
+---
+
 # Listen Modules
 
 !!! info "Please note"
@@ -111,7 +116,7 @@ Support for MQTT requires configuring `mod_mqtt` both in the
 [listen](toplevel.md#listen) and the
 [modules](toplevel.md#modules) sections.
 Check the [mod_mqtt module](modules.md#mod_mqtt) options,
-and the [MQTT Support](../guide/mqtt/index.md) section.
+and the [MQTT Support](../../admin/guide/mqtt/index.md) section.
 
 General listen options supported:
 [backlog](listen-options.md#backlog),
@@ -330,23 +335,23 @@ _sips._tcp  IN SRV  0 0 5061 sip.example.com.
 Handles incoming HTTP connections.
 
 With the proper request handlers configured, this serves HTTP services like
-[ACME](basic.md#acme),
+[ACME](../../admin/configuration/basic.md#acme),
 [API ReST](modules.md#mod_http_api),
 [BOSH](modules.md#mod_bosh),
-[CAPTCHA](basic.md#captcha),
+[CAPTCHA](../../admin/configuration/basic.md#captcha),
 [Converse.js](modules.md#mod_conversejs),
 [Fileserver](modules.md#mod_http_fileserver),
 [Matrix](modules.md#mod_matrix_gw),
 [OAuth](../../developer/ejabberd-api/oauth.md),
 [RegisterWeb](modules.md#mod_register_web),
 [Upload](modules.md#mod_http_upload),
-[WebAdmin](../guide/managing.md#web-admin),
+[WebAdmin](../../admin/guide/managing.md#web-admin),
 [WebSocket](#ejabberd_http_ws),
 [XML-RPC](#ejabberd_xmlrpc),
 [XMPP Provider](modules.md#mod_providers),
 [XMPP `host-meta`](modules.md#mod_host_meta).
 
-The [ejabberd-contrib](../guide/modules.md#ejabberd-contrib) git repository contains other useful HTTP services:
+The [ejabberd-contrib](../../admin/guide/modules.md#ejabberd-contrib) git repository contains other useful HTTP services:
 [CAPTCHA (Rust)](https://github.com/processone/ejabberd-contrib/tree/master/mod_captcha_rust),
 [CAPTCHA (Erlang)](https://github.com/processone/ejabberd-contrib/tree/master/mod_ecaptcha),
 [HTTP Redirect](https://github.com/processone/ejabberd-contrib/tree/master/mod_http_redirect),
@@ -527,7 +532,7 @@ For example, the following simple configuration defines:
 
 - Port 5280 listens for HTTP requests, and serves the HTTP-Bind (BOSH) service.
 
-- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../guide/managing.md#web-admin). The socket only listens connections to the IP address 127.0.0.1.
+- Port 5281 listens for HTTP requests, using HTTPS to serve HTTP-Bind (BOSH) and the Web Admin as explained in [Managing: Web Admin](../../admin/guide/managing.md#web-admin). The socket only listens connections to the IP address 127.0.0.1.
 
 ``` yaml
 hosts:
@@ -600,7 +605,7 @@ In this example, the following configuration defines that:
 
 - Port 5280 is serving the Web Admin and the HTTP-Bind (BOSH) service in
  all the IPv4 addresses. Note that it is also possible to serve them
- on different ports. The second example in section [Managing: Web Admin](../guide/managing.md#web-admin) shows
+ on different ports. The second example in section [Managing: Web Admin](../../admin/guide/managing.md#web-admin) shows
  how exactly this can be done. A request handler to serve MQTT over WebSocket is also defined.
 
 - All users except for the administrators have a traffic of limit

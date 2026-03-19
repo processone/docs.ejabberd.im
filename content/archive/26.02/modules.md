@@ -7,9 +7,9 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [25.07](../../archive/25.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [26.02](../../archive/26.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-    The modules that changed in this version are marked with 🟤.
+    The modules that changed in this version are marked with 🟠.
 
 mod\_adhoc
 ----------
@@ -136,16 +136,31 @@ Call to [srg_create](../../developer/ejabberd-api/admin-api.md#srg_create) API u
 ejabberdctl srg_create g1 example.org "'Group number 1'" this_is_g1 g1
 ~~~
 
+**API Tags:**
+[accounts](../../developer/ejabberd-api/admin-tags.md#accounts),
+[erlang](../../developer/ejabberd-api/admin-tags.md#erlang),
+[last](../../developer/ejabberd-api/admin-tags.md#last),
+[private](../../developer/ejabberd-api/admin-tags.md#private),
+[purge](../../developer/ejabberd-api/admin-tags.md#purge),
+[roster](../../developer/ejabberd-api/admin-tags.md#roster),
+[session](../../developer/ejabberd-api/admin-tags.md#session),
+[shared_roster_group](../../developer/ejabberd-api/admin-tags.md#shared_roster_group),
+[stanza](../../developer/ejabberd-api/admin-tags.md#stanza),
+[statistics](../../developer/ejabberd-api/admin-tags.md#statistics),
+[vcard](../../developer/ejabberd-api/admin-tags.md#vcard)
+
 mod\_admin\_update\_sql
 -----------------------
 
-This module can be used to update existing SQL database from the default
-to the new schema. Check the section
+This module can be used to convert your existing SQL database from the
+singlehost to the multihost schema. Check the section
 [Singlehost or Multihost](../../admin/configuration/database.md#singlehost-or-multihost) for
 details. Please note that only MS SQL, MySQL, and PostgreSQL are
 supported. When the module is loaded use [update_sql](../../developer/ejabberd-api/admin-api.md#update_sql) API.
 
 The module has no options.
+
+**API Tags:** [sql](../../developer/ejabberd-api/admin-tags.md#sql)
 
 mod\_announce
 -------------
@@ -153,7 +168,7 @@ mod\_announce
 This module enables configured users to broadcast announcements and to
 set the message of the day (MOTD). Configured users can perform these
 actions with an XMPP client either using Ad-Hoc Commands or sending
-messages to specific JIDs.
+messages to specific JIDs. Equivalent API commands are also available.
 
 !!! note
 
@@ -231,8 +246,11 @@ only.
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
-mod\_antispam 🟤
-----------------
+**API Tags:**
+[announce](../../developer/ejabberd-api/admin-tags.md#announce)
+
+mod\_antispam
+-------------
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -341,6 +359,8 @@ modules:
     spam_dump_file: "@LOG_PATH@/spam/host-@HOST@.log"
 ~~~
 
+**API Tags:** [spam](../../developer/ejabberd-api/admin-tags.md#spam)
+
 mod\_auth\_fast
 ---------------
 
@@ -420,11 +440,11 @@ __Available options:__
 
 - **access**: `AccessName`  
 The option is supposed to be used when `allow_local_users` and
-`allow_transports` are not enough. It’s an ACL where `deny` means the
-message will be rejected (or a CAPTCHA would be generated for a
-presence, if configured), and `allow` means the sender is whitelisted
-and the stanza will pass through. The default value is `none`, which
-means nothing is whitelisted.
+`allow_transports* are not enough. It’s an Access Rule where *deny`
+means the stanza will be rejected; there’s an exception if option
+`captcha` is configured. And `allow` means the sender is whitelisted and
+the stanza will pass through. The default value is `none`, which means
+nothing is whitelisted.
 
 - **allow\_local\_users**: `true | false`  
 This option specifies if strangers from the same local host should be
@@ -436,9 +456,10 @@ messages from any user of this server are accepted even if no
 subscription present. The default value is `true`.
 
 - **captcha**: `true | false`  
-Whether to generate CAPTCHA or not in response to messages from
-strangers. See also section [CAPTCHA](../../admin/configuration/basic.md#captcha) of the
-Configuration Guide. The default value is `false`.
+Whether to generate CAPTCHA challenges in response to incoming presence
+subscription requests from strangers. See also section
+[CAPTCHA](../../admin/configuration/basic.md#captcha) of the Configuration Guide. The default
+value is `false`.
 
 - **drop**: `true | false`  
 This option specifies if strangers messages should be dropped or not.
@@ -605,6 +626,9 @@ While a client is inactive, queue presence stanzas that indicate
 mod\_configure
 --------------
 
+<!-- md:version improved in [25.10](../../archive/25.10/index.md) -->
+
+
 The module provides server configuration functionalities using
 [XEP-0030: Service Discovery](https://xmpp.org/extensions/xep-0030.html)
 and [XEP-0050: Ad-Hoc
@@ -617,6 +641,30 @@ Commands](https://xmpp.org/extensions/xep-0050.html):
     Administration](https://xmpp.org/extensions/xep-0133.html)
 
 -   Additional custom ad-hoc commands specific to ejabberd
+
+Ad-hoc commands from XEP-0133 that behave differently to the XEP:
+
+-   `get-user-roster`: returns standard fields instead of roster items
+    that client cannot display
+
+Those ad-hoc commands from XEP-0133 do not include in the response the
+client that executed the command:
+
+-   `get-active-users-num`
+
+-   `get-idle-users-num`
+
+-   `get-active-users`
+
+-   `get-idle-users`
+
+Those ad-hoc commands from XEP-0133 are not implemented:
+
+-   `edit-blacklist`
+
+-   `edit-whitelist`
+
+-   `edit-admin`
 
 This module requires [mod_adhoc](#mod_adhoc) (to execute the commands), and
 recommends [mod_disco](#mod_disco) (to discover the commands).
@@ -650,8 +698,8 @@ modules:
     access: configure
 ~~~
 
-mod\_conversejs 🟤
-------------------
+mod\_conversejs
+---------------
 
 <!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
 
@@ -669,6 +717,9 @@ one `request_handlers`.
 
 When `conversejs_css` and `conversejs_script` are `auto`, by default
 they point to the public Converse client.
+
+When this module is enabled in `modules`, it adds automatically a
+requesthandler and link in WebAdmin. .
 
 This module is available since ejabberd [21.12](../../archive/21.12/index.md).
 
@@ -691,6 +742,13 @@ be passed to Converse. See [Converse
 configuration](https://conversejs.org/docs/html/configuration.html).
 Only boolean, integer and string values are supported; lists are not
 supported.
+
+- **conversejs\_plugins**: `[Filename]`  
+List of additional local files to include as scripts in the homepage.
+Please make sure those files are available in the path specified in
+`conversejs_resources` option, in subdirectory `plugins/`. If using the
+public Converse client, then `"libsignal"` gets replaced with the URL of
+the public library. The default value is `[]`.
 
 - **conversejs\_resources**: `Path`  
 <!-- md:version added in [22.05](../../archive/22.05/index.md) -->
@@ -728,6 +786,7 @@ listen:
 modules:
   mod_bosh: {}
   mod_conversejs:
+    conversejs_plugins: ["libsignal"]
     websocket_url: "ws://@HOST@:5280/websocket"
 ~~~
 
@@ -746,7 +805,9 @@ listen:
 
 modules:
   mod_conversejs:
-    conversejs_resources: "/home/ejabberd/conversejs-9.0.0/package/dist"
+    conversejs_resources: "/home/ejabberd/conversejs-x.y.z/package/dist"
+    conversejs_plugins: ["libsignal-protocol.min.js"]
+    # File path is: /home/ejabberd/conversejs-x.y.z/package/dist/plugins/libsignal-protocol.min.js
 ~~~
 
 Configure some additional options for Converse
@@ -927,6 +988,9 @@ failures. The default value is `1` hour.
 The number of C2S authentication failures to trigger the IP ban. The
 default value is `20`.
 
+**API Tags:**
+[accounts](../../developer/ejabberd-api/admin-tags.md#accounts)
+
 mod\_host\_meta
 ---------------
 
@@ -966,7 +1030,7 @@ listen:
     tls: true
     request_handlers:
       /bosh: mod_bosh
-      /ws: ejabberd_http_ws
+      /websocket: ejabberd_http_ws
       /.well-known/host-meta: mod_host_meta
       /.well-known/host-meta.json: mod_host_meta
 
@@ -974,7 +1038,7 @@ modules:
   mod_bosh: {}
   mod_host_meta:
     bosh_service_url: "https://@HOST@:5443/bosh"
-    websocket_url: "wss://@HOST@:5443/ws"
+    websocket_url: "wss://@HOST@:5443/websocket"
 ~~~
 
 mod\_http\_api
@@ -1022,6 +1086,9 @@ modules:
 mod\_http\_fileserver
 ---------------------
 
+<!-- md:version improved `docroot` in [26.01](../../archive/26.01/index.md) -->
+
+
 This simple module serves files from the local disk over HTTP.
 
 __Available options:__
@@ -1039,19 +1106,42 @@ modify existing ones. The default values are:
 
     ~~~ yaml
     content_types:
+      .avi: video/avi
+      .bmp: image/bmp
+      .bz2: application/x-bzip2
       .css: text/css
       .gif: image/gif
+      .gz: application/x-gzip
       .html: text/html
+      .ico: image/vnd.microsoft.icon
       .jar: application/java-archive
       .jpeg: image/jpeg
       .jpg: image/jpeg
       .js: text/javascript
+      .json: application/json
+      .m4a: audio/mp4
+      .map: application/json
+      .mp3: audio/mpeg
+      .mp4: video/mp4
+      .mpeg: video/mpeg
+      .mpg: video/mpeg
+      .ogg: application/ogg
+      .pdf: application/pdf
       .png: image/png
+      .rtf: application/rtf
       .svg: image/svg+xml
+      .tiff: image/tiff
+      .ttf: font/ttf
       .txt: text/plain
+      .wav: audio/wav
+      .webp: image/webp
+      .woff: font/woff
+      .woff2: font/woff2
       .xml: application/xml
       .xpi: application/x-xpinstall
       .xul: application/vnd.mozilla.xul+xml
+      .xz: application/x-xz
+      .zip: application/zip
     ~~~
 
 - **custom\_headers**: `{Name: Value}`  
@@ -1068,8 +1158,31 @@ Indicate one or more directory index files, similarly to Apache’s
 of a regular file, those directory indices are looked in order, and the
 first one found is returned. The default value is an empty list.
 
-- **docroot**: `Path`  
-Directory to serve the files from. This is a mandatory option.
+- **docroot**: `PathDir | {PathURL, PathDir}`  
+<!-- md:version improved in [26.01](../../archive/26.01/index.md) -->
+ Directory to serve the
+files from, or a map with several URL path (as specified in
+[request_handlers](listen-options.md#request_handlers)) and their
+corresponding directory. This is a mandatory option.
+
+    **Example**:
+
+    ~~~ yaml
+    listen:
+      -
+        port: 5280
+        module: ejabberd_http
+        request_handlers:
+          /pub/content: mod_http_fileserver
+          /share: mod_http_fileserver
+          /: mod_http_fileserver
+    modules:
+      mod_http_fileserver:
+        docroot:
+          /pub/content: /var/service/www
+          /share: /usr/share/javascript
+          /: /var/www
+    ~~~
 
 - **must\_authenticate\_with**: `[{Username, Hostname}, ...]`  
 List of accounts that are allowed to use this service. Default value:
@@ -1109,6 +1222,9 @@ modules:
 mod\_http\_upload
 -----------------
 
+<!-- md:version added `content_types` in [26.01](../../archive/26.01/index.md) -->
+
+
 This module allows for requesting permissions to upload a file via HTTP
 as described in [XEP-0363: HTTP File
 Upload](https://xmpp.org/extensions/xep-0363.html). If the request is
@@ -1125,6 +1241,12 @@ __Available options:__
 This option defines the access rule to limit who is permitted to use the
 HTTP upload service. The default value is `local`. If no access rule of
 that name exists, no user will be allowed to use the service.
+
+- **content\_types**: `{Extension: Type}`  
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+ Specify mappings of extension
+to content type, similarly to the option `content_types` of
+[mod_http_fileserver](#mod_http_fileserver).
 
 - **custom\_headers**: `{Name: Value}`  
 This option specifies additional header fields to be included in all
@@ -1195,8 +1317,10 @@ XMPP clients.
 - **put\_url**: `URL`  
 This option specifies the initial part of the PUT URLs used for file
 uploads. The keyword `@HOST@` is replaced with the virtual host name.
-NOTE: different virtual hosts cannot use the same PUT URL. The default
-value is `"https://@HOST@:5443/upload"`.
+And `@HOST_URL_ENCODE@` is replaced with the host name encoded for
+URL, useful when your virtual hosts contain non-latin characters. NOTE:
+different virtual hosts cannot use the same PUT URL. The default value
+is `"https://@HOST@:5443/upload"`.
 
 - **rm\_on\_unregister**: `true | false`  
 This option specifies whether files uploaded by a user should be removed
@@ -1312,6 +1436,180 @@ modules:
     max_days: 100
 ~~~
 
+mod\_invites
+------------
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+
+Allow User Invitation and Account Creation to create out-of-band links
+to onboard others onto the XMPP network and establish a mutual
+subscription. This implements [XEP-0379: Pre-Authenticated Roster
+Subscription](https://xmpp.org/extensions/xep-0379.html), [XEP-0401:
+Ad-hoc Account Invitation
+Generation](https://xmpp.org/extensions/xep-0401.html), and [XEP-0445:
+Pre-Authenticated In-Band
+Registration](https://xmpp.org/extensions/xep-0445.html).
+
+These invitations are created as XMPP URIs either via ad-hoc commands or
+via API commands (like [generate_invite](../../developer/ejabberd-api/admin-api.md#generate_invite) API and
+[generate_invite_with_username](../../developer/ejabberd-api/admin-api.md#generate_invite_with_username) API), are then meant to be sent
+out-of-band.
+
+The receiving user should have installed a client that supports those
+invitations. Since this has proven to be a common obstacle for easy
+adoption, this module comes with an optional landing page parameter,
+that can either be some external service like an installation of
+[easy-xmpp-invitation](https://github.com/modernxmpp/easy-xmpp-invitation),
+a third-party service like [JoinJabber](https://invite.joinjabber.org)
+or for convenience a built-in service. This landing page will then guide
+the recipient with setting up a client and creating an account if
+required.
+
+In order to use the included landing page feature, you have to
+
+-   have a copy of [jQuery
+    3](https://code.jquery.com/jquery-3.7.1.min.js) and [Bootstrap
+    4](https://github.com/twbs/bootstrap/releases/download/v4.6.2/bootstrap-4.6.2-dist.zip)
+    in a shared directory on your system. If you’re using Debian or
+    derivatives this is easiest accomplished by installing both
+    `libjs-jquery` and `libjs-bootstrap4` which will put them under
+    `/usr/share/javascript/{jquery,bootstrap4}`. Alternatively you can
+    use `tools/dl_invites_page_deps.sh <outdir>`.
+
+-   in `ejabberd.yml` configure a listener for module `ejabberd_http`
+    with a request handler for `/share: mod_http_fileserver`
+
+-   in the `modules` section configure `mod_http_fileserver` so that
+    `docroot` points to the shared directory from above (e.g.
+    `docroot: /usr/share/javascript`)
+
+-   configure `mod_invites` and set `landing_page` to either `auto` or
+    an URL template like `https://{{ host }}/invites/{{ invite.token }}`
+    if your server setup includes a so called reverse proxy
+
+If you’d rather want to use an external service, set `landing_page` to
+something like
+`http://{{ host }}:8080/easy-xmpp-invites/#{{ invite.uri|strip_protocol }}`
+or `https://invites.joinjabber.org/#{{ invite.uri|strip_protocol }}`.
+
+__Available options:__
+
+- **access\_create\_account**: `Access Rule Name`  
+This is the name of an access rule that specifies who is allowed to
+create invites of `create account`. The default value is `none`, i.e.
+nobody is able to create such invites. Furthermore it applies to *roster
+invites* and allows to do in-band registration (IBR) if the sending user
+is allowed by this rule. Users from the `admin` ACL are always allowed
+to create those invites.
+
+    **Example**:
+
+    ~~~ yaml
+    mod_invites:
+      access_create_account: local
+    ~~~
+
+- **db\_type**: `mnesia | sql`  
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
+only.
+
+- **landing\_page**: `none | auto | LandingPageURLTemplate`  
+Whether or not to use a landing page for the invites that are being
+created. If using a template URL this can be either be external or
+internal. Template variables include `host`, `invite.token` and
+`invite.uri`, there are also filters defined, most notably
+`strip_protocol`. Here’s an example:
+`http://{{ host }}:8080/easy-xmpp-invites/#{{ invite.uri|strip_protocol }}`.
+For convenience you can choose `auto` here and the `ejabberd_http`
+handler for `mod_invites` will be used to construct the landing page
+URL. Default is `none`.
+
+- **max\_invites**: `pos_integer() | infinity`  
+Maximum number of `create account` invites that can be created by an
+individual user. Users that match the `admin` ACL are exempt from this
+limitation. Furthermore it restricts the use of `roster invites` for
+account creation. Default is `infinity`.
+
+- **site\_name**: `Site Name`  
+A human readable name for your site. E.g. `"My Beautiful Laundrette"`.
+Used in landing page templates.
+
+- **templates\_dir**: `Path`  
+The directory containing templates and static files used for landing
+page and web registration form. Only needs to be set if you want to ship
+your own set of templates or list of recommended apps.
+
+- **token\_expire\_seconds**: `pos_integer()`  
+Number of seconds until token expires. Default value is `432000` (that
+is five days: `5 * 24 * 60 * 60`)
+
+__Examples:__
+
+Basic configuration with landing page but without creating accounts,
+just roster invites:
+
+~~~ yaml
+listen:
+  -
+    port: 5281
+    module: ejabberd_http
+    request_handlers:
+      /invites: mod_invites
+      /share: mod_http_fileserver
+# [...]
+modules:
+  mod_http_fileserver:
+    docroot: /usr/share/javascript
+  mod_invites:
+    landing_page: auto
+~~~
+
+To allow only admin users to create invites of `create account` and
+disable regular in-band registration, you would have a config like this:
+
+~~~ yaml
+acl:
+  admin:
+    - user: "my_admin_user@example.com"
+
+access_rules:
+  register:
+    allow: admin
+
+modules:
+  mod_invites:
+    landing_page: auto
+  mod_register:
+    allow_modules:
+      - mod_invites
+~~~
+
+If you want all your users to be able to send `create account` invites,
+you would configure your server like this instead. Note that the names
+of the access rules are just examples and you’re free to change them.
+
+~~~ yaml
+acl:
+  local:
+    user_regexp: ""
+access_rules:
+  create_account_invite:
+    allow: local
+
+modules:
+  mod_invites:
+    access_create_account: create_account_invite
+    landing_page: auto
+  mod_register:
+    allow_modules:
+      - mod_invites
+~~~
+
+**API Tags:**
+[accounts](../../developer/ejabberd-api/admin-tags.md#accounts),
+[purge](../../developer/ejabberd-api/admin-tags.md#purge)
+
 mod\_jidprep
 ------------
 
@@ -1391,6 +1689,14 @@ __Available options:__
 This access rule defines who is allowed to modify the MAM preferences.
 The default value is `all`.
 
+- **archive\_muc\_as\_mucsub**: `true | false`  
+<!-- md:version added in [25.10](../../archive/25.10/index.md) -->
+ When this option is enabled
+incoming groupchat messages for users that have mucsub subscription to a
+room from which message originated will have those messages archived
+after being converted to mucsub event messages.The default value is
+`false`.
+
 - **assume\_mam\_usage**: `true | false`  
 This option determines how ejabberd’s stream management code (see
 [mod_stream_mgmt](#mod_stream_mgmt)) handles unacknowledged messages when the connection
@@ -1447,15 +1753,20 @@ mucsub message is stored. With this option enabled, when a user fetches
 archive virtual mucsub, messages are generated from muc archives. The
 default value is `false`.
 
-mod\_matrix\_gw 🟤
-------------------
+**API Tags:** [mam](../../developer/ejabberd-api/admin-tags.md#mam),
+[purge](../../developer/ejabberd-api/admin-tags.md#purge)
 
-<!-- md:version improved in [25.07](../../archive/25.07/index.md) -->
+mod\_matrix\_gw
+---------------
+
+<!-- md:version improved in [25.08](../../archive/25.08/index.md) -->
 
 
-[Matrix](https://matrix.org/) gateway. Erlang/OTP 25 or higher is
-required to use this module. This module is available since ejabberd
-24.02.
+[Matrix](https://matrix.org/) gateway. Supports room versions 9, 10 and
+11 since ejabberd [25.03](../../archive/25.03/index.md); room versions 4 and higher since ejabberd
+25.07; room version 12 (hydra rooms) since ejabberd [25.08](../../archive/25.08/index.md). Erlang/OTP 25
+or higher is required to use this module. This module is available since
+ejabberd [24.02](../../archive/24.02/index.md).
 
 __Available options:__
 
@@ -1470,6 +1781,10 @@ Value of the matrix signing key, in base64.
 
 - **key\_name**: `string()`  
 Name of the matrix signing key.
+
+- **leave\_timeout**: `integer()`  
+Delay in seconds between a user leaving a MUC room and sending `leave`
+Matrix event.
 
 - **matrix\_domain**: `Domain`  
 Specify a domain in the Matrix federation. The keyword `@HOST@` is
@@ -1486,6 +1801,9 @@ user `@user:matrixdomain.tld`, the client must send a message to the JID
 `user%<matrixdomain.tld@matrix.myxmppdomain>.tld`, where
 `matrix.myxmppdomain.tld` is the JID of the gateway service as set by
 the `host` option. The default is `false`.
+
+- **notary\_servers**: `[Server, ...]`  
+A list of notary servers.
 
 __**Example**:__
 
@@ -1732,13 +2050,32 @@ modules:
           "remoteB": "localB" # changes to 'remoteB' on remote server will be stored as 'localB' on local server
 ~~~
 
-mod\_muc
---------
+mod\_muc 🟠
+-----------
 
-This module provides support for [XEP-0045: Multi-User
-Chat](https://xmpp.org/extensions/xep-0045.html). Users can discover
-existing rooms, join or create them. Occupants of a room can chat in
-public or have private chats.
+<!-- md:version incorporated `mod_muc_occupantid` in [26.02](../../archive/26.02/index.md) -->
+
+
+This module provides support for [Multi-User
+Chat](https://xmpp.org/extensions/xep-0045.html) (MUC). Users can
+discover existing rooms, join or create them. Occupants of a room can
+chat in public or have private chats.
+
+Protocols implemented in this module:
+
+-   [XEP-0045: Multi-User
+    Chat](https://xmpp.org/extensions/xep-0045.html)
+
+-   [XEP-0249: Direct MUC
+    Invitations](https://xmpp.org/extensions/xep-0249.html)
+
+-   [XEP-0421: Occupant identifiers for semi-anonymous
+    MUCs](https://xmpp.org/extensions/xep-0421.html)
+
+-   [XEP-0486: MUC Avatars](https://xmpp.org/extensions/xep-0486.html)
+
+-   [Muc/Sub: Multi-User Chat
+    Subscriptions](https://docs.ejabberd.im/developer/xmpp-clients-bots/extensions/muc-sub/)
 
 The MUC service allows any Jabber ID to register a nickname, so nobody
 else can use that nickname in any room in the MUC service. To register a
@@ -1869,9 +2206,10 @@ capability. The `Options` are:
 
     - **enable\_hats**: `true | false`  
    `Note` about this option: improved
-    in [25.03](../../archive/25.03/index.md). Allow extended roles as defined in XEP-0317 Hats. Check
-    the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The default
-    value is `false`.
+    in [25.10](../../archive/25.10/index.md). Allow extended roles as defined in [XEP-0317:
+    Hats](https://xmpp.org/extensions/xep-0317.html). For ejabberd older
+    than [25.10](../../archive/25.10/index.md) see the [MUC Hats](../../tutorials/muc-hats.md) page.
+    The default value is `true`.
 
     - **lang**: `Language`  
    Preferred language for the discussions in the
@@ -2140,6 +2478,10 @@ __Available options:__
 subscribed to a room at once using the [subscribe_room_many](../../developer/ejabberd-api/admin-api.md#subscribe_room_many) API. The
 default value is `50`.
 
+**API Tags:** [muc](../../developer/ejabberd-api/admin-tags.md#muc),
+[muc_room](../../developer/ejabberd-api/admin-tags.md#muc_room),
+[muc_sub](../../developer/ejabberd-api/admin-tags.md#muc_sub)
+
 mod\_muc\_log
 -------------
 
@@ -2253,20 +2595,6 @@ A top level `URL` where a client can access logs of a particular
 conference. The conference name is appended to the URL if `dirname`
 option is set to `room_name` or a conference JID is appended to the
 `URL` otherwise. There is no default value.
-
-mod\_muc\_occupantid
---------------------
-
-<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
-
-
-This module implements [XEP-0421: Anonymous unique occupant identifiers
-for MUCs](https://xmpp.org/extensions/xep-0421.html).
-
-When the module is enabled, the feature is enabled in all semi-anonymous
-rooms.
-
-The module has no options.
 
 mod\_muc\_rtbl
 --------------
@@ -2477,6 +2805,9 @@ modules:
   ...
 ~~~
 
+**API Tags:**
+[offline](../../developer/ejabberd-api/admin-tags.md#offline)
+
 mod\_ping
 ---------
 
@@ -2624,6 +2955,9 @@ only.
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
 
+**API Tags:**
+[private](../../developer/ejabberd-api/admin-tags.md#private)
+
 mod\_privilege
 --------------
 
@@ -2729,6 +3063,133 @@ modules:
       managed_entity: all
     message:
       outgoing: all
+~~~
+
+mod\_providers
+--------------
+
+<!-- md:version added in [25.08](../../archive/25.08/index.md) -->
+
+
+This module serves JSON provider files API v2 as described by [XMPP
+Providers](https://providers.xmpp.net/provider-file-generator/).
+
+It attempts to fill some properties gathering values automatically from
+your existing ejabberd configuration. Try enabling the module, check
+what values are displayed, and then customize using the options.
+
+To use this module, in addition to adding it to the `modules` section,
+you must also enable it in `listen` → `ejabberd_http` →
+[request_handlers](listen-options.md#request_handlers). Notice you
+should set in [ejabberd_http](listen.md#ejabberd_http) the option
+[tls](listen-options.md#tls) enabled.
+
+__Available options:__
+
+- **alternativeJids**: `[string()]`  
+List of JIDs (XMPP server domains) a provider offers for registration
+other than its main JID. The default value is `[]`.
+
+- **busFactor**: `integer()`  
+Bus factor of the XMPP service (i.e., the minimum number of team members
+that the service could not survive losing) or `-1` for n/a. The default
+value is `-1`.
+
+- **freeOfCharge**: `true | false`  
+Whether the XMPP service can be used for free. The default value is
+`false`.
+
+- **languages**: `[string()]`  
+List of language codes that your pages are available. Some options
+define URL where the keyword `@LANGUAGE_URL@` will be replaced with
+each of those language codes. The default value is a list with the
+language set in the option [language](toplevel.md#language), for example: `[en]`.
+
+- **legalNotice**: `string()`  
+Legal notice web page (per language). The keyword `@LANGUAGE_URL@` is
+replaced with each language. The default value is `""`.
+
+- **maximumHttpFileUploadStorageTime**: `integer()`  
+Maximum storage duration of each shared file (number in days, `0` for no
+limit or `-1` for less than 1 day). The default value is the same as
+option `max_days` from module [mod_http_upload_quota](#mod_http_upload_quota), or `0`
+otherwise.
+
+- **maximumHttpFileUploadTotalSize**: `integer()`  
+Maximum size of all shared files in total per user (number in megabytes
+(MB), `0` for no limit or `-1` for less than 1 MB). Attention: MB is
+used instead of MiB (e.g., 104,857,600 bytes = 100 MiB H 104 MB). This
+property is not about the maximum size of each shared file, which is
+already retrieved via XMPP. The default value is the value of the shaper
+value of option `access_hard_quota` from module
+[mod_http_upload_quota](#mod_http_upload_quota), or `0` otherwise.
+
+- **maximumMessageArchiveManagementStorageTime**: `integer()`  
+Maximum storage duration of each exchanged message (number in days, `0`
+for no limit or `-1` for less than 1 day). The default value is `0`.
+
+- **organization**: `string()`  
+Type of organization providing the XMPP service. Allowed values are:
+`company`, `"commercial person"`, `"private person"`, `governmental`,
+`"non-governmental"` or `""`. The default value is `""`.
+
+- **passwordReset**: `string()`  
+Password reset web page (per language) used for an automatic password
+reset (e.g., via email) or describing how to manually reset a password
+(e.g., by contacting the provider). The keyword `@LANGUAGE_URL@` is
+replaced with each language. The default value is an URL built
+automatically if [mod_register_web](#mod_register_web) is configured as a
+`request_handler`, or `""` otherwise.
+
+- **professionalHosting**: `true | false`  
+Whether the XMPP server is hosted with good internet connection speed,
+uninterruptible power supply, access protection and regular backups. The
+default value is `false`.
+
+- **serverLocations**: `[string()]`  
+List of language codes of Server/Backup locations. The default value is
+an empty list: `[]`.
+
+- **serverTesting**: `true | false`  
+Whether tests against the provider’s server are allowed (e.g.,
+certificate checks and uptime monitoring). The default value is `false`.
+
+- **since**: `string()`  
+Date since the XMPP service is available. The default value is an empty
+string: `""`.
+
+- **website**: `string()`  
+Provider website. The keyword `@LANGUAGE_URL@` is replaced with each
+language. The default value is `""`.
+
+__**Example**:__
+
+~~~ yaml
+listen:
+  -
+    port: 443
+    module: ejabberd_http
+    tls: true
+    request_handlers:
+      /.well-known/xmpp-provider-v2.json: mod_providers
+
+modules:
+  mod_providers:
+    alternativeJids: ["example1.com", "example2.com"]
+    busFactor: 1
+    freeOfCharge: true
+    languages: [ag, ao, bg, en]
+    legalNotice: "http://@HOST@/legal/@LANGUAGE_URL@/"
+    maximumHttpFileUploadStorageTime: 0
+    maximumHttpFileUploadTotalSize: 0
+    maximumMessageArchiveManagementStorageTime: 0
+    organization: "non-governmental"
+    passwordReset: "http://@HOST@/reset/@LANGUAGE_URL@/"
+    professionalHosting: true
+    serverLocations: [ao, bg]
+    serverTesting: true
+    since: "2025-12-31"
+    website: "http://@HOST@/website/@LANGUAGE_URL@/"
 ~~~
 
 mod\_proxy65
@@ -3040,8 +3501,10 @@ modules:
       - pep
 ~~~
 
-mod\_pubsub\_serverinfo 🟤
---------------------------
+**API Tags:** [purge](../../developer/ejabberd-api/admin-tags.md#purge)
+
+mod\_pubsub\_serverinfo
+-----------------------
 
 <!-- md:version added in [25.07](../../archive/25.07/index.md) -->
 
@@ -3136,6 +3599,8 @@ strongly recommended to stick to `all`, which is the default value.
 
 - **use\_cache**: `true | false`  
 Same as top-level [use_cache](toplevel.md#use_cache) option, but applied to this module only.
+
+**API Tags:** [purge](../../developer/ejabberd-api/admin-tags.md#purge)
 
 mod\_push\_keepalive
 --------------------
@@ -3275,9 +3740,11 @@ last / character in the URL, otherwise the subpages URL will be
 incorrect.
 
 This module is enabled in `listen` → `ejabberd_http` →
-[request_handlers](listen-options.md#request_handlers), no need to
-enable in `modules`. The module depends on [mod_register](#mod_register) where all
-the configuration is performed.
+[request_handlers](listen-options.md#request_handlers).
+
+There is no need to enable this module in `modules`, but it adds a link
+to the register page in WebAdmin menu. The module depends on
+[mod_register](#mod_register) where all the configuration is performed.
 
 The module has no options.
 
@@ -3352,6 +3819,9 @@ modules:
     versioning: true
     store_current_id: false
 ~~~
+
+**API Tags:**
+[roster](../../developer/ejabberd-api/admin-tags.md#roster)
 
 mod\_s2s\_bidi
 --------------

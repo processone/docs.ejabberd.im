@@ -16,11 +16,11 @@ clustering is a must have feature.
 ## How it Works
 
 A XMPP domain is served by one or more ejabberd nodes. These nodes can
-be run on different machines that are connected via a network. They all
-must have the ability to connect to port 4369 of all another nodes, and
-must have the same magic cookie (see Erlang/OTP documentation, in other
-words the file `~ejabberd/.erlang.cookie` must be the same on all
-nodes). This is needed because all nodes exchange information about
+be run on different machines that are connected via a reliable network.
+
+Those ejabberd nodes get connected between them using
+[Erlang Distribution](distribution.md),
+and then those nodes exchange information about
 connected users, s2s connections, registered services, etc…
 
 Each ejabberd node has the following modules:
@@ -60,45 +60,72 @@ domain of the packet’s destination exists. If that is the case, the s2s
 manager routes the packet to the process serving this connection,
 otherwise a new connection is opened.
 
-## Before you get started
+## Managing nodes in a cluster
 
-Before you start implementing clustering, there are a few things you
-need to take into account:
+Before you setup clustering, there are a few things you need to take into account:
 
 - Cluster should be set up in a single data center: The clustering in
   ejabberd Community Server relies on low latency networking. While it may
   work across regions, it is recommended that you run an ejabberd
   cluster in a single Amazon region.
-- Clustering relies on Erlang features and Mnesia shared schemas. Before
+
+- Clustering ejabberd relies on [Erlang Distribution](distribution.md)
+  and Mnesia shared schemas. Before
   getting started, it is best to get familiar with the Erlang environment
   as this guide will heavily reference Erlang terms.
 
-## Clustering Setup
+### Preparation
 
-def:erlang node
-: A node in erlang connected to a cluster.
-  See [Erlang node name](security.md#erlang-node-name)
+Make sure all the nodes that you plan to group in the cluster have the same
+[cookie](distribution.md#cookie) file.
+You can simply copy the file `.erlang.cookie`
+from one of the nodes to all the other nodes.
 
-## Adding a node to a cluster
-
-Suppose you have already configured ejabberd on one node named
-`ejabberd01`. Let's create an additional node (`ejabberd02`) and connect them
-together.
-
-1. Copy the `/home/ejabberd/.erlang.cookie` file from `ejabberd01` to
-   `ejabberd02`.
-
-   Alternatively you could pass the `-setcookie <value>`
-   option to all `erl` commands below.
-
-2. Make sure your new ejabberd node is properly configured. Usually,
-   you want to have the same `ejabberd.yml` config file on the new node that on the
-   other cluster nodes.
-
-3. Adding a node to the cluster is done by starting a new ejabberd node within the same network, and running [join_cluster](../../developer/ejabberd-api/admin-api.md#join_cluster) from a cluster node. On the `ejabberd02` node for example, as ejabberd is already started, run the following command as the ejabberd daemon user, using the ejabberdctl script:
+Then check that each ejabberd node has a different erlang [node name](distribution.md#node-name)
+set in the option `ERLANG_NODE` in the file `ejabberdctl.cfg`.
+For example, let's assume in a machine named `machine1` you configure:
 
 ``` sh
-ejabberdctl --no-timeout join_cluster 'ejabberd@ejabberd01'
+ERLANG_NODE=ejabberd1@machine1
+```
+
+and in `machine2` you configure:
+
+``` sh
+ERLANG_NODE=ejabberd2@machine2
+```
+
+Make sure your new ejabberd node is properly configured. Usually,
+you want to have the same `ejabberd.yml` config file on the new node that on the
+other cluster nodes.
+
+### Adding a node to a cluster
+
+Let's assume the ejabberd server running in `ejabberd1@machine1`
+already contains a database with accounts and other content,
+and let's consider that node as the initial cluster.
+
+Now let's add to that cluster a new node `ejabberd2@machine2`
+which has no valuable information in its database
+(the contents of its Mnesia database will get removed and overwritten).
+
+Go to machine2, check that you are accessing the second node, tell it to
+[join the cluster](../../developer/ejabberd-api/admin-api.md#join_cluster)
+of the first node, and check the
+[list](../../developer/ejabberd-api/admin-api.md#list_cluster)
+of nodes in the cluster:
+
+``` sh
+$ ejabberdctl status
+The node ejabberd2@machine2 is started with status: started
+ejabberd 25.12 is running in that node
+
+$ ejabberdctl --no-timeout join_cluster ejabberd1@machine1
+Trying to join that cluster, wait a few seconds and check the list of nodes.
+
+$ ejabberdctl list_cluster
+ejabberd1@machine1
+ejabberd2@machine2
 ```
 
 This enables ejabberd's internal replications to be launched across all nodes so new nodes can start receiving messages from other nodes and be registered in the routing tables.
@@ -125,7 +152,7 @@ command must be run as the ejabberd daemon user, from one node of the
 cluster:
 
 ``` sh
-ejabberdctl leave_cluster 'ejabberd@ejabberd02'
+ejabberdctl leave_cluster 'ejabberd2@machine2'
 ```
 
 The removed node must be running while calling leave_cluster to make

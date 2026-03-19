@@ -7,9 +7,9 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [25.10](../../archive/25.10/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [26.02](../../archive/26.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-    The modules that changed in this version are marked with 🟤.
+    The modules that changed in this version are marked with 🟠.
 
 mod\_adhoc
 ----------
@@ -152,9 +152,9 @@ ejabberdctl srg_create g1 example.org "'Group number 1'" this_is_g1 g1
 mod\_admin\_update\_sql
 -----------------------
 
-This module can be used to update existing SQL database from the default
-to the new schema. Check the section
-[Default and New Schemas](database.md#default-and-new-schemas) for
+This module can be used to convert your existing SQL database from the
+singlehost to the multihost schema. Check the section
+[Singlehost or Multihost](database.md#singlehost-or-multihost) for
 details. Please note that only MS SQL, MySQL, and PostgreSQL are
 supported. When the module is loaded use [update_sql](../../developer/ejabberd-api/admin-api.md#update_sql) API.
 
@@ -623,8 +623,8 @@ delivered. The default value is `true`.
 While a client is inactive, queue presence stanzas that indicate
 (un)availability. The default value is `true`.
 
-mod\_configure 🟤
------------------
+mod\_configure
+--------------
 
 <!-- md:version improved in [25.10](../../archive/25.10/index.md) -->
 
@@ -717,6 +717,9 @@ one `request_handlers`.
 
 When `conversejs_css` and `conversejs_script` are `auto`, by default
 they point to the public Converse client.
+
+When this module is enabled in `modules`, it adds automatically a
+requesthandler and link in WebAdmin. .
 
 This module is available since ejabberd [21.12](../../archive/21.12/index.md).
 
@@ -1027,7 +1030,7 @@ listen:
     tls: true
     request_handlers:
       /bosh: mod_bosh
-      /ws: ejabberd_http_ws
+      /websocket: ejabberd_http_ws
       /.well-known/host-meta: mod_host_meta
       /.well-known/host-meta.json: mod_host_meta
 
@@ -1035,7 +1038,7 @@ modules:
   mod_bosh: {}
   mod_host_meta:
     bosh_service_url: "https://@HOST@:5443/bosh"
-    websocket_url: "wss://@HOST@:5443/ws"
+    websocket_url: "wss://@HOST@:5443/websocket"
 ~~~
 
 mod\_http\_api
@@ -1083,6 +1086,9 @@ modules:
 mod\_http\_fileserver
 ---------------------
 
+<!-- md:version improved `docroot` in [26.01](../../archive/26.01/index.md) -->
+
+
 This simple module serves files from the local disk over HTTP.
 
 __Available options:__
@@ -1100,19 +1106,42 @@ modify existing ones. The default values are:
 
     ~~~ yaml
     content_types:
+      .avi: video/avi
+      .bmp: image/bmp
+      .bz2: application/x-bzip2
       .css: text/css
       .gif: image/gif
+      .gz: application/x-gzip
       .html: text/html
+      .ico: image/vnd.microsoft.icon
       .jar: application/java-archive
       .jpeg: image/jpeg
       .jpg: image/jpeg
       .js: text/javascript
+      .json: application/json
+      .m4a: audio/mp4
+      .map: application/json
+      .mp3: audio/mpeg
+      .mp4: video/mp4
+      .mpeg: video/mpeg
+      .mpg: video/mpeg
+      .ogg: application/ogg
+      .pdf: application/pdf
       .png: image/png
+      .rtf: application/rtf
       .svg: image/svg+xml
+      .tiff: image/tiff
+      .ttf: font/ttf
       .txt: text/plain
+      .wav: audio/wav
+      .webp: image/webp
+      .woff: font/woff
+      .woff2: font/woff2
       .xml: application/xml
       .xpi: application/x-xpinstall
       .xul: application/vnd.mozilla.xul+xml
+      .xz: application/x-xz
+      .zip: application/zip
     ~~~
 
 - **custom\_headers**: `{Name: Value}`  
@@ -1129,8 +1158,31 @@ Indicate one or more directory index files, similarly to Apache’s
 of a regular file, those directory indices are looked in order, and the
 first one found is returned. The default value is an empty list.
 
-- **docroot**: `Path`  
-Directory to serve the files from. This is a mandatory option.
+- **docroot**: `PathDir | {PathURL, PathDir}`  
+<!-- md:version improved in [26.01](../../archive/26.01/index.md) -->
+ Directory to serve the
+files from, or a map with several URL path (as specified in
+[request_handlers](listen-options.md#request_handlers)) and their
+corresponding directory. This is a mandatory option.
+
+    **Example**:
+
+    ~~~ yaml
+    listen:
+      -
+        port: 5280
+        module: ejabberd_http
+        request_handlers:
+          /pub/content: mod_http_fileserver
+          /share: mod_http_fileserver
+          /: mod_http_fileserver
+    modules:
+      mod_http_fileserver:
+        docroot:
+          /pub/content: /var/service/www
+          /share: /usr/share/javascript
+          /: /var/www
+    ~~~
 
 - **must\_authenticate\_with**: `[{Username, Hostname}, ...]`  
 List of accounts that are allowed to use this service. Default value:
@@ -1170,6 +1222,9 @@ modules:
 mod\_http\_upload
 -----------------
 
+<!-- md:version added `content_types` in [26.01](../../archive/26.01/index.md) -->
+
+
 This module allows for requesting permissions to upload a file via HTTP
 as described in [XEP-0363: HTTP File
 Upload](https://xmpp.org/extensions/xep-0363.html). If the request is
@@ -1186,6 +1241,12 @@ __Available options:__
 This option defines the access rule to limit who is permitted to use the
 HTTP upload service. The default value is `local`. If no access rule of
 that name exists, no user will be allowed to use the service.
+
+- **content\_types**: `{Extension: Type}`  
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+ Specify mappings of extension
+to content type, similarly to the option `content_types` of
+[mod_http_fileserver](#mod_http_fileserver).
 
 - **custom\_headers**: `{Name: Value}`  
 This option specifies additional header fields to be included in all
@@ -1375,6 +1436,180 @@ modules:
     max_days: 100
 ~~~
 
+mod\_invites
+------------
+
+<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+
+
+Allow User Invitation and Account Creation to create out-of-band links
+to onboard others onto the XMPP network and establish a mutual
+subscription. This implements [XEP-0379: Pre-Authenticated Roster
+Subscription](https://xmpp.org/extensions/xep-0379.html), [XEP-0401:
+Ad-hoc Account Invitation
+Generation](https://xmpp.org/extensions/xep-0401.html), and [XEP-0445:
+Pre-Authenticated In-Band
+Registration](https://xmpp.org/extensions/xep-0445.html).
+
+These invitations are created as XMPP URIs either via ad-hoc commands or
+via API commands (like [generate_invite](../../developer/ejabberd-api/admin-api.md#generate_invite) API and
+[generate_invite_with_username](../../developer/ejabberd-api/admin-api.md#generate_invite_with_username) API), are then meant to be sent
+out-of-band.
+
+The receiving user should have installed a client that supports those
+invitations. Since this has proven to be a common obstacle for easy
+adoption, this module comes with an optional landing page parameter,
+that can either be some external service like an installation of
+[easy-xmpp-invitation](https://github.com/modernxmpp/easy-xmpp-invitation),
+a third-party service like [JoinJabber](https://invite.joinjabber.org)
+or for convenience a built-in service. This landing page will then guide
+the recipient with setting up a client and creating an account if
+required.
+
+In order to use the included landing page feature, you have to
+
+-   have a copy of [jQuery
+    3](https://code.jquery.com/jquery-3.7.1.min.js) and [Bootstrap
+    4](https://github.com/twbs/bootstrap/releases/download/v4.6.2/bootstrap-4.6.2-dist.zip)
+    in a shared directory on your system. If you’re using Debian or
+    derivatives this is easiest accomplished by installing both
+    `libjs-jquery` and `libjs-bootstrap4` which will put them under
+    `/usr/share/javascript/{jquery,bootstrap4}`. Alternatively you can
+    use `tools/dl_invites_page_deps.sh <outdir>`.
+
+-   in `ejabberd.yml` configure a listener for module `ejabberd_http`
+    with a request handler for `/share: mod_http_fileserver`
+
+-   in the `modules` section configure `mod_http_fileserver` so that
+    `docroot` points to the shared directory from above (e.g.
+    `docroot: /usr/share/javascript`)
+
+-   configure `mod_invites` and set `landing_page` to either `auto` or
+    an URL template like `https://{{ host }}/invites/{{ invite.token }}`
+    if your server setup includes a so called reverse proxy
+
+If you’d rather want to use an external service, set `landing_page` to
+something like
+`http://{{ host }}:8080/easy-xmpp-invites/#{{ invite.uri|strip_protocol }}`
+or `https://invites.joinjabber.org/#{{ invite.uri|strip_protocol }}`.
+
+__Available options:__
+
+- **access\_create\_account**: `Access Rule Name`  
+This is the name of an access rule that specifies who is allowed to
+create invites of `create account`. The default value is `none`, i.e.
+nobody is able to create such invites. Furthermore it applies to *roster
+invites* and allows to do in-band registration (IBR) if the sending user
+is allowed by this rule. Users from the `admin` ACL are always allowed
+to create those invites.
+
+    **Example**:
+
+    ~~~ yaml
+    mod_invites:
+      access_create_account: local
+    ~~~
+
+- **db\_type**: `mnesia | sql`  
+Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
+only.
+
+- **landing\_page**: `none | auto | LandingPageURLTemplate`  
+Whether or not to use a landing page for the invites that are being
+created. If using a template URL this can be either be external or
+internal. Template variables include `host`, `invite.token` and
+`invite.uri`, there are also filters defined, most notably
+`strip_protocol`. Here’s an example:
+`http://{{ host }}:8080/easy-xmpp-invites/#{{ invite.uri|strip_protocol }}`.
+For convenience you can choose `auto` here and the `ejabberd_http`
+handler for `mod_invites` will be used to construct the landing page
+URL. Default is `none`.
+
+- **max\_invites**: `pos_integer() | infinity`  
+Maximum number of `create account` invites that can be created by an
+individual user. Users that match the `admin` ACL are exempt from this
+limitation. Furthermore it restricts the use of `roster invites` for
+account creation. Default is `infinity`.
+
+- **site\_name**: `Site Name`  
+A human readable name for your site. E.g. `"My Beautiful Laundrette"`.
+Used in landing page templates.
+
+- **templates\_dir**: `Path`  
+The directory containing templates and static files used for landing
+page and web registration form. Only needs to be set if you want to ship
+your own set of templates or list of recommended apps.
+
+- **token\_expire\_seconds**: `pos_integer()`  
+Number of seconds until token expires. Default value is `432000` (that
+is five days: `5 * 24 * 60 * 60`)
+
+__Examples:__
+
+Basic configuration with landing page but without creating accounts,
+just roster invites:
+
+~~~ yaml
+listen:
+  -
+    port: 5281
+    module: ejabberd_http
+    request_handlers:
+      /invites: mod_invites
+      /share: mod_http_fileserver
+# [...]
+modules:
+  mod_http_fileserver:
+    docroot: /usr/share/javascript
+  mod_invites:
+    landing_page: auto
+~~~
+
+To allow only admin users to create invites of `create account` and
+disable regular in-band registration, you would have a config like this:
+
+~~~ yaml
+acl:
+  admin:
+    - user: "my_admin_user@example.com"
+
+access_rules:
+  register:
+    allow: admin
+
+modules:
+  mod_invites:
+    landing_page: auto
+  mod_register:
+    allow_modules:
+      - mod_invites
+~~~
+
+If you want all your users to be able to send `create account` invites,
+you would configure your server like this instead. Note that the names
+of the access rules are just examples and you’re free to change them.
+
+~~~ yaml
+acl:
+  local:
+    user_regexp: ""
+access_rules:
+  create_account_invite:
+    allow: local
+
+modules:
+  mod_invites:
+    access_create_account: create_account_invite
+    landing_page: auto
+  mod_register:
+    allow_modules:
+      - mod_invites
+~~~
+
+**API Tags:**
+[accounts](../../developer/ejabberd-api/admin-tags.md#accounts),
+[purge](../../developer/ejabberd-api/admin-tags.md#purge)
+
 mod\_jidprep
 ------------
 
@@ -1454,7 +1689,7 @@ __Available options:__
 This access rule defines who is allowed to modify the MAM preferences.
 The default value is `all`.
 
-- **archive\_muc\_as\_mucsub 🟤`*: `true | false*  
+- **archive\_muc\_as\_mucsub**: `true | false`  
 <!-- md:version added in [25.10](../../archive/25.10/index.md) -->
  When this option is enabled
 incoming groupchat messages for users that have mucsub subscription to a
@@ -1815,13 +2050,32 @@ modules:
           "remoteB": "localB" # changes to 'remoteB' on remote server will be stored as 'localB' on local server
 ~~~
 
-mod\_muc
---------
+mod\_muc 🟠
+-----------
 
-This module provides support for [XEP-0045: Multi-User
-Chat](https://xmpp.org/extensions/xep-0045.html). Users can discover
-existing rooms, join or create them. Occupants of a room can chat in
-public or have private chats.
+<!-- md:version incorporated `mod_muc_occupantid` in [26.02](../../archive/26.02/index.md) -->
+
+
+This module provides support for [Multi-User
+Chat](https://xmpp.org/extensions/xep-0045.html) (MUC). Users can
+discover existing rooms, join or create them. Occupants of a room can
+chat in public or have private chats.
+
+Protocols implemented in this module:
+
+-   [XEP-0045: Multi-User
+    Chat](https://xmpp.org/extensions/xep-0045.html)
+
+-   [XEP-0249: Direct MUC
+    Invitations](https://xmpp.org/extensions/xep-0249.html)
+
+-   [XEP-0421: Occupant identifiers for semi-anonymous
+    MUCs](https://xmpp.org/extensions/xep-0421.html)
+
+-   [XEP-0486: MUC Avatars](https://xmpp.org/extensions/xep-0486.html)
+
+-   [Muc/Sub: Multi-User Chat
+    Subscriptions](https://docs.ejabberd.im/developer/xmpp-clients-bots/extensions/muc-sub/)
 
 The MUC service allows any Jabber ID to register a nickname, so nobody
 else can use that nickname in any room in the MUC service. To register a
@@ -1950,11 +2204,12 @@ capability. The `Options` are:
    Short description of the room.
     The default value is an empty string.
 
-    - **enable\_hats 🟤`*: `true | false*  
-   `Note` about this option:
-    improved in [25.10](../../archive/25.10/index.md). Allow extended roles as defined in XEP-0317 Hats.
-    Check the [MUC Hats](../../tutorials/muc-hats.md) tutorial. The
-    default value is `false`.
+    - **enable\_hats**: `true | false`  
+   `Note` about this option: improved
+    in [25.10](../../archive/25.10/index.md). Allow extended roles as defined in [XEP-0317:
+    Hats](https://xmpp.org/extensions/xep-0317.html). For ejabberd older
+    than [25.10](../../archive/25.10/index.md) see the [MUC Hats](../../tutorials/muc-hats.md) page.
+    The default value is `true`.
 
     - **lang**: `Language`  
    Preferred language for the discussions in the
@@ -2340,20 +2595,6 @@ A top level `URL` where a client can access logs of a particular
 conference. The conference name is appended to the URL if `dirname`
 option is set to `room_name` or a conference JID is appended to the
 `URL` otherwise. There is no default value.
-
-mod\_muc\_occupantid
---------------------
-
-<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
-
-
-This module implements [XEP-0421: Anonymous unique occupant identifiers
-for MUCs](https://xmpp.org/extensions/xep-0421.html).
-
-When the module is enabled, the feature is enabled in all semi-anonymous
-rooms.
-
-The module has no options.
 
 mod\_muc\_rtbl
 --------------
@@ -3499,9 +3740,11 @@ last / character in the URL, otherwise the subpages URL will be
 incorrect.
 
 This module is enabled in `listen` → `ejabberd_http` →
-[request_handlers](listen-options.md#request_handlers), no need to
-enable in `modules`. The module depends on [mod_register](#mod_register) where all
-the configuration is performed.
+[request_handlers](listen-options.md#request_handlers).
+
+There is no need to enable this module in `modules`, but it adds a link
+to the register page in WebAdmin menu. The module depends on
+[mod_register](#mod_register) where all the configuration is performed.
 
 The module has no options.
 

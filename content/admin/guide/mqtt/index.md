@@ -11,7 +11,7 @@ There are major benefits in using MQTT service embedded in ejabberd:
 1. MQTT service relies on ejabberd infrastructure code, that has been battle tested since 15+ years, like the clustering
 engine. ejabberd MQTT service has been tested on large scale and can support millions of concurrent connections highly
 efficiently. ejabberd MQTT is rock-solid and highly scalable.
-2. The ejabberd APIs and modules can be reused in MQTT. Authentication, virtual hosting, database backends, ... They both
+2. The MQTT service can use ejabberd features and modules: authentication, virtual hosting, database backends, ... They both
 work with XMPP and MQTT. You can also share your security policy, as defined in the configuration file between the two
 protocols.
 3. You can leverage existing skills and plugins you have written for ejabberd, like for example custom authentication.

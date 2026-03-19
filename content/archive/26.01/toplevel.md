@@ -1,21 +1,21 @@
 ---
 search:
-  boost: 1
+  exclude: true
 ---
 
 # Top-Level Options
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [26.02](../../archive/26.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [26.01](../../archive/26.01/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
-    The options that changed in this version are marked with 🟠.
+    The options that changed in this version are marked with 🟤.
 
 ## access\_rules
 
 `{AccessName: {allow|deny: ACLName|ACLDefinition}}`  
 
-This option defines [Access Rules](basic.md#access-rules). Each access
+This option defines [Access Rules](../../admin/configuration/basic.md#access-rules). Each access
 rule is assigned a name that can be referenced from other parts of the
 configuration file (mostly from `access` options of ejabberd modules).
 Each rule definition may contain arbitrary number of `allow` or `deny`
@@ -54,7 +54,7 @@ access_rules:
 `{ACLName: {ACLType: ACLValue}}`  
 
 This option defines
-[access control lists](../configuration/basic.md#acl): named sets of
+[access control lists](../../admin/configuration/basic.md#acl): named sets of
 rules which are used to match against different targets (such as a JID
 or an IP address). Every set of rules has name `ACLName`: it can be any
 string except `all` or `none` (those are predefined names for the rules
@@ -128,7 +128,7 @@ mapping `{ACLType: ACLValue}`. These can be one of the following:
 
 `Options`  
 
-[ACME](basic.md#acme) configuration, to automatically obtain SSL
+[ACME](../../admin/configuration/basic.md#acme) configuration, to automatically obtain SSL
 certificates for the domains served by ejabberd, which means that
 certificate requests and renewals are performed to some CA server (aka
 "ACME server") in a fully automated mode. The `Options` are:
@@ -194,7 +194,7 @@ option is only useful in very special occasions. The default value is
 `login_anon | sasl_anon | both`  
 
 Define what
-[anonymous](authentication.md#anonymous-login-and-sasl-anonymous)
+[anonymous](../../admin/configuration/authentication.md#anonymous-login-and-sasl-anonymous)
 protocol will be used:
 
 -   `login_anon` means that the anonymous login method will be used.
@@ -219,7 +219,7 @@ web → For Developers → ejabberd ReST API →
 `{Host: Options}`  
 
 Add a few specific options to a certain
-[virtual host](../configuration/basic.md#virtual-hosting).
+[virtual host](../../admin/configuration/basic.md#virtual-hosting).
 
 ## auth\_cache\_life\_time
 
@@ -258,7 +258,7 @@ offline message for those users. The default value is `true`.
 
 `[mnesia | sql | anonymous | external | jwt | ldap | pam, ...]`  
 
-A list of [authentication](authentication.md) methods to use. If
+A list of [authentication](../../admin/configuration/authentication.md) methods to use. If
 several methods are defined, authentication is considered successful as
 long as authentication of at least one of the methods succeeds. The
 default value is `[mnesia]`.
@@ -280,7 +280,7 @@ repository. Please refer to that module’s README file for details.
 
 The option defines in what
 format the users passwords are stored, plain text or in
-[SCRAM](authentication.md#scram) format:
+[SCRAM](../../admin/configuration/authentication.md#scram) format:
 
 -   `plain`: The password is stored as plain text in the database. This
     is risky because the passwords can be read if your database gets
@@ -317,7 +317,7 @@ time until new password type will be available for all users.
 `sha | sha256 | sha512`  
 
 Hash algorithm that should be used to store password in
-[SCRAM](authentication.md#scram) format. You shouldn’t change this if
+[SCRAM](../../admin/configuration/authentication.md#scram) format. You shouldn’t change this if
 you already have passwords generated with a different algorithm - users
 that have such passwords will not be able to authenticate. The default
 value is `sha`.
@@ -466,7 +466,7 @@ core ejabberd parts support similar options too, see
 <!-- md:version improved in [23.01](../../archive/23.01/index.md) -->
 
 Full path to a script that
-generates [CAPTCHA](basic.md#captcha) images. The keyword *@VERSION@*
+generates [CAPTCHA](../../admin/configuration/basic.md#captcha) images. The keyword *@VERSION@*
 is replaced with ejabberd version number in `XX.YY` format. The keyword
 `@SEMVER@` is replaced with ejabberd version number in semver format
 when compiled with Elixir’s mix, or XX.YY format otherwise.
@@ -493,7 +493,7 @@ Deprecated. Use [captcha_url](#captcha_url) instead.
 
 `pos_integer() | infinity`  
 
-Maximum number of [CAPTCHA](basic.md#captcha) generated images per
+Maximum number of [CAPTCHA](../../admin/configuration/basic.md#captcha) generated images per
 minute for any given JID. The option is intended to protect the server
 from CAPTCHA DoS. The default value is `infinity`.
 
@@ -504,7 +504,7 @@ from CAPTCHA DoS. The default value is `infinity`.
 <!-- md:version improved in [23.04](../../archive/23.04/index.md) -->
 
 An URL where
-[CAPTCHA](basic.md#captcha) requests should be sent. NOTE: you need to
+[CAPTCHA](../../admin/configuration/basic.md#captcha) requests should be sent. NOTE: you need to
 configure `request_handlers` for `ejabberd_http` listener as well. If
 set to `auto`, it builds the URL using a `request_handler` already
 enabled, with encryption if available. If set to `undefined`, it builds
@@ -555,7 +555,7 @@ default value is an empty list.
 
 `mnesia | sql`  
 
-[Default database](database.md#default-database) to store persistent
+[Default database](../../admin/configuration/database.md#default-database) to store persistent
 data in ejabberd. Some components can be configured with specific
 toplevel options like [oauth_db_type](#oauth_db_type). Many modules can be configured
 with specific module options, usually named `db_type`. The default value
@@ -577,7 +577,7 @@ options, usually named `ram_db_type`. The default value is `mnesia`.
 <!-- md:version added in [25.03](../../archive/25.03/index.md) -->
 
 Allows to define configuration
-[keywords](../configuration/file-format.md#macros-and-keywords).
+[keywords](../../admin/configuration/file-format.md#macros-and-keywords).
 
 **Example**:
 
@@ -601,7 +601,7 @@ sql_username: "prefix.@SQL_USERNAME@"
 
 Allows to define
 configuration
-[macros](../configuration/file-format.md#macros-and-keywords).
+[macros](../../admin/configuration/file-format.md#macros-and-keywords).
 
 **Example**:
 
@@ -644,7 +644,7 @@ which enables this extension.
 `{Domain: Options}`  
 
 An algorithm to
-[load-balance](../guide/clustering.md#service-load-balancing) the
+[load-balance](../../admin/guide/clustering.md#service-load-balancing) the
 components that are plugged on an ejabberd cluster. It means that you
 can plug one or several instances of the same component on each ejabberd
 node and that the traffic will be automatically distributed. The
@@ -722,7 +722,7 @@ Define the base URI when performing ReST requests. The default value is:
 `Name`  
 
 Define the pool name appendix in
-[external auth](authentication.md#external-script), so the full pool
+[external auth](../../admin/configuration/authentication.md#external-script), so the full pool
 name will be `extauth_pool_Name`. The default value is the hostname.
 
 ## extauth\_pool\_size
@@ -730,7 +730,7 @@ name will be `extauth_pool_Name`. The default value is the hostname.
 `Size`  
 
 The option defines the number of instances of the same
-[external auth](authentication.md#external-script) program to start for
+[external auth](../../admin/configuration/authentication.md#external-script) program to start for
 better load balancing. The default is the number of available CPU cores.
 
 ## extauth\_program
@@ -738,7 +738,7 @@ better load balancing. The default is the number of available CPU cores.
 `Path`  
 
 Indicate in this option the full path to the
-[external authentication script](authentication.md#external-script).
+[external authentication script](../../admin/configuration/authentication.md#external-script).
 The script must be executable by ejabberd.
 
 ## fqdn
@@ -760,7 +760,7 @@ default value is `false` for backward compatibility.
 `{Host: Options}`  
 
 The option is used to redefine `Options` for
-[virtual host](../configuration/basic.md#virtual-hosting) `Host`. In
+[virtual host](../../admin/configuration/basic.md#virtual-hosting) `Host`. In
 the example below LDAP authentication method will be used on virtual
 host `domain.tld` and SQL method will be used on virtual host
 `example.org`.
@@ -785,7 +785,7 @@ host_config:
 
 `[Domain1, Domain2, ...]`  
 
-List of one or more [host names](../configuration/basic.md#host-names)
+List of one or more [host names](../../admin/configuration/basic.md#host-names)
 (or domains) that ejabberd will serve. This is a **mandatory** option.
 
 ## hosts\_alias
@@ -817,7 +817,7 @@ hosts_alias:
 *\[Filename, ...\] | {Filename: Options}*  
 
 Read and
-[include additional file](../configuration/file-format.md#include-additional-files)
+[include additional file](../../admin/configuration/file-format.md#include-additional-files)
 from `Filename`. If the value is provided in *{Filename: Options}*
 format, the `Options` must be one of the following:
 
@@ -858,7 +858,7 @@ modules:
 `AccessName`  
 
 This ACL rule defines accounts that can use only the
-[JWT](authentication.md#jwt-authentication) auth method, even if others
+[JWT](../../admin/configuration/authentication.md#jwt-authentication) auth method, even if others
 are also defined in the ejabberd configuration file. In other words: if
 there are several auth methods enabled for this host (JWT, SQL, …),
 users that match this rule can only use JWT. The default value is
@@ -869,7 +869,7 @@ users that match this rule can only use JWT. The default value is
 `FieldName`  
 
 By default, the JID is defined in the `"jid"` JWT field. In this option
-you can specify other [JWT](authentication.md#jwt-authentication) field
+you can specify other [JWT](../../admin/configuration/authentication.md#jwt-authentication) field
 name where the JID is defined.
 
 ## jwt\_key
@@ -877,21 +877,15 @@ name where the JID is defined.
 `FilePath`  
 
 Path to the file that contains the
-[JWT](authentication.md#jwt-authentication) key. The default value is
+[JWT](../../admin/configuration/authentication.md#jwt-authentication) key. The default value is
 `undefined`.
-
-Supported formats:
-
-- **PEM format** - Standard PEM-encoded keys (RSA, EC, EdDSA, etc.)
-- **JWK (JSON Web Key)** - JSON format
-- **JWK Set** - JSON with a `"keys"` array (but must contain exactly one key)
 
 ## language
 
 `Language`  
 
 Define the
-[default language](../configuration/basic.md#default-language) of
+[default language](../../admin/configuration/basic.md#default-language) of
 server strings that can be seen by XMPP clients. If an XMPP client does
 not possess `xml:lang` attribute, the specified language is used. The
 default value is `"en"`.
@@ -901,7 +895,7 @@ default value is `"en"`.
 `[Host, ...]`  
 
 A list of IP addresses or DNS names of LDAP backup servers (see
-[LDAP connection](../configuration/ldap.md#ldap-connection)). When no
+[LDAP connection](../../admin/configuration/ldap.md#ldap-connection)). When no
 servers listed in [ldap_servers](#ldap_servers) option are reachable, ejabberd
 connects to these backup servers. The default is an empty list, i.e. no
 backup servers specified. Please notice that ejabberd only connects to
@@ -989,7 +983,7 @@ means "anonymous connection".
 `[Host, ...]`  
 
 A list of IP addresses or DNS names of your LDAP servers (see
-[LDAP connection](../configuration/ldap.md#ldap-connection)). ejabberd
+[LDAP connection](../../admin/configuration/ldap.md#ldap-connection)). ejabberd
 connects immediately to all of them, and reconnects infinitely if
 connection is lost. The default value is `[localhost]`.
 
@@ -1096,7 +1090,7 @@ expressed in bytes: `10485760`.
 
 `none | emergency | alert | critical | error | warning | notice | info | debug`  
 
-Verbosity of ejabberd [logging](../configuration/basic.md#logging). The
+Verbosity of ejabberd [logging](../../admin/configuration/basic.md#logging). The
 default value is `info`. NOTE: previous versions of ejabberd had log
 levels defined in numeric format (`0..5`). The numeric values are still
 accepted for backward compatibility, but are not recommended.
@@ -1298,7 +1292,7 @@ value is `10` seconds.
 
 `Name`  
 
-This option defines the [PAM](authentication.md#pam-authentication)
+This option defines the [PAM](../../admin/configuration/authentication.md#pam-authentication)
 service name. Refer to the PAM documentation of your operation system
 for more information. The default value is `ejabberd`.
 
@@ -1307,7 +1301,7 @@ for more information. The default value is `ejabberd`.
 `username | jid`  
 
 This option defines what type of information about the user ejabberd
-provides to the [PAM](authentication.md#pam-authentication) service:
+provides to the [PAM](../../admin/configuration/authentication.md#pam-authentication) service:
 only the username, or the user’s JID. Default is `username`.
 
 ## pgsql\_users\_number\_estimate
@@ -1338,19 +1332,19 @@ option where file queues will be placed. The default value is `ram`.
 `timeout()`  
 
 A timeout to wait for the connection to be re-established to the
-[Redis](database.md#redis) server. The default is `1 second`.
+[Redis](../../admin/configuration/database.md#redis) server. The default is `1 second`.
 
 ## redis\_db
 
 `Number`  
 
-[Redis](database.md#redis) database number. The default is `0`.
+[Redis](../../admin/configuration/database.md#redis) database number. The default is `0`.
 
 ## redis\_password
 
 `Password`  
 
-The password to the [Redis](database.md#redis) server. The default is
+The password to the [Redis](../../admin/configuration/database.md#redis) server. The default is
 an empty string, i.e. no password.
 
 ## redis\_pool\_size
@@ -1358,20 +1352,20 @@ an empty string, i.e. no password.
 `Number`  
 
 The number of simultaneous connections to the
-[Redis](database.md#redis) server. The default value is `10`.
+[Redis](../../admin/configuration/database.md#redis) server. The default value is `10`.
 
 ## redis\_port
 
 `1..65535`  
 
-The port where the [Redis](database.md#redis) server is accepting
+The port where the [Redis](../../admin/configuration/database.md#redis) server is accepting
 connections. The default is `6379`.
 
 ## redis\_queue\_type
 
 `ram | file`  
 
-The type of request queue for the [Redis](database.md#redis) server.
+The type of request queue for the [Redis](../../admin/configuration/database.md#redis) server.
 See description of [queue_type](#queue_type) option for the explanation. The
 default value is the value defined in [queue_type](#queue_type) or `ram` if the
 latter is not set.
@@ -1383,7 +1377,7 @@ latter is not set.
 <!-- md:version improved in [24.12](../../archive/24.12/index.md) -->
 
 A hostname, IP address or
-unix domain socket file of the [Redis](database.md#redis) server. Setup
+unix domain socket file of the [Redis](../../admin/configuration/database.md#redis) server. Setup
 the path to unix domain socket like: `"unix:/path/to/socket"`. The
 default value is `localhost`.
 
@@ -1398,7 +1392,7 @@ this time after their previous registration will receive an error with
 the corresponding explanation. To disable this limitation, set the value
 to `infinity`. The default value is `600 seconds`.
 
-## replaced\_connection\_timeout
+## replaced\_connection\_timeout 🟤
 
 `timeout()`  
 
@@ -1507,7 +1501,7 @@ are used for internal needs only. The default value is `5` seconds.
 
 `Access`  
 
-This [Access Rule](basic.md#access-rules) defines to what remote
+This [Access Rule](../../admin/configuration/basic.md#access-rules) defines to what remote
 servers can s2s connections be established. The default value is `all`;
 no restrictions are applied, it is allowed to connect s2s to/from all
 remote servers.
@@ -1633,7 +1627,7 @@ considered insecure.
 `{ShaperName: Rate}`  
 
 The option defines a set of
-[shapers](../configuration/basic.md#shapers). Every shaper is assigned
+[shapers](../../admin/configuration/basic.md#shapers). Every shaper is assigned
 a name `ShaperName` that can be used in other parts of the configuration
 file, such as [shaper_rules](#shaper_rules) option. The shaper itself is defined by
 its `Rate`, where `Rate` stands for the maximum allowed incoming rate in
@@ -1656,7 +1650,7 @@ shaper:
 `{ShaperRuleName: {Number|ShaperName: ACLName|ACLDefinition}}`  
 
 This option defines
-[shaper rules](../configuration/basic.md#shaper-rules) to use for
+[shaper rules](../../admin/configuration/basic.md#shaper-rules) to use for
 matching user/hosts. Semantics is similar to [access_rules](#access_rules) option,
 the only difference is that instead using `allow` or `deny`, a name of a
 shaper (defined in [shaper](#shaper) option) or a positive number should be
@@ -1812,9 +1806,9 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 <!-- md:version renamed in [25.10](../../archive/25.10/index.md) -->
 
 Whether to use the
-[multihost SQL schema](database.md#singlehost-or-multihost). All
+[multihost SQL schema](../../admin/configuration/database.md#singlehost-or-multihost). All
 schemas are located at
-<https://github.com/processone/ejabberd/tree/26.02/sql>. There are two
+<https://github.com/processone/ejabberd/tree/26.01/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain
 into one ejabberd database. The `multihost` schema can handle several
 XMPP domains in a single ejabberd database. The `multihost` schema is
