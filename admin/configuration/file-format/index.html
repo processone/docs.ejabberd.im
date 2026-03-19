@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -10977,9 +10977,11 @@ so you can use them without need to define them explicitly:</p>
 <ul>
 <li><strong>HOST</strong>: the virtual <a href="../basic/#host-names">host name</a>, for example <code>"example.org"</code>.
   That keyword is only predefined for module options, not toplevel options.</li>
-<li><strong>HOME</strong>: the home directory of the user running ejabberd, for example <code>"/home/ejabberd"</code></li>
-<li><strong>VERSION</strong>: ejabberd version number in <code>XX.YY</code> format, for example <code>"24.05"</code></li>
+<li><strong>HOME</strong>: path of the home directory of the user running ejabberd, for example <code>"/home/ejabberd"</code></li>
+<li><strong>CONFIG_PATH</strong>: path of the directory with ejabberd configuration files, for example <code>"/home/ejabberd/opt/ejabberd/conf"</code></li>
+<li><strong>LOG_PATH</strong>: path of the directory with ejabberd log files, for example <code>"/home/ejabberd/opt/ejabberd/logs"</code></li>
 <li><strong>SEMVER</strong>: ejabberd version number in <a href="https://hexdocs.pm/elixir/1.18.2/Version.html">semver format</a> when compiled with Elixir’s mix (<code>"24.5"</code>), otherwise it's in <code>XX.YY</code> format (<code>"24.05"</code>)</li>
+<li><strong>VERSION</strong>: ejabberd version number in <code>XX.YY</code> format, for example <code>"24.05"</code></li>
 </ul>
 <p>It is possible to overwrite predefined keywords,
 global or for a vhost like in this example:</p>
