@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [26.02](../../archive/26.02/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [26.03](../../archive/26.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟠.
 
@@ -1436,10 +1436,10 @@ modules:
     max_days: 100
 ~~~
 
-mod\_invites
-------------
+mod\_invites 🟠
+---------------
 
-<!-- md:version added in [26.01](../../archive/26.01/index.md) -->
+<!-- md:version improved in [26.03](../../archive/26.03/index.md) -->
 
 
 Allow User Invitation and Account Creation to create out-of-band links
@@ -1466,27 +1466,10 @@ or for convenience a built-in service. This landing page will then guide
 the recipient with setting up a client and creating an account if
 required.
 
-In order to use the included landing page feature, you have to
-
--   have a copy of [jQuery
-    3](https://code.jquery.com/jquery-3.7.1.min.js) and [Bootstrap
-    4](https://github.com/twbs/bootstrap/releases/download/v4.6.2/bootstrap-4.6.2-dist.zip)
-    in a shared directory on your system. If you’re using Debian or
-    derivatives this is easiest accomplished by installing both
-    `libjs-jquery` and `libjs-bootstrap4` which will put them under
-    `/usr/share/javascript/{jquery,bootstrap4}`. Alternatively you can
-    use `tools/dl_invites_page_deps.sh <outdir>`.
-
--   in `ejabberd.yml` configure a listener for module `ejabberd_http`
-    with a request handler for `/share: mod_http_fileserver`
-
--   in the `modules` section configure `mod_http_fileserver` so that
-    `docroot` points to the shared directory from above (e.g.
-    `docroot: /usr/share/javascript`)
-
--   configure `mod_invites` and set `landing_page` to either `auto` or
-    an URL template like `https://{{ host }}/invites/{{ invite.token }}`
-    if your server setup includes a so called reverse proxy
+In order to use the included landing page feature, you have to set
+`landing_page` to either `auto` or an URL template like
+`https://{{ host }}/invites/{{ invite.token }}` if your server setup
+includes a so called reverse proxy.
 
 If you’d rather want to use an external service, set `landing_page` to
 something like
@@ -1544,6 +1527,13 @@ your own set of templates or list of recommended apps.
 Number of seconds until token expires. Default value is `432000` (that
 is five days: `5 * 24 * 60 * 60`)
 
+- **webchat\_url 🟠`*: `none | auto | Webchat URL*  
+<!-- md:version added in [26.03](../../archive/26.03/index.md) -->
+URL to a webchat client.  Upon
+manual registration through web-form this will be recommended in order
+to get started. If `auto` is chosen, we pick the `mod_conversejs` from
+the listeners section. Default is `auto`.
+
 __Examples:__
 
 Basic configuration with landing page but without creating accounts,
@@ -1556,11 +1546,8 @@ listen:
     module: ejabberd_http
     request_handlers:
       /invites: mod_invites
-      /share: mod_http_fileserver
 # [...]
 modules:
-  mod_http_fileserver:
-    docroot: /usr/share/javascript
   mod_invites:
     landing_page: auto
 ~~~
@@ -2050,8 +2037,8 @@ modules:
           "remoteB": "localB" # changes to 'remoteB' on remote server will be stored as 'localB' on local server
 ~~~
 
-mod\_muc 🟠
------------
+mod\_muc
+--------
 
 <!-- md:version incorporated `mod_muc_occupantid` in [26.02](../../archive/26.02/index.md) -->
 
