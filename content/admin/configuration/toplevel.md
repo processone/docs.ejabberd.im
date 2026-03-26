@@ -877,14 +877,18 @@ name where the JID is defined.
 `FilePath`  
 
 Path to the file that contains the
-[JWT](authentication.md#jwt-authentication) key. The default value is
-`undefined`.
+[JWT](authentication.md#jwt-authentication) key.
 
-Supported formats:
+Supported file formats:
 
-- **PEM format** - Standard PEM-encoded keys (RSA, EC, EdDSA, etc.)
-- **JWK (JSON Web Key)** - JSON format
-- **JWK Set** - JSON with a `"keys"` array (but must contain exactly one key)
+-   **PEM format** - Standard PEM-encoded keys (RSA, EC, EdDSA, etc.)
+
+-   **JWK (JSON Web Key)** - JSON format
+
+-   **JWK Set** - JSON with a `"keys"` array (but must contain exactly
+    one key)
+
+By default there is no path defined, that is: `undefined`.
 
 ## language
 
