@@ -7,6 +7,7 @@ hide:
 
 ## In the Works
 
+- **Distributed MUC**
 
 ## Planned
 
@@ -20,6 +21,9 @@ hide:
 This is a brief summary for each released version. For details, please consult ejabberd's [ChangeLog](../CHANGELOG.md).
 
 ### 2026
+
+- [26.03](https://www.process-one.net/blog/ejabberd-26-03/)
+    - Roster pre-approval
 
 - [26.02](https://www.process-one.net/blog/ejabberd-26-02/)
     - Bugfixes
