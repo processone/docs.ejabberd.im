@@ -11101,11 +11101,11 @@ attached back to the cluster until it has been explicitly removed
 permanently from the cluster.</p>
 <p>To permanently remove a running node from the cluster, the
 <a href="../../../developer/ejabberd-api/admin-api/#leave_cluster">leave_cluster</a>
-command must be run as the ejabberd daemon user, from one node of the
-cluster:</p>
+command must be run as the ejabberd daemon user, from another node in the
+cluster (not from the node that is about to be removed):</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ejabberdctl<span class="w"> </span>leave_cluster<span class="w"> </span><span class="s1">&#39;ejabberd2@machine2&#39;</span>
 </span></code></pre></div>
-<p>The removed node must be running while calling leave_cluster to make
+<p>The removed node must be running while calling <code>leave_cluster</code> to make
 it permanently removed. It's then immediately stopped.</p>
 <h3 id="restarting-cluster-nodes">Restarting cluster nodes<a class="headerlink" href="#restarting-cluster-nodes" title="Permanent link">&para;</a></h3>
 <p>Ejabberd Community Server uses mnesia internal database to manage cluster
