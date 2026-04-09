@@ -148,14 +148,14 @@ permanently from the cluster.
 
 To permanently remove a running node from the cluster, the
 [leave_cluster](../../developer/ejabberd-api/admin-api.md#leave_cluster)
-command must be run as the ejabberd daemon user, from one node of the
-cluster:
+command must be run as the ejabberd daemon user, from another node in the
+cluster (not from the node that is about to be removed):
 
 ``` sh
 ejabberdctl leave_cluster 'ejabberd2@machine2'
 ```
 
-The removed node must be running while calling leave_cluster to make
+The removed node must be running while calling `leave_cluster` to make
 it permanently removed. It's then immediately stopped.
 
 ### Restarting cluster nodes
