@@ -15,9 +15,10 @@ If using MySQL, PosgreSQL or SQLite, you can enable the option [`update_sql_sche
 If you are using other database, or prefer to update manually the SQL schema:
 
 ``` sql
-ALTER TABLE rosterusers ADD COLUMN approved boolean NOT NULL DEFAULT false; 
-ALTER TABLE rosterusers ADD COLUMN approved DROP DEFAULT;
-```
+ALTER TABLE rosterusers ADD COLUMN approved boolean NOT NULL DEFAULT false;
+ALTER TABLE rosterusers ALTER COLUMN approved DROP DEFAULT;```
+
+You can ignore the second query on SQLite.
 
 ## <a name="sasl"></a> SASL channel binding changes
 
