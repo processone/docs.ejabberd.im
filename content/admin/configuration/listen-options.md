@@ -205,6 +205,16 @@ Specify the maximum payload size in bytes.
 It can be either an integer or the word `infinity`.
 The default value is `infinity`.
 
+## max_stanza_elements
+
+*Size*
+
+This option specifies a maximum number of XML elements that individual
+ stanza can have. The default value is `infinity`.
+
+ See also [pre_auth_max_stanza_elements](pre_auth_max_stanza_elements) for
+ value used by streams before authentication.
+
 ## max_stanza_size
 
 *Size*
@@ -216,6 +226,9 @@ This option specifies an approximate maximum size in bytes of XML
  connections and 131072 for s2s connections. s2s max stanza size must
  always much higher than c2s limit. Change this value with extreme
  care as it can cause unwanted disconnect if set too low.
+
+ See also [pre_auth_max_stanza_size](pre_auth_max_stanza_size) for
+ value used by streams before authentication.
 
 ## module
 
@@ -253,6 +266,22 @@ to create and listen on a unix domain socket `/path/to/socket`.
     or whatever path the Mnesia database is stored in your installation.
 
 File permissions can be set using the [unix_socket](#unix_socket) option.
+
+## pre_auth_max_stanza_elements
+ Sets limit of maximum number of XML elements that individual
+ stanza can have, this value is only used for streams that haven't
+ authenticated yet. Default value is set to 32.
+
+ See also [max_stanza_elements](max_stanza_elements) for
+ value used by streams after authentication completes.
+
+## pre_auth_max_stanza_size
+ Sets limit of maximum size of bytes that XML representation of
+ stanza can have, this value is only used for streams that haven't
+ authenticated yet. Default value is set to 8192.
+
+ See also [max_stanza_size](max_stanza_size) for
+ value used by streams after authentication completes.
 
 ## protocol_options
 
