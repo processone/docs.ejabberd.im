@@ -1508,6 +1508,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#max_stanza_elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        max_stanza_elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#max_stanza_size" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1545,6 +1556,28 @@
     <span class="md-ellipsis">
       
         port
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre_auth_max_stanza_elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pre_auth_max_stanza_elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre_auth_max_stanza_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pre_auth_max_stanza_size
       
     </span>
   </a>
@@ -11149,6 +11182,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#max_stanza_elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        max_stanza_elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#max_stanza_size" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11186,6 +11230,28 @@
     <span class="md-ellipsis">
       
         port
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre_auth_max_stanza_elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pre_auth_max_stanza_elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre_auth_max_stanza_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pre_auth_max_stanza_size
       
     </span>
   </a>
@@ -11550,6 +11616,12 @@ on <code>"::"</code> will mean listening for IPv4 traffic as well as IPv6 traffi
 <p>Specify the maximum payload size in bytes.
 It can be either an integer or the word <code>infinity</code>.
 The default value is <code>infinity</code>.</p>
+<h2 id="max_stanza_elements">max_stanza_elements<a class="headerlink" href="#max_stanza_elements" title="Permanent link">&para;</a></h2>
+<p><em>Size</em></p>
+<p>This option specifies a maximum number of XML elements that individual
+ stanza can have. The default value is <code>infinity</code>.</p>
+<p>See also <a href="pre_auth_max_stanza_elements">pre_auth_max_stanza_elements</a> for
+ value used by streams before authentication.</p>
 <h2 id="max_stanza_size">max_stanza_size<a class="headerlink" href="#max_stanza_size" title="Permanent link">&para;</a></h2>
 <p><em>Size</em></p>
 <p>This option specifies an approximate maximum size in bytes of XML
@@ -11559,6 +11631,8 @@ The default value is <code>infinity</code>.</p>
  connections and 131072 for s2s connections. s2s max stanza size must
  always much higher than c2s limit. Change this value with extreme
  care as it can cause unwanted disconnect if set too low.</p>
+<p>See also <a href="pre_auth_max_stanza_size">pre_auth_max_stanza_size</a> for
+ value used by streams before authentication.</p>
 <h2 id="module">module<a class="headerlink" href="#module" title="Permanent link">&para;</a></h2>
 <p><em>ModuleName</em></p>
 <p>Mandatory option to define what <a href="../listen/">listening module</a> will serve
@@ -11584,6 +11658,18 @@ then the socket file is created in <code>/opt/ejabberd/database/dir/file.socket<
 or whatever path the Mnesia database is stored in your installation.</p>
 </div>
 <p>File permissions can be set using the <a href="#unix_socket">unix_socket</a> option.</p>
+<h2 id="pre_auth_max_stanza_elements">pre_auth_max_stanza_elements<a class="headerlink" href="#pre_auth_max_stanza_elements" title="Permanent link">&para;</a></h2>
+<p>Sets limit of maximum number of XML elements that individual
+ stanza can have, this value is only used for streams that haven't
+ authenticated yet. Default value is set to 32.</p>
+<p>See also <a href="max_stanza_elements">max_stanza_elements</a> for
+ value used by streams after authentication completes.</p>
+<h2 id="pre_auth_max_stanza_size">pre_auth_max_stanza_size<a class="headerlink" href="#pre_auth_max_stanza_size" title="Permanent link">&para;</a></h2>
+<p>Sets limit of maximum size of bytes that XML representation of
+ stanza can have, this value is only used for streams that haven't
+ authenticated yet. Default value is set to 8192.</p>
+<p>See also <a href="max_stanza_size">max_stanza_size</a> for
+ value used by streams after authentication completes.</p>
 <h2 id="protocol_options">protocol_options<a class="headerlink" href="#protocol_options" title="Permanent link">&para;</a></h2>
 <p><em>ProtocolOpts</em></p>
 <p>List of general options relating to SSL/TLS. These map to
