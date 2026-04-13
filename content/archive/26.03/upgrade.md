@@ -15,7 +15,8 @@ If using MySQL, PosgreSQL or SQLite, you can enable the option [`update_sql_sche
 If you are using other database, or prefer to update manually the SQL schema:
 
 ``` sql
-ALTER TABLE rosterusers ADD COLUMN approved boolean NOT NULL AFTER subscription;
+ALTER TABLE rosterusers ADD COLUMN approved boolean NOT NULL DEFAULT false; 
+ALTER TABLE rosterusers ADD COLUMN approved DROP DEFAULT;
 ```
 
 ## <a name="sasl"></a> SASL channel binding changes
