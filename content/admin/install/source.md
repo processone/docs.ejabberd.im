@@ -79,8 +79,9 @@ In this example, [`./configure`](#configure) prepares the installed program to r
 If you get `Error loading module rebar3`,
 please consult how to use [rebar with old Erlang](#rebar-with-old-erlang).
 
+---
 
-Options details:
+#### General options:
 
 - **`--bindir=/`**: Specify the path to the user executables (where `epmd` and `iex` are available).
 
@@ -106,6 +107,10 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/d
 - **`--enable-group[=GROUP]`**: Use this option additionally to `--enable-user`
   when that account is in a group that doesn't coincide with its username.
 
+---
+
+#### Options that enable/disable features:
+
 - **`--enable-all`**: Enable many of the database and dependencies
     options described here:
     `debug`,
@@ -123,6 +128,10 @@ This account needs a HOME directory, because the [Erlang cookie file](../guide/d
     `tools`,
     `zlib`.
     This is specially useful for Dialyzer checks.
+
+- **`--disable-bootstrap`**: Don't include `bootstrap` dependencies for `mod_invites`.
+
+    <!-- md:version added in [26.04](../../archive/26.04/index.md) -->
 
 - **`--disable-debug`**: Compile without `+debug_info`.
 
