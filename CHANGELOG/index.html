@@ -10510,6 +10510,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-2604" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 26.04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-2603" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10973,6 +10984,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#version-2604" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 26.04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#version-2603" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11345,8 +11367,38 @@
 
 
 <h1 id="changelog">ChangeLog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
-<h2 id="version-2603">Version 26.03<a class="headerlink" href="#version-2603" title="Permanent link">&para;</a></h2>
+<h2 id="version-2604">Version 26.04<a class="headerlink" href="#version-2604" title="Permanent link">&para;</a></h2>
 <h4 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Add new listener options for limits to xml parser accepted input</li>
+<li>Improve <code>leave_cluster</code> command to work even in own node</li>
+<li>New predefined keyword <code>DATABASE_PATH</code> that points to the Mnesia spool dir</li>
+<li>Support HOST keyword in <code>sql_database</code> toplevel option, set nice default value</li>
+<li>Provide more details in log messages when using SQLite</li>
+<li>Update documentation of jwt_key to match the Docs site</li>
+<li>ejabberd_config: New default_ram_db/3 clause that checks module support</li>
+<li>ejabberd_sm: Remove session_counter, used for get_vh_session_number now removed</li>
+</ul>
+<h4 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>mod_http_fileserver</code>: Use integer in <code>ejabberd_hooks:add</code> as expected by "make hooks"</li>
+<li><code>mod_invites</code>: Add <code>--enable-bootstrap=no</code> to configure options to bypass download (<a href="https://github.com/processone/ejabberd/pull/4558">#4558</a>)</li>
+<li><code>mod_invites</code>: don't crash in <code>get_invite_by_invitee_t</code> for sql backend (<a href="https://github.com/processone/ejabberd/pull/4566">#4566</a>)</li>
+<li><code>mod_invites</code>: quick howto for creating integrity check checksums</li>
+<li><code>mod_invites</code>: remove dependency on jquery</li>
+<li><code>mod_mqtt</code>: Define RAM callbacks as optional</li>
+<li><code>mod_mqtt</code>: Use <code>default_ram_db</code> only if it really supports RAM storage</li>
+<li><code>mod_roster</code>: Fix bug introduced in 26.03 in commit d5c1440 (<a href="https://github.com/processone/ejabberd/issues/4564">#4564</a>)</li>
+<li><code>mod_roster_sql</code>: Cast <code>approved</code> integer as boolean when exporting Mnesia to SQL</li>
+<li><code>mod_shared_roster_sql</code>: Fix typo introduced 10 years ago in commit 0ea0ba30</li>
+</ul>
+<h4 id="container-and-installers">Container and Installers<a class="headerlink" href="#container-and-installers" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Bump Erlang/OTP 28.4.2</li>
+<li>make-binaries: Bump OpenSSL to 3.5.6</li>
+</ul>
+<h2 id="version-2603">Version 26.03<a class="headerlink" href="#version-2603" title="Permanent link">&para;</a></h2>
+<h4 id="core_1">Core<a class="headerlink" href="#core_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Fix mysql authentication for tls connections that required auth plugin switch</li>
 <li>Improve handling of scram "wanted to use channel-bindings but was not offered one" flag</li>
@@ -11360,7 +11412,7 @@
 <li>Tests: Add tests for sasl2</li>
 <li>Tests: Make table cleanup in test more robust</li>
 </ul>
-<h4 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h4>
+<h4 id="modules_1">Modules<a class="headerlink" href="#modules_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>mod_fast_auth</code>: Offered methods are based on available channel bindings</li>
 <li><code>mod_http_api</code>: Always hide password in log entries</li>
@@ -11403,7 +11455,7 @@
 <li>Set overuse limits (<a href="https://github.com/processone/ejabberd/issues/4540">#4540</a>)</li>
 <li>Fix broken path when behind proxy with prefix (<a href="https://github.com/processone/ejabberd/issues/4547">#4547</a>)</li>
 </ul>
-<h4 id="container-and-installers">Container and Installers<a class="headerlink" href="#container-and-installers" title="Permanent link">&para;</a></h4>
+<h4 id="container-and-installers_1">Container and Installers<a class="headerlink" href="#container-and-installers_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Bump Erlang/OTP 28.4.1</li>
 <li><code>make-binaries</code>: Bump libexpat to 2.7.5</li>
@@ -11990,7 +12042,7 @@
 <li><code>mod_admin_extra</code>: Move some webadmin pages to their modules</li>
 </ul>
 <h2 id="version-2407">Version 24.07<a class="headerlink" href="#version-2407" title="Permanent link">&para;</a></h2>
-<h4 id="core_1">Core<a class="headerlink" href="#core_1" title="Permanent link">&para;</a></h4>
+<h4 id="core_2">Core<a class="headerlink" href="#core_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>ejabberd_options</code>: Add trailing <code>@</code> to <code>@VERSION@</code> parsing</li>
 <li><code>mod_http_api</code>: Fix problem parsing tuples when using OTP 27 json library (<a href="https://github.com/processone/ejabberd/issues/4242">#4242</a>)</li>
@@ -12044,7 +12096,7 @@
 <li>Support groupid with spaces when making shared roster result (<a href="https://github.com/processone/ejabberd/issues/4245">#4245</a>)</li>
 </ul>
 <h2 id="version-2406">Version 24.06<a class="headerlink" href="#version-2406" title="Permanent link">&para;</a></h2>
-<h4 id="core_2">Core<a class="headerlink" href="#core_2" title="Permanent link">&para;</a></h4>
+<h4 id="core_3">Core<a class="headerlink" href="#core_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>econf</code>: Add ability to use additional custom errors when parsing options</li>
 <li><code>ejabberd_logger</code>: Reloading configuration will update logger settings</li>
@@ -12151,7 +12203,7 @@
 <li>WebAdmin: Move content to commands; new pages; hook changes; new commands</li>
 </ul>
 <h2 id="version-2402">Version 24.02<a class="headerlink" href="#version-2402" title="Permanent link">&para;</a></h2>
-<h4 id="core_3">Core:<a class="headerlink" href="#core_3" title="Permanent link">&para;</a></h4>
+<h4 id="core_4">Core:<a class="headerlink" href="#core_4" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Added Matrix gateway in <code>mod_matrix_gw</code></li>
 <li>Support SASL2 and Bind2</li>
@@ -12272,7 +12324,7 @@
 <li>Dockerfile: Provide specific OTP and elixir vsn for direct compilation</li>
 <li>Halt ejabberd if a command in <code>CTL_ON_</code> fails during ejabberd startup</li>
 </ul>
-<h4 id="core_4">Core:<a class="headerlink" href="#core_4" title="Permanent link">&para;</a></h4>
+<h4 id="core_5">Core:<a class="headerlink" href="#core_5" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>auth_external_user_exists_check</code>: New option (<a href="https://github.com/processone/ejabberd/issues/#3377">#3377</a>)</li>
 <li><code>gen_mod</code>: Extend <code>gen_mod</code> API to simplify hooks and IQ handlers registration</li>
@@ -12309,7 +12361,7 @@
 <li>Set kernel version for all builds</li>
 <li>Let curl fail on HTTP errors</li>
 </ul>
-<h4 id="modules_1">Modules:<a class="headerlink" href="#modules_1" title="Permanent link">&para;</a></h4>
+<h4 id="modules_2">Modules:<a class="headerlink" href="#modules_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>mod_muc_log</code>: Add trailing backslash to URLs shown in disco info</li>
 <li><code>mod_muc_occupantid</code>: New module with support for XEP-0421 Occupant Id (<a href="https://github.com/processone/ejabberd/issues/#3397">#3397</a>)</li>
@@ -12505,7 +12557,7 @@
 <li>Add Elvis default configuration</li>
 </ul>
 <h2 id="version-2210">Version 22.10<a class="headerlink" href="#version-2210" title="Permanent link">&para;</a></h2>
-<h4 id="core_5">Core:<a class="headerlink" href="#core_5" title="Permanent link">&para;</a></h4>
+<h4 id="core_6">Core:<a class="headerlink" href="#core_6" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Add <code>log_burst_limit_*</code> options (<a href="https://github.com/processone/ejabberd/issues/3865">#3865</a>)</li>
 <li>Support <code>ERL_DIST_PORT</code> option to work without epmd</li>
@@ -12623,7 +12675,7 @@
 <li>Runtime: Add Xref options to be as strict as CI</li>
 </ul>
 <h2 id="version-2205">Version 22.05<a class="headerlink" href="#version-2205" title="Permanent link">&para;</a></h2>
-<h4 id="core_6">Core<a class="headerlink" href="#core_6" title="Permanent link">&para;</a></h4>
+<h4 id="core_7">Core<a class="headerlink" href="#core_7" title="Permanent link">&para;</a></h4>
 <ul>
 <li>C2S: Don't expect that socket will be available in <code>c2s_terminated</code> hook</li>
 <li>Event handling process hook tracing</li>
@@ -12746,7 +12798,7 @@
 <li><code>change_room_option</code>: Add missing fields from config inside <code>mod_muc_admin:change_options</code></li>
 <li>piefxis: Fixed arguments of all commands</li>
 </ul>
-<h4 id="modules_2">Modules<a class="headerlink" href="#modules_2" title="Permanent link">&para;</a></h4>
+<h4 id="modules_3">Modules<a class="headerlink" href="#modules_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>mod_caps: Don't forget caps on XEP-0198 resumption</li>
 <li>mod_conversejs: New module to serve a simple page for Converse.js</li>
@@ -12812,7 +12864,7 @@
 <li><code>help</code>: Major changes in its usage and output</li>
 <li><code>srg_create</code>: Update to use <code>label</code> parameter instead of <code>name</code></li>
 </ul>
-<h4 id="modules_3">Modules:<a class="headerlink" href="#modules_3" title="Permanent link">&para;</a></h4>
+<h4 id="modules_4">Modules:<a class="headerlink" href="#modules_4" title="Permanent link">&para;</a></h4>
 <ul>
 <li>ejabberd_listener: New <code>send_timeout</code> option</li>
 <li>mod_mix: Improvements to update to 0.14.1</li>
@@ -12865,7 +12917,7 @@
 <li>Translations: updated the Esperanto, Greek, and Japanese translations</li>
 <li>Websocket: Fix PONG responses</li>
 </ul>
-<h4 id="modules_4">Modules:<a class="headerlink" href="#modules_4" title="Permanent link">&para;</a></h4>
+<h4 id="modules_5">Modules:<a class="headerlink" href="#modules_5" title="Permanent link">&para;</a></h4>
 <ul>
 <li><code>mod_block_strangers</code>: If stanza is type error, allow it passing</li>
 <li><code>mod_caps</code>: Don't request roster when not needed</li>
@@ -12934,7 +12986,7 @@
 <li>Rebar3: Fully supported. Enable with <code>./configure --with-rebar=/path/to/rebar3</code></li>
 <li>systemd: start ejabberd in foreground</li>
 </ul>
-<h4 id="modules_5">Modules:<a class="headerlink" href="#modules_5" title="Permanent link">&para;</a></h4>
+<h4 id="modules_6">Modules:<a class="headerlink" href="#modules_6" title="Permanent link">&para;</a></h4>
 <ul>
 <li>MAM: Make sure that jid used as base in mam xml_compress is bare</li>
 <li>MAM: Support for MAM Flipped Pages</li>
@@ -13267,7 +13319,7 @@
 <li>mod_muc: New option access_mam to restrict who can modify that room option</li>
 <li>mod_offline: New option store_groupchat to allow storing group chat messages</li>
 </ul>
-<h4 id="core_7">Core<a class="headerlink" href="#core_7" title="Permanent link">&para;</a></h4>
+<h4 id="core_8">Core<a class="headerlink" href="#core_8" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Add MQTT protocol support</li>
 <li>Fix (un)setting of priority</li>
