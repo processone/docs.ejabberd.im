@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [26.03](../../archive/26.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [26.04](../../archive/26.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟠.
 
@@ -1436,8 +1436,8 @@ modules:
     max_days: 100
 ~~~
 
-mod\_invites 🟠
----------------
+mod\_invites
+------------
 
 <!-- md:version improved in [26.03](../../archive/26.03/index.md) -->
 
@@ -1527,9 +1527,9 @@ your own set of templates or list of recommended apps.
 Number of seconds until token expires. Default value is `432000` (that
 is five days: `5 * 24 * 60 * 60`)
 
-- **webchat\_url 🟠`*: `none | auto | Webchat URL*  
-<!-- md:version added in [26.03](../../archive/26.03/index.md) -->
-URL to a webchat client.  Upon
+- **webchat\_url**: `none | auto | Webchat URL`  
+<!-- md:version added in [26.03](../../archive/26.03/index.md). URL to a webchat client -->
+ Upon
 manual registration through web-form this will be recommended in order
 to get started. If `auto` is chosen, we pick the `mod_conversejs` from
 the listeners section. Default is `auto`.

@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [26.03](../../archive/26.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [26.04](../../archive/26.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟠.
 
@@ -1725,12 +1725,16 @@ If not set, the value from [use_cache](#use_cache) will be used.
 A time to wait for connection to an SQL server to be established. The
 default value is `5` seconds.
 
-## sql\_database
+## sql\_database 🟠
 
-`Database`  
+`DatabaseName | PathSqliteFile`  
 
-An SQL database name. For SQLite this must be a full path to a database
-file. The default value is `ejabberd`.
+<!-- md:version improved in [26.04](../../archive/26.04/index.md) -->
+
+An SQL database name, being
+the default value `ejabberd`. If option [sql_type](#sql_type) is set to `sqlite`,
+this must be a full path to a database file, being the default value:
+'"@DATABASE\_PATH@/sqlite/@HOST@.sqlite"
 
 ## sql\_flags
 
@@ -1818,7 +1822,7 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 Whether to use the
 [multihost SQL schema](database.md#singlehost-or-multihost). All
 schemas are located at
-<https://github.com/processone/ejabberd/tree/26.03/sql>. There are two
+<https://github.com/processone/ejabberd/tree/26.04/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain
 into one ejabberd database. The `multihost` schema can handle several
 XMPP domains in a single ejabberd database. The `multihost` schema is

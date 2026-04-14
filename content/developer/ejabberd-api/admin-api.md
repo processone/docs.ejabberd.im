@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [26.03](../../archive/26.03/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [26.04](../../archive/26.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟠
 
@@ -4157,13 +4157,14 @@ HTTP/1.1 200 OK
 
 
 
-## leave_cluster
+## leave_cluster 🟠
 
+<!-- md:version improved in [26.04](../../archive/26.04/index.md) -->
 
 Remove and shutdown Node from the running cluster
 
 
-This command can be run from any running node of the cluster, even the node to be removed. In the removed node, this command works only when using ejabberdctl, not [mod_http_api](../../admin/configuration/modules.md#mod_http_api) or other code that runs inside the same ejabberd node that will leave.
+This command can be run from any running node of the cluster, even the node to be removed.
 
 __Arguments:__
 
