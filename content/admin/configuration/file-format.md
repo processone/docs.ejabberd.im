@@ -362,6 +362,9 @@ so you can use them without need to define them explicitly:
   That keyword is only predefined for module options, not toplevel options.
 - **HOME**: path of the home directory of the user running ejabberd, for example `"/home/ejabberd"`
 - **CONFIG_PATH**: path of the directory with ejabberd configuration files, for example `"/home/ejabberd/opt/ejabberd/conf"`
+- **DATABASE_PATH**:
+  <!-- md:version added in [26.04](../../archive/26.04/index.md) -->
+  . This keyword is the path of the Mnesia spool directory, that contains the Mnesia spool files, SQLite files, Erlang cookie... for example `"/home/ejabberd/opt/ejabberd/database"`
 - **LOG_PATH**: path of the directory with ejabberd log files, for example `"/home/ejabberd/opt/ejabberd/logs"`
 - **SEMVER**: ejabberd version number in [semver format](https://hexdocs.pm/elixir/1.18.2/Version.html) when compiled with Elixir’s mix (`"24.5"`), otherwise it's in `XX.YY` format (`"24.05"`)
 - **VERSION**: ejabberd version number in `XX.YY` format, for example `"24.05"`
