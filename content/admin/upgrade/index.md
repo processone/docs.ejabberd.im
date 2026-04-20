@@ -101,6 +101,7 @@ of the new ejabberd version if you need to update those tables yourself manually
 The corresponsing ugprade notes are available in the release notes of each release,
 and also available in the [Archive](../../archive/index.md) section:
 
+- [Upgrading from ejabberd 26.03 to 26.04](../../archive/26.04/upgrade.md)
 - [Upgrading from ejabberd 26.02 to 26.03](../../archive/26.03/upgrade.md)
 - [Upgrading from ejabberd 26.01 to 26.02](../../archive/26.02/upgrade.md)
 - [Upgrading from ejabberd 25.10 to 26.01](../../archive/26.01/upgrade.md)
