@@ -22,6 +22,9 @@ This is a brief summary for each released version. For details, please consult e
 
 ### 2026
 
+- [26.04](https://www.process-one.net/blog/ejabberd-26-04/)
+    - Security release
+
 - [26.03](https://www.process-one.net/blog/ejabberd-26-03/)
     - Roster pre-approval
 
