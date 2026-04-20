@@ -209,6 +209,8 @@ The default value is `infinity`.
 
 *pos_integer()*
 
+<!-- md:version added in [26.04](../../archive/26.04/index.md) -->
+
 This option specifies a maximum number of XML elements that individual
 stanza can have. The default value is `infinity`.
 
@@ -275,6 +277,8 @@ File permissions can be set using the [unix_socket](#unix_socket) option.
 
 *pos_integer()*
 
+<!-- md:version added in [26.04](../../archive/26.04/index.md) -->
+
 Sets limit of maximum number of XML elements that individual
 stanza can have, this value is only used for streams that haven't
 authenticated yet. Default value is set to `32`.
@@ -285,6 +289,8 @@ value used by streams after authentication completes.
 ## pre_auth_max_stanza_size
 
 *pos_integer()*
+
+<!-- md:version added in [26.04](../../archive/26.04/index.md) -->
 
 Sets limit of maximum size of bytes that XML representation of
 stanza can have, this value is only used for streams that haven't
