@@ -16,16 +16,16 @@ If you are using other database, or prefer to update manually the SQL schema:
 
 ``` sql
 ALTER TABLE rosterusers ADD COLUMN approved boolean NOT NULL DEFAULT false;
-ALTER TABLE rosterusers ALTER COLUMN approved DROP DEFAULT;```
+ALTER TABLE rosterusers ALTER COLUMN approved DROP DEFAULT;
+```
 
 You can ignore the second query on SQLite.
-```
 
 ## <a name="sasl"></a> SASL channel binding changes
 
 This version adds ability to configure handling of client flag "wanted to use channel-bindings but was not offered one".
 By default ejabberd will abort connections that present this flag, as that could mean that between server and client is
-rogue MITM proxy that strips exchanged data with informations that are required for this. 
+rogue MITM proxy that strips exchanged data with informations that are required for this.
 
 This can cause problems for servers that use proxy server that terminated TLS connection (there is MITM proxy, but approved by server admin). To be able to handle this situation, we added code that ignore this flag, if server admin disable channel-binding handling by disabling -PLUS auth mechanisms in config file:
 
