@@ -35,4 +35,4 @@ jobs:
       - run: make pdf-test
       - run: make zip
       #- run: make test
-      - run: mkdocs gh-deploy --force
+      - run: properdocs gh-deploy --force

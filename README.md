@@ -8,7 +8,8 @@ and its source code is available in the [docs git repository](https://github.com
 This is a community effort and you are welcome to submit issues or pull requests
 in order to improve the docs and benefit the ejabberd community.
 
-This documentation site is built using [MkDocs](https://www.mkdocs.org/)
+This documentation site is built using [ProperDocs](https://properdocs.org/)
+(a fork of [MkDocs](https://www.mkdocs.org/))
 and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
 ## Installation
@@ -25,14 +26,14 @@ pip install -r requirements.txt
 ```
 
 !!! info
-    From now on, remember to run `source .venv/bin/activate` before running any `mkdocs [...]` command.
+    From now on, remember to run `source .venv/bin/activate` before running any `properdocs [...]` command.
 
 !!! tip
     You can freeze the dependencies to a file using `pip freeze > requirements.txt`.
 
 ### Debian
 
-You could install most dependencies using APT:
+You could install most dependencies using APT, which includes the unmaintained MkDocs (instead of the newer fork ProperDocs):
 
 ```bash
 apt-get install mkdocs \
@@ -50,13 +51,13 @@ apt-get install mkdocs \
 Now you can start a small webserver that builds the site dynamically:
 
 ```bash
-mkdocs serve
+properdocs serve
 ```
 
 or build the site into static html files in the `site/` directory:
 
 ```bash
-mkdocs build
+properdocs build
 ```
 
 ## Testing
@@ -64,13 +65,13 @@ mkdocs build
 To verify the internal URLs in the site:
 
 ```bash
-TEST=true mkdocs serve
+TEST=true properdocs serve
 ```
 
 To verify the internal URLs and also the external links:
 
 ```bash
-TEST=true TEST_EXTERNAL=true mkdocs serve
+TEST=true TEST_EXTERNAL=true properdocs serve
 ```
 
 ## Updating content

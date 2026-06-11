@@ -296,17 +296,17 @@ $(TAGS): $(TTAGS)
 	cp $(TTAGS) $(TAGS)
 
 #.
-#' mkdocs
+#' properdocs
 #
 
 site:
-	OFFLINE=true mkdocs build
+	OFFLINE=true properdocs build
 	find site/* -type f \! -exec sed -i 's/href="\(.*\)" \(title="ejabberd Docs"\)/href="\1\/index.html" \2/g' {} \;
 
 pdf: $(PDFV)
 
 $(PDFV):
-	WITH_PDF=1 mkdocs build
+	WITH_PDF=1 properdocs build
 	mv $(PDF) $(PDFV)
 
 pdf-test: $(PDFV)
@@ -321,13 +321,13 @@ $(ZIP): site
 	mv ejabberd-docs-$(VERSION) temp
 
 dev:
-	mkdocs serve --no-livereload --dirty
+	properdocs serve --no-livereload --dirty
 
 live:
-	mkdocs serve --dirty
+	properdocs serve --dirty
 
 serve:
-	mkdocs serve
+	properdocs serve
 
 clean:
 	rm -rf site
@@ -392,8 +392,8 @@ archive:
 #
 
 test:
-	export TEST=true && mkdocs build
-	#export TEST=true && export TEST_EXTERNAL=true && mkdocs build
+	export TEST=true && properdocs build
+	#export TEST=true && export TEST_EXTERNAL=true && properdocs build
 
 test2:
 	linkchecker \

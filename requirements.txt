@@ -1,5 +1,5 @@
 beautifulsoup4
-mkdocs
+properdocs
 mkdocs-ezglossary-plugin
 mkdocs-htmlproofer-plugin
 mkdocs-material
