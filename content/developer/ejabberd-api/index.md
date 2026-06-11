@@ -42,7 +42,7 @@ see [Commands](commands.md) page for details.
 
 The API commands are exposed through interfaces,
 implemented in modules that can be considered "API frontends".
-Available interfaces are:
+The interfaces included with ejabberd are:
 
 - [ejabberdctl](../../admin/guide/managing.md#ejabberdctl) command-line tool
 - [mod_http_api](../../admin/configuration/modules.md#mod_http_api) for HTTP ReST calls using JSON data
@@ -54,6 +54,11 @@ There are other interfaces available in the [ejabberd-contrib](../../admin/guide
 
 - [mod_rest](https://github.com/processone/ejabberd-contrib/tree/master/mod_rest) for HTTP ReST calls using plaintext data
 - [mod_shcommands](https://github.com/processone/ejabberd-contrib/tree/master/mod_shcommands) for a WebAdmin page
+
+Furthermore, other known interfaces are:
+
+- [ejabberd-api](https://github.com/processone/ejabberd-api) command-line tool written in Go
+- [jabber_admin](https://github.com/hausgold/jabber_admin) Ruby library
 
 ## Process Flow
 
