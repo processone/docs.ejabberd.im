@@ -1,7 +1,11 @@
+beautifulsoup4
 mkdocs
 mkdocs-ezglossary-plugin
 mkdocs-htmlproofer-plugin
 mkdocs-material
+mkdocs-material-extensions
+mkdocs-material[imaging]
 mkdocs-redirects
 mkdocs-with-pdf
 pymdown-extensions
+weasyprint<69.0

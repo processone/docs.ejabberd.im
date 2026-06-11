@@ -29,14 +29,7 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material \
-                         "mkdocs-material[imaging]" \
-                         mkdocs-material-extensions \
-                         mkdocs-ezglossary-plugin \
-                         mkdocs-htmlproofer-plugin \
-                         mkdocs-redirects \
-                         mkdocs-with-pdf \
-                         beautifulsoup4
+      - run: pip install -r requirements.txt
       - run: make home
       - run: make pdf
       - run: make pdf-test
