@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/img/favicon.ico">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -11060,6 +11060,7 @@ of features) or run for a specific backend.</p>
 <p>The <code>CT_BACKENDS</code> environment variable specifies which backend tests to
 run. Current <code>CT_BACKENDS</code> values:</p>
 <ul>
+<li><code>agnostic</code></li>
 <li><code>extauth</code></li>
 <li><code>ldap</code></li>
 <li><code>mnesia</code></li>
@@ -11102,7 +11103,7 @@ using rebar and <a href="https://rebar3.org/docs/testing/ct/">rebar3 ct</a>:</p>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">CT_BACKENDS</span><span class="o">=</span>mnesia<span class="w"> </span>rebar<span class="w">  </span>ct<span class="w"> </span><span class="nv">suites</span><span class="o">=</span>ejabberd<span class="w"> </span><span class="nv">groups</span><span class="o">=</span>generic
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nv">CT_BACKENDS</span><span class="o">=</span>mnesia<span class="w"> </span>rebar3<span class="w"> </span>ct<span class="w"> </span>--suite<span class="o">=</span>test/ejabberd_SUITE<span class="w"> </span>--group<span class="o">=</span>offline_flex,offline_send_all
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nv">CT_BACKENDS</span><span class="o">=</span>redis<span class="w">  </span>rebar3<span class="w"> </span>ct<span class="w"> </span>--suite<span class="o">=</span>test/ejabberd_SUITE<span class="w"> </span>--group<span class="o">=</span>offline_flex,offline_send_all
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nv">CT_BACKENDS</span><span class="o">=</span>mnesia<span class="w"> </span>rebar3<span class="w"> </span>ct<span class="w"> </span>--suite<span class="o">=</span>test/ejabberd_SUITE<span class="w"> </span>--group<span class="o">=</span>commands_single
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nv">CT_BACKENDS</span><span class="o">=</span>agnostic<span class="w"> </span>rebar3<span class="w"> </span>ct<span class="w"> </span>--suite<span class="o">=</span>test/ejabberd_SUITE<span class="w"> </span>--group<span class="o">=</span>commands_single
 </span></code></pre></div>
 <p>If you have every backend configured, you can run all the tests with:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>make<span class="w"> </span><span class="nb">test</span>
@@ -11264,7 +11265,7 @@ projects: <a href="https://processone.github.io/">ProcessOne Github Dashboard</a
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "toc.follow", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
