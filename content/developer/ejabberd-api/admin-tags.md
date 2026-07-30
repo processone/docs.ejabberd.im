@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [26.04](../../archive/26.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [26.07](../../archive/26.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 
@@ -37,6 +37,9 @@
 
 
 * [generate_invite_with_username](admin-api.md#generate_invite_with_username)
+
+
+* [generate_reset_token](admin-api.md#generate_reset_token)
 
 
 * [get_ban_details](admin-api.md#get_ban_details)
@@ -148,6 +151,9 @@
 
 
 * [export_db_abort](admin-api.md#export_db_abort)
+
+
+* [export_db_ext](admin-api.md#export_db_ext)
 
 
 * [export_db_status](admin-api.md#export_db_status)
@@ -387,6 +393,9 @@
 * [rooms_unused_destroy](admin-api.md#rooms_unused_destroy)
 
 
+* [rooms_unused_destroy_skip_notifications](admin-api.md#rooms_unused_destroy_skip_notifications)
+
+
 * [rooms_unused_list](admin-api.md#rooms_unused_list)
 
 
@@ -534,6 +543,9 @@
 * [delete_expired_pubsub_items](admin-api.md#delete_expired_pubsub_items)
 
 
+* [delete_invite_by_token](admin-api.md#delete_invite_by_token)
+
+
 * [delete_old_mam_messages](admin-api.md#delete_old_mam_messages)
 
 
@@ -562,6 +574,9 @@
 
 
 * [delete_old_users_vhost](admin-api.md#delete_old_users_vhost)
+
+
+* [expire_invite_by_token](admin-api.md#expire_invite_by_token)
 
 
 * [expire_invite_tokens](admin-api.md#expire_invite_tokens)

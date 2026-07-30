@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [26.04](../../archive/26.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [26.07](../../archive/26.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟠
 
@@ -1335,6 +1335,44 @@ HTTP/1.1 200 OK
 
 
 
+## delete_invite_by_token 🟠
+
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+
+Delete invite for given token
+
+__Arguments:__
+
+- *host* :: string : Hostname token belongs to
+- *token* :: string : Token to be expired
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[purge](admin-tags.md#purge)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/delete_invite_by_token
+{
+  "host": "example.com",
+  "token": "stDqh4dEEmrWxb0TFJDxitnc"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
 ## delete_mnesia
 
 
@@ -2052,6 +2090,44 @@ HTTP/1.1 200 OK
 
 
 
+## expire_invite_by_token 🟠
+
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+
+Sets expiration to a date in the past for all tokens given
+
+__Arguments:__
+
+- *host* :: string : Hostname token belongs to
+- *token* :: string : Token to be expired
+
+__Result:__
+
+- *res* :: integer : Status code (`0` on success, `1` otherwise)
+
+__Tags:__
+[purge](admin-tags.md#purge)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/expire_invite_by_token
+{
+  "host": "example.com",
+  "token": "stDqh4dEEmrWxb0TFJDxitnc"
+}
+
+HTTP/1.1 200 OK
+""
+~~~
+
+
+
+
 ## expire_invite_tokens
 
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
@@ -2065,7 +2141,7 @@ __Arguments:__
 
 __Result:__
 
-- *num_deleted* :: integer
+- *num_expired* :: integer
 
 __Tags:__
 [purge](admin-tags.md#purge)
@@ -2228,6 +2304,45 @@ POST /api/export_db_abort
 
 HTTP/1.1 200 OK
 "Operation aborted"
+~~~
+
+
+
+
+## export_db_ext 🟠
+
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+
+Export database records for host to files
+
+__Arguments:__
+
+- *host* :: string : Name of host that should be exported
+- *dir* :: string : Directory name where exported files should be created
+- *modules* :: string : List of modules separated by ',' that should be exported, use 'all' to use all available
+- *type* :: string : Type of serialization, recognized values are dbser and json
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[db](admin-tags.md#db)
+
+__Examples:__
+
+
+~~~ json
+POST /api/export_db_ext
+{
+  "host": "localhost",
+  "dir": "/home/ejabberd/export",
+  "modules": "all",
+  "type": "json"
+}
+
+HTTP/1.1 200 OK
+"Export started"
 ~~~
 
 
@@ -2534,6 +2649,47 @@ __Examples:__
 
 ~~~ json
 POST /api/generate_invite_with_username
+{
+  "username": "juliet",
+  "host": "example.com"
+}
+
+HTTP/1.1 200 OK
+{
+  "invite_uri": "xmpp:juliet@example.com?register;preauth=4bsdpwVrRDQYnF9aQQKXGbF7",
+  "landing_page": "https://example.com/invites/4bsdpwVrRDQYnF9aQQKXGbF7"
+}
+~~~
+
+
+
+
+## generate_reset_token 🟠
+
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+
+Create a password reset token for user with given name on given host.
+
+__Arguments:__
+
+- *username* :: string : Username
+- *host* :: string : Hostname
+
+__Result:__
+
+- *invite* :: {invite_uri::string, landing_page::string}
+
+__Tags:__
+[accounts](admin-tags.md#accounts)
+
+__Module:__
+[mod_invites](../../admin/configuration/modules.md#mod_invites)
+
+__Examples:__
+
+
+~~~ json
+POST /api/generate_reset_token
 {
   "username": "juliet",
   "host": "example.com"
@@ -4157,7 +4313,7 @@ HTTP/1.1 200 OK
 
 
 
-## leave_cluster 🟠
+## leave_cluster
 
 <!-- md:version improved in [26.04](../../archive/26.04/index.md) -->
 
@@ -6274,17 +6430,18 @@ HTTP/1.1 200 OK
 
 
 
-## request_certificate
+## request_certificate 🟠
 
+<!-- md:version improved in [26.07](../../archive/26.07/index.md) -->
 
 Requests certificates for all or some domains
 
 
-Domains can be `all`, or a list of domains separared with comma characters
+Domains is a list of domains separared with comma characters. If domains is `all`, it requests for all domains defined in toplevel option `hosts` and other routes served by ejabberd. If domains is `all_and_alias`, it also requests for domains defined in toplevel option `hosts_alias`.
 
 __Arguments:__
 
-- *domains* :: string : Domains for which to acquire a certificate
+- *domains* :: string : Domains for which to acquire a certificate, or `all`, or `all_and_alias`
 
 __Result:__
 
@@ -6634,6 +6791,50 @@ __Examples:__
 
 ~~~ json
 POST /api/rooms_unused_destroy
+{
+  "service": "conference.example.com",
+  "days": 31
+}
+
+HTTP/1.1 200 OK
+[
+  "room1@conference.example.com",
+  "room2@conference.example.com"
+]
+~~~
+
+
+
+
+## rooms_unused_destroy_skip_notifications 🟠
+
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+
+Destroy the rooms that are unused for many days in the service, but may skip notifications to subscribers
+
+
+The room recent history is used, so it's recommended  to wait a few days after service start before running this. The MUC service argument can be `global` to get all hosts. This version may skip sending notifications to subscribers, for performance reasons
+
+__Arguments:__
+
+- *service* :: string : MUC service, or `global` for all
+- *days* :: integer : Number of days
+
+__Result:__
+
+- *rooms* :: [room::string] : List of unused rooms that has been destroyed
+
+__Tags:__
+[muc](admin-tags.md#muc)
+
+__Module:__
+[mod_muc_admin](../../admin/configuration/modules.md#mod_muc_admin)
+
+__Examples:__
+
+
+~~~ json
+POST /api/rooms_unused_destroy_skip_notifications
 {
   "service": "conference.example.com",
   "days": 31

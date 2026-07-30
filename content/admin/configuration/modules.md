@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes modules options of ejabberd [26.04](../../archive/26.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes modules options of ejabberd [26.07](../../archive/26.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The modules that changed in this version are marked with 🟠.
 
@@ -361,10 +361,10 @@ modules:
 
 **API Tags:** [spam](../../developer/ejabberd-api/admin-tags.md#spam)
 
-mod\_auth\_fast
----------------
+mod\_auth\_fast 🟠
+------------------
 
-<!-- md:version added in [24.12](../../archive/24.12/index.md) -->
+<!-- md:version improved in [26.07](../../archive/26.07/index.md) -->
 
 
 The module adds support for [XEP-0484: Fast Authentication Streamlining
@@ -373,9 +373,10 @@ authenticate using self-managed tokens.
 
 __Available options:__
 
-- **db\_type**: `mnesia`  
-Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
-only.
+- **db\_type 🟠`*: `mnesia | sql*  
+<!-- md:version improved in [26.07](../../archive/26.07/index.md) -->
+ Same as top-level
+[default_db](toplevel.md#default_db) option, but applied to this module only.
 
 - **token\_lifetime**: `timeout()`  
 Time that tokens will be kept, measured from it’s creation time. Default
@@ -719,7 +720,7 @@ When `conversejs_css` and `conversejs_script` are `auto`, by default
 they point to the public Converse client.
 
 When this module is enabled in `modules`, it adds automatically a
-requesthandler and link in WebAdmin. .
+request handler and link in WebAdmin. .
 
 This module is available since ejabberd [21.12](../../archive/21.12/index.md).
 
@@ -746,9 +747,11 @@ supported.
 - **conversejs\_plugins**: `[Filename]`  
 List of additional local files to include as scripts in the homepage.
 Please make sure those files are available in the path specified in
-`conversejs_resources` option, in subdirectory `plugins/`. If using the
-public Converse client, then `"libsignal"` gets replaced with the URL of
-the public library. The default value is `[]`.
+`conversejs_resources` option, in subdirectory `plugins/`. Notice that
+`libsignal` is only required for OMEMO encryption in Converse 13 or
+lower; Converse 14 uses and includes `libomemo`. If using the public
+Converse client, then `"libsignal"` gets replaced with the URL of the
+public library. The default value is `[]`.
 
 - **conversejs\_resources**: `Path`  
 <!-- md:version added in [22.05](../../archive/22.05/index.md) -->
@@ -786,7 +789,6 @@ listen:
 modules:
   mod_bosh: {}
   mod_conversejs:
-    conversejs_plugins: ["libsignal"]
     websocket_url: "ws://@HOST@:5280/websocket"
 ~~~
 
@@ -1134,6 +1136,7 @@ modify existing ones. The default values are:
       .ttf: font/ttf
       .txt: text/plain
       .wav: audio/wav
+      .wasm: application/wasm
       .webp: image/webp
       .woff: font/woff
       .woff2: font/woff2
@@ -1241,6 +1244,30 @@ __Available options:__
 This option defines the access rule to limit who is permitted to use the
 HTTP upload service. The default value is `local`. If no access rule of
 that name exists, no user will be allowed to use the service.
+
+- **append\_module\_config 🟠`*: `{UploadHost: Options}*  
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+ Add a few specific options to
+a certain upload host previously defined in the mod\_http\_upload
+`hosts` option. Right now only `name` and `vcard` can be defined here.
+This is similar to the toplevel [append_host_config](toplevel.md#append_host_config) option, but in
+this case it’s applied to this module options.
+
+    **Example**:
+
+    ~~~ yaml
+    modules:
+      mod_http_upload:
+        hosts:
+          - service1.@HOST@
+          - service2.@HOST@
+        name: "Service General"
+        append_module_config:
+          service1.localhost:
+            name: "Service 1"
+          service2.example.net:
+            name: "Service 2"
+    ~~~
 
 - **content\_types**: `{Extension: Type}`  
 <!-- md:version added in [26.01](../../archive/26.01/index.md) -->
@@ -1436,10 +1463,10 @@ modules:
     max_days: 100
 ~~~
 
-mod\_invites
-------------
+mod\_invites 🟠
+---------------
 
-<!-- md:version improved in [26.03](../../archive/26.03/index.md) -->
+<!-- md:version improved in [26.07](../../archive/26.07/index.md) -->
 
 
 Allow User Invitation and Account Creation to create out-of-band links
@@ -1469,12 +1496,21 @@ required.
 In order to use the included landing page feature, you have to set
 `landing_page` to either `auto` or an URL template like
 `https://{{ host }}/invites/{{ invite.token }}` if your server setup
-includes a so called reverse proxy.
+includes a so called reverse proxy. Furthermore you need to connect this
+module as a handler of an `ejabberd_http` listener as shown at the
+example below.
+
+For convenience there’s now also a start page included at wherever you
+`mount` `mod_invites` at the `ejabberd_http` handler. This start page
+will allow people to generate invites by giving their username and
+password. As such the URL should be protected by HTTPS. The main
+use-case is when people have only clients, that don’t support generating
+invites natively.
 
 If you’d rather want to use an external service, set `landing_page` to
 something like
 `http://{{ host }}:8080/easy-xmpp-invites/#{{ invite.uri|strip_protocol }}`
-or `https://invites.joinjabber.org/#{{ invite.uri|strip_protocol }}`.
+or `https://invite.joinjabber.org/#{{ invite.uri|strip_protocol }}`.
 
 __Available options:__
 
@@ -2119,6 +2155,29 @@ rooms. The default is `all` for backward compatibility, which means that
 any user is allowed to register any free nick in the MUC service and in
 the rooms.
 
+- **append\_module\_config 🟠`*: `{MUCHost: Options}*  
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+ Add a few specific options to
+a certain MUC host previously defined in the mod\_muc `hosts` option.
+This is similar to the toplevel [append_host_config](toplevel.md#append_host_config) option, but in
+this case it’s applied to the mod\_muc options.
+
+    **Example**:
+
+    ~~~ yaml
+    modules:
+      mod_muc:
+        hosts:
+          - service1.@HOST@
+          - service2.@HOST@
+        name: "Service General"
+        append_module_config:
+          service1.localhost:
+            name: "Service 1"
+          service2.example.net:
+            name: "Service 2"
+    ~~~
+
 - **cleanup\_affiliations\_on\_start**: `true | false`  
 <!-- md:version added in [22.05](../../archive/22.05/index.md) -->
  Remove affiliations for
@@ -2306,7 +2365,7 @@ Deprecated. Use `hosts` instead.
 - **hosts**: `[Host, ...]`  
 This option defines the Jabber IDs of the service. If the `hosts` option
 is not specified, the only Jabber ID will be the hostname of the virtual
-host with the prefix "conference.". The keyword `@HOST@` is replaced
+host with the prefix `"conference."`. The keyword `@HOST@` is replaced
 with the real virtual host name.
 
 - **max\_captcha\_whitelist**: `Number`  
@@ -2622,8 +2681,9 @@ Deprecated. Use `hosts` instead.
 - **hosts**: `[Host, ...]`  
 This option defines the Jabber IDs of the service. If the `hosts` option
 is not specified, the only Jabber ID will be the hostname of the virtual
-host with the prefix "multicast.". The keyword `@HOST@` is replaced with
-the real virtual host name. The default value is `multicast.@HOST@`.
+host with the prefix `"multicast."`. The keyword `@HOST@` is replaced
+with the real virtual host name. Please note: this module only uses the
+first vhost defined in this option.
 
 - **limits**: `Sender: Stanza: Number`  
 Specify a list of custom limits which override the default ones defined
@@ -3194,6 +3254,30 @@ is `all`. You may want to restrict access to the users of your server
 only, in order to avoid abusing your proxy by the users of remote
 servers.
 
+- **append\_module\_config**: `{ProxyHost: Options}`  
+<!-- md:version added in 25.xx -->
+ Add a few specific options to
+a certain upload host previously defined in the mod\_proxy65 `hosts`
+option. Right now only `name` and `vcard` can be defined here. This is
+similar to the toplevel [append_host_config](toplevel.md#append_host_config) option, but in this case
+it’s applied to this module options.
+
+    **Example**:
+
+    ~~~ yaml
+    modules:
+      mod_proxy65:
+        hosts:
+          - service1.@HOST@
+          - service2.@HOST@
+        name: "Service General"
+        append_module_config:
+          service1.localhost:
+            name: "Service 1"
+          service2.example.net:
+            name: "Service 2"
+    ~~~
+
 - **auth\_type**: `anonymous | plain`  
 SOCKS5 authentication type. The default value is `anonymous`. If set to
 `plain`, ejabberd will use authentication backend as it would for SASL
@@ -3212,8 +3296,8 @@ the value of `ip` option. Examples: `proxy.mydomain.org`,
 - **hosts**: `[Host, ...]`  
 This option defines the Jabber IDs of the service. If the `hosts` option
 is not specified, the only Jabber ID will be the hostname of the virtual
-host with the prefix "proxy.". The keyword `@HOST@` is replaced with the
-real virtual host name.
+host with the prefix `"proxy."`. The keyword `@HOST@` is replaced with
+the real virtual host name.
 
 - **ip**: `IPAddress`  
 This option specifies which network interface to listen for. The default
@@ -3310,6 +3394,30 @@ This option restricts which users are allowed to create pubsub nodes
 using `acl` and `access`. By default any account in the local ejabberd
 server is allowed to create pubsub nodes. The default value is: `all`.
 
+- **append\_module\_config 🟠`*: `{PubSubHost: Options}*  
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+ Add a few specific options to
+a certain PubSub host previously defined in the mod\_pubsub `hosts`
+option. Right now only `name` and `vcard` can be defined here. This is
+similar to the toplevel [append_host_config](toplevel.md#append_host_config) option, but in this case
+it’s applied to this module options.
+
+    **Example**:
+
+    ~~~ yaml
+    modules:
+      mod_pubsub:
+        hosts:
+          - service1.@HOST@
+          - service2.@HOST@
+        name: "Service General"
+        append_module_config:
+          service1.localhost:
+            name: "Service 1"
+          service2.example.net:
+            name: "Service 2"
+    ~~~
+
 - **db\_type**: `mnesia | sql`  
 Same as top-level [default_db](toplevel.md#default_db) option, but applied to this module
 only.
@@ -3338,7 +3446,7 @@ Deprecated. Use `hosts` instead.
 - **hosts**: `[Host, ...]`  
 This option defines the Jabber IDs of the service. If the `hosts` option
 is not specified, the only Jabber ID will be the hostname of the virtual
-host with the prefix "pubsub.". The keyword `@HOST@` is replaced with
+host with the prefix `"pubsub."`. The keyword `@HOST@` is replaced with
 the real virtual host name.
 
 - **ignore\_pep\_from\_offline**: `false | true`  
@@ -4525,6 +4633,30 @@ This option enables you to specify if search operations with empty input
 fields should return all users who added some information to their
 vCard. The default value is `false`.
 
+- **append\_module\_config 🟠`*: `{VcardHost: Options}*  
+<!-- md:version added in [26.07](../../archive/26.07/index.md) -->
+ Add a few specific options to
+a certain upload host previously defined in the mod\_vcard `hosts`
+option. Right now only `name` can be defined here. This is similar to
+the toplevel [append_host_config](toplevel.md#append_host_config) option, but in this case it’s
+applied to this module options.
+
+    **Example**:
+
+    ~~~ yaml
+    modules:
+      mod_vcard:
+        hosts:
+          - service1.@HOST@
+          - service2.@HOST@
+        name: "Service General"
+        append_module_config:
+          service1.localhost:
+            name: "Service 1"
+          service2.example.net:
+            name: "Service 2"
+    ~~~
+
 - **cache\_life\_time**: `timeout()`  
 Same as top-level [cache_life_time](toplevel.md#cache_life_time) option, but applied to this module
 only.
@@ -4547,8 +4679,8 @@ Deprecated. Use `hosts` instead.
 - **hosts**: `[Host, ...]`  
 This option defines the Jabber IDs of the service. If the `hosts` option
 is not specified, the only Jabber ID will be the hostname of the virtual
-host with the prefix "vjud.". The keyword `@HOST@` is replaced with the
-real virtual host name.
+host with the prefix `"vjud."`. The keyword `@HOST@` is replaced with
+the real virtual host name.
 
 - **matches**: `pos_integer() | infinity`  
 With this option, the number of reported search results can be limited.

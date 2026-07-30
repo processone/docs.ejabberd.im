@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [26.04](../../archive/26.04/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [26.07](../../archive/26.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟠.
 
@@ -1198,7 +1198,7 @@ value from [cache_size](#cache_size) will be used.
 
 Define whether the client authentication is always allowed, denied, or
 it will depend if the client ID is present in the database. The default
-value is `allow`.
+value is `db`.
 
 ## oauth\_db\_type
 
@@ -1725,7 +1725,7 @@ If not set, the value from [use_cache](#use_cache) will be used.
 A time to wait for connection to an SQL server to be established. The
 default value is `5` seconds.
 
-## sql\_database 🟠
+## sql\_database
 
 `DatabaseName | PathSqliteFile`  
 
@@ -1822,7 +1822,7 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 Whether to use the
 [multihost SQL schema](database.md#singlehost-or-multihost). All
 schemas are located at
-<https://github.com/processone/ejabberd/tree/26.04/sql>. There are two
+<https://github.com/processone/ejabberd/tree/26.07/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain
 into one ejabberd database. The `multihost` schema can handle several
 XMPP domains in a single ejabberd database. The `multihost` schema is
