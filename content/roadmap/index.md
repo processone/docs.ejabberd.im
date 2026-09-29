@@ -22,6 +22,9 @@ This is a brief summary for each released version. For details, please consult e
 
 ### 2026
 
+- [26.09](https://www.process-one.net/blog/ejabberd-26-09/)
+    - Major security release
+
 - [26.07](https://www.process-one.net/blog/ejabberd-26-07/)
     - Major security release
     - [mod_invites](../admin/configuration/modules.md/#mod_invites): New pages for user creating invite and WebAdmin page
