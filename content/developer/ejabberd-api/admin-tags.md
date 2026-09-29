@@ -2,7 +2,7 @@
 
 !!! info "Please note"
 
-    This section enumerates the API tags of ejabberd [26.07](../../archive/26.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
+    This section enumerates the API tags of ejabberd [26.09](../../archive/26.09/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md). 
 
 
 

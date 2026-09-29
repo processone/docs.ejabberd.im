@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes top level options of ejabberd [26.07](../../archive/26.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes top level options of ejabberd [26.09](../../archive/26.09/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The options that changed in this version are marked with 🟠.
 
@@ -63,66 +63,53 @@ referenced from other parts of the configuration file, for example in
 [access_rules](#access_rules) option. The rules of `ACLName` are represented by
 mapping `{ACLType: ACLValue}`. These can be one of the following:
 
--   **ip**: `Network`  
-    The rule matches any IP address from the
-    `Network`.
+- **ip**: `Network` The rule matches any IP address from the `Network`.
 
--   **node\_glob**: `Pattern`  
-    Same as `node_regexp`, but matching is
-    performed on a specified `Pattern` according to the rules used by
-    the Unix shell.
+- **node\_glob**: `Pattern` Same as `node_regexp`, but matching is
+  performed on a specified `Pattern` according to the rules used by the
+  Unix shell.
 
--   **node\_regexp**: `user_regexp@server_regexp`  
-    The rule matches any
-    JID with node part matching regular expression `user_regexp` and
-    server part matching regular expression `server_regexp`.
+- **node\_regexp**: `user_regexp@server_regexp` The rule matches any
+  JID with node part matching regular expression `user_regexp` and
+  server part matching regular expression `server_regexp`.
 
--   **resource**: `Resource`  
-    The rule matches any JID with a resource
-    `Resource`.
+- **resource**: `Resource` The rule matches any JID with a resource
+  `Resource`.
 
--   **resource\_glob**: `Pattern`  
-    Same as `resource_regexp`, but
-    matching is performed on a specified `Pattern` according to the
-    rules used by the Unix shell.
+- **resource\_glob**: `Pattern` Same as `resource_regexp`, but matching
+  is performed on a specified `Pattern` according to the rules used by
+  the Unix shell.
 
--   **resource\_regexp**: `Regexp`  
-    The rule matches any JID with a
-    resource that matches regular expression `Regexp`.
+- **resource\_regexp**: `Regexp` The rule matches any JID with a
+  resource that matches regular expression `Regexp`.
 
--   **server**: `Server`  
-    The rule matches any JID from server `Server`.
-    The value of `Server` must be a valid hostname or an IP address.
+- **server**: `Server` The rule matches any JID from server `Server`.
+  The value of `Server` must be a valid hostname or an IP address.
 
--   **server\_glob**: `Pattern`  
-    Same as `server_regexp`, but matching
-    is performed on a specified `Pattern` according to the rules used by
-    the Unix shell.
+- **server\_glob**: `Pattern` Same as `server_regexp`, but matching is
+  performed on a specified `Pattern` according to the rules used by the
+  Unix shell.
 
--   **server\_regexp**: `Regexp`  
-    The rule matches any JID from the
-    server that matches regular expression `Regexp`.
+- **server\_regexp**: `Regexp` The rule matches any JID from the server
+  that matches regular expression `Regexp`.
 
--   **user**: `Username`  
-    If `Username` is in the form of "user@server",
-    the rule matches a JID against this value. Otherwise, if `Username`
-    is in the form of "user", the rule matches any JID that has
-    `Username` in the node part as long as the server part of this JID
-    is any virtual host served by ejabberd.
+- **user**: `Username` If `Username` is in the form of "user@server",
+  the rule matches a JID against this value. Otherwise, if `Username` is
+  in the form of "user", the rule matches any JID that has `Username` in
+  the node part as long as the server part of this JID is any virtual
+  host served by ejabberd.
 
--   **user\_glob**: `Pattern`  
-    Same as `user_regexp`, but matching is
-    performed on a specified `Pattern` according to the rules used by
-    the Unix shell.
+- **user\_glob**: `Pattern` Same as `user_regexp`, but matching is
+  performed on a specified `Pattern` according to the rules used by the
+  Unix shell.
 
--   **user\_regexp**: `Regexp`  
-    If `Regexp` is in the form of
-    "regexp@server", the rule matches any JID with node part matching
-    regular expression "regexp" as long as the server part of this JID
-    is equal to "server". If `Regexp` is in the form of "regexp", the
-    rule matches any JID with node part matching regular expression
-    "regexp" as long as the server part of this JID is any virtual host
-    served by ejabberd.
+- **user\_regexp**: `Regexp` If `Regexp` is in the form of
+  "regexp@server", the rule matches any JID with node part matching
+  regular expression "regexp" as long as the server part of this JID is
+  equal to "server". If `Regexp` is in the form of "regexp", the rule
+  matches any JID with node part matching regular expression "regexp" as
+  long as the server part of this JID is any virtual host served by
+  ejabberd.
 
 ## acme
 
@@ -133,31 +120,26 @@ certificates for the domains served by ejabberd, which means that
 certificate requests and renewals are performed to some CA server (aka
 "ACME server") in a fully automated mode. The `Options` are:
 
--   **auto**: `true | false`  
-    Whether to automatically request
-    certificates for all configured domains (that yet have no a
-    certificate) on server start or configuration reload. The default is
-    `true`.
+- **auto**: `true | false` Whether to automatically request certificates
+  for all configured domains (that yet have no a certificate) on server
+  start or configuration reload. The default is `true`.
 
--   **ca\_url**: `URL`  
-    The ACME directory URL used as an entry point for
-    the ACME server. The default value is
-    <https://acme-v02.api.letsencrypt.org/directory> - the directory URL
-    of Let’s Encrypt authority.
+- **ca\_url**: `URL` The ACME directory URL used as an entry point for
+  the ACME server. The default value is
+  <https://acme-v02.api.letsencrypt.org/directory> - the directory URL
+  of Let’s Encrypt authority.
 
--   **cert\_type**: `rsa | ec`  
-    A type of a certificate key. Available
-    values are `ec` and `rsa` for EC and RSA certificates respectively.
-    It’s better to have RSA certificates for the purpose of backward
-    compatibility with legacy clients and servers, thus the default is
-    `rsa`.
+- **cert\_type**: `rsa | ec` A type of a certificate key. Available
+  values are `ec` and `rsa` for EC and RSA certificates respectively.
+  It’s better to have RSA certificates for the purpose of backward
+  compatibility with legacy clients and servers, thus the default is
+  `rsa`.
 
--   **contact**: `[Contact, ...]`  
-    A list of contact addresses
-    (typically emails) where an ACME server will send notifications when
-    problems occur. The value of `Contact` must be in the form of
-    "scheme:address" (e.g. "mailto:user@domain.tld"). The default is an
-    empty list which means an ACME server will send no notices.
+- **contact**: `[Contact, ...]` A list of contact addresses (typically
+  emails) where an ACME server will send notifications when problems
+  occur. The value of `Contact` must be in the form of "scheme:address"
+  (e.g. "mailto:user@domain.tld"). The default is an empty list which
+  means an ACME server will send no notices.
 
 **Example**:
 
@@ -197,12 +179,11 @@ Define what
 [anonymous](authentication.md#anonymous-login-and-sasl-anonymous)
 protocol will be used:
 
--   `login_anon` means that the anonymous login method will be used.
+- `login_anon` means that the anonymous login method will be used.
 
--   `sasl_anon` means that the SASL Anonymous method will be used.
+- `sasl_anon` means that the SASL Anonymous method will be used.
 
--   `both` means that SASL Anonymous and login anonymous are both
-    enabled.
+- `both` means that SASL Anonymous and login anonymous are both enabled.
 
 The default value is `sasl_anon`.
 
@@ -242,17 +223,19 @@ not set, the value from [cache_missed](#cache_missed) will be used.
 Same as [cache_size](#cache_size), but applied to authentication cache only. If not
 set, the value from [cache_size](#cache_size) will be used.
 
-## auth\_external\_user\_exists\_check
+## auth\_external\_user\_exists\_check 🟠
 
-`true | false`  
+`true | false | force`  
 
-<!-- md:version added in [23.10](../../archive/23.10/index.md) -->
-
-Supplement check for user
-existence based on [mod_last](modules.md#mod_last) data, for authentication methods that
-don’t have a way to reliably tell if a user exists (like is the case for
-`jwt` and certificate based authentication). This helps with processing
-offline message for those users. The default value is `true`.
+`Note` about this option: added in [23.10](../../archive/23.10/index.md), `force` added in [26.09](../../archive/26.09/index.md).
+Supplement check for user existence based on [mod_last](modules.md#mod_last) data, for
+authentication methods that don’t have a way to reliably tell if a user
+exists (like is the case for `jwt` and certificate based
+authentication). This helps with processing offline message for those
+users. Using `force` values enables this processing even when no
+external storage method is enabled (like when using certificate
+authentications together with local stored passwords. The default value
+is `true`.
 
 ## auth\_method
 
@@ -282,19 +265,19 @@ The option defines in what
 format the users passwords are stored, plain text or in
 [SCRAM](authentication.md#scram) format:
 
--   `plain`: The password is stored as plain text in the database. This
-    is risky because the passwords can be read if your database gets
-    compromised. This is the default value. This format allows clients
-    to authenticate using: the old Jabber Non-SASL (XEP-0078), SASL
-    PLAIN, SASL DIGEST-MD5, and SASL SCRAM-SHA-1/256/512(-PLUS).
+- `plain`: The password is stored as plain text in the database. This is
+  risky because the passwords can be read if your database gets
+  compromised. This is the default value. This format allows clients to
+  authenticate using: the old Jabber Non-SASL (XEP-0078), SASL PLAIN,
+  SASL DIGEST-MD5, and SASL SCRAM-SHA-1/256/512(-PLUS).
 
--   `scram`: The password is not stored, only some information required
-    to verify the hash provided by the client. It is impossible to
-    obtain the original plain password from the stored information; for
-    this reason, when this value is configured it cannot be changed to
-    plain anymore. This format allows clients to authenticate using:
-    SASL PLAIN and SASL SCRAM-SHA-1/256/512(-PLUS). The SCRAM variant
-    depends on the [auth_scram_hash](#auth_scram_hash) option.
+- `scram`: The password is not stored, only some information required to
+  verify the hash provided by the client. It is impossible to obtain the
+  original plain password from the stored information; for this reason,
+  when this value is configured it cannot be changed to plain anymore.
+  This format allows clients to authenticate using: SASL PLAIN and SASL
+  SCRAM-SHA-1/256/512(-PLUS). The SCRAM variant depends on the
+  [auth_scram_hash](#auth_scram_hash) option.
 
 The default value is `plain`.
 
@@ -497,6 +480,16 @@ Maximum number of [CAPTCHA](basic.md#captcha) generated images per
 minute for any given JID. The option is intended to protect the server
 from CAPTCHA DoS. The default value is `infinity`.
 
+## captcha\_pow
+
+`pos_integer() | false`  
+
+Offer an XEP-0158 SHA-256 hashcash (proof-of-work) challenge in the
+[CAPTCHA](basic.md#captcha) form, alongside the image challenge or on
+its own. The value is the difficulty: the number of hexadecimal digits
+of the SHA-256 digest a client must match. Unlike the image challenge,
+this does not require [captcha_cmd](#captcha_cmd). The default value is `false`.
+
 ## captcha\_url
 
 `URL | auto | undefined`  
@@ -652,40 +645,37 @@ algorithm to deliver messages to the component(s) can be specified by
 this option. For any component connected as `Domain`, available
 `Options` are:
 
--   **component\_number**: `2..1000`  
-    The number of components to
-    balance.
+- **component\_number**: `2..1000` The number of components to balance.
 
--   **type**: `Value`  
-    How to deliver stanzas to connected components.
-    The default value is `random`. Possible values:
+- **type**: `Value` How to deliver stanzas to connected components. The
+  default value is `random`. Possible values:
 
-    **- bare\_destination**  
-    by the bare JID (without resource) of the packet’s `to` attribute
+  **- bare\_destination**  
+  by the bare JID (without resource) of the packet’s `to` attribute
 
-    **- bare\_source**  
-    by the bare JID (without resource) of the packet’s `from` attribute
-    is used
+  **- bare\_source**  
+  by the bare JID (without resource) of the packet’s `from` attribute is
+  used
 
-    **- destination**  
-    an instance is chosen by the full JID of the packet’s `to` attribute
+  **- destination**  
+  an instance is chosen by the full JID of the packet’s `to` attribute
 
-    **- random**  
-    an instance is chosen at random
+  **- random**  
+  an instance is chosen at random
 
-    **- source**  
-    by the full JID of the packet’s `from` attribute
+  **- source**  
+  by the full JID of the packet’s `from` attribute
 
-    **Example**:
+  **Example**:
 
-    ~~~ yaml
-    domain_balancing:
-      component.domain.tld:
-        type: destination
-        component_number: 5
-      transport.example.org:
-        type: bare_source
-    ~~~
+  ~~~ yaml
+  domain_balancing:
+    component.domain.tld:
+      type: destination
+      component_number: 5
+    transport.example.org:
+      type: bare_source
+  ~~~
 
 ## ext\_api\_headers
 
@@ -821,16 +811,14 @@ Read and
 from `Filename`. If the value is provided in *{Filename: Options}*
 format, the `Options` must be one of the following:
 
--   **allow\_only**: `[OptionName, ...]`  
-    Allows only the usage of
-    those options in the included file `Filename`. The options that do
-    not match this criteria are not accepted. The default value is to
-    include all options.
+- **allow\_only**: `[OptionName, ...]` Allows only the usage of those
+  options in the included file `Filename`. The options that do not match
+  this criteria are not accepted. The default value is to include all
+  options.
 
--   **disallow**: `[OptionName, ...]`  
-    Disallows the usage of those
-    options in the included file `Filename`. The options that match this
-    criteria are not accepted. The default value is an empty list.
+- **disallow**: `[OptionName, ...]` Disallows the usage of those
+  options in the included file `Filename`. The options that match this
+  criteria are not accepted. The default value is an empty list.
 
 ## install\_contrib\_modules
 
@@ -881,12 +869,12 @@ Path to the file that contains the
 
 Supported file formats:
 
--   **PEM format** - Standard PEM-encoded keys (RSA, EC, EdDSA, etc.)
+- **PEM format** - Standard PEM-encoded keys (RSA, EC, EdDSA, etc.)
 
--   **JWK (JSON Web Key)** - JSON format
+- **JWK (JSON Web Key)** - JSON format
 
--   **JWK Set** - JSON with a `"keys"` array (but must contain exactly
-    one key)
+- **JWK Set** - JSON with a `"keys"` array (but must contain exactly one
+  key)
 
 By default there is no path defined, that is: `undefined`.
 
@@ -1822,7 +1810,7 @@ value defined in [queue_type](#queue_type) or `ram` if the latter is not set.
 Whether to use the
 [multihost SQL schema](database.md#singlehost-or-multihost). All
 schemas are located at
-<https://github.com/processone/ejabberd/tree/26.07/sql>. There are two
+<https://github.com/processone/ejabberd/tree/26.09/sql>. There are two
 schemas available. The legacy `singlehost` schema stores one XMPP domain
 into one ejabberd database. The `multihost` schema can handle several
 XMPP domains in a single ejabberd database. The `multihost` schema is

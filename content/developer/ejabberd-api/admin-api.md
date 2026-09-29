@@ -7,7 +7,7 @@ search:
 
 !!! info "Please note"
 
-    This section describes API commands of ejabberd [26.07](../../archive/26.07/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
+    This section describes API commands of ejabberd [26.09](../../archive/26.09/index.md).  If you are using an old ejabberd release, please refer to the corresponding archived version of this page in the [Archive](../../archive/index.md).
 
     The commands that changed in this version are marked with 🟠
 
@@ -1335,7 +1335,7 @@ HTTP/1.1 200 OK
 
 
 
-## delete_invite_by_token 🟠
+## delete_invite_by_token
 
 <!-- md:version added in [26.07](../../archive/26.07/index.md) -->
 
@@ -2090,7 +2090,7 @@ HTTP/1.1 200 OK
 
 
 
-## expire_invite_by_token 🟠
+## expire_invite_by_token
 
 <!-- md:version added in [26.07](../../archive/26.07/index.md) -->
 
@@ -2309,7 +2309,7 @@ HTTP/1.1 200 OK
 
 
 
-## export_db_ext 🟠
+## export_db_ext
 
 <!-- md:version added in [26.07](../../archive/26.07/index.md) -->
 
@@ -2664,7 +2664,7 @@ HTTP/1.1 200 OK
 
 
 
-## generate_reset_token 🟠
+## generate_reset_token
 
 <!-- md:version added in [26.07](../../archive/26.07/index.md) -->
 
@@ -6430,7 +6430,7 @@ HTTP/1.1 200 OK
 
 
 
-## request_certificate 🟠
+## request_certificate
 
 <!-- md:version improved in [26.07](../../archive/26.07/index.md) -->
 
@@ -6806,7 +6806,7 @@ HTTP/1.1 200 OK
 
 
 
-## rooms_unused_destroy_skip_notifications 🟠
+## rooms_unused_destroy_skip_notifications
 
 <!-- md:version added in [26.07](../../archive/26.07/index.md) -->
 
