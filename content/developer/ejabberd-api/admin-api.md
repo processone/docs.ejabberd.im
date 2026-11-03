@@ -6319,6 +6319,89 @@ HTTP/1.1 200 OK
 
 
 
+## remove_mam_for_room
+
+<!-- md:version added in [26.12](../../archive/26.12/index.md) -->
+
+Remove all messages from a MUC room MAM archive
+
+__Arguments:__
+
+- *room* :: string : Room name
+- *service* :: string : MUC service
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[mam](admin-tags.md#mam), [muc_room](admin-tags.md#muc_room)
+
+__Module:__
+[mod_mam](../../admin/configuration/modules.md#mod_mam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/remove_mam_for_room
+{
+  "room": "room1",
+  "service": "conference.example.com"
+}
+
+HTTP/1.1 200 OK
+"Removed 42 messages from MAM archive"
+~~~
+
+
+
+
+## remove_mam_for_room_with_time_range
+
+<!-- md:version added in [26.12](../../archive/26.12/index.md) -->
+
+Remove messages sent in a time range from a MUC room MAM archive
+
+
+Timestamps are the number of seconds since `1970-01-01 00:00:00 UTC`, both inclusive. For example value see `date +%s`
+
+__Arguments:__
+
+- *room* :: string : Room name
+- *service* :: string : MUC service
+- *from* :: integer : Start of the time range, in seconds since epoch
+- *to* :: integer : End of the time range, in seconds since epoch
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[mam](admin-tags.md#mam), [muc_room](admin-tags.md#muc_room)
+
+__Module:__
+[mod_mam](../../admin/configuration/modules.md#mod_mam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/remove_mam_for_room_with_time_range
+{
+  "room": "room1",
+  "service": "conference.example.com",
+  "from": 1767225600,
+  "to": 1769903999
+}
+
+HTTP/1.1 200 OK
+"Removed 42 messages from MAM archive"
+~~~
+
+
+
+
 ## remove_mam_for_user
 
 
@@ -6351,6 +6434,93 @@ POST /api/remove_mam_for_user
 
 HTTP/1.1 200 OK
 "MAM archive removed"
+~~~
+
+
+
+
+## remove_mam_for_user_in_room
+
+<!-- md:version added in [26.12](../../archive/26.12/index.md) -->
+
+Remove messages sent by a user from a MUC room MAM archive
+
+__Arguments:__
+
+- *room* :: string : Room name
+- *service* :: string : MUC service
+- *user* :: string : User JID
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[mam](admin-tags.md#mam), [muc_room](admin-tags.md#muc_room)
+
+__Module:__
+[mod_mam](../../admin/configuration/modules.md#mod_mam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/remove_mam_for_user_in_room
+{
+  "room": "room1",
+  "service": "conference.example.com",
+  "user": "anne@example.com"
+}
+
+HTTP/1.1 200 OK
+"Removed 42 messages from MAM archive"
+~~~
+
+
+
+
+## remove_mam_for_user_in_room_with_time_range
+
+<!-- md:version added in [26.12](../../archive/26.12/index.md) -->
+
+Remove messages sent by a user in a time range from a MUC room MAM archive
+
+
+Timestamps are the number of seconds since `1970-01-01 00:00:00 UTC`, both inclusive. For example value see `date +%s`
+
+__Arguments:__
+
+- *room* :: string : Room name
+- *service* :: string : MUC service
+- *user* :: string : User JID
+- *from* :: integer : Start of the time range, in seconds since epoch
+- *to* :: integer : End of the time range, in seconds since epoch
+
+__Result:__
+
+- *res* :: string : Raw result string
+
+__Tags:__
+[mam](admin-tags.md#mam), [muc_room](admin-tags.md#muc_room)
+
+__Module:__
+[mod_mam](../../admin/configuration/modules.md#mod_mam)
+
+__Examples:__
+
+
+~~~ json
+POST /api/remove_mam_for_user_in_room_with_time_range
+{
+  "room": "room1",
+  "service": "conference.example.com",
+  "user": "anne@example.com",
+  "from": 1767225600,
+  "to": 1769903999
+}
+
+HTTP/1.1 200 OK
+"Removed 42 messages from MAM archive"
 ~~~
 
 

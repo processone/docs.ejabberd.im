@@ -252,7 +252,19 @@
 * [get_mam_count](admin-api.md#get_mam_count)
 
 
+* [remove_mam_for_room](admin-api.md#remove_mam_for_room)
+
+
+* [remove_mam_for_room_with_time_range](admin-api.md#remove_mam_for_room_with_time_range)
+
+
 * [remove_mam_for_user](admin-api.md#remove_mam_for_user)
+
+
+* [remove_mam_for_user_in_room](admin-api.md#remove_mam_for_user_in_room)
+
+
+* [remove_mam_for_user_in_room_with_time_range](admin-api.md#remove_mam_for_user_in_room_with_time_range)
 
 
 * [remove_mam_for_user_with_peer](admin-api.md#remove_mam_for_user_with_peer)
@@ -433,6 +445,18 @@
 
 
 * [get_subscribers](admin-api.md#get_subscribers)
+
+
+* [remove_mam_for_room](admin-api.md#remove_mam_for_room)
+
+
+* [remove_mam_for_room_with_time_range](admin-api.md#remove_mam_for_room_with_time_range)
+
+
+* [remove_mam_for_user_in_room](admin-api.md#remove_mam_for_user_in_room)
+
+
+* [remove_mam_for_user_in_room_with_time_range](admin-api.md#remove_mam_for_user_in_room_with_time_range)
 
 
 * [send_direct_invitation](admin-api.md#send_direct_invitation)
