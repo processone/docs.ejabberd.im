@@ -652,6 +652,55 @@ The following `AccessName` are pre-defined:
 
 - **`none`**:   Always returns the value ‘`deny`’.
 
+### Host Admins
+
+It was already explained in [Administration Account](../install/next-steps.md#administration-account) how to grant permissions for the whole ejabberd server to a global administrator acount, affecting all the hosts defined in the configuration file.
+
+For example, account `admin1@example.org` can administer all ejabberd:
+
+```yaml
+acl:
+  admin:
+    user: admin1@example.org
+
+access_rules:
+  configure:
+    allow: admin
+```
+
+How to allow an account to administer only a specific host?
+
+In this example, `admin1@example.org` is again a global administator of all ejabberd,
+and `admin2@domain.net` can administer only the host `domain.net`:
+
+```yaml
+hosts:
+  - example.org
+  - domain.net
+
+acl:
+  admin:
+    user: admin1@example.org
+
+append_host_config:
+  "domain.net":
+    acl:
+      hostadmin:
+        user: admin2@domain.net
+
+access_rules:
+  configure:
+    allow: admin
+    allow: hostadmin
+
+api_permissions:
+  "webadmin commands":
+    from: ejabberd_web_admin
+    who:
+      access: configure
+    what: "*"
+```
+
 ### Shaper Rules
 
 The [`shaper_rules`](toplevel.md#shaper_rules)

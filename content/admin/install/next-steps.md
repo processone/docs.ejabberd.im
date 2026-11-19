@@ -82,7 +82,8 @@ After installing ejabberd from source code or other methods, you may want to reg
         ```
 
 2. Edit the ejabberd configuration file to give administration
-    rights to the XMPP account you registered:
+    [access rights](../configuration/basic.md#access-rights)
+    to the XMPP account you registered:
 
     ``` yaml
     acl:
