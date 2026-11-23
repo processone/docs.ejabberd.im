@@ -6,6 +6,7 @@ mkdocs-material
 mkdocs-material-extensions
 mkdocs-material[imaging]
 mkdocs-redirects
-mkdocs-with-pdf
+mkdocs-to-pdf==0.12.1
 pymdown-extensions
-weasyprint<69.0
+pypdf
+weasyprint==70.0
