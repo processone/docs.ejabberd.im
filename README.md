@@ -44,7 +44,7 @@ apt-get install mkdocs \
 ```
 
 !!! warning
-    Unfortunately Debian doesn't package `mkdocs-with-pdf`, so you should remove `with-pdf` plugin from `mkdocs.yml`.
+    Unfortunately Debian doesn't package `mkdocs-to-pdf`, so you should remove `to-pdf` plugin from `mkdocs.yml`.
 
 ## Building
 

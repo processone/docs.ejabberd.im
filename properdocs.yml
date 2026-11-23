@@ -136,7 +136,7 @@ plugins:
         'admin/installation.md': 'admin/install/index.md'
   - search
   #- social
-  - with-pdf:
+  - to-pdf:
       author: " "
       copyright: Copyright &copy; 2008 - 2024 ProcessOne
       cover: true
